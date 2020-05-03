@@ -6,6 +6,6 @@ External_Switches=NO_Kill_Switch1,NC_Kill_Switch1,Common_Kill_Switch1,NO_Kill_Sw
 Heater_Voltage=-Heater1_Voltage,-Heater2_Voltage
 JTAG_Harness_MCU=TDO,TCK
 Panels_Input=Panel+Y,Panel-Y,Panel+X,Panel-X,Panel+Z,Panel-Z
-Protocolo_I2C=I2C_SCL,I2C_SDA
+Protocolo_I2C=I2C_SCL_BUF,I2C_SDA_BUF
 RTD_Sensors=RTD0,RTD1,RTD2,RTD3,RTD4,RTD5,RTD6,RTD_common
 UART_Debug=UART_Debug_Tx,UART_Debug_RX
