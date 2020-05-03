@@ -1,4 +1,5 @@
-Record=TopLevelDocument|FileName=EPS_Interface.SchDoc
+Record=TopLevelDocument|FileName=Block_diagram.SchDoc
+Record=SheetSymbol|SourceDocument=Block_diagram.SchDoc|Designator=PCB|SchDesignator=PCB|FileName=EPS_Interface.SchDoc|SymbolType=Normal|RawFileName=EPS_Interface.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
 Record=SheetSymbol|SourceDocument=EPS_Interface.SchDoc|Designator=EPS_Topology|SchDesignator=EPS_Topology|FileName=EPS_Topology.SchDoc|SymbolType=Normal|RawFileName=EPS_Topology.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
 Record=SheetSymbol|SourceDocument=EPS_Topology.SchDoc|Designator=5V Radio TT&C/Beacom|SchDesignator=5V Radio TT&C/Beacom|FileName=8_dc_dc_5V_5A_Radio.SchDoc|SymbolType=Normal|RawFileName=8_dc_dc_5V_5A_Radio.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
 Record=SheetSymbol|SourceDocument=EPS_Topology.SchDoc|Designator=Battery_Heater_Controller|SchDesignator=Battery_Heater_Controller|FileName=4_Battery_Heater_Controller.SchDoc|SymbolType=Normal|RawFileName=4_Battery_Heater_Controller.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
