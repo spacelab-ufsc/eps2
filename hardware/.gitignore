@@ -1,0 +1,7 @@
+# Altium Designer Outputs
+
+*.SchDocPreview
+altium_project/History/
+altium_project/__Previews/
+*.LOG
+altium_project/sources/*.htm
