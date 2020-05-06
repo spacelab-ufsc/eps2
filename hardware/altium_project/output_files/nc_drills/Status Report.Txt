@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [PCB_Project_FlightModel_EPS.PrjPcb]
+   Generated File[PCB_EPS_2.TXT]
+   Generated File[PCB_EPS_2.LDP]
+   Generated File[PCB_EPS_2.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 6:53:33 PM On 5/6/2020
