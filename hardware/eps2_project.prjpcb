@@ -411,6 +411,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=MNKAWOPK
 
+[Document23]
+DocumentPath=sources\eps2_outputjob.outjob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [ProjectVariant1]
 UniqueID=DAEE0F17-C7D1-4E98-8DC4-A24E7F5DD222
 Description=Test Model
