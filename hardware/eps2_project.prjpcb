@@ -476,6 +476,10 @@ VariationCount=1
 Variation1=Designator=R93|UniqueId=\LBPPGYYK\NDGVENKM\FITLMODB\NFOUHCLM|Kind=1|AlternatePart= 
 ParamVariationCount=0
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for PCB_Project_FlightModel_EPS\Design Rule Check - board_layout.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
