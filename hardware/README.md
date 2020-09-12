@@ -3,7 +3,7 @@
 	<br>
 </h1>
 
-<h4 align="center">Electrical power module hardware project (sources, outputs, and documentation).</h4>
+<h4 align="center">Electrical power system module hardware project (sources, outputs, and documentation).</h4>
 
 <p align="center">
     <a href="">
@@ -13,12 +13,12 @@
 		<img src="https://img.shields.io/badge/version-0.1-blue?style=for-the-badge">
 	</a>
 	<a href="">
-		<img src="https://img.shields.io/badge/CAD%20tool-altium%20v18.2-9cf?style=for-the-badge">
+		<img src="https://img.shields.io/badge/CAD%20tool-altium%20v19.2-9cf?style=for-the-badge">
 	</a>
 	<a href="">
 		<img src="https://img.shields.io/badge/license-GPL3-red?style=for-the-badge">
 	</a>
-	<a href="https://github.com/spacelab-ufsc/eps2/tree/master/doc">
+	<a href="https://github.com/spacelab-ufsc/eps2/tree/dev/doc">
 		<img src="https://img.shields.io/badge/for%20more-here-lightgray?style=for-the-badge">
 	</a>
 </p>
@@ -40,20 +40,25 @@
 
 ## Overview
 
+
+
 ## Architecture
 
 #### Hardware architecture diagram
+
 <p align="center">
 	<img width="70%" src="">
 </p>
 
 #### Hardware interfaces diagram
+
 <p align="center">
 	<img width="70%" src="">
 </p>
 
 
 ## Development
+
 * Power-on the module
 * Debugging
 
@@ -63,10 +68,4 @@
 
 ## Notes
 
-
 Under Development! More information soon.
-
-
-
-
-
