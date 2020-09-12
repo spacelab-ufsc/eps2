@@ -41,20 +41,24 @@
 ## Overview
 
 
+
 ## Architecture
 
 #### Hardware architecture diagram
+
 <p align="center">
 	<img width="70%" src="">
 </p>
 
 #### Hardware interfaces diagram
+
 <p align="center">
 	<img width="70%" src="">
 </p>
 
 
 ## Development
+
 * Power-on the module
 * Debugging
 
@@ -64,10 +68,4 @@
 
 ## Notes
 
-
 Under Development! More information soon.
-
-
-
-
-

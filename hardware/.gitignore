@@ -1,7 +1,8 @@
-# Altium Designer Outputs
+# Altium version control and status files
 
-*.SchDocPreview
-altium_project/History/
-altium_project/__Previews/
-*.LOG
-altium_project/sources/*.htm
+*History
+*__Previews
+Project Outputs*
+*.log
+*.Dat
+Status Report.txt

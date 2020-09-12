@@ -1,5 +1,0 @@
-Heater_PWM=Heater1_PWM,Heater2_PWM
-Heater_Voltage=-Heater1_Voltage,-Heater2_Voltage
-Output_RTD_ADC=RTD_DOUT,RTD_DRDY
-RTD_ADC_Config=RTD_SCLK,RTD_DIN,RTD_CS,RTD_Reset,RTD_Start
-RTD_Sensors=RTD0,RTD1,RTD2,RTD3,RTD4,RTD5,RTD6,RTD_common

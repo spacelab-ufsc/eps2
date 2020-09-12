@@ -1,0 +1,14 @@
+3V3_OBDH_3V3_Deployment_ANT=3V3_OBDH,3V3_Deployment_ANT
+5V_6V_Radios=6V_Radio_Beacon,5V_Radio_Main
+BAT_GPIO=BAT_GPIO1,BAT_GPIO2
+Batteries_Input=+VBat,-VBat,VBat_Common
+En_5V_6V_Radios=En_6V_Radio_Beacon,En_5V_Radio_Main
+External_Switches=NO_Kill_Switch1,NC_Kill_Switch1,Common_Kill_Switch1,NO_Kill_Switch2,NC_Kill_Switch2,Common_Kill_Switch2,+RBF,-RBF
+Heater_Voltage=-Heater1_Voltage,-Heater2_Voltage
+JTAG_Harness_MCU=TDO,TCK
+Panels_Input=Panel+Y,Panel-Y,Panel+X,Panel-X,Panel+Z,Panel-Z
+PC104_GPIO=PC104_GPIO0,PC104_GPIO1,PC104_GPIO2
+Protocolo_I2C=I2C_SCL_BUF,I2C_SDA_BUF
+RTD_Sensors=RTD0,RTD1,RTD2,RTD3,RTD4,RTD5,RTD6,RTD_common
+UART_Beacon=UART_EPS_TX,UART_EPS_RX
+UART_Debug=UART_Debug_Tx,UART_Debug_RX
