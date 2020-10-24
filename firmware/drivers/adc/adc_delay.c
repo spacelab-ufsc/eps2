@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * adc_delay.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,30 +21,27 @@
  */
 
 /**
- * \brief Drivers layer definition.
+ * \brief ADC delay implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.0
  * 
- * \date 2020/10/21
+ * \date 2020/10/24
  * 
- * \defgroup drivers Drivers
+ * \defgroup adc_delay Delay
+ * \ingroup adc
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include <FreeRTOS.h>
+#include <task.h>
 
-#include "adc/adc.h"
-#include "flash/flash.h"
-#include "gpio/gpio.h"
-#include "i2c/i2c.h"
-#include "spi/spi.h"
-#include "tca4311a/tca4311a.h"
-#include "uart/uart.h"
-#include "wdt/wdt.h"
+#include "adc.h"
 
-#endif /* DRIVERS_H_ */
+void adc_delay_ms(uint16_t ms)
+{
+    vTaskDelay(pdMS_TO_TICKS(ms));
+}
 
-/** \} End of drivers group */
+/** \} End of adc_delay group */
