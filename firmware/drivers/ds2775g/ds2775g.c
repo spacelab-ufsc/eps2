@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * ds2775g.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,32 +21,23 @@
  */
 
 /**
- * \brief Drivers layer definition.
+ * \brief DS2775G+ driver implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/24
  * 
- * \defgroup drivers Drivers
+ * \addtogroup ds2775g
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include "ds2775g.h"
 
-#include "adc/adc.h"
-#include "ds2775g/ds2775g.h"
-#include "flash/flash.h"
-#include "gpio/gpio.h"
-#include "i2c/i2c.h"
-#include "onewire/onewire.h"
-#include "spi/spi.h"
-#include "tca4311a/tca4311a.h"
-#include "uart/uart.h"
-#include "wdt/wdt.h"
+int ds2775g_init(ds2775g_config_t *config)
+{
+    return -1;
+}
 
-#endif /* DRIVERS_H_ */
-
-/** \} End of drivers group */
+/** \} End of ds2775g group */
