@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * ads1248.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,33 +21,38 @@
  */
 
 /**
- * \brief Drivers layer definition.
+ * \brief ADS1248 driver implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/24
  * 
- * \defgroup drivers Drivers
+ * \addtogroup ads1248
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include "ads1248.h"
 
-#include "adc/adc.h"
-#include "ads1248/ads1248.h"
-#include "ds2775g/ds2775g.h"
-#include "flash/flash.h"
-#include "gpio/gpio.h"
-#include "i2c/i2c.h"
-#include "onewire/onewire.h"
-#include "spi/spi.h"
-#include "tca4311a/tca4311a.h"
-#include "uart/uart.h"
-#include "wdt/wdt.h"
+int ads1248_init(ads1248_config_t *config)
+{
+    return -1;
+}
 
-#endif /* DRIVERS_H_ */
+int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode)
+{
+    return -1;
+}
 
-/** \} End of drivers group */
+int ads1248_set_powerdown_mode(ads1248_config_t *config)
+{
+    return -1;
+}
+
+int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd)
+{
+    return -1;
+}
+
+/** \} End of ads1248 group */
