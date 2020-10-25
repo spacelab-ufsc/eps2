@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * onewire.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,31 +21,38 @@
  */
 
 /**
- * \brief Drivers layer definition.
+ * \brief OneWire driver implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/24
  * 
- * \defgroup drivers Drivers
+ * \addtogroup onewire
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include "onewire.h"
 
-#include "adc/adc.h"
-#include "flash/flash.h"
-#include "gpio/gpio.h"
-#include "i2c/i2c.h"
-#include "onewire/onewire.h"
-#include "spi/spi.h"
-#include "tca4311a/tca4311a.h"
-#include "uart/uart.h"
-#include "wdt/wdt.h"
+int onewire_init(onewire_port_t port)
+{
+    return -1;
+}
 
-#endif /* DRIVERS_H_ */
+int onewire_reset(onewire_port_t port)
+{
+    return -1;
+}
 
-/** \} End of drivers group */
+int onewire_write(onewire_port_t port, onewire_adr_t adr, uint8_t *data, uint16_t len)
+{
+    return -1;
+}
+
+int onewire_read(onewire_port_t port, onewire_adr_t adr, uint8_t *data, uint16_t len)
+{
+    return -1;
+}
+
+/** \} End of onewire group */
