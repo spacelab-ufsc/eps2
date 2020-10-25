@@ -1,7 +1,7 @@
 /*
- * config.h
+ * startup.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2019, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -21,24 +21,45 @@
  */
 
 /**
- * \brief Configuration parameters definition.
+ * \brief Startup task definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/25
  * 
- * \defgroup config Configuration
+ * \defgroup startup Startup
+ * \ingroup tasks
  * \{
  */
 
-#ifndef CONFIG_H_
-#define CONFIG_H_
+#ifndef STARTUP_H_
+#define STARTUP_H_
 
-/* Tasks */
-#define CONFIG_TASK_STARTUP_ENABLED                     1
+#include <FreeRTOS.h>
+#include <task.h>
 
-#endif /* CONFIG_H_ */
+#define TASK_STARTUP_NAME                   "Startup"
+#define TASK_STARTUP_STACK_SIZE             500
+#define TASK_STARTUP_PRIORITY               5
 
-/** \} End of config group */
+/**
+ * \brief Startup task handle.
+ */
+extern xTaskHandle xTaskStartupHandle;
+
+/**
+ * \brief System startup task.
+ *
+ * This task runs in a single shot (non-periodic). After it's conclusion, it is suspended.
+ *
+ * \param[in] pvParameters is a value that will passed as the task's parameter.
+ *
+ * \return None.
+ */
+void vTaskStartup(void *pvParameters);
+
+#endif /* STARTUP_H_ */
+
+/** \} End of startup group */

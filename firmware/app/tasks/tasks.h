@@ -1,7 +1,7 @@
 /*
- * config.h
+ * tasks.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2019, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -21,24 +21,35 @@
  */
 
 /**
- * \brief Configuration parameters definition.
+ * \brief Tasks definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/25
  * 
- * \defgroup config Configuration
+ * \defgroup tasks Tasks
  * \{
  */
 
-#ifndef CONFIG_H_
-#define CONFIG_H_
+#ifndef TASKS_H_
+#define TASKS_H_
 
-/* Tasks */
-#define CONFIG_TASK_STARTUP_ENABLED                     1
+/**
+ * \brief Creates the system tasks.
+ *
+ * \return None.
+ */
+void create_tasks();
 
-#endif /* CONFIG_H_ */
+/**
+ * \brief Creates the system event groups.
+ *
+ * \return None.
+ */
+void create_event_groups();
 
-/** \} End of config group */
+#endif /* TASKS_H_ */
+
+/** \} End of tasks group */

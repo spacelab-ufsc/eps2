@@ -1,5 +1,5 @@
 /*
- * config.h
+ * tasks.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,24 +21,44 @@
  */
 
 /**
- * \brief Configuration parameters definition.
+ * \brief Tasks implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/25
  * 
- * \defgroup config Configuration
+ * \addtogroup tasks
  * \{
  */
 
-#ifndef CONFIG_H_
-#define CONFIG_H_
+#include <FreeRTOS.h>
+#include <task.h>
 
-/* Tasks */
-#define CONFIG_TASK_STARTUP_ENABLED                     1
+#include <config/config.h>
 
-#endif /* CONFIG_H_ */
+#include "tasks.h"
+#include "startup.h"
 
-/** \} End of config group */
+void create_tasks()
+{
+    /* Startup task */
+#if CONFIG_TASK_STARTUP_ENABLED == 1
+    xTaskCreate(vTaskStartup, TASK_STARTUP_NAME, TASK_STARTUP_STACK_SIZE, NULL, TASK_STARTUP_PRIORITY, &xTaskStartupHandle);
+
+    if (xTaskStartupHandle == NULL)
+    {
+        /* Error creating the startup task */
+    }
+#endif /* CONFIG_TASK_STARTUP_ENABLED */
+
+    return;
+}
+
+void create_event_groups()
+{
+    return;
+}
+
+/** \} End of tasks group */
