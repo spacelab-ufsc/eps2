@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.2
  * 
  * \date 2020/10/22
  * 
@@ -347,9 +347,9 @@ void sys_log_print_license_msg()
     sys_log_print_msg("under certain conditions.");
     sys_log_new_line();
     sys_log_new_line();
-    sys_log_print_msg("Source code: https://github.com/spacelab-ufsc/obdh2");
+    sys_log_print_msg("Source code: https://github.com/spacelab-ufsc/eps2");
     sys_log_new_line();
-    sys_log_print_msg("Documentation: https://github.com/spacelab-ufsc/obdh2/doc");
+    sys_log_print_msg("Documentation: https://github.com/spacelab-ufsc/eps2/tree/master/doc");
     sys_log_new_line();
 }
 
@@ -388,7 +388,6 @@ void sys_log_print_splash_screen()
     sys_log_print_msg("..........       | |___|  __/ ___) |  / __/ | |_| |      ..........");
     sys_log_new_line();
     sys_log_print_msg("..........       |_____|_|   |____/  |_____(_)___/       ..........");
-    sys_log_new_line();
     sys_log_new_line();
     sys_log_print_msg("..........                                               ..........");
     sys_log_new_line();
