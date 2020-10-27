@@ -38,6 +38,7 @@
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
 #include <system/clocks.h>
+#include <devices/leds/leds.h>
 
 #include "startup.h"
 

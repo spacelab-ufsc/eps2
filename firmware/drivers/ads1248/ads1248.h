@@ -68,6 +68,16 @@ typedef struct
 } ads1248_config_t;
 
 /**
+ * \brief ADS1248 command type.
+ */
+typedef uint8_t ads1248_cmd_t;
+
+/**
+ * \brief ADS1248 reset mode type.
+ */
+typedef uint8_t ads1248_reset_mode_t;
+
+/**
  * \brief Reset modes.
  */
 typedef enum
