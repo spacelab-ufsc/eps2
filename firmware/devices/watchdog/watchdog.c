@@ -1,5 +1,5 @@
 /*
- * devices.h
+ * watchdog.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,24 +21,35 @@
  */
 
 /**
- * \brief Devices layer.
+ * \brief Watchdog device implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/26
  * 
- * \defgroup devices Devices
+ * \addtogroup watchdog
  * \{
  */
 
-#ifndef DEVICES_H_
-#define DEVICES_H_
+#include <drivers/wdt/wdt.h>
 
-#include <devices/leds/leds.h>
-#include <devices/watchdog/watchdog.h>
+#include "watchdog.h"
 
-#endif /* DEVICES_H_ */
+int watchdog_init()
+{
+    wdt_config_t int_wdt;
 
-/** \} End of devices group */
+    int_wdt.clk_src = WDT_CLK_SRC_ACLK;
+    int_wdt.clk_div = WDT_CLK_DIV_32K;
+
+    return wdt_init(int_wdt);
+}
+
+void watchdog_reset()
+{
+    wdt_reset();
+}
+
+/** \} End of watchdog group */

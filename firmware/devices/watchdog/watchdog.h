@@ -1,5 +1,5 @@
 /*
- * devices.h
+ * watchdog.h
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,24 +21,36 @@
  */
 
 /**
- * \brief Devices layer.
+ * \brief Watchdog device definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/21
+ * \date 2020/10/26
  * 
- * \defgroup devices Devices
+ * \defgroup watchdog Watchdog
+ * \ingroup devices
  * \{
  */
 
-#ifndef DEVICES_H_
-#define DEVICES_H_
+#ifndef WATCHDOG_H_
+#define WATCHDOG_H_
 
-#include <devices/leds/leds.h>
-#include <devices/watchdog/watchdog.h>
+/**
+ * \brief Watchdog initialization.
+ *
+ * \return The status/error code.
+ */
+int watchdog_init();
 
-#endif /* DEVICES_H_ */
+/**
+ * \brief Watchdog timer reset.
+ *
+ * \return None.
+ */
+void watchdog_reset();
 
-/** \} End of devices group */
+#endif /* WATCHDOG_H_ */
+
+/** \} End of watchdog group */
