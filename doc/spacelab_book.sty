@@ -1,0 +1,94 @@
+%
+% spacelab_book.sty
+%
+% Copyright (C) 2020 by SpaceLab.
+%
+% DOCUMENTATION-TEMPLATE
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license,
+% visit http://creativecommons.org/licenses/by-sa/4.0/.
+%
+
+%
+% \brief Document style customization and packages.
+%
+% \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+%
+% \institution Universidade Federal de Santa Catarina (UFSC)
+%
+% \version 0.1.0
+%
+% \date 2020/07/16
+%
+
+\ProvidesPackage{spacelab_book}
+
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[T1]{fontenc}  
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{ae}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{subfigure}
+\usepackage{nomencl}				% Nomenclature list
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{emptypage}
+\usepackage{lettrine}				% First letter bigger in the begining of a chapter
+\usepackage{tabularx}
+\usepackage{enumitem}				% Custom enumerate
+\usepackage[toc,page]{appendix}     % Appendix
+\usepackage{titling}
+\usepackage{pdfpages}               % Include PDF documents
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage[toc,page]{appendix}     % Appendix
+\usepackage{lscape}
+\usepackage[bottom]{footmisc}
+\usepackage{multicol}
+\usepackage{caption}                % \caption*
+\usepackage{listings}               % Codes
+\usepackage[outdir=figures/]{epstopdf}
+\usepackage{longtable}              % Multiple pages table
+\usepackage[math]{iwona}
+\usepackage{xcolor, colortbl}
+
+% URLs font style
+\urlstyle{same}
+
+% Bibliography style (order of appearance)
+\bibliographystyle{unsrt}
+
+% First chapter page style
+\titleformat{\chapter}[display]
+    {\bfseries\Large}
+    {\filright\MakeUppercase{\chaptertitlename} \Large\thechapter}
+    {1ex}
+    {\titlerule\vspace{1ex}\filleft}
+    [\vspace{1ex}\titlerule]
+
+% Header style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO]{\nouppercase{\rightmark}}
+\fancyhead[LE]{\nouppercase{\leftmark}}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+\renewcommand{\footrulewidth}{0.5pt} 
+
+% List of abbreviations
+\makenomenclature
+\setlength\nomlabelwidth{2cm}
+
+% Table cell size limit and alignment
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% Fill a cell of a table
+\newcommand{\fc}{\cellcolor{gray}}
