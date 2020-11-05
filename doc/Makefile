@@ -1,5 +1,5 @@
 SRC=main
-TARGET=doc-template
+TARGET=slb-eps2-doc-v0.1
 
 ifndef BUILD_DIR
 	BUILD_DIR=build
