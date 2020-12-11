@@ -1,0 +1,13 @@
+# Source files
+!lnk_msp430f6659.cmd
+
+# Code Composer Studio output
+.launches
+.settings
+Debug/
+
+# Vi/Vim files
+*.swp
+
+# ctags files
+tags
