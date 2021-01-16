@@ -34,15 +34,38 @@
  */
 
 #include "onewire.h"
+#include "intrinsics.h"
+
+#define clock 8000000
 
 int onewire_init(onewire_port_t port)
 {
+    //return int gpio_init(gpio_pin_t pin, gpio_config_t config);
     return -1;
 }
 
 int onewire_reset(onewire_port_t port)
 {
-    return -1;
+    int result = 0;
+
+    //gpio_set_state(port, GPIO_STATE_HIGH);                            //drives pin to high
+    gpio_init(port, (gpio_config_t){.mode=GPIO_MODE_INPUT});            //releases the bus: pull-up drives pin to high
+    __delay_cycles(0);                                                  // delay of 0
+    gpio_init(port, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
+    gpio_set_state(port, GPIO_STATE_LOW);                               //drives pin low
+    __delay_cycles(clock*0.000480);                                     //delay of 480us, 8,12MHz* 480us=3897
+
+    //gpio_set_state(port, GPIO_STATE_HIGH);                            //releases the bus
+    gpio_init(port, (gpio_config_t){.mode=GPIO_MODE_INPUT});            //releases the bus
+    result = onewire_read();                                            //prepares the result of present detection to be returned
+    __delay_cycles(clock*0.000070);                                     //delay of 70us, 8,12MHz*70us=568
+
+    //gpio_set_state(port, GPIO_STATE_HIGH);
+    gpio_init(port, (gpio_config_t){.mode=GPIO_MODE_INPUT});            //release the bus
+    __delay_cycles(clock*0.000410);                                     //delay of 410us, 8,12MHz*410us=3329
+
+    return result;                                                      //returns the presence detection result
+    //return -1;
 }
 
 int onewire_write(onewire_port_t port, onewire_adr_t adr, uint8_t *data, uint16_t len)
