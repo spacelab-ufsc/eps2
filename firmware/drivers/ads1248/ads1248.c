@@ -23,9 +23,9 @@
 /**
  * \brief ADS1248 driver implementation.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
  * \date 2020/10/24
  * 
@@ -33,11 +33,55 @@
  * \{
  */
 
+#include <config/config.h>
+#include <system/sys_log/sys_log.h>
+
 #include "ads1248.h"
 
 int ads1248_init(ads1248_config_t *config)
 {
-    return -1;
+    int res_start = gpio_init(config->start_pin, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
+    
+    int res_reset = gpio_init(config->reset_pin, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
+    
+    int res_spi = spi_init(config->spi_port, config->spi_config);
+    
+    if ((res_start != 0) || (res_reset != 0) || (res_spi != 0))
+    {
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during the initialization!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return ADS1248_ERROR;
+    }
+
+    if (gpio_set_state(config->start_pin, true) != 0)
+    {
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting START pin to high state during initialization!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return ADS1248_ERROR;
+    }
+
+    if (gpio_set_state(config->reset_pin, true) != 0)
+    {
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting RESET pin to high state during initialization!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return ADS1248_ERROR;
+    }
+
+    if (spi_select_slave(config->spi_port, config->spi_cs, false) != 0)
+    {
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting CS pin to low state during initialization!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return ADS1248_ERROR;
+    }
+    return ADS1248_READY;
 }
 
 int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode)
