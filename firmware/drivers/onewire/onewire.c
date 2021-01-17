@@ -23,11 +23,11 @@
 /**
  * \brief OneWire driver implementation.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
- * \date 2020/10/24
+ * \date 2021/01/17
  * 
  * \addtogroup onewire
  * \{
@@ -57,7 +57,7 @@ int onewire_reset(onewire_port_t port)
 
     //gpio_set_state(port, GPIO_STATE_HIGH);                            //releases the bus
     gpio_init(port, (gpio_config_t){.mode=GPIO_MODE_INPUT});            //releases the bus
-    result = onewire_read();                                            //prepares the result of present detection to be returned
+    result = gpio_get_state(port);                                      //prepares the result of present detection to be returned
     __delay_cycles(clock*0.000070);                                     //delay of 70us, 8,12MHz*70us=568
 
     //gpio_set_state(port, GPIO_STATE_HIGH);

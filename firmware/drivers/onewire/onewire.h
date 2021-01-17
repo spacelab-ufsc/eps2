@@ -23,11 +23,11 @@
 /**
  * \brief OneWire driver definition.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
- * \date 2020/10/24
+ * \date 2021/01/17
  * 
  * \defgroup onewire OneWire
  * \ingroup drivers
