@@ -23,11 +23,11 @@
 /**
  * \brief MAX9934 driver definition.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
- * \date 2020/10/24
+ * \date 2021/01/17
  * 
  * \defgroup max9934 MAX9934
  * \ingroup drivers
@@ -40,15 +40,17 @@
 #include <drivers/gpio/gpio.h>
 #include <drivers/adc/adc.h>
 
+#define MAX9934_MODULE_NAME "MAX9934"
+
 /**
  * \brief MAX9934 configuration parameters.
  */
 typedef struct
 {
-    gpio_pin_t cs_pin;          /**< CS pin. */
-    gpio_config_t cs_config;    /**< Configuration parameters of the CS pin. */
-    adc_port_t adc_port;        /**< ADC port. */
-    adc_config_t adc_config;    /**< Configuration parameters of the ADC port. */
+    gpio_pin_t cs_pin;       /**< CS pin. */
+    gpio_config_t cs_config; /**< Configuration parameters of the CS pin. */
+    adc_port_t adc_port;     /**< ADC port. */
+    adc_config_t adc_config; /**< Configuration parameters of the ADC port. */
 } max9934_config_t;
 
 /**

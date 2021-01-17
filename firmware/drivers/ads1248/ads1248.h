@@ -23,9 +23,9 @@
 /**
  * \brief ADS1248 driver definition.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
  * \date 2020/10/24
  * 
@@ -39,6 +39,8 @@
 
 #include <drivers/spi/spi.h>
 #include <drivers/gpio/gpio.h>
+
+#define ADS1248_MODULE_NAME            "ADS1248"
 
 /* SPI Commands */
 #define ADS1248_CMD_WAKEUP      0x00    /**< Exit power-down mode. */
@@ -86,9 +88,20 @@ typedef enum
     ADS1248_RESET_CMD                   /**< Reset command. */
 } ads1248_reset_e;
 
+typedef enum
+{
+    ADS1248_ERROR=-1,                  /**< Error during initialization. */
+    ADS1248_READY,                     /**< The chip is ready. */
+} ads1248_status_e;
+
 /**
  * \brief ADS1248 initialization.
  *
+ * For the first power up the GPIO and SPI pins are initiated. 
+ * The START and RESET pins are set to high and the SPI chip select (CS) pin is set to low.
+ * Next the following commands are sent for the ADS1248 calibration:
+ * TO DO
+ * 
  * \param[in,out] config is a pointer to the ADS1248 configuration parameters.
  *
  * \return The status/error code.
@@ -96,7 +109,7 @@ typedef enum
 int ads1248_init(ads1248_config_t *config);
 
 /**
- * \brief Resets teh device.
+ * \brief Resets the device.
  *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
  *
