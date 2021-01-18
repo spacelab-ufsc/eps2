@@ -23,7 +23,7 @@
 /**
  * \brief MAX9934 driver implementation.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
  * \version 0.1.2
  * 
