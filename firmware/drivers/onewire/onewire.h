@@ -138,35 +138,51 @@ typedef uint8_t onewire_adr_t;
 int onewire_init(onewire_port_t port);
 
 /**
- * \brief Resets a given OneWire port.
+ * \brief generates reset on a OneWire line.
  *
  * \param[in] port is the OneWire port to reset.
  *
- * \return The status/error code.
+ * \return 0 if device is present, 1 if not present.
  */
 int onewire_reset(onewire_port_t port);
 
 /**
- * \brief Writes data to a node.
+ * \brief Writes a bit on the OneWire line.
  *
  * \param[in] port is the OneWire port to write.
  *
- * \param[in] adr is the node address to write.
+ * \param[in] bit is the bit that will be written
  *
- * \param[in,out] data is the data to write to the given node.
+ * \return The status/error code.
+ */
+int onewire_write_bit(onewire_port_t port, int bit);
+
+/**
+ * \brief Writes data on the OneWire line.
+ *
+ * \param[in] port is the OneWire port to write.
+ *
+ * \param[in,out] data is the data to write to the OneWire line.
  *
  * \param[in] len is the number of bytes to write.
  *
  * \return The status/error code.
  */
-int onewire_write(onewire_port_t port, onewire_adr_t adr, uint8_t *data, uint16_t len);
+int onewire_write_byte(onewire_port_t port, uint8_t *data, uint16_t len);
 
 /**
- * \brief Reads data from a node.
+ * \brief Reads OneWire bit from OneWire slave.
  *
  * \param[in] port is the OneWire port to read.
  *
- * \param[in] adr is the node address to read.
+ * \return The bit read.
+ */
+int onewire_read_bit(onewire_port_t port);
+
+/**
+ * \brief Reads data from the OneWire line.
+ *
+ * \param[in] port is the OneWire port to read.
  *
  * \param[in,out] data is a pointer to store read data.
  *
@@ -174,7 +190,7 @@ int onewire_write(onewire_port_t port, onewire_adr_t adr, uint8_t *data, uint16_
  *
  * \return The status/error code.
  */
-int onewire_read(onewire_port_t port, onewire_adr_t adr, uint8_t *data, uint16_t len);
+int onewire_read_byte(onewire_port_t port, uint8_t *data, uint16_t len);
 
 #endif /* ONEWIRE_H_ */
 
