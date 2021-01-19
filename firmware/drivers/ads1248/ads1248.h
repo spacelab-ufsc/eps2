@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.1.3
  * 
  * \date 2020/10/24
  * 
@@ -92,16 +92,28 @@ typedef enum
 {
     ADS1248_ERROR=-1,                  /**< Error during initialization. */
     ADS1248_READY,                     /**< The chip is ready. */
+    ADS1248_RESET,                     /**< The chip is reset. */
 } ads1248_status_e;
+
+/**
+ * \brief Milliseconds delay.
+ * 
+ * \param[in] ms is the time to delay in milliseconds.
+ *
+ * \return None.
+ */
+void ads1248_delay(uint8_t ms);
 
 /**
  * \brief ADS1248 initialization.
  *
  * For the first power up the GPIO and SPI pins are initiated. 
- * The START and RESET pins are set to high and the SPI chip select (CS) pin is set to low.
+ * The START is set to high and the SPI chip select (CS) pin is set to low to begin SPI communication.
  * Next the following commands are sent for the ADS1248 calibration:
- * TO DO
- * 
+ * - ADS1248_CMD_RESET
+ * - ADS1248_CMD_SDATAC
+ * TBD
+ *
  * \param[in,out] config is a pointer to the ADS1248 configuration parameters.
  *
  * \return The status/error code.
