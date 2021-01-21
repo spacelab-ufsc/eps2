@@ -36,8 +36,6 @@
 #include "onewire.h"
 #include "intrinsics.h"
 
-#define clock 8000000
-
 int onewire_init(onewire_port_t port)
 {
 

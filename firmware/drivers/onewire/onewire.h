@@ -41,6 +41,8 @@
 
 #include <drivers/gpio/gpio.h>
 
+#define clock 8000000
+
 /**
  * \brief OneWire ports.
  */
