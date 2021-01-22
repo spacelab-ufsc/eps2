@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.3
+ * \version 0.1.4
  * 
  * \date 2020/10/24
  * 
@@ -75,6 +75,11 @@ typedef struct
 typedef uint8_t ads1248_cmd_t;
 
 /**
+ * \brief ADS1248 power-down type.
+ */
+typedef uint8_t ads1248_power_down_t;
+
+/**
  * \brief ADS1248 reset mode type.
  */
 typedef uint8_t ads1248_reset_mode_t;
@@ -88,10 +93,22 @@ typedef enum
     ADS1248_RESET_CMD                   /**< Reset command. */
 } ads1248_reset_e;
 
+/**
+ * \brief Power-down modes.
+ */
+typedef enum
+{
+    ADS1248_POWER_DOWN_PIN = 0,          /**< Start pin. */
+    ADS1248_POWER_DOWN_CMD,              /**< Power-down command. */
+} ads1248_power_e;
+
+/**
+ * \brief AD1248 states.
+ */
 typedef enum
 {
     ADS1248_ERROR=-1,                  /**< Error during initialization. */
-    ADS1248_READY,                     /**< The chip is ready. */
+    ADS1248_SUCCESS,                     /**< The chip is ready. */
     ADS1248_RESET,                     /**< The chip is reset. */
 } ads1248_status_e;
 
@@ -109,10 +126,11 @@ void ads1248_delay(uint8_t ms);
  *
  * For the first power up the GPIO and SPI pins are initiated. 
  * The START is set to high and the SPI chip select (CS) pin is set to low to begin SPI communication.
- * Next the following commands are sent for the ADS1248 calibration:
+ * Next the following commands are sent for the ADS1248 configuration:
  * - ADS1248_CMD_RESET
  * - ADS1248_CMD_SDATAC
- * TBD
+ * - ADS1248_CMD_WREG
+ * - ADS1248_CMD_RREG 
  *
  * \param[in,out] config is a pointer to the ADS1248 configuration parameters.
  *
@@ -140,13 +158,20 @@ int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode);
  * \brief Sets the power-down mode.
  *
  * Power consumption is reduced to a minimum by placing the device into power-down mode. There are two ways
- * to put the device into power-down mode: using the SLEEP command and taking the START pin low.
+ * to put the device into power-down mode: using the SLEEP command or taking the START pin low.
  *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
  *
+ * \param[in] mode is the power-down mode. It can be:
+ * \parblock
+ *      -\b ADS1248_POWER_DOWN_PIN
+ *      -\b ADS1248_POWER_DOWN_CMD
+ *      .
+ * \endparblock
+ *
  * \return The status/error code.
  */
-int ads1248_set_powerdown_mode(ads1248_config_t *config);
+int ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode);
 
 /**
  * \brief Writes a command to the device.
