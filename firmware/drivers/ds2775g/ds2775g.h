@@ -27,7 +27,7 @@
  * 
  * \version 0.1.2
  * 
- * \date 2021/01/21
+ * \date 2021/01/25
  * 
  * \defgroup ds2775g DS2775G
  * \ingroup drivers
@@ -74,6 +74,7 @@ struct
 uint8_t skip_address = 0xCC;    //Address that access any onewire device (used when there's only one device at the onewire bus)
 uint8_t write_data = 0x6C;      //Command to write a data in the DS2775G+ memory
 uint8_t read_data = 0x69;       //Command to read a data from DS2775G+ memory
+uint8_t copy_data = 0x48;       //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
 
 } ds2775g_commands;
 
@@ -109,9 +110,9 @@ int ds2775g_init(ds2775g_config_t *config);
 /**
  * \brief write data to an DS2775G+ register.
  *
- * \param[in] port is the OneWire port to initialize.
+ * \param[in] port is the OneWire port to write.
  *
- * \param[in,out] data_write is the data to write to the DS2775G+ register.
+ * \param[in] data_write is the data to write to the DS2775G+ register.
  *
  * \param[in] len is the number of bytes to write.
  *
@@ -122,13 +123,24 @@ int ds2775g_write_data(onewire_port_t port, uint8_t *data_write, uint16_t len);
 /**
  * \brief read data from DS2775G+ registers.
  *
- * \param[in] port is the OneWire port to initialize.
+ * \param[in] port is the OneWire port to read.
  *
- * \param[in,out] data_write is the data read from the DS2775G+ register.
+ * \param[in] register_address is the address of the register that will be read.
+ *
+ * \param[out] data_read is the data read from the DS2775G+ register.
  *
  * \return The status/error code.
  */
-int ds2775g_read_data(onewire_port_t port, uint8_t *data_read);
+int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t *data_read);
+
+/**
+ * \brief writes accumulated current maximum value (3 Ah) to DS2775G+ appropriated register
+ *
+ * \param[in] port is the OneWire port to write.
+ *
+ * \return The status/error code.
+ */
+int write_accumulated_current_max_value(onewire_port_t port);
 
 #endif /* DS2775G_H_ */
 

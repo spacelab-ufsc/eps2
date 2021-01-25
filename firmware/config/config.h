@@ -23,11 +23,11 @@
 /**
  * \brief Configuration parameters definition.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
- * \date 2020/10/21
+ * \date 2021/01/25
  * 
  * \defgroup config Configuration
  * \{
@@ -38,6 +38,10 @@
 
 /* Tasks */
 #define CONFIG_TASK_STARTUP_ENABLED                     1
+
+#define MAX_BATTERY_CHARGE                          2450 //[mAh]
+#define BAT_MONITOR_CHARGE_VALUE                    (uint16_t)(MAX_BATTERY_CHARGE/0.625) //0.625 is a conversion factor for the  battery monitor
+#define RESET_BATTERY_ACCUMULATED_CURRENT           0
 
 #endif /* CONFIG_H_ */
 
