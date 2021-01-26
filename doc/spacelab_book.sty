@@ -1,7 +1,7 @@
 %
 % spacelab_book.sty
 %
-% Copyright (C) 2020 by SpaceLab.
+% Copyright (C) 2021 by SpaceLab.
 %
 % EPS 2.0 Documentation
 %
@@ -14,10 +14,11 @@
 % \brief Document style customization and packages.
 %
 % \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+% \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
-% \version 0.1.0
+% \version 0.1.1
 %
 % \date 2020/11/05
 %
@@ -50,13 +51,16 @@
 \usepackage[toc,page]{appendix}     % Appendix
 \usepackage{lscape}
 \usepackage[bottom]{footmisc}
+\usepackage{pifont}
 \usepackage{multicol}
 \usepackage{caption}                % \caption*
+\usepackage{indentfirst}            % Indent the first paragraph after \chapter or \section
 \usepackage{listings}               % Codes
+\usepackage{scrbase}                % \newcaptionname
+\usepackage{xcolor}
 \usepackage[outdir=figures/]{epstopdf}
 \usepackage{longtable}              % Multiple pages table
 \usepackage[math]{iwona}
-\usepackage{xcolor, colortbl}
 
 % URLs font style
 \urlstyle{same}
@@ -89,6 +93,3 @@
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
-
-% Fill a cell of a table
-\newcommand{\fc}{\cellcolor{gray}}
