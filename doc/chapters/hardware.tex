@@ -74,6 +74,10 @@ The ADS1248 chip generates a precise reference current to the RTDs, and samples 
 
 The drivers are chopper converters controlled by the MCU, with a PWM frequency of 50 kHz. The switches of the chopper converters are Si4010DY mosfets.
 
+\section{Battery Control Circuit}
+
+The batteries are monitored by the DS2775 chip. It measures several parameters and sends them to the EPS MCU via one-wire protocol. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two mosfets (FDS6898AZ).
+
 \section{Kill-Switches}
 
 These switches are used to separate the solar panels and the batteries from the load during pre-flight and launch. Each one is composed of two SI4403-CDY-T1-GE3 P-channel mosfets in parallel, as a redundancy. When either the RBF\nomenclature{\textbf{RBF}}{\textit{Remove Before Flight.}} is in place or the kill-switches are pressed, the mosfets disconnect the loads from the sources.
