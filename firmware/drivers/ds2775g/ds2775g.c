@@ -188,24 +188,24 @@ int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t
 
 int write_accumulated_current_max_value(onewire_port_t port){         // write 3Ah to battery accumulated current
 
-    uint8_t acc_write_msb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
-    uint8_t acc_copy_msb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, accumulated_current_MSB_register};
-    uint8_t acc_write_lsb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
-    uint8_t acc_copy_lsb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, accumulated_current_LSB_register};
+    uint8_t acc_write_msb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
+    uint8_t acc_copy_msb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, ds2775g_reg.accumulated_current_MSB_register};
+    uint8_t acc_write_lsb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
+    uint8_t acc_copy_lsb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, ds2775g_reg.accumulated_current_LSB_register};
 
-    if (ds2775g_write_data(port, &acc_write_msb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register
-
-    return -1;
-
-    if (ds2775g_write_data(port, &acc_copy_msb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
+    if (ds2775g_write_data(port, acc_write_msb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register
 
     return -1;
 
-    if (ds2775g_write_data(port, &acc_write_lsb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_LSB to the accumulated current LSB register
+    if (ds2775g_write_data(port, acc_copy_msb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
 
     return -1;
 
-    if (ds2775g_write_data(port, &acc_copy_lsb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
+    if (ds2775g_write_data(port, acc_write_lsb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_LSB to the accumulated current LSB register
+
+    return -1;
+
+    if (ds2775g_write_data(port, acc_copy_lsb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
 
     return -1;
 

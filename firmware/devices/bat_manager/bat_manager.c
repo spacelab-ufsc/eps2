@@ -35,6 +35,8 @@
 
 #include <stdint.h>
 
+#include "bat_manager.h"
+
 #include "drivers/ds2775g/ds2775g.h"
 
 #include "drivers/onewire/onewire.h"
