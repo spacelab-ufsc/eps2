@@ -67,7 +67,7 @@ int onewire_reset(onewire_port_t port)
 
 int onewire_write_bit(onewire_port_t port, int bit)
 {
-    int resut;
+    int result;
 
     switch(bit){
 

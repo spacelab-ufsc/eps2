@@ -33,8 +33,11 @@
  * \{
  */
 
+#include <stdio.h>
 #include "ds2775g.h"
 #include "config/config.h"
+#include "uart/uart.h"
+#include "gpio/gpio.h"
 
 #define ACCUMULATED_CURRENT_MSB (uint8_t)(BAT_MONITOR_CHARGE_VALUE>>8)
 #define ACCUMULATED_CURRENT_LSB (uint8_t)BAT_MONITOR_CHARGE_VALUE
@@ -106,6 +109,48 @@ int ds2775g_init(ds2775g_config_t *config)
 
 #endif //RESET_BATTERY_ACCUMULATED_CURRENT
 
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+
+    onewire_port_t OW_port = GPIO_PIN_63;       //Declaring one wire port as P9.1;
+    uart_port_t UART_port = UART_PORT_0;        //Declaring UART port;
+
+    uint8_t ds2775g_data_sent_back[8] = {0};
+
+    ds2775g_read_register(OW_port, protection_register, &ds2775g_data_sent_back[0]);
+    ds2775g_read_register(OW_port, protector_threshold_register, &ds2775g_data_sent_back[1]);
+    ds2775g_read_register(OW_port, status_register, &ds2775g_data_sent_back[2]);
+    ds2775g_data_sent_back[2] &= 0xf0;
+    ds2775g_read_register(OW_port, control_register, &ds2775g_data_sent_back[3]);
+    ds2775g_read_register(OW_port, overcurrent_thresholds_register, &ds2775g_data_sent_back[4]);
+    ds2775g_read_register(OW_port, current_gain_LSB_register, &ds2775g_data_sent_back[5]);
+    ds2775g_read_register(OW_port, accumulated_current_MSB_register, &ds2775g_data_sent_back[6]);
+    ds2775g_read_register(OW_port, accumulated_current_LSB_register, &ds2775g_data_sent_back[7]);
+
+    uint8_t i = 0;
+    uint8_t string[4];
+
+    if(uart_avaliable(UART_port)){
+
+        for(i = 0; i < 8; i++){
+              sprintf(string, "%#04x", one_wire_data_sent_back[i]);
+              uart_write(UART_port, string, 0x4);
+              if(i != 7){
+                  string = {','};
+                  uart_write(UART_port, string, 0x1);
+              }
+              else{
+                  string = {'\r\n'};
+                  uart_write(UART_port, string, 0x4);
+              }
+          }
+
+    }
+    else{
+        sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "UART bus is not avaliable!");
+    }
+
+#endif //End debug routine
+
     return 0;
 }
 
@@ -143,24 +188,24 @@ int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t
 
 int write_accumulated_current_max_value(onewire_port_t port){         // write 3Ah to battery accumulated current
 
-    uint8_t acc_write_msb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
-    uint8_t acc_copy_msb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, accumulated_current_MSB_register};
-    uint8_t acc_write_lsb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
-    uint8_t acc_copy_lsb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, accumulated_current_LSB_register};
+    uint8_t acc_write_msb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
+    uint8_t acc_copy_msb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, ds2775g_reg.accumulated_current_MSB_register};
+    uint8_t acc_write_lsb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
+    uint8_t acc_copy_lsb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, ds2775g_reg.accumulated_current_LSB_register};
 
-    if (ds2775g_write_data(port, &acc_write_msb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register
-
-    return -1;
-
-    if (ds2775g_write_data(port, &acc_copy_msb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
+    if (ds2775g_write_data(port, acc_write_msb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register
 
     return -1;
 
-    if (ds2775g_write_data(port, &acc_write_lsb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_LSB to the accumulated current LSB register
+    if (ds2775g_write_data(port, acc_copy_msb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
 
     return -1;
 
-    if (ds2775g_write_data(port, &acc_copy_lsb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
+    if (ds2775g_write_data(port, acc_write_lsb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_LSB to the accumulated current LSB register
+
+    return -1;
+
+    if (ds2775g_write_data(port, acc_copy_lsb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
 
     return -1;
 
