@@ -43,7 +43,7 @@ int max9934_init(max9934_config_t *config)
     sys_log_new_line();
 #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 
-    if (adc_init(config->adc_port, (adc_config_t){}) != 0)
+    if (adc_init(config->adc_port, config->adc_config) != 0)
     {
 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         sys_log_print_event_from_module(SYS_LOG_ERROR, MAX9934_MODULE_NAME, "Error initializing MAX9934!");
