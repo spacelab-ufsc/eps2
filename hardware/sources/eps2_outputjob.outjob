@@ -17,12 +17,12 @@ RevisionNamingSchemeGUID=
 [OutputGroup1]
 Name=eps2_outputjob.outjob
 Description=
-TargetOutputMedium=PDF3D_optional
-VariantName=[No Variations]
-VariantScope=0
+TargetOutputMedium=2-Board_Schematics
+VariantName=test_model
+VariantScope=1
 CurrentConfigurationName=
 TargetPrinter=Virtual Printer
-PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=0
 OutputMedium1=Print Job
 OutputMedium1_Type=Printer
 OutputMedium1_Printer=Canon G3010 series
@@ -41,6 +41,8 @@ OutputMedium7=Board_full_pdf_optional
 OutputMedium7_Type=Publish
 OutputMedium8=PDF3D_optional
 OutputMedium8_Type=Publish
+OutputMedium9=Board_draftsman_optional
+OutputMedium9_Type=Publish
 OutputType1=Pick Place
 OutputName1=assembly_pick_place
 OutputCategory1=Assembly
@@ -55,6 +57,7 @@ OutputEnabled1_OutputMedium5=0
 OutputEnabled1_OutputMedium6=0
 OutputEnabled1_OutputMedium7=0
 OutputEnabled1_OutputMedium8=0
+OutputEnabled1_OutputMedium9=0
 OutputDefault1=0
 Configuration1_Name1=OutputConfigurationParameter1
 Configuration1_Item1=Record=PickPlaceView|Units=Imperial|GenerateCSVFormat=False|GenerateTextFormat=True
@@ -72,6 +75,7 @@ OutputEnabled2_OutputMedium5=0
 OutputEnabled2_OutputMedium6=0
 OutputEnabled2_OutputMedium7=0
 OutputEnabled2_OutputMedium8=0
+OutputEnabled2_OutputMedium9=0
 OutputDefault2=0
 Configuration2_Name1=OutputConfigurationParameter1
 Configuration2_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16908297~1|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=False|GenerateDRCRulesFile=False|GenerateReliefShapes=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16777218~1,16777219~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1,16908290~1,16908297~1,16908304~1,16973837~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=True|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=50|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
@@ -89,6 +93,7 @@ OutputEnabled3_OutputMedium5=0
 OutputEnabled3_OutputMedium6=0
 OutputEnabled3_OutputMedium7=0
 OutputEnabled3_OutputMedium8=0
+OutputEnabled3_OutputMedium9=0
 OutputDefault3=0
 OutputType4=NC Drill
 OutputName4=board_nc_drill
@@ -104,6 +109,7 @@ OutputEnabled4_OutputMedium5=0
 OutputEnabled4_OutputMedium6=0
 OutputEnabled4_OutputMedium7=0
 OutputEnabled4_OutputMedium8=0
+OutputEnabled4_OutputMedium9=0
 OutputDefault4=0
 Configuration4_Name1=OutputConfigurationParameter1
 Configuration4_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
@@ -121,6 +127,7 @@ OutputEnabled5_OutputMedium5=0
 OutputEnabled5_OutputMedium6=0
 OutputEnabled5_OutputMedium7=0
 OutputEnabled5_OutputMedium8=0
+OutputEnabled5_OutputMedium9=0
 OutputDefault5=0
 Configuration5_Name1=OutputConfigurationParameter1
 Configuration5_Item1=AddToAllLayerClasses.Set= |AddToAllPlots_3D Body=False|AddToAllPlots_ASM Bottom=False|AddToAllPlots_ASM Top=False|AddToAllPlots_Batteries Board 1.0=False|AddToAllPlots_Batteries Board 2.0=False|AddToAllPlots_Board Edge=True|AddToAllPlots_Dimension=False|AddToAllPlots_Grounding Splits=False|AddToAllPlots_Mechanical 10=False|AddToAllPlots_Mechanical 11=False|AddToAllPlots_Mechanical 12=False|AddToAllPlots_Mechanical 14=False|AddToAllPlots_Mechanical 6=False|AddToAllPlots_Mechanical 7=False|AddToAllPlots_Mechanical 8=False|AddToAllPlots_Sheet=True|ExportPositivePlaneLayers=False|GenerateDRCRulesFile=False|IncludeUnconnectedMidLayerPads=False|LayerClassesPlot.Set= |ObjsInsideBoardOutlineOnly=False|ODBProfileLayer=56|PlotBottomLayerPlot=True|PlotBottomOverlayPlot=True|PlotBottomPastePlot=True|PlotBottomSolderPlot=True|PlotInternalPlane10Plot=False|PlotInternalPlane11Plot=False|PlotInternalPlane12Plot=False|PlotInternalPlane13Plot=False|PlotInternalPlane14Plot=False|PlotInternalPlane15Plot=False|PlotInternalPlane16Plot=False|PlotInternalPlane1Plot=False|PlotInternalPlane2Plot=False|PlotInternalPlane3Plot=False|PlotInternalPlane4Plot=False|PlotInternalPlane5Plot=False|PlotInternalPlane6Plot=False|PlotInternalPlane7Plot=False|PlotInternalPlane8Plot=False|PlotInternalPlane9Plot=False|PlotKeepOutLayerPlot=True|PlotMechanical10Plot=False|PlotMechanical11Plot=False|PlotMechanical12Plot=False|PlotMechanical13Plot=False|PlotMechanical14Plot=False|PlotMechanical15Plot=False|PlotMechanical16Plot=False|PlotMechanical1Plot=True|PlotMechanical2Plot=True|PlotMechanical3Plot=False|PlotMechanical4Plot=False|PlotMechanical5Plot=False|PlotMechanical6Plot=False|PlotMechanical7Plot=False|PlotMechanical8Plot=False|PlotMechanical9Plot=False|PlotMidLayer10Plot=False|PlotMidLayer11Plot=False|PlotMidLayer12Plot=False|PlotMidLayer13Plot=False|PlotMidLayer14Plot=False|PlotMidLayer15Plot=False|PlotMidLayer16Plot=False|PlotMidLayer17Plot=False|PlotMidLayer18Plot=False|PlotMidLayer19Plot=False|PlotMidLayer1Plot=True|PlotMidLayer20Plot=False|PlotMidLayer21Plot=False|PlotMidLayer22Plot=False|PlotMidLayer23Plot=False|PlotMidLayer24Plot=False|PlotMidLayer25Plot=False|PlotMidLayer26Plot=False|PlotMidLayer27Plot=False|PlotMidLayer28Plot=False|PlotMidLayer29Plot=False|PlotMidLayer2Plot=True|PlotMidLayer30Plot=False|PlotMidLayer3Plot=False|PlotMidLayer4Plot=False|PlotMidLayer5Plot=False|PlotMidLayer6Plot=False|PlotMidLayer7Plot=False|PlotMidLayer8Plot=False|PlotMidLayer9Plot=False|PlotTopLayerPlot=True|PlotTopOverlayPlot=True|PlotTopPastePlot=True|PlotTopSolderPlot=True|Record=ODBView
@@ -133,11 +140,12 @@ OutputEnabled6=0
 OutputEnabled6_OutputMedium1=0
 OutputEnabled6_OutputMedium2=6
 OutputEnabled6_OutputMedium3=0
-OutputEnabled6_OutputMedium4=0
+OutputEnabled6_OutputMedium4=4
 OutputEnabled6_OutputMedium5=0
 OutputEnabled6_OutputMedium6=0
 OutputEnabled6_OutputMedium7=6
 OutputEnabled6_OutputMedium8=0
+OutputEnabled6_OutputMedium9=0
 OutputDefault6=0
 PageOptions6=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration6_Name1=ColumnNameFormat
@@ -145,15 +153,15 @@ Configuration6_Item1=CaptionAsName
 Configuration6_Name2=Filter
 Configuration6_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
 Configuration6_Name3=General
-Configuration6_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=True|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=..\..\pcb-standard\pcb_templates\bom_model_simplified.xltx|BatchMode=5|FormWidth=950|FormHeight=659|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
+Configuration6_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=True|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=..\..\pcb-standard\pcb_templates\bom_spacelab_template.xltx|BatchMode=5|FormWidth=950|FormHeight=744|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
 Configuration6_Name4=GroupOrder
-Configuration6_Item4=Comment=True|Fitted=True
+Configuration6_Item4=Partnumber=True|Manufacturer Part Number=True
 Configuration6_Name5=OutputConfigurationParameter1
 Configuration6_Item5=??
 Configuration6_Name6=SortOrder
 Configuration6_Item6=Quantity=Down
 Configuration6_Name7=VisibleOrder
-Configuration6_Item7=Comment=129|Description=86|Quantity=95|Designator=106|Fitted=252|Partnumber=100
+Configuration6_Item7=Comment=129|Description=86|Quantity=95|Designator=106|Fitted=252|Partnumber=100|Footprint=100|Manufacturer=100|Manufacturer Part Number=100|Mount=100
 Configuration6_Name8=VisibleOrder_Base
 Configuration6_Item8=Line #=70|Comment=69|Description=95|Designator=94|Quantity=83|Manufacturer 1=116|Manufacturer Part Number 1=183|Manufacturer Lifecycle 1=159|Supplier 1=89|Supplier Part Number 1=155|Supplier Unit Price 1=139|Supplier Subtotal 1=133
 Configuration6_Name9=VisibleOrder_Consolidated
@@ -165,7 +173,7 @@ OutputName7=pdf3d
 OutputCategory7=Documentation
 OutputDocumentPath7=
 OutputVariantName7=
-OutputEnabled7=1
+OutputEnabled7=0
 OutputEnabled7_OutputMedium1=0
 OutputEnabled7_OutputMedium2=0
 OutputEnabled7_OutputMedium3=0
@@ -174,6 +182,7 @@ OutputEnabled7_OutputMedium5=0
 OutputEnabled7_OutputMedium6=0
 OutputEnabled7_OutputMedium7=0
 OutputEnabled7_OutputMedium8=1
+OutputEnabled7_OutputMedium9=0
 OutputDefault7=0
 PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration7_Name1=OutputConfigurationParameter1
@@ -192,6 +201,7 @@ OutputEnabled8_OutputMedium5=0
 OutputEnabled8_OutputMedium6=1
 OutputEnabled8_OutputMedium7=0
 OutputEnabled8_OutputMedium8=0
+OutputEnabled8_OutputMedium9=0
 OutputDefault8=0
 Configuration8_Name1=OutputConfigurationParameter1
 Configuration8_Item1=Record=ExportSTEPView|ExportComponentOptions=0|ExportModelsOption=2|ExportHolesOption=0|CanSelectPrimitives=False|IncludeMechanicalPadHoles=True|IncludeElectricalPadHoles=True|IncludeFreePadHoles=True|ExportFoldedBoard=True|ExportFoldedBoardRate=0|ComponentSuffixType=1|ComponentSuffix= |ExportCopperOption=0|ExportCopperLayer=0|ExportPadAndViaBarrelsOnly=False|IgnoreBoardCopperLayerColors=False|ExportAsSinglePart=False|IncludeCoverLayer=True|SkipFreeBodies=False
@@ -209,8 +219,9 @@ OutputEnabled9_OutputMedium5=1
 OutputEnabled9_OutputMedium6=0
 OutputEnabled9_OutputMedium7=4
 OutputEnabled9_OutputMedium8=0
+OutputEnabled9_OutputMedium9=0
 OutputDefault9=0
-PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=2.36|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=2.36|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration9_Name1=OutputConfigurationParameter1
 Configuration9_Item1=Record=Pcb3DPrintView|ResX=300|ResY=300|ViewX=76353524|ViewY=48464567|LookAtX=108087792|LookAtY=118250000|LookAtZ=0|UpX=0|UpY=1|UpZ=0|FOV=0|QuatX=0|QuatY=0|QuatZ=0|QuatW=1|Zoom=1.83226644736143E-5|UnitsPercent=True|UnitsDPI=True|LockResAspect=True|ViewConfigType=.config_3d|CustomCamera=False|ViewFromTop=True|ViewConfig=RECORD\3Board\2CFGALL.CONFIGURATIONKIND\33\2CFGALL.CONFIGURATIONDESC\3Altium%203D%20Blue%20Configuration\2CFGALL.COMPONENTBODYREFPOINTCOLOR\316777215\2CFGALL.COMPONENTBODYSNAPPOINTCOLOR\316777215\2CFGALL.SHOWCOMPONENTSNAPMARKERS\3FALSE\2CFG3D.POSITIVETOPSOLDERMASK\3TRUE\2CFG3D.POSITIVEBOTTOMSOLDERMASK\3TRUE\2CFG3D.SHOWCOMPONENTBODIES\3TRUE\2CFG3D.SHOWCOMPONENTSTEPMODELS\3TRUE\2CFG3D.COMPONENTMODELPREFERENCE\30\2CFG3D.SHOWCOMPONENTAXES\3TRUE\2CFG3D.SHOWBOARDCORE\3TRUE\2CFG3D.SHOWBOARDPREPREG\3TRUE\2CFG3D.SHOWTOPSILKSCREEN\3TRUE\2CFG3D.SHOWBOTSILKSCREEN\3TRUE\2CFG3D.SHOWORIGINMARKER\3FALSE\2CFG3D.EYEDIST\32147483647\2CFG3D.SHOWCUTOUTS\3TRUE\2CFG3D.SHOWROUTETOOLPATH\3TRUE\2CFG3D.SHOWROOMS3D\3FALSE\2CFG3D.USESYSCOLORSFOR3D\3FALSE\2CFG3D.WORKSPACECOLOR\316777215\2CFG3D.BOARDCORECOLOR\313761015\2CFG3D.BOARDPREPREGCOLOR\30\2CFG3D.TOPSOLDERMASKCOLOR\37026967\2CFG3D.BOTSOLDERMASKCOLOR\37026967\2CFG3D.COPPERCOLOR\33323360\2CFG3D.TOPSILKSCREENCOLOR\315461355\2CFG3D.BOTSILKSCREENCOLOR\315461355\2CFG3D.WORKSPACELUMINANCEVARIATION\32\2CFG3D.WORKSPACEBEGINCOLOR\316777215\2CFG3D.WORKSPACEENDCOLOR\316645629\2CFG3D.WORKSPACECOLOROPACITY\31.000000\2CFG3D.BOARDCORECOLOROPACITY\30.890000\2CFG3D.BOARDPREPREGCOLOROPACITY\30.500000\2CFG3D.TOPSOLDERMASKCOLOROPACITY\30.860000\2CFG3D.BOTSOLDERMASKCOLOROPACITY\30.860891\2CFG3D.COPPERCOLOROPACITY\31.000000\2CFG3D.TOPSILKSCREENCOLOROPACITY\31.000000\2CFG3D.BOTSILKSCREENCOLOROPACITY\31.000000\2CFG3D.BOARDTHICKNESSSCALING\31.000000\2CFG3D.SHOWMECHANICALLAYERS\3FALSE\2CFG3D.MECHANICALLAYERSOPACITY\31.000000
 OutputType10=PCB 3D Print
@@ -227,8 +238,9 @@ OutputEnabled10_OutputMedium5=2
 OutputEnabled10_OutputMedium6=0
 OutputEnabled10_OutputMedium7=5
 OutputEnabled10_OutputMedium8=0
+OutputEnabled10_OutputMedium9=0
 OutputDefault10=0
-PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=2.36|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=2.36|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration10_Name1=OutputConfigurationParameter1
 Configuration10_Item1=Record=Pcb3DPrintView|ResX=300|ResY=300|ViewX=76353524|ViewY=48464567|LookAtX=108087792|LookAtY=118250000|LookAtZ=0|UpX=0|UpY=1|UpZ=0|FOV=0|QuatX=0|QuatY=0|QuatZ=0|QuatW=1|Zoom=1.83226644736143E-5|UnitsPercent=True|UnitsDPI=True|LockResAspect=True|ViewConfigType=.config_3d|CustomCamera=False|ViewFromTop=False|ViewConfig=RECORD\3Board\2CFGALL.CONFIGURATIONKIND\33\2CFGALL.CONFIGURATIONDESC\3Altium%203D%20Blue%20Configuration\2CFGALL.COMPONENTBODYREFPOINTCOLOR\316777215\2CFGALL.COMPONENTBODYSNAPPOINTCOLOR\316777215\2CFGALL.SHOWCOMPONENTSNAPMARKERS\3FALSE\2CFG3D.POSITIVETOPSOLDERMASK\3TRUE\2CFG3D.POSITIVEBOTTOMSOLDERMASK\3TRUE\2CFG3D.SHOWCOMPONENTBODIES\3TRUE\2CFG3D.SHOWCOMPONENTSTEPMODELS\3TRUE\2CFG3D.COMPONENTMODELPREFERENCE\30\2CFG3D.SHOWCOMPONENTAXES\3TRUE\2CFG3D.SHOWBOARDCORE\3TRUE\2CFG3D.SHOWBOARDPREPREG\3TRUE\2CFG3D.SHOWTOPSILKSCREEN\3TRUE\2CFG3D.SHOWBOTSILKSCREEN\3TRUE\2CFG3D.SHOWORIGINMARKER\3FALSE\2CFG3D.EYEDIST\32147483647\2CFG3D.SHOWCUTOUTS\3TRUE\2CFG3D.SHOWROUTETOOLPATH\3TRUE\2CFG3D.SHOWROOMS3D\3FALSE\2CFG3D.USESYSCOLORSFOR3D\3FALSE\2CFG3D.WORKSPACECOLOR\316777215\2CFG3D.BOARDCORECOLOR\313761015\2CFG3D.BOARDPREPREGCOLOR\30\2CFG3D.TOPSOLDERMASKCOLOR\37026967\2CFG3D.BOTSOLDERMASKCOLOR\37026967\2CFG3D.COPPERCOLOR\33323360\2CFG3D.TOPSILKSCREENCOLOR\315461355\2CFG3D.BOTSILKSCREENCOLOR\315461355\2CFG3D.WORKSPACELUMINANCEVARIATION\32\2CFG3D.WORKSPACEBEGINCOLOR\316777215\2CFG3D.WORKSPACEENDCOLOR\316645629\2CFG3D.WORKSPACECOLOROPACITY\31.000000\2CFG3D.BOARDCORECOLOROPACITY\30.890000\2CFG3D.BOARDPREPREGCOLOROPACITY\30.500000\2CFG3D.TOPSOLDERMASKCOLOROPACITY\30.860000\2CFG3D.BOTSOLDERMASKCOLOROPACITY\30.860891\2CFG3D.COPPERCOLOROPACITY\31.000000\2CFG3D.TOPSILKSCREENCOLOROPACITY\31.000000\2CFG3D.BOTSILKSCREENCOLOROPACITY\31.000000\2CFG3D.BOARDTHICKNESSSCALING\31.000000\2CFG3D.SHOWMECHANICALLAYERS\3FALSE\2CFG3D.MECHANICALLAYERSOPACITY\31.000000
 OutputType11=Final
@@ -245,6 +257,7 @@ OutputEnabled11_OutputMedium5=3
 OutputEnabled11_OutputMedium6=0
 OutputEnabled11_OutputMedium7=0
 OutputEnabled11_OutputMedium8=0
+OutputEnabled11_OutputMedium9=0
 OutputDefault11=0
 PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration11_Name1=OutputConfigurationParameter1
@@ -382,6 +395,7 @@ OutputEnabled12_OutputMedium5=0
 OutputEnabled12_OutputMedium6=0
 OutputEnabled12_OutputMedium7=0
 OutputEnabled12_OutputMedium8=0
+OutputEnabled12_OutputMedium9=0
 OutputDefault12=0
 PageOptions12=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=1|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=Letter|PaperIndex=1
 Configuration12_Name1=OutputConfigurationParameter1
@@ -391,7 +405,7 @@ OutputName13=schematics
 OutputCategory13=Documentation
 OutputDocumentPath13=[Project Physical Documents]
 OutputVariantName13=
-OutputEnabled13=0
+OutputEnabled13=1
 OutputEnabled13_OutputMedium1=0
 OutputEnabled13_OutputMedium2=0
 OutputEnabled13_OutputMedium3=1
@@ -400,6 +414,7 @@ OutputEnabled13_OutputMedium5=0
 OutputEnabled13_OutputMedium6=0
 OutputEnabled13_OutputMedium7=1
 OutputEnabled13_OutputMedium8=0
+OutputEnabled13_OutputMedium9=0
 OutputDefault13=0
 PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration13_Name1=OutputConfigurationParameter1
@@ -418,6 +433,7 @@ OutputEnabled14_OutputMedium5=0
 OutputEnabled14_OutputMedium6=0
 OutputEnabled14_OutputMedium7=2
 OutputEnabled14_OutputMedium8=0
+OutputEnabled14_OutputMedium9=0
 OutputDefault14=0
 PageOptions14=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration14_Name1=OutputConfigurationParameter1
@@ -477,6 +493,7 @@ OutputEnabled15_OutputMedium5=0
 OutputEnabled15_OutputMedium6=0
 OutputEnabled15_OutputMedium7=3
 OutputEnabled15_OutputMedium8=0
+OutputEnabled15_OutputMedium9=0
 OutputDefault15=0
 PageOptions15=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration15_Name1=OutputConfigurationParameter1
@@ -512,6 +529,7 @@ OutputEnabled16_OutputMedium5=0
 OutputEnabled16_OutputMedium6=0
 OutputEnabled16_OutputMedium7=0
 OutputEnabled16_OutputMedium8=0
+OutputEnabled16_OutputMedium9=0
 OutputDefault16=0
 Configuration16_Name1=OutputConfigurationParameter1
 Configuration16_Item1=AdjacencyDistance=250000|GenerateCSVFormat=False|GenerateIPCFormat=True|GenerateSpreadSheetFormat=False|GenerateTextFormat=False|OriginPosition=Relative|OutlineLayer=56|OutputAdjancencies=False|OutputBoardOutline=False|OutputTraces=False|Record=TestPointView|ReportBottomLayerTestpoints=True|ReportTopLayerTestpoints=True|Units=Imperial
@@ -529,12 +547,30 @@ OutputEnabled17_OutputMedium5=0
 OutputEnabled17_OutputMedium6=2
 OutputEnabled17_OutputMedium7=0
 OutputEnabled17_OutputMedium8=0
+OutputEnabled17_OutputMedium9=0
 OutputDefault17=0
 Configuration17_Name1=OutputConfigurationParameter1
 Configuration17_Item1=Record=ExportSTEPView|ExportComponentOptions=0|ExportModelsOption=2|ExportHolesOption=0|CanSelectPrimitives=False|IncludeMechanicalPadHoles=True|IncludeElectricalPadHoles=True|IncludeFreePadHoles=True|ExportFoldedBoard=True|ExportFoldedBoardRate=0|ComponentSuffixType=1|ComponentSuffix= |ExportCopperOption=0|ExportCopperLayer=1|ExportPadAndViaBarrelsOnly=False|IgnoreBoardCopperLayerColors=False|ExportAsSinglePart=False|IncludeCoverLayer=True|SkipFreeBodies=False
+OutputType18=PCBDrawing
+OutputName18=board_draftsman
+OutputCategory18=Documentation
+OutputDocumentPath18=
+OutputVariantName18=
+OutputEnabled18=0
+OutputEnabled18_OutputMedium1=0
+OutputEnabled18_OutputMedium2=0
+OutputEnabled18_OutputMedium3=0
+OutputEnabled18_OutputMedium4=0
+OutputEnabled18_OutputMedium5=0
+OutputEnabled18_OutputMedium6=0
+OutputEnabled18_OutputMedium7=0
+OutputEnabled18_OutputMedium8=0
+OutputEnabled18_OutputMedium9=1
+OutputDefault18=0
+PageOptions18=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 
 [PublishSettings]
-OutputFilePath2=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\
+OutputFilePath2=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\.\outputs\
 ReleaseManaged2=0
 OutputBasePath2=.\
 OutputPathMedia2=outputs
@@ -547,7 +583,7 @@ OutputFileNameMulti2==OutputName
 UseOutputNameForMulti2=0
 OutputFileNameSpecial2=
 OpenOutput2=0
-OutputFilePath3=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\obdh2\hardware\outputs\board_schematics\board_schematics.PDF
+OutputFilePath3=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_schematics\
 ReleaseManaged3=0
 OutputBasePath3=outputs\
 OutputPathMedia3=board_schematics
@@ -556,12 +592,12 @@ OutputPathOutputer3=
 OutputPathOutputerPrefix3=
 OutputPathOutputerValue3=
 OutputFileName3=board_schematics.pdf
-OutputFileNameMulti3==VariantName
+OutputFileNameMulti3==VariantName+'_board_schematics'
 UseOutputNameForMulti3=0
 OutputFileNameSpecial3=
 OpenOutput3=1
 PromptOverwrite3=1
-PublishMethod3=0
+PublishMethod3=1
 ZoomLevel3=50
 FitSCHPrintSizeToDoc3=1
 FitPCBPrintSizeToDoc3=1
@@ -574,7 +610,7 @@ ShowComponentParameters3=1
 GlobalBookmarks3=0
 PDFACompliance3=Disabled
 PDFVersion3=Default
-OutputFilePath4=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\fabrication\
+OutputFilePath4=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\.\fabrication\
 ReleaseManaged4=0
 OutputBasePath4=.\
 OutputPathMedia4=fabrication
@@ -583,11 +619,11 @@ OutputPathOutputer4=
 OutputPathOutputerPrefix4=
 OutputPathOutputerValue4=
 OutputFileName4=
-OutputFileNameMulti4==CurrentTime
-UseOutputNameForMulti4=1
+OutputFileNameMulti4==OutputName
+UseOutputNameForMulti4=0
 OutputFileNameSpecial4=
 OpenOutput4=0
-OutputFilePath5=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\obdh2\hardware\outputs\board_prints\board_prints.PDF
+OutputFilePath5=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_prints\board_prints.pdf
 ReleaseManaged5=0
 OutputBasePath5=outputs\
 OutputPathMedia5=board_prints
@@ -614,7 +650,7 @@ ShowComponentParameters5=1
 GlobalBookmarks5=0
 PDFACompliance5=Disabled
 PDFVersion5=Default
-OutputFilePath6=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\outputs\
+OutputFilePath6=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\
 ReleaseManaged6=0
 OutputBasePath6=outputs\
 OutputPathMedia6=
@@ -626,8 +662,8 @@ OutputFileName6=
 OutputFileNameMulti6==OutputName
 UseOutputNameForMulti6=0
 OutputFileNameSpecial6=
-OpenOutput6=1
-OutputFilePath7=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\obdh2\hardware\outputs\board_schematics\board_full_pdf.PDF
+OpenOutput6=0
+OutputFilePath7=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_schematics\board_full_pdf.pdf
 ReleaseManaged7=0
 OutputBasePath7=outputs\
 OutputPathMedia7=board_schematics
@@ -654,7 +690,7 @@ ShowComponentParameters7=1
 GlobalBookmarks7=0
 PDFACompliance7=Disabled
 PDFVersion7=Default
-OutputFilePath8=C:\Users\Cliente\Desktop\SpaceLab UFSC\pcb-standard\pcb_projects\pcb_cubesat_2layers\outputs\board_3dmodels\
+OutputFilePath8=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_3dmodels\
 ReleaseManaged8=0
 OutputBasePath8=outputs\
 OutputPathMedia8=board_3dmodels
@@ -681,9 +717,36 @@ ShowComponentParameters8=1
 GlobalBookmarks8=0
 PDFACompliance8=Disabled
 PDFVersion8=Default
+OutputFilePath9=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\draftsman\eps2_draftsman.PDF
+ReleaseManaged9=0
+OutputBasePath9=outputs\
+OutputPathMedia9=board_draftsman
+OutputPathMediaValue9=board_draftsman
+OutputPathOutputer9=[Output Type]
+OutputPathOutputerPrefix9=
+OutputPathOutputerValue9=
+OutputFileName9=eps2_draftsman.PDF
+OutputFileNameMulti9=
+UseOutputNameForMulti9=0
+OutputFileNameSpecial9=
+OpenOutput9=1
+PromptOverwrite9=1
+PublishMethod9=0
+ZoomLevel9=50
+FitSCHPrintSizeToDoc9=1
+FitPCBPrintSizeToDoc9=1
+GenerateNetsInfo9=1
+MarkPins9=1
+MarkNetLabels9=1
+MarkPortsId9=1
+GenerateTOC9=1
+ShowComponentParameters9=1
+GlobalBookmarks9=0
+PDFACompliance9=Disabled
+PDFVersion9=Default
 
 [GeneratedFilesSettings]
-RelativeOutputPath2=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\
+RelativeOutputPath2=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\.\outputs\
 OpenOutputs2=0
 AddToProject2=1
 TimestampFolder2=0
@@ -693,9 +756,9 @@ OpenGerberOutput2=1
 OpenNCDrillOutput2=1
 OpenIPCOutput2=1
 EnableReload2=1
-RelativeOutputPath3=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\obdh2\hardware\outputs\board_schematics\board_schematics.PDF
+RelativeOutputPath3=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_schematics\
 OpenOutputs3=1
-RelativeOutputPath4=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\fabrication\
+RelativeOutputPath4=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\.\fabrication\
 OpenOutputs4=0
 AddToProject4=1
 TimestampFolder4=0
@@ -705,11 +768,11 @@ OpenGerberOutput4=0
 OpenNCDrillOutput4=0
 OpenIPCOutput4=0
 EnableReload4=0
-RelativeOutputPath5=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\obdh2\hardware\outputs\board_prints\board_prints.PDF
+RelativeOutputPath5=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_prints\board_prints.pdf
 OpenOutputs5=1
-RelativeOutputPath6=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\outputs\
-OpenOutputs6=1
-AddToProject6=1
+RelativeOutputPath6=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\
+OpenOutputs6=0
+AddToProject6=0
 TimestampFolder6=0
 UseOutputName6=0
 OpenODBOutput6=0
@@ -717,8 +780,10 @@ OpenGerberOutput6=0
 OpenNCDrillOutput6=0
 OpenIPCOutput6=0
 EnableReload6=0
-RelativeOutputPath7=C:\Users\Sidney&Viviane\Documents\Andre\GitHub\obdh2\hardware\outputs\board_schematics\board_full_pdf.PDF
+RelativeOutputPath7=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_schematics\board_full_pdf.pdf
 OpenOutputs7=1
-RelativeOutputPath8=C:\Users\Cliente\Desktop\SpaceLab UFSC\pcb-standard\pcb_projects\pcb_cubesat_2layers\outputs\board_3dmodels\
+RelativeOutputPath8=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\board_3dmodels\
 OpenOutputs8=1
+RelativeOutputPath9=C:\Users\Yan Azeredo\Desktop\SpaceLab\eps2\hardware\outputs\draftsman\eps2_draftsman.PDF
+OpenOutputs9=1
 
