@@ -38,6 +38,8 @@
 
 #include <devices/leds/leds.h>
 #include <devices/watchdog/watchdog.h>
+#include <devices/current_sensor/current_sensor.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
 
 #endif /* DEVICES_H_ */
 
