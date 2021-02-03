@@ -47,7 +47,8 @@
 #define PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_13
 #define PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_14
 #define MAIN_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_15
-#define VOLTAGE_SENSOR_DIV_1 4.0  /**< Voltage divisor factor for main voltage. */
+#define BUS_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_7
+#define VOLTAGE_SENSOR_DIV_1 4.0  /**< Voltage divisor factor for main solar pannels and bus voltage. */
 #define VOLTAGE_SENSOR_DIV_2 1.93 /**< Voltage divisor factor for other voltages. */
 
 /**
