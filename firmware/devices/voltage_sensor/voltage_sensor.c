@@ -54,7 +54,7 @@ int voltage_sensor_read(adc_port_t port, uint16_t *volt)
         return -1;
     }
 
-    if (port == MAIN_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT)
+    if (port == MAIN_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT || port == BUS_VOLTAGE_SENSOR_ADC_PORT)
     {
         *volt = (uint16_t)(1000 * (float)raw_volt * ADC_AVCC * VOLTAGE_SENSOR_DIV_1 / ADC_RANGE);
     }
