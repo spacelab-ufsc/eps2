@@ -27,7 +27,7 @@
  * 
  * \version 0.1.2
  * 
- * \date 2021/01/25
+ * \date 2021/02/07
  * 
  * \addtogroup ds2775g
  * \{
@@ -111,7 +111,6 @@ int ds2775g_init(ds2775g_config_t *config)
 
 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
 
-    onewire_port_t OW_port = GPIO_PIN_63;       //Declaring one wire port as P9.1;
     uart_port_t UART_port = UART_PORT_0;        //Declaring UART port;
 
     uint8_t ds2775g_data_sent_back[8] = {0};
@@ -169,16 +168,16 @@ int ds2775g_write_data(onewire_port_t port, uint8_t *data_write, uint16_t len);
 
 }
 
-int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t *data_read);
+int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t *data_read)
 {
 
     uint8_t read_command[3] = {ds2775g_commands.skip_address, ds2775g_commands.read_data, register_address};
 
-    if(ds2775g_write_data(port, &read_command, 0x3); == -1)                               //Generate reset, sens the general address (0xCC) and the read command (0x69)
+    if(ds2775g_write_data(port, read_command, 0x3); == -1)                               //Generate reset, sends the general address (0xCC) and the read command (0x69)
 
     return -1;
 
-    if(onewire_read_byte(port, &data_read, 0x1) == -1)                                    //Read data
+    if(onewire_read_byte(port, data_read, 0x1) == -1)                                    //Read data
 
      return -1;
 

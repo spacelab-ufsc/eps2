@@ -27,7 +27,7 @@
  *
  * \version 0.1.0
  *
- * \date 2021/02/01
+ * \date 2021/02/07
  *
  * \addtogroup bat_manager
  * \{
@@ -39,18 +39,96 @@
 
 #include "drivers/ds2775g/ds2775g.h"
 
-#include "drivers/onewire/onewire.h"
+#include <system/sys_log/sys_log.h>
 
+#include "drivers/onewire/onewire.h"
 
 int bat_manager_init(){
 
-    return -1;
+    sys_log_print_event_from_module(SYS_LOG_INFO, BAT_MANAGER_MODULE_NAME, "Initializing the battery manager...");
+    sys_log_new_line();
+
+    if(ds2775g_init(&bat_monitor_config) != 0)
+    {
+       sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error initializing the battery manager!");
+       sys_log_new_line();
+
+       return -1;
+    }
+
+    return 0;
 
 }
 
 int get_bat_voltage(bat_voltage_t *bat_volt){
 
-    return -1;
+    uint8_t read;
+
+    //Reads cell_0 voltage LSB:
+
+    uint8_t cell_0_voltage_LSB;
+    if(ds2775g_read_register(onewire_port, voltage_LSB1_register, cell_0_voltage_LSB) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_0 voltage!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    cell_0_voltage_LSB = cell_0_voltage_LSB >> 5;
+
+    //Reads cell_0 voltage MSB:
+
+    uint8_t cell_0_voltage_MSB;
+    if(ds2775g_read_register(onewire_port, voltage_MSB1_register, read) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_0 voltage!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    cell_0_voltage_MSB = read >> 5;
+    read = read << 3;
+    cell_0_voltage_LSB |= read & 0xF8;
+
+    //Concatenate cell_0 voltage LSB and MSB:
+
+    bat_volt->cell_0 =  ((uint32_t) cell_0_voltage_MSB << 8) | cell_0_voltage_LSB;
+
+    //Reads cell_1 voltage LSB:
+
+    uint8_t cell_1_voltage_LSB;
+    if(ds2775g_read_register(onewire_port, voltage_LSB2_register, cell_1_voltage_LSB) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_1 voltage!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    cell_1_voltage_LSB = cell_1_voltage_LSB >> 5;
+
+    //Reads cell_1 voltage MSB:
+
+    uint8_t cell_1_voltage_MSB;
+    if(ds2775g_read_register(onewire_port, voltage_MSB2_register, read) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_1 voltage!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    cell_1_voltage_MSB = read >> 5;
+    read = read << 3;
+    cell_1_voltage_LSB |= read & 0xF8;
+
+    //Concatenate cell_1 voltage LSB and MSB:
+
+    bat_volt->cell_1 =  ((uint32_t) cell_1_voltage_MSB << 8) | cell_1_voltage_LSB;
+
+    return 0;
 
 }
 

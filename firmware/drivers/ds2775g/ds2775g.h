@@ -27,7 +27,7 @@
  * 
  * \version 0.1.2
  * 
- * \date 2021/01/25
+ * \date 2021/02/07
  * 
  * \defgroup ds2775g DS2775G
  * \ingroup drivers
@@ -38,6 +38,13 @@
 #define DS2775G_H_
 
 #include <drivers/onewire/onewire.h>
+#include "gpio/gpio.h"
+
+/**
+ * \brief declaring DS2775G+ OneWire port.
+ */
+
+onewire_port_t onewire_port = GPIO_PIN_69;       //Declaring one wire port as P9.1;
 
 /**
  * \brief DS2775G+ register address.
@@ -88,7 +95,7 @@ uint8_t copy_data = 0x48;       //Command to copy data of the DS2775G+ EEPROM sh
  */
 typedef struct
 {
-    onewire_port_t onewire_port;        /**< OneWire port. */
+    onewire_port_t onewire_port           = GPIO_PIN_69;        /**< OneWire port. */
     uint8_t protection_reg[4]             = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.protection_register, 0x03};
     uint8_t protector_threshold_reg[4]    = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.protector_threshold_register, 0x61};
     uint8_t status_reg[4]                 = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.status_register, 0x0};

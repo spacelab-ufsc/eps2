@@ -27,7 +27,7 @@
  *
  * \version 0.1.0
  *
- * \date 2021/02/01
+ * \date 2021/02/07
  *
  * \defgroup bat_manager Battery Manager
  * \ingroup devices
@@ -39,7 +39,11 @@
 
 #include <stdint.h>
 
+#include "drivers/ds2775g/ds2775g.h"
+
 #define BAT_MANAGER_MODULE_NAME         "Battery Manager"
+
+ds2775g_config_t bat_monitor_config;
 
 /**
  * \brief battery measured voltage.
