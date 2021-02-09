@@ -23,11 +23,12 @@
 /**
  * \brief ADS1248 driver definition.
  * 
- * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.4
+ * \version 0.1.5
  * 
- * \date 2020/10/24
+ * \date 2020/02/08
  * 
  * \defgroup ads1248 ADS1248
  * \ingroup drivers
@@ -41,6 +42,8 @@
 #include <drivers/gpio/gpio.h>
 
 #define ADS1248_MODULE_NAME            "ADS1248"
+
+#define ADS1248_RANGE       16777216    /**< ADS1248 resolution (24-bit). */
 
 /* SPI Commands */
 #define ADS1248_CMD_WAKEUP      0x00    /**< Exit power-down mode. */
@@ -123,14 +126,17 @@ void ads1248_delay(uint8_t ms);
 
 /**
  * \brief ADS1248 initialization.
- *
- * For the first power up the GPIO and SPI pins are initiated. 
+ * 
+ * First a 16 ms delay is implemented to allow power supplies to settle and power-on reset to complete.
+ * Them the GPIO and SPI pins are initiated. 
  * The START is set to high and the SPI chip select (CS) pin is set to low to begin SPI communication.
  * Next the following commands are sent for the ADS1248 configuration:
- * - ADS1248_CMD_RESET
- * - ADS1248_CMD_SDATAC
- * - ADS1248_CMD_WREG
- * - ADS1248_CMD_RREG 
+ * - ADS1248_CMD_RESET: Reset command to make sure the device is properly reset after power up.
+ * 1 ms delay time (minimunn of 0f 0.6ms) for SCLK rising edge (start of serial interface communication) after RESET rising edge.
+ * - ADS1248_CMD_SDATAC: Stop read data continuous mode command.
+ * - ADS1248_CMD_WREG: Configures the device parameters through registers.
+ * If the driver debug is enabladed sends ADS1248_CMD_RREG: Reads the device's configuration registers values for sanity check.
+ * - ADS1248_CMD_SYNC: Starts new ADC conversion.
  *
  * \param[in,out] config is a pointer to the ADS1248 configuration parameters.
  *
@@ -140,6 +146,9 @@ int ads1248_init(ads1248_config_t *config);
 
 /**
  * \brief Resets the device.
+ *
+ * The ADS1248 can be reset using a GPIO activation on its RESET pin or with a the reset command (ADS1248_CMD_RESET). 
+ * When the RESET pin goes low, the device is immediately reset. When the RESET pin goes back to high a 1 ms delay time (minimunn of 0f 0.6ms) is necessary before starting a SPI communication.
  *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
  *
@@ -155,28 +164,66 @@ int ads1248_init(ads1248_config_t *config);
 int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode);
 
 /**
- * \brief Sets the power-down mode.
+ * \brief Configuration of the ADS1248 registers.
  *
- * Power consumption is reduced to a minimum by placing the device into power-down mode. There are two ways
- * to put the device into power-down mode: using the SLEEP command or taking the START pin low.
+ * To configure the ADS1248 the ADS1248_CMD_WREG command must be sent via half-duplex SPI communication to the device.
+ * The first byte is the command itself (0x40), if the last 4 bits are not specified it will begin writing to the first register MUX0 (0x00).
+ * The second byte is the leght of bytes to be sent minus 1. ADS1248 has 15 configuring registers, so to write to all registers on one SPI transmission it needs 0x0E (15 - 1 = 14 in decimal). 
+ * The next bytes are the specific configuration values for each register.
+ * When the last byte is sent via SPI the CS (active-low) is set high ending communication. 
  *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
  *
- * \param[in] mode is the power-down mode. It can be:
- * \parblock
- *      -\b ADS1248_POWER_DOWN_PIN
- *      -\b ADS1248_POWER_DOWN_CMD
- *      .
- * \endparblock
+ * \return The status/error code.
+ */
+int ads1248_config_regs(ads1248_config_t *config);
+
+/**
+ * \brief Reads ADS1248 registers configuration.
+ *
+ * To read the ADS1248 registers configuration the ADS1248_CMD_RREG command must be sent via full-duplex SPI communication to the device.
+ * Similar to the the ADS1248_CMD_WREG command, first byte is the command itself (0x20), if the last 4 bits are not specified it will begin reading first register MUX0 (0x00).
+ * The second byte is the leght of bytes to be read minus 1. ADS1248 has 15 configuring registers, so to read all registers on one SPI transmission it needs 0x0E (15 - 1 = 14 in decimal). 
+ * The next bytes sent are no operation commands (ADS1248_CMD_NOP) to maintain full-duplex SPI communication when receiving data from the device.
+ * When the last byte is sent via SPI the CS (active-low) is set high ending communication. 
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the device.
+ *
+ * \param[in,out] rd rd is a pointer to store the read data during the SPI transfer.
  *
  * \return The status/error code.
  */
-int ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode);
+int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd);
+
+/**
+ * \brief Reads last conversion of ADS1248.
+ *
+ * To read the ADS1248 last conversion the ADS1248_CMD_RDATA command must be sent via full-duplex SPI communication to the device.
+ * The first byte is the command itself (0x40), the conversion result is read out by sending 3 no operation command (NOP) during 24 SCLKs, each NOP is sent in 8 SCLKs. 
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the device.
+ *
+ * \param[in,out] rd rd is a pointer to store the read data during the SPI transfer.
+ *
+ * \return The status/error code.
+ */
+int ads1248_read_data(ads1248_config_t *config, uint8_t *rd);
 
 /**
  * \brief Writes a command to the device.
  *
+ * All commands to be sent from master to the ADS1248 slave though SPI is done in this function.
+ * Some commands require addiotional bytes besides the command byte to be sent, this is the case for the ADS1248_CMD_WREG, ADS1248_CMD_WREG and ADS1248_CMD_RDATA commands. 
+ * For these 3 commands the implementation is done in separate functions.
+ * All the other commands only require its byte to be sent.
+ *
+ * If the START pin is held low, a WAKEUP command will not power up the device.
+ *
+ * When the START pin is low or the device is in power-down mode, only the RDATA, RDATAC, SDATAC, WAKEUP, and NOP commands can be issued.
+ *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
+ *
+ * \param[in,out] data is a optional pointer only for WREG, RREG and RDATA commands. For the case of WREG, the variable 
  *
  * \param[in] cmd is the command to write. It can be:
  * \parblock
@@ -198,7 +245,26 @@ int ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mo
  *
  * \return The status/error code.
  */
-int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd);
+int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd);
+
+/**
+ * \brief Sets the power-down mode.
+ *
+ * Power consumption is reduced to a minimum by placing the device into power-down mode. There are two ways to put the device into power-down mode: using the SLEEP command or taking the START pin low.
+ * When using the SLEEP command, CS (active-low) must be held low for the duration of the power-down mode, this enables only the RDATA, RDATAC, SDATAC, WAKEUP,and NOP commandscan to received.
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the device.
+ *
+ * \param[in] mode is the power-down mode. It can be:
+ * \parblock
+ *      -\b ADS1248_POWER_DOWN_PIN
+ *      -\b ADS1248_POWER_DOWN_CMD
+ *      .
+ * \endparblock
+ *
+ * \return The status/error code.
+ */
+int ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode);
 
 #endif /* ADS1248_H_ */
 
