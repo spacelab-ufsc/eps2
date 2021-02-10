@@ -25,9 +25,9 @@
  *
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.1.1
  *
- * \date 2021/02/07
+ * \date 2021/02/10
  *
  * \defgroup bat_manager Battery Manager
  * \ingroup devices

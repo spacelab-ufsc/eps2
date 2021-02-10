@@ -25,9 +25,9 @@
  *
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.1.1
  *
- * \date 2021/02/07
+ * \date 2021/02/10
  *
  * \addtogroup bat_manager
  * \{
@@ -67,7 +67,7 @@ int get_bat_voltage(bat_voltage_t *bat_volt){
     //Reads cell_0 voltage LSB:
 
     uint8_t cell_0_voltage_LSB;
-    if(ds2775g_read_register(onewire_port, voltage_LSB1_register, cell_0_voltage_LSB) != 0)
+    if(ds2775g_read_register(onewire_port, voltage_LSB1_register, &cell_0_voltage_LSB) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_0 voltage!");
         sys_log_new_line();
@@ -80,7 +80,7 @@ int get_bat_voltage(bat_voltage_t *bat_volt){
     //Reads cell_0 voltage MSB:
 
     uint8_t cell_0_voltage_MSB;
-    if(ds2775g_read_register(onewire_port, voltage_MSB1_register, read) != 0)
+    if(ds2775g_read_register(onewire_port, voltage_MSB1_register, &read) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_0 voltage!");
         sys_log_new_line();
@@ -99,7 +99,7 @@ int get_bat_voltage(bat_voltage_t *bat_volt){
     //Reads cell_1 voltage LSB:
 
     uint8_t cell_1_voltage_LSB;
-    if(ds2775g_read_register(onewire_port, voltage_LSB2_register, cell_1_voltage_LSB) != 0)
+    if(ds2775g_read_register(onewire_port, voltage_LSB2_register, &cell_1_voltage_LSB) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_1 voltage!");
         sys_log_new_line();
@@ -112,7 +112,7 @@ int get_bat_voltage(bat_voltage_t *bat_volt){
     //Reads cell_1 voltage MSB:
 
     uint8_t cell_1_voltage_MSB;
-    if(ds2775g_read_register(onewire_port, voltage_MSB2_register, read) != 0)
+    if(ds2775g_read_register(onewire_port, voltage_MSB2_register, &read) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery cell_1 voltage!");
         sys_log_new_line();
@@ -126,7 +126,7 @@ int get_bat_voltage(bat_voltage_t *bat_volt){
 
     //Concatenate cell_1 voltage LSB and MSB:
 
-    bat_volt->cell_1 =  ((uint32_t) cell_1_voltage_MSB << 8) | cell_1_voltage_LSB;
+    bat_volt->cell_1 =  ((uint32_t) cell_1_voltage_MSB << 8) | (uint32_t) cell_1_voltage_LSB;
 
     return 0;
 
@@ -134,7 +134,29 @@ int get_bat_voltage(bat_voltage_t *bat_volt){
 
 int get_bat_current(uint32_t *bat_cur){
 
-    return -1;
+    uint8_t current_LSB;
+
+    if(ds2775g_read_register(onewire_port, current_LSB_register, &current_LSB) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery current!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    uint8_t current_MSB;
+
+    if(ds2775g_read_register(onewire_port, current_MSB_register, &current_MSB) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, BAT_MANAGER_MODULE_NAME, "Error reading the battery current!");
+        sys_log_new_line();
+
+            return -1;
+        }
+
+    bat_cur = ((uint32_t) current_MSB<<8) | (uint32_t) current_LSB;
+
+    return 0;
 
 }
 
@@ -146,6 +168,19 @@ int get_bat_charge(uint32_t *charge){
 
 int get_bat_data(bat_manager_data_t *data){
 
-    return -1;
+    int err = 0;
+
+    if (get_bat_voltage(&data->bat_voltage) != 0)
+        {
+            err = -1;
+        }
+
+        if get_bat_current(&data->bat_current) != 0)
+        {
+            err = -1;
+        }
+
+
+    return err;
 
 }
