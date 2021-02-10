@@ -41,6 +41,15 @@
 #include "gpio/gpio.h"
 
 /**
+ * \brief declaring DS2775G+ units.
+ */
+
+#define rsense          0.01
+#define voltage_unit    0.004883
+#define current_unit    0.0000015625/rsense
+#define accumulated_current_unit    6.25*0.000001/rsense
+
+/**
  * \brief declaring DS2775G+ OneWire port.
  */
 
