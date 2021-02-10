@@ -1,7 +1,7 @@
 %
 % system_overview.tex
 %
-% Copyright (C) 2020 by SpaceLab.
+% Copyright (C) 2021 by SpaceLab.
 %
 % EPS 2.0 Documentation
 %
@@ -18,9 +18,9 @@
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
-% \version 0.1.1
+% \version 0.1.2
 %
-% \date 2021/02/01
+% \date 2021/02/10
 %
 
 \chapter{System Overview} \label{ch:system-overview}
@@ -49,7 +49,7 @@ The \autoref{fig:power-block-diagram} presents a more detailed view of the power
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=\textwidth]{figures/eps2_mcu_diagram.png}
+        \includegraphics[width=0.75\textwidth]{figures/eps2_mcu_diagram.png}
         \caption{EPS 2.0 MCU Block diagram.}
         \label{fig:mcu-block-diagram}
     \end{center}
@@ -71,14 +71,38 @@ The \autoref{fig:power-block-diagram} presents a more detailed view of the power
 
 \section{Operation} \label{sec:operation}
 
-
+The system operates through the sequencial execution of routines (tasks in the context of the operating system) that are scheduled and multiplexed along the time. Each routine has a priority and a periodicity, which determine the following execution, the set of functionalities currentely running, and the memory usage management. Besides this deterministic scheduling system, the routines have communication channels with each other through the usage of queues, which provides a robust synchorization scheme. In the \autoref{ch:firmware} the system operation and the internal nuances are described in detail. Then, this section use a top view user perspective to describe the module operation.
 
 \subsection{Execution Flow}
-
-
+% Add here a diagram showing a simple flowchart or use cases to represent how the EPS works.
 
 \subsection{Data Flow}
-
-
+% Add here a flowchart or diagram showing where and how the data is generated and transfered across diferent modules and peripherals.
 
 \subsection{Status LEDs} \label{sec:status-leds}
+
+On the development version of the board, there are nine LED\nomenclature{\textbf{LED}}{\textit{Light-Emitting Diode.}}s that indicates some behaviours of the systems. This set of LEDs can be seen on \autoref{fig:status-leds}.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/status_leds.png}
+        \caption{Available status LEDs.}
+        \label{fig:status-leds}
+    \end{center}
+\end{figure}
+
+A description of each of these LEDs are available below:
+
+\begin{itemize}
+    \item \textbf{6V\_BEACON\_LED}: Indicates that the beacon transceiver 6V power is being sourced.
+    \item \textbf{5V\_RADIO\_LED}: Indicates that the radio transceiver 5V power is being sourced.
+    \item \textbf{SYSTEM\_ON}: Heartbeat of the system. Blinks at a frequency of 1 Hz when the system is running properly.
+    \item \textbf{3V3\_ANT}: Indicates that the antenna deployer 3.3V power is being sourced.
+    \item \textbf{3V3\_MCU}: Indicates that the EPS2 MCU 3.3V power is being sourced.
+    \item \textbf{3V3\_OBDH}: Indicates that the OBDH module 3.3V power is being sourced.
+    \item \textbf{3V3\_EPS\_BEACON}: Indicates that the EPS2 board and beacon MCU 3.3V power is being sourced.
+    \item \textbf{5V\_PAYLOADS\_LEDS}: Indicates that the payloads 5V power is being sourced.
+    \item \textbf{VBUS\_LED}: Indicates that the main power bus from the batteries is being sourced.
+\end{itemize}
+
+These LEDs are not mounted in the flight version of the module.
