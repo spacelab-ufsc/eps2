@@ -1,7 +1,7 @@
 /*
- * version.h
+ * mppt.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -21,29 +21,28 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief MPPT device implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.3
  * 
- * \date 2020/10/21
+ * \date 2021/02/10
  * 
- * \defgroup version Version control
+ * \addtogroup mppt
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include <system/sys_log/sys_log.h>
 
-#define FIRMWARE_VERSION            "0.1.3"
+#include "mppt.h"
 
-#define FIRMWARE_STATUS             "Development"
+int mppt_init()
+{
+    sys_log_print_event_from_module(SYS_LOG_INFO, MPPT_MODULE_NAME, "Initializing the MPPT...");
+    sys_log_new_line();
 
-#define FIRMWARE_AUTHOR             "SpaceLab"
+    return -1;
+}
 
-#define FIRMWARE_AUTHOR_EMAIL       "spacelab.ufsc@gmail.com"
-
-#endif /* VERSION_H_ */
-
-/** \} End of version group */
+/** \} End of mppt group */
