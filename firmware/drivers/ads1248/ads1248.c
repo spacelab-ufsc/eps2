@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.5
+ * \version 0.1.2
  * 
  * \date 2020/02/08
  * 
@@ -106,7 +106,7 @@ int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode)
     {
         gpio_set_state(config->reset_pin, false);
         
-        /* Add RESET pulse duration of 4 tclk? */
+        ads1248_delay(1); /* RESET pulse duration (minimal is 4 tclk (4*0.488u = 1.95us). 1ms is the lowest delay FreeRTOS can do) */
 
         gpio_set_state(config->reset_pin, true);
     }
