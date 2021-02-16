@@ -39,7 +39,16 @@
 
 #include <stdint.h>
 
+#include <drivers/ads1248/ads1248.h>
+
 #define TEMP_SENSOR_MODULE_NAME     "Temperature Sensor"
+
+#define TEMP_SENSOR_SPI_PORT        SPI_PORT_1
+#define TEMP_SENSOR_SPI_MODE        SPI_MODE_0
+#define TEMP_SENSOR_SPI_SPEED_HZ    1000000
+#define TEMP_SENSOR_START_PIN       GPIO_PIN_60
+#define TEMP_SENSOR_SPI_CS          GPIO_PIN_59
+#define TEMP_SENSOR_RESET_PIN       GPIO_PIN_58
 
 /**
  * \brief Temperature sensor device initialization routine.
@@ -47,6 +56,22 @@
  * \return The status/error code.
  */
 int temp_sensor_init();
+
+/**
+ * \brief Temperature sensor power-down.
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the ADS1248 device.
+ *
+ * \param[in] mode is the power-down mode. It can be:
+ * \parblock
+ *      -\b ADS1248_POWER_DOWN_PIN
+ *      -\b ADS1248_POWER_DOWN_CMD
+ *      .
+ * \endparblock
+ *
+ * \return The status/error code.
+ */
+int temp_sensor_suspend(ads1248_config_t *config, ads1248_power_down_t mode);
 
 /**
  * \brief Reads the raw temperature from the temperature sensor.

@@ -39,7 +39,23 @@
 
 #include "temp_sensor.h"
 
+ads1248_config_t *ads1248_config;
+
 int temp_sensor_init()
+{
+	ads1248_config->spi_port = TEMP_SENSOR_SPI_PORT;
+	ads1248_config->spi_config.mode = TEMP_SENSOR_SPI_MODE;
+	ads1248_config->spi_config.speed_hz = TEMP_SENSOR_SPI_SPEED_HZ;
+	ads1248_config->start_pin = TEMP_SENSOR_SPI_PORT;
+	ads1248_config->spi_cs = TEMP_SENSOR_SPI_PORT;
+	ads1248_config->reset_pin = TEMP_SENSOR_SPI_PORT;
+	
+	ads1248_init(ads1248_config);
+   
+	return 0;
+}
+
+int temp_sensor_suspend(ads1248_config_t *config, ads1248_power_down_t mode)
 {
 	return -1;
 }
