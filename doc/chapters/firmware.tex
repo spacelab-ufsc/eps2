@@ -1,7 +1,7 @@
 %
 % firmware.tex
 %
-% Copyright (C) 2020 by SpaceLab.
+% Copyright (C) 2021 by SpaceLab.
 %
 % EPS 2.0 Documentation
 %
@@ -14,15 +14,59 @@
 % \brief Firmware project chapter.
 %
 % \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+% \author Yan castro de Azeredo <yan.ufsceel@gmail.com>
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
 % \version 0.1.0
 %
-% \date 2020/11/05
+% \date 2021/03/03
 %
 
 \chapter{Firmware} \label{ch:firmware}
+
+\section{Sensors and Peripherals Variables}
+
+A list of all the variables that can be read from the sensors and peripherals of the EPS2 can be seen in the \autoref{tab:eps2-variables}.
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule[1.5pt]
+        \textbf{Variable name}                  \\
+        \midrule
+        -Y and +X solar panel sides voltage     \\
+        -X and +Z solar panel sides voltage     \\
+        -Z and +Y solar panel sides voltage     \\
+        -Y solar panel side current             \\
+        +Y solar panel side current             \\
+        -X solar panel side current             \\
+        +X solar panel side current             \\
+        -Z solar panel side current             \\
+        +Z solar panel side current             \\
+        EPS2 circuitry and Beacon MCU current   \\
+        Main power buss voltage                 \\
+        Heaters temperature (RTDs)              \\
+        Internal EPS2 MCU temperature           \\
+        Batteries voltage                       \\
+        Batteries current                       \\
+        Batteries average current               \\
+        Batteries accumulated current           \\
+        Batteries charge                        \\
+        Battery monitor IC temperature          \\
+        Batteries monitor status register       \\
+        Batteries monitor protection register   \\
+        Batteries monitor cycle counter         \\
+        Batteries monitor remaining active absolute capacity register   \\
+        Batteries monitor remaining standby absolute capacity register  \\
+        Batteries monitor remaining active relative capacity register   \\
+        Batteries monitor remaining standby relative capacity register  \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{EPS2 variables.}
+    \label{tab:eps2-variables}
+\end{table}
+
 
 \section{Tasks}
 
@@ -40,6 +84,8 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
         Battery Heater Control & TBD               & 0                           & TBD                  & TBD                    \\
         Read sensors           & Medium            & 0                           & 60000                & 128                    \\
         CSP Server             & Lowest            & 0                           & 500                  & 1024                   \\
+        MPPT                   & TBD               & TBD                         & TBD                  & TBD                    \\
+        Beacon package         & TBD               & TBD                         & TBD                  & TBD                    \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{Firmware tasks.}
