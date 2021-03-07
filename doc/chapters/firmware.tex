@@ -20,47 +20,50 @@
 %
 % \version 0.1.0
 %
-% \date 2021/03/03
+% \date 2021/03/07
 %
 
 \chapter{Firmware} \label{ch:firmware}
 
 \section{Sensors and Peripherals Variables}
 
-A list of all the variables that can be read from the sensors and peripherals of the EPS2 can be seen in the \autoref{tab:eps2-variables}.
+A list of all the variables of EPS2 with their identification number (ID) and length (in bytes) that can be read from the sensors and peripherals is seen in the \autoref{tab:eps2-variables}.
 
 \begin{table}[!h]
     \centering
     \begin{tabular}{lcc}
         \toprule[1.5pt]
-        \textbf{Variable name}                  \\
+        \textbf{Variable name}                  & \textbf{ID}    &  \textbf{Length [bytes]} \\
         \midrule
-        -Y and +X solar panel sides voltage     \\
-        -X and +Z solar panel sides voltage     \\
-        -Z and +Y solar panel sides voltage     \\
-        -Y solar panel side current             \\
-        +Y solar panel side current             \\
-        -X solar panel side current             \\
-        +X solar panel side current             \\
-        -Z solar panel side current             \\
-        +Z solar panel side current             \\
-        EPS2 circuitry and Beacon MCU current   \\
-        Main power buss voltage                 \\
-        Heaters temperature (RTDs)              \\
-        Internal EPS2 MCU temperature           \\
-        Batteries voltage                       \\
-        Batteries current                       \\
-        Batteries average current               \\
-        Batteries accumulated current           \\
-        Batteries charge                        \\
-        Battery monitor IC temperature          \\
-        Batteries monitor status register       \\
-        Batteries monitor protection register   \\
-        Batteries monitor cycle counter         \\
-        Batteries monitor remaining active absolute capacity register   \\
-        Batteries monitor remaining standby absolute capacity register  \\
-        Batteries monitor remaining active relative capacity register   \\
-        Batteries monitor remaining standby relative capacity register  \\
+        -Y and +X sides solar panel voltage     &                &  2                       \\
+        -X and +Z sides solar panel voltage     &                &  2                       \\
+        -Z and +Y sides solar panel voltage     &                &  2                       \\
+        -Y side solar panel current             &                &  2                       \\
+        +Y side solar panel current             &                &  2                       \\
+        -X side solar panel current             &                &  2                       \\
+        +X side solar panel current             &                &  2                       \\
+        -Z side solar panel current             &                &  2                       \\
+        +Z side solar panel current             &                &  2                       \\
+        EPS2 circuitry and Beacon MCU current   &                &  2                       \\
+        Main power buss voltage                 &                &  2                       \\
+        Batteries RTD1 temperature              &                &  4                       \\
+        Batteries RTD2 temperature              &                &  4                       \\
+        Batteries RTD3 temperature              &                &  4                       \\
+        Batteries RTD4 temperature              &                &  4                       \\
+        Internal EPS2 MCU temperature           &                &  2                       \\
+        Batteries voltage                       &                &  2                       \\
+        Batteries current                       &                &  2                       \\
+        Batteries average current               &                &  2                       \\
+        Batteries accumulated current           &                &  2                       \\
+        Batteries charge                        &                &  2                       \\
+        Battery monitor IC temperature          &                &  2                       \\
+        Batteries monitor status register       &                &  1                       \\
+        Batteries monitor protection register   &                &  1                       \\
+        Batteries monitor cycle counter         &                &  1                       \\
+        Batteries monitor remaining active absolute capacity register   &                &  2                       \\
+        Batteries monitor remaining standby absolute capacity register  &                &  2                       \\
+        Batteries monitor remaining active relative capacity register   &                &  1                       \\
+        Batteries monitor remaining standby relative capacity register  &                &  1                       \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{EPS2 variables.}
