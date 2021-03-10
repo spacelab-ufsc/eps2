@@ -1,7 +1,7 @@
 /*
  * ads1248.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -28,7 +28,7 @@
  * 
  * \version 0.1.2
  * 
- * \date 2020/02/08
+ * \date 2021/03/09
  * 
  * \defgroup ads1248 ADS1248
  * \ingroup drivers
@@ -44,6 +44,8 @@
 #define ADS1248_MODULE_NAME            "ADS1248"
 
 #define ADS1248_RANGE       16777216    /**< ADS1248 resolution (24-bit). */
+
+#define ADS1248_NEGATIVE_INPUT  0x07     /**< ADS1248 negative (reference) input channel for ADC measurements */
 
 /* SPI Commands */
 #define ADS1248_CMD_WAKEUP      0x00    /**< Exit power-down mode. */
@@ -198,16 +200,24 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd);
 /**
  * \brief Reads last conversion of ADS1248.
  *
- * To read the ADS1248 last conversion the ADS1248_CMD_RDATA command must be sent via full-duplex SPI communication to the device.
+ * To select the channel for the data read, the values of the MUX0 register (responsible for multiplexing the input ADC read pin) and IDAC1 register (responsible for selecting the output excitation current pin) must be changed.
+ * For this the ADS1248_CMD_WREG command is sent not needing information regarding the register adress since the MUX0 is the first register WREG writes to after been sent.  
+ * Next is sent the size of byte to be writen -1, for just one byte it will be 0x00 and them the data value to be writen in one byte format acoording to the positive input channel selected. 
+ * The negative channel is defined in a macro ADS1248_NEGATIVE_INPUT.
+ * To skip writing all other registers and get to IDAC1 the WREG command is sent againd, size of byte to be writen -1 (same as before 0x00) and the data value to be writen that will be the positive input channel selected. 
+ *
+ * Finally, to read the ADS1248 last conversion the ADS1248_CMD_RDATA command must be sent via full-duplex SPI communication to the device.
  * The first byte is the command itself (0x40), the conversion result is read out by sending 3 no operation command (NOP) during 24 SCLKs, each NOP is sent in 8 SCLKs. 
  *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
  *
  * \param[in,out] rd rd is a pointer to store the read data during the SPI transfer.
  *
+ * \param[in] positive_channel channel is a unsigned integers of 8 bits used select the ADS1248 channel to read the voltage measurement.
+ *
  * \return The status/error code.
  */
-int ads1248_read_data(ads1248_config_t *config, uint8_t *rd);
+int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_channel);
 
 /**
  * \brief Writes a command to the device.
@@ -223,7 +233,7 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd);
  *
  * \param[in,out] config is a pointer to the configuration parameters of the device.
  *
- * \param[in,out] data is a optional pointer only for WREG, RREG and RDATA commands. For the case of WREG, the variable 
+ * \param[in,out] rd is a optional pointer to store data only for RREG and RDATA commands. 
  *
  * \param[in] cmd is the command to write. It can be:
  * \parblock
@@ -245,7 +255,7 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd);
  *
  * \return The status/error code.
  */
-int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd);
+int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel);
 
 /**
  * \brief Sets the power-down mode.

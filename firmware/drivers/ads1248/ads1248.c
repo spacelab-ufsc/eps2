@@ -1,7 +1,7 @@
 /*
  * ads1248.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -28,7 +28,7 @@
  * 
  * \version 0.1.2
  * 
- * \date 2020/02/08
+ * \date 2021/03/09
  * 
  * \addtogroup ads1248
  * \{
@@ -71,19 +71,10 @@ int ads1248_init(ads1248_config_t *config)
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return ADS1248_ERROR;
     }
-
-    if (spi_select_slave(config->spi_port, config->spi_cs, false) != 0)
-    {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting CS pin to low state during initialization!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return ADS1248_ERROR;
-    }
     
     ads1248_reset(config, ADS1248_RESET_CMD);
 
-    ads1248_write_cmd(config, ADS1248_CMD_SDATAC, NULL);
+    ads1248_write_cmd(config, ADS1248_CMD_SDATAC, NULL, 0);
 
     ads1248_config_regs(config);
 
@@ -91,7 +82,7 @@ int ads1248_init(ads1248_config_t *config)
         ads1248_config_regs(config);
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 
-    ads1248_write_cmd(config, ADS1248_CMD_SYNC, NULL);
+    ads1248_write_cmd(config, ADS1248_CMD_SYNC, NULL, 0);
 
     return 0;
 }
@@ -100,7 +91,7 @@ int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode)
 {
     if (mode != 0) /* if the reset mode is by command (ADS1248_RESET_CMD = 1) */
     {
-        ads1248_write_cmd(config, ADS1248_CMD_RESET, NULL);
+        ads1248_write_cmd(config, ADS1248_CMD_RESET, NULL, 0);
     }
     else           /* if the reset mode is using the reset pin (ADS1248_RESET_PIN = 0) */
     {
@@ -122,7 +113,7 @@ int ads1248_config_regs(ads1248_config_t *config)
 
     data_config_regs[0] = ADS1248_CMD_WREG;  /* command WREG plus information to write to the first register MUX0 (0x00) */
     data_config_regs[1] = 0x0E; /* number of bytes minus 1 to be writen by WREG command */
-    data_config_regs[2] = 0x37; /* value to register MUX0: burn out detect current off, positive input channel AIN3 (?) and negative channel AIN7 */
+    data_config_regs[2] = 0x37; /* value to register MUX0: burn out detect current off, positive input channel AIN3 and negative channel AIN7 */
     data_config_regs[3] = 0x00; /* value to register VBIAS: bias voltage not enabled */
     data_config_regs[4] = 0x20; /* value to register MUX1: internal reference always on, REFP0 and REFPN0 reference inputs and normal operation */
     data_config_regs[5] = 0x03; /* value to register SYSO: data output rate of 40 SPS */
@@ -172,9 +163,23 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
     return 0;
 }
 
-int ads1248_read_data(ads1248_config_t *config, uint8_t *rd)
+int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_channel)
 {
+    uint8_t select_channel_to_read[3] = {0};
+    uint8_t select_channel_excitation_current[3] = {0};
     uint8_t data_read_conversion[4] = {0};
+
+    select_channel_to_read[0] = ADS1248_CMD_WREG; /* WREG command (0x40), since the last byte is zero it will write to the first register MUX0 (0x00) */
+    select_channel_to_read[1] = 0x00;  /* number of bytes minus 1 to be writen by WREG command, in this case 1 byte will be 0 in hex */
+    select_channel_to_read[2] = (positive_channel | 0x07); /* positive channel selection + the negative (reference) channel fixed to be AIN7*/
+
+    spi_write(config->spi_port, config->spi_cs, &select_channel_to_read, 3); /* Multiplexes channel */
+
+    select_channel_excitation_current[0] = 0x4B; /* WREG command (0x40) plus information to write to the IDAC1 register (0x4B) */
+    select_channel_excitation_current[1] = 0x00;  /* number of bytes minus 1 to be writen by WREG command, in this case 1 byte than 0 in hex */
+    select_channel_excitation_current[2] = positive_channel; /* output current to selected positive channel*/
+
+    spi_write(config->spi_port, config->spi_cs, &select_channel_to_read, 3); /* Multiplexes channel */
 
     data_read_conversion[0] = ADS1248_CMD_RDATA; /* command read last ADC conversion */
     data_read_conversion[1] = ADS1248_CMD_NOP; /* 3 no operation commands to clockout data from the device without clocking in a command during SPI duplex communication*/
@@ -185,7 +190,7 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd)
     return 0;
 }
 
-int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd)
+int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel)
 {
     switch(cmd)
     {
@@ -198,7 +203,7 @@ int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd)
         break;
 
         case ADS1248_CMD_RDATA:
-        ads1248_read_data(config, rd);
+        ads1248_read_data(config, rd, positive_channel);
         break;
 
         case ADS1248_CMD_WAKEUP:
@@ -221,7 +226,7 @@ int ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mo
 {
     if (mode != 0)  /* if the power-down mode is by command (ADS1248_POWER_DOWN_CMD = 1) */
     {
-        ads1248_write_cmd(config, ADS1248_CMD_SLEEP, NULL);
+        ads1248_write_cmd(config, ADS1248_CMD_SLEEP, NULL, 0);
         spi_select_slave(config->spi_port, config->spi_cs, false); /* CS (active-low) must be held low for the duration of the power-down mode to be able to receive some commands*/
     }
     else            /* if the power-down mode is using the start pin (ADS1248_POWER_DOWN_PIN = 0) */
