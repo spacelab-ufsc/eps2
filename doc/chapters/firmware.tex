@@ -27,49 +27,66 @@
 
 \section{Sensors and Peripherals Variables}
 
-A list of all the variables of EPS2 with their identification number (ID) and length (in bytes) that can be read from the sensors and peripherals is seen in the \autoref{tab:eps2-variables}.
+A list of all the variables of EPS with their identification number (ID) and variable type that can be read from the sensors and peripherals is seen in the \autoref{tab:eps2-variables}.
 
-\begin{table}[!h]
-    \centering
-    \begin{tabular}{lcc}
-        \toprule[1.5pt]
-        \textbf{Variable name}                  & \textbf{ID}    &  \textbf{Length [bytes]} \\
-        \midrule
-        -Y and +X sides solar panel voltage     &                &  2                       \\
-        -X and +Z sides solar panel voltage     &                &  2                       \\
-        -Z and +Y sides solar panel voltage     &                &  2                       \\
-        -Y side solar panel current             &                &  2                       \\
-        +Y side solar panel current             &                &  2                       \\
-        -X side solar panel current             &                &  2                       \\
-        +X side solar panel current             &                &  2                       \\
-        -Z side solar panel current             &                &  2                       \\
-        +Z side solar panel current             &                &  2                       \\
-        EPS2 circuitry and Beacon MCU current   &                &  2                       \\
-        Main power buss voltage                 &                &  2                       \\
-        Batteries RTD1 temperature              &                &  4                       \\
-        Batteries RTD2 temperature              &                &  4                       \\
-        Batteries RTD3 temperature              &                &  4                       \\
-        Batteries RTD4 temperature              &                &  4                       \\
-        Internal EPS2 MCU temperature           &                &  2                       \\
-        Batteries voltage                       &                &  2                       \\
-        Batteries current                       &                &  2                       \\
-        Batteries average current               &                &  2                       \\
-        Batteries accumulated current           &                &  2                       \\
-        Batteries charge                        &                &  2                       \\
-        Battery monitor IC temperature          &                &  2                       \\
-        Batteries monitor status register       &                &  1                       \\
-        Batteries monitor protection register   &                &  1                       \\
-        Batteries monitor cycle counter         &                &  1                       \\
-        Batteries monitor remaining active absolute capacity register   &                &  2                       \\
-        Batteries monitor remaining standby absolute capacity register  &                &  2                       \\
-        Batteries monitor remaining active relative capacity register   &                &  1                       \\
-        Batteries monitor remaining standby relative capacity register  &                &  1                       \\
-        \bottomrule[1.5pt]
-    \end{tabular}
-    \caption{EPS2 variables.}
+\begin{longtable}[c]{cL{0.82\textwidth}l}
+    \toprule[1.5pt]
+    \textbf{ID} & \textbf{Name/Description} & \textbf{Type} \\
+    \midrule
+    0   & Time counter in millseconds                                       & uint32 \\
+    1   & Temperature of the $\mu$C in K                                    & uint16 \\
+    2   & EPS circuitry and Beacon MCU current in mA                        & uint16 \\
+    \multirow{18}{*}{3} & Last reset cause: & \multirow{18}{*}{uint8} \\
+        & - 0x00 = No interrupt pending                                     &        \\
+        & - 0x02 = Brownout (BOR)                                           &        \\
+        & - 0x04 = RST/NMI (BOR)                                            &        \\
+        & - 0x06 = PMMSWBOR (BOR)                                           &        \\
+        & - 0x08 = Wakeup from LPMx.5 (BOR)                                 &        \\
+        & - 0x0A = Security violation (BOR)                                 &        \\
+        & - 0x0C = SVSL (POR)                                               &        \\
+        & - 0x0E = SVSH (POR)                                               &        \\
+        & - 0x10 = SVML\_OVP (POR)                                          &        \\
+        & - 0x12 = SVMH\_OVP (POR)                                          &        \\
+        & - 0x14 = PMMSWPOR (POR)                                           &        \\
+        & - 0x16 = WDT time out (PUC)                                       &        \\
+        & - 0x18 = WDT password violation (PUC)                             &        \\
+        & - 0x1A = Flash password violation (PUC)                           &        \\
+        & - 0x1C = Reserved                                                 &        \\
+        & - 0x1E = PERF peripheral/configuration area fetch (PUC)           &        \\
+        & - 0x20 = PMM password violation (PUC)                             &        \\
+        & - 0x22 to 0x3E = Reserved                                         &        \\
+    4   & Reset counter                                                     & uint16 \\
+    5   & -Y and +X sides solar panel voltage in mV                         & uint16 \\
+    6   & -X and +Z sides solar panel voltage in mV                         & uint16 \\
+    7   & -Z and +Y sides solar panel voltage in mV                         & uint16 \\
+    8   & -Y side solar panel current in mA                                 & uint16 \\
+    9   & +Y side solar panel current in mA                                 & uint16 \\
+    10  & -X side solar panel current in mA                                 & uint16 \\
+    11  & +X side solar panel current in mA                                 & uint16 \\
+    12  & -Z side solar panel current in mA                                 & uint16 \\
+    13  & +Z side solar panel current in mA                                 & uint16 \\
+    14  & Main power bus voltage in mV                                      & uint16 \\
+    15  & Batteries RTD1 temperature in K                                   & uint32 \\
+    16  & Batteries RTD2 temperature in K                                   & uint32 \\
+    17  & Batteries RTD3 temperature in K                                   & uint32 \\
+    18  & Batteries RTD4 temperature in K                                   & uint32 \\
+    19  & Batteries voltage in mV                                           & uint16 \\
+    20  & Batteries current in mA                                           & uint16 \\
+    21  & Batteries average current in mA                                   & uint16 \\
+    22  & Batteries accumulated current in mA                               & uint16 \\
+    23  & Batteries charge in mAh                                           & uint16 \\
+    24  & Battery monitor IC temperature in K                               & uint16 \\
+    25  & Batteries monitor status register                                 & uint8 \\
+    26  & Batteries monitor protection register                             & uint8 \\
+    27  & Batteries monitor cycle counter                                   & uint8 \\
+    28  & Batteries monitor remaining active absolute capacity register     & uint16 \\
+    29  & Batteries monitor remaining standby absolute capacity register    & uint16 \\
+    30  & Batteries monitor remaining active relative capacity register     & uint8 \\
+    31  & Batteries monitor remaining standby relative capacity register    & uint8 \\
+    \bottomrule[1.5pt]
+    \caption{Variables and parameters of the EPS 2.0.}
     \label{tab:eps2-variables}
-\end{table}
-
+\end{longtable}
 
 \section{Tasks}
 
