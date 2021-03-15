@@ -65,24 +65,33 @@ A list of all the variables of EPS with their identification number (ID) and var
     11  & +X side solar panel current in mA                                 & uint16 \\
     12  & -Z side solar panel current in mA                                 & uint16 \\
     13  & +Z side solar panel current in mA                                 & uint16 \\
-    14  & Main power bus voltage in mV                                      & uint16 \\
-    15  & Batteries RTD1 temperature in K                                   & uint32 \\
-    16  & Batteries RTD2 temperature in K                                   & uint32 \\
-    17  & Batteries RTD3 temperature in K                                   & uint32 \\
-    18  & Batteries RTD4 temperature in K                                   & uint32 \\
-    19  & Batteries voltage in mV                                           & uint16 \\
-    20  & Batteries current in mA                                           & uint16 \\
-    21  & Batteries average current in mA                                   & uint16 \\
-    22  & Batteries accumulated current in mA                               & uint16 \\
-    23  & Batteries charge in mAh                                           & uint16 \\
-    24  & Battery monitor IC temperature in K                               & uint16 \\
-    25  & Batteries monitor status register                                 & uint8 \\
-    26  & Batteries monitor protection register                             & uint8 \\
-    27  & Batteries monitor cycle counter                                   & uint8 \\
-    28  & Batteries monitor remaining active absolute capacity register     & uint16 \\
-    29  & Batteries monitor remaining standby absolute capacity register    & uint16 \\
-    30  & Batteries monitor remaining active relative capacity register     & uint8 \\
-    31  & Batteries monitor remaining standby relative capacity register    & uint8 \\
+    14  & MPPT 1 duty cycle in \%                                           & uint8 \\
+    15  & MPPT 2 duty cycle in \%                                           & uint8 \\
+    16  & MPPT 3 duty cycle in \%                                           & uint8 \\
+    17  & Main power bus voltage in mV                                      & uint16 \\
+    18  & RTD0 temperature in K                                             & uint32 \\
+    19  & RTD1 temperature in K                                             & uint32 \\
+    20  & RTD2 temperature in K                                             & uint32 \\
+    21  & RTD3 temperature in K                                             & uint32 \\
+    22  & RTD4 temperature in K                                             & uint32 \\
+    23  & RTD5 temperature in K                                             & uint32 \\
+    24  & RTD6 temperature in K                                             & uint32 \\
+    25  & Batteries voltage in mV                                           & uint16 \\
+    26  & Batteries current in mA                                           & uint16 \\
+    27  & Batteries average current in mA                                   & uint16 \\
+    28  & Batteries accumulated current in mA                               & uint16 \\
+    29  & Batteries charge in mAh                                           & uint16 \\
+    30  & Battery monitor IC temperature in K                               & uint16 \\
+    31  & Battery monitor status register                                   & uint8 \\
+    32  & Battery monitor protection register                               & uint8 \\
+    33  & Battery monitor cycle counter                                     & uint8 \\
+    34  & Battery monitor Remaining Active-Absolute Capacity (RAAC) in mAh  & uint16 \\
+    35  & Battery monitor Remaining Standby-Absolute Capacity (RSAC) in mAh & uint16 \\
+    36  & Battery monitor Remaining Active-Relative Capacity (RARC) in \%   & uint8 \\
+    37  & Battery monitor Remaining Standby-Relative Capacity (RSRC) in \%  & uint8 \\
+    38  & Battery heater 1 duty cycle in \%                                 & uint8 \\
+    39  & Battery heater 2 duty cycle in \%                                 & uint8 \\
+    40  & Hardware version                                                  & uint8 \\
     \bottomrule[1.5pt]
     \caption{Variables and parameters of the EPS 2.0.}
     \label{tab:eps2-variables}
