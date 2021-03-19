@@ -25,9 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.1
  * 
- * \date 2021/01/28
+ * \date 2021/03/18
  * 
  * \addtogroup temp_sensor
  * \{
@@ -39,33 +39,69 @@
 
 #include "temp_sensor.h"
 
-ads1248_config_t *ads1248_config;
+temp_sensor_t *config;
 
-int temp_sensor_init()
+int temp_sensor_init(temp_sensor_t *config)
 {
-	ads1248_config->spi_port = TEMP_SENSOR_SPI_PORT;
-	ads1248_config->spi_config.mode = TEMP_SENSOR_SPI_MODE;
-	ads1248_config->spi_config.speed_hz = TEMP_SENSOR_SPI_SPEED_HZ;
-	ads1248_config->start_pin = TEMP_SENSOR_SPI_PORT;
-	ads1248_config->spi_cs = TEMP_SENSOR_SPI_PORT;
-	ads1248_config->reset_pin = TEMP_SENSOR_SPI_PORT;
+	sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing the temperature sensor device...");
+    sys_log_new_line();
 	
-	ads1248_init(ads1248_config);
-   
+	config->spi_port = TEMP_SENSOR_SPI_PORT;
+	config->spi_config.mode = TEMP_SENSOR_SPI_MODE;
+	config->spi_config.speed_hz = TEMP_SENSOR_SPI_SPEED_HZ;
+	config->start_pin = TEMP_SENSOR_START_PIN;
+	config->spi_cs = TEMP_SENSOR_SPI_CS;
+	config->reset_pin = TEMP_SENSOR_RESET_PIN;
+	
+   if(ads1248_init(config) != 0)
+   {
+		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error initializing the temperature sensor device!");
+		sys_log_new_line();
+
+		return -1;
+   }
+
 	return 0;
 }
 
-int temp_sensor_suspend(ads1248_config_t *config, ads1248_power_down_t mode)
+int temp_sensor_suspend(temp_sensor_t *config, temp_sensor_power_down_t mode)
 {
-	return -1;
+	sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Powering down the temperature sensor device...");
+    sys_log_new_line();
+	
+	if(ads1248_set_powerdown_mode(config, mode) != 0)
+   {
+		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error suspending the temperature sensor device!");
+		sys_log_new_line();
+
+		return -1;
+   }
+
+	return 0;
 }
 
-int temp_sensor_read_raw(uint16_t *val)
+int temp_sensor_read_c(temp_sensor_t *config, uint8_t positive_channel, float *temp)
 {
-	return -1;
+	uint8_t *raw_volt = 0;
+
+    if (ads1248_write_cmd(config, ADS1248_CMD_RDATA, raw_volt, positive_channel) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw temperature value!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    *temp = temp_sensor_convert_raw_to_c(raw_volt);
+
+    return 0;
 }
 
-int temp_sensor_read(float *temp)
-{
-	return -1;
+float temp_sensor_convert_raw_to_c(uint8_t *raw_volt)
+{	
+	float hex_volt = raw_volt [0] | (raw_volt [1] << 8) | (raw_volt [2] << 16) | (raw_volt [3] << 32);   
+	
+	float volt = (hex_volt*TEMP_SENSOR_REF_VOLTAGE)/ADS1248_RANGE;
+
+	return (((volt/0.0001) - 100)/0.384);
 }

@@ -25,9 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.1
  * 
- * \date 2021/01/28
+ * \date 2021/03/18
  * 
  * \defgroup temp_sensor Temperature Sensor
  * \ingroup devices
@@ -43,6 +43,8 @@
 
 #define TEMP_SENSOR_MODULE_NAME     "Temperature Sensor"
 
+#define TEMP_SENSOR_REF_VOLTAGE     3.3
+
 #define TEMP_SENSOR_SPI_PORT        SPI_PORT_1
 #define TEMP_SENSOR_SPI_MODE        SPI_MODE_0
 #define TEMP_SENSOR_SPI_SPEED_HZ    1000000
@@ -51,16 +53,33 @@
 #define TEMP_SENSOR_RESET_PIN       GPIO_PIN_58
 
 /**
+ * \brief Temperature sensor device type.
+ */
+typedef ads1248_config_t temp_sensor_t;
+
+/**
+ * \brief Temperature sensor power down type.
+ */
+typedef uint8_t temp_sensor_power_down_t;
+
+/**
+ * \brief Temperature sensor command type.
+ */
+typedef uint8_t temp_sensor_cmd_t;
+
+/**
  * \brief Temperature sensor device initialization routine.
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the temperature sensor device.
  *
  * \return The status/error code.
  */
-int temp_sensor_init();
+int temp_sensor_init(temp_sensor_t *config);
 
 /**
  * \brief Temperature sensor power-down.
  *
- * \param[in,out] config is a pointer to the configuration parameters of the ADS1248 device.
+ * \param[in,out] config is a pointer to the configuration parameters of the temperature sensor device.
  *
  * \param[in] mode is the power-down mode. It can be:
  * \parblock
@@ -71,25 +90,29 @@ int temp_sensor_init();
  *
  * \return The status/error code.
  */
-int temp_sensor_suspend(ads1248_config_t *config, ads1248_power_down_t mode);
-
-/**
- * \brief Reads the raw temperature from the temperature sensor.
- *
- * \param[in,out] val is a pointer to store the raw value of the temperature.
- *
- * \return The status/error code.
- */
-int temp_sensor_read_raw(uint16_t *val);
+int temp_sensor_suspend(temp_sensor_t *config, temp_sensor_power_down_t mode);
 
 /**
  * \brief Reads the temperature from the temperature sensor.
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the temperature sensor device.
+ *
+ * \param[in] temp is a pointer to store the read temperature.
  *
  * \param[in,out] temp is a pointer to store the read temperature.
  *
  * \return The status/error code.
  */
-int temp_sensor_read(float *temp);
+int temp_sensor_read_c(temp_sensor_t *config, uint8_t positive_channel, float *temp);
+
+/**
+ * \brief Converts a raw reading of the temperature sensor to a real temperature in oC.
+ *
+ * \param[in] raw_volt is a pointer to the raw reading of the temperature.
+ *
+ * \return The converted temperature in Celsius.
+ */
+float temp_sensor_convert_raw_to_c(uint8_t *raw_volt);
 
 #endif /* TEMP_SENSOR_H_ */
 
