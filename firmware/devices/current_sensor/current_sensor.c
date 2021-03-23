@@ -42,10 +42,17 @@
 
 int current_sensor_init()
 {
-    return max9934_init((max9934_config_t){});
+    static const max9934_config_t curr_sense_max9934_config = {0};
+
+    return max9934_init(curr_sense_max9934_config);
 };
 
-int current_sensor_read(adc_port_t port, float *cur)
+uint16_t current_sensor_raw_to_ma(uint16_t raw)
+{
+    return (uint16_t)(1000 * raw * (ADC_AVCC / (ADC_RANGE * CURRENT_SENSOR_RL_VALUE_OHM * CURRENT_SENSOR_GAIN * CURRENT_SENSOR_RSENSE_VALUE_OHM)));
+};
+
+int current_sensor_read(adc_port_t port, uint16_t *cur)
 {
     uint16_t raw_cur = 0;
 
@@ -57,7 +64,7 @@ int current_sensor_read(adc_port_t port, float *cur)
         return -1;
     }
 
-    *cur = (uint16_t)(1000 * raw_cur * (ADC_AVCC / (ADC_RANGE * CURRENT_SENSOR_RL_VALUE_OHM * CURRENT_SENSOR_GAIN * CURRENT_SENSOR_RSENSE_VALUE_OHM)));
+    *cur = current_sensor_raw_to_ma(raw_cur);
 
     return 0;
 };

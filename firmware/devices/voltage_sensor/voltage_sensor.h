@@ -59,6 +59,17 @@
 int voltage_sensor_init();
 
 /**
+ * \brief 
+ * 
+ * \param[in] port is the ADC port to read from.
+ * 
+ * \param[in] raw is the raw value to convert from.
+ * 
+ * \return uint16_t the converted value from raw to mV
+ */
+uint16_t voltage_sensor_raw_to_mv(adc_port_t port, uint16_t raw);
+
+/**
  * \brief Reads the voltage from the voltage sensor.
  * 
  * \param[in] port is the ADC port to read from.

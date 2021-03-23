@@ -60,7 +60,7 @@ typedef struct
  *
  * \return The status/error code.
  */
-int max9934_init(max9934_config_t *config);
+int max9934_init(max9934_config_t config);
 
 /**
  * \brief Enables a given MAX9934 device.
@@ -71,7 +71,7 @@ int max9934_init(max9934_config_t *config);
  *
  * \return The status/error code.
  */
-int max9934_enable(max9934_config_t *config);
+int max9934_enable(max9934_config_t config);
 
 /**
  * \brief Disables a given MAX9934 device.
@@ -82,7 +82,7 @@ int max9934_enable(max9934_config_t *config);
  *
  * \return The status/error code.
  */
-int max9934_disable(max9934_config_t *config);
+int max9934_disable(max9934_config_t config);
 
 /**
  * \brief Reads the raw current value of the sensor.
@@ -93,7 +93,7 @@ int max9934_disable(max9934_config_t *config);
  *
  * \return The status/error code.
  */
-int max9934_read(max9934_config_t *config, uint16_t *raw_val);
+int max9934_read(max9934_config_t config, uint16_t *raw_val);
 
 #endif /* MAX9934_H_ */
 

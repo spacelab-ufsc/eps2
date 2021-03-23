@@ -37,16 +37,30 @@
 
 #include "voltage_sensor.h"
 
-int voltage_sensor_init()
+int voltage_sensor_init(void)
 {
-    return adc_init((adc_port_t){}, (adc_config_t){});
+    static const adc_config_t volt_sense_adc_config = {0};
+
+    return adc_init((adc_port_t){0}, volt_sense_adc_config);
+}
+
+uint16_t voltage_sensor_raw_to_mv(adc_port_t port, uint16_t raw)
+{
+    if (port == MAIN_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT || port == BUS_VOLTAGE_SENSOR_ADC_PORT)
+    {
+        return (uint16_t)(1000.0 * raw * ADC_AVCC * VOLTAGE_SENSOR_DIV_1 / ADC_RANGE);
+    }
+    else
+    {
+        return (uint16_t)(1000.0 * raw * ADC_AVCC * VOLTAGE_SENSOR_DIV_2 / ADC_RANGE);
+    }
 }
 
 int voltage_sensor_read(adc_port_t port, uint16_t *volt)
 {
     uint16_t raw_volt = 0;
 
-    if (adc_read(port, raw_volt) != 0)
+    if (adc_read(port, &raw_volt) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, VOLTAGE_SENSOR_MODULE_NAME, "Error reading the raw voltage value!");
         sys_log_new_line();
@@ -54,14 +68,7 @@ int voltage_sensor_read(adc_port_t port, uint16_t *volt)
         return -1;
     }
 
-    if (port == MAIN_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT || port == BUS_VOLTAGE_SENSOR_ADC_PORT)
-    {
-        *volt = (uint16_t)(1000 * (float)raw_volt * ADC_AVCC * VOLTAGE_SENSOR_DIV_1 / ADC_RANGE);
-    }
-    else
-    {
-        *volt = (uint16_t)(1000 * (float)raw_volt * ADC_AVCC * VOLTAGE_SENSOR_DIV_2 / ADC_RANGE);
-    }
+    *volt = voltage_sensor_raw_to_mv(port, raw_volt);
 
     return 0;
 }

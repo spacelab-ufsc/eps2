@@ -63,6 +63,15 @@
 int current_sensor_init();
 
 /**
+ * \brief Converts a raw reading of the current sensor to a real current in mA.
+ * 
+ * \param[in] raw is the raw reading of the current sensor.
+ * 
+ * \return uint16_t The converted current in mA.
+ */
+uint16_t current_sensor_raw_to_ma(uint16_t raw);
+
+/**
  * \brief Reads the current from all the current sensors.
  * 
  * \param[in] port is the ADC port to read from.
@@ -71,7 +80,7 @@ int current_sensor_init();
  *
  * \return The status/error code.
  */
-int current_sensor_read(adc_port_t port, float *cur);
+int current_sensor_read(adc_port_t port, uint16_t *cur);
 
 #endif /* CURRENT_SENSOR_H_ */
 
