@@ -53,7 +53,64 @@ The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't ha
 
 \section{MCU}
 
-The MCU consists of a CPU, RAM Memory and Flash Memory (used for program storage and non-volatile status registers). The chosen MCU is a low power 16-bit RISC (\textit{MSP430F6659IPZR}) from Texas Instruments. It contains seven power consumption operation modes, four 16-bit timers, 12-bit ADC and DAC, six universal serial communication interfaces (USCIs), a real-time clock (RTC) block and up to 74 I/O pins. It uses a \textit{ECS-.327-12.5-34S-TR} 32.768 kHz external crystal and a \textit{ABM8X-102-32.000MHZ-T} 32 MHz external crystal. To generate the voltage reference for the MCU internal ADC the EPS uses a \textit{595-REF5025AQDRQ1} chip.
+The MCU\nomenclature{\textbf{MCU}}{\textit{Microcontroller.}} consists of a CPU, RAM Memory and Flash Memory (used for program storage and non-volatile status registers). The chosen MCU is a low power 16-bit RISC (\textit{MSP430F6659IPZR}) from Texas Instruments\cite{msp430f6659}. The \autoref{tab:msp430-summary} presents a summary of the main available features and \autoref{fig:msp430-diagram} shows the internal subsystems, descriptions, and peripherals. The microcontroller interfaces, configurations, and auxiliary components are described in the following topics.
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{cllllllll}
+        \toprule[1.5pt]
+        \textit{Flash} & \textit{SRAM} & \textit{Timers} & \textit{USCI} & \textit{ADC} & \textit{DAC} & \textit{GPIO} \\
+        \midrule
+        512KB  & 64KB  & 2  & 6 (SPI / I2C / UART)  & 12  & 2  & 74           \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{Microcontroller features summary.}
+    \label{tab:msp430-summary}
+\end{table}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=\textwidth]{figures/msp430-diagram.png}
+        \caption{Microcontroller internal diagram.}
+        \label{fig:msp430-diagram}
+    \end{center}
+\end{figure}
+
+\subsection{Interfaces Configuration}
+
+The microcontroller has 6 Universal Serial Communication Interfaces (USCI) that can be configured to operate with different protocols and parameters. The \autoref{tab:usci-config} describes each interface configurations.
+% Include interfaces section? "These interfaces are connected to different modules and peripherals, as presented in the \autoref{fig:diagram-interfaces}."
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lrrrrl}
+        \toprule[1.5pt]
+        \textit{Interface} & \textit{Protocol (Index)} & \textit{Mode} & \textit{Word Length} & \textit{Data Rate} & \textit{Configuration} \\
+        \midrule
+        USCI\_A0           & UART0                     & -             & 8 bits               & 9600 bps           & Stop bits: 1 \\
+                           &                           &               &                      &                    & Parity: None \\
+        USCI\_A1           & SPI                       & Master        & 8 bits               & TBD                & Phase: High \\
+                           &                           &               &                      &                    & Polarity: Low \\
+        USCI\_A2           & UART1                     & -             & 8 bits               & 9600 bps           & Stop bits: 1 \\
+                           &                           &               &                      &                    & Parity: None \\
+        USCI\_B2           & I2C2                      & Slave         & 8 bits               & 100 kbps           & Address value: 0x36 \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{USCI configuration.}
+    \label{tab:usci-config}
+\end{table}
+
+\subsection{Voltage Reference}
+
+To generate the 3 volts reference for the MCU internal ADC the EPS uses a \textit{595-REF5025AQDRQ1} chip.
+
+\subsection{Clocks Configuration}
+
+Besides the internal clock sources, the microcontroller has two dedicated clock inputs for external crystals: the main clock and the auxiliary clock inputs. There are a 32MHz (\textit{ABM8X-102-32.000MHZ-T}) and a 32.769kHz (\textit{ECS-.327-12.5-34S-TR}) crystals connected to these inputs, respectively. The first source is used for generating the Master Clock (MCLK) and the Subsystem Master Clock (SMCLK), which are used by the CPU and the internal peripheral modules. The second source is used for generating the Auxiliary Clock (ACLK) that handles the low-power modes and might be used for peripherals.
+
+
+\subsection{Pinout}
+
 
 \section{Batteries DaughterBoard}
 
