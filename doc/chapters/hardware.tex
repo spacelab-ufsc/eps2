@@ -114,7 +114,45 @@ Besides the internal clock sources, the microcontroller has two dedicated clock 
 
 \section{Batteries DaughterBoard}
 
+Due to size restrictions the 4 cell batteries of the EPS2 were allocated to a dauhterboard named Battery Module 4 Cells, a.k.a BAT4C\nomenclature{\textbf{BAT4C}}{\textit{Battery Module 4 Cells.}}\cite{bat4c}. Both boards 3D models are assembled together in a EDA tool as seen in \autoref{fig:eps2-pcb-3d-battery}. BAT4C is connected below EPS2 in a board-to-board connector, the female counterpart (\textit{BAT4CIPS1-105-01-S-D}) present on the EPS is seen in \autoref{fig:battery-connector} with it pinout present on \autoref{tab:battery-connector}. For compability with the older version of the battery module the same connector pads are present near the middle section of the PCB. If the BAT4C is to be used, the connector for these pads must not be soldered, more detail on \autoref{ch:assembly}. Also external connectors are used for temperature measurement and control with RTDs and heaters, more details can be seen on \autoref{sec:rtd-picoblade} and \autoref{sec:heater-picoblade}. 
 
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=93mm]{figures/eps2-pcb-3d-battery.png}
+        \caption{EPS2 and BAT4C 3D models assembled.}
+        \label{fig:eps2-pcb-3d-battery}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/battery-connector.png}
+        \caption{EPS2 battery connectors.}
+        \label{fig:battery-connector}
+    \end{center}
+\end{figure}
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{cllll}
+        \toprule[1.5pt]
+        \textit{Pin} & \textit{Row} \\
+        \midrule
+        1            & $+$Vbat \\
+        2            & $+$Vbat \\
+        3            & $+$Vbat \\
+        4            & $+$Vbat \\
+        5            & $-$Vbat \\
+        6            & $-$Vbat \\
+        7            & $-$Vbat \\
+        8            & $-$Vbat \\
+        9            & Vbat\_Common \\
+        10           & Vbat\_Common \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{Battery connector pinout.}
+    \label{tab:battery-connector}
+\end{table}
 
 \section{Solar Panels}
 
@@ -299,10 +337,10 @@ The EPS2 module is connected to the other modules using the PC104 bus. The solar
 \subsection{RBF PicoBlade}
 
 
-\subsection{RTDs PicoBlade}
+\subsection{RTDs PicoBlade} \label{sec:rtd-picoblade}
 
 
-\subsection{Heater PicoBlade}
+\subsection{Heater PicoBlade} \label{sec:heater-picoblade}
 
 
 \subsection{External Batteries Charger PicoBlade}
