@@ -51,7 +51,7 @@ The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't ha
     \end{center}
 \end{figure}
 
-\section{MCU}
+\section{Microcontroller}
 
 The MCU\nomenclature{\textbf{MCU}}{\textit{Microcontroller.}} consists of a CPU, RAM Memory and Flash Memory (used for program storage and non-volatile status registers). The chosen MCU is a low power 16-bit RISC (\textit{MSP430F6659IPZR}) from Texas Instruments\cite{msp430f6659}. The \autoref{tab:msp430-summary} presents a summary of the main available features and \autoref{fig:msp430-diagram} shows the internal subsystems, descriptions, and peripherals. The microcontroller interfaces, configurations, and auxiliary components are described in the following topics.
 
@@ -111,6 +111,112 @@ Besides the internal clock sources, the microcontroller has two dedicated clock 
 
 \subsection{Pinout}
 
+An illustration of the microcontroller pinout positions can be seen in the \autoref{fig:msp430-pinout-positions}. The \autoref{tab:mcu-pinout} presents all the EPS 2.0 microcontroller pins assignment.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{figures/msp430-pinout.png}
+        \caption{Microcontroller pinout positions.}
+        \label{fig:msp430-pinout-positions}
+    \end{center}
+\end{figure}
+
+\begin{longtable}{lcl}
+    \toprule[1.5pt]
+    \textit{Pin Code} & \textit{Pin Number} & \textit{Signal}       \\
+    \midrule
+    P1.0              & 34                  & -                 \\
+    P1.1              & 35                  & -                 \\
+    P1.2              & 36                  & EN\_3V3\_OBDH     \\
+    P1.3              & 37                  & EN\_5V\_PAYLOADS  \\
+    P1.4              & 38                  & -             \\
+    P1.5              & 39                  & BAT\_GPIO1    \\
+    P1.6              & 40                  & BAT\_GPIO2    \\
+    P1.7              & 41                  & -             \\
+    \midrule
+    P2.0              & 17                  & -             \\
+    P2.1              & 18                  & PC104\_GPIO0  \\
+    P2.2              & 19                  & PC104\_GPIO1  \\
+    P2.3              & 20                  & PC104\_GPIO2  \\
+    P2.4              & 21                  & UART\_EPS\_TX\_BEACON\_RX     \\
+    P2.5              & 22                  & UART\_EPS\_RX\_BEACON\_TX     \\
+    P2.6              & 23                  & -                     \\
+    P2.7              & 24                  & -                     \\
+    \midrule
+    P3.0              & 42                  & -                     \\
+    P3.1              & 43                  & -                     \\
+    P3.2              & 44                  & HEATER2\_PWM          \\
+    P3.3              & 45                  & HEATER1\_PWM          \\
+    P3.4              & 46                  & VERSION\_BIT0         \\
+    P3.5              & 47                  & VERSION\_BIT1         \\
+    P3.6              & 48                  & -                     \\
+    P3.7              & 49                  & -                     \\
+    \midrule
+    P4.0              & 50                  & -                     \\
+    P4.1              & 51                  & MPPT\_PWM\_1          \\
+    P4.2              & 52                  & MPPT\_PWM\_2          \\
+    P4.3              & 53                  & MPPT\_PWM\_3          \\
+    P4.4              & 54                  & -                     \\
+    P4.5              & 55                  & -                     \\
+    P4.6              & 56                  & -                     \\
+    P4.7              & 57                  & -                     \\
+    \midrule
+    P5.0              & 9                   & VREF                  \\
+    P5.1              & 10                  & AGND                  \\
+    P5.2              & 28                  & -                     \\
+    P5.3              & 31                  & -                     \\
+    P5.4              & 32                  & SYSTEM\_LED           \\
+    P5.5              & 33                  & -                     \\
+    P5.6              & 16                  & -                     \\
+    P5.7              & 88                  & -                     \\
+    \midrule
+    P6.0              & 97                  & ADC1\_$+$Y\_SOLAR\_PANEL\_CURRENT \\
+    P6.1              & 98                  & ADC2\_$+$X\_SOLAR\_PANEL\_CURRENT \\
+    P6.2              & 99                  & ADC3\_$-$X\_SOLAR\_PANEL\_CURRENT \\
+    P6.3              & 100                 & ADC4\_$+$Z\_SOLAR\_PANEL\_CURRENT \\
+    P6.4              & 1                   & ADC5\_$-$Z\_SOLAR\_PANEL\_CURRENT \\
+    P6.5              & 2                   & ADC6\_$+$Y\_SOLAR\_PANEL\_CURRENT \\
+    P6.6              & 3                   & ADC7\_EPS\_TTC\_XCVR\_CURRENT \\
+    P6.7              & 4                   & ADC\_MAIN\_POWER\_BUSS\_VOLTAGE \\
+    \midrule
+    P7.2              & 84                  & XT2\_N                \\
+    P7.3              & 85                  & XT2\_P                \\
+    P7.4              & 5                   & ADC1\_$-$Y\_$+$X\_SOLAR\_PANEL\_VOLTAGE \\
+    P7.5              & 6                   & ADC2\_$-$X\_$+$Z\_SOLAR\_PANEL\_VOLTAGE \\
+    P7.6              & 7                   & ADC3\_$-$Z\_$+$Y\_SOLAR\_PANEL\_VOLTAGE \\
+    P7.7              & 8                   & ADC\_SOLAR\_PANELS\_TOTAL\_VOLTAGE \\
+    \midrule
+    P8.0              & 58                  & -                     \\
+    P8.1              & 59                  & RTD\_SCLK             \\
+    P8.2              & 60                  & RTD\_DIN              \\
+    P8.3              & 61                  & RTD\_DOUT             \\
+    P8.4              & 62                  & RTD\_RESET            \\
+    P8.5              & 65                  & RTD\_CS               \\
+    P8.6              & 66                  & RTD\_START            \\
+    P8.7              & 67                  & RTD\_DRDY             \\
+    \midrule
+    P9.0              & 68                  & PIO                   \\
+    P9.1              & 69                  & 1-WIRE                \\
+    P9.2              & 70                  & UART0\_TX             \\
+    P9.3              & 71                  & UART0\_RX             \\
+    P9.4              & 72                  & I2C2\_EN              \\
+    P9.5              & 73                  & I2C2\_SDA             \\
+    P9.6              & 74                  & I2C2\_SCL             \\
+    P9.7              & 75                  & I2C2\_READY           \\
+    \midrule
+    PJ.0              & 92                  & -                     \\
+    PJ.1              & 93                  & -                     \\
+    PJ.2              & 94                  & -                     \\
+    PJ.3              & 95                  & -                     \\
+    \midrule
+    -                 & 13                  & XT1IN                 \\
+    -                 & 14                  & XT1OUT                \\
+    -                 & 96                  & JTAG\_TDO\_TDI        \\
+    -                 & 91                  & JTAG\_TCK             \\
+    \bottomrule[1.5pt]
+    \caption{Microcontroller pinout and assignments.}
+    \label{tab:mcu-pinout}
+\end{longtable}
 
 \section{Batteries DaughterBoard}
 
