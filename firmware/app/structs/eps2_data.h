@@ -40,40 +40,70 @@
 #include <stdint.h>
 
 /**
- * \brief EPS variables.
+ * \brief EPS data.
  */
 typedef struct
 {
-    uint16_t minus_y_plus_x_solar_panel_voltage;    /**< -Y and +X sides solar panel voltage. */
-    uint16_t minus_x_plus_z_solar_panel_voltage;    /**< -X and +Z sides solar panel voltage. */
-    uint16_t minus_z_plus_y_solar_panel_voltage;    /**< -Z and +Y sides solar panel voltage. */
-    uint16_t minus_y_solar_panel_current;           /**< -Y side soldar panel current. */
-    uint16_t plux_y_solar_panel_current;            /**< +Y side solar panel current. */
-    uint16_t minus_x_solar_panel_current;           /**< -X side solar panel current. */
-    uint16_t plus_x_solar_panel_current;            /**< +X side solar panel current. */
-    uint16_t minus_z_solar_panel_current;           /**< -Z side solar panel current. */
-    uint16_t plus_z_solar_panel_current;            /**< +Z side solar panel current. */
-    uint16_t eps_beacon_current;                    /**< EPS2 circuitry and Beacon MCU current. */
-    uint16_t main_power_buss_voltage;               /**< Main power buss voltage. */
-    uint32_t batteries_rtd1_temperature;            /**< Batteries RTD 1 temperature. */
-    uint32_t batteries_rtd2_temperature;            /**< Batteries RTD 2 temperature. */
-    uint32_t batteries_rtd3_temperature;            /**< Batteries RTD 3 temperature. */
-    uint32_t batteries_rtd4_temperature;            /**< Batteries RTD 4 temperature. */
-    uint16_t eps_mcu_temperature;                   /**< Internal EPS2 MCU temperature. */
-    uint16_t batteries_voltage;                     /**< Batteries voltage. */
-    uint16_t batteries_current;                     /**< Batteries current. */
-    uint16_t batteries_average_current;             /**< Batteries average current in 8 measurements. */
-    uint16_t batteries_accumulated_current;         /**< Batteries accumulated current. */
-    uint16_t batteries_charge;                      /**< Batteries charge. */
-    uint16_t bm_temperature;                        /**< Battery monitor IC temperature. */
-    uint8_t bm_status_register;                     /**< Batteries monitor status register. */
-    uint8_t bm_protection_register;                 /**< Batteries monitor protection register. */
-    uint8_t bm_cycle_counter_register;              /**< Batteries monitor cycle counter. */
-    uint16_t bm_remaining_active_absolute_capacity  /**< Batteries monitor remaining active absolute capacity register. */
-    uint16_t bm_remaining_standby_absolute_capacity /**< Batteries monitor remaining standby absolute capacity register. */
-    uint8_t bm_remaining_active_relative_capacity   /**< Batteries monitor remaining active relative capacity registe. */
-    uint8_t bm_remaining_standby_relative_capacity  /**< Batteries monitor remaining standby relative capacity register. */
-} eps_variables_value_t;
+    /**< EPS MCU related data. */
+    
+    uint32_t time_counter_ms;                   /**< Time counter in milliseconds. */
+    uint8_t last_reset_cause;                   /**< EPS MCU last reset cause */
+    uint16_t reset_counter;                     /**< EPS MCU reset counter */
+    uint16_t eps_mcu_temp_kelvin;               /**< EPS MCU temperature in kelvin. */
+    uint16_t eps_beacon_ma;                     /**< EPS circuitry and Beacon MCU current in mA. */
+    uint16_t main_power_buss_mv;                /**< Main power buss voltage in mV. */
+    uint8_t mppt_1_duty_cycle;                  /**< MPPT 1 duty cycle in %. */
+    uint8_t mppt_2_duty_cycle;                  /**< MPPT 2 duty cycle in %. */
+    uint8_t mppt_3_duty_cycle;                  /**< MPPT 3 duty cycle in %. */   
+    
+    /**< Solar panels related data. */
+    
+    uint16_t minus_y_plus_x_solar_panel_mv;     /**< -Y and +X sides solar panel voltage in mV. */
+    uint16_t minus_x_plus_z_solar_panel_mv;     /**< -X and +Z sides solar panel voltage in mV. */
+    uint16_t minus_z_plus_y_solar_panel_mv;     /**< -Z and +Y sides solar panel voltage in mV. */
+    uint16_t minus_y_solar_panel_ma;            /**< -Y side soldar panel current in mA. */
+    uint16_t plus_y_solar_panel_ma;             /**< +Y side solar panel current in mA. */
+    uint16_t minus_x_solar_panel_ma;            /**< -X side solar panel current in mA. */
+    uint16_t plus_x_solar_panel_ma;             /**< +X side solar panel current in mA. */
+    uint16_t minus_z_solar_panel_ma;            /**< -Z side solar panel current in mA. */
+    uint16_t plus_z_solar_panel_ma;             /**< +Z side solar panel current in mA. */
+    uint32_t solar_panels_rtd4_kelvin;          /**< Solar panels RTD 4 temperature in kelvin. */
+    uint32_t solar_panels_rtd5_kelvin;          /**< Solar panels RTD 5 temperature in kelvin. */
+    uint32_t solar_panels_rtd6_kelvin;          /**< Solar panels RTD 6 temperature in kelvin. */
+    
+    /**< Batteries related data. */
+    
+    uint16_t batteries_mv;                      /**< Batteries voltage in mV. */
+    uint16_t batteries_ma;                      /**< Batteries current in mA. */
+    uint16_t batteries_average_ma;              /**< Batteries average current in 8 mA measurements. */
+    uint16_t batteries_accumulated_ma;          /**< Batteries accumulated current in mA. */
+    uint16_t batteries_charge_mah;              /**< Batteries charge in mAh. */
+    uint32_t batteries_rtd0_kelvin;             /**< Batteries RTD 0 temperature in kelvin. */
+    uint32_t batteries_rtd1_kelvin;             /**< Batteries RTD 1 temperature in kelvin. */
+    uint32_t batteries_rtd2_kelvin;             /**< Batteries RTD 2 temperature in kelvin. */
+    uint32_t batteries_rtd3_kelvin;             /**< Batteries RTD 3 temperature in kelvin. */
+    uint8_t heater1_duty_cycle                  /**< Batteries heater 1 duty cyle in %. */
+    uint8_t heater2_duty_cycle                  /**< Batteries heater 2 duty cyle in %. */
+
+    /**< Battery monitor related data. */
+    
+    uint16_t bm_temp_kelvin;                    /**< Battery monitor IC temperature in kelvin. */
+    uint8_t bm_status_reg;                      /**< Batteries monitor status register. */
+    uint8_t bm_protection_reg;                  /**< Batteries monitor protection register. */
+    uint8_t bm_cycle_counter_reg;               /**< Batteries monitor cycle counter register. */
+    uint16_t bm_raac_mah;                       /**< Battery monitor Remaining Active-Absolute Capacity (RAAC) in mAh. */
+    uint16_t bm_rsac_mah;                       /**< Battery monitor Remaining Standby-Absolute Capacity (RSAC) in mAh. */
+    uint8_t bm_rarc_percent;                    /**< Battery monitor Remaining Active-Relative Capacity (RARC) in %. */
+    uint8_t bm_rsrc_percent;                    /**< Battery monitor Remaining Standby-Relative Capacity (RSRC) in %. */
+
+    /**< EPS misc related data. */
+
+    uint32_t firmware_version;                        /**< Hard-coded hardware version of EPS. */
+    uint8_t hardware_version;                         /**< Hard-coded hardware version of EPS. */
+    
+} eps_data_t;
+
+extern eps_data_t eps_data_buff; 
 
 #endif /* EPS_DATA_H_ */
 
