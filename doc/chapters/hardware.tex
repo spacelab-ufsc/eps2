@@ -51,6 +51,35 @@ The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't ha
     \end{center}
 \end{figure}
 
+\section{Interfaces}
+
+The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 4 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debbuging via USB without the use of an external UART to USB converter. The SPI comunicaton bus it actually an dedicated internall channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=\textwidth]{figures/eps-interfaces-diagram.pdf}
+        \caption{EPS interfaces diagram.}
+        \label{fig:diagram-interfaces}
+    \end{center}
+\end{figure}
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lrrr}
+        \toprule[1.5pt]
+        \textbf{Peripheral}     & \textbf{USCI} & \textbf{Protocol} & \textbf{Comm. Protocol} \\
+        \midrule
+        ADS1248                 & A1            & SPI               & - \\
+        Beacon Radio            & A0            & UART              & - \\
+        PC (log messages)       & A2            & UART              & ANSI messages \\
+        OBDH                    & B2            & I$^{2}$C          & FSP \\
+        External Interface      & -             & JTAG              & Spy-Bi-Wire \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{Boards interfaces.}
+    \label{tab:interfaces}
+\end{table}
+
 \section{Microcontroller}
 
 The MCU consists of a CPU, RAM Memory and Flash Memory (used for program storage and non-volatile status registers). The chosen MCU is a low power 16-bit RISC (\textit{MSP430F6659IPZR}) from Texas Instruments\cite{msp430f6659}. The \autoref{tab:msp430-summary} presents a summary of the main available features and \autoref{fig:msp430-diagram} shows the internal subsystems, descriptions, and peripherals. The microcontroller interfaces, configurations, and auxiliary components are described in the following topics.
@@ -79,7 +108,6 @@ The MCU consists of a CPU, RAM Memory and Flash Memory (used for program storage
 \subsection{Interfaces Configuration}
 
 The microcontroller has 6 Universal Serial Communication Interfaces (USCI) that can be configured to operate with different protocols and parameters. The \autoref{tab:usci-config} describes each interface configurations.
-% Include interfaces section? "These interfaces are connected to different modules and peripherals, as presented in the \autoref{fig:diagram-interfaces}."
 
 \begin{table}[!h]
     \centering
