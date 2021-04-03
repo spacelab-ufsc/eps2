@@ -265,7 +265,7 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
 
 \section{Batteries DaughterBoard}
 
-Due to size restrictions the 4 cell batteries of the EPS2 were allocated to a dauhterboard named Battery Module 4 Cells, a.k.a BAT4C\nomenclature{\textbf{BAT4C}}{\textit{Battery Module 4 Cells.}}\cite{bat4c}. Both boards 3D models are assembled together in a EDA tool as seen in \autoref{fig:eps2-pcb-3d-battery}. BAT4C is connected below EPS2 in a board-to-board connector, the female counterpart (\textit{BAT4CIPS1-105-01-S-D}) present on the EPS is seen in \autoref{fig:battery-connector} with it pinout present on \autoref{tab:battery-connector}. For compability with the older version of the battery module the same connector pads are present near the middle section of the PCB. If the BAT4C is to be used, the connector for these pads must not be soldered, more detail on \autoref{ch:assembly}. Also external connectors are used for temperature measurement and control with RTDs and heaters, more details can be seen on \autoref{sec:rtd-picoblade} and \autoref{sec:heater-picoblade}. 
+Due to size restrictions the 4 cell batteries of the EPS2 were allocated to a dauhterboard named Battery Module 4 Cells, a.k.a BAT4C\nomenclature{\textbf{BAT4C}}{\textit{Battery Module 4 Cells.}}\cite{bat4c}. Both boards 3D models are assembled together in a EDA tool as seen in \autoref{fig:eps2-pcb-3d-battery}. BAT4C is connected below EPS2 in a board-to-board connector, the female counterpart (\textit{BAT4CIPS1-105-01-S-D}) present on the EPS is seen in \autoref{fig:battery-connector} with it pinout present on \autoref{tab:battery-connector}. For compability with the older version of the battery module the same connector pads are present near the middle section of the PCB. If the BAT4C is to be used, the connector for these pads must not be soldered, more detail on \autoref{ch:assembly}. Also external connectors are used for temperature measurement and control with RTDs and heaters, more details can be seen on \autoref{rtd-picoblade} and \autoref{heater-picoblade}. 
 
 \begin{figure}[!ht]
     \begin{center}
@@ -313,6 +313,20 @@ The energy harvesting system is based on solar energy conversion through ten sol
         \includegraphics[width=0.75\textwidth]{figures/diagram-solar-panels.png}
         \caption{Solar panels connection to EPS2.}
         \label{fig:diagram-solar-panels}
+    \end{center}
+\end{figure}
+
+\section{I2C Buffer}
+
+The microcontroller I2C interface have a dedicated IC buffer, which improve the signal quality throughout the various connectors and offers reliability enhancements, since it protects the bus in case of failures. This measure was adopted in all the satellite modules due to previous failures in I2C buses. Using this scheme, the modules connected though this protocol might have shared connections without losing performance or reliability. 
+
+The buffer selected for this function is the Texas Instruments \textit{TCA4311}. Besides the I2C inputs and outputs, it features control and status signals that are connected to GPIOs in the microcontroller: an enable and an operation ready status. Also, both inputs and outputs in these I2C lines have external pull-up resistors. Its circuit schematic can be see \autoref{fig:i2c-buffer-circuit}.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.65\textwidth]{figures/i2c-buffer-circuit.png}
+        \caption{I2C buffer circuit.}
+        \label{fig:i2c-buffer-circuit}
     \end{center}
 \end{figure}
 
