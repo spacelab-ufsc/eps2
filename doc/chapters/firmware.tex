@@ -110,12 +110,14 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
         \midrule
         Startup (boot)         & Highest           & 0                           & Aperiodic            & 500                    \\
         Watchdog reset         & Lowest            & 0                           & 100                  & 128                    \\
+        Heartbeat              & Lowest            & 0                           & 500                  & 128                    \\
         System reset           & High              & 0                           & 36000000             & 128                    \\
         Battery Heater Control & TBD               & 0                           & TBD                  & TBD                    \\
         Read sensors           & Medium            & 0                           & 60000                & 128                    \\
         CSP Server             & Lowest            & 0                           & 500                  & 1024                   \\
         MPPT                   & TBD               & TBD                         & TBD                  & TBD                    \\
         Beacon package         & TBD               & TBD                         & TBD                  & TBD                    \\
+        OBDH package           & Highest           & 4500   & Called by ISR\nomenclature{\textbf{ISR}}{\textit{Interrupt Service Routine.}}   & TBD \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{Firmware tasks.}
