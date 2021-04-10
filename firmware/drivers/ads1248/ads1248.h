@@ -104,7 +104,7 @@ typedef enum
 typedef enum
 {
     ADS1248_POWER_DOWN_PIN = 0,          /**< Start pin. */
-    ADS1248_POWER_DOWN_CMD,              /**< Power-down command. */
+    ADS1248_POWER_DOWN_CMD              /**< Power-down command. */
 } ads1248_power_e;
 
 /**
@@ -114,7 +114,7 @@ typedef enum
 {
     ADS1248_ERROR=-1,                  /**< Error during initialization. */
     ADS1248_SUCCESS,                     /**< The chip is ready. */
-    ADS1248_RESET,                     /**< The chip is reset. */
+    ADS1248_RESET                     /**< The chip is reset. */
 } ads1248_status_e;
 
 /**

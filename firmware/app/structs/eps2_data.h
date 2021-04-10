@@ -25,9 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.1
  * 
- * \date 2021/03/05
+ * \date 2021/04/09
  * 
  * \defgroup epd_data EPS Data
  * \ingroup structs
@@ -45,7 +45,6 @@
 typedef struct
 {
     /**< EPS MCU related data. */
-    
     uint32_t time_counter_ms;                   /**< Time counter in milliseconds. */
     uint8_t last_reset_cause;                   /**< EPS MCU last reset cause */
     uint16_t reset_counter;                     /**< EPS MCU reset counter */
@@ -57,7 +56,6 @@ typedef struct
     uint8_t mppt_3_duty_cycle;                  /**< MPPT 3 duty cycle in %. */   
     
     /**< Solar panels related data. */
-    
     uint16_t minus_y_plus_x_solar_panel_mv;     /**< -Y and +X sides solar panel voltage in mV. */
     uint16_t minus_x_plus_z_solar_panel_mv;     /**< -X and +Z sides solar panel voltage in mV. */
     uint16_t minus_z_plus_y_solar_panel_mv;     /**< -Z and +Y sides solar panel voltage in mV. */
@@ -72,7 +70,6 @@ typedef struct
     uint32_t solar_panels_rtd6_kelvin;          /**< Solar panels RTD 6 temperature in kelvin. */
     
     /**< Batteries related data. */
-    
     uint16_t batteries_mv;                      /**< Batteries voltage in mV. */
     uint16_t batteries_ma;                      /**< Batteries current in mA. */
     uint16_t batteries_average_ma;              /**< Batteries average current in 8 mA measurements. */
@@ -82,11 +79,10 @@ typedef struct
     uint32_t batteries_rtd1_kelvin;             /**< Batteries RTD 1 temperature in kelvin. */
     uint32_t batteries_rtd2_kelvin;             /**< Batteries RTD 2 temperature in kelvin. */
     uint32_t batteries_rtd3_kelvin;             /**< Batteries RTD 3 temperature in kelvin. */
-    uint8_t heater1_duty_cycle                  /**< Batteries heater 1 duty cyle in %. */
-    uint8_t heater2_duty_cycle                  /**< Batteries heater 2 duty cyle in %. */
+    uint8_t heater1_duty_cycle;                  /**< Batteries heater 1 duty cyle in %. */
+    uint8_t heater2_duty_cycle;                  /**< Batteries heater 2 duty cyle in %. */
 
     /**< Battery monitor related data. */
-    
     uint16_t bm_temp_kelvin;                    /**< Battery monitor IC temperature in kelvin. */
     uint8_t bm_status_reg;                      /**< Batteries monitor status register. */
     uint8_t bm_protection_reg;                  /**< Batteries monitor protection register. */
@@ -97,10 +93,9 @@ typedef struct
     uint8_t bm_rsrc_percent;                    /**< Battery monitor Remaining Standby-Relative Capacity (RSRC) in %. */
 
     /**< EPS misc related data. */
-
     uint32_t firmware_version;                        /**< Hard-coded hardware version of EPS. */
     uint8_t hardware_version;                         /**< Hard-coded hardware version of EPS. */
-    
+
 } eps_data_t;
 
 extern eps_data_t eps_data_buff; 

@@ -52,6 +52,8 @@
 
 xTaskHandle xTaskStartupHandle;
 
+EventGroupHandle_t task_startup_status;
+
 void vTaskStartup(void *pvParameters)
 {
     bool error = false;
@@ -147,6 +149,9 @@ void vTaskStartup(void *pvParameters)
 
         /* led_clear(LED_FAULT); No led fault on EPS2 version 0.1 */
     }
+
+    /* Startup task status = Done */
+        xEventGroupSetBits(task_startup_status, TASK_STARTUP_DONE);
 
     vTaskSuspend(xTaskStartupHandle);
 }

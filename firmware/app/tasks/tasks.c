@@ -1,7 +1,7 @@
 /*
  * tasks.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -27,7 +27,7 @@
  * 
  * \version 0.1.1
  * 
- * \date 2020/10/25
+ * \date 2021/04/09
  * 
  * \addtogroup tasks
  * \{
@@ -53,12 +53,27 @@ void create_tasks()
     }
 #endif /* CONFIG_TASK_STARTUP_ENABLED */
 
+    /* Read sensors task */
+#if CONFIG_TASK_READ_SENSORS_ENABLED == 1
+    xTaskCreate(vTaskReadSensors, TASK_READ_SENSORS_NAME, TASK_READ_SENSORS_STACK_SIZE, NULL, TASK_READ_SENSORS_PRIORITY, &xTaskReadSensorsHandle);
+
+    if (xTaskReadSensorsHandle == NULL)
+    {
+        /* Error creating the read sensors task */
+    }
+#endif /* CONFIG_TASK_READ_SENSORS_ENABLED */
+
     return;
 }
 
 void create_event_groups()
 {
-    return;
+    task_startup_status = xEventGroupCreate();
+
+    if (task_startup_status == NULL)
+    {
+        /* Error creating the startup status event group */
+    }
 }
 
 /** \} End of tasks group */
