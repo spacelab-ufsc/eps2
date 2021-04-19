@@ -67,7 +67,15 @@ The \autoref{fig:power-block-diagram} presents a more detailed view of the power
 
 \section{System Layers} \label{sec:system-layers}
 
+As herein mentioned, the system is divided in various abstraction layers to favor high level firmware implementations. The \autoref{fig:system-layers} shows this scheme, which is composed of third-part drivers at the lowest layer above the hardware, the operating system as the base building block of the module, the devices handling implementation, and the application tasks in the highest layer. More details are provided in the \autoref{ch:firmware}.
 
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/eps-system-layers.pdf}
+        \caption{System layers.}
+        \label{fig:system-layers}
+    \end{center}
+\end{figure}
 
 \section{Operation} \label{sec:operation}
 
