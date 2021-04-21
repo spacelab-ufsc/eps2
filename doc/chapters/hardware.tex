@@ -566,7 +566,7 @@ Its location on the PCB can be seen in \autoref{fig:payloads-buck-circuit-3d}.
 
 The EPS2 module is connected to the other modules using the PC104 bus. The solar panels, the kill-switches, the remove before flight, the RTDs, the heater, the batteries charger connector and the JTAG pins are connected using Molex PicoBlade connectors. The EPS2 module also has a jumper that connects the MCU VCC to the JTAG VCC and a header to debug the board via UART protocol. In the following sections each connector is detailed, with a picture showing the location on the EPS2 PCB and a table explaining each pin function.
 
-\subsection{PC104}
+\subsection{PC104} \label{PC104}
 
 The connector referred as PC-104 is a junction of two double row 28H headers (\textit{SSW-126-01-G-D}). These connectors create a solid 104-pin interconnection across the different satellite modules. The \autoref{fig:pc104-scheme} shows the PC-104 interface from the bottom side of the PCB, which allows visualize the simplified label scheme in the board. Also, the \autoref{tab:pc104-pins} provides the connector pinout\footnote{This pinout is simplified since additional interfaces were omitted. Refer to \textit{option sheet} in chapter \ref{ch:assembly}.} for the pins that are connected to the module. 
 
@@ -814,7 +814,7 @@ The PWM signals that control the heaters present on the BAT4C module is also bro
     \end{center}
 \end{figure}
 
-\subsection{External Batteries Charger PicoBlade} \label{kill-switches-picoblade}
+\subsection{External Batteries Charger PicoBlade} \label{external-charge-picoblade}
 
 When the EPS and BAT4C are assembled together the batteries can be charged from a PicoBlade connector on which is acessed in a external interface. The same current restriction as for the solar panels connectors is apllied here, the external batteries charger PicoBlade must not exceed 2000mA. The connector pinout is showed in \autoref{tab:batteries-picoblade} and position on the PCB in \autoref{fig:batteries-picoblade}.
 

@@ -24,4 +24,42 @@
 
 \chapter{Usage Instructions} \label{ch:instructions}
 
-.
+\section{Powering the Board}
+
+The EPS 2.0 is the energy provider module within a satellite, its nominal operation is alongside a battery pack from the BAT4C module and solar panels. 
+During development and testing the board can also be powered its MCU using the JTAG interface or the full system directly through the battery connector with an equivalent power supply. The module's PC104 power pins are available to be accessed externally, but it is advised to be used only for test probes and not powering directly from them. 
+In the following subsections powering from the JTAG interface and batteries connector are explained in detail. 
+It is advised to to have either the kill-switches on "NO" position and/or the RBF switch active before connecting the probes or cables to power the module.
+
+% add real image of the IIP been used with EPS2
+ 
+\subsection{Powering through JTAG Interface}
+
+The JTAG interface is used for programing and debugging the module using a Flash Emulation Tool (refer to \autoref{jtag-picoblade} on the hardware chapter). 
+This is done using a MSP-FET with the Spy-Bi-Wire protocol.
+The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be used for minimal testing and debbuging purposes.
+
+For the interfacing the 14 pin cable of the MSP-FET to the EPS it is required an adapted cabel or an external interface. 
+The IIP\cite{iip} Nº1 and Nº2 boards have a 14 pin header that translates in a picoblade connector for the required connector couterpart on the EPS module, any of the pin header slots from 1 to 4 can be used.
+When the MSP-FET is correctly connected and the necessary cable connections are done the kill-switches can be put on "NC" position and/or the RBF switch can be released.
+The 3V3 MCU (refer to \autoref{status-leds} on the hardware chapter) indicates that the 3.3V power is being sourced, the system on led can be checked to see any easily dectable missbehavior right after the programming of the board. 
+%On \autoref{eps-iip-connection} is showed the connection betweem EPS and IIP.
+
+
+% add real image of the IIP been used with EPS2
+
+\subsection{Powering through Power Supply}
+
+% add appendix instructions for equivalent power supply powering
+
+\subsection{Powering through Batteries}
+
+To power the EPS module from the batteries the BAT4C module must be connected through the labeled P5 connector (refer to \autoref{fig:battery-connector} the hardware chapter).
+The batteries can be charged if needed using the P3 PicoBlade connector (refer to \autoref{external-charge-picoblade} on the hardware chapter), it will also required an external interface or an adapted cable to be used for interfacing the charger device to the PicoBlade.
+The batteries also can be charged directly from the BAT4C module, for this refer to its documentation on the usage instruction chapter for more details \cite{bat4c}.
+
+
+\section{Log Messages}
+
+The EPS 2.0 has a UART interface dedicated for debugging, which is described in \autoref{tab:usci-config}. It follows a log system structure to improve the information provided in each message.
+The messages can be acquired by connecting an USB cable to the IIP Nº3 board that has an integrated FTDI FT4232H IC \cite{iip}.
