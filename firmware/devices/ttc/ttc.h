@@ -48,22 +48,6 @@
  */
 int ttc_init();
 
-/**
- * \brief Enables the TTC hibernation for a given period.
- *
- * \param[in] period_min is the period of hibernation in minutes.
- *
- * \return The status/error code.
- */
-int ttc_enter_hibernation(uint32_t period_min);
-
-/**
- * \brief Disables the TTC hibernation.
- *
- * \return The status/error code.
- */
-int ttc_leave_hibernation();
-
 #endif /* TTC_H_ */
 
 /** \} End of ttc group */
