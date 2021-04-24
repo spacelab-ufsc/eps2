@@ -46,7 +46,7 @@ int voltage_sensor_init(void)
 
 uint16_t voltage_sensor_raw_to_mv(adc_port_t port, uint16_t raw)
 {
-    if (port == MAIN_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT || port == BUS_VOLTAGE_SENSOR_ADC_PORT)
+    if (port == TOTAL_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT || port == MAIN_POWER_BUS_VOLTAGE_SENSOR_ADC_PORT)
     {
         return (uint16_t)(1000.0 * raw * ADC_AVCC * VOLTAGE_SENSOR_DIV_1 / ADC_RANGE);
     }
