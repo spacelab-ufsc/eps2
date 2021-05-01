@@ -54,7 +54,35 @@ The particularities of the EPS2 module for each test type are described in the f
     \label{tab:test-procedures-table}
 \end{table}
 
-\section{Visual Inspection} 
+\section{Visual Inspection}
+
+The first steps when receiving a manufactured (and in some cases assembled) PCB is to inspect visually to see if its according to its expected appereance. 
+The EPS2 has more than 300 electrical components, so it is advised for this test to not take a long time to accomplish, the major noted problens should be spoted and reported. 
+The \autoref{tab:visual-inspection} resumes the visual inspection steps. 
+
+\begin{table}[!htb]
+\centering
+\caption{Visual Inspection test steps.}
+\label{tab:visual-inspection}
+\begin{tabular}{m{3cm} m{12cm} m{3cm}}
+\toprule
+Test type & Visual Inspection \\
+\midrule
+\midrule
+Substests code & Description \\ 
+\midrule
+TA1 & Verify the received package, review the packaging protection used and if it maintained the physical and/or aesthetically integrity of the board. \\
+\midrule
+TA2 & See if the overall quality specified on the manufacturing process is according with its IPC class, the engineering model should be Class 2 while the flight model Class 3. \\
+\midrule
+TA3 & Inspect the top and bottom side of the PCB and verify if all the components are well soldered, if their polarity and labels are correct according to schematics and 3D model. Figure \ref{fig:pcb-top} and \ref{fig:pcb-bottom} for reference. If the board is not yet assembled detail the inconsistencies found during the assembly process. \\
+\midrule
+TA4 & Take a high resolution centred photo of the both sides of the board for documentation, avoid reflections if possible. \\
+\midrule
+Success Criteria & The board needs to appear functional regarding its visual electrical specs. \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section {Mechanical Inspection}
 
