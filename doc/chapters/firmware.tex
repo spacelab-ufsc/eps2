@@ -75,71 +75,76 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
 
 A list of all the variables of EPS with their identification number (ID) and variable type that can be read from the sensors and peripherals is seen in the \autoref{tab:eps2-variables}.
 
-\begin{longtable}[c]{cL{0.82\textwidth}l}
+\begin{longtable}[c]{cL{0.72\textwidth}lc}
     \toprule[1.5pt]
-    \textbf{ID} & \textbf{Name/Description} & \textbf{Type} \\
+    \textbf{ID} & \textbf{Name/Description} & \textbf{Type} & \textbf{Access} \\
     \midrule
-    0   & Time counter in millseconds                                       & uint32 \\
-    1   & Temperature of the $\mu$C in K                                    & uint16 \\
-    2   & EPS circuitry and Beacon MCU current in mA                        & uint16 \\
-    \multirow{18}{*}{3} & Last reset cause: & \multirow{18}{*}{uint8} \\
-        & - 0x00 = No interrupt pending                                     &        \\
-        & - 0x02 = Brownout (BOR)                                           &        \\
-        & - 0x04 = RST/NMI (BOR)                                            &        \\
-        & - 0x06 = PMMSWBOR (BOR)                                           &        \\
-        & - 0x08 = Wakeup from LPMx.5 (BOR)                                 &        \\
-        & - 0x0A = Security violation (BOR)                                 &        \\
-        & - 0x0C = SVSL (POR)                                               &        \\
-        & - 0x0E = SVSH (POR)                                               &        \\
-        & - 0x10 = SVML\_OVP (POR)                                          &        \\
-        & - 0x12 = SVMH\_OVP (POR)                                          &        \\
-        & - 0x14 = PMMSWPOR (POR)                                           &        \\
-        & - 0x16 = WDT time out (PUC)                                       &        \\
-        & - 0x18 = WDT password violation (PUC)                             &        \\
-        & - 0x1A = Flash password violation (PUC)                           &        \\
-        & - 0x1C = Reserved                                                 &        \\
-        & - 0x1E = PERF peripheral/configuration area fetch (PUC)           &        \\
-        & - 0x20 = PMM password violation (PUC)                             &        \\
-        & - 0x22 to 0x3E = Reserved                                         &        \\
-    4   & Reset counter                                                     & uint16 \\
-    5   & -Y and +X sides solar panel voltage in mV                         & uint16 \\
-    6   & -X and +Z sides solar panel voltage in mV                         & uint16 \\
-    7   & -Z and +Y sides solar panel voltage in mV                         & uint16 \\
-    8   & -Y side solar panel current in mA                                 & uint16 \\
-    9   & +Y side solar panel current in mA                                 & uint16 \\
-    10  & -X side solar panel current in mA                                 & uint16 \\
-    11  & +X side solar panel current in mA                                 & uint16 \\
-    12  & -Z side solar panel current in mA                                 & uint16 \\
-    13  & +Z side solar panel current in mA                                 & uint16 \\
-    14  & MPPT 1 duty cycle in \%                                           & uint8 \\
-    15  & MPPT 2 duty cycle in \%                                           & uint8 \\
-    16  & MPPT 3 duty cycle in \%                                           & uint8 \\
-    17  & Total solar panels output voltage after MPPT in mV                & uint16 \\
-    18  & Main power bus voltage in mV                                      & uint16 \\
-    19  & RTD0 temperature in K                                             & uint32 \\
-    20  & RTD1 temperature in K                                             & uint32 \\
-    21  & RTD2 temperature in K                                             & uint32 \\
-    22  & RTD3 temperature in K                                             & uint32 \\
-    23  & RTD4 temperature in K                                             & uint32 \\
-    24  & RTD5 temperature in K                                             & uint32 \\
-    25  & RTD6 temperature in K                                             & uint32 \\
-    26  & Batteries voltage in mV                                           & uint16 \\
-    27  & Batteries current in mA                                           & uint16 \\
-    28  & Batteries average current in mA                                   & uint16 \\
-    29  & Batteries accumulated current in mA                               & uint16 \\
-    30  & Batteries charge in mAh                                           & uint16 \\
-    31  & Battery monitor IC temperature in K                               & uint16 \\
-    32  & Battery monitor status register                                   & uint8 \\
-    33  & Battery monitor protection register                               & uint8 \\
-    34  & Battery monitor cycle counter                                     & uint8 \\
-    35  & Battery monitor Remaining Active-Absolute Capacity (RAAC) in mAh  & uint16 \\
-    36  & Battery monitor Remaining Standby-Absolute Capacity (RSAC) in mAh & uint16 \\
-    37  & Battery monitor Remaining Active-Relative Capacity (RARC) in \%   & uint8 \\
-    38  & Battery monitor Remaining Standby-Relative Capacity (RSRC) in \%  & uint8 \\
-    39  & Battery heater 1 duty cycle in \%                                 & uint8 \\
-    40  & Battery heater 2 duty cycle in \%                                 & uint8 \\
-    41  & Hardware version                                                  & uint8 \\
-    42  & Firmware version (ex.: ``v1.2.3''' = 0x00010203)                  & uint32 \\
+    0   & Time counter in millseconds                                       & uint32 & R \\
+    1   & Temperature of the $\mu$C in K                                    & uint16 & R \\
+    2   & EPS circuitry and Beacon MCU current in mA                        & uint16 & R \\
+    \multirow{18}{*}{3} & Last reset cause: & \multirow{18}{*}{uint8} & \multirow{18}{*}{R} \\
+        & - 0x00 = No interrupt pending                                     &        &  \\
+        & - 0x02 = Brownout (BOR)                                           &        &  \\
+        & - 0x04 = RST/NMI (BOR)                                            &        &  \\
+        & - 0x06 = PMMSWBOR (BOR)                                           &        &  \\
+        & - 0x08 = Wakeup from LPMx.5 (BOR)                                 &        &  \\
+        & - 0x0A = Security violation (BOR)                                 &        &  \\
+        & - 0x0C = SVSL (POR)                                               &        &  \\
+        & - 0x0E = SVSH (POR)                                               &        &  \\
+        & - 0x10 = SVML\_OVP (POR)                                          &        &  \\
+        & - 0x12 = SVMH\_OVP (POR)                                          &        &  \\
+        & - 0x14 = PMMSWPOR (POR)                                           &        &  \\
+        & - 0x16 = WDT time out (PUC)                                       &        &  \\
+        & - 0x18 = WDT password violation (PUC)                             &        &  \\
+        & - 0x1A = Flash password violation (PUC)                           &        &  \\
+        & - 0x1C = Reserved                                                 &        &  \\
+        & - 0x1E = PERF peripheral/configuration area fetch (PUC)           &        &  \\
+        & - 0x20 = PMM password violation (PUC)                             &        &  \\
+        & - 0x22 to 0x3E = Reserved                                         &        &  \\
+    4   & Reset counter                                                     & uint16 & R \\
+    5   & -Y and +X sides solar panel voltage in mV                         & uint16 & R \\
+    6   & -X and +Z sides solar panel voltage in mV                         & uint16 & R \\
+    7   & -Z and +Y sides solar panel voltage in mV                         & uint16 & R \\
+    8   & -Y side solar panel current in mA                                 & uint16 & R \\
+    9   & +Y side solar panel current in mA                                 & uint16 & R \\
+    10  & -X side solar panel current in mA                                 & uint16 & R \\
+    11  & +X side solar panel current in mA                                 & uint16 & R \\
+    12  & -Z side solar panel current in mA                                 & uint16 & R \\
+    13  & +Z side solar panel current in mA                                 & uint16 & R \\
+    14  & MPPT 1 duty cycle in \% (writable just in manual mode)            & uint8  & R/W \\
+    15  & MPPT 2 duty cycle in \% (writable just in manual mode)            & uint8  & R/W \\
+    16  & MPPT 3 duty cycle in \% (writable just in manual mode)            & uint8  & R/W \\
+    17  & Total solar panels output voltage after MPPT in mV                & uint16 & R \\
+    18  & Main power bus voltage in mV                                      & uint16 & R \\
+    19  & RTD0 temperature in K                                             & uint32 & R \\
+    20  & RTD1 temperature in K                                             & uint32 & R \\
+    21  & RTD2 temperature in K                                             & uint32 & R \\
+    22  & RTD3 temperature in K                                             & uint32 & R \\
+    23  & RTD4 temperature in K                                             & uint32 & R \\
+    24  & RTD5 temperature in K                                             & uint32 & R \\
+    25  & RTD6 temperature in K                                             & uint32 & R \\
+    26  & Batteries voltage in mV                                           & uint16 & R \\
+    27  & Batteries current in mA                                           & uint16 & R \\
+    28  & Batteries average current in mA                                   & uint16 & R \\
+    29  & Batteries accumulated current in mA                               & uint16 & R \\
+    30  & Batteries charge in mAh                                           & uint16 & R \\
+    31  & Battery monitor IC temperature in K                               & uint16 & R \\
+    32  & Battery monitor status register                                   & uint8  & R \\
+    33  & Battery monitor protection register                               & uint8  & R \\
+    34  & Battery monitor cycle counter                                     & uint8  & R \\
+    35  & Battery monitor Remaining Active-Absolute Capacity (RAAC) in mAh  & uint16 & R \\
+    36  & Battery monitor Remaining Standby-Absolute Capacity (RSAC) in mAh & uint16 & R \\
+    37  & Battery monitor Remaining Active-Relative Capacity (RARC) in \%   & uint8  & R \\
+    38  & Battery monitor Remaining Standby-Relative Capacity (RSRC) in \%  & uint8  & R \\
+    39  & Battery heater 1 duty cycle in \% (writable just in manual mode)  & uint8  & R/W \\
+    40  & Battery heater 2 duty cycle in \% (writable just in manual mode)  & uint8  & R/W \\
+    41  & Hardware version                                                  & uint8  & R \\
+    42  & Firmware version (ex.: ``v1.2.3''' = 0x00010203)                  & uint32 & R \\
+    43  & MPPT 1 mode (0x00 = automatic, 0x01 = manual)                     & uint8  & R/W \\
+    44  & MPPT 2 mode (0x00 = automatic, 0x01 = manual)                     & uint8  & R/W \\
+    45  & MPPT 3 mode (0x00 = automatic, 0x01 = manual)                     & uint8  & R/W \\
+    46  & Battery heater 1 mode (0x00 = automatic, 0x01 = manual)           & uint8  & R/W \\
+    47  & Battery heater 2 mode (0x00 = automatic, 0x01 = manual)           & uint8  & R/W \\
     \bottomrule[1.5pt]
     \caption{Variables and parameters of the EPS 2.0.}
     \label{tab:eps2-variables}
