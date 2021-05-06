@@ -81,7 +81,7 @@ A list of all the variables of EPS with their identification number (ID) and var
     \midrule
     0   & Time counter in millseconds                                       & uint32 & R \\
     1   & Temperature of the $\mu$C in K                                    & uint16 & R \\
-    2   & EPS circuitry and Beacon MCU current in mA                        & uint16 & R \\
+    2   & EPS circuitry current in mA                                       & uint16 & R \\
     \multirow{18}{*}{3} & Last reset cause: & \multirow{18}{*}{uint8} & \multirow{18}{*}{R} \\
         & - 0x00 = No interrupt pending                                     &        &  \\
         & - 0x02 = Brownout (BOR)                                           &        &  \\
@@ -116,13 +116,13 @@ A list of all the variables of EPS with their identification number (ID) and var
     16  & MPPT 3 duty cycle in \% (writable just in manual mode)            & uint8  & R/W \\
     17  & Total solar panels output voltage after MPPT in mV                & uint16 & R \\
     18  & Main power bus voltage in mV                                      & uint16 & R \\
-    19  & RTD0 temperature in K                                             & uint32 & R \\
-    20  & RTD1 temperature in K                                             & uint32 & R \\
-    21  & RTD2 temperature in K                                             & uint32 & R \\
-    22  & RTD3 temperature in K                                             & uint32 & R \\
-    23  & RTD4 temperature in K                                             & uint32 & R \\
-    24  & RTD5 temperature in K                                             & uint32 & R \\
-    25  & RTD6 temperature in K                                             & uint32 & R \\
+    19  & RTD0 temperature in K                                             & uint16 & R \\
+    20  & RTD1 temperature in K                                             & uint16 & R \\
+    21  & RTD2 temperature in K                                             & uint16 & R \\
+    22  & RTD3 temperature in K                                             & uint16 & R \\
+    23  & RTD4 temperature in K                                             & uint16 & R \\
+    24  & RTD5 temperature in K                                             & uint16 & R \\
+    25  & RTD6 temperature in K                                             & uint16 & R \\
     26  & Batteries voltage in mV                                           & uint16 & R \\
     27  & Batteries current in mA                                           & uint16 & R \\
     28  & Batteries average current in mA                                   & uint16 & R \\
