@@ -79,6 +79,7 @@ TA3 & Inspect the top and bottom side of the PCB and verify if all the component
 \midrule
 TA4 & Take a high resolution centred photo of the both sides of the board for documentation, avoid reflections if possible. \\
 \midrule
+\midrule
 Success Criteria & The board needs to appear functional regarding its visual electrical specs. \\
 \bottomrule
 \end{tabular}
@@ -86,7 +87,55 @@ Success Criteria & The board needs to appear functional regarding its visual ele
 
 \section {Mechanical Inspection}
 
+These tests verify if the board has the nominal mechanical specs prior to integration. 
+The \autoref{tab:mechanical-inspection} resumes the mechanical inspection steps. 
+
+\begin{table}[!htb]
+\centering
+\caption{Mechanical Inspection test steps.}
+\label{tab:mechanical-inspection}
+\begin{tabular}{m{3cm} m{12cm} m{3cm}}
+\toprule
+Test type & Mechanical Inspection \\
+\midrule
+\midrule
+Substests code & Description \\ 
+\midrule
+TB1 & Verify board dimensions outline and mounting holes size and positioning with a measurement tool or through the board's draftsman sheet 1:1 scale print. \\
+\midrule
+TB2 & Measure board weight with an electronic balance with at least 0.1 grams of precision. \\
+\midrule
+\midrule
+Success Criteria & The fabricated board needs to follow the mechanical specification of the draftsman document. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Integration Inspection}
+
+These tests verify the integration accordance prior to the module's full assembly on the CubeSat.
+The \autoref{tab:integration-inspection} resumes the integration inspection steps. 
+
+\begin{table}[!htb]
+\centering
+\caption{Integration Inspection test steps.}
+\label{tab:integration-inspection}
+\begin{tabular}{m{3cm} m{12cm} m{3cm}}
+\toprule
+Test type & Integration Inspection \\
+\midrule
+\midrule
+Substests code & Description \\ 
+\midrule
+TC1 & Check external connectors pinout labels againts the documentation present on \autoref{external-connectors}. \\
+\midrule
+TC2 & Check connectors positioning and possible integration issues from connected cables with the mounted BAT4C board and solar panels. \\
+\midrule
+\midrule
+Success Criteria & The labels and placement of the external connectors must be according to the documentation and don't present any possible integration issues. \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \section {Electrical Inspection}
 
