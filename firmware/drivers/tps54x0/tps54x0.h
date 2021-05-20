@@ -1,5 +1,5 @@
 /*
- * tps54540.h
+ * tps54x0.h
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,56 +21,56 @@
  */
 
 /**
- * \brief TPS54540 driver definition.
+ * \brief TPS54x0 driver definition.
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.3
  * 
  * \date 2021/01/18
  * 
- * \defgroup tps54540 TPS54540
+ * \defgroup tps54x0 TPS54x0
  * \ingroup drivers
  * \{
  */
 
-#ifndef TPS54540_H_
-#define TPS54540_H_
+#ifndef TPS54x0_H_
+#define TPS54x0_H_
 
 #include <drivers/gpio/gpio.h>
 
-#define TPS54540_MODULE_NAME "TPS54540"
+#define TPS54x0_MODULE_NAME "TPS54x0"
 
 /**
- * \brief TPS54540 configuration parameters.
+ * \brief TPS54x0 configuration parameters.
  */
 typedef struct
 {
     gpio_pin_t enable_pin; /**< Enable pin. */
-} tps54540_config_t;
+} tps54x0_config_t;
 
 /**
- * \brief TPS54540 related enable pin initialization on MCU.
+ * \brief TPS54x0 related enable pin initialization on MCU.
  *
  * \param[in,out] config is a pointer to the TPS54540 configuration parameters.
  *
  * \return The status/error code.
  */
-int tps54540_init(tps54540_config_t *config);
+int tps54x0_init(tps54x0_config_t *config);
 
 /**
- * \brief Enables a given TPS54540 device.
+ * \brief Enables a given TPS54x0 device.
  *
  * This funcition sets the Enable pin of the given TPS54540 device.
  *
- * \param[in,out] config is a pointer to the TPS54540 configuration parameters.
+ * \param[in,out] config is a pointer to the TPS54x0 configuration parameters.
  *
  * \return The status/error code.
  */
-int tps54540_enable(tps54540_config_t *config);
+int tps54x0_enable(tps54x0_config_t *config);
 
 /**
- * \brief Disables a given TPS54540 device.
+ * \brief Disables a given TPS54x0 device.
  *
  * This funcition clears the Enable pin of the given TPS54540 device.
  *
@@ -78,8 +78,8 @@ int tps54540_enable(tps54540_config_t *config);
  *
  * \return The status/error code.
  */
-int tps54540_disable(tps54540_config_t *config);
+int tps54x0_disable(tps54x0_config_t *config);
 
-#endif /* TPS54540_H_ */
+#endif /* TPS54x0_H_ */
 
-/** \} End of tps54540 group */
+/** \} End of tps54x0 group */

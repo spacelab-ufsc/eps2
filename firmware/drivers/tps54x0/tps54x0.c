@@ -1,7 +1,7 @@
 /*
- * tps54540.c
+ * tps54x0.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -21,34 +21,34 @@
  */
 
 /**
- * \brief TPS54540 driver implementation.
+ * \brief TPS54x0 driver implementation.
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.3
  * 
  * \date 2021/01/18
  * 
- * \addtogroup tps54540
+ * \addtogroup tps54x0
  * \{
  */
 
-#include "tps54540.h"
+#include "tps54x0.h"
 #include "system/sys_log/sys_log.h"
 
-int tps54540_init(tps54540_config_t *config)
+int tps54x0_init(tps54x0_config_t *config)
 {
     gpio_init(config->enable_pin, (gpio_config_t){.mode = GPIO_MODE_OUTPUT});
 }
 
-int tps54540_enable(tps54540_config_t *config)
+int tps54x0_enable(tps54x0_config_t *config)
 {
     return gpio_set_state(config->enable_pin, GPIO_STATE_HIGH);
 }
 
-int tps54540_disable(tps54540_config_t *config)
+int tps54x0_disable(tps54x0_config_t *config)
 {
     return gpio_set_state(config->enable_pin, GPIO_STATE_LOW);
 }
 
-/** \} End of tps54540 group */
+/** \} End of tps54x0 group */
