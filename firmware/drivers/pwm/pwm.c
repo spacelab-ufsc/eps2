@@ -1,7 +1,7 @@
 /*
- * version.h
+ * pwm.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -21,29 +21,42 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief PWM driver implementation.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.3
+ * \version 0.1.4
  * 
- * \date 2020/10/21
+ * \date 2021/05/19
  * 
- * \defgroup version Version control
+ * \addtogroup pwm
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include <hal/timer_a.h>
+#include <hal/timer_b.h>
 
-#define FIRMWARE_VERSION            "0.1.4"
+#include <config/config.h>
+#include <system/sys_log/sys_log.h>
 
-#define FIRMWARE_STATUS             "Development"
+int pwm_init()
+{
+    return -1;
+}
 
-#define FIRMWARE_AUTHOR             "SpaceLab"
+int pwm_increase()
+{
+    return -1;
+}
 
-#define FIRMWARE_AUTHOR_EMAIL       "spacelab.ufsc@gmail.com"
+int pwm_decrease()
+{
+    return -1;
+}
 
-#endif /* VERSION_H_ */
+int pwm_disable()
+{
+    return -1;
+}
 
-/** \} End of version group */
+/** \} End of pwm group */
