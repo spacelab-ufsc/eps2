@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief TPS54x0 driver implementation.
+ * \brief TPS54X0 driver implementation.
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 

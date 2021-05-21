@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief TPS54x0 driver definition.
+ * \brief TPS54X0 driver definition.
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
@@ -29,20 +29,20 @@
  * 
  * \date 2021/01/18
  * 
- * \defgroup tps54x0 TPS54x0
+ * \defgroup tps54x0 TPS54X0
  * \ingroup drivers
  * \{
  */
 
-#ifndef TPS54x0_H_
-#define TPS54x0_H_
+#ifndef TPS54X0_H_
+#define TPS54X0_H_
 
 #include <drivers/gpio/gpio.h>
 
-#define TPS54x0_MODULE_NAME "TPS54x0"
+#define TPS54X0_MODULE_NAME "TPS54X0"
 
 /**
- * \brief TPS54x0 configuration parameters.
+ * \brief TPS54X0 configuration parameters.
  */
 typedef struct
 {
@@ -50,7 +50,7 @@ typedef struct
 } tps54x0_config_t;
 
 /**
- * \brief TPS54x0 related enable pin initialization on MCU.
+ * \brief TPS54X0 related enable pin initialization on MCU.
  *
  * \param[in,out] config is a pointer to the TPS54540 configuration parameters.
  *
@@ -59,7 +59,7 @@ typedef struct
 int tps54x0_init(tps54x0_config_t *config);
 
 /**
- * \brief Enables a given TPS54x0 device.
+ * \brief Enables a given TPS54X0 device.
  *
  * This funcition sets the Enable pin of the given TPS54540 device.
  *
@@ -70,16 +70,16 @@ int tps54x0_init(tps54x0_config_t *config);
 int tps54x0_enable(tps54x0_config_t *config);
 
 /**
- * \brief Disables a given TPS54x0 device.
+ * \brief Disables a given TPS54X0 device.
  *
- * This funcition clears the Enable pin of the given TPS54540 device.
+ * This funcition clears the Enable pin of the given TPS54X0 device.
  *
- * \param[in,out] config is a pointer to the TPS54540 configuration parameters.
+ * \param[in,out] config is a pointer to the TPS54X0 configuration parameters.
  *
  * \return The status/error code.
  */
 int tps54x0_disable(tps54x0_config_t *config);
 
-#endif /* TPS54x0_H_ */
+#endif /* TPS54X0_H_ */
 
 /** \} End of tps54x0 group */
