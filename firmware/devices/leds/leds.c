@@ -1,7 +1,7 @@
 /*
  * leds.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.5
  * 
- * \date 2020/10/26
+ * \date 2021/05/28
  * 
  * \addtogroup leds
  * \{
@@ -40,19 +40,14 @@
 
 int leds_init()
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, LEDS_MODULE_NAME, "Initializing system LEDs...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, LEDS_MODULE_NAME, "Initializing system LED...");
     sys_log_new_line();
 
     gpio_config_t config_sys = {.mode = GPIO_MODE_OUTPUT};
-    gpio_config_t config_fault = {.mode = GPIO_MODE_OUTPUT};
 
-    if (gpio_init(GPIO_PIN_35, config_sys) == 0)
+    if (gpio_init(GPIO_PIN_36, config_sys) == 0)
     {
-        return gpio_init(GPIO_PIN_34, config_fault);
-    }
-    else
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, LEDS_MODULE_NAME, "Error initializing the system LEDs!");
+        sys_log_print_event_from_module(SYS_LOG_ERROR, LEDS_MODULE_NAME, "Error initializing the system LED!");
         sys_log_new_line();
 
         return -1;
@@ -63,8 +58,7 @@ int led_set(led_t l)
 {
     switch(l)
     {
-        case LED_SYSTEM:    return gpio_set_state(GPIO_PIN_35, true);
-        case LED_FAULT:     return gpio_set_state(GPIO_PIN_34, true);
+        case LED_SYSTEM:    return gpio_set_state(GPIO_PIN_36, true);
         default:            return -1;      /* Invalid LED */
     }
 }
@@ -73,8 +67,7 @@ int led_clear(led_t l)
 {
     switch(l)
     {
-        case LED_SYSTEM:    return gpio_set_state(GPIO_PIN_35, false);
-        case LED_FAULT:     return gpio_set_state(GPIO_PIN_34, false);
+        case LED_SYSTEM:    return gpio_set_state(GPIO_PIN_36, false);
         default:            return -1;      /* Invalid LED */
     }
 }
@@ -83,8 +76,7 @@ int led_toggle(led_t l)
 {
     switch(l)
     {
-        case LED_SYSTEM:    return gpio_toggle(GPIO_PIN_35);
-        case LED_FAULT:     return gpio_toggle(GPIO_PIN_34);
+        case LED_SYSTEM:    return gpio_toggle(GPIO_PIN_36);
         default:            return -1;      /* Invalid LED */
     }
 }
