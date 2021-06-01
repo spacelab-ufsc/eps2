@@ -38,7 +38,7 @@
 #define DS2775G_H_
 
 #include <drivers/onewire/onewire.h>
-#include "gpio/gpio.h"
+#include <drivers/gpio/gpio.h>
 
 /**
  * \brief declaring DS2775G+ units.
