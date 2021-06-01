@@ -54,17 +54,23 @@ typedef enum
 } i2c_port_e;
 
 /**
- * \brief I2C bus configuration parameters.
+ * \brief I2C port.
  */
-typedef struct
+typedef uint8_t i2c_port_t;
+
+/**
+ * \brief I2C modes.
+ */
+typedef enum
 {
-    uint32_t speed_hz; /**< Transfer rate in bps (available values: 100 or 400 kbps). */
-} i2c_config_t;
+    I2C_RECEIVE_MODE = 0,
+    I2C_TRANSMIT_MODE
+} i2c_mode_e;
 
 /**
  * \brief I2C port.
  */
-typedef uint8_t i2c_port_t;
+typedef uint8_t i2c_mode_t;
 
 /**
  * \brief I2C slave 7-bit address.
@@ -85,7 +91,7 @@ typedef uint8_t i2c_slave_adr_t;
  * 
  * @return The status/error code.
  */
-int i2c_slave_init(i2c_port_t port, i2c_config_t config);
+int i2c_slave_init(i2c_port_t port);
 
 /**
  * @brief I2C interface operation start as slave and interrupt enabling.
