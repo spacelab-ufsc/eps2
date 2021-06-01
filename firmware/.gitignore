@@ -11,3 +11,5 @@ Debug/
 
 # ctags files
 tags
+
+.vscode/
