@@ -25,9 +25,9 @@
  *
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.1
+ * \version 0.1.7
  *
- * \date 2021/02/10
+ * \date 2021/06/02
  *
  * \addtogroup bat_manager
  * \{
@@ -37,11 +37,10 @@
 
 #include "bat_manager.h"
 
-#include "drivers/ds2775g/ds2775g.h"
-
 #include <system/sys_log/sys_log.h>
 
-#include "drivers/onewire/onewire.h"
+#include <drivers/ds2775g/ds2775g.h>
+#include <drivers/onewire/onewire.h>
 
 int bat_manager_init(){
 
@@ -168,19 +167,17 @@ int get_bat_charge(uint32_t *charge){
 
 int get_bat_data(bat_manager_data_t *data){
 
-    int err = 0;
-
     if (get_bat_voltage(&data->bat_voltage) != 0)
         {
-            err = -1;
+            return -1;
         }
 
-        if get_bat_current(&data->bat_current) != 0)
+    if (get_bat_current(&data->bat_current) != 0)
         {
-            err = -1;
+            return -1;
         }
 
 
-    return err;
+    return 0;
 
 }
