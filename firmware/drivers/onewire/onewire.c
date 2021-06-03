@@ -25,16 +25,16 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.1.7
  * 
- * \date 2021/01/17
+ * \date 2021/06/03
  * 
  * \addtogroup onewire
  * \{
  */
 
 #include "onewire.h"
-#include "intrinsics.h"
+#include <intrinsics.h>
 
 int onewire_init(onewire_port_t port)
 {
@@ -93,7 +93,7 @@ int onewire_write_bit(onewire_port_t port, int bit)
         result = 0;
         break;
 
-    default
+    default:
         result = -1;
         break;
     }

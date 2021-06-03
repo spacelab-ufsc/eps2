@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.1.7
  * 
- * \date 2021/02/07
+ * \date 2021/06/03
  * 
  * \defgroup onewire OneWire
  * \ingroup drivers
