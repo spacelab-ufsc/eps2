@@ -25,7 +25,7 @@
  * 
  * \author Vinícius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.7
  * 
  * \date 2021/02/10
  * 
