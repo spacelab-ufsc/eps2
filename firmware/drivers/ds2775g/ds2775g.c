@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.1.7
  * 
- * \date 2021/02/10
+ * \date 2021/06/02
  * 
  * \addtogroup ds2775g
  * \{
@@ -35,9 +35,9 @@
 
 #include <stdio.h>
 #include "ds2775g.h"
-#include "config/config.h"
-#include "uart/uart.h"
-#include "gpio/gpio.h"
+#include <config/config.h>
+#include <drivers/uart/uart.h>
+#include <drivers/gpio/gpio.h>
 
 #define ACCUMULATED_CURRENT_MSB (uint8_t)(BAT_MONITOR_CHARGE_VALUE>>8)
 #define ACCUMULATED_CURRENT_LSB (uint8_t)BAT_MONITOR_CHARGE_VALUE
@@ -82,26 +82,55 @@
 
 int ds2775g_init(ds2775g_config_t *config)
 {
-
-    if(ds2775g_write_data(config->onewire_port, config->protection_reg, 0x4) == -1)              //Protection register configuration
-
-    return -1;
+    config->protection_reg[0] = skip_address;
+    config->protection_reg[1] = write_data;
+    config->protection_reg[2] = protection_register;
+    config->protection_reg[3] =  0x03;
+    config->protector_threshold_reg[0] = skip_address;
+    config->protector_threshold_reg[1] = write_data;
+    config->protector_threshold_reg[2] = protector_threshold_register;
+    config->protector_threshold_reg[3] = 0x61;
+    config->status_reg[0] = skip_address;
+    config->status_reg[1] = write_data;
+    config->status_reg[2] = status_register;
+    config->status_reg[3] = 0x0;
+    config->control_reg[0] = skip_address;
+    config->control_reg[1] = write_data;
+    config->control_reg[2] = control_register;
+    config->control_reg[3] = 0x0C;
+    config->overcurrent_thresholds_reg[0] = skip_address;
+    config->overcurrent_thresholds_reg[1] = write_data;
+    config->overcurrent_thresholds_reg[2] = overcurrent_thresholds_register;
+    config->overcurrent_thresholds_reg[3] = 0x24;
+    config->current_gain_LSB_reg[0] = skip_address;
+    config->current_gain_LSB_reg[1] = write_data;
+    config->current_gain_LSB_reg[2] = current_gain_LSB_register;
+    config->current_gain_LSB_reg[3] = 0x00;
+    
+    if(ds2775g_write_data(config->onewire_port, config->protection_reg, 0x4) == -1) //Protection register configuration
+    {
+        return -1;
+    }
 
     if(ds2775g_write_data(config->onewire_port, config->protector_threshold_reg, 0x4) == -1)     //Protector threshold register configuration
-
-    return -1;
+    {
+        return -1;
+    }
 
     if(ds2775g_write_data(config->onewire_port, config->status_reg, 0x4) == -1)                  //Status register configuration
-
-    return -1;
+    {
+        return -1;
+    }
 
     if(ds2775g_write_data(config->onewire_port, config->control_reg, 0x4) == -1)                 //Control register configuration
-
-    return -1;
+    {
+        return -1;
+    }
 
     if(ds2775g_write_data(config->onewire_port, config->overcurrent_thresholds_reg, 0x4) == -1)  //Current gain LSB register configuration
-
-    return -1;
+    {
+        return -1;
+    }
 
 #if RESET_BATTERY_ACCUMULATED_CURRENT == 1
 
@@ -153,17 +182,17 @@ int ds2775g_init(ds2775g_config_t *config)
     return 0;
 }
 
-int ds2775g_write_data(onewire_port_t port, uint8_t *data_write, uint16_t len);
+int ds2775g_write_data(onewire_port_t port, uint8_t *data, uint16_t len)
 {
 
     if(onewire_reset(port) == 0)                                            //Master reset
-
-    return -1;
-
-    if(onewire_write_byte(port, &data_write, len) == -1)                    //Write EEPROM address, operation, register address and value to the register
-
-     return -1;
-
+    {
+        return -1;
+    }
+    if(onewire_write_byte(port, data, len) == -1)                    //Write EEPROM address, operation, register address and value to the register
+    {
+        return -1;
+    }
     return 0;
 
 }
@@ -171,9 +200,8 @@ int ds2775g_write_data(onewire_port_t port, uint8_t *data_write, uint16_t len);
 int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t *data_read)
 {
 
-    uint8_t read_command[3] = {ds2775g_commands.skip_address, ds2775g_commands.read_data, register_address};
-
-    if(ds2775g_write_data(port, read_command, 0x3); == -1)                               //Generate reset, sends the general address (0xCC) and the read command (0x69)
+    uint8_t read_command[3] = {skip_address, read_data, register_address};
+    if(ds2775g_write_data(port, read_command, 0x3) == -1)                               //Generate reset, sends the general address (0xCC) and the read command (0x69)
 
     return -1;
 
@@ -187,10 +215,10 @@ int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t
 
 int write_accumulated_current_max_value(onewire_port_t port){         // write 3Ah to battery accumulated current
 
-    uint8_t acc_write_msb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
-    uint8_t acc_copy_msb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, ds2775g_reg.accumulated_current_MSB_register};
-    uint8_t acc_write_lsb[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
-    uint8_t acc_copy_lsb[3] = {ds2775g_commands.skip_address, ds2775g_commands.copy_data, ds2775g_reg.accumulated_current_LSB_register};
+    uint8_t acc_write_msb[4] = {skip_address, write_data, accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
+    uint8_t acc_copy_msb[3] = {skip_address, copy_data, accumulated_current_MSB_register};
+    uint8_t acc_write_lsb[4] = {skip_address, write_data, accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
+    uint8_t acc_copy_lsb[3] = {skip_address, copy_data, accumulated_current_LSB_register};
 
     if (ds2775g_write_data(port, acc_write_msb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register
 

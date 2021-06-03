@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.1.7
  * 
- * \date 2021/02/07
+ * \date 2021/06/02
  * 
  * \defgroup ds2775g DS2775G
  * \ingroup drivers
@@ -37,62 +37,54 @@
 #ifndef DS2775G_H_
 #define DS2775G_H_
 
+#include <stdint.h>
+
 #include <drivers/onewire/onewire.h>
 #include <drivers/gpio/gpio.h>
 
 /**
  * \brief declaring DS2775G+ units.
  */
-
 #define rsense          0.01
 #define voltage_unit    0.004883
 #define current_unit    0.0000015625/rsense
 #define accumulated_current_unit    6.25*0.000001/rsense
 
-/**
- * \brief declaring DS2775G+ OneWire port.
- */
-
-onewire_port_t onewire_port = GPIO_PIN_69;       //Declaring one wire port as P9.1;
 
 /**
  * \brief DS2775G+ register address.
  */
-struct
-{
-uint8_t protection_register = 0x00;
-uint8_t protector_threshold_register = 0x7F;
-uint8_t status_register = 0x01;
-uint8_t control_register = 0x60;
-uint8_t accumulated_current_MSB_register = 0x10;
-uint8_t accumulated_current_LSB_register = 0x11;
-uint8_t temperature_MSB_register = 0x0A;
-uint8_t temperature_LSB_register = 0x0B;
-uint8_t average_current_MSB_register = 0x08;
-uint8_t average_current_LSB_register = 0x09;
-uint8_t overcurrent_thresholds_register = 0x78;
-uint8_t current_gain_LSB_register = 0x79;
-uint8_t current_MSB_register = 0x0E;
-uint8_t current_LSB_register = 0x0F;
-uint8_t voltage_MSB1_register = 0x0C;
-uint8_t voltage_LSB1_register = 0x0D;
-uint8_t voltage_MSB2_register = 0x1C;
-uint8_t voltage_LSB2_register = 0x1D;
-
-}ds2775g_reg;
+#define protection_register 0x00
+#define protector_threshold_register 0x7F
+#define status_register 0x01
+#define control_register 0x60
+#define accumulated_current_MSB_register 0x10
+#define accumulated_current_LSB_register 0x11
+#define temperature_MSB_register 0x0A
+#define temperature_LSB_register 0x0B
+#define average_current_MSB_register 0x08
+#define average_current_LSB_register 0x09
+#define overcurrent_thresholds_register 0x78
+#define current_gain_LSB_register 0x79
+#define current_MSB_register 0x0E
+#define current_LSB_register 0x0F
+#define voltage_MSB1_register 0x0C
+#define voltage_LSB1_register 0x0D
+#define voltage_MSB2_register 0x1C
+#define voltage_LSB2_register 0x1D
 
 /**
  * \brief DS2775G+ commands.
  */
+#define skip_address 0xCC    //Address that access any onewire device (used when there's only one device at the onewire bus)
+#define write_data 0x6C      //Command to write a data in the DS2775G+ memory
+#define read_data 0x69       //Command to read a data from DS2775G+ memory
+#define copy_data 0x48       //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
 
-struct
-{
-uint8_t skip_address = 0xCC;    //Address that access any onewire device (used when there's only one device at the onewire bus)
-uint8_t write_data = 0x6C;      //Command to write a data in the DS2775G+ memory
-uint8_t read_data = 0x69;       //Command to read a data from DS2775G+ memory
-uint8_t copy_data = 0x48;       //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
-
-} ds2775g_commands;
+/**
+ * \brief declaring DS2775G+ OneWire port.
+ */
+onewire_port_t onewire_port = GPIO_PIN_69;       //Declaring one wire port as P9.1;
 
 /**
  * \brief DS2775G+ configuration parameters.
@@ -104,13 +96,13 @@ uint8_t copy_data = 0x48;       //Command to copy data of the DS2775G+ EEPROM sh
  */
 typedef struct
 {
-    onewire_port_t onewire_port           = GPIO_PIN_69;        /**< OneWire port. */
-    uint8_t protection_reg[4]             = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.protection_register, 0x03};
-    uint8_t protector_threshold_reg[4]    = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.protector_threshold_register, 0x61};
-    uint8_t status_reg[4]                 = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.status_register, 0x0};
-    uint8_t control_reg[4]                = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.control_register, 0x0C};
-    uint8_t overcurrent_thresholds_reg[4] = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.overcurrent_thresholds_register, 0x24};
-    uint8_t current_gain_LSB_reg[4]       = {ds2775g_commands.skip_address, ds2775g_commands.write_data, ds2775g_reg.current_gain_LSB_register, 0x00};
+    onewire_port_t onewire_port;     /**< OneWire port. */
+    uint8_t protection_reg[4];   
+    uint8_t protector_threshold_reg[4];
+    uint8_t status_reg[4];
+    uint8_t control_reg[4];
+    uint8_t overcurrent_thresholds_reg[4];
+    uint8_t current_gain_LSB_reg[4];
 
 } ds2775g_config_t;
 
@@ -134,7 +126,7 @@ int ds2775g_init(ds2775g_config_t *config);
  *
  * \return The status/error code.
  */
-int ds2775g_write_data(onewire_port_t port, uint8_t *data_write, uint16_t len);
+int ds2775g_write_data(onewire_port_t port, uint8_t *data, uint16_t len);
 
 /**
  * \brief read data from DS2775G+ registers.
