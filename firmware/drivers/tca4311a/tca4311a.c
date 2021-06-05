@@ -23,11 +23,11 @@
 /**
  * \brief TCA4311A driver implementation.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.7
  * 
- * \date 2020/10/24
+ * \date 2021/06/05
  * 
  * \addtogroup tca4311a
  * \{
@@ -40,13 +40,11 @@
 
 int tca4311a_init(tca4311a_config_t config, bool en)
 {
-    int res_i2c = i2c_init(config.i2c_port, config.i2c_config);
-
     int res_en = gpio_init(config.en_pin, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
 
     int res_ready = gpio_init(config.ready_pin, (gpio_config_t){.mode=GPIO_MODE_INPUT});
 
-    if ((res_i2c != 0) || (res_en != 0) || (res_ready != 0))
+    if ((res_en != 0) || (res_ready != 0))
     {
     #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during the initialization!");
@@ -113,62 +111,6 @@ int tca4311a_is_ready(tca4311a_config_t config)
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return TCA4311A_ERROR;
     }
-}
-
-int tca4311a_write(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
-{
-    if (i2c_write(config.i2c_port, adr, data, len) != 0)
-    {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during writing!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
-    }
-
-    return tca4311a_is_ready(config);
-}
-
-int tca4311a_read(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
-{
-    if (i2c_read(config.i2c_port, adr, data, len) != 0)
-    {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during reading!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
-    }
-
-    return tca4311a_is_ready(config);
-}
-
-int tca4311a_write_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t byte)
-{
-    if (i2c_write(config.i2c_port, adr, &byte, 1) != 0)
-    {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error writing a byte!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
-    }
-
-    return tca4311a_is_ready(config);
-}
-
-int tca4311a_read_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *byte)
-{
-    if (i2c_read(config.i2c_port, adr, byte, 1) != 0)
-    {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error reading a byte!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
-    }
-
-    return tca4311a_is_ready(config);
 }
 
 /** \} End of tca4311a group */

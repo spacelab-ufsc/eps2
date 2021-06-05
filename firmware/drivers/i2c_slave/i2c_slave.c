@@ -23,11 +23,11 @@
 /**
  * \brief I2C driver definition.
  * 
- * \author Vinícius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
  * \version 0.1.7
  * 
- * \date 2021/02/10
+ * \date 2021/06/05
  * 
  * \addtogroup i2c_slave
  * \{
