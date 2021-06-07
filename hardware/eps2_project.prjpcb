@@ -487,7 +487,7 @@ UniqueID=99B9080B-D9FF-4980-B3DA-6204D492BC36
 Description=flight_model
 AllowFabrication=0
 ParameterCount=0
-VariationCount=19
+VariationCount=20
 Variation1=Designator=R93|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\NFOUHCLM|Kind=1|AlternatePart= 
 Variation2=Designator=P1|UniqueId=\FWURHRBX\SCUJZUWE|Kind=1|AlternatePart= 
 Variation3=Designator=UART|UniqueId=\FWURHRBX\WMAXHDRH|Kind=1|AlternatePart= 
@@ -496,17 +496,18 @@ Variation5=Designator=R88|UniqueId=\FWURHRBX\VATFTJSX|Kind=1|AlternatePart=
 Variation6=Designator=R89|UniqueId=\FWURHRBX\IMVGSAGG|Kind=1|AlternatePart= 
 Variation7=Designator=R90|UniqueId=\FWURHRBX\XOMVEBVC|Kind=1|AlternatePart= 
 Variation8=Designator=R91|UniqueId=\FWURHRBX\TOLWFOLN|Kind=1|AlternatePart= 
-Variation9=Designator=VBus|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\ITSFOTYH|Kind=1|AlternatePart= 
+Variation9=Designator=VBUS_LED|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\ITSFOTYH|Kind=1|AlternatePart= 
 Variation10=Designator=3V3_MCU|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\VUUWCQON|Kind=1|AlternatePart= 
 Variation11=Designator=SYSTEM_ON|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\DHROFRVN|Kind=1|AlternatePart= 
 Variation12=Designator=P11|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\YOYUNLAU|Kind=1|AlternatePart= 
 Variation13=Designator=J_V4|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\SYXEBJWB|Kind=1|AlternatePart= 
 Variation14=Designator=3V3_ANT|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\CMMYAFOK|Kind=1|AlternatePart= 
 Variation15=Designator=3V3_OBDH|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\YOEFVUHP|Kind=1|AlternatePart= 
-Variation16=Designator=3V3_EPS|UniqueId=\FWURHRBX\NDGVENKM\LBSGDSNU\RXVATHQC|Kind=1|AlternatePart= 
-Variation17=Designator=5_V|UniqueId=\FWURHRBX\NDGVENKM\WPEOLFMX\OIUUMQWO|Kind=1|AlternatePart= 
-Variation18=Designator=6V_BEACON_LED|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\PTRFNECQ|Kind=1|AlternatePart= 
-Variation19=Designator=5V_MAIN_RADIO_LED|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\RWBOFYDK|Kind=1|AlternatePart= 
+Variation16=Designator=3V3_EPS_BEACON|UniqueId=\FWURHRBX\NDGVENKM\LBSGDSNU\RXVATHQC|Kind=1|AlternatePart= 
+Variation17=Designator=5V_PAYLOADS_LED|UniqueId=\FWURHRBX\NDGVENKM\WPEOLFMX\OIUUMQWO|Kind=1|AlternatePart= 
+Variation18=Designator=6V_RADIO_1_LED|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\PTRFNECQ|Kind=1|AlternatePart= 
+Variation19=Designator=5V_RADIO_0_LED|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\RWBOFYDK|Kind=1|AlternatePart= 
+Variation20=Designator=CN1|UniqueId=\FWURHRBX\OGWYOFGJ|Kind=1|AlternatePart= 
 ParamVariationCount=0
 
 [GeneratedDocument1]
