@@ -357,12 +357,13 @@ One of the MPPT boosters circuit schematic can be seen in \autoref{fig:mppt-boos
 
 \subsection{Solar Panels Current}
 
-The main component of the solar panels currents measurement circuit is the \textit{MAX9934TAUA+} current sense amplifier. It generates an output current proportional to the differential input voltage. The gain is 25 $\mu$A/mV. To make the measurements possible, the current goes through 50 m$\Omega$, 0.5 \% resistors, connected to the inputs of the amplifier, and the outputs are connected to 3.3 k$\Omega$ resistors. The output voltage of the circuit is given by:
+The main component of the solar panels currents measurement circuit is the \textit{MAX9934TAUA+} current sense amplifier. It generates an output current proportional to the differential input voltage. The gain is 25 $\mu$A/mV. It was considered a maximum current load sourced by two solar panels in parallel on the most optimist scenario of 1.5 A . To make the measurements possible, the current goes through 20 m$\Omega$, 0.5 \% resistors, connected to the inputs of the amplifier, and the outputs are connected to 3.3 k$\Omega$ resistors. The output voltage of the circuit is given by:
 
 \begin{equation}
-V_{out} = I_{sense} \cdot R_{sense} \cdot G \cdot R_{out}
+V_{out} = I_{load} \cdot R_{sense} \cdot G_{m} \cdot R_{out}
 \end{equation}
 
+The voltage drop in $R_{sense}$ generates a proportional $I_{out}$ on the IC of approximately 750 $\mu$A.
 In total there are six of these current measurement circuits for the six sides of the CubeSat.
 Two of the inputs of the solar panels circuit schematic can be seen in \autoref{fig:solar-panels-current-circuit-schematic} and location of all six at the PCB in \autoref{fig:solar-panels-current-circuit-3d}.
 
