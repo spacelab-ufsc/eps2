@@ -25,9 +25,9 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.9
  * 
- * \date 03/02/2021
+ * \date 2021/06/07
  * 
  * \defgroup voltage_sensor Voltage Sensor
  * \ingroup devices
