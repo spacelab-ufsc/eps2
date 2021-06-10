@@ -33,8 +33,6 @@
  * \{
  */
 
-#include <drivers/gpio/gpio.h>
-
 #include <system/sys_log/sys_log.h>
 
 #include "power_conv.h"

@@ -39,12 +39,13 @@
 
 #include <stdint.h>
 
+#include <drivers/gpio/gpio.h>
 #include "drivers/tps54x0/tps54x0.h"
 
 #define POWER_CONV_MODULE_NAME		"Power Converters"
 
-#define EN_3V3_OBDH_PIN 36
-#define EN_PAYLOAD_PIN 37
+#define EN_3V3_OBDH_PIN GPIO_PIN_36
+#define EN_PAYLOAD_PIN GPIO_PIN_37
 
 /**
  * \brief Initialization of the Power Converters device.
