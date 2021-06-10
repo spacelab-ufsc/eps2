@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.8
+ * \version 0.1.11
  * 
- * \date 2021/06/03
+ * \date 2021/06/09
  * 
  * \defgroup devices Devices
  * \{
@@ -46,6 +46,7 @@
 #include <devices/temp_sensor/temp_sensor.h>
 #include <devices/obdh/obdh.h>
 #include <devices/ttc/ttc.h>
+#include <devices/power_conv/power_conv.h>
 
 #endif /* DEVICES_H_ */
 
