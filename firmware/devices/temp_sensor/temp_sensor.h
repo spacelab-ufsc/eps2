@@ -25,9 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.10
  * 
- * \date 2021/03/18
+ * \date 2021/06/08
  * 
  * \defgroup temp_sensor Temperature Sensor
  * \ingroup devices
@@ -45,9 +45,10 @@
 
 #define TEMP_SENSOR_REF_VOLTAGE     3.3
 
+#define TEMP_SENSOR_ADC_PORT        ADC_PORT_0
 #define TEMP_SENSOR_SPI_PORT        SPI_PORT_1
 #define TEMP_SENSOR_SPI_MODE        SPI_MODE_0
-#define TEMP_SENSOR_SPI_SPEED_HZ    1000000
+#define TEMP_SENSOR_SPI_SPEED_HZ    (1000000UL)
 #define TEMP_SENSOR_START_PIN       GPIO_PIN_60
 #define TEMP_SENSOR_SPI_CS          GPIO_PIN_59
 #define TEMP_SENSOR_RESET_PIN       GPIO_PIN_58
@@ -70,14 +71,16 @@ typedef uint8_t temp_sensor_cmd_t;
 /**
  * \brief Temperature sensor device initialization routine.
  *
+ * This function initilizes both the MCU internal temperature sensor and the external ADC (ADS1248) used for reading temperature from RTDs.
+ *
  * \param[in,out] config is a pointer to the configuration parameters of the temperature sensor device.
  *
  * \return The status/error code.
  */
-int temp_sensor_init(temp_sensor_t *config);
+int temp_sensor_init(void);
 
 /**
- * \brief Temperature sensor power-down.
+ * \brief External temperature sensor device (ADS1248) power-down.
  *
  * \param[in,out] config is a pointer to the configuration parameters of the temperature sensor device.
  *
@@ -93,26 +96,94 @@ int temp_sensor_init(temp_sensor_t *config);
 int temp_sensor_suspend(temp_sensor_t *config, temp_sensor_power_down_t mode);
 
 /**
- * \brief Reads the temperature from the temperature sensor.
+ * \brief Reads the raw MCU temperature from its internal sensor.
  *
- * \param[in,out] config is a pointer to the configuration parameters of the temperature sensor device.
+ * \param[in,out] val is a pointer to store the raw value of the temperature.
  *
- * \param[in] temp is a pointer to store the read temperature.
+ * \return The status/error code.
+ */
+int temp_mcu_read_raw(uint16_t *val);
+
+/**
+ * \brief Converts a raw reading of the internal temperature sensor of the MCU to real temperature in degrees celsius.
+ *
+ * \param[in] raw is the raw reading of the temperature.
+ *
+ * \return The converted temperature in degrees celsius.
+ */
+int16_t temp_mcu_raw_to_c(uint16_t raw);
+
+/**
+ * \brief Converts a raw reading of the internal temperature sensor of the MCU to a real temperature in kelvin.
+ *
+ * \param[in] raw is the raw reading of the temperature.
+ *
+ * \return The converted temperature in Kelvin.
+ */
+uint16_t temp_mcu_raw_to_k(uint16_t raw);
+
+/**
+ * \brief Reads the temperature from the internal MCU temperature sensor in degrees celsius.
  *
  * \param[in,out] temp is a pointer to store the read temperature.
  *
  * \return The status/error code.
  */
-int temp_sensor_read_c(temp_sensor_t *config, uint8_t positive_channel, float *temp);
+int temp_mcu_read_c(int16_t *temp);
 
 /**
- * \brief Converts a raw reading of the temperature sensor to a real temperature in oC.
+ * \brief Reads the temperature from the internal MCU temperature sensor in Kelvin.
  *
- * \param[in] raw_volt is a pointer to the raw reading of the temperature.
+ * \param[in,out] temp is a pointer to store the read temperature.
  *
- * \return The converted temperature in Celsius.
+ * \return The status/error code.
  */
-float temp_sensor_convert_raw_to_c(uint8_t *raw_volt);
+int temp_mcu_read_k(uint16_t *temp);
+
+/**
+ * \brief Reads the raw temperature from rtds acquired by external temperature sensor device (ADS1248).
+ *
+ * \param[in,out] config is a pointer to the configuration parameters of the device.
+ *
+ * \param[in] positive_channel selects channel to read the temperature.
+ *
+ * \param[in,out] val is a pointer to store the read temperature.
+ *
+ * \return The status/error code.
+ */
+int temp_rtd_read_raw(temp_sensor_t *config, uint8_t positive_channel, uint8_t *val);
+
+/**
+ * \brief Converts a raw reading of temperature from rtds to a real temperature in degrees celsius.
+ *
+ * \param[in] raw is the raw reading of the temperature.
+ *
+ * \return The converted temperature in degrees celsius.
+ */
+int16_t temp_rtd_raw_to_c(uint16_t raw);
+
+/**
+ * \brief Converts a raw reading of temperature from rtds to a real temperature in kelvin.
+ *
+ * \param[in] raw is the raw reading of the temperature.
+ *
+ * \return The converted temperature in kelvin.
+ */
+uint16_t temp_rtd_raw_to_k(uint16_t raw);
+
+/**
+ * \brief read temperatures from rtds in degrees celsius.
+ *
+ * \return The status/error code.
+ */
+int temp_rtd_read_c();
+
+/**
+ * \brief read temperatures from rtds in kelvin.
+ *
+ * \return The status/error code.
+ */
+int temp_rtd_read_k();
 
 #endif /* TEMP_SENSOR_H_ */
 

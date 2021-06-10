@@ -25,14 +25,15 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.10
  * 
- * \date 2021/03/18
+ * \date 2021/06/08
  * 
  * \addtogroup temp_sensor
  * \{
  */
 
+#include <drivers/adc/adc.h>
 #include <drivers/ads1248/ads1248.h>
 
 #include <system/sys_log/sys_log.h>
@@ -41,11 +42,38 @@
 
 temp_sensor_t *config;
 
-int temp_sensor_init(temp_sensor_t *config)
+int temp_sensor_init(void)
 {
-	sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing the temperature sensor device...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing internal MCU temperature sensor...");
     sys_log_new_line();
-	
+
+    adc_config_t temp_sense_adc_config = {0};
+
+    if (adc_init(TEMP_SENSOR_ADC_PORT, temp_sense_adc_config) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error internal MCU temperature sensor!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    int16_t temp = 0;
+    if (temp_sensor_read_c(&temp) != 0)
+    {
+         sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the internal MCU temperature value!");
+         sys_log_new_line();
+
+         return -1;
+     }
+
+    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Current MCU temperature: ");
+    sys_log_print_int(temp);
+    sys_log_print_msg(" oC");
+    sys_log_new_line();
+
+    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing ADS1248 device...");
+    sys_log_new_line();
+
 	config->spi_port = TEMP_SENSOR_SPI_PORT;
 	config->spi_config.mode = TEMP_SENSOR_SPI_MODE;
 	config->spi_config.speed_hz = TEMP_SENSOR_SPI_SPEED_HZ;
@@ -55,23 +83,25 @@ int temp_sensor_init(temp_sensor_t *config)
 	
    if(ads1248_init(config) != 0)
    {
-		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error initializing the temperature sensor device!");
+		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error initializing ADS1248 device!");
 		sys_log_new_line();
 
 		return -1;
    }
+
+/** TO DO: implement log for rtd measurements during initialization */
 
 	return 0;
 }
 
 int temp_sensor_suspend(temp_sensor_t *config, temp_sensor_power_down_t mode)
 {
-	sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Powering down the temperature sensor device...");
+	sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Powering down ADS1248 device...");
     sys_log_new_line();
 	
 	if(ads1248_set_powerdown_mode(config, mode) != 0)
    {
-		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error suspending the temperature sensor device!");
+		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error suspending the ADS1248 device!");
 		sys_log_new_line();
 
 		return -1;
@@ -80,28 +110,94 @@ int temp_sensor_suspend(temp_sensor_t *config, temp_sensor_power_down_t mode)
 	return 0;
 }
 
-int temp_sensor_read_c(temp_sensor_t *config, uint8_t positive_channel, float *temp)
+int temp_mcu_read_raw(uint16_t *val)
 {
-	uint8_t *raw_volt = 0;
+    return adc_read(TEMP_SENSOR_ADC_PORT, val);
+}
 
-    if (ads1248_write_cmd(config, ADS1248_CMD_RDATA, raw_volt, positive_channel) != 0)
+int16_t temp_mcu_raw_to_c(uint16_t raw)
+{
+    float buf = (raw - adc_temp_get_nref())/adc_temp_get_mref();
+
+    if (buf < (-273))
     {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw temperature value!");
+        buf = (-273);
+    }
+
+    return (int16_t)buf;
+}
+
+
+uint16_t temp_mcu_raw_to_k(uint16_t raw)
+{
+    int16_t temp_c = temp_sensor_raw_to_c(raw);
+
+    if (temp_c < 273)
+    {
+        temp_c = 273;
+    }
+
+    return (uint16_t)(temp_c + 273);
+}
+
+int temp_mcu_read_c(int16_t *temp)
+{
+    uint16_t raw_temp = 0;
+
+    if (temp_sensor_read_raw(&raw_temp) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw internal MCU temperature value!");
         sys_log_new_line();
 
         return -1;
     }
 
-    *temp = temp_sensor_convert_raw_to_c(raw_volt);
+    *temp = temp_sensor_raw_to_c(raw_temp);
 
     return 0;
 }
 
-float temp_sensor_convert_raw_to_c(uint8_t *raw_volt)
-{	
-	float hex_volt = raw_volt [0] | (raw_volt [1] << 8) | (raw_volt [2] << 16) | (raw_volt [3] << 32);   
-	
-	float volt = (hex_volt*TEMP_SENSOR_REF_VOLTAGE)/ADS1248_RANGE;
+int temp_mcu_read_k(uint16_t *temp)
+{
+    uint16_t raw_temp = 0;
 
-	return (((volt/0.0001) - 100)/0.384);
+    if (temp_sensor_read_raw(&raw_temp) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw internal MCU temperature value!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    *temp = temp_sensor_raw_to_k(raw_temp);
+
+    return 0;
 }
+
+int temp_rtd_read_raw(temp_sensor_t *config, uint8_t positive_channel, uint8_t *val)
+{    
+    return ads1248_write_cmd(config, ADS1248_CMD_RDATA, val, positive_channel);
+}
+
+int16_t temp_rtd_raw_to_c(uint16_t raw)
+{
+    return -1;
+}
+
+uint16_t temp_rtd_raw_to_k(uint16_t raw)
+{
+    return -1;
+}
+
+int temp_rtd_read_c(uint16_t *temp)
+{
+    return -1;
+}
+
+int temp_rtd_read_k(uint16_t *temp)
+{
+    return -1;
+}
+
+/** \} End of temp_sensor group */
+
