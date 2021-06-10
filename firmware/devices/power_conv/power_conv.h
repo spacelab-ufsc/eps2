@@ -25,9 +25,9 @@
  *
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  *
- * \version 0.1.11
+ * \version 0.1.12
  *
- * \date 2021/06/09
+ * \date 2021/06/10
  *
  * \defgroup power_conv Power Converters
  * \ingroup devices
@@ -42,6 +42,9 @@
 #include "drivers/tps54x0/tps54x0.h"
 
 #define POWER_CONV_MODULE_NAME		"Power Converters"
+
+#define EN_3V3_OBDH_PIN 36
+#define EN_PAYLOAD_PIN 37
 
 /**
  * \brief Initialization of the Power Converters device.

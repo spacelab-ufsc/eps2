@@ -23,11 +23,11 @@
 /**
  * \brief Power converters device implementation.
  *
- * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \authors Yan Castro de Azeredo <yan.ufsceel@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  *
- * \version 0.1.11
+ * \version 0.1.12
  *
- * \date 2021/06/09
+ * \date 2021/06/10
  *
  * \addtogroup power_conv
  * \{
@@ -41,27 +41,32 @@
 
 int power_conv_init()
 {
-	return -1;
+	if (tps54x0_init((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN}) != 0
+	|| tps54x0_init((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN}) != 0)
+	{
+		return -1;
+	}
+	return 0;
 }
 
 int enable_obdh_power()
 {
-	return -1;
+	return tps54x0_enable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
 }
 
 int disable_obdh_power()
 {
-	return -1;
+	return tps54x0_disable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
 }
 
 int enable_payload_power()
 {
-	return -1;
+	return tps54x0_enable((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
 }
 
 int disable_payload_power()
 {
-	return -1;
+	return tps54x0_disable((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
 }
 
 /** \} End of power_conv group */
