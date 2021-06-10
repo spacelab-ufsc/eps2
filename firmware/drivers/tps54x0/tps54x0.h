@@ -56,7 +56,7 @@ typedef struct
  *
  * \return The status/error code.
  */
-int tps54x0_init(tps54x0_config_t *config);
+int tps54x0_init(tps54x0_config_t config);
 
 /**
  * \brief Enables a given TPS54X0 device.
@@ -67,7 +67,7 @@ int tps54x0_init(tps54x0_config_t *config);
  *
  * \return The status/error code.
  */
-int tps54x0_enable(tps54x0_config_t *config);
+int tps54x0_enable(tps54x0_config_t config);
 
 /**
  * \brief Disables a given TPS54X0 device.
@@ -78,7 +78,7 @@ int tps54x0_enable(tps54x0_config_t *config);
  *
  * \return The status/error code.
  */
-int tps54x0_disable(tps54x0_config_t *config);
+int tps54x0_disable(tps54x0_config_t config);
 
 #endif /* TPS54X0_H_ */
 
