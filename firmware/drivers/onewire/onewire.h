@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.7
+ * \version 0.1.11
  * 
- * \date 2021/06/03
+ * \date 2021/06/11
  * 
  * \defgroup onewire OneWire
  * \ingroup drivers
@@ -41,7 +41,7 @@
 
 #include <drivers/gpio/gpio.h>
 
-#define clock 8000000
+#define one_wire_clock (8000000UL)
 
 /**
  * \brief OneWire ports.
