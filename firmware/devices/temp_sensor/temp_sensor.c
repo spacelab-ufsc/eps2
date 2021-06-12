@@ -25,9 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.10
+ * \version 0.1.12
  * 
- * \date 2021/06/08
+ * \date 2021/06/11
  * 
  * \addtogroup temp_sensor
  * \{
@@ -58,7 +58,7 @@ int temp_sensor_init(void)
     }
 
     int16_t temp = 0;
-    if (temp_sensor_read_c(&temp) != 0)
+    if (temp_mcu_read_c(&temp) != 0)
     {
          sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the internal MCU temperature value!");
          sys_log_new_line();
@@ -130,7 +130,7 @@ int16_t temp_mcu_raw_to_c(uint16_t raw)
 
 uint16_t temp_mcu_raw_to_k(uint16_t raw)
 {
-    int16_t temp_c = temp_sensor_raw_to_c(raw);
+    int16_t temp_c = temp_mcu_raw_to_c(raw);
 
     if (temp_c < 273)
     {
@@ -144,7 +144,7 @@ int temp_mcu_read_c(int16_t *temp)
 {
     uint16_t raw_temp = 0;
 
-    if (temp_sensor_read_raw(&raw_temp) != 0)
+    if (temp_mcu_read_raw(&raw_temp) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw internal MCU temperature value!");
         sys_log_new_line();
@@ -152,7 +152,7 @@ int temp_mcu_read_c(int16_t *temp)
         return -1;
     }
 
-    *temp = temp_sensor_raw_to_c(raw_temp);
+    *temp = temp_mcu_raw_to_c(raw_temp);
 
     return 0;
 }
@@ -161,7 +161,7 @@ int temp_mcu_read_k(uint16_t *temp)
 {
     uint16_t raw_temp = 0;
 
-    if (temp_sensor_read_raw(&raw_temp) != 0)
+    if (temp_mcu_read_raw(&raw_temp) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw internal MCU temperature value!");
         sys_log_new_line();
@@ -169,7 +169,7 @@ int temp_mcu_read_k(uint16_t *temp)
         return -1;
     }
 
-    *temp = temp_sensor_raw_to_k(raw_temp);
+    *temp = temp_mcu_raw_to_k(raw_temp);
 
     return 0;
 }

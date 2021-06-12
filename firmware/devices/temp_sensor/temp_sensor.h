@@ -25,9 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.10
+ * \version 0.1.12
  * 
- * \date 2021/06/08
+ * \date 2021/06/11
  * 
  * \defgroup temp_sensor Temperature Sensor
  * \ingroup devices
