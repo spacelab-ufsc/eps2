@@ -1,7 +1,7 @@
 /*
  * adc.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.12
  * 
- * \date 2020/10/24
+ * \date 2021/06/11
  * 
  * \addtogroup adc
  * \{
@@ -35,8 +35,11 @@
 
 #include <stdbool.h>
 
+#include <hal/gpio.h>
 #include <hal/adc10_a.h>
 #include <hal/adc12_a.h>
+#include <hal/ref.h>
+#include <hal/tlv.h>
 
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
@@ -44,6 +47,12 @@
 #include "adc.h"
 
 bool adc_is_ready = false;
+
+float adc_mref = 0;
+float adc_nref = 0;
+
+uint8_t adc_cal_bytes;
+struct s_TLV_ADC_Cal_Data *adc_cal_data;
 
 int adc_init(adc_port_t port, adc_config_t config)
 {
@@ -225,6 +234,16 @@ int adc_read(adc_port_t port, uint16_t *val)
     }
 
     return 0;
+}
+
+float adc_temp_get_mref(void)
+{
+    return adc_mref;
+}
+
+float adc_temp_get_nref(void)
+{
+    return adc_nref;
 }
 
 /** \} End of adc group */
