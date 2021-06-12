@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.7
+ * \version 0.1.12
  * 
- * \date 2021/06/02
+ * \date 2021/06/11
  * 
  * \addtogroup ds2775g
  * \{
@@ -107,27 +107,35 @@ int ds2775g_init(ds2775g_config_t *config)
     config->current_gain_LSB_reg[2] = current_gain_LSB_register;
     config->current_gain_LSB_reg[3] = 0x00;
     
-    if(ds2775g_write_data(config->onewire_port, config->protection_reg, 0x4) == -1) //Protection register configuration
+    /* Declaring 1-wire pin as P9.1 */
+    config->onewire_port = GPIO_PIN_69;
+
+    /* Protection register configuration */
+    if(ds2775g_write_data(config->onewire_port, config->protection_reg, 0x4) == -1)
     {
         return -1;
     }
 
-    if(ds2775g_write_data(config->onewire_port, config->protector_threshold_reg, 0x4) == -1)     //Protector threshold register configuration
+    /* Protector threshold register configuration */
+    if(ds2775g_write_data(config->onewire_port, config->protector_threshold_reg, 0x4) == -1)
     {
         return -1;
     }
 
-    if(ds2775g_write_data(config->onewire_port, config->status_reg, 0x4) == -1)                  //Status register configuration
+    /* Status register configuration */
+    if(ds2775g_write_data(config->onewire_port, config->status_reg, 0x4) == -1)
     {
         return -1;
     }
 
-    if(ds2775g_write_data(config->onewire_port, config->control_reg, 0x4) == -1)                 //Control register configuration
+    /* Control register configuration */
+    if(ds2775g_write_data(config->onewire_port, config->control_reg, 0x4) == -1)
     {
         return -1;
     }
 
-    if(ds2775g_write_data(config->onewire_port, config->overcurrent_thresholds_reg, 0x4) == -1)  //Current gain LSB register configuration
+    /* Current gain LSB register configuration */
+    if(ds2775g_write_data(config->onewire_port, config->overcurrent_thresholds_reg, 0x4) == -1)
     {
         return -1;
     }
@@ -136,11 +144,12 @@ int ds2775g_init(ds2775g_config_t *config)
 
     write_accumulated_current_max_value(config->onewire_port);
 
-#endif //RESET_BATTERY_ACCUMULATED_CURRENT
+#endif
 
 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
 
-    uart_port_t UART_port = UART_PORT_0;        //Declaring UART port;
+    /* Declaring UART port */
+    uart_port_t UART_port = UART_PORT_0;
 
     uint8_t ds2775g_data_sent_back[8] = {0};
 
@@ -185,11 +194,14 @@ int ds2775g_init(ds2775g_config_t *config)
 int ds2775g_write_data(onewire_port_t port, uint8_t *data, uint16_t len)
 {
 
-    if(onewire_reset(port) == 0)                                            //Master reset
+    /* Master reset */
+    if(onewire_reset(port) == 0)
     {
         return -1;
     }
-    if(onewire_write_byte(port, data, len) == -1)                    //Write EEPROM address, operation, register address and value to the register
+
+    /* Write EEPROM address, operation, register address and value to the register */
+    if(onewire_write_byte(port, data, len) == -1)
     {
         return -1;
     }
@@ -201,40 +213,55 @@ int ds2775g_read_register(onewire_port_t port, uint8_t register_address, uint8_t
 {
 
     uint8_t read_command[3] = {skip_address, read_data, register_address};
-    if(ds2775g_write_data(port, read_command, 0x3) == -1)                               //Generate reset, sends the general address (0xCC) and the read command (0x69)
 
-    return -1;
+    /* Generate reset, sends the general address (0xCC) and the read command (0x69) */
+    if(ds2775g_write_data(port, read_command, 0x3) == -1)
+    {
+        return -1;
+    }
 
-    if(onewire_read_byte(port, data_read, 0x1) == -1)                                    //Read data
-
-     return -1;
+    /* Read data */
+    if(onewire_read_byte(port, data_read, 0x1) == -1)
+    {
+        return -1;
+    }
 
     return 0;
 
 }
 
-int write_accumulated_current_max_value(onewire_port_t port){         // write 3Ah to battery accumulated current
+/*  Write 3Ah to battery accumulated current */
+int write_accumulated_current_max_value(onewire_port_t port)
+{
 
     uint8_t acc_write_msb[4] = {skip_address, write_data, accumulated_current_MSB_register, ACCUMULATED_CURRENT_MSB};
     uint8_t acc_copy_msb[3] = {skip_address, copy_data, accumulated_current_MSB_register};
     uint8_t acc_write_lsb[4] = {skip_address, write_data, accumulated_current_LSB_register, ACCUMULATED_CURRENT_LSB};
     uint8_t acc_copy_lsb[3] = {skip_address, copy_data, accumulated_current_LSB_register};
 
-    if (ds2775g_write_data(port, acc_write_msb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register
+    /* Write ACCUMULATED_CURRENT_MSB to the accumulated current MSB register */
+    if (ds2775g_write_data(port, acc_write_msb, 0x4) == -1)
+    {
+        return -1;
+    }
 
-    return -1;
+    /* Copy the data from EEPROM shadow RAM  to EEPROM */
+    if (ds2775g_write_data(port, acc_copy_msb, 0x3) == -1)
+    {
+        return -1;
+    }
 
-    if (ds2775g_write_data(port, acc_copy_msb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
+    /* Write ACCUMULATED_CURRENT_LSB to the accumulated current LSB register */
+    if (ds2775g_write_data(port, acc_write_lsb, 0x4) == -1)
+    {
+        return -1;
+    }
 
-    return -1;
-
-    if (ds2775g_write_data(port, acc_write_lsb, 0x4) == -1)        //Write ACCUMULATED_CURRENT_LSB to the accumulated current LSB register
-
-    return -1;
-
-    if (ds2775g_write_data(port, acc_copy_lsb, 0x3) == -1)        //Copy the data from EEPROM shadow RAM  to EEPROM
-
-    return -1;
+    /* Copy the data from EEPROM shadow RAM  to EEPROM */
+    if (ds2775g_write_data(port, acc_copy_lsb, 0x3) == -1)
+    {
+        return -1;
+    }
 
     return 0;
 }

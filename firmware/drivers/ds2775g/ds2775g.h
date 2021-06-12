@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.7
+ * \version 0.1.12
  * 
- * \date 2021/06/02
+ * \date 2021/06/11
  * 
  * \defgroup ds2775g DS2775G
  * \ingroup drivers
@@ -80,11 +80,6 @@
 #define write_data 0x6C      //Command to write a data in the DS2775G+ memory
 #define read_data 0x69       //Command to read a data from DS2775G+ memory
 #define copy_data 0x48       //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
-
-/**
- * \brief declaring DS2775G+ OneWire port.
- */
-onewire_port_t onewire_port = GPIO_PIN_69;       //Declaring one wire port as P9.1;
 
 /**
  * \brief DS2775G+ configuration parameters.
