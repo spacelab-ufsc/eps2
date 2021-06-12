@@ -1,7 +1,7 @@
 /*
  * current_sensor.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,9 +25,9 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.12
  * 
- * \date 30/01/2021
+ * \date 2021/06/11
  * 
  * \addtogroup current_sensor
  * \{
@@ -42,6 +42,9 @@
 
 int current_sensor_init()
 {
+    sys_log_print_event_from_module(SYS_LOG_INFO, CURRENT_SENSOR_MODULE_NAME, "Initializing the current sensor...");
+    sys_log_new_line();
+    
     static const max9934_config_t curr_sense_max9934_config = {0};
 
     return max9934_init(curr_sense_max9934_config);
@@ -49,7 +52,7 @@ int current_sensor_init()
 
 uint16_t current_sensor_raw_to_ma(uint16_t raw)
 {
-    return (uint16_t)(1000 * raw * (ADC_AVCC / (ADC_RANGE * CURRENT_SENSOR_RL_VALUE_OHM * CURRENT_SENSOR_GAIN * CURRENT_SENSOR_RSENSE_VALUE_OHM)));
+    return (uint16_t)(1000 * raw * (ADC_VREF_V / (ADC_RANGE * CURRENT_SENSOR_RL_VALUE_OHM * CURRENT_SENSOR_GAIN * CURRENT_SENSOR_RSENSE_VALUE_OHM)));
 };
 
 int current_sensor_read(adc_port_t port, uint16_t *cur)

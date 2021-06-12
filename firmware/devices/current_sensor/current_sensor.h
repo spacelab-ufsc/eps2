@@ -1,7 +1,7 @@
 /*
  * current_sensor.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,9 +25,9 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.12
  * 
- * \date 30/01/2021
+ * \date 2021/06/11
  * 
  * \defgroup current_sensor Current Sensor
  * \ingroup devices
