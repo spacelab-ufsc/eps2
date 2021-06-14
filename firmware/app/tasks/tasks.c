@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.12
  * 
  * \date 2021/04/09
  * 
@@ -63,7 +63,7 @@ void create_tasks()
     }
 #endif /* CONFIG_TASK_READ_SENSORS_ENABLED */
 
-    return;
+    create_event_groups();
 }
 
 void create_event_groups()
