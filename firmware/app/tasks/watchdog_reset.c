@@ -1,7 +1,7 @@
 /*
- * version.h
+ * watchdog_reset.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2019, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -21,29 +21,37 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief Watchdog reset task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.13
  * 
- * \date 2020/10/21
+ * \date 14/06/2021
  * 
- * \defgroup version Version control
+ * \addtogroup watchdog_reset
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include <devices/watchdog/watchdog.h>
 
-#define FIRMWARE_VERSION            "0.1.13"
+#include "watchdog_reset.h"
 
-#define FIRMWARE_STATUS             "Development"
+xTaskHandle xTaskWatchdogResetHandle;
 
-#define FIRMWARE_AUTHOR             "SpaceLab"
+void vTaskWatchdogReset(void *pvParameters)
+{
+    /* Delay before the first cycle */
+    vTaskDelay(pdMS_TO_TICKS(TASK_WATCHDOG_RESET_INITIAL_DELAY_MS));
 
-#define FIRMWARE_AUTHOR_EMAIL       "spacelab.ufsc@gmail.com"
+    while(1)
+    {
+        TickType_t last_cycle = xTaskGetTickCount();
 
-#endif /* VERSION_H_ */
+        watchdog_reset();
 
-/** \} End of version group */
+        vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_WATCHDOG_RESET_PERIOD_MS));
+    }
+}
+
+/** \} End of watchdog_reset group */

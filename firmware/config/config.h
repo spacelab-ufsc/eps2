@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.1.13
  * 
  * \date 2021/01/25
  * 
@@ -38,6 +38,10 @@
 
 /* Tasks */
 #define CONFIG_TASK_STARTUP_ENABLED                     1
+#define CONFIG_TASK_WATCHDOG_RESET_ENABLED              1
+#define CONFIG_TASK_READ_SENSORS_ENABLED                0
+
+#define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 
 #define MAX_BATTERY_CHARGE                          2450 //[mAh]
 #define BAT_MONITOR_CHARGE_VALUE                    (uint16_t)(MAX_BATTERY_CHARGE/0.625) //0.625 is a conversion factor for the  battery monitor

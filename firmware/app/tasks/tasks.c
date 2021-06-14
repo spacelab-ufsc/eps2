@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.1.13
  * 
  * \date 2021/04/09
  * 
@@ -40,6 +40,7 @@
 
 #include "tasks.h"
 #include "startup.h"
+#include "watchdog_reset.h"
 
 void create_tasks()
 {
@@ -52,6 +53,16 @@ void create_tasks()
         /* Error creating the startup task */
     }
 #endif /* CONFIG_TASK_STARTUP_ENABLED */
+
+    /* Watchdog reset task */
+#if CONFIG_TASK_WATCHDOG_RESET_ENABLED == 1
+    xTaskCreate(vTaskWatchdogReset, TASK_WATCHDOG_RESET_NAME, TASK_WATCHDOG_RESET_STACK_SIZE, NULL, TASK_WATCHDOG_RESET_PRIORITY, &xTaskWatchdogResetHandle);
+
+    if (xTaskWatchdogResetHandle == NULL)
+    {
+        /* Error creating the watchdog reset task */
+    }
+#endif /* CONFIG_TASK_WATCHDOG_RESET_ENABLED */
 
     /* Read sensors task */
 #if CONFIG_TASK_READ_SENSORS_ENABLED == 1
