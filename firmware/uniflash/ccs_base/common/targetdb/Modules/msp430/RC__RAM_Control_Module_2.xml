@@ -1,0 +1,8 @@
+<module HW_revision="" XML_version="1" description="RC  RAM Control Module" id="RC  RAM Control Module">
+<register acronym="RCCTL0" description="Ram Controller Control Register" id="RCCTL0" offset=" 0x0158" width="16">
+<bitfield begin="0" description="RAM Controller RAM Sector 0 Off" end="0" id="RCRS0OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="RAM Controller RAM Sector 1 Off" end="1" id="RCRS1OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="RAM Controller RAM Sector 2 Off" end="2" id="RCRS2OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="RAM Controller RAM Sector 3 Off" end="3" id="RCRS3OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="RAM Controller RAM Sector 7 (USB) Off" end="7" id="RCRS7OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

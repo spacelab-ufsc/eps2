@@ -1,0 +1,81 @@
+<device HW_revision="1.0" XML_version="1.0" description="MSP430F6659" id="MSP430F6659" partnum="MSP430F6659">
+
+<instance href="../options/MSP430F6659_TI.xml"></instance>
+<instance href="../options/MSP430F6659_GNU.xml"></instance>
+<property Type="stringfield" Value="1.210" id="DeviceFileVersion"></property>
+<property Type="stringfield" Value="MSP430x6xx Family" id="FilterString"></property>
+<property Type="numericfield" Value="160" id="HeapDefaultSize"></property>
+<property Type="stringfield" Value="minimal" id="PrintfDefault_support"></property>
+<property Type="numericfield" Value="160" id="StackDefaultSize"></property>
+<property Type="numericfield" Value="8" id="breakpoints"></property>
+<property Type="stringfield" Value="EXTENDED" id="clockcontrol"></property>
+<property Type="stringfield" Value="MSP430Xv2" id="cpu_family"></property>
+<property Type="stringfield" Value="EMEX_LARGE_5XX" id="eem"></property>
+<property Type="numericfield" Value="8" id="hw_mpy"></property>
+<property Type="stringfield" Value="true" id="IsElfDefault"></property>
+<property Type="numericfield" Value="3300" id="target_vcc_default"></property>
+<property Type="numericfield" Value="1" id="jtag"></property>
+<property Type="stringfield" Value="true" id="Make Device Secure"></property>
+<property Type="numericfield" Value="2" id="spybiwire"></property>
+<property Type="numericfield" Value="2" id="cycleCounter"></property>
+<property Type="stringfield" Value="0xFF80" id="iv_base"></property>
+<property Type="stringfield" Value="true" id="supportBSLMemory"></property>
+<property Type="stringfield" Value="true" id="supportINFOMemory"></property>
+<property Type="stringfield" Value="-romwidth=8 -memwidth=8" id="HexBuildOptions"></property>
+
+
+<instance desc="MSP430" href="../cpus/MSP430Xv2.xml" id="MSP430" xml="MSP430Xv2.xml" xmlpath="../cpus/"></instance>
+<cpu HW_revision="1.0" XML_version="2.0" description="MSP430 CPU" id="MSP430" isa="MSP430">
+
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/ADC12_2.xml" id="ADC12" permissions="p" requestor="MSP430" size="10" xml="ADC12_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Backup_RAM_1.xml" id="Backup_RAM" permissions="p" requestor="MSP430" size="10" xml="Backup_RAM_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Battery_Charger_1.xml" id="Battery_Charger" permissions="p" requestor="MSP430" size="10" xml="Battery_Charger_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Comparator_B_1.xml" id="Comparator_B" permissions="p" requestor="MSP430" size="10" xml="Comparator_B_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/CRC16_2.xml" id="CRC16" permissions="p" requestor="MSP430" size="10" xml="CRC16_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/DAC12_4.xml" id="DAC12" permissions="p" requestor="MSP430" size="10" xml="DAC12_4.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/DMA_14.xml" id="DMA" permissions="p" requestor="MSP430" size="10" xml="DMA_14.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Flash_6.xml" id="Flash" permissions="p" requestor="MSP430" size="10" xml="Flash_6.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/LCD_B_1.xml" id="LCD_B" permissions="p" requestor="MSP430" size="10" xml="LCD_B_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/MPY_16__Multiplier__16_Bit_Mode_1.xml" id="MPY_16__Multiplier__16_Bit_Mode" permissions="p" requestor="MSP430" size="10" xml="MPY_16__Multiplier__16_Bit_Mode_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/MPY_32__Multiplier__32_Bit_Mode_1.xml" id="MPY_32__Multiplier__32_Bit_Mode" permissions="p" requestor="MSP430" size="10" xml="MPY_32__Multiplier__32_Bit_Mode_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_A_1.xml" id="Port_A" permissions="p" requestor="MSP430" size="10" xml="Port_A_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_1_2_5.xml" id="Port_1_2" permissions="p" requestor="MSP430" size="10" xml="Port_1_2_5.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_B_2.xml" id="Port_B" permissions="p" requestor="MSP430" size="10" xml="Port_B_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_3_4_5.xml" id="Port_3_4" permissions="p" requestor="MSP430" size="10" xml="Port_3_4_5.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_C_1.xml" id="Port_C" permissions="p" requestor="MSP430" size="10" xml="Port_C_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_5_6_3.xml" id="Port_5_6" permissions="p" requestor="MSP430" size="10" xml="Port_5_6_3.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_D_1.xml" id="Port_D" permissions="p" requestor="MSP430" size="10" xml="Port_D_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_7_8_3.xml" id="Port_7_8" permissions="p" requestor="MSP430" size="10" xml="Port_7_8_3.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_E_1.xml" id="Port_E" permissions="p" requestor="MSP430" size="10" xml="Port_E_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_9_1.xml" id="Port_9" permissions="p" requestor="MSP430" size="10" xml="Port_9_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_J_1.xml" id="Port_J" permissions="p" requestor="MSP430" size="10" xml="Port_J_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_Mapping_Control_1.xml" id="Port_Mapping_Control" permissions="p" requestor="MSP430" size="10" xml="Port_Mapping_Control_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Port_Mapping_Port_2_1.xml" id="Port_Mapping_Port_2" permissions="p" requestor="MSP430" size="10" xml="Port_Mapping_Port_2_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/PMM__Power_Management_System_2.xml" id="PMM__Power_Management_System" permissions="p" requestor="MSP430" size="10" xml="PMM__Power_Management_System_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/RC__RAM_Control_Module_2.xml" id="RC__RAM_Control_Module" permissions="p" requestor="MSP430" size="10" xml="RC__RAM_Control_Module_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Shared_Reference_1.xml" id="Shared_Reference" permissions="p" requestor="MSP430" size="10" xml="Shared_Reference_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/RTC_B__Real_Time_Clock_1.xml" id="RTC_B__Real_Time_Clock" permissions="p" requestor="MSP430" size="10" xml="RTC_B__Real_Time_Clock_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/SFR__Special_Function_Registers_1.xml" id="SFR__Special_Function_Registers" permissions="p" requestor="MSP430" size="10" xml="SFR__Special_Function_Registers_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/SYS__System_Module_2.xml" id="SYS__System_Module" permissions="p" requestor="MSP430" size="10" xml="SYS__System_Module_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Timer0_A5_1.xml" id="Timer0_A5" permissions="p" requestor="MSP430" size="10" xml="Timer0_A5_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Timer1_A3_1.xml" id="Timer1_A3" permissions="p" requestor="MSP430" size="10" xml="Timer1_A3_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Timer2_A3_1.xml" id="Timer2_A3" permissions="p" requestor="MSP430" size="10" xml="Timer2_A3_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Timer0_B7_1.xml" id="Timer0_B7" permissions="p" requestor="MSP430" size="10" xml="Timer0_B7_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USB_Control_1.xml" id="USB_Control" permissions="p" requestor="MSP430" size="10" xml="USB_Control_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USB_Operation_1.xml" id="USB_Operation" permissions="p" requestor="MSP430" size="10" xml="USB_Operation_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/UCS__Unified_System_Clock_1.xml" id="UCS__Unified_System_Clock" permissions="p" requestor="MSP430" size="10" xml="UCS__Unified_System_Clock_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_A0__UART_Mode_2.xml" id="USCI_A0__UART_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_A0__UART_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_A0__SPI_Mode_2.xml" id="USCI_A0__SPI_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_A0__SPI_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_B0__SPI_Mode_2.xml" id="USCI_B0__SPI_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_B0__SPI_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_B0__I2C_Mode_3.xml" id="USCI_B0__I2C_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_B0__I2C_Mode_3.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_A1__UART_Mode_2.xml" id="USCI_A1__UART_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_A1__UART_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_A1__SPI_Mode_2.xml" id="USCI_A1__SPI_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_A1__SPI_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_B1__SPI_Mode_2.xml" id="USCI_B1__SPI_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_B1__SPI_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_B1__I2C_Mode_2.xml" id="USCI_B1__I2C_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_B1__I2C_Mode_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_A2__UART_Mode_1.xml" id="USCI_A2__UART_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_A2__UART_Mode_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_A2__SPI_Mode_1.xml" id="USCI_A2__SPI_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_A2__SPI_Mode_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_B2__SPI_Mode_1.xml" id="USCI_B2__SPI_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_B2__SPI_Mode_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/USCI_B2__I2C_Mode_1.xml" id="USCI_B2__I2C_Mode" permissions="p" requestor="MSP430" size="10" xml="USCI_B2__I2C_Mode_1.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="2" baseaddr="0x0000" description="" href="../Modules/msp430/Watchdog_Timer_2.xml" id="Watchdog_Timer" permissions="p" requestor="MSP430" size="10" xml="Watchdog_Timer_2.xml" xmlpath="../Modules/msp430/"></instance>
+<instance HW_revision="1.0" accessnumbytes="4" baseaddr="0x0000" description="" href="../Modules/msp430/MSP430Xv2_NotVisible.xml" id="" permissions="p" requestor="MSP430" size="00" xml="MSP430Xv2_NotVisible.xml" xmlpath="../Modules/msp430/"></instance>
+</cpu></device>

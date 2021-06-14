@@ -1,0 +1,111 @@
+<module HW_revision="" XML_version="1" description="USB Control" id="USB Control">
+<register acronym="USBKEYID" description="USB Controller key register" id="USBKEYID" offset=" 0x0900" width="16"></register>
+<register acronym="USBCNF" description="USB Module  configuration register" id="USBCNF" offset=" 0x0902" width="16">
+<bitfield begin="0" description="USB - Module enable" end="0" id="USB_EN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USB - PUR pin enable" end="1" id="PUR_EN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - PUR pin input value" end="2" id="PUR_IN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Block ready signal for DMA" end="3" id="BLKRDY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Frame Number receive Trigger enable for DMA" end="4" id="FNTEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBPHYCTL" description="USB PHY control register" id="USBPHYCTL" offset=" 0x0904" width="16">
+<bitfield begin="0" description="USB - USB Port Output Signal Bit 0" end="0" id="PUOUT0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USB - USB Port Output Signal Bit 1" end="1" id="PUOUT1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - PU0/DP Input Data" end="2" id="PUIN0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - PU1/DM Input Data" end="3" id="PUIN1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - USB Port Output Enable" end="5" id="PUOPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - USB Port Function Select" end="7" id="PUSEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="USB - PHY Single Ended Input enable" end="8" id="PUIPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBPWRCTL" description="USB Power control register" id="USBPWRCTL" offset=" 0x0908" width="16">
+<bitfield begin="0" description="USB - VUSB Overload Interrupt Flag" end="0" id="VUOVLIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USB - VBUS &quot;Coming ON&quot; Interrupt Flag" end="1" id="VBONIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - VBUS &quot;Going OFF&quot; Interrupt Flag" end="2" id="VBOFFIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - USB Bandgap and VBUS valid" end="3" id="USBBGVBV" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - VBUS on/off events enable" end="4" id="USBDETEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - LDO overload auto off enable" end="5" id="OVLAOFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="USB - Secondary LDO auto on enable" end="6" id="SLDOAON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="USB - Overload indication Interrupt Enable" end="8" id="VUOVLIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="USB - VBUS &quot;Coming ON&quot; Interrupt Enable" end="9" id="VBONIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="USB - VBUS &quot;Going OFF&quot; Interrupt Enable" end="10" id="VBOFFIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="USB - LDO Enable (3.3V)" end="11" id="VUSBEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="USB - Secondary LDO Enable (1.8V)" end="12" id="SLDOEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBPLLCTL" description="USB PLL control register" id="USBPLLCTL" offset=" 0x0910" width="16">
+<bitfield begin="7" description="USB - Module Clock Select Bit 0" end="6" id="UCLKSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="USB - Module Clock Select: 0" id="UCLKSEL_0" token="UCLKSEL_0" value="0"></bitenum>
+<bitenum description="USB - Module Clock Select: 1" id="UCLKSEL_1" token="UCLKSEL_1" value="1"></bitenum>
+<bitenum description="USB - Module Clock Select: 2" id="UCLKSEL_2" token="UCLKSEL_2" value="2"></bitenum>
+<bitenum description="USB - Module Clock Select: 3 (Reserved)" id="UCLKSEL_3" token="UCLKSEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="8" description="USB - PLL enable" end="8" id="UPLLEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="USB - Phase Freq. Discriminator enable" end="9" id="UPFDEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBPLLDIVB" description="USB PLL Clock Divider Buffer control register" id="USBPLLDIVB" offset=" 0x0912" width="16">
+<bitfield begin="0" description="USB - PLL feedback divider buffer Bit 0" end="0" id="UPMB0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USB - PLL feedback divider buffer Bit 1" end="1" id="UPMB1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - PLL feedback divider buffer Bit 2" end="2" id="UPMB2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - PLL feedback divider buffer Bit 3" end="3" id="UPMB3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - PLL feedback divider buffer Bit 4" end="4" id="UPMB4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - PLL feedback divider buffer Bit 5" end="5" id="UPMB5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="USB - PLL prescale divider buffer Bit 0" end="8" id="UPQB0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="USB - PLL prescale divider buffer Bit 1" end="9" id="UPQB1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="USB - PLL prescale divider buffer Bit 2" end="10" id="UPQB2" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBPLLIR" description="USB PLL Interrupt control register" id="USBPLLIR" offset=" 0x0914" width="16">
+<bitfield begin="0" description="USB - PLL out of lock Interrupt Flag" end="0" id="USBOOLIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USB - PLL loss of signal Interrupt Flag" end="1" id="USBLOSIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - PLL out of range Interrupt Flag" end="2" id="USBOORIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="USB - PLL out of lock Interrupt enable" end="8" id="USBOOLIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="USB - PLL loss of signal Interrupt enable" end="9" id="USBLOSIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="USB - PLL out of range Interrupt enable" end="10" id="USBOORIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPCNF_0" description="USB Input endpoint_0: Configuration" id="USBIEPCNF_0" offset=" 0x0920" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPCNT_0" description="USB Input endpoint_0: Byte Count" id="USBIEPCNT_0" offset=" 0x0921" width="8"></register>
+<register acronym="USBOEPCNF_0" description="USB Output endpoint_0: Configuration" id="USBOEPCNF_0" offset=" 0x0922" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPCNT_0" description="USB Output endpoint_0: byte count" id="USBOEPCNT_0" offset=" 0x0923" width="8"></register>
+<register acronym="USBIEPIE" description="USB Input endpoint interrupt enable flags" id="USBIEPIE" offset=" 0x092E" width="8"></register>
+<register acronym="USBOEPIE" description="USB Output endpoint interrupt enable flags" id="USBOEPIE" offset=" 0x092F" width="8"></register>
+<register acronym="USBIEPIFG" description="USB Input endpoint interrupt flags" id="USBIEPIFG" offset=" 0x0930" width="8"></register>
+<register acronym="USBOEPIFG" description="USB Output endpoint interrupt flags" id="USBOEPIFG" offset=" 0x0931" width="8"></register>
+<register acronym="USBVECINT" description="USB Vector interrupt register" id="USBVECINT" offset=" 0x0932" width="16"></register>
+<register acronym="USBMAINT" description="USB maintenance register" id="USBMAINT" offset=" 0x0936" width="16">
+<bitfield begin="0" description="USB - Timer Interrupt Flag" end="0" id="UTIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USB - Timer Interrupt Enable" end="1" id="UTIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="USB - Time Stamp Generator Enable" end="8" id="TSGEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="USB - Time Stamp Event Select Bit 0" end="9" id="TSESEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="USB - Time Stamp Event Select: 0" id="TSESEL_0" token="TSESEL_0" value="0"></bitenum>
+<bitenum description="USB - Time Stamp Event Select: 1" id="TSESEL_1" token="TSESEL_1" value="1"></bitenum>
+<bitenum description="USB - Time Stamp Event Select: 2" id="TSESEL_2" token="TSESEL_2" value="2"></bitenum>
+<bitenum description="USB - Time Stamp Event Select: 3" id="TSESEL_3" token="TSESEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="USB - Time Stamp Event #3 Bit" end="11" id="TSE3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="USB - Timer Select Bit 0" end="13" id="UTSEL" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="USB - Timer Select: 0" id="UTSEL_0" token="UTSEL_0" value="0"></bitenum>
+<bitenum description="USB - Timer Select: 1" id="UTSEL_1" token="UTSEL_1" value="1"></bitenum>
+<bitenum description="USB - Timer Select: 2" id="UTSEL_2" token="UTSEL_2" value="2"></bitenum>
+<bitenum description="USB - Timer Select: 3" id="UTSEL_3" token="UTSEL_3" value="3"></bitenum>
+<bitenum description="USB - Timer Select: 4" id="UTSEL_4" token="UTSEL_4" value="4"></bitenum>
+<bitenum description="USB - Timer Select: 5" id="UTSEL_5" token="UTSEL_5" value="5"></bitenum>
+<bitenum description="USB - Timer Select: 6" id="UTSEL_6" token="UTSEL_6" value="6"></bitenum>
+<bitenum description="USB - Timer Select: 7" id="UTSEL_7" token="UTSEL_7" value="7"></bitenum></bitfield></register>
+<register acronym="USBTSREG" description="USB Time Stamp register" id="USBTSREG" offset=" 0x0938" width="16"></register>
+<register acronym="USBFN" description="USB Frame number" id="USBFN" offset=" 0x093A" width="16"></register>
+<register acronym="USBCTL" description="USB control register" id="USBCTL" offset=" 0x093C" width="8">
+<bitfield begin="0" description="USB - Data Response Bit" end="0" id="DIR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Function Reset Connection Enable" end="4" id="FRSTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Device Remote Wakeup Request" end="5" id="RWUP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="USB - Function Enable Bit" end="6" id="FEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIE" description="USB interrupt enable register" id="USBIE" offset=" 0x093D" width="8">
+<bitfield begin="0" description="USB - Setup Overwrite Interrupt Enable" end="0" id="STPOWIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - Setup Interrupt Enable" end="2" id="SETUPIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Function Resume Request Interrupt Enable" end="5" id="RESRIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="USB - Function Suspend Request Interrupt Enable" end="6" id="SUSRIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - Function Reset Request Interrupt Enable" end="7" id="RSTRIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIFG" description="USB interrupt flag register" id="USBIFG" offset=" 0x093E" width="8">
+<bitfield begin="0" description="USB - Setup Overwrite Interrupt Flag" end="0" id="STPOWIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USB - Setup Interrupt Flag" end="2" id="SETUPIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Function Resume Request Interrupt Flag" end="5" id="RESRIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="USB - Function Suspend Request Interrupt Flag" end="6" id="SUSRIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - Function Reset Request Interrupt Flag" end="7" id="RSTRIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBFUNADR" description="USB Function address register" id="USBFUNADR" offset=" 0x093F" width="8"></register>
+</module>

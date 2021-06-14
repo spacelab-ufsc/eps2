@@ -1,0 +1,96 @@
+<module HW_revision="" XML_version="1" description="PMM  Power Management System" id="PMM  Power Management System">
+<register acronym="PMMCTL0" description="PMM Control 0" id="PMMCTL0" offset=" 0x0120" width="16">
+<bitfield begin="1" description="PMM Core Voltage Bit: 0" end="0" id="PMMCOREV" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="PMM Core Voltage 0 (1.35V)" id="PMMCOREV_0" token="PMMCOREV_0" value="0"></bitenum>
+<bitenum description="PMM Core Voltage 1 (1.55V)" id="PMMCOREV_1" token="PMMCOREV_1" value="1"></bitenum>
+<bitenum description="PMM Core Voltage 2 (1.75V)" id="PMMCOREV_2" token="PMMCOREV_2" value="2"></bitenum>
+<bitenum description="PMM Core Voltage 3 (1.85V)" id="PMMCOREV_3" token="PMMCOREV_3" value="3"></bitenum></bitfield>
+<bitfield begin="2" description="PMM Software BOR" end="2" id="PMMSWBOR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMM Software POR" end="3" id="PMMSWPOR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMM Turn Regulator off" end="4" id="PMMREGOFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMM Global High Power Module Request Enable" end="7" id="PMMHPMRE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PMMCTL1" description="PMM Control 1" id="PMMCTL1" offset=" 0x0122" width="16">
+<bitfield begin="0" description="PMM Reference Mode" end="0" id="PMMREFMD" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMM Voltage Regulator Current Mode Bit: 0" end="4" id="PMMCMD0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMM Voltage Regulator Current Mode Bit: 1" end="5" id="PMMCMD1" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SVSMHCTL" description="SVS and SVM high side control register" id="SVSMHCTL" offset=" 0x0124" width="16">
+<bitfield begin="2" description="SVS and SVM high side Reset Release Voltage Level Bit: 0" end="0" id="SVSMHRRL" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 0" id="SVSMHRRL_0" token="SVSMHRRL_0" value="0"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 1" id="SVSMHRRL_1" token="SVSMHRRL_1" value="1"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 2" id="SVSMHRRL_2" token="SVSMHRRL_2" value="2"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 3" id="SVSMHRRL_3" token="SVSMHRRL_3" value="3"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 4" id="SVSMHRRL_4" token="SVSMHRRL_4" value="4"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 5" id="SVSMHRRL_5" token="SVSMHRRL_5" value="5"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 6" id="SVSMHRRL_6" token="SVSMHRRL_6" value="6"></bitenum>
+<bitenum description="SVS and SVM high side Reset Release Voltage Level 7" id="SVSMHRRL_7" token="SVSMHRRL_7" value="7"></bitenum></bitfield>
+<bitfield begin="3" description="SVS and SVM high side delay status" end="3" id="SVSMHDLYST" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SVS high side mode" end="4" id="SVSHMD" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="SVS and SVM high side event mask" end="6" id="SVSMHEVM" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="SVS and SVM high side auto control enable" end="7" id="SVSMHACE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="SVS high side reset voltage level Bit: 0" end="8" id="SVSHRVL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="SVS high side Reset Release Voltage Level 0" id="SVSHRVL_0" token="SVSHRVL_0" value="0"></bitenum>
+<bitenum description="SVS high side Reset Release Voltage Level 1" id="SVSHRVL_1" token="SVSHRVL_1" value="1"></bitenum>
+<bitenum description="SVS high side Reset Release Voltage Level 2" id="SVSHRVL_2" token="SVSHRVL_2" value="2"></bitenum>
+<bitenum description="SVS high side Reset Release Voltage Level 3" id="SVSHRVL_3" token="SVSHRVL_3" value="3"></bitenum></bitfield>
+<bitfield begin="10" description="SVS high side enable" end="10" id="SVSHE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="SVS high side full performace mode" end="11" id="SVSHFP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="SVM high side over-voltage enable" end="12" id="SVMHOVPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="SVM high side enable" end="14" id="SVMHE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="SVM high side full performace mode" end="15" id="SVMHFP" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SVSMLCTL" description="SVS and SVM low side control register" id="SVSMLCTL" offset=" 0x0126" width="16">
+<bitfield begin="2" description="SVS and SVM low side Reset Release Voltage Level Bit: 0" end="0" id="SVSMLRRL" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 0" id="SVSMLRRL_0" token="SVSMLRRL_0" value="0"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 1" id="SVSMLRRL_1" token="SVSMLRRL_1" value="1"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 2" id="SVSMLRRL_2" token="SVSMLRRL_2" value="2"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 3" id="SVSMLRRL_3" token="SVSMLRRL_3" value="3"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 4" id="SVSMLRRL_4" token="SVSMLRRL_4" value="4"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 5" id="SVSMLRRL_5" token="SVSMLRRL_5" value="5"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 6" id="SVSMLRRL_6" token="SVSMLRRL_6" value="6"></bitenum>
+<bitenum description="SVS and SVM low side Reset Release Voltage Level 7" id="SVSMLRRL_7" token="SVSMLRRL_7" value="7"></bitenum></bitfield>
+<bitfield begin="3" description="SVS and SVM low side delay status" end="3" id="SVSMLDLYST" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SVS low side mode" end="4" id="SVSLMD" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="SVS and SVM low side event mask" end="6" id="SVSMLEVM" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="SVS and SVM low side auto control enable" end="7" id="SVSMLACE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="SVS low side reset voltage level Bit: 0" end="8" id="SVSLRVL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="SVS low side Reset Release Voltage Level 0" id="SVSLRVL_0" token="SVSLRVL_0" value="0"></bitenum>
+<bitenum description="SVS low side Reset Release Voltage Level 1" id="SVSLRVL_1" token="SVSLRVL_1" value="1"></bitenum>
+<bitenum description="SVS low side Reset Release Voltage Level 2" id="SVSLRVL_2" token="SVSLRVL_2" value="2"></bitenum>
+<bitenum description="SVS low side Reset Release Voltage Level 3" id="SVSLRVL_3" token="SVSLRVL_3" value="3"></bitenum></bitfield>
+<bitfield begin="10" description="SVS low side enable" end="10" id="SVSLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="SVS low side full performace mode" end="11" id="SVSLFP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="SVM low side over-voltage enable" end="12" id="SVMLOVPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="SVM low side enable" end="14" id="SVMLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="SVM low side full performace mode" end="15" id="SVMLFP" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SVSMIO" description="SVSIN and SVSOUT control register" id="SVSMIO" offset=" 0x0128" width="16">
+<bitfield begin="3" description="SVM low side output enable" end="3" id="SVMLOE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SVM low side voltage level reached output enable" end="4" id="SVMLVLROE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="SVMOUT pin polarity" end="5" id="SVMOUTPOL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="SVM high side output enable" end="11" id="SVMHOE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="SVM high side voltage level reached output enable" end="12" id="SVMHVLROE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PMMIFG" description="PMM Interrupt Flag" id="PMMIFG" offset=" 0x012C" width="16">
+<bitfield begin="0" description="SVS and SVM low side Delay expired interrupt flag" end="0" id="SVSMLDLYIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="SVM low side interrupt flag" end="1" id="SVMLIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="SVM low side Voltage Level Reached interrupt flag" end="2" id="SVMLVLRIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SVS and SVM high side Delay expired interrupt flag" end="4" id="SVSMHDLYIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="SVM high side interrupt flag" end="5" id="SVMHIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="SVM high side Voltage Level Reached interrupt flag" end="6" id="SVMHVLRIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="PMM Software BOR interrupt flag" end="8" id="PMMBORIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="PMM RESET pin interrupt flag" end="9" id="PMMRSTIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="PMM Software POR interrupt flag" end="10" id="PMMPORIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="SVS low side interrupt flag" end="12" id="SVSHIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="SVS high side interrupt flag" end="13" id="SVSLIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="LPM5 indication Flag" end="15" id="PMMLPM5IFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PMMRIE" description="PMM and RESET Interrupt Enable" id="PMMRIE" offset=" 0x012E" width="16">
+<bitfield begin="0" description="SVS and SVM low side Delay expired interrupt enable" end="0" id="SVSMLDLYIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="SVM low side interrupt enable" end="1" id="SVMLIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="SVM low side Voltage Level Reached interrupt enable" end="2" id="SVMLVLRIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SVS and SVM high side Delay expired interrupt enable" end="4" id="SVSMHDLYIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="SVM high side interrupt enable" end="5" id="SVMHIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="SVM high side Voltage Level Reached interrupt enable" end="6" id="SVMHVLRIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="SVS low side POR enable" end="8" id="SVSLPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="SVM low side Voltage Level reached POR enable" end="9" id="SVMLVLRPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="SVS high side POR enable" end="12" id="SVSHPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="SVM high side Voltage Level reached POR enable" end="13" id="SVMHVLRPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PM5CTL0" description="PMM Power Mode 5 Control Register 0" id="PM5CTL0" offset=" 0x0130" width="16">
+<bitfield begin="0" description="Lock I/O pin configuration upon entry/exit to/from LPM5" end="0" id="LOCKLPM5" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

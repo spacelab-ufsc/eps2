@@ -1,0 +1,161 @@
+<module HW_revision="" XML_version="1" description="USB Operation" id="USB Operation">
+<register acronym="USBIEPSIZXY_7" description="Input Endpoint_7: X/Y-buffer size" id="USBIEPSIZXY_7" offset=" 0x23FF" width="8"></register>
+<register acronym="USBIEPBCTY_7" description="Input Endpoint_7: Y-byte count" id="USBIEPBCTY_7" offset=" 0x23FE" width="8"></register>
+<register acronym="USBIEPBBAY_7" description="Input Endpoint_7: Y-buffer base addr." id="USBIEPBBAY_7" offset=" 0x23FD" width="8"></register>
+<register acronym="USBIEPBCTX_7" description="Input Endpoint_7: X-byte count" id="USBIEPBCTX_7" offset=" 0x23FA" width="8"></register>
+<register acronym="USBIEPBBAX_7" description="Input Endpoint_7: X-buffer base addr." id="USBIEPBBAX_7" offset=" 0x23F9" width="8"></register>
+<register acronym="USBIEPCNF_7" description="Input Endpoint_7: Configuration" id="USBIEPCNF_7" offset=" 0x23F8" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPSIZXY_6" description="Input Endpoint_6: X/Y-buffer size" id="USBIEPSIZXY_6" offset=" 0x23F7" width="8"></register>
+<register acronym="USBIEPBCTY_6" description="Input Endpoint_6: Y-byte count" id="USBIEPBCTY_6" offset=" 0x23F6" width="8"></register>
+<register acronym="USBIEPBBAY_6" description="Input Endpoint_6: Y-buffer base addr." id="USBIEPBBAY_6" offset=" 0x23F5" width="8"></register>
+<register acronym="USBIEPBCTX_6" description="Input Endpoint_6: X-byte count" id="USBIEPBCTX_6" offset=" 0x23F2" width="8"></register>
+<register acronym="USBIEPBBAX_6" description="Input Endpoint_6: X-buffer base addr." id="USBIEPBBAX_6" offset=" 0x23F1" width="8"></register>
+<register acronym="USBIEPCNF_6" description="Input Endpoint_6: Configuration" id="USBIEPCNF_6" offset=" 0x23F0" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPSIZXY_5" description="Input Endpoint_5: X/Y-buffer size" id="USBIEPSIZXY_5" offset=" 0x23EF" width="8"></register>
+<register acronym="USBIEPBCTY_5" description="Input Endpoint_5: Y-byte count" id="USBIEPBCTY_5" offset=" 0x23EE" width="8"></register>
+<register acronym="USBIEPBBAY_5" description="Input Endpoint_5: Y-buffer base addr." id="USBIEPBBAY_5" offset=" 0x23ED" width="8"></register>
+<register acronym="USBIEPBCTX_5" description="Input Endpoint_5: X-byte count" id="USBIEPBCTX_5" offset=" 0x23EA" width="8"></register>
+<register acronym="USBIEPBBAX_5" description="Input Endpoint_5: X-buffer base addr." id="USBIEPBBAX_5" offset=" 0x23E9" width="8"></register>
+<register acronym="USBIEPCNF_5" description="Input Endpoint_5: Configuration" id="USBIEPCNF_5" offset=" 0x23E8" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPSIZXY_4" description="Input Endpoint_4: X/Y-buffer size" id="USBIEPSIZXY_4" offset=" 0x23E7" width="8"></register>
+<register acronym="USBIEPBCTY_4" description="Input Endpoint_4: Y-byte count" id="USBIEPBCTY_4" offset=" 0x23E6" width="8"></register>
+<register acronym="USBIEPBBAY_4" description="Input Endpoint_4: Y-buffer base addr." id="USBIEPBBAY_4" offset=" 0x23E5" width="8"></register>
+<register acronym="USBIEPBCTX_4" description="Input Endpoint_4: X-byte count" id="USBIEPBCTX_4" offset=" 0x23E2" width="8"></register>
+<register acronym="USBIEPBBAX_4" description="Input Endpoint_4: X-buffer base addr." id="USBIEPBBAX_4" offset=" 0x23E1" width="8"></register>
+<register acronym="USBIEPCNF_4" description="Input Endpoint_4: Configuration" id="USBIEPCNF_4" offset=" 0x23E0" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPSIZXY_3" description="Input Endpoint_3: X/Y-buffer size" id="USBIEPSIZXY_3" offset=" 0x23DF" width="8"></register>
+<register acronym="USBIEPBCTY_3" description="Input Endpoint_3: Y-byte count" id="USBIEPBCTY_3" offset=" 0x23DE" width="8"></register>
+<register acronym="USBIEPBBAY_3" description="Input Endpoint_3: Y-buffer base addr." id="USBIEPBBAY_3" offset=" 0x23DD" width="8"></register>
+<register acronym="USBIEPBCTX_3" description="Input Endpoint_3: X-byte count" id="USBIEPBCTX_3" offset=" 0x23DA" width="8"></register>
+<register acronym="USBIEPBBAX_3" description="Input Endpoint_3: X-buffer base addr." id="USBIEPBBAX_3" offset=" 0x23D9" width="8"></register>
+<register acronym="USBIEPCNF_3" description="Input Endpoint_3: Configuration" id="USBIEPCNF_3" offset=" 0x23D8" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPSIZXY_2" description="Input Endpoint_2: X/Y-buffer size" id="USBIEPSIZXY_2" offset=" 0x23D7" width="8"></register>
+<register acronym="USBIEPBCTY_2" description="Input Endpoint_2: Y-byte count" id="USBIEPBCTY_2" offset=" 0x23D6" width="8"></register>
+<register acronym="USBIEPBBAY_2" description="Input Endpoint_2: Y-buffer base addr." id="USBIEPBBAY_2" offset=" 0x23D5" width="8"></register>
+<register acronym="USBIEPBCTX_2" description="Input Endpoint_2: X-byte count" id="USBIEPBCTX_2" offset=" 0x23D2" width="8"></register>
+<register acronym="USBIEPBBAX_2" description="Input Endpoint_2: X-buffer base addr." id="USBIEPBBAX_2" offset=" 0x23D1" width="8"></register>
+<register acronym="USBIEPCNF_2" description="Input Endpoint_2: Configuration" id="USBIEPCNF_2" offset=" 0x23D0" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBIEPSIZXY_1" description="Input Endpoint_1: X/Y-buffer size" id="USBIEPSIZXY_1" offset=" 0x23CF" width="8"></register>
+<register acronym="USBIEPBCTY_1" description="Input Endpoint_1: Y-byte count" id="USBIEPBCTY_1" offset=" 0x23CE" width="8"></register>
+<register acronym="USBIEPBBAY_1" description="Input Endpoint_1: Y-buffer base addr." id="USBIEPBBAY_1" offset=" 0x23CD" width="8"></register>
+<register acronym="USBIEPBCTX_1" description="Input Endpoint_1: X-byte count" id="USBIEPBCTX_1" offset=" 0x23CA" width="8"></register>
+<register acronym="USBIEPBBAX_1" description="Input Endpoint_1: X-buffer base addr." id="USBIEPBBAX_1" offset=" 0x23C9" width="8"></register>
+<register acronym="USBIEPCNF_1" description="Input Endpoint_1: Configuration" id="USBIEPCNF_1" offset=" 0x23C8" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_7" description="Output Endpoint_7: X/Y-buffer size" id="USBOEPSIZXY_7" offset=" 0x23BF" width="8"></register>
+<register acronym="USBOEPBCTY_7" description="Output Endpoint_7: Y-byte count" id="USBOEPBCTY_7" offset=" 0x23BE" width="8"></register>
+<register acronym="USBOEPBBAY_7" description="Output Endpoint_7: Y-buffer base addr." id="USBOEPBBAY_7" offset=" 0x23BD" width="8"></register>
+<register acronym="USBOEPBCTX_7" description="Output Endpoint_7: X-byte count" id="USBOEPBCTX_7" offset=" 0x23BA" width="8"></register>
+<register acronym="USBOEPBBAX_7" description="Output Endpoint_7: X-buffer base addr." id="USBOEPBBAX_7" offset=" 0x23B9" width="8"></register>
+<register acronym="USBOEPCNF_7" description="Output Endpoint_7: Configuration" id="USBOEPCNF_7" offset=" 0x23B8" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_6" description="Output Endpoint_6: X/Y-buffer size" id="USBOEPSIZXY_6" offset=" 0x23B7" width="8"></register>
+<register acronym="USBOEPBCTY_6" description="Output Endpoint_6: Y-byte count" id="USBOEPBCTY_6" offset=" 0x23B6" width="8"></register>
+<register acronym="USBOEPBBAY_6" description="Output Endpoint_6: Y-buffer base addr." id="USBOEPBBAY_6" offset=" 0x23B5" width="8"></register>
+<register acronym="USBOEPBCTX_6" description="Output Endpoint_6: X-byte count" id="USBOEPBCTX_6" offset=" 0x23B2" width="8"></register>
+<register acronym="USBOEPBBAX_6" description="Output Endpoint_6: X-buffer base addr." id="USBOEPBBAX_6" offset=" 0x23B1" width="8"></register>
+<register acronym="USBOEPCNF_6" description="Output Endpoint_6: Configuration" id="USBOEPCNF_6" offset=" 0x23B0" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_5" description="Output Endpoint_5: X/Y-buffer size" id="USBOEPSIZXY_5" offset=" 0x23AF" width="8"></register>
+<register acronym="USBOEPBCTY_5" description="Output Endpoint_5: Y-byte count" id="USBOEPBCTY_5" offset=" 0x23AE" width="8"></register>
+<register acronym="USBOEPBBAY_5" description="Output Endpoint_5: Y-buffer base addr." id="USBOEPBBAY_5" offset=" 0x23AD" width="8"></register>
+<register acronym="USBOEPBCTX_5" description="Output Endpoint_5: X-byte count" id="USBOEPBCTX_5" offset=" 0x23AA" width="8"></register>
+<register acronym="USBOEPBBAX_5" description="Output Endpoint_5: X-buffer base addr." id="USBOEPBBAX_5" offset=" 0x23A9" width="8"></register>
+<register acronym="USBOEPCNF_5" description="Output Endpoint_5: Configuration" id="USBOEPCNF_5" offset=" 0x23A8" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_4" description="Output Endpoint_4: X/Y-buffer size" id="USBOEPSIZXY_4" offset=" 0x23A7" width="8"></register>
+<register acronym="USBOEPBCTY_4" description="Output Endpoint_4: Y-byte count" id="USBOEPBCTY_4" offset=" 0x23A6" width="8"></register>
+<register acronym="USBOEPBBAY_4" description="Output Endpoint_4: Y-buffer base addr." id="USBOEPBBAY_4" offset=" 0x23A5" width="8"></register>
+<register acronym="USBOEPBCTX_4" description="Output Endpoint_4: X-byte count" id="USBOEPBCTX_4" offset=" 0x23A2" width="8"></register>
+<register acronym="USBOEPBBAX_4" description="Output Endpoint_4: X-buffer base addr." id="USBOEPBBAX_4" offset=" 0x23A1" width="8"></register>
+<register acronym="USBOEPCNF_4" description="Output Endpoint_4: Configuration" id="USBOEPCNF_4" offset=" 0x23A0" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_3" description="Output Endpoint_3: X/Y-buffer size" id="USBOEPSIZXY_3" offset=" 0x239F" width="8"></register>
+<register acronym="USBOEPBCTY_3" description="Output Endpoint_3: Y-byte count" id="USBOEPBCTY_3" offset=" 0x239E" width="8"></register>
+<register acronym="USBOEPBBAY_3" description="Output Endpoint_3: Y-buffer base addr." id="USBOEPBBAY_3" offset=" 0x239D" width="8"></register>
+<register acronym="USBOEPBCTX_3" description="Output Endpoint_3: X-byte count" id="USBOEPBCTX_3" offset=" 0x239A" width="8"></register>
+<register acronym="USBOEPBBAX_3" description="Output Endpoint_3: X-buffer base addr." id="USBOEPBBAX_3" offset=" 0x2399" width="8"></register>
+<register acronym="USBOEPCNF_3" description="Output Endpoint_3: Configuration" id="USBOEPCNF_3" offset=" 0x2398" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_2" description="Output Endpoint_2: X/Y-buffer size" id="USBOEPSIZXY_2" offset=" 0x2397" width="8"></register>
+<register acronym="USBOEPBCTY_2" description="Output Endpoint_2: Y-byte count" id="USBOEPBCTY_2" offset=" 0x2396" width="8"></register>
+<register acronym="USBOEPBBAY_2" description="Output Endpoint_2: Y-buffer base addr." id="USBOEPBBAY_2" offset=" 0x2395" width="8"></register>
+<register acronym="USBOEPBCTX_2" description="Output Endpoint_2: X-byte count" id="USBOEPBCTX_2" offset=" 0x2392" width="8"></register>
+<register acronym="USBOEPBBAX_2" description="Output Endpoint_2: X-buffer base addr." id="USBOEPBBAX_2" offset=" 0x2391" width="8"></register>
+<register acronym="USBOEPCNF_2" description="Output Endpoint_2: Configuration" id="USBOEPCNF_2" offset=" 0x2390" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBOEPSIZXY_1" description="Output Endpoint_1: X/Y-buffer size" id="USBOEPSIZXY_1" offset=" 0x238F" width="8"></register>
+<register acronym="USBOEPBCTY_1" description="Output Endpoint_1: Y-byte count" id="USBOEPBCTY_1" offset=" 0x238E" width="8"></register>
+<register acronym="USBOEPBBAY_1" description="Output Endpoint_1: Y-buffer base addr." id="USBOEPBBAY_1" offset=" 0x238D" width="8"></register>
+<register acronym="USBOEPBCTX_1" description="Output Endpoint_1: X-byte count" id="USBOEPBCTX_1" offset=" 0x238A" width="8"></register>
+<register acronym="USBOEPBBAX_1" description="Output Endpoint_1: X-buffer base addr." id="USBOEPBBAX_1" offset=" 0x2389" width="8"></register>
+<register acronym="USBOEPCNF_1" description="Output Endpoint_1: Configuration" id="USBOEPCNF_1" offset=" 0x2388" width="8">
+<bitfield begin="2" description="USB - Transaction Interrupt indication enable" end="2" id="USBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USB - Stall Condition" end="3" id="STALL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USB - Double Buffer Enable" end="4" id="DBUF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USB - Toggle Bit" end="5" id="TOGGLE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USB - UBM In-Endpoint Enable" end="7" id="UBME" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="USBSUBLK" description="Setup Packet Block" id="USBSUBLK" offset=" 0x2380" width="8"></register>
+<register acronym="USBIEP0BUF" description="Input endpoint_0 buffer" id="USBIEP0BUF" offset=" 0x2378" width="8"></register>
+<register acronym="USBOEP0BUF" description="Output endpoint_0 buffer" id="USBOEP0BUF" offset=" 0x2370" width="8"></register>
+<register acronym="USBTOPBUFF" description="Top of buffer space" id="USBTOPBUFF" offset=" 0x236F" width="8"></register>
+<register acronym="USBSTABUFF" description="Start of buffer space" id="USBSTABUFF" offset=" 0x1C00" width="8"></register>
+</module>
