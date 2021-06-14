@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.12
  * 
  * \date 2021/03/09
  * 
@@ -37,6 +37,7 @@
 #include <stdbool.h>
 
 #include <config/config.h>
+#include <system/system.h>
 #include <system/sys_log/sys_log.h>
 #include <system/clocks.h>
 #include <devices/leds/leds.h>
@@ -129,12 +130,6 @@ void vTaskStartup(void *pvParameters)
         error = true;
     }
 
-    /* Watchdog device initialization */
-    if (watchdog_init() != 0)
-    {
-        error = true;
-    }
-
     if (error)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_STARTUP_NAME, "Boot completed with ERRORS!");
@@ -151,7 +146,7 @@ void vTaskStartup(void *pvParameters)
     }
 
     /* Startup task status = Done */
-        xEventGroupSetBits(task_startup_status, TASK_STARTUP_DONE);
+    xEventGroupSetBits(task_startup_status, TASK_STARTUP_DONE);
 
     vTaskSuspend(xTaskStartupHandle);
 }
