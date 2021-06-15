@@ -53,7 +53,7 @@ int i2c_slave_init(i2c_port_t port)
         break;
     case I2C_PORT_1:
         base_address = USCI_B1_BASE;
-        GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P8, GPIO_PIN4 + GPIO_PIN5);
+        GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P8, GPIO_PIN5 + GPIO_PIN6);
         break;
     case I2C_PORT_2:
         base_address = USCI_B2_BASE;
