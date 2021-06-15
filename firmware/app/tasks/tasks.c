@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.14
+ * \version 0.1.15
  * 
  * \date 2021/04/09
  * 
@@ -42,6 +42,7 @@
 #include "startup.h"
 #include "heartbeat.h"
 #include "watchdog_reset.h"
+#include "system_reset.h"
 
 void create_tasks()
 {
@@ -74,6 +75,15 @@ void create_tasks()
         /* Error creating the heartbeat task */
     }
 #endif /* CONFIG_TASK_HEARTBEAT_ENABLED */
+
+#if CONFIG_TASK_SYSTEM_RESET_ENABLED == 1
+    xTaskCreate(vTaskSystemReset, TASK_SYSTEM_RESET_NAME, TASK_SYSTEM_RESET_STACK_SIZE, NULL, TASK_SYSTEM_RESET_PRIORITY, &xTaskSystemResetHandle);
+
+    if (xTaskSystemResetHandle == NULL)
+    {
+        /* Error creating the system reset task */
+    }
+#endif /* CONFIG_TASK_SYSTEM_RESET_ENABLED */
 
     /* Read sensors task */
 #if CONFIG_TASK_READ_SENSORS_ENABLED == 1

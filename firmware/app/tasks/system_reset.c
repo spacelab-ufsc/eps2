@@ -1,5 +1,5 @@
 /*
- * version.h
+ * system_reset.c
  * 
  * Copyright (C) 2020, SpaceLab.
  * 
@@ -21,29 +21,36 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief Periodic system reset task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.15
  * 
- * \date 2020/10/21
+ * \date 14/06/2021
  * 
- * \defgroup version Version control
+ * \addtogroup system_reset
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include <system/system.h>
+#include <system/sys_log/sys_log.h>
 
-#define FIRMWARE_VERSION            "0.1.15"
+#include "system_reset.h"
 
-#define FIRMWARE_STATUS             "Development"
+xTaskHandle xTaskSystemResetHandle;
 
-#define FIRMWARE_AUTHOR             "SpaceLab"
+void vTaskSystemReset(void *pvParameters)
+{
+    while(1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(TASK_SYSTEM_RESET_PERIOD_MS));
 
-#define FIRMWARE_AUTHOR_EMAIL       "spacelab.ufsc@gmail.com"
+        sys_log_print_event_from_module(SYS_LOG_INFO, TASK_SYSTEM_RESET_NAME, "Restarting the system...");
+        sys_log_new_line();
 
-#endif /* VERSION_H_ */
+        system_reset();
+    }
+}
 
-/** \} End of version group */
+/** \} End of system_reset group */
