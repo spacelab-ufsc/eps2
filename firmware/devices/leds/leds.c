@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.5
+ * \version 0.1.13
  * 
  * \date 2021/05/28
  * 
@@ -45,13 +45,15 @@ int leds_init()
 
     gpio_config_t config_sys = {.mode = GPIO_MODE_OUTPUT};
 
-    if (gpio_init(GPIO_PIN_36, config_sys) == 0)
+    if (gpio_init(GPIO_PIN_36, config_sys) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, LEDS_MODULE_NAME, "Error initializing the system LED!");
         sys_log_new_line();
 
         return -1;
     }
+
+    return 0;
 }
 
 int led_set(led_t l)
