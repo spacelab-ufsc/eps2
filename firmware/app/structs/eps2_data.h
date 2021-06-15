@@ -104,8 +104,8 @@ typedef struct
     /**
      *  EPS misc related data. 
      */
-    uint32_t firmware_version;                        /**< Hard-coded hardware version of EPS. */
-    uint8_t hardware_version;                         /**< Hard-coded hardware version of EPS. */
+    uint32_t firmware_version;                  /**< Hard-coded firmware version of EPS. */
+    uint8_t hardware_version;                   /**< Hard-coded hardware version of EPS. */
 
 } eps_data_t;
 
