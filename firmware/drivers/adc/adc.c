@@ -58,47 +58,142 @@ int adc_init(adc_port_t port, adc_config_t config)
 {
     if (adc_is_ready)
     {
-#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         sys_log_print_event_from_module(SYS_LOG_WARNING, ADC_MODULE_NAME, "ADC driver already initialized!");
         sys_log_new_line();
-#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return 0;
     }
 
-    /* Reset REFMSTR to hand over control to ADC12_A ref control registers */
-    REFCTL0 &= ~REFMSTR;
-
-    /* Vref+ = 3.0 V, Vref- = 0 V */
-    ADC12CTL0 = ADC12MSC | ADC12SHT0_15 | ADC12REFON | ADC12ON;
-
-    /* Enable sample timer */
-    ADC12CTL1 = ADC12SHP | ADC12CONSEQ_1;
-
     /* Set port 6 and 7 pins as inputs */
-    P6SEL |= (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
-    P7SEL |= (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7);
+    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P6, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7);
+    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P7, GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7);
 
-    ADC12MCTL0 = ADC12INCH_0 | ADC12SREF_2;              /* ADC1_I, ref = Vref+, channel = A0 */
-    ADC12MCTL1 = ADC12INCH_1 | ADC12SREF_2;              /* ADC2_I, ref = Vref+, channel = A1 */
-    ADC12MCTL2 = ADC12INCH_2 | ADC12SREF_2;              /* ADC3_I, ref = Vref+, channel = A2 */
-    ADC12MCTL3 = ADC12INCH_3 | ADC12SREF_2;              /* ADC4_I, ref = Vref+, channel = A3 */
-    ADC12MCTL4 = ADC12INCH_4 | ADC12SREF_2;              /* ADC5_I, ref = Vref+, channel = A4 */
-    ADC12MCTL5 = ADC12INCH_5 | ADC12SREF_2;              /* ADC6_I, ref = Vref+, channel = A5 */
-    ADC12MCTL6 = ADC12INCH_6 | ADC12SREF_2;              /* ADC7_I, ref = Vref+, channel = A6 */
-    ADC12MCTL7 = ADC12INCH_7 | ADC12SREF_2;              /* ADC_BUS, ref = Vref+, channel = A7 */
-    ADC12MCTL8 = ADC12INCH_8 | ADC12SREF_2;              /* ref = Vref+, channel = A8 */
-    ADC12MCTL9 = ADC12INCH_9 | ADC12SREF_2;              /* ref = Vref+, channel = A9 */
-    ADC12MCTL10 = ADC12INCH_10 | ADC12SREF_2;            /* ref = Vref+, channel = A10 */
-    ADC12MCTL11 = ADC12INCH_11 | ADC12SREF_2;            /* ref = Vref+, channel = A11 */
-    ADC12MCTL12 = ADC12INCH_12 | ADC12SREF_2;            /* ADC1_V, ref = Vref+, channel = A12 */
-    ADC12MCTL13 = ADC12INCH_13 | ADC12SREF_2;            /* ADC2_V, ref = Vref+, channel = A13 */
-    ADC12MCTL14 = ADC12INCH_14 | ADC12SREF_2;            /* ADC3_V, ref = Vref+, channel = A14 */
-    ADC12MCTL15 = ADC12INCH_15 | ADC12SREF_2 | ADC12EOS; /* ADC_TOTAL_V, ref = Vref+, channel = A15, End of Sequence flag */
+    ADC12_A_init(ADC12_A_BASE, ADC12_A_SAMPLEHOLDSOURCE_SC, ADC12_A_CLOCKSOURCE_ADC12OSC, ADC12_A_CLOCKDIVIDER_1);
 
-    /* Allow ~100us (at default UCS settings) for REF to settle */
-    adc_delay_ms(1);
+    ADC12_A_enable(ADC12_A_BASE);
 
-    ADC12CTL0 |= ADC12ENC;
+    ADC12_A_setupSamplingTimer(ADC12_A_BASE, ADC12_A_CYCLEHOLD_768_CYCLES, ADC12_A_CYCLEHOLD_4_CYCLES, ADC12_A_MULTIPLESAMPLESDISABLE);
+
+    ADC12_A_configureMemoryParam param = {0};
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_0;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A0;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_1;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A1;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_2;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A2;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_3;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A3;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_4;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A4;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_5;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A6;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_6;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A6;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_7;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A7;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_10;
+    param.inputSourceSelect                 = ADC12_A_INPUT_TEMPSENSOR;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_INT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_12;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A12;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_13;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A13;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_14;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A14;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_15;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A15;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    ADC12_A_clearInterrupt(ADC12_A_BASE, ADC12_A_IFG0 | ADC12_A_IFG1 | ADC12_A_IFG2 | ADC12_A_IFG3 | ADC12_A_IFG4 | ADC12_A_IFG5 | ADC12_A_IFG6 | ADC12_A_IFG7 | ADC12_A_IFG10 | ADC12_A_IFG12 | ADC12_A_IFG13 | ADC12_A_IFG14 | ADC12_A_IFG15);
+
+    uint8_t i = 0;
+    for(i=0; i<ADC_TIMOUT_MS; i++)
+    {
+        if (REF_ACTIVE != Ref_isRefGenBusy(REF_BASE))
+        {
+            break;
+        }
+
+        adc_delay_ms(1);
+    }
+
+    Ref_setReferenceVoltage(REF_BASE, REF_VREF1_5V);
+
+    Ref_enableReferenceVoltage(REF_BASE);
+
+    Ref_enableTempSensor(REF_BASE);
+
+    adc_delay_ms(10);
+
+    /* Temperature sensor calibration data */
+    TLV_getInfo(TLV_TAG_ADCCAL, 0, &adc_cal_bytes, (uint16_t **)&adc_cal_data);
+
+    adc_mref = ((float)(adc_cal_data->adc_ref15_85_temp - adc_cal_data->adc_ref15_30_temp)) / (85 - 30);
+    adc_nref = adc_cal_data->adc_ref15_85_temp - adc_mref * 85;
 
     adc_is_ready = true;
 
