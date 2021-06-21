@@ -202,131 +202,375 @@ int adc_init(adc_port_t port, adc_config_t config)
 
 int adc_read(adc_port_t port, uint16_t *val)
 {
-    while (ADC12CTL1 & ADC12BUSY)
-        ;
-
-    ADC12CTL0 &= ~ADC12SC;
-    ADC12CTL0 |= ADC12SC;
-
-    switch (port)
+    uint8_t i = 0;
+    for(i=0; i<ADC_TIMOUT_MS; i++)
     {
-    case ADC_PORT_0:
-        while (!(ADC12IFG & (1 << 0)))
-            ;
+        if (!ADC12_A_isBusy(ADC12_A_BASE))
+        {
+            break;
+        }
 
-        *val = ADC12MEM0;
-
-        break;
-    case ADC_PORT_1:
-        while (!(ADC12IFG & (1 << 1)))
-            ;
-
-        *val = ADC12MEM1;
-
-        break;
-    case ADC_PORT_2:
-        while (!(ADC12IFG & (1 << 2)))
-            ;
-
-        *val = ADC12MEM2;
-
-        break;
-    case ADC_PORT_3:
-        while (!(ADC12IFG & (1 << 3)))
-            ;
-
-        *val = ADC12MEM3;
-
-        break;
-    case ADC_PORT_4:
-        while (!(ADC12IFG & (1 << 4)))
-            ;
-
-        *val = ADC12MEM4;
-
-        break;
-    case ADC_PORT_5:
-        while (!(ADC12IFG & (1 << 5)))
-            ;
-
-        *val = ADC12MEM5;
-
-        break;
-    case ADC_PORT_6:
-        while (!(ADC12IFG & (1 << 6)))
-            ;
-
-        *val = ADC12MEM6;
-
-        break;
-    case ADC_PORT_7:
-        while (!(ADC12IFG & (1 << 7)))
-            ;
-
-        *val = ADC12MEM7;
-
-        break;
-    case ADC_PORT_8:
-        while (!(ADC12IFG & (1 << 8)))
-            ;
-
-        *val = ADC12MEM8;
-
-        break;
-    case ADC_PORT_9:
-        while (!(ADC12IFG & (1 << 9)))
-            ;
-
-        *val = ADC12MEM9;
-
-        break;
-    case ADC_PORT_10:
-        while (!(ADC12IFG & (1 << 10)))
-            ;
-
-        *val = ADC12MEM10;
-
-        break;
-    case ADC_PORT_11:
-        while (!(ADC12IFG & (1 << 11)))
-            ;
-
-        *val = ADC12MEM11;
-
-        break;
-    case ADC_PORT_12:
-        while (!(ADC12IFG & (1 << 12)))
-            ;
-
-        *val = ADC12MEM12;
-
-        break;
-    case ADC_PORT_13:
-        while (!(ADC12IFG & (1 << 13)))
-            ;
-
-        *val = ADC12MEM13;
-
-        break;
-    case ADC_PORT_14:
-        while (!(ADC12IFG & (1 << 14)))
-            ;
-
-        *val = ADC12MEM14;
-
-        break;
-    case ADC_PORT_15:
-        while (!(ADC12IFG & (1 << 15)))
-            ;
-
-        *val = ADC12MEM15;
-
-        break;
-    default:
-        *val = UINT16_MAX;
-
-        return -1;
+        adc_delay_ms(1);
     }
+
+    *val = 0xffff;
+    // Symbol 'UINT16_MAX' could not be resolved - Semantic Error
+    // *val = UINT16_MAX;
+
+    if (i == ADC_TIMOUT_MS)
+    {
+        return -1;  /* Timeout reached */
+    }
+
+    switch(port)
+    {
+        case ADC_PORT_0:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_0, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG0))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_0);
+
+            break;
+        case ADC_PORT_1:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_1, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG1))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_1);
+
+            break;
+        case ADC_PORT_2:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_2, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG2))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_2);
+
+            break;
+        case ADC_PORT_3:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_3, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG3))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_3);
+
+            break;
+        case ADC_PORT_4:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_4, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG4))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_4);
+
+            break;
+        case ADC_PORT_5:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_5, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG5))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_5);
+
+            break;
+        case ADC_PORT_6:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_6, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG6))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_6);
+
+            break;
+        case ADC_PORT_7:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_7, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG7))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_7);
+
+            break;
+        case ADC_PORT_8:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_8, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG8))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_8);
+
+            break;
+        case ADC_PORT_9:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_9, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG9))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_9);
+
+            break;
+        case ADC_PORT_10:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_10, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG10))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_10);
+
+            break;
+        case ADC_PORT_11:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_11, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG11))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_11);
+
+            break;
+        case ADC_PORT_12:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_12, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG12))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_12);
+
+            break;
+        case ADC_PORT_13:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_13, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG13))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_13);
+
+            break;
+        case ADC_PORT_14:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_14, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG14))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_14);
+
+            break;
+        case ADC_PORT_15:
+            ADC12_A_startConversion(ADC12_A_BASE, ADC12_A_MEMORY_15, ADC12_A_SINGLECHANNEL);
+
+            for(i=0; i<ADC_TIMOUT_MS; i++)
+            {
+                if (ADC12_A_getInterruptStatus(ADC12_A_BASE, ADC12_A_IFG15))
+                {
+                    break;
+                }
+
+                adc_delay_ms(1);
+            }
+
+            if (i == ADC_TIMOUT_MS)
+            {
+                return -1;  /* Timeout reached */
+            }
+
+            *val = ADC12_A_getResults(ADC12_A_BASE, ADC12_A_MEMORY_15);
+
+            break;
+        default:
+        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            sys_log_print_event_from_module(SYS_LOG_ERROR, ADC_MODULE_NAME, "Error reading the ADC port ");
+            sys_log_print_uint(port);
+            sys_log_print_msg("! Invalid port!");
+            sys_log_new_line();
+        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+            return -1;
+    }
+
+    ADC12_A_clearInterrupt(ADC12_A_BASE, ADC12_A_IFG0 | ADC12_A_IFG1 | ADC12_A_IFG2 | ADC12_A_IFG3 | ADC12_A_IFG4 | ADC12_A_IFG5 | ADC12_A_IFG6 | ADC12_A_IFG7 | ADC12_A_IFG10 | ADC12_A_IFG12 | ADC12_A_IFG13 | ADC12_A_IFG14 | ADC12_A_IFG15);
 
     return 0;
 }
