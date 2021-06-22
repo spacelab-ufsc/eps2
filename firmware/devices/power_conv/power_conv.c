@@ -25,9 +25,9 @@
  *
  * \authors Yan Castro de Azeredo <yan.ufsceel@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  *
- * \version 0.1.12
+ * \version 0.1.15
  *
- * \date 2021/06/10
+ * \date 2021/06/22
  *
  * \addtogroup power_conv
  * \{
@@ -42,8 +42,13 @@ int power_conv_init()
 	if (tps54x0_init((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN}) != 0
 	|| tps54x0_init((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN}) != 0)
 	{
-		return -1;
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, POWER_CONV_MODULE_NAME, "Error initializing Power Converter devices!");
+        sys_log_new_line();
+#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return -1;
 	}
+
 	return 0;
 }
 
