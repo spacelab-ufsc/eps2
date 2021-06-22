@@ -25,9 +25,9 @@
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.7
+ * \version 0.1.15
  * 
- * \date 2021/06/05
+ * \date 2021/06/22
  * 
  * \addtogroup i2c_slave
  * \{

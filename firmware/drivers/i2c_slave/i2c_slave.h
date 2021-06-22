@@ -25,9 +25,9 @@
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.7
+ * \version 0.1.15
  * 
- * \date 2021/06/05
+ * \date 2021/06/22
  * 
  * \defgroup i2c_slave I2C_Slave
  * \ingroup drivers
@@ -39,24 +39,11 @@
 
 #include <stdint.h>
 
+#include <drivers/i2c/i2c.h>
+
 #define I2C_SLAVE_MODULE_NAME "I2C_SLAVE"
 
 #define EPS_SLAVE_ADDRESS 0x36 /**< 7-bit slave address. */
-
-/**
- * \brief I2C ports.
- */
-typedef enum
-{
-    I2C_PORT_0 = 0, /**< I2C port 0. */
-    I2C_PORT_1,     /**< I2C port 1. */
-    I2C_PORT_2      /**< I2C port 2. */
-} i2c_port_e;
-
-/**
- * \brief I2C port.
- */
-typedef uint8_t i2c_port_t;
 
 /**
  * \brief I2C modes.
@@ -68,14 +55,9 @@ typedef enum
 } i2c_mode_e;
 
 /**
- * \brief I2C port.
+ * \brief I2C mode.
  */
 typedef uint8_t i2c_mode_t;
-
-/**
- * \brief I2C slave 7-bit address.
- */
-typedef uint8_t i2c_slave_adr_t;
 
 /**
  * @brief I2C interface configuration as slave.
