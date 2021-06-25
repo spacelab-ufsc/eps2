@@ -25,18 +25,30 @@
  *
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.1.1
  *
- * \date 22/04/2021
+ * \date 12/06/2021
  *
  * \addtogroup obdh
  * \{
  */
 
+#include <stdbool.h>
+
+#include <drivers/i2c_slave/i2c_slave.h>
+
+#include <system/sys_log/sys_log.h>
+
 #include "obdh.h"
+
+bool obdh_is_open = false;
 
 int obdh_init()
 {
+    if (obdh_is_open)
+        {
+            return 0;   /* EPS device already initialized */
+        }
     return -1;
 }
 
