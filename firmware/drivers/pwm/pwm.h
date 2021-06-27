@@ -24,8 +24,9 @@
  * \brief PWM driver definition.
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.4
+ * \version 0.1.16
  * 
  * \date 2021/05/15
  * 
@@ -38,19 +39,42 @@
 #define PWM_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define PWM_MODULE_NAME         "PWM"
+
+#define FORCE_SCOURCE_STOP		true
+#define KEEP_SCOURCE_RUNNING	false
+
+/**
+ * \brief PWM source.
+ */
+typedef enum
+{
+    TIMER_A0=0,       	/**< PWM source from timer A0 (reserved for system tick). */
+    TIMER_A1,         	/**< PWM source from timer A1. */
+    TIMER_A2,         	/**< PWM source from timer A2. */
+    TIMER_B0			/**< PWM source from timer B0. */
+} pwm_sources_e;
 
 /**
  * \brief PWM ports.
  */
 typedef enum
 {
-    PWM_PORT_1=0,       /**< PWM port 0. */
-    PWM_PORT_3,         /**< PWM port 1. */
-    PWM_PORT_4,         /**< PWM port 4. */
-    PWM_PORT_8,         /**< PWM port 8. */
+    PWM_PORT_0=0,       /**< PWM output port 0. */
+    PWM_PORT_1,         /**< PWM output port 1. */
+    PWM_PORT_2,         /**< PWM output port 2. */
+    PWM_PORT_3,         /**< PWM output port 3. */
+    PWM_PORT_4,         /**< PWM output port 4. */
+    PWM_PORT_5,         /**< PWM output port 4. */
+    PWM_PORT_6         	/**< PWM output port 4. */
 } pwm_ports_e;
+
+/**
+ * \brief PWM source type.
+ */
+typedef uint8_t pwm_source_t;
 
 /**
  * \brief PWM port type.
@@ -58,42 +82,119 @@ typedef enum
 typedef uint8_t pwm_port_t;
 
 /**
- * \brief PWM mode type.
- */
-typedef uint8_t pwm_mode_t;
-
-/**
  * \brief PWM configuration parameters.
  */
 typedef struct
 {
-uint16_t clock_source;
-uint16_t clock_source_divider;
-uint16_t period_ms;
-uint16_t compare_reg;
-uint16_t pwm_mode;
-uint16_t duty_cycle;
+	uint32_t period_us;		/**< Period in microseconds. */
+	uint8_t duty_cycle; 	/**< Duty cycle in % (from 0 to 100). */
 } pwm_config_t;
 
 /**
  * \brief PWM initialization.
+ *
+ * \param[in] source is the PWM timer source. It can be:
+ * \parblock
+ *      -\b TIMER_A0
+ *      -\b TIMER_A1
+ *      -\b TIMER_A2
+ *      -\b TIMER_B0
+ *      .
+ * \endparblock
+ *
+ * \param[in] port is the output PWM port. It can be:
+ * \parblock
+ *      -\b PWM_PORT_0
+ *      -\b PWM_PORT_1
+ *      -\b PWM_PORT_2
+ *      -\b PWM_PORT_3
+ *      -\b PWM_PORT_4
+ *      -\b PWM_PORT_5
+ *      -\b PWM_PORT_6
+ *      .
+ * \endparblock
+ *
+ * \param[in] config is a structure for the PWM period and duty cycle parameters.
+ *
+ * \return The status/error code.
  */
-int pwm_init();
+int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config);
 
 /**
- * \brief PWM duty cycle increase.
+ * \brief Updates PWM parameters.
+ *
+ * \param[in] source is the PWM timer source. It can be:
+ * \parblock
+ *      -\b TIMER_A0
+ *      -\b TIMER_A1
+ *      -\b TIMER_A2
+ *      -\b TIMER_B0
+ *      .
+ * \endparblock
+ *
+ * \param[in] port is the output PWM port. It can be:
+ * \parblock
+ *      -\b PWM_PORT_0
+ *      -\b PWM_PORT_1
+ *      -\b PWM_PORT_2
+ *      -\b PWM_PORT_3
+ *      -\b PWM_PORT_4
+ *      -\b PWM_PORT_5
+ *      -\b PWM_PORT_6
+ *      .
+ * \endparblock
+ *
+ * \param[in] config is a structure for the PWM period and duty cycle parameters.
+ *
+ * \return The status/error code.
  */
-int pwm_increase();
+int pwm_update(pwm_source_t source, pwm_port_t port, pwm_config_t config);
 
 /**
- * \brief PWM duty cycle decrease.
+ * \brief Stops a PWM port and keep its output at a low state.
+ *
+ * \param[in] source is the PWM timer source. It can be:
+ * \parblock
+ *      -\b TIMER_A0
+ *      -\b TIMER_A1
+ *      -\b TIMER_A2
+ *      -\b TIMER_B0
+ *      .
+ * \endparblock
+ *
+ * \param[in] port is the output PWM port. It can be:
+ * \parblock
+ *      -\b PWM_PORT_0
+ *      -\b PWM_PORT_1
+ *      -\b PWM_PORT_2
+ *      -\b PWM_PORT_3
+ *      -\b PWM_PORT_4
+ *      -\b PWM_PORT_5
+ *      -\b PWM_PORT_6
+ *      .
+ * \endparblock
+ *
+ * \param[in] config is a structure for the PWM period and duty cycle parameters.
+ *
+ * \return The status/error code.
  */
-int pwm_decrease();
+int pwm_stop(pwm_source_t source, pwm_port_t port, pwm_config_t config);
 
 /**
- * \brief Disbales PWM.
+ * \brief Disbales the PWM source (a clean disable can be achieved with pwm_stop() to set used ports to zero).
+ *
+ * \param[in] source is the PWM timer source. It can be:
+ * \parblock
+ *      -\b TIMER_A0
+ *      -\b TIMER_A1
+ *      -\b TIMER_A2
+ *      -\b TIMER_B0
+ *      .
+ * \endparblock
+ *
+ * \return The status/error code.
  */
-int pwm_disable();
+int pwm_disable(pwm_source_t source);
 
 #endif /* PWM_H_ */
 
