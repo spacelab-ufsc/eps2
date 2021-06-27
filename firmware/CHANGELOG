@@ -1,5 +1,17 @@
 ===========================================
 
+v0.2 - 2021/06/27
+
+- CCS project creation
+- Importing useful code from the OBDH 2.0 repository
+- Initial version of the DS2775G+ driver
+- Initial version of the ADS1248 driver
+- Initial structire of the I2C slave driver
+- First working version
+- General fixes and improvements
+
+===========================================
+
 v0.1 - 2020/09/14
 
 - First release
