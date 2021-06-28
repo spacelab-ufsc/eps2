@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<connection id="TI MSP430 USB1" XML_version="1.2" class="185076">
+
+	<connectionType Type="MSP430"/>	
+	<property Type="hiddenfield" Value="101" id="portAddr1"/>
+	<property Type="hiddenfield" Value="No" id="dataFileRequired"/>
+
+</connection>

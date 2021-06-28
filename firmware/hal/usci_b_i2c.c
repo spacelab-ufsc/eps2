@@ -86,7 +86,7 @@ void USCI_B_I2C_initSlave (uint16_t baseAddress,
     //Clear USCI master mode
     HWREG8(baseAddress + OFS_UCBxCTL0) &= ~UCMST;
 
-    //Confiugre I2C as Slave and Synchronous mode
+    //Configure I2C as Slave and Synchronous mode
     HWREG8(baseAddress + OFS_UCBxCTL0) = UCMODE_3 + UCSYNC;
 
     //Set up the slave address.

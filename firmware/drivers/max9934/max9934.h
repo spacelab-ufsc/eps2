@@ -23,11 +23,11 @@
 /**
  * \brief MAX9934 driver definition.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
- * \date 2020/10/24
+ * \date 2021/01/17
  * 
  * \defgroup max9934 MAX9934
  * \ingroup drivers
@@ -40,15 +40,17 @@
 #include <drivers/gpio/gpio.h>
 #include <drivers/adc/adc.h>
 
+#define MAX9934_MODULE_NAME "MAX9934"
+
 /**
  * \brief MAX9934 configuration parameters.
  */
 typedef struct
 {
-    gpio_pin_t cs_pin;          /**< CS pin. */
-    gpio_config_t cs_config;    /**< Configuration parameters of the CS pin. */
-    adc_port_t adc_port;        /**< ADC port. */
-    adc_config_t adc_config;    /**< Configuration parameters of the ADC port. */
+    gpio_pin_t cs_pin;       /**< CS pin. */
+    gpio_config_t cs_config; /**< Configuration parameters of the CS pin. */
+    adc_port_t adc_port;     /**< ADC port. */
+    adc_config_t adc_config; /**< Configuration parameters of the ADC port. */
 } max9934_config_t;
 
 /**
@@ -58,7 +60,7 @@ typedef struct
  *
  * \return The status/error code.
  */
-int max9934_init(max9934_config_t *config);
+int max9934_init(max9934_config_t config);
 
 /**
  * \brief Enables a given MAX9934 device.
@@ -69,7 +71,7 @@ int max9934_init(max9934_config_t *config);
  *
  * \return The status/error code.
  */
-int max9934_enable(max9934_config_t *config);
+int max9934_enable(max9934_config_t config);
 
 /**
  * \brief Disables a given MAX9934 device.
@@ -80,7 +82,7 @@ int max9934_enable(max9934_config_t *config);
  *
  * \return The status/error code.
  */
-int max9934_disable(max9934_config_t *config);
+int max9934_disable(max9934_config_t config);
 
 /**
  * \brief Reads the raw current value of the sensor.
@@ -91,7 +93,7 @@ int max9934_disable(max9934_config_t *config);
  *
  * \return The status/error code.
  */
-int max9934_read(max9934_config_t *config, uint16_t *raw_val);
+int max9934_read(max9934_config_t config, uint16_t *raw_val);
 
 #endif /* MAX9934_H_ */
 

@@ -1,7 +1,7 @@
 /*
  * version.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.2.0
  * 
  * \date 2020/10/21
  * 
@@ -36,7 +36,7 @@
 #ifndef VERSION_H_
 #define VERSION_H_
 
-#define FIRMWARE_VERSION            "0.1.2"
+#define FIRMWARE_VERSION            "0.2.0"
 
 #define FIRMWARE_STATUS             "Development"
 

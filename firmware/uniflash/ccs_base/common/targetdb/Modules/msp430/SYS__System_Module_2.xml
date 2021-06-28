@@ -1,0 +1,29 @@
+<module HW_revision="" XML_version="1" description="SYS  System Module" id="SYS  System Module">
+<register acronym="SYSCTL" description="System control" id="SYSCTL" offset=" 0x0180" width="16">
+<bitfield begin="0" description="SYS - RAM based interrupt vectors" end="0" id="SYSRIVECT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="SYS - PMM access protect" end="2" id="SYSPMMPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SYS - TCK/RST indication detected" end="4" id="SYSBSLIND" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="SYS - Dedicated JTAG pins enabled" end="5" id="SYSJTAGPIN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SYSBSLC" description="Boot strap configuration area" id="SYSBSLC" offset=" 0x0182" width="16">
+<bitfield begin="0" description="SYS - BSL Protection Size 0" end="0" id="SYSBSLSIZE0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="SYS - BSL Protection Size 1" end="1" id="SYSBSLSIZE1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="SYS - RAM assigned to BSL" end="2" id="SYSBSLR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="SYS - BSL Memory disabled" end="14" id="SYSBSLOFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="SYS - BSL Memory protection enabled" end="15" id="SYSBSLPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SYSJMBC" description="JTAG mailbox control" id="SYSJMBC" offset=" 0x0186" width="16">
+<bitfield begin="0" description="SYS - Incoming JTAG Mailbox 0 Flag" end="0" id="JMBIN0FG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="SYS - Incoming JTAG Mailbox 1 Flag" end="1" id="JMBIN1FG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="SYS - Outgoing JTAG Mailbox 0 Flag" end="2" id="JMBOUT0FG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="SYS - Outgoing JTAG Mailbox 1 Flag" end="3" id="JMBOUT1FG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="SYS - JMB 16/32 Bit Mode" end="4" id="JMBMODE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="SYS - Incoming JTAG Mailbox 0 Flag auto-clear disalbe" end="6" id="JMBCLR0OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="SYS - Incoming JTAG Mailbox 1 Flag auto-clear disalbe" end="7" id="JMBCLR1OFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SYSJMBI0" description="JTAG mailbox input 0" id="SYSJMBI0" offset=" 0x0188" width="16"></register>
+<register acronym="SYSJMBI1" description="JTAG mailbox input 1" id="SYSJMBI1" offset=" 0x018A" width="16"></register>
+<register acronym="SYSJMBO0" description="JTAG mailbox output 0" id="SYSJMBO0" offset=" 0x018C" width="16"></register>
+<register acronym="SYSJMBO1" description="JTAG mailbox output 1" id="SYSJMBO1" offset=" 0x018E" width="16"></register>
+<register acronym="SYSBERRIV" description="Bus Error vector generator" id="SYSBERRIV" offset=" 0x0198" width="16"></register>
+<register acronym="SYSUNIV" description="User NMI vector generator" id="SYSUNIV" offset=" 0x019A" width="16"></register>
+<register acronym="SYSSNIV" description="System NMI vector generator" id="SYSSNIV" offset=" 0x019C" width="16"></register>
+<register acronym="SYSRSTIV" description="Reset vector generator" id="SYSRSTIV" offset=" 0x019E" width="16"></register>
+</module>

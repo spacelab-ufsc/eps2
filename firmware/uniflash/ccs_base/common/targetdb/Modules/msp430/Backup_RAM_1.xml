@@ -1,0 +1,6 @@
+<module HW_revision="" XML_version="1" description="Backup RAM" id="Backup RAM">
+<register acronym="BAKMEM0" description="Battery Backup Memory 0" id="BAKMEM0" offset=" 0x0480" width="16"></register>
+<register acronym="BAKMEM1" description="Battery Backup Memory 1" id="BAKMEM1" offset=" 0x0482" width="16"></register>
+<register acronym="BAKMEM2" description="Battery Backup Memory 2" id="BAKMEM2" offset=" 0x0484" width="16"></register>
+<register acronym="BAKMEM3" description="Battery Backup Memory 3" id="BAKMEM3" offset=" 0x0486" width="16"></register>
+</module>

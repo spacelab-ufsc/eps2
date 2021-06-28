@@ -1,7 +1,7 @@
 /*
  * spi.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -24,10 +24,11 @@
  * \brief SPI driver implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.1
  * 
- * \date 2020/10/24
+ * \date 2021/02/17
  * 
  * \addtogroup spi
  * \{
@@ -68,6 +69,10 @@ int spi_setup_gpio(spi_port_t port)
             break;
         case SPI_PORT_1:
             GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P8, GPIO_PIN1 + GPIO_PIN2 + GPIO_PIN3);
+            
+            /* Set the only CS pin the EPS2 uses to high */
+            gpio_set_state(GPIO_PIN_59, true);
+            
             break;
         case SPI_PORT_2:
             GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P9, GPIO_PIN1 + GPIO_PIN2 + GPIO_PIN3);
@@ -114,7 +119,17 @@ int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active)
 
             break;
         case SPI_PORT_1:
-            /* TODO: Define the CS pins pf port 1 */
+             switch(cs)
+            {
+                case SPI_CS_0:      gpio_set_state(GPIO_PIN_59, !active);      break;
+                default:
+                #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Error selecting a slave from port 1: Invalid CS pin!");
+                    sys_log_new_line();
+                #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+                    return -1;  /* Invalid CS pin */
+            }
+            
             break;
         case SPI_PORT_2:
             /* TODO: Define the CS pins pf port 2 */

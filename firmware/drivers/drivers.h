@@ -42,9 +42,11 @@
 #include "flash/flash.h"
 #include "gpio/gpio.h"
 #include "i2c/i2c.h"
+#include "max9934/max9934.h"
 #include "onewire/onewire.h"
 #include "spi/spi.h"
 #include "tca4311a/tca4311a.h"
+#include "tps54540/tps54540.h"
 #include "uart/uart.h"
 #include "wdt/wdt.h"
 

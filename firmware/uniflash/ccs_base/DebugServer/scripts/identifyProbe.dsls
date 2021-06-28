@@ -1,0 +1,9 @@
+{"command":"defineOption", "data":["config,c", "Configuration (ccxml) file.", true]}
+{"command":"defineDefaultOption", "data":["log,g", "Enable detailed logging to the specified file.", true]}
+{"command":"defineDefaultOption", "data":["conId,i", "Connection ID", 0]}
+{"command":"defineValuelessOption", "data":["help,h", "Print this message."]}
+{"command":"defineUsage", "data":["dslite identifyProbe --config=file.ccxml [options]"]}
+{"command":"parseCommandLine"}
+{"command":"getVersion", "log":["DSLite version %s\n", "version"]}
+{"command":"logging.configure", "data":[true, "@log@"]}
+{"command":"blinkLEDs","data":["@config@",@conId@]}

@@ -1,7 +1,7 @@
 /*
  * startup.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -24,10 +24,11 @@
  * \brief Startup task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.12
  * 
- * \date 2020/10/25
+ * \date 2021/03/09
  * 
  * \addtogroup startup
  * \{
@@ -36,13 +37,23 @@
 #include <stdbool.h>
 
 #include <config/config.h>
+#include <system/system.h>
 #include <system/sys_log/sys_log.h>
 #include <system/clocks.h>
 #include <devices/leds/leds.h>
+#include <devices/bat_manager/bat_manager.h>
+#include <devices/current_sensor/current_sensor.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
+#include <devices/temp_sensor/temp_sensor.h>
+#include <devices/media/media.h>
+#include <devices/mppt/mppt.h>
+#include <devices/watchdog/watchdog.h>
 
 #include "startup.h"
 
 xTaskHandle xTaskStartupHandle;
+
+EventGroupHandle_t task_startup_status;
 
 void vTaskStartup(void *pvParameters)
 {
@@ -77,20 +88,65 @@ void vTaskStartup(void *pvParameters)
     sys_log_print_hex(system_get_reset_cause());
     sys_log_new_line();
 
+    /* Battery manager device initialization */
+    if (bat_manager_init() != 0)
+    {
+        error = true;
+    }
+    
+    /* LEDs device initialization */
+    if (leds_init() != 0)
+    {
+        error = true;
+    }
+
+    /* Current sensor device initialization */
+    if (current_sensor_init() != 0)
+    {
+        error = true;
+    }
+
+    /* Voltage sensor device initialization */
+    if (voltage_sensor_init() != 0)
+    {
+        error = true;
+    }
+
+    /* Temperature sensor device initialization */
+    if (temp_sensor_init() != 0)
+    {
+        error = true;
+    }
+
+    /* Internal non-volatile memory initialization */
+    if (media_init() != 0)
+    {
+        error = true;
+    }
+
+    /* MPPT device initialization */
+    if (mppt_init() != 0)
+    {
+        error = true;
+    }
+
     if (error)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_STARTUP_NAME, "Boot completed with ERRORS!");
         sys_log_new_line();
 
-        led_set(LED_FAULT);
+        /* led_set(LED_FAULT); No led fault on EPS2 version 0.1*/
     }
     else
     {
         sys_log_print_event_from_module(SYS_LOG_INFO, TASK_STARTUP_NAME, "Boot completed with SUCCESS!");
         sys_log_new_line();
 
-        led_clear(LED_FAULT);
+        /* led_clear(LED_FAULT); No led fault on EPS2 version 0.1 */
     }
+
+    /* Startup task status = Done */
+    xEventGroupSetBits(task_startup_status, TASK_STARTUP_DONE);
 
     vTaskSuspend(xTaskStartupHandle);
 }

@@ -23,36 +23,51 @@
 /**
  * \brief MAX9934 driver implementation.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.2
  * 
- * \date 2020/10/24
+ * \date 2021/01/17
  * 
  * \addtogroup max9934
  * \{
  */
 
 #include "max9934.h"
+#include "system/sys_log/sys_log.h"
 
-int max9934_init(max9934_config_t *config)
+int max9934_init(max9934_config_t config)
 {
-    return -1;
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    sys_log_print_event_from_module(SYS_LOG_INFO, MAX9934_MODULE_NAME, "Initializing the MAX9934...");
+    sys_log_new_line();
+#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+
+    if (adc_init(config.adc_port, config.adc_config) != 0)
+    {
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, MAX9934_MODULE_NAME, "Error initializing MAX9934!");
+        sys_log_new_line();
+#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return -1;
+    }
+
+    return 0;
 }
 
-int max9934_enable(max9934_config_t *config)
+int max9934_enable(max9934_config_t config)
 {
-    return -1;
+    return gpio_set_state(config.cs_pin, GPIO_STATE_HIGH);
 }
 
-int max9934_disable(max9934_config_t *config)
+int max9934_disable(max9934_config_t config)
 {
-    return -1;
+    return gpio_set_state(config.cs_pin, GPIO_STATE_LOW);
 }
 
-int max9934_read(max9934_config_t *config, uint16_t *raw_val)
+int max9934_read(max9934_config_t config, uint16_t *raw_val)
 {
-    return -1;
+    return adc_read(config.adc_port, raw_val);
 }
 
 /** \} End of max9934 group */
