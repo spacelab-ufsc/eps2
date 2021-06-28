@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<register_ids id="MSP430" XML_version="2.0">
+	<register_id id="PC" value="0" address="0" page="0" />
+	<register_id id="SP" value="1" address="0" page="0" />
+	<register_id id="FP" value="1" address="0" page="0" />
+	<register_id id="SR" value="2" address="0" page="0" />
+	<register_id id="R3" value="3" address="0" page="0" />
+	<register_id id="R4" value="4" address="0" page="0" />
+	<register_id id="R5" value="5" address="0" page="0" />
+	<register_id id="R6" value="6" address="0" page="0" />
+	<register_id id="R7" value="7" address="0" page="0" />
+	<register_id id="R8" value="8" address="0" page="0" />
+	<register_id id="R9" value="9" address="0" page="0" />
+	<register_id id="R10" value="10" address="0" page="0" />
+	<register_id id="R11" value="11" address="0" page="0" />
+	<register_id id="R12" value="12" address="0" page="0" />
+	<register_id id="R13" value="13" address="0" page="0" />
+	<register_id id="R14" value="14" address="0" page="0" />
+	<register_id id="R15" value="15" address="0" page="0" />
+	<register_id id="CLK" value="16" address="0" page="0" />
+</register_ids>

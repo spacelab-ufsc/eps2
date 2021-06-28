@@ -1,7 +1,7 @@
 /*
  * adc_delay.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.12
  * 
- * \date 2020/10/24
+ * \date 2021/06/11
  * 
  * \defgroup adc_delay Delay
  * \ingroup adc

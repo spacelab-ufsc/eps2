@@ -1,0 +1,146 @@
+%
+% tests.tex
+%
+% Copyright (C) 2021 by SpaceLab.
+%
+% EPS 2.0 Documentation
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 4.0
+% International License. To view a copy of this license,
+% visit http://creativecommons.org/licenses/by-sa/4.0/.
+%
+
+%
+% \brief Test procedures chapter.
+%
+% \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+%
+% \institution Universidade Federal de Santa Catarina (UFSC)
+%
+% \version 0.1.0
+%
+% \date 2021/04/24
+%
+
+\chapter{Test Procedures} \label{ch:test-procedures}
+
+This chapter follows a standard worflow created by SpaceLab for testing its CubeSat modules, these procedures are first referenced in FloripaSat-2 documentation chapter 7\cite{floripasat2-doc}.
+The \autoref{tab:test-procedures-table} resumes the workflow and each one of the tests types, substests and code identification. 
+Some subtests can be considered to not be aplicable for the platform, the order in which they are done doesn't need to follow the numeration and other have generic titles that don't require too much explanation to be accomplished.     
+The particularities of the EPS2 module for each test type are described in the following sections.
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{l|p{105mm}|p{5mm}}
+        \toprule[1.5pt]
+        Test type     & Subtests & ID \\
+        \midrule
+        A. Visual Inspection     & 1. Packaging quality assessment \newline 2. Board manufacturing and assembly quality \newline 3. 3D model comparison \newline 4. Layers marker \newline 5. Labels (schematics comparison) \newline 6. High resolution photos for documentation & TA1 \newline TA2 \newline TA3 \newline TA4 \newline TA5 \newline TA6 \\
+        \midrule
+        B. Mechanical Inspection     & 1. Board dimensions and mounting holes positioning \newline 2. Board weight measurement & TB1 \newline TB2 \\
+        \midrule
+        C. Integration Inspection    & 1. Check connectors pinout against the documentation \newline 2. Check connectors positioning & TC1 \newline TC2 \\
+        \midrule
+        D. Electrical Inspection     & 1. Solder shorts \newline 2. Missing components \newline 3. Lifted pins \newline 4. Poor soldering \newline 5. Swapped components \newline 6. Components partnumber & TD1 \newline TD2 \newline TD3 \newline TD4 \newline TD5 \newline TD6 \\
+        \midrule
+        E. Electrical Testing       & 1. Continuity test \newline 2. Power up procedures \newline 3. Average input power consumption measurement \newline 4. Average output power source measurement \newline 5. Power tracks temperature \newline 6. Simple signal integrity & TE1 \newline TE2 \newline TE3 \newline TE4 \newline TE5 \newline TE6 \\
+        \midrule
+        F. Functional Testing     & 1. Simple test code run \newline 2. System code run \newline 3. System hardware self-test flags check \newline 4. Monitor LEDs behavior \newline 5. Monitor the debug serial port logs & TF1 \newline TF2 \newline TF3 \newline TF4 \newline TF5 \\
+         \midrule
+        G. Module Testing     & 1. Review operation behavior \newline 2. Review features and requirements fulfillment \newline 3. Review communication buses configuration and protocol \newline 4. Review data packages, power buses and control signals \newline 5. Review edge cases and evaluate damage \newline 6. Run remote automated code tests \newline 7. Run system test codes in the board \newline 8. Run latest stable code version and review behavior & TG1 \newline TG2 \newline TG3 \newline TG4 \newline TG5 \newline TG6 \newline TG7 \newline TG8  \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{Test workflow table.}
+    \label{tab:test-procedures-table}
+\end{table}
+
+\section{Visual Inspection}
+
+The first steps when receiving a manufactured (and in some cases assembled) PCB is to inspect visually to see if its according to its expected appereance. 
+The EPS2 has more than 300 electrical components, so it is advised for this test to not take a long time to accomplish, the major noted problens should be spoted and reported. 
+The \autoref{tab:visual-inspection} resumes the visual inspection steps. 
+
+\begin{table}[!htb]
+\centering
+\caption{Visual Inspection test steps.}
+\label{tab:visual-inspection}
+\begin{tabular}{m{3cm} m{12cm} m{3cm}}
+\toprule
+Test type & Visual Inspection \\
+\midrule
+\midrule
+Substests code & Description \\ 
+\midrule
+TA1 & Verify the received package, review the packaging protection used and if it maintained the physical and/or aesthetically integrity of the board. \\
+\midrule
+TA2 & See if the overall quality specified on the manufacturing process is according with its IPC class, the engineering model should be Class 2 while the flight model Class 3. \\
+\midrule
+TA3 & Inspect the top and bottom side of the PCB and verify if all the components are well soldered, if their polarity and labels are correct according to schematics and 3D model. Figure \ref{fig:pcb-top} and \ref{fig:pcb-bottom} for reference. If the board is not yet assembled detail the inconsistencies found during the assembly process. \\
+\midrule
+TA4 & Take a high resolution centred photo of the both sides of the board for documentation, avoid reflections if possible. \\
+\midrule
+\midrule
+Success Criteria & The board needs to appear functional regarding its visual electrical specs. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section {Mechanical Inspection}
+
+These tests verify if the board has the nominal mechanical specs prior to integration. 
+The \autoref{tab:mechanical-inspection} resumes the mechanical inspection steps. 
+
+\begin{table}[!htb]
+\centering
+\caption{Mechanical Inspection test steps.}
+\label{tab:mechanical-inspection}
+\begin{tabular}{m{3cm} m{12cm} m{3cm}}
+\toprule
+Test type & Mechanical Inspection \\
+\midrule
+\midrule
+Substests code & Description \\ 
+\midrule
+TB1 & Verify board dimensions outline and mounting holes size and positioning with a measurement tool or through the board's draftsman sheet 1:1 scale print. \\
+\midrule
+TB2 & Measure board weight with an electronic balance with at least 0.1 grams of precision. \\
+\midrule
+\midrule
+Success Criteria & The fabricated board needs to follow the mechanical specification of the draftsman document. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Integration Inspection}
+
+These tests verify the integration accordance prior to the module's full assembly on the CubeSat.
+The \autoref{tab:integration-inspection} resumes the integration inspection steps. 
+
+\begin{table}[!htb]
+\centering
+\caption{Integration Inspection test steps.}
+\label{tab:integration-inspection}
+\begin{tabular}{m{3cm} m{12cm} m{3cm}}
+\toprule
+Test type & Integration Inspection \\
+\midrule
+\midrule
+Substests code & Description \\ 
+\midrule
+TC1 & Check external connectors pinout labels againts the documentation present on \autoref{external-connectors}. \\
+\midrule
+TC2 & Check connectors positioning and possible integration issues from connected cables with the mounted BAT4C board and solar panels. \\
+\midrule
+\midrule
+Success Criteria & The labels and placement of the external connectors must be according to the documentation and don't present any possible integration issues. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section {Electrical Inspection}
+
+\section {Electrical Testing}
+
+\section {Functional Testing}
+ 
+\section {Module Testing}

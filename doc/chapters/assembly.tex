@@ -1,7 +1,7 @@
 %
 % assembly.tex
 %
-% Copyright (C) 2020 by SpaceLab.
+% Copyright (C) 2021 by SpaceLab.
 %
 % EPS 2.0 Documentation
 %
@@ -14,14 +14,64 @@
 % \brief Assembly instructions chapter.
 %
 % \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+% \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
-% \version 0.1.0
+% \version 0.1.1
 %
-% \date 2020/11/05
+% \date 2021/03/07
 %
 
 \chapter{Board Assembly} \label{ch:assembly}
 
-.
+\section{PCB Fabrication}
+
+The board is not designed to be fabricated without a solder mask, but if possible a Class 3 fabrication is recommended. A list with the fabrication specifics can be seen in \autoref{tab:pcb-fabrication} and layer stack up can be seen in \autoref{tab:pcb-stackup}.
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{L{0.5\columnwidth}L{0.5\columnwidth}}
+        \toprule[1.5pt]
+        \textbf{Parameter}      & \textbf{Value} \\
+        \midrule
+        Size                    & 86.26 $\times$ 92.13 mm \\
+        Layers                  & 4 \\
+        Thickness               & 1.6 mm \\
+        Minimum Hole Size       & 0.254 mm \\
+        Maximum Hole Size       & 3.2 mm \\
+        Silkscreen Color        & White \\
+        Surface Finish          & HASL with lead \\
+        Via Process             & Tenting vias \\
+        Material                & FR-4: TG150 \\
+        Minimum Track/Spacing   & 6/6 mil (0.1524/0.1524 mm)\\
+        Solder Mask Color       & Green \\
+        Gold Fingers            & No \\
+        Impedance Control       & No \\   
+        Fiducials               & 3 on top and bottom layers already placed \\
+        Finish Copper           & Outer and inner copper 1 oz (35 $\mu$m Cu) \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{PCB fabrication specifics.}
+    \label{tab:pcb-fabrication}
+\end{table}
+
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{L{0.3\columnwidth}L{0.3\columnwidth}L{0.3\columnwidth}}
+        \toprule[1.5pt]
+        \textbf{Layer}  & \textbf{Material}   & \textbf{Thickness mm} \\
+        \midrule
+        Top Layer       & Cooper              & 0.035                   \\
+        Dielectric 1    & Prepreg             & 0.12                    \\
+        Signal Layer 1  & Cooper              & 0.035                   \\
+        Core            & FR-4: TG-150         & 1.2                     \\
+        Signal Layer 2  & Cooper              & 0.035                   \\
+        Dielectric 2    & Prepreg             & 0.12                    \\
+        Bottom Layer    & Cooper              & 0.035                   \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{PCB stack up.}
+    \label{tab:pcb-stackup}
+\end{table}

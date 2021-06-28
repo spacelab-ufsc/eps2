@@ -1,0 +1,601 @@
+<module HW_revision="" XML_version="1" description="ADC12" id="ADC12">
+<register acronym="ADC12CTL0" description="ADC12+ Control 0" id="ADC12CTL0" offset=" 0x0700" width="16">
+<bitfield begin="0" description="ADC12 Start Conversion" end="0" id="ADC12SC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="ADC12 Enable Conversion" end="1" id="ADC12ENC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="ADC12 Timer Overflow interrupt enable" end="2" id="ADC12TOVIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="ADC12 Overflow interrupt enable" end="3" id="ADC12OVIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="ADC12 On/enable" end="4" id="ADC12ON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="ADC12 Reference on" end="5" id="ADC12REFON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="ADC12 Ref 0:1.5V / 1:2.5V" end="6" id="ADC12REF2_5V" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="ADC12 Multiple SampleConversion" end="7" id="ADC12MSC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="ADC12 Sample Hold 0 Select Bit: 0" end="8" id="ADC12SHT0" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 0" id="ADC12SHT0_0" token="ADC12SHT0_0" value="0"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 1" id="ADC12SHT0_1" token="ADC12SHT0_1" value="1"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 2" id="ADC12SHT0_2" token="ADC12SHT0_2" value="2"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 3" id="ADC12SHT0_3" token="ADC12SHT0_3" value="3"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 4" id="ADC12SHT0_4" token="ADC12SHT0_4" value="4"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 5" id="ADC12SHT0_5" token="ADC12SHT0_5" value="5"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 6" id="ADC12SHT0_6" token="ADC12SHT0_6" value="6"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 7" id="ADC12SHT0_7" token="ADC12SHT0_7" value="7"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 8" id="ADC12SHT0_8" token="ADC12SHT0_8" value="8"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 9" id="ADC12SHT0_9" token="ADC12SHT0_9" value="9"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 10" id="ADC12SHT0_10" token="ADC12SHT0_10" value="10"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 11" id="ADC12SHT0_11" token="ADC12SHT0_11" value="11"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 12" id="ADC12SHT0_12" token="ADC12SHT0_12" value="12"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 13" id="ADC12SHT0_13" token="ADC12SHT0_13" value="13"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 14" id="ADC12SHT0_14" token="ADC12SHT0_14" value="14"></bitenum>
+<bitenum description="ADC12 Sample Hold 0 Select Bit: 15" id="ADC12SHT0_15" token="ADC12SHT0_15" value="15"></bitenum></bitfield>
+<bitfield begin="15" description="ADC12 Sample Hold 1 Select Bit: 0" end="12" id="ADC12SHT1" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 0" id="ADC12SHT1_0" token="ADC12SHT1_0" value="0"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 1" id="ADC12SHT1_1" token="ADC12SHT1_1" value="1"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 2" id="ADC12SHT1_2" token="ADC12SHT1_2" value="2"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 3" id="ADC12SHT1_3" token="ADC12SHT1_3" value="3"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 4" id="ADC12SHT1_4" token="ADC12SHT1_4" value="4"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 5" id="ADC12SHT1_5" token="ADC12SHT1_5" value="5"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 6" id="ADC12SHT1_6" token="ADC12SHT1_6" value="6"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 7" id="ADC12SHT1_7" token="ADC12SHT1_7" value="7"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 8" id="ADC12SHT1_8" token="ADC12SHT1_8" value="8"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 9" id="ADC12SHT1_9" token="ADC12SHT1_9" value="9"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 10" id="ADC12SHT1_10" token="ADC12SHT1_10" value="10"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 11" id="ADC12SHT1_11" token="ADC12SHT1_11" value="11"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 12" id="ADC12SHT1_12" token="ADC12SHT1_12" value="12"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 13" id="ADC12SHT1_13" token="ADC12SHT1_13" value="13"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 14" id="ADC12SHT1_14" token="ADC12SHT1_14" value="14"></bitenum>
+<bitenum description="ADC12 Sample Hold 1 Select Bit: 15" id="ADC12SHT1_15" token="ADC12SHT1_15" value="15"></bitenum></bitfield></register>
+<register acronym="ADC12CTL1" description="ADC12+ Control 1" id="ADC12CTL1" offset=" 0x0702" width="16">
+<bitfield begin="0" description="ADC12 Busy" end="0" id="ADC12BUSY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="ADC12 Conversion Sequence Select Bit: 0" end="1" id="ADC12CONSEQ" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="ADC12 Conversion Sequence Select: 0" id="ADC12CONSEQ_0" token="ADC12CONSEQ_0" value="0"></bitenum>
+<bitenum description="ADC12 Conversion Sequence Select: 1" id="ADC12CONSEQ_1" token="ADC12CONSEQ_1" value="1"></bitenum>
+<bitenum description="ADC12 Conversion Sequence Select: 2" id="ADC12CONSEQ_2" token="ADC12CONSEQ_2" value="2"></bitenum>
+<bitenum description="ADC12 Conversion Sequence Select: 3" id="ADC12CONSEQ_3" token="ADC12CONSEQ_3" value="3"></bitenum></bitfield>
+<bitfield begin="4" description="ADC12 Clock Source Select Bit: 0" end="3" id="ADC12SSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="ADC12 Clock Source Select: 0" id="ADC12SSEL_0" token="ADC12SSEL_0" value="0"></bitenum>
+<bitenum description="ADC12 Clock Source Select: 1" id="ADC12SSEL_1" token="ADC12SSEL_1" value="1"></bitenum>
+<bitenum description="ADC12 Clock Source Select: 2" id="ADC12SSEL_2" token="ADC12SSEL_2" value="2"></bitenum>
+<bitenum description="ADC12 Clock Source Select: 3" id="ADC12SSEL_3" token="ADC12SSEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 Clock Divider Select Bit: 0" end="5" id="ADC12DIV" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Clock Divider Select: 0" id="ADC12DIV_0" token="ADC12DIV_0" value="0"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 1" id="ADC12DIV_1" token="ADC12DIV_1" value="1"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 2" id="ADC12DIV_2" token="ADC12DIV_2" value="2"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 3" id="ADC12DIV_3" token="ADC12DIV_3" value="3"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 4" id="ADC12DIV_4" token="ADC12DIV_4" value="4"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 5" id="ADC12DIV_5" token="ADC12DIV_5" value="5"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 6" id="ADC12DIV_6" token="ADC12DIV_6" value="6"></bitenum>
+<bitenum description="ADC12 Clock Divider Select: 7" id="ADC12DIV_7" token="ADC12DIV_7" value="7"></bitenum></bitfield>
+<bitfield begin="8" description="ADC12 Invert Sample Hold Signal" end="8" id="ADC12ISSH" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="ADC12 Sample/Hold Pulse Mode" end="9" id="ADC12SHP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="ADC12 Sample/Hold Source Bit: 0" end="10" id="ADC12SHS" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="ADC12 Sample/Hold Source: 0" id="ADC12SHS_0" token="ADC12SHS_0" value="0"></bitenum>
+<bitenum description="ADC12 Sample/Hold Source: 1" id="ADC12SHS_1" token="ADC12SHS_1" value="1"></bitenum>
+<bitenum description="ADC12 Sample/Hold Source: 2" id="ADC12SHS_2" token="ADC12SHS_2" value="2"></bitenum>
+<bitenum description="ADC12 Sample/Hold Source: 3" id="ADC12SHS_3" token="ADC12SHS_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="ADC12 Conversion Start Address Bit: 0" end="12" id="ADC12CSTARTADD" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Conversion Start Address: 0" id="ADC12CSTARTADD_0" token="ADC12CSTARTADD_0" value="0"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 1" id="ADC12CSTARTADD_1" token="ADC12CSTARTADD_1" value="1"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 2" id="ADC12CSTARTADD_2" token="ADC12CSTARTADD_2" value="2"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 3" id="ADC12CSTARTADD_3" token="ADC12CSTARTADD_3" value="3"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 4" id="ADC12CSTARTADD_4" token="ADC12CSTARTADD_4" value="4"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 5" id="ADC12CSTARTADD_5" token="ADC12CSTARTADD_5" value="5"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 6" id="ADC12CSTARTADD_6" token="ADC12CSTARTADD_6" value="6"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 7" id="ADC12CSTARTADD_7" token="ADC12CSTARTADD_7" value="7"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 8" id="ADC12CSTARTADD_8" token="ADC12CSTARTADD_8" value="8"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 9" id="ADC12CSTARTADD_9" token="ADC12CSTARTADD_9" value="9"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 10" id="ADC12CSTARTADD_10" token="ADC12CSTARTADD_10" value="10"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 11" id="ADC12CSTARTADD_11" token="ADC12CSTARTADD_11" value="11"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 12" id="ADC12CSTARTADD_12" token="ADC12CSTARTADD_12" value="12"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 13" id="ADC12CSTARTADD_13" token="ADC12CSTARTADD_13" value="13"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 14" id="ADC12CSTARTADD_14" token="ADC12CSTARTADD_14" value="14"></bitenum>
+<bitenum description="ADC12 Conversion Start Address: 15" id="ADC12CSTARTADD_15" token="ADC12CSTARTADD_15" value="15"></bitenum></bitfield></register>
+<register acronym="ADC12CTL2" description="ADC12+ Control 2" id="ADC12CTL2" offset=" 0x0704" width="16">
+<bitfield begin="0" description="ADC12+ Reference Burst" end="0" id="ADC12REFBURST" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="ADC12+ Reference Out" end="1" id="ADC12REFOUT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="ADC12+ Sampling Rate" end="2" id="ADC12SR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="ADC12+ Data Format" end="3" id="ADC12DF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="ADC12+ Resolution Bit: 0" end="4" id="ADC12RES" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="ADC12+ Resolution : 8 Bit" id="ADC12RES_0" token="ADC12RES_0" value="0"></bitenum>
+<bitenum description="ADC12+ Resolution : 10 Bit" id="ADC12RES_1" token="ADC12RES_1" value="1"></bitenum>
+<bitenum description="ADC12+ Resolution : 12 Bit" id="ADC12RES_2" token="ADC12RES_2" value="2"></bitenum>
+<bitenum description="ADC12+ Resolution : reserved" id="ADC12RES_3" token="ADC12RES_3" value="3"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12+ Temperature Sensor Off" end="7" id="ADC12TCOFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="ADC12+ predivider 0:/1   1:/4" end="8" id="ADC12PDIV" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12IFG" description="ADC12+ Interrupt Flag" id="ADC12IFG" offset=" 0x070A" width="16">
+<bitfield begin="0" description="ADC12 Memory 0 Interrupt Flag" end="0" id="ADC12IFG0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="ADC12 Memory 1 Interrupt Flag" end="1" id="ADC12IFG1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="ADC12 Memory 2 Interrupt Flag" end="2" id="ADC12IFG2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="ADC12 Memory 3 Interrupt Flag" end="3" id="ADC12IFG3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="ADC12 Memory 4 Interrupt Flag" end="4" id="ADC12IFG4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="ADC12 Memory 5 Interrupt Flag" end="5" id="ADC12IFG5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="ADC12 Memory 6 Interrupt Flag" end="6" id="ADC12IFG6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="ADC12 Memory 7 Interrupt Flag" end="7" id="ADC12IFG7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="ADC12 Memory 8 Interrupt Flag" end="8" id="ADC12IFG8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="ADC12 Memory 9 Interrupt Flag" end="9" id="ADC12IFG9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="ADC12 Memory 10 Interrupt Flag" end="10" id="ADC12IFG10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="ADC12 Memory 11 Interrupt Flag" end="11" id="ADC12IFG11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="ADC12 Memory 12 Interrupt Flag" end="12" id="ADC12IFG12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="ADC12 Memory 13 Interrupt Flag" end="13" id="ADC12IFG13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="ADC12 Memory 14 Interrupt Flag" end="14" id="ADC12IFG14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="ADC12 Memory 15 Interrupt Flag" end="15" id="ADC12IFG15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12IE" description="ADC12+ Interrupt Enable" id="ADC12IE" offset=" 0x070C" width="16">
+<bitfield begin="0" description="ADC12 Memory 0 Interrupt Enable" end="0" id="ADC12IE0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="ADC12 Memory 1 Interrupt Enable" end="1" id="ADC12IE1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="ADC12 Memory 2 Interrupt Enable" end="2" id="ADC12IE2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="ADC12 Memory 3 Interrupt Enable" end="3" id="ADC12IE3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="ADC12 Memory 4 Interrupt Enable" end="4" id="ADC12IE4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="ADC12 Memory 5 Interrupt Enable" end="5" id="ADC12IE5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="ADC12 Memory 6 Interrupt Enable" end="6" id="ADC12IE6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="ADC12 Memory 7 Interrupt Enable" end="7" id="ADC12IE7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="ADC12 Memory 8 Interrupt Enable" end="8" id="ADC12IE8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="ADC12 Memory 9 Interrupt Enable" end="9" id="ADC12IE9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="ADC12 Memory 10 Interrupt Enable" end="10" id="ADC12IE10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="ADC12 Memory 11 Interrupt Enable" end="11" id="ADC12IE11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="ADC12 Memory 12 Interrupt Enable" end="12" id="ADC12IE12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="ADC12 Memory 13 Interrupt Enable" end="13" id="ADC12IE13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="ADC12 Memory 14 Interrupt Enable" end="14" id="ADC12IE14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="ADC12 Memory 15 Interrupt Enable" end="15" id="ADC12IE15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12IV" description="ADC12+ Interrupt Vector Word" id="ADC12IV" offset=" 0x070E" width="16"></register>
+<register acronym="ADC12MEM0" description="ADC12 Conversion Memory 0" id="ADC12MEM0" offset=" 0x0720" width="16"></register>
+<register acronym="ADC12MEM1" description="ADC12 Conversion Memory 1" id="ADC12MEM1" offset=" 0x0722" width="16"></register>
+<register acronym="ADC12MEM2" description="ADC12 Conversion Memory 2" id="ADC12MEM2" offset=" 0x0724" width="16"></register>
+<register acronym="ADC12MEM3" description="ADC12 Conversion Memory 3" id="ADC12MEM3" offset=" 0x0726" width="16"></register>
+<register acronym="ADC12MEM4" description="ADC12 Conversion Memory 4" id="ADC12MEM4" offset=" 0x0728" width="16"></register>
+<register acronym="ADC12MEM5" description="ADC12 Conversion Memory 5" id="ADC12MEM5" offset=" 0x072A" width="16"></register>
+<register acronym="ADC12MEM6" description="ADC12 Conversion Memory 6" id="ADC12MEM6" offset=" 0x072C" width="16"></register>
+<register acronym="ADC12MEM7" description="ADC12 Conversion Memory 7" id="ADC12MEM7" offset=" 0x072E" width="16"></register>
+<register acronym="ADC12MEM8" description="ADC12 Conversion Memory 8" id="ADC12MEM8" offset=" 0x0730" width="16"></register>
+<register acronym="ADC12MEM9" description="ADC12 Conversion Memory 9" id="ADC12MEM9" offset=" 0x0732" width="16"></register>
+<register acronym="ADC12MEM10" description="ADC12 Conversion Memory 10" id="ADC12MEM10" offset=" 0x0734" width="16"></register>
+<register acronym="ADC12MEM11" description="ADC12 Conversion Memory 11" id="ADC12MEM11" offset=" 0x0736" width="16"></register>
+<register acronym="ADC12MEM12" description="ADC12 Conversion Memory 12" id="ADC12MEM12" offset=" 0x0738" width="16"></register>
+<register acronym="ADC12MEM13" description="ADC12 Conversion Memory 13" id="ADC12MEM13" offset=" 0x073A" width="16"></register>
+<register acronym="ADC12MEM14" description="ADC12 Conversion Memory 14" id="ADC12MEM14" offset=" 0x073C" width="16"></register>
+<register acronym="ADC12MEM15" description="ADC12 Conversion Memory 15" id="ADC12MEM15" offset=" 0x073E" width="16"></register>
+<register acronym="ADC12MCTL0" description="ADC12 Memory Control 0" id="ADC12MCTL0" offset=" 0x0710" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL1" description="ADC12 Memory Control 1" id="ADC12MCTL1" offset=" 0x0711" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL2" description="ADC12 Memory Control 2" id="ADC12MCTL2" offset=" 0x0712" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL3" description="ADC12 Memory Control 3" id="ADC12MCTL3" offset=" 0x0713" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL4" description="ADC12 Memory Control 4" id="ADC12MCTL4" offset=" 0x0714" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL5" description="ADC12 Memory Control 5" id="ADC12MCTL5" offset=" 0x0715" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL6" description="ADC12 Memory Control 6" id="ADC12MCTL6" offset=" 0x0716" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL7" description="ADC12 Memory Control 7" id="ADC12MCTL7" offset=" 0x0717" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL8" description="ADC12 Memory Control 8" id="ADC12MCTL8" offset=" 0x0718" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL9" description="ADC12 Memory Control 9" id="ADC12MCTL9" offset=" 0x0719" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL10" description="ADC12 Memory Control 10" id="ADC12MCTL10" offset=" 0x071A" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL11" description="ADC12 Memory Control 11" id="ADC12MCTL11" offset=" 0x071B" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL12" description="ADC12 Memory Control 12" id="ADC12MCTL12" offset=" 0x071C" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL13" description="ADC12 Memory Control 13" id="ADC12MCTL13" offset=" 0x071D" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL14" description="ADC12 Memory Control 14" id="ADC12MCTL14" offset=" 0x071E" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="ADC12MCTL15" description="ADC12 Memory Control 15" id="ADC12MCTL15" offset=" 0x071F" width="8">
+<bitfield begin="3" description="ADC12 Input Channel Select Bit 0" end="0" id="ADC12INCH" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="ADC12 Input Channel 0" id="ADC12INCH_0" token="ADC12INCH_0" value="0"></bitenum>
+<bitenum description="ADC12 Input Channel 1" id="ADC12INCH_1" token="ADC12INCH_1" value="1"></bitenum>
+<bitenum description="ADC12 Input Channel 2" id="ADC12INCH_2" token="ADC12INCH_2" value="2"></bitenum>
+<bitenum description="ADC12 Input Channel 3" id="ADC12INCH_3" token="ADC12INCH_3" value="3"></bitenum>
+<bitenum description="ADC12 Input Channel 4" id="ADC12INCH_4" token="ADC12INCH_4" value="4"></bitenum>
+<bitenum description="ADC12 Input Channel 5" id="ADC12INCH_5" token="ADC12INCH_5" value="5"></bitenum>
+<bitenum description="ADC12 Input Channel 6" id="ADC12INCH_6" token="ADC12INCH_6" value="6"></bitenum>
+<bitenum description="ADC12 Input Channel 7" id="ADC12INCH_7" token="ADC12INCH_7" value="7"></bitenum>
+<bitenum description="ADC12 Input Channel 8" id="ADC12INCH_8" token="ADC12INCH_8" value="8"></bitenum>
+<bitenum description="ADC12 Input Channel 9" id="ADC12INCH_9" token="ADC12INCH_9" value="9"></bitenum>
+<bitenum description="ADC12 Input Channel 10" id="ADC12INCH_10" token="ADC12INCH_10" value="10"></bitenum>
+<bitenum description="ADC12 Input Channel 11" id="ADC12INCH_11" token="ADC12INCH_11" value="11"></bitenum>
+<bitenum description="ADC12 Input Channel 12" id="ADC12INCH_12" token="ADC12INCH_12" value="12"></bitenum>
+<bitenum description="ADC12 Input Channel 13" id="ADC12INCH_13" token="ADC12INCH_13" value="13"></bitenum>
+<bitenum description="ADC12 Input Channel 14" id="ADC12INCH_14" token="ADC12INCH_14" value="14"></bitenum>
+<bitenum description="ADC12 Input Channel 15" id="ADC12INCH_15" token="ADC12INCH_15" value="15"></bitenum></bitfield>
+<bitfield begin="6" description="ADC12 Select Reference Bit 0" end="4" id="ADC12SREF" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="ADC12 Select Reference 0" id="ADC12SREF_0" token="ADC12SREF_0" value="0"></bitenum>
+<bitenum description="ADC12 Select Reference 1" id="ADC12SREF_1" token="ADC12SREF_1" value="1"></bitenum>
+<bitenum description="ADC12 Select Reference 2" id="ADC12SREF_2" token="ADC12SREF_2" value="2"></bitenum>
+<bitenum description="ADC12 Select Reference 3" id="ADC12SREF_3" token="ADC12SREF_3" value="3"></bitenum>
+<bitenum description="ADC12 Select Reference 4" id="ADC12SREF_4" token="ADC12SREF_4" value="4"></bitenum>
+<bitenum description="ADC12 Select Reference 5" id="ADC12SREF_5" token="ADC12SREF_5" value="5"></bitenum>
+<bitenum description="ADC12 Select Reference 6" id="ADC12SREF_6" token="ADC12SREF_6" value="6"></bitenum>
+<bitenum description="ADC12 Select Reference 7" id="ADC12SREF_7" token="ADC12SREF_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="ADC12 End of Sequence" end="7" id="ADC12EOS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

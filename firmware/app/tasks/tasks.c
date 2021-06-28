@@ -1,7 +1,7 @@
 /*
  * tasks.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.15
  * 
- * \date 2020/10/25
+ * \date 2021/04/09
  * 
  * \addtogroup tasks
  * \{
@@ -40,6 +40,9 @@
 
 #include "tasks.h"
 #include "startup.h"
+#include "heartbeat.h"
+#include "watchdog_reset.h"
+#include "system_reset.h"
 
 void create_tasks()
 {
@@ -53,12 +56,56 @@ void create_tasks()
     }
 #endif /* CONFIG_TASK_STARTUP_ENABLED */
 
-    return;
+    /* Watchdog reset task */
+#if CONFIG_TASK_WATCHDOG_RESET_ENABLED == 1
+    xTaskCreate(vTaskWatchdogReset, TASK_WATCHDOG_RESET_NAME, TASK_WATCHDOG_RESET_STACK_SIZE, NULL, TASK_WATCHDOG_RESET_PRIORITY, &xTaskWatchdogResetHandle);
+
+    if (xTaskWatchdogResetHandle == NULL)
+    {
+        /* Error creating the watchdog reset task */
+    }
+#endif /* CONFIG_TASK_WATCHDOG_RESET_ENABLED */
+
+    /* Heartbeat task */
+#if CONFIG_TASK_HEARTBEAT_ENABLED == 1
+    xTaskCreate(vTaskHeartbeat, TASK_HEARTBEAT_NAME, TASK_HEARTBEAT_STACK_SIZE, NULL, TASK_HEARTBEAT_PRIORITY, &xTaskHeartbeatHandle);
+
+    if (xTaskHeartbeatHandle == NULL)
+    {
+        /* Error creating the heartbeat task */
+    }
+#endif /* CONFIG_TASK_HEARTBEAT_ENABLED */
+
+#if CONFIG_TASK_SYSTEM_RESET_ENABLED == 1
+    xTaskCreate(vTaskSystemReset, TASK_SYSTEM_RESET_NAME, TASK_SYSTEM_RESET_STACK_SIZE, NULL, TASK_SYSTEM_RESET_PRIORITY, &xTaskSystemResetHandle);
+
+    if (xTaskSystemResetHandle == NULL)
+    {
+        /* Error creating the system reset task */
+    }
+#endif /* CONFIG_TASK_SYSTEM_RESET_ENABLED */
+
+    /* Read sensors task */
+#if CONFIG_TASK_READ_SENSORS_ENABLED == 1
+    xTaskCreate(vTaskReadSensors, TASK_READ_SENSORS_NAME, TASK_READ_SENSORS_STACK_SIZE, NULL, TASK_READ_SENSORS_PRIORITY, &xTaskReadSensorsHandle);
+
+    if (xTaskReadSensorsHandle == NULL)
+    {
+        /* Error creating the read sensors task */
+    }
+#endif /* CONFIG_TASK_READ_SENSORS_ENABLED */
+
+    create_event_groups();
 }
 
 void create_event_groups()
 {
-    return;
+    task_startup_status = xEventGroupCreate();
+
+    if (task_startup_status == NULL)
+    {
+        /* Error creating the startup status event group */
+    }
 }
 
 /** \} End of tasks group */

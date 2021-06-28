@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.1.11
  * 
- * \date 2020/10/21
+ * \date 2021/06/09
  * 
  * \defgroup devices Devices
  * \{
@@ -38,6 +38,15 @@
 
 #include <devices/leds/leds.h>
 #include <devices/watchdog/watchdog.h>
+#include <devices/current_sensor/current_sensor.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
+#include <devices/media/media.h>
+#include <devices/mppt/mppt.h>
+#include <devices/bat_manager/bat_manager.h>
+#include <devices/temp_sensor/temp_sensor.h>
+#include <devices/obdh/obdh.h>
+#include <devices/ttc/ttc.h>
+#include <devices/power_conv/power_conv.h>
 
 #endif /* DEVICES_H_ */
 

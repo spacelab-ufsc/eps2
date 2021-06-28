@@ -1,0 +1,16 @@
+<module HW_revision="" XML_version="1" description="MPY 32  Multiplier  32 Bit Mode" id="MPY 32  Multiplier  32 Bit Mode">
+<register acronym="MPY32L" description="32-bit operand 1 - multiply - low word" id="MPY32L" offset=" 0x04D0" width="16"></register>
+<register acronym="MPY32H" description="32-bit operand 1 - multiply - high word" id="MPY32H" offset=" 0x04D2" width="16"></register>
+<register acronym="MPYS32L" description="32-bit operand 1 - signed multiply - low word" id="MPYS32L" offset=" 0x04D4" width="16"></register>
+<register acronym="MPYS32H" description="32-bit operand 1 - signed multiply - high word" id="MPYS32H" offset=" 0x04D6" width="16"></register>
+<register acronym="MAC32L" description="32-bit operand 1 - multiply accumulate - low word" id="MAC32L" offset=" 0x04D8" width="16"></register>
+<register acronym="MAC32H" description="32-bit operand 1 - multiply accumulate - high word" id="MAC32H" offset=" 0x04DA" width="16"></register>
+<register acronym="MACS32L" description="32-bit operand 1 - signed multiply accumulate - low word" id="MACS32L" offset=" 0x04DC" width="16"></register>
+<register acronym="MACS32H" description="32-bit operand 1 - signed multiply accumulate - high word" id="MACS32H" offset=" 0x04DE" width="16"></register>
+<register acronym="OP2L" description="32-bit operand 2 - low word" id="OP2L" offset=" 0x04E0" width="16"></register>
+<register acronym="OP2H" description="32-bit operand 2 - high word" id="OP2H" offset=" 0x04E2" width="16"></register>
+<register acronym="RES0" description="32x32-bit result 0 - least significant word" id="RES0" offset=" 0x04E4" width="16"></register>
+<register acronym="RES1" description="32x32-bit result 1" id="RES1" offset=" 0x04E6" width="16"></register>
+<register acronym="RES2" description="32x32-bit result 2" id="RES2" offset=" 0x04E8" width="16"></register>
+<register acronym="RES3" description="32x32-bit result 3 - most significant word" id="RES3" offset=" 0x04EA" width="16"></register>
+</module>

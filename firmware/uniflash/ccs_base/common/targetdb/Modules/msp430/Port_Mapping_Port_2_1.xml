@@ -1,0 +1,142 @@
+<module HW_revision="" XML_version="1" description="Port Mapping Port 2" id="Port Mapping Port 2">
+<register acronym="P2MAP01" description="Port P2.0/1 mapping register" id="P2MAP01" offset=" 0x01D0" width="16">
+<bitfield begin="0" description="PMAP01_0" end="0" id="PMAP01_0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP01_1" end="1" id="PMAP01_1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP01_2" end="2" id="PMAP01_2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP01_3" end="3" id="PMAP01_3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP01_4" end="4" id="PMAP01_4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP01_5" end="5" id="PMAP01_5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP01_6" end="6" id="PMAP01_6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP01_7" end="7" id="PMAP01_7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="PMAP01_8" end="8" id="PMAP01_8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="PMAP01_9" end="9" id="PMAP01_9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="PMAP01_10" end="10" id="PMAP01_10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="PMAP01_11" end="11" id="PMAP01_11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="PMAP01_12" end="12" id="PMAP01_12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="PMAP01_13" end="13" id="PMAP01_13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="PMAP01_14" end="14" id="PMAP01_14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="PMAP01_15" end="15" id="PMAP01_15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP23" description="Port P2.2/3 mapping register" id="P2MAP23" offset=" 0x01D2" width="16">
+<bitfield begin="0" description="PMAP23_0" end="0" id="PMAP23_0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP23_1" end="1" id="PMAP23_1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP23_2" end="2" id="PMAP23_2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP23_3" end="3" id="PMAP23_3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP23_4" end="4" id="PMAP23_4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP23_5" end="5" id="PMAP23_5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP23_6" end="6" id="PMAP23_6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP23_7" end="7" id="PMAP23_7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="PMAP23_8" end="8" id="PMAP23_8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="PMAP23_9" end="9" id="PMAP23_9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="PMAP23_10" end="10" id="PMAP23_10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="PMAP23_11" end="11" id="PMAP23_11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="PMAP23_12" end="12" id="PMAP23_12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="PMAP23_13" end="13" id="PMAP23_13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="PMAP23_14" end="14" id="PMAP23_14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="PMAP23_15" end="15" id="PMAP23_15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP45" description="Port P2.4/5 mapping register" id="P2MAP45" offset=" 0x01D4" width="16">
+<bitfield begin="0" description="PMAP45_0" end="0" id="PMAP45_0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP45_1" end="1" id="PMAP45_1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP45_2" end="2" id="PMAP45_2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP45_3" end="3" id="PMAP45_3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP45_4" end="4" id="PMAP45_4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP45_5" end="5" id="PMAP45_5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP45_6" end="6" id="PMAP45_6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP45_7" end="7" id="PMAP45_7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="PMAP45_8" end="8" id="PMAP45_8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="PMAP45_9" end="9" id="PMAP45_9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="PMAP45_10" end="10" id="PMAP45_10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="PMAP45_11" end="11" id="PMAP45_11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="PMAP45_12" end="12" id="PMAP45_12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="PMAP45_13" end="13" id="PMAP45_13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="PMAP45_14" end="14" id="PMAP45_14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="PMAP45_15" end="15" id="PMAP45_15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP67" description="Port P2.6/7 mapping register" id="P2MAP67" offset=" 0x01D6" width="16">
+<bitfield begin="0" description="PMAP67_0" end="0" id="PMAP67_0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP67_1" end="1" id="PMAP67_1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP67_2" end="2" id="PMAP67_2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP67_3" end="3" id="PMAP67_3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP67_4" end="4" id="PMAP67_4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP67_5" end="5" id="PMAP67_5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP67_6" end="6" id="PMAP67_6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP67_7" end="7" id="PMAP67_7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="PMAP67_8" end="8" id="PMAP67_8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="PMAP67_9" end="9" id="PMAP67_9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="PMAP67_10" end="10" id="PMAP67_10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="PMAP67_11" end="11" id="PMAP67_11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="PMAP67_12" end="12" id="PMAP67_12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="PMAP67_13" end="13" id="PMAP67_13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="PMAP67_14" end="14" id="PMAP67_14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="PMAP67_15" end="15" id="PMAP67_15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP0" description="Port P2.0 mapping register" id="P2MAP0" offset=" 0x01D0" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP1" description="Port P2.1 mapping register" id="P2MAP1" offset=" 0x01D1" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP2" description="Port P2.2 mapping register" id="P2MAP2" offset=" 0x01D2" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP3" description="Port P2.3 mapping register" id="P2MAP3" offset=" 0x01D3" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP4" description="Port P2.4 mapping register" id="P2MAP4" offset=" 0x01D4" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP5" description="Port P2.5 mapping register" id="P2MAP5" offset=" 0x01D5" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP6" description="Port P2.6 mapping register" id="P2MAP6" offset=" 0x01D6" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P2MAP7" description="Port P2.7 mapping register" id="P2MAP7" offset=" 0x01D7" width="8">
+<bitfield begin="0" description="PMAP0" end="0" id="PMAP0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PMAP1" end="1" id="PMAP1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PMAP2" end="2" id="PMAP2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PMAP3" end="3" id="PMAP3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="PMAP4" end="4" id="PMAP4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="PMAP5" end="5" id="PMAP5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="PMAP6" end="6" id="PMAP6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="PMAP7" end="7" id="PMAP7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

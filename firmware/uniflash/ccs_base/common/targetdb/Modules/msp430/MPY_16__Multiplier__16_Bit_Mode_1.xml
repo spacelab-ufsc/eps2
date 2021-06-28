@@ -1,0 +1,23 @@
+<module HW_revision="" XML_version="1" description="MPY 16  Multiplier  16 Bit Mode" id="MPY 16  Multiplier  16 Bit Mode">
+<register acronym="MPY" description="Multiply Unsigned/Operand 1" id="MPY" offset=" 0x04C0" width="16"></register>
+<register acronym="MPYS" description="Multiply Signed/Operand 1" id="MPYS" offset=" 0x04C2" width="16"></register>
+<register acronym="MAC" description="Multiply Unsigned and Accumulate/Operand 1" id="MAC" offset=" 0x04C4" width="16"></register>
+<register acronym="MACS" description="Multiply Signed and Accumulate/Operand 1" id="MACS" offset=" 0x04C6" width="16"></register>
+<register acronym="OP2" description="Operand 2" id="OP2" offset=" 0x04C8" width="16"></register>
+<register acronym="RESLO" description="Result Low Word" id="RESLO" offset=" 0x04CA" width="16"></register>
+<register acronym="RESHI" description="Result High Word" id="RESHI" offset=" 0x04CC" width="16"></register>
+<register acronym="SUMEXT" description="Sum Extend" id="SUMEXT" offset=" 0x04CE" width="16"></register>
+<register acronym="MPY32CTL0" description="MPY32 Control Register 0" id="MPY32CTL0" offset=" 0x04EC" width="16">
+<bitfield begin="0" description="Carry of the multiplier" end="0" id="MPYC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Fractional mode" end="2" id="MPYFRAC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Saturation mode" end="3" id="MPYSAT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Multiplier mode Bit:0" end="4" id="MPYM" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Multiplier mode: MPY" id="MPYM_0" token="MPYM_0" value="0"></bitenum>
+<bitenum description="Multiplier mode: MPYS" id="MPYM_1" token="MPYM_1" value="1"></bitenum>
+<bitenum description="Multiplier mode: MAC" id="MPYM_2" token="MPYM_2" value="2"></bitenum>
+<bitenum description="Multiplier mode: MACS" id="MPYM_3" token="MPYM_3" value="3"></bitenum></bitfield>
+<bitfield begin="6" description="Bit-width of operand 1 0:16Bit / 1:32Bit" end="6" id="OP1_32" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Bit-width of operand 2 0:16Bit / 1:32Bit" end="7" id="OP2_32" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="Delayed write enable" end="8" id="MPYDLYWRTEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="Delayed write mode" end="9" id="MPYDLY32" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

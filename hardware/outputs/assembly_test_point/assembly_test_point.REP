@@ -1,5 +1,5 @@
-Error Report for  - Users\SIDNEY~1\AppData\Local\Temp\ProF5BC.tmp
-31/08/2020 21:03:28
+Error Report for  - Users\SIDNEY~1\AppData\Local\Temp\ProA1A5.tmp
+16/06/2021 14:08:19
 
 Warning arcs were not exported.
 
@@ -60,13 +60,9 @@ Warning pad shape change for U13-1 from rounded 23.622mil,86.614mil to rectangul
 Warning pad shape change for U13-8 from rounded 23.622mil,86.614mil to rectangular 23.622mil,62.992mil
 Warning pad shape change for U13-7 from rounded 23.622mil,86.614mil to rectangular 23.622mil,62.992mil
 Warning pad shape change for U12-16 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for U12-17 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for U12-23 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for U12-24 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-28 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-29 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-30 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for U12-31 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-33 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-34 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-35 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
@@ -82,6 +78,8 @@ Warning pad shape change for U12-55 from rounded 11.811mil,68.898mil to rectangu
 Warning pad shape change for U12-56 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-57 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-58 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-68 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-69 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-76 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-77 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-78 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
@@ -96,7 +94,6 @@ Warning pad shape change for U12-92 from rounded 11.811mil,68.898mil to rectangu
 Warning pad shape change for U12-93 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-94 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-95 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for U12-69 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Pad name H2-35 too long.
 Pad name H2-36 too long.
 Pad name H2-27 too long.
@@ -113,10 +110,10 @@ Pad name H2-25 too long.
 Pad name H2-26 too long.
 Pad name H1-50 too long.
 Pad name H1-49 too long.
-Component Designator 5V_MAIN_RADIO too long.
+Component Designator 5V_RADIO_0 too long.
 Pad name H1-51 too long.
 Pad name H1-52 too long.
-Component Designator 6V_BEACON too long.
+Component Designator 6V_RADIO_1 too long.
 Warning pad shape change for U12-11 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U13-2 from rounded 23.622mil,86.614mil to rectangular 23.622mil,62.992mil
 Warning pad shape change for U12-4 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
@@ -151,18 +148,20 @@ Pad name H2-29 too long.
 Pad name H2-30 too long.
 Pad name H2-31 too long.
 Pad name H2-32 too long.
-Component Designator SYSTEM_ON too long.
-Component Designator 3V3_MCU too long.
-Warning pad shape change for P11-1 from  to rounded 55.118mil,55.118mil
 Warning pad shape change for U12-90 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-63 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-26 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Component Designator SYSTEM_FAULT too long.
+Component Designator 3V3_MCU too long.
+Component Designator SYSTEM_ON too long.
 Warning pad shape change for U12-36 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Pad name H1-12 too long.
 Pad name H1-10 too long.
 Warning pad shape change for U12-37 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-45 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-44 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-19 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-18 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-72 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-75 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-74 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
@@ -173,29 +172,34 @@ Warning pad shape change for U12-51 from rounded 11.811mil,68.898mil to rectangu
 Warning pad shape change for U12-52 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-53 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Component Designator 3V3_ANT too long.
-Component Designator 3V3_EPS too long.
+Component Designator 3V3_EPS_BEACON too long.
 Component Designator 3V3_MCU too long.
 Component Designator 3V3_OBDH too long.
 Component Designator 3V3OBDH too long.
-Component Designator 5V_MAIN_RADIO_LED too long.
-Component Designator 6V_BEACON_LED too long.
+Component Designator 5V_PAYLOADS_LED too long.
+Component Designator 5V_RADIO_0_LED too long.
+Component Designator 6V_RADIO_1_LED too long.
 Warning pad shape change for U12-27 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U13-5 from rounded 23.622mil,86.614mil to rectangular 23.622mil,62.992mil
 Component Designator Rsense3 too long.
+Component Designator VBUS_LED too long.
 Component Designator RSense1 too long.
 Component Designator RSense1 too long.
 Component Designator SYSTEM_ON too long.
+Component Designator SYSTEM_FAULT too long.
 Component Designator Rsense3 too long.
 Component Designator Rsense3 too long.
-Warning pad shape change for U12-18 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for U12-19 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-24 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-23 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-20 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Component Designator 5V_MAIN_RADIO_LED too long.
-Component Designator 6V_BEACON_LED too long.
-Component Designator 3V3_EPS too long.
+Component Designator VBUS_LED too long.
+Component Designator 5V_RADIO_0_LED too long.
 Component Designator 3V3_ANT too long.
+Component Designator 3V3_EPS_BEACON too long.
 Component Designator 3V3_OBDH too long.
-Warning pad shape change for U12-68 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Component Designator 5V_PAYLOADS_LED too long.
+Component Designator 6V_RADIO_1_LED too long.
+Warning pad shape change for U12-17 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-65 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-60 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-61 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
@@ -203,9 +207,9 @@ Warning pad shape change for U12-67 from rounded 11.811mil,68.898mil to rectangu
 Warning pad shape change for U12-62 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-59 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-66 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
+Warning pad shape change for U12-31 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-32 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-91 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
-Warning pad shape change for P11-2 from  to rounded 55.118mil,55.118mil
 Warning pad shape change for U12-96 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-71 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil
 Warning pad shape change for U12-70 from rounded 11.811mil,68.898mil to rectangular 11.811mil,57.087mil

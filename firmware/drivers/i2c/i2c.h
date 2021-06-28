@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.1.15
  * 
- * \date 2020/10/24
+ * \date 2021/06/22
  * 
  * \defgroup i2c I2C
  * \ingroup drivers
@@ -72,9 +72,9 @@ typedef uint8_t i2c_port_t;
 typedef uint8_t i2c_slave_adr_t;
 
 /**
- * \brief I2C interface initialization.
+ * \brief I2C interface initialization as master.
  *
- * \param[in] port is the I2C port to initialize. It can be:
+ * \param[in] port is the I2C port to initialize as master. It can be:
  * \parblock
  *      -\b I2C_PORT_0
  *      -\b I2C_PORT_1
@@ -85,7 +85,7 @@ typedef uint8_t i2c_slave_adr_t;
  *
  * \return The status/error code.
  */
-int i2c_init(i2c_port_t port, i2c_config_t config);
+int i2c_master_init(i2c_port_t port, i2c_config_t config);
 
 /**
  * \brief Writes data to a given I2C port and address.

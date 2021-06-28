@@ -1,0 +1,395 @@
+<module HW_revision="" XML_version="1" description="DMA" id="DMA">
+<register acronym="DMACTL0" description="DMA Module Control 0" id="DMACTL0" offset=" 0x0500" width="16">
+<bitfield begin="4" description="DMA channel 0 transfer select bit 0" end="0" id="DMA0TSEL" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="DMA channel 0 transfer select 0:  DMA_REQ (sw)" id="DMA0TSEL_0" token="DMA0TSEL_0" value="0"></bitenum>
+<bitenum description="DMA channel 0 transfer select 1:  Timer0_A (TA0CCR0.IFG)" id="DMA0TSEL_1" token="DMA0TSEL_1" value="1"></bitenum>
+<bitenum description="DMA channel 0 transfer select 2:  Timer0_A (TA0CCR2.IFG)" id="DMA0TSEL_2" token="DMA0TSEL_2" value="2"></bitenum>
+<bitenum description="DMA channel 0 transfer select 3:  Timer1_A (TA1CCR0.IFG)" id="DMA0TSEL_3" token="DMA0TSEL_3" value="3"></bitenum>
+<bitenum description="DMA channel 0 transfer select 4:  Timer1_A (TA1CCR2.IFG)" id="DMA0TSEL_4" token="DMA0TSEL_4" value="4"></bitenum>
+<bitenum description="DMA channel 0 transfer select 5:  Timer2_A (TA2CCR0.IFG)" id="DMA0TSEL_5" token="DMA0TSEL_5" value="5"></bitenum>
+<bitenum description="DMA channel 0 transfer select 6:  Timer2_A (TA2CCR2.IFG)" id="DMA0TSEL_6" token="DMA0TSEL_6" value="6"></bitenum>
+<bitenum description="DMA channel 0 transfer select 7:  TimerB0 (TB0CCR0.IFG)" id="DMA0TSEL_7" token="DMA0TSEL_7" value="7"></bitenum>
+<bitenum description="DMA channel 0 transfer select 8:  TimerB0 (TB0CCR2.IFG)" id="DMA0TSEL_8" token="DMA0TSEL_8" value="8"></bitenum>
+<bitenum description="DMA channel 0 transfer select 9:  Reserved" id="DMA0TSEL_9" token="DMA0TSEL_9" value="9"></bitenum>
+<bitenum description="DMA channel 0 transfer select 10: Reserved" id="DMA0TSEL_10" token="DMA0TSEL_10" value="10"></bitenum>
+<bitenum description="DMA channel 0 transfer select 11: Reserved" id="DMA0TSEL_11" token="DMA0TSEL_11" value="11"></bitenum>
+<bitenum description="DMA channel 0 transfer select 12: USCIA2 receive" id="DMA0TSEL_12" token="DMA0TSEL_12" value="12"></bitenum>
+<bitenum description="DMA channel 0 transfer select 13: USCIA2 transmit" id="DMA0TSEL_13" token="DMA0TSEL_13" value="13"></bitenum>
+<bitenum description="DMA channel 0 transfer select 14: USCIB2 receive" id="DMA0TSEL_14" token="DMA0TSEL_14" value="14"></bitenum>
+<bitenum description="DMA channel 0 transfer select 15: USCIB2 transmit" id="DMA0TSEL_15" token="DMA0TSEL_15" value="15"></bitenum>
+<bitenum description="DMA channel 0 transfer select 16: USCIA0 receive" id="DMA0TSEL_16" token="DMA0TSEL_16" value="16"></bitenum>
+<bitenum description="DMA channel 0 transfer select 17: USCIA0 transmit" id="DMA0TSEL_17" token="DMA0TSEL_17" value="17"></bitenum>
+<bitenum description="DMA channel 0 transfer select 18: USCIB0 receive" id="DMA0TSEL_18" token="DMA0TSEL_18" value="18"></bitenum>
+<bitenum description="DMA channel 0 transfer select 19: USCIB0 transmit" id="DMA0TSEL_19" token="DMA0TSEL_19" value="19"></bitenum>
+<bitenum description="DMA channel 0 transfer select 20: USCIA1 receive" id="DMA0TSEL_20" token="DMA0TSEL_20" value="20"></bitenum>
+<bitenum description="DMA channel 0 transfer select 21: USCIA1 transmit" id="DMA0TSEL_21" token="DMA0TSEL_21" value="21"></bitenum>
+<bitenum description="DMA channel 0 transfer select 22: USCIB1 receive" id="DMA0TSEL_22" token="DMA0TSEL_22" value="22"></bitenum>
+<bitenum description="DMA channel 0 transfer select 23: USCIB1 transmit" id="DMA0TSEL_23" token="DMA0TSEL_23" value="23"></bitenum>
+<bitenum description="DMA channel 0 transfer select 24: ADC12IFGx" id="DMA0TSEL_24" token="DMA0TSEL_24" value="24"></bitenum>
+<bitenum description="DMA channel 0 transfer select 25: DAC12_0IFG" id="DMA0TSEL_25" token="DMA0TSEL_25" value="25"></bitenum>
+<bitenum description="DMA channel 0 transfer select 26: DAC12_1IFG" id="DMA0TSEL_26" token="DMA0TSEL_26" value="26"></bitenum>
+<bitenum description="DMA channel 0 transfer select 27: USB FNRXD" id="DMA0TSEL_27" token="DMA0TSEL_27" value="27"></bitenum>
+<bitenum description="DMA channel 0 transfer select 28: USB ready" id="DMA0TSEL_28" token="DMA0TSEL_28" value="28"></bitenum>
+<bitenum description="DMA channel 0 transfer select 29: Multiplier ready" id="DMA0TSEL_29" token="DMA0TSEL_29" value="29"></bitenum>
+<bitenum description="DMA channel 0 transfer select 30: previous DMA channel DMA5IFG" id="DMA0TSEL_30" token="DMA0TSEL_30" value="30"></bitenum>
+<bitenum description="DMA channel 0 transfer select 31: ext. Trigger (DMAE0)" id="DMA0TSEL_31" token="DMA0TSEL_31" value="31"></bitenum></bitfield>
+<bitfield begin="12" description="DMA channel 1 transfer select bit 0" end="8" id="DMA1TSEL" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="DMA channel 1 transfer select 0:  DMA_REQ (sw)" id="DMA1TSEL_0" token="DMA1TSEL_0" value="0"></bitenum>
+<bitenum description="DMA channel 1 transfer select 1:  Timer0_A (TA0CCR0.IFG)" id="DMA1TSEL_1" token="DMA1TSEL_1" value="1"></bitenum>
+<bitenum description="DMA channel 1 transfer select 2:  Timer0_A (TA0CCR2.IFG)" id="DMA1TSEL_2" token="DMA1TSEL_2" value="2"></bitenum>
+<bitenum description="DMA channel 1 transfer select 3:  Timer1_A (TA1CCR0.IFG)" id="DMA1TSEL_3" token="DMA1TSEL_3" value="3"></bitenum>
+<bitenum description="DMA channel 1 transfer select 4:  Timer1_A (TA1CCR2.IFG)" id="DMA1TSEL_4" token="DMA1TSEL_4" value="4"></bitenum>
+<bitenum description="DMA channel 1 transfer select 5:  Timer2_A (TA2CCR0.IFG)" id="DMA1TSEL_5" token="DMA1TSEL_5" value="5"></bitenum>
+<bitenum description="DMA channel 1 transfer select 6:  Timer2_A (TA2CCR2.IFG)" id="DMA1TSEL_6" token="DMA1TSEL_6" value="6"></bitenum>
+<bitenum description="DMA channel 1 transfer select 7:  TimerB0 (TB0CCR0.IFG)" id="DMA1TSEL_7" token="DMA1TSEL_7" value="7"></bitenum>
+<bitenum description="DMA channel 1 transfer select 8:  TimerB0 (TB0CCR2.IFG)" id="DMA1TSEL_8" token="DMA1TSEL_8" value="8"></bitenum>
+<bitenum description="DMA channel 1 transfer select 9:  Reserved" id="DMA1TSEL_9" token="DMA1TSEL_9" value="9"></bitenum>
+<bitenum description="DMA channel 1 transfer select 10: Reserved" id="DMA1TSEL_10" token="DMA1TSEL_10" value="10"></bitenum>
+<bitenum description="DMA channel 1 transfer select 11: Reserved" id="DMA1TSEL_11" token="DMA1TSEL_11" value="11"></bitenum>
+<bitenum description="DMA channel 1 transfer select 12: USCIA2 receive" id="DMA1TSEL_12" token="DMA1TSEL_12" value="12"></bitenum>
+<bitenum description="DMA channel 1 transfer select 13: USCIA2 transmit" id="DMA1TSEL_13" token="DMA1TSEL_13" value="13"></bitenum>
+<bitenum description="DMA channel 1 transfer select 14: USCIB2 receive" id="DMA1TSEL_14" token="DMA1TSEL_14" value="14"></bitenum>
+<bitenum description="DMA channel 1 transfer select 15: USCIB2 transmit" id="DMA1TSEL_15" token="DMA1TSEL_15" value="15"></bitenum>
+<bitenum description="DMA channel 1 transfer select 16: USCIA0 receive" id="DMA1TSEL_16" token="DMA1TSEL_16" value="16"></bitenum>
+<bitenum description="DMA channel 1 transfer select 17: USCIA0 transmit" id="DMA1TSEL_17" token="DMA1TSEL_17" value="17"></bitenum>
+<bitenum description="DMA channel 1 transfer select 18: USCIB0 receive" id="DMA1TSEL_18" token="DMA1TSEL_18" value="18"></bitenum>
+<bitenum description="DMA channel 1 transfer select 19: USCIB0 transmit" id="DMA1TSEL_19" token="DMA1TSEL_19" value="19"></bitenum>
+<bitenum description="DMA channel 1 transfer select 20: USCIA1 receive" id="DMA1TSEL_20" token="DMA1TSEL_20" value="20"></bitenum>
+<bitenum description="DMA channel 1 transfer select 21: USCIA1 transmit" id="DMA1TSEL_21" token="DMA1TSEL_21" value="21"></bitenum>
+<bitenum description="DMA channel 1 transfer select 22: USCIB1 receive" id="DMA1TSEL_22" token="DMA1TSEL_22" value="22"></bitenum>
+<bitenum description="DMA channel 1 transfer select 23: USCIB1 transmit" id="DMA1TSEL_23" token="DMA1TSEL_23" value="23"></bitenum>
+<bitenum description="DMA channel 1 transfer select 24: ADC12IFGx" id="DMA1TSEL_24" token="DMA1TSEL_24" value="24"></bitenum>
+<bitenum description="DMA channel 1 transfer select 25: DAC12_0IFG" id="DMA1TSEL_25" token="DMA1TSEL_25" value="25"></bitenum>
+<bitenum description="DMA channel 1 transfer select 26: DAC12_1IFG" id="DMA1TSEL_26" token="DMA1TSEL_26" value="26"></bitenum>
+<bitenum description="DMA channel 1 transfer select 27: USB FNRXD" id="DMA1TSEL_27" token="DMA1TSEL_27" value="27"></bitenum>
+<bitenum description="DMA channel 1 transfer select 28: USB ready" id="DMA1TSEL_28" token="DMA1TSEL_28" value="28"></bitenum>
+<bitenum description="DMA channel 1 transfer select 29: Multiplier ready" id="DMA1TSEL_29" token="DMA1TSEL_29" value="29"></bitenum>
+<bitenum description="DMA channel 1 transfer select 30: previous DMA channel DMA0IFG" id="DMA1TSEL_30" token="DMA1TSEL_30" value="30"></bitenum>
+<bitenum description="DMA channel 1 transfer select 31: ext. Trigger (DMAE0)" id="DMA1TSEL_31" token="DMA1TSEL_31" value="31"></bitenum></bitfield></register>
+<register acronym="DMACTL1" description="DMA Module Control 1" id="DMACTL1" offset=" 0x0502" width="16">
+<bitfield begin="4" description="DMA channel 2 transfer select bit 0" end="0" id="DMA2TSEL" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="DMA channel 2 transfer select 0:  DMA_REQ (sw)" id="DMA2TSEL_0" token="DMA2TSEL_0" value="0"></bitenum>
+<bitenum description="DMA channel 2 transfer select 1:  Timer0_A (TA0CCR0.IFG)" id="DMA2TSEL_1" token="DMA2TSEL_1" value="1"></bitenum>
+<bitenum description="DMA channel 2 transfer select 2:  Timer0_A (TA0CCR2.IFG)" id="DMA2TSEL_2" token="DMA2TSEL_2" value="2"></bitenum>
+<bitenum description="DMA channel 2 transfer select 3:  Timer1_A (TA1CCR0.IFG)" id="DMA2TSEL_3" token="DMA2TSEL_3" value="3"></bitenum>
+<bitenum description="DMA channel 2 transfer select 4:  Timer1_A (TA1CCR2.IFG)" id="DMA2TSEL_4" token="DMA2TSEL_4" value="4"></bitenum>
+<bitenum description="DMA channel 2 transfer select 5:  Timer2_A (TA2CCR0.IFG)" id="DMA2TSEL_5" token="DMA2TSEL_5" value="5"></bitenum>
+<bitenum description="DMA channel 2 transfer select 6:  Timer2_A (TA2CCR2.IFG)" id="DMA2TSEL_6" token="DMA2TSEL_6" value="6"></bitenum>
+<bitenum description="DMA channel 2 transfer select 7:  TimerB0 (TB0CCR0.IFG)" id="DMA2TSEL_7" token="DMA2TSEL_7" value="7"></bitenum>
+<bitenum description="DMA channel 2 transfer select 8:  TimerB0 (TB0CCR2.IFG)" id="DMA2TSEL_8" token="DMA2TSEL_8" value="8"></bitenum>
+<bitenum description="DMA channel 2 transfer select 9:  Reserved" id="DMA2TSEL_9" token="DMA2TSEL_9" value="9"></bitenum>
+<bitenum description="DMA channel 2 transfer select 10: Reserved" id="DMA2TSEL_10" token="DMA2TSEL_10" value="10"></bitenum>
+<bitenum description="DMA channel 2 transfer select 11: Reserved" id="DMA2TSEL_11" token="DMA2TSEL_11" value="11"></bitenum>
+<bitenum description="DMA channel 2 transfer select 12: USCIA2 receive" id="DMA2TSEL_12" token="DMA2TSEL_12" value="12"></bitenum>
+<bitenum description="DMA channel 2 transfer select 13: USCIA2 transmit" id="DMA2TSEL_13" token="DMA2TSEL_13" value="13"></bitenum>
+<bitenum description="DMA channel 2 transfer select 14: USCIB2 receive" id="DMA2TSEL_14" token="DMA2TSEL_14" value="14"></bitenum>
+<bitenum description="DMA channel 2 transfer select 15: USCIB2 transmit" id="DMA2TSEL_15" token="DMA2TSEL_15" value="15"></bitenum>
+<bitenum description="DMA channel 2 transfer select 16: USCIA0 receive" id="DMA2TSEL_16" token="DMA2TSEL_16" value="16"></bitenum>
+<bitenum description="DMA channel 2 transfer select 17: USCIA0 transmit" id="DMA2TSEL_17" token="DMA2TSEL_17" value="17"></bitenum>
+<bitenum description="DMA channel 2 transfer select 18: USCIB0 receive" id="DMA2TSEL_18" token="DMA2TSEL_18" value="18"></bitenum>
+<bitenum description="DMA channel 2 transfer select 19: USCIB0 transmit" id="DMA2TSEL_19" token="DMA2TSEL_19" value="19"></bitenum>
+<bitenum description="DMA channel 2 transfer select 20: USCIA1 receive" id="DMA2TSEL_20" token="DMA2TSEL_20" value="20"></bitenum>
+<bitenum description="DMA channel 2 transfer select 21: USCIA1 transmit" id="DMA2TSEL_21" token="DMA2TSEL_21" value="21"></bitenum>
+<bitenum description="DMA channel 2 transfer select 22: USCIB1 receive" id="DMA2TSEL_22" token="DMA2TSEL_22" value="22"></bitenum>
+<bitenum description="DMA channel 2 transfer select 23: USCIB1 transmit" id="DMA2TSEL_23" token="DMA2TSEL_23" value="23"></bitenum>
+<bitenum description="DMA channel 2 transfer select 24: ADC12IFGx" id="DMA2TSEL_24" token="DMA2TSEL_24" value="24"></bitenum>
+<bitenum description="DMA channel 2 transfer select 25: DAC12_0IFG" id="DMA2TSEL_25" token="DMA2TSEL_25" value="25"></bitenum>
+<bitenum description="DMA channel 2 transfer select 26: DAC12_1IFG" id="DMA2TSEL_26" token="DMA2TSEL_26" value="26"></bitenum>
+<bitenum description="DMA channel 2 transfer select 27: USB FNRXD" id="DMA2TSEL_27" token="DMA2TSEL_27" value="27"></bitenum>
+<bitenum description="DMA channel 2 transfer select 28: USB ready" id="DMA2TSEL_28" token="DMA2TSEL_28" value="28"></bitenum>
+<bitenum description="DMA channel 2 transfer select 29: Multiplier ready" id="DMA2TSEL_29" token="DMA2TSEL_29" value="29"></bitenum>
+<bitenum description="DMA channel 2 transfer select 30: previous DMA channel DMA1IFG" id="DMA2TSEL_30" token="DMA2TSEL_30" value="30"></bitenum>
+<bitenum description="DMA channel 2 transfer select 31: ext. Trigger (DMAE0)" id="DMA2TSEL_31" token="DMA2TSEL_31" value="31"></bitenum></bitfield>
+<bitfield begin="12" description="DMA channel 3 transfer select bit 0" end="8" id="DMA3TSEL" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="DMA channel 3 transfer select 0:  DMA_REQ (sw)" id="DMA3TSEL_0" token="DMA3TSEL_0" value="0"></bitenum>
+<bitenum description="DMA channel 3 transfer select 1:  Timer0_A (TA0CCR0.IFG)" id="DMA3TSEL_1" token="DMA3TSEL_1" value="1"></bitenum>
+<bitenum description="DMA channel 3 transfer select 2:  Timer0_A (TA0CCR2.IFG)" id="DMA3TSEL_2" token="DMA3TSEL_2" value="2"></bitenum>
+<bitenum description="DMA channel 3 transfer select 3:  Timer1_A (TA1CCR0.IFG)" id="DMA3TSEL_3" token="DMA3TSEL_3" value="3"></bitenum>
+<bitenum description="DMA channel 3 transfer select 4:  Timer1_A (TA1CCR2.IFG)" id="DMA3TSEL_4" token="DMA3TSEL_4" value="4"></bitenum>
+<bitenum description="DMA channel 3 transfer select 5:  Timer2_A (TA2CCR0.IFG)" id="DMA3TSEL_5" token="DMA3TSEL_5" value="5"></bitenum>
+<bitenum description="DMA channel 3 transfer select 6:  Timer2_A (TA2CCR2.IFG)" id="DMA3TSEL_6" token="DMA3TSEL_6" value="6"></bitenum>
+<bitenum description="DMA channel 3 transfer select 7:  TimerB0 (TB0CCR0.IFG)" id="DMA3TSEL_7" token="DMA3TSEL_7" value="7"></bitenum>
+<bitenum description="DMA channel 3 transfer select 8:  TimerB0 (TB0CCR2.IFG)" id="DMA3TSEL_8" token="DMA3TSEL_8" value="8"></bitenum>
+<bitenum description="DMA channel 3 transfer select 9:  Reserved" id="DMA3TSEL_9" token="DMA3TSEL_9" value="9"></bitenum>
+<bitenum description="DMA channel 3 transfer select 10: Reserved" id="DMA3TSEL_10" token="DMA3TSEL_10" value="10"></bitenum>
+<bitenum description="DMA channel 3 transfer select 11: Reserved" id="DMA3TSEL_11" token="DMA3TSEL_11" value="11"></bitenum>
+<bitenum description="DMA channel 3 transfer select 12: USCIA2 receive" id="DMA3TSEL_12" token="DMA3TSEL_12" value="12"></bitenum>
+<bitenum description="DMA channel 3 transfer select 13: USCIA2 transmit" id="DMA3TSEL_13" token="DMA3TSEL_13" value="13"></bitenum>
+<bitenum description="DMA channel 3 transfer select 14: USCIB2 receive" id="DMA3TSEL_14" token="DMA3TSEL_14" value="14"></bitenum>
+<bitenum description="DMA channel 3 transfer select 15: USCIB2 transmit" id="DMA3TSEL_15" token="DMA3TSEL_15" value="15"></bitenum>
+<bitenum description="DMA channel 3 transfer select 16: USCIA0 receive" id="DMA3TSEL_16" token="DMA3TSEL_16" value="16"></bitenum>
+<bitenum description="DMA channel 3 transfer select 17: USCIA0 transmit" id="DMA3TSEL_17" token="DMA3TSEL_17" value="17"></bitenum>
+<bitenum description="DMA channel 3 transfer select 18: USCIB0 receive" id="DMA3TSEL_18" token="DMA3TSEL_18" value="18"></bitenum>
+<bitenum description="DMA channel 3 transfer select 19: USCIB0 transmit" id="DMA3TSEL_19" token="DMA3TSEL_19" value="19"></bitenum>
+<bitenum description="DMA channel 3 transfer select 20: USCIA1 receive" id="DMA3TSEL_20" token="DMA3TSEL_20" value="20"></bitenum>
+<bitenum description="DMA channel 3 transfer select 21: USCIA1 transmit" id="DMA3TSEL_21" token="DMA3TSEL_21" value="21"></bitenum>
+<bitenum description="DMA channel 3 transfer select 22: USCIB1 receive" id="DMA3TSEL_22" token="DMA3TSEL_22" value="22"></bitenum>
+<bitenum description="DMA channel 3 transfer select 23: USCIB1 transmit" id="DMA3TSEL_23" token="DMA3TSEL_23" value="23"></bitenum>
+<bitenum description="DMA channel 3 transfer select 24: ADC12IFGx" id="DMA3TSEL_24" token="DMA3TSEL_24" value="24"></bitenum>
+<bitenum description="DMA channel 3 transfer select 25: DAC12_0IFG" id="DMA3TSEL_25" token="DMA3TSEL_25" value="25"></bitenum>
+<bitenum description="DMA channel 3 transfer select 26: DAC12_1IFG" id="DMA3TSEL_26" token="DMA3TSEL_26" value="26"></bitenum>
+<bitenum description="DMA channel 3 transfer select 27: USB FNRXD" id="DMA3TSEL_27" token="DMA3TSEL_27" value="27"></bitenum>
+<bitenum description="DMA channel 3 transfer select 28: USB ready" id="DMA3TSEL_28" token="DMA3TSEL_28" value="28"></bitenum>
+<bitenum description="DMA channel 3 transfer select 29: Multiplier ready" id="DMA3TSEL_29" token="DMA3TSEL_29" value="29"></bitenum>
+<bitenum description="DMA channel 3 transfer select 30: previous DMA channel DMA2IFG" id="DMA3TSEL_30" token="DMA3TSEL_30" value="30"></bitenum>
+<bitenum description="DMA channel 3 transfer select 31: ext. Trigger (DMAE0)" id="DMA3TSEL_31" token="DMA3TSEL_31" value="31"></bitenum></bitfield></register>
+<register acronym="DMACTL2" description="DMA Module Control 2" id="DMACTL2" offset=" 0x0504" width="16">
+<bitfield begin="4" description="DMA channel 4 transfer select bit 0" end="0" id="DMA4TSEL" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="DMA channel 4 transfer select 0:  DMA_REQ (sw)" id="DMA4TSEL_0" token="DMA4TSEL_0" value="0"></bitenum>
+<bitenum description="DMA channel 4 transfer select 1:  Timer0_A (TA0CCR0.IFG)" id="DMA4TSEL_1" token="DMA4TSEL_1" value="1"></bitenum>
+<bitenum description="DMA channel 4 transfer select 2:  Timer0_A (TA0CCR2.IFG)" id="DMA4TSEL_2" token="DMA4TSEL_2" value="2"></bitenum>
+<bitenum description="DMA channel 4 transfer select 3:  Timer1_A (TA1CCR0.IFG)" id="DMA4TSEL_3" token="DMA4TSEL_3" value="3"></bitenum>
+<bitenum description="DMA channel 4 transfer select 4:  Timer1_A (TA1CCR2.IFG)" id="DMA4TSEL_4" token="DMA4TSEL_4" value="4"></bitenum>
+<bitenum description="DMA channel 4 transfer select 5:  Timer2_A (TA2CCR0.IFG)" id="DMA4TSEL_5" token="DMA4TSEL_5" value="5"></bitenum>
+<bitenum description="DMA channel 4 transfer select 6:  Timer2_A (TA2CCR2.IFG)" id="DMA4TSEL_6" token="DMA4TSEL_6" value="6"></bitenum>
+<bitenum description="DMA channel 4 transfer select 7:  TimerB0 (TB0CCR0.IFG)" id="DMA4TSEL_7" token="DMA4TSEL_7" value="7"></bitenum>
+<bitenum description="DMA channel 4 transfer select 8:  TimerB0 (TB0CCR2.IFG)" id="DMA4TSEL_8" token="DMA4TSEL_8" value="8"></bitenum>
+<bitenum description="DMA channel 4 transfer select 9:  Reserved" id="DMA4TSEL_9" token="DMA4TSEL_9" value="9"></bitenum>
+<bitenum description="DMA channel 4 transfer select 10: Reserved" id="DMA4TSEL_10" token="DMA4TSEL_10" value="10"></bitenum>
+<bitenum description="DMA channel 4 transfer select 11: Reserved" id="DMA4TSEL_11" token="DMA4TSEL_11" value="11"></bitenum>
+<bitenum description="DMA channel 4 transfer select 12: USCIA2 receive" id="DMA4TSEL_12" token="DMA4TSEL_12" value="12"></bitenum>
+<bitenum description="DMA channel 4 transfer select 13: USCIA2 transmit" id="DMA4TSEL_13" token="DMA4TSEL_13" value="13"></bitenum>
+<bitenum description="DMA channel 4 transfer select 14: USCIB2 receive" id="DMA4TSEL_14" token="DMA4TSEL_14" value="14"></bitenum>
+<bitenum description="DMA channel 4 transfer select 15: USCIB2 transmit" id="DMA4TSEL_15" token="DMA4TSEL_15" value="15"></bitenum>
+<bitenum description="DMA channel 4 transfer select 16: USCIA0 receive" id="DMA4TSEL_16" token="DMA4TSEL_16" value="16"></bitenum>
+<bitenum description="DMA channel 4 transfer select 17: USCIA0 transmit" id="DMA4TSEL_17" token="DMA4TSEL_17" value="17"></bitenum>
+<bitenum description="DMA channel 4 transfer select 18: USCIB0 receive" id="DMA4TSEL_18" token="DMA4TSEL_18" value="18"></bitenum>
+<bitenum description="DMA channel 4 transfer select 19: USCIB0 transmit" id="DMA4TSEL_19" token="DMA4TSEL_19" value="19"></bitenum>
+<bitenum description="DMA channel 4 transfer select 20: USCIA1 receive" id="DMA4TSEL_20" token="DMA4TSEL_20" value="20"></bitenum>
+<bitenum description="DMA channel 4 transfer select 21: USCIA1 transmit" id="DMA4TSEL_21" token="DMA4TSEL_21" value="21"></bitenum>
+<bitenum description="DMA channel 4 transfer select 22: USCIB1 receive" id="DMA4TSEL_22" token="DMA4TSEL_22" value="22"></bitenum>
+<bitenum description="DMA channel 4 transfer select 23: USCIB1 transmit" id="DMA4TSEL_23" token="DMA4TSEL_23" value="23"></bitenum>
+<bitenum description="DMA channel 4 transfer select 24: ADC12IFGx" id="DMA4TSEL_24" token="DMA4TSEL_24" value="24"></bitenum>
+<bitenum description="DMA channel 4 transfer select 25: DAC12_0IFG" id="DMA4TSEL_25" token="DMA4TSEL_25" value="25"></bitenum>
+<bitenum description="DMA channel 4 transfer select 26: DAC12_1IFG" id="DMA4TSEL_26" token="DMA4TSEL_26" value="26"></bitenum>
+<bitenum description="DMA channel 4 transfer select 27: USB FNRXD" id="DMA4TSEL_27" token="DMA4TSEL_27" value="27"></bitenum>
+<bitenum description="DMA channel 4 transfer select 28: USB ready" id="DMA4TSEL_28" token="DMA4TSEL_28" value="28"></bitenum>
+<bitenum description="DMA channel 4 transfer select 29: Multiplier ready" id="DMA4TSEL_29" token="DMA4TSEL_29" value="29"></bitenum>
+<bitenum description="DMA channel 4 transfer select 30: previous DMA channel DMA3IFG" id="DMA4TSEL_30" token="DMA4TSEL_30" value="30"></bitenum>
+<bitenum description="DMA channel 4 transfer select 31: ext. Trigger (DMAE0)" id="DMA4TSEL_31" token="DMA4TSEL_31" value="31"></bitenum></bitfield>
+<bitfield begin="12" description="DMA channel 5 transfer select bit 0" end="8" id="DMA5TSEL" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="DMA channel 5 transfer select 0:  DMA_REQ (sw)" id="DMA5TSEL_0" token="DMA5TSEL_0" value="0"></bitenum>
+<bitenum description="DMA channel 5 transfer select 1:  Timer0_A (TA0CCR0.IFG)" id="DMA5TSEL_1" token="DMA5TSEL_1" value="1"></bitenum>
+<bitenum description="DMA channel 5 transfer select 2:  Timer0_A (TA0CCR2.IFG)" id="DMA5TSEL_2" token="DMA5TSEL_2" value="2"></bitenum>
+<bitenum description="DMA channel 5 transfer select 3:  Timer1_A (TA1CCR0.IFG)" id="DMA5TSEL_3" token="DMA5TSEL_3" value="3"></bitenum>
+<bitenum description="DMA channel 5 transfer select 4:  Timer1_A (TA1CCR2.IFG)" id="DMA5TSEL_4" token="DMA5TSEL_4" value="4"></bitenum>
+<bitenum description="DMA channel 5 transfer select 5:  Timer2_A (TA2CCR0.IFG)" id="DMA5TSEL_5" token="DMA5TSEL_5" value="5"></bitenum>
+<bitenum description="DMA channel 5 transfer select 6:  Timer2_A (TA2CCR2.IFG)" id="DMA5TSEL_6" token="DMA5TSEL_6" value="6"></bitenum>
+<bitenum description="DMA channel 5 transfer select 7:  TimerB0 (TB0CCR0.IFG)" id="DMA5TSEL_7" token="DMA5TSEL_7" value="7"></bitenum>
+<bitenum description="DMA channel 5 transfer select 8:  TimerB0 (TB0CCR2.IFG)" id="DMA5TSEL_8" token="DMA5TSEL_8" value="8"></bitenum>
+<bitenum description="DMA channel 5 transfer select 9:  Reserved" id="DMA5TSEL_9" token="DMA5TSEL_9" value="9"></bitenum>
+<bitenum description="DMA channel 5 transfer select 10: Reserved" id="DMA5TSEL_10" token="DMA5TSEL_10" value="10"></bitenum>
+<bitenum description="DMA channel 5 transfer select 11: Reserved" id="DMA5TSEL_11" token="DMA5TSEL_11" value="11"></bitenum>
+<bitenum description="DMA channel 5 transfer select 12: USCIA2 receive" id="DMA5TSEL_12" token="DMA5TSEL_12" value="12"></bitenum>
+<bitenum description="DMA channel 5 transfer select 13: USCIA2 transmit" id="DMA5TSEL_13" token="DMA5TSEL_13" value="13"></bitenum>
+<bitenum description="DMA channel 5 transfer select 14: USCIB2 receive" id="DMA5TSEL_14" token="DMA5TSEL_14" value="14"></bitenum>
+<bitenum description="DMA channel 5 transfer select 15: USCIB2 transmit" id="DMA5TSEL_15" token="DMA5TSEL_15" value="15"></bitenum>
+<bitenum description="DMA channel 5 transfer select 16: USCIA0 receive" id="DMA5TSEL_16" token="DMA5TSEL_16" value="16"></bitenum>
+<bitenum description="DMA channel 5 transfer select 17: USCIA0 transmit" id="DMA5TSEL_17" token="DMA5TSEL_17" value="17"></bitenum>
+<bitenum description="DMA channel 5 transfer select 18: USCIB0 receive" id="DMA5TSEL_18" token="DMA5TSEL_18" value="18"></bitenum>
+<bitenum description="DMA channel 5 transfer select 19: USCIB0 transmit" id="DMA5TSEL_19" token="DMA5TSEL_19" value="19"></bitenum>
+<bitenum description="DMA channel 5 transfer select 20: USCIA1 receive" id="DMA5TSEL_20" token="DMA5TSEL_20" value="20"></bitenum>
+<bitenum description="DMA channel 5 transfer select 21: USCIA1 transmit" id="DMA5TSEL_21" token="DMA5TSEL_21" value="21"></bitenum>
+<bitenum description="DMA channel 5 transfer select 22: USCIB1 receive" id="DMA5TSEL_22" token="DMA5TSEL_22" value="22"></bitenum>
+<bitenum description="DMA channel 5 transfer select 23: USCIB1 transmit" id="DMA5TSEL_23" token="DMA5TSEL_23" value="23"></bitenum>
+<bitenum description="DMA channel 5 transfer select 24: ADC12IFGx" id="DMA5TSEL_24" token="DMA5TSEL_24" value="24"></bitenum>
+<bitenum description="DMA channel 5 transfer select 25: DAC12_0IFG" id="DMA5TSEL_25" token="DMA5TSEL_25" value="25"></bitenum>
+<bitenum description="DMA channel 5 transfer select 26: DAC12_1IFG" id="DMA5TSEL_26" token="DMA5TSEL_26" value="26"></bitenum>
+<bitenum description="DMA channel 5 transfer select 27: USB FNRXD" id="DMA5TSEL_27" token="DMA5TSEL_27" value="27"></bitenum>
+<bitenum description="DMA channel 5 transfer select 28: USB ready" id="DMA5TSEL_28" token="DMA5TSEL_28" value="28"></bitenum>
+<bitenum description="DMA channel 5 transfer select 29: Multiplier ready" id="DMA5TSEL_29" token="DMA5TSEL_29" value="29"></bitenum>
+<bitenum description="DMA channel 5 transfer select 30: previous DMA channel DMA4IFG" id="DMA5TSEL_30" token="DMA5TSEL_30" value="30"></bitenum>
+<bitenum description="DMA channel 5 transfer select 31: ext. Trigger (DMAE0)" id="DMA5TSEL_31" token="DMA5TSEL_31" value="31"></bitenum></bitfield></register>
+<register acronym="DMACTL3" description="DMA Module Control 3" id="DMACTL3" offset=" 0x0506" width="16"></register>
+<register acronym="DMACTL4" description="DMA Module Control 4" id="DMACTL4" offset=" 0x0508" width="16">
+<bitfield begin="0" description="Enable NMI interruption of DMA" end="0" id="ENNMI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Round-Robin DMA channel priorities" end="1" id="ROUNDROBIN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Inhibited DMA transfers during read-modify-write CPU operations" end="2" id="DMARMWDIS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DMAIV" description="DMA Interrupt Vector Word" id="DMAIV" offset=" 0x050E" width="16"></register>
+<register acronym="DMA0CTL" description="DMA Channel 0 Control" id="DMA0CTL" offset=" 0x0510" width="16">
+<bitfield begin="0" description="Initiate DMA transfer with DMATSEL" end="0" id="DMAREQ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DMA transfer aborted by NMI" end="1" id="DMAABORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DMA interrupt enable" end="2" id="DMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DMA interrupt flag" end="3" id="DMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DMA enable" end="4" id="DMAEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="DMA level sensitive trigger select" end="5" id="DMALEVEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="DMA source byte" end="6" id="DMASRCBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DMA destination byte" end="7" id="DMADSTBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DMA source increment bit 0" end="8" id="DMASRCINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA source increment 0: source address unchanged" id="DMASRCINCR_0" token="DMASRCINCR_0" value="0"></bitenum>
+<bitenum description="DMA source increment 1: source address unchanged" id="DMASRCINCR_1" token="DMASRCINCR_1" value="1"></bitenum>
+<bitenum description="DMA source increment 2: source address decremented" id="DMASRCINCR_2" token="DMASRCINCR_2" value="2"></bitenum>
+<bitenum description="DMA source increment 3: source address incremented" id="DMASRCINCR_3" token="DMASRCINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="DMA destination increment bit 0" end="10" id="DMADSTINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA destination increment 0: destination address unchanged" id="DMADSTINCR_0" token="DMADSTINCR_0" value="0"></bitenum>
+<bitenum description="DMA destination increment 1: destination address unchanged" id="DMADSTINCR_1" token="DMADSTINCR_1" value="1"></bitenum>
+<bitenum description="DMA destination increment 2: destination address decremented" id="DMADSTINCR_2" token="DMADSTINCR_2" value="2"></bitenum>
+<bitenum description="DMA destination increment 3: destination address incremented" id="DMADSTINCR_3" token="DMADSTINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="14" description="DMA transfer mode bit 0" end="12" id="DMADT" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DMA transfer mode 0: Single transfer" id="DMADT_0" token="DMADT_0" value="0"></bitenum>
+<bitenum description="DMA transfer mode 1: Block transfer" id="DMADT_1" token="DMADT_1" value="1"></bitenum>
+<bitenum description="DMA transfer mode 2: Burst-Block transfer" id="DMADT_2" token="DMADT_2" value="2"></bitenum>
+<bitenum description="DMA transfer mode 3: Burst-Block transfer" id="DMADT_3" token="DMADT_3" value="3"></bitenum>
+<bitenum description="DMA transfer mode 4: Repeated Single transfer" id="DMADT_4" token="DMADT_4" value="4"></bitenum>
+<bitenum description="DMA transfer mode 5: Repeated Block transfer" id="DMADT_5" token="DMADT_5" value="5"></bitenum>
+<bitenum description="DMA transfer mode 6: Repeated Burst-Block transfer" id="DMADT_6" token="DMADT_6" value="6"></bitenum>
+<bitenum description="DMA transfer mode 7: Repeated Burst-Block transfer" id="DMADT_7" token="DMADT_7" value="7"></bitenum></bitfield></register>
+<register acronym="DMA0SA" description="DMA Channel 0 Source Address" id="DMA0SA" offset=" 0x0512" width="32"></register>
+<register acronym="DMA0DA" description="DMA Channel 0 Destination Address" id="DMA0DA" offset=" 0x0516" width="32"></register>
+<register acronym="DMA0SZ" description="DMA Channel 0 Transfer Size" id="DMA0SZ" offset=" 0x051A" width="16"></register>
+<register acronym="DMA1CTL" description="DMA Channel 1 Control" id="DMA1CTL" offset=" 0x0520" width="16">
+<bitfield begin="0" description="Initiate DMA transfer with DMATSEL" end="0" id="DMAREQ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DMA transfer aborted by NMI" end="1" id="DMAABORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DMA interrupt enable" end="2" id="DMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DMA interrupt flag" end="3" id="DMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DMA enable" end="4" id="DMAEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="DMA level sensitive trigger select" end="5" id="DMALEVEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="DMA source byte" end="6" id="DMASRCBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DMA destination byte" end="7" id="DMADSTBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DMA source increment bit 0" end="8" id="DMASRCINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA source increment 0: source address unchanged" id="DMASRCINCR_0" token="DMASRCINCR_0" value="0"></bitenum>
+<bitenum description="DMA source increment 1: source address unchanged" id="DMASRCINCR_1" token="DMASRCINCR_1" value="1"></bitenum>
+<bitenum description="DMA source increment 2: source address decremented" id="DMASRCINCR_2" token="DMASRCINCR_2" value="2"></bitenum>
+<bitenum description="DMA source increment 3: source address incremented" id="DMASRCINCR_3" token="DMASRCINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="DMA destination increment bit 0" end="10" id="DMADSTINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA destination increment 0: destination address unchanged" id="DMADSTINCR_0" token="DMADSTINCR_0" value="0"></bitenum>
+<bitenum description="DMA destination increment 1: destination address unchanged" id="DMADSTINCR_1" token="DMADSTINCR_1" value="1"></bitenum>
+<bitenum description="DMA destination increment 2: destination address decremented" id="DMADSTINCR_2" token="DMADSTINCR_2" value="2"></bitenum>
+<bitenum description="DMA destination increment 3: destination address incremented" id="DMADSTINCR_3" token="DMADSTINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="14" description="DMA transfer mode bit 0" end="12" id="DMADT" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DMA transfer mode 0: Single transfer" id="DMADT_0" token="DMADT_0" value="0"></bitenum>
+<bitenum description="DMA transfer mode 1: Block transfer" id="DMADT_1" token="DMADT_1" value="1"></bitenum>
+<bitenum description="DMA transfer mode 2: Burst-Block transfer" id="DMADT_2" token="DMADT_2" value="2"></bitenum>
+<bitenum description="DMA transfer mode 3: Burst-Block transfer" id="DMADT_3" token="DMADT_3" value="3"></bitenum>
+<bitenum description="DMA transfer mode 4: Repeated Single transfer" id="DMADT_4" token="DMADT_4" value="4"></bitenum>
+<bitenum description="DMA transfer mode 5: Repeated Block transfer" id="DMADT_5" token="DMADT_5" value="5"></bitenum>
+<bitenum description="DMA transfer mode 6: Repeated Burst-Block transfer" id="DMADT_6" token="DMADT_6" value="6"></bitenum>
+<bitenum description="DMA transfer mode 7: Repeated Burst-Block transfer" id="DMADT_7" token="DMADT_7" value="7"></bitenum></bitfield></register>
+<register acronym="DMA1SA" description="DMA Channel 1 Source Address" id="DMA1SA" offset=" 0x0522" width="32"></register>
+<register acronym="DMA1DA" description="DMA Channel 1 Destination Address" id="DMA1DA" offset=" 0x0526" width="32"></register>
+<register acronym="DMA1SZ" description="DMA Channel 1 Transfer Size" id="DMA1SZ" offset=" 0x052A" width="16"></register>
+<register acronym="DMA2CTL" description="DMA Channel 2 Control" id="DMA2CTL" offset=" 0x0530" width="16">
+<bitfield begin="0" description="Initiate DMA transfer with DMATSEL" end="0" id="DMAREQ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DMA transfer aborted by NMI" end="1" id="DMAABORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DMA interrupt enable" end="2" id="DMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DMA interrupt flag" end="3" id="DMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DMA enable" end="4" id="DMAEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="DMA level sensitive trigger select" end="5" id="DMALEVEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="DMA source byte" end="6" id="DMASRCBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DMA destination byte" end="7" id="DMADSTBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DMA source increment bit 0" end="8" id="DMASRCINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA source increment 0: source address unchanged" id="DMASRCINCR_0" token="DMASRCINCR_0" value="0"></bitenum>
+<bitenum description="DMA source increment 1: source address unchanged" id="DMASRCINCR_1" token="DMASRCINCR_1" value="1"></bitenum>
+<bitenum description="DMA source increment 2: source address decremented" id="DMASRCINCR_2" token="DMASRCINCR_2" value="2"></bitenum>
+<bitenum description="DMA source increment 3: source address incremented" id="DMASRCINCR_3" token="DMASRCINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="DMA destination increment bit 0" end="10" id="DMADSTINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA destination increment 0: destination address unchanged" id="DMADSTINCR_0" token="DMADSTINCR_0" value="0"></bitenum>
+<bitenum description="DMA destination increment 1: destination address unchanged" id="DMADSTINCR_1" token="DMADSTINCR_1" value="1"></bitenum>
+<bitenum description="DMA destination increment 2: destination address decremented" id="DMADSTINCR_2" token="DMADSTINCR_2" value="2"></bitenum>
+<bitenum description="DMA destination increment 3: destination address incremented" id="DMADSTINCR_3" token="DMADSTINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="14" description="DMA transfer mode bit 0" end="12" id="DMADT" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DMA transfer mode 0: Single transfer" id="DMADT_0" token="DMADT_0" value="0"></bitenum>
+<bitenum description="DMA transfer mode 1: Block transfer" id="DMADT_1" token="DMADT_1" value="1"></bitenum>
+<bitenum description="DMA transfer mode 2: Burst-Block transfer" id="DMADT_2" token="DMADT_2" value="2"></bitenum>
+<bitenum description="DMA transfer mode 3: Burst-Block transfer" id="DMADT_3" token="DMADT_3" value="3"></bitenum>
+<bitenum description="DMA transfer mode 4: Repeated Single transfer" id="DMADT_4" token="DMADT_4" value="4"></bitenum>
+<bitenum description="DMA transfer mode 5: Repeated Block transfer" id="DMADT_5" token="DMADT_5" value="5"></bitenum>
+<bitenum description="DMA transfer mode 6: Repeated Burst-Block transfer" id="DMADT_6" token="DMADT_6" value="6"></bitenum>
+<bitenum description="DMA transfer mode 7: Repeated Burst-Block transfer" id="DMADT_7" token="DMADT_7" value="7"></bitenum></bitfield></register>
+<register acronym="DMA2SA" description="DMA Channel 2 Source Address" id="DMA2SA" offset=" 0x0532" width="32"></register>
+<register acronym="DMA2DA" description="DMA Channel 2 Destination Address" id="DMA2DA" offset=" 0x0536" width="32"></register>
+<register acronym="DMA2SZ" description="DMA Channel 2 Transfer Size" id="DMA2SZ" offset=" 0x053A" width="16"></register>
+<register acronym="DMA3CTL" description="DMA Channel 3 Control" id="DMA3CTL" offset=" 0x0540" width="16">
+<bitfield begin="0" description="Initiate DMA transfer with DMATSEL" end="0" id="DMAREQ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DMA transfer aborted by NMI" end="1" id="DMAABORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DMA interrupt enable" end="2" id="DMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DMA interrupt flag" end="3" id="DMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DMA enable" end="4" id="DMAEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="DMA level sensitive trigger select" end="5" id="DMALEVEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="DMA source byte" end="6" id="DMASRCBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DMA destination byte" end="7" id="DMADSTBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DMA source increment bit 0" end="8" id="DMASRCINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA source increment 0: source address unchanged" id="DMASRCINCR_0" token="DMASRCINCR_0" value="0"></bitenum>
+<bitenum description="DMA source increment 1: source address unchanged" id="DMASRCINCR_1" token="DMASRCINCR_1" value="1"></bitenum>
+<bitenum description="DMA source increment 2: source address decremented" id="DMASRCINCR_2" token="DMASRCINCR_2" value="2"></bitenum>
+<bitenum description="DMA source increment 3: source address incremented" id="DMASRCINCR_3" token="DMASRCINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="DMA destination increment bit 0" end="10" id="DMADSTINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA destination increment 0: destination address unchanged" id="DMADSTINCR_0" token="DMADSTINCR_0" value="0"></bitenum>
+<bitenum description="DMA destination increment 1: destination address unchanged" id="DMADSTINCR_1" token="DMADSTINCR_1" value="1"></bitenum>
+<bitenum description="DMA destination increment 2: destination address decremented" id="DMADSTINCR_2" token="DMADSTINCR_2" value="2"></bitenum>
+<bitenum description="DMA destination increment 3: destination address incremented" id="DMADSTINCR_3" token="DMADSTINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="14" description="DMA transfer mode bit 0" end="12" id="DMADT" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DMA transfer mode 0: Single transfer" id="DMADT_0" token="DMADT_0" value="0"></bitenum>
+<bitenum description="DMA transfer mode 1: Block transfer" id="DMADT_1" token="DMADT_1" value="1"></bitenum>
+<bitenum description="DMA transfer mode 2: Burst-Block transfer" id="DMADT_2" token="DMADT_2" value="2"></bitenum>
+<bitenum description="DMA transfer mode 3: Burst-Block transfer" id="DMADT_3" token="DMADT_3" value="3"></bitenum>
+<bitenum description="DMA transfer mode 4: Repeated Single transfer" id="DMADT_4" token="DMADT_4" value="4"></bitenum>
+<bitenum description="DMA transfer mode 5: Repeated Block transfer" id="DMADT_5" token="DMADT_5" value="5"></bitenum>
+<bitenum description="DMA transfer mode 6: Repeated Burst-Block transfer" id="DMADT_6" token="DMADT_6" value="6"></bitenum>
+<bitenum description="DMA transfer mode 7: Repeated Burst-Block transfer" id="DMADT_7" token="DMADT_7" value="7"></bitenum></bitfield></register>
+<register acronym="DMA3SA" description="DMA Channel 3 Source Address" id="DMA3SA" offset=" 0x0542" width="32"></register>
+<register acronym="DMA3DA" description="DMA Channel 3 Destination Address" id="DMA3DA" offset=" 0x0546" width="32"></register>
+<register acronym="DMA3SZ" description="DMA Channel 3 Transfer Size" id="DMA3SZ" offset=" 0x054A" width="16"></register>
+<register acronym="DMA4CTL" description="DMA Channel 4 Control" id="DMA4CTL" offset=" 0x0550" width="16">
+<bitfield begin="0" description="Initiate DMA transfer with DMATSEL" end="0" id="DMAREQ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DMA transfer aborted by NMI" end="1" id="DMAABORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DMA interrupt enable" end="2" id="DMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DMA interrupt flag" end="3" id="DMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DMA enable" end="4" id="DMAEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="DMA level sensitive trigger select" end="5" id="DMALEVEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="DMA source byte" end="6" id="DMASRCBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DMA destination byte" end="7" id="DMADSTBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DMA source increment bit 0" end="8" id="DMASRCINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA source increment 0: source address unchanged" id="DMASRCINCR_0" token="DMASRCINCR_0" value="0"></bitenum>
+<bitenum description="DMA source increment 1: source address unchanged" id="DMASRCINCR_1" token="DMASRCINCR_1" value="1"></bitenum>
+<bitenum description="DMA source increment 2: source address decremented" id="DMASRCINCR_2" token="DMASRCINCR_2" value="2"></bitenum>
+<bitenum description="DMA source increment 3: source address incremented" id="DMASRCINCR_3" token="DMASRCINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="DMA destination increment bit 0" end="10" id="DMADSTINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA destination increment 0: destination address unchanged" id="DMADSTINCR_0" token="DMADSTINCR_0" value="0"></bitenum>
+<bitenum description="DMA destination increment 1: destination address unchanged" id="DMADSTINCR_1" token="DMADSTINCR_1" value="1"></bitenum>
+<bitenum description="DMA destination increment 2: destination address decremented" id="DMADSTINCR_2" token="DMADSTINCR_2" value="2"></bitenum>
+<bitenum description="DMA destination increment 3: destination address incremented" id="DMADSTINCR_3" token="DMADSTINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="14" description="DMA transfer mode bit 0" end="12" id="DMADT" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DMA transfer mode 0: Single transfer" id="DMADT_0" token="DMADT_0" value="0"></bitenum>
+<bitenum description="DMA transfer mode 1: Block transfer" id="DMADT_1" token="DMADT_1" value="1"></bitenum>
+<bitenum description="DMA transfer mode 2: Burst-Block transfer" id="DMADT_2" token="DMADT_2" value="2"></bitenum>
+<bitenum description="DMA transfer mode 3: Burst-Block transfer" id="DMADT_3" token="DMADT_3" value="3"></bitenum>
+<bitenum description="DMA transfer mode 4: Repeated Single transfer" id="DMADT_4" token="DMADT_4" value="4"></bitenum>
+<bitenum description="DMA transfer mode 5: Repeated Block transfer" id="DMADT_5" token="DMADT_5" value="5"></bitenum>
+<bitenum description="DMA transfer mode 6: Repeated Burst-Block transfer" id="DMADT_6" token="DMADT_6" value="6"></bitenum>
+<bitenum description="DMA transfer mode 7: Repeated Burst-Block transfer" id="DMADT_7" token="DMADT_7" value="7"></bitenum></bitfield></register>
+<register acronym="DMA4SA" description="DMA Channel 4 Source Address" id="DMA4SA" offset=" 0x0552" width="32"></register>
+<register acronym="DMA4DA" description="DMA Channel 4 Destination Address" id="DMA4DA" offset=" 0x0556" width="32"></register>
+<register acronym="DMA4SZ" description="DMA Channel 4 Transfer Size" id="DMA4SZ" offset=" 0x055A" width="16"></register>
+<register acronym="DMA5CTL" description="DMA Channel 5 Control" id="DMA5CTL" offset=" 0x0560" width="16">
+<bitfield begin="0" description="Initiate DMA transfer with DMATSEL" end="0" id="DMAREQ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DMA transfer aborted by NMI" end="1" id="DMAABORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DMA interrupt enable" end="2" id="DMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DMA interrupt flag" end="3" id="DMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DMA enable" end="4" id="DMAEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="DMA level sensitive trigger select" end="5" id="DMALEVEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="DMA source byte" end="6" id="DMASRCBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DMA destination byte" end="7" id="DMADSTBYTE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DMA source increment bit 0" end="8" id="DMASRCINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA source increment 0: source address unchanged" id="DMASRCINCR_0" token="DMASRCINCR_0" value="0"></bitenum>
+<bitenum description="DMA source increment 1: source address unchanged" id="DMASRCINCR_1" token="DMASRCINCR_1" value="1"></bitenum>
+<bitenum description="DMA source increment 2: source address decremented" id="DMASRCINCR_2" token="DMASRCINCR_2" value="2"></bitenum>
+<bitenum description="DMA source increment 3: source address incremented" id="DMASRCINCR_3" token="DMASRCINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="11" description="DMA destination increment bit 0" end="10" id="DMADSTINCR" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DMA destination increment 0: destination address unchanged" id="DMADSTINCR_0" token="DMADSTINCR_0" value="0"></bitenum>
+<bitenum description="DMA destination increment 1: destination address unchanged" id="DMADSTINCR_1" token="DMADSTINCR_1" value="1"></bitenum>
+<bitenum description="DMA destination increment 2: destination address decremented" id="DMADSTINCR_2" token="DMADSTINCR_2" value="2"></bitenum>
+<bitenum description="DMA destination increment 3: destination address incremented" id="DMADSTINCR_3" token="DMADSTINCR_3" value="3"></bitenum></bitfield>
+<bitfield begin="14" description="DMA transfer mode bit 0" end="12" id="DMADT" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DMA transfer mode 0: Single transfer" id="DMADT_0" token="DMADT_0" value="0"></bitenum>
+<bitenum description="DMA transfer mode 1: Block transfer" id="DMADT_1" token="DMADT_1" value="1"></bitenum>
+<bitenum description="DMA transfer mode 2: Burst-Block transfer" id="DMADT_2" token="DMADT_2" value="2"></bitenum>
+<bitenum description="DMA transfer mode 3: Burst-Block transfer" id="DMADT_3" token="DMADT_3" value="3"></bitenum>
+<bitenum description="DMA transfer mode 4: Repeated Single transfer" id="DMADT_4" token="DMADT_4" value="4"></bitenum>
+<bitenum description="DMA transfer mode 5: Repeated Block transfer" id="DMADT_5" token="DMADT_5" value="5"></bitenum>
+<bitenum description="DMA transfer mode 6: Repeated Burst-Block transfer" id="DMADT_6" token="DMADT_6" value="6"></bitenum>
+<bitenum description="DMA transfer mode 7: Repeated Burst-Block transfer" id="DMADT_7" token="DMADT_7" value="7"></bitenum></bitfield></register>
+<register acronym="DMA5SA" description="DMA Channel 5 Source Address" id="DMA5SA" offset=" 0x0562" width="32"></register>
+<register acronym="DMA5DA" description="DMA Channel 5 Destination Address" id="DMA5DA" offset=" 0x0566" width="32"></register>
+<register acronym="DMA5SZ" description="DMA Channel 5 Transfer Size" id="DMA5SZ" offset=" 0x056A" width="16"></register>
+</module>

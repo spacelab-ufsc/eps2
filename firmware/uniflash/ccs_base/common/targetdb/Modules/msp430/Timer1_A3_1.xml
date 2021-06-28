@@ -1,0 +1,120 @@
+<module HW_revision="" XML_version="1" description="Timer1_A3" id="Timer1_A3">
+<register acronym="TA1CTL" description="Timer1_A3 Control" id="TA1CTL" offset=" 0x0380" width="16">
+<bitfield begin="0" description="Timer A counter interrupt flag" end="0" id="TAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Timer A counter interrupt enable" end="1" id="TAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Timer A counter clear" end="2" id="TACLR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Timer A mode control 1" end="4" id="MC" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Timer A mode control: 0 - Stop" id="MC_0" token="MC_0" value="0"></bitenum>
+<bitenum description="Timer A mode control: 1 - Up to CCR0" id="MC_1" token="MC_1" value="1"></bitenum>
+<bitenum description="Timer A mode control: 2 - Continuous up" id="MC_2" token="MC_2" value="2"></bitenum>
+<bitenum description="Timer A mode control: 3 - Up/Down" id="MC_3" token="MC_3" value="3"></bitenum></bitfield>
+<bitfield begin="7" description="Timer A clock input divider 1" end="6" id="ID" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Timer A input divider: 0 - /1" id="ID_0" token="ID_0" value="0"></bitenum>
+<bitenum description="Timer A input divider: 1 - /2" id="ID_1" token="ID_1" value="1"></bitenum>
+<bitenum description="Timer A input divider: 2 - /4" id="ID_2" token="ID_2" value="2"></bitenum>
+<bitenum description="Timer A input divider: 3 - /8" id="ID_3" token="ID_3" value="3"></bitenum></bitfield>
+<bitfield begin="9" description="Timer A clock source select 1" end="8" id="TASSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Timer A clock source select: 0 - TACLK" id="TASSEL_0" token="TASSEL_0" value="0"></bitenum>
+<bitenum description="Timer A clock source select: 1 - ACLK" id="TASSEL_1" token="TASSEL_1" value="1"></bitenum>
+<bitenum description="Timer A clock source select: 2 - SMCLK" id="TASSEL_2" token="TASSEL_2" value="2"></bitenum>
+<bitenum description="Timer A clock source select: 3 - INCLK" id="TASSEL_3" token="TASSEL_3" value="3"></bitenum></bitfield></register>
+<register acronym="TA1CCTL0" description="Timer1_A3 Capture/Compare Control 0" id="TA1CCTL0" offset=" 0x0382" width="16">
+<bitfield begin="0" description="Capture/compare interrupt flag" end="0" id="CCIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Capture/compare overflow flag" end="1" id="COV" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PWM Output signal if output mode 0" end="2" id="OUT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Capture input signal (read)" end="3" id="CCI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Capture/compare interrupt enable" end="4" id="CCIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Output mode 2" end="5" id="OUTMOD" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="PWM output mode: 0 - output only" id="OUTMOD_0" token="OUTMOD_0" value="0"></bitenum>
+<bitenum description="PWM output mode: 1 - set" id="OUTMOD_1" token="OUTMOD_1" value="1"></bitenum>
+<bitenum description="PWM output mode: 2 - PWM toggle/reset" id="OUTMOD_2" token="OUTMOD_2" value="2"></bitenum>
+<bitenum description="PWM output mode: 3 - PWM set/reset" id="OUTMOD_3" token="OUTMOD_3" value="3"></bitenum>
+<bitenum description="PWM output mode: 4 - toggle" id="OUTMOD_4" token="OUTMOD_4" value="4"></bitenum>
+<bitenum description="PWM output mode: 5 - Reset" id="OUTMOD_5" token="OUTMOD_5" value="5"></bitenum>
+<bitenum description="PWM output mode: 6 - PWM toggle/set" id="OUTMOD_6" token="OUTMOD_6" value="6"></bitenum>
+<bitenum description="PWM output mode: 7 - PWM reset/set" id="OUTMOD_7" token="OUTMOD_7" value="7"></bitenum></bitfield>
+<bitfield begin="8" description="Capture mode: 1 /Compare mode : 0" end="8" id="CAP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="Latched capture signal (read)" end="10" id="SCCI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="Capture sychronize" end="11" id="SCS" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="Capture input select 1" end="12" id="CCIS" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Capture input select: 0 - CCIxA" id="CCIS_0" token="CCIS_0" value="0"></bitenum>
+<bitenum description="Capture input select: 1 - CCIxB" id="CCIS_1" token="CCIS_1" value="1"></bitenum>
+<bitenum description="Capture input select: 2 - GND" id="CCIS_2" token="CCIS_2" value="2"></bitenum>
+<bitenum description="Capture input select: 3 - Vcc" id="CCIS_3" token="CCIS_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="Capture mode 1" end="14" id="CM" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Capture mode: 0 - disabled" id="CM_0" token="CM_0" value="0"></bitenum>
+<bitenum description="Capture mode: 1 - pos. edge" id="CM_1" token="CM_1" value="1"></bitenum>
+<bitenum description="Capture mode: 1 - neg. edge" id="CM_2" token="CM_2" value="2"></bitenum>
+<bitenum description="Capture mode: 1 - both edges" id="CM_3" token="CM_3" value="3"></bitenum></bitfield></register>
+<register acronym="TA1CCTL1" description="Timer1_A3 Capture/Compare Control 1" id="TA1CCTL1" offset=" 0x0384" width="16">
+<bitfield begin="0" description="Capture/compare interrupt flag" end="0" id="CCIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Capture/compare overflow flag" end="1" id="COV" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PWM Output signal if output mode 0" end="2" id="OUT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Capture input signal (read)" end="3" id="CCI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Capture/compare interrupt enable" end="4" id="CCIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Output mode 2" end="5" id="OUTMOD" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="PWM output mode: 0 - output only" id="OUTMOD_0" token="OUTMOD_0" value="0"></bitenum>
+<bitenum description="PWM output mode: 1 - set" id="OUTMOD_1" token="OUTMOD_1" value="1"></bitenum>
+<bitenum description="PWM output mode: 2 - PWM toggle/reset" id="OUTMOD_2" token="OUTMOD_2" value="2"></bitenum>
+<bitenum description="PWM output mode: 3 - PWM set/reset" id="OUTMOD_3" token="OUTMOD_3" value="3"></bitenum>
+<bitenum description="PWM output mode: 4 - toggle" id="OUTMOD_4" token="OUTMOD_4" value="4"></bitenum>
+<bitenum description="PWM output mode: 5 - Reset" id="OUTMOD_5" token="OUTMOD_5" value="5"></bitenum>
+<bitenum description="PWM output mode: 6 - PWM toggle/set" id="OUTMOD_6" token="OUTMOD_6" value="6"></bitenum>
+<bitenum description="PWM output mode: 7 - PWM reset/set" id="OUTMOD_7" token="OUTMOD_7" value="7"></bitenum></bitfield>
+<bitfield begin="8" description="Capture mode: 1 /Compare mode : 0" end="8" id="CAP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="Latched capture signal (read)" end="10" id="SCCI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="Capture sychronize" end="11" id="SCS" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="Capture input select 1" end="12" id="CCIS" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Capture input select: 0 - CCIxA" id="CCIS_0" token="CCIS_0" value="0"></bitenum>
+<bitenum description="Capture input select: 1 - CCIxB" id="CCIS_1" token="CCIS_1" value="1"></bitenum>
+<bitenum description="Capture input select: 2 - GND" id="CCIS_2" token="CCIS_2" value="2"></bitenum>
+<bitenum description="Capture input select: 3 - Vcc" id="CCIS_3" token="CCIS_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="Capture mode 1" end="14" id="CM" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Capture mode: 0 - disabled" id="CM_0" token="CM_0" value="0"></bitenum>
+<bitenum description="Capture mode: 1 - pos. edge" id="CM_1" token="CM_1" value="1"></bitenum>
+<bitenum description="Capture mode: 1 - neg. edge" id="CM_2" token="CM_2" value="2"></bitenum>
+<bitenum description="Capture mode: 1 - both edges" id="CM_3" token="CM_3" value="3"></bitenum></bitfield></register>
+<register acronym="TA1CCTL2" description="Timer1_A3 Capture/Compare Control 2" id="TA1CCTL2" offset=" 0x0386" width="16">
+<bitfield begin="0" description="Capture/compare interrupt flag" end="0" id="CCIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Capture/compare overflow flag" end="1" id="COV" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PWM Output signal if output mode 0" end="2" id="OUT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Capture input signal (read)" end="3" id="CCI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Capture/compare interrupt enable" end="4" id="CCIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Output mode 2" end="5" id="OUTMOD" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="PWM output mode: 0 - output only" id="OUTMOD_0" token="OUTMOD_0" value="0"></bitenum>
+<bitenum description="PWM output mode: 1 - set" id="OUTMOD_1" token="OUTMOD_1" value="1"></bitenum>
+<bitenum description="PWM output mode: 2 - PWM toggle/reset" id="OUTMOD_2" token="OUTMOD_2" value="2"></bitenum>
+<bitenum description="PWM output mode: 3 - PWM set/reset" id="OUTMOD_3" token="OUTMOD_3" value="3"></bitenum>
+<bitenum description="PWM output mode: 4 - toggle" id="OUTMOD_4" token="OUTMOD_4" value="4"></bitenum>
+<bitenum description="PWM output mode: 5 - Reset" id="OUTMOD_5" token="OUTMOD_5" value="5"></bitenum>
+<bitenum description="PWM output mode: 6 - PWM toggle/set" id="OUTMOD_6" token="OUTMOD_6" value="6"></bitenum>
+<bitenum description="PWM output mode: 7 - PWM reset/set" id="OUTMOD_7" token="OUTMOD_7" value="7"></bitenum></bitfield>
+<bitfield begin="8" description="Capture mode: 1 /Compare mode : 0" end="8" id="CAP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="Latched capture signal (read)" end="10" id="SCCI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="Capture sychronize" end="11" id="SCS" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="Capture input select 1" end="12" id="CCIS" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Capture input select: 0 - CCIxA" id="CCIS_0" token="CCIS_0" value="0"></bitenum>
+<bitenum description="Capture input select: 1 - CCIxB" id="CCIS_1" token="CCIS_1" value="1"></bitenum>
+<bitenum description="Capture input select: 2 - GND" id="CCIS_2" token="CCIS_2" value="2"></bitenum>
+<bitenum description="Capture input select: 3 - Vcc" id="CCIS_3" token="CCIS_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="Capture mode 1" end="14" id="CM" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Capture mode: 0 - disabled" id="CM_0" token="CM_0" value="0"></bitenum>
+<bitenum description="Capture mode: 1 - pos. edge" id="CM_1" token="CM_1" value="1"></bitenum>
+<bitenum description="Capture mode: 1 - neg. edge" id="CM_2" token="CM_2" value="2"></bitenum>
+<bitenum description="Capture mode: 1 - both edges" id="CM_3" token="CM_3" value="3"></bitenum></bitfield></register>
+<register acronym="TA1R" description="Timer1_A3" id="TA1R" offset=" 0x0390" width="16"></register>
+<register acronym="TA1CCR0" description="Timer1_A3 Capture/Compare 0" id="TA1CCR0" offset=" 0x0392" width="16"></register>
+<register acronym="TA1CCR1" description="Timer1_A3 Capture/Compare 1" id="TA1CCR1" offset=" 0x0394" width="16"></register>
+<register acronym="TA1CCR2" description="Timer1_A3 Capture/Compare 2" id="TA1CCR2" offset=" 0x0396" width="16"></register>
+<register acronym="TA1IV" description="Timer1_A3 Interrupt Vector Word" id="TA1IV" offset=" 0x03AE" width="16"></register>
+<register acronym="TA1EX0" description="Timer1_A3 Expansion Register 0" id="TA1EX0" offset=" 0x03A0" width="16">
+<bitfield begin="2" description="Timer A Input divider expansion Bit: 0" end="0" id="TAIDEX" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="Timer A Input divider expansion : /1" id="TAIDEX_0" token="TAIDEX_0" value="0"></bitenum>
+<bitenum description="Timer A Input divider expansion : /2" id="TAIDEX_1" token="TAIDEX_1" value="1"></bitenum>
+<bitenum description="Timer A Input divider expansion : /3" id="TAIDEX_2" token="TAIDEX_2" value="2"></bitenum>
+<bitenum description="Timer A Input divider expansion : /4" id="TAIDEX_3" token="TAIDEX_3" value="3"></bitenum>
+<bitenum description="Timer A Input divider expansion : /5" id="TAIDEX_4" token="TAIDEX_4" value="4"></bitenum>
+<bitenum description="Timer A Input divider expansion : /6" id="TAIDEX_5" token="TAIDEX_5" value="5"></bitenum>
+<bitenum description="Timer A Input divider expansion : /7" id="TAIDEX_6" token="TAIDEX_6" value="6"></bitenum>
+<bitenum description="Timer A Input divider expansion : /8" id="TAIDEX_7" token="TAIDEX_7" value="7"></bitenum></bitfield></register>
+</module>

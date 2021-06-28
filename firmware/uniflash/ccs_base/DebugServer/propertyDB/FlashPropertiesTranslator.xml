@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlashPropertiesTranslator xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FlashProperties name="BL_CC13xxCC26xx">
+		<partnum regex="^CC13.*\(Bootloader\)" />
+		<partnum regex="^CC25.*\(Bootloader\)" />
+		<partnum regex="^CC26.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_CC32xx">
+		<partnum regex="^CC32.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_MSP430Flash">
+		<partnum regex="^MSP430F5.*\(Bootloader\)"/>
+		<partnum regex="^MSP430F6.*\(Bootloader\)"/>
+	</FlashProperties>
+	<FlashProperties name="BL_MSP430FR2xx_4xx_1kB_BSL">
+		<partnum regex="^MSP430FR21.*\(Bootloader\)" />
+		<partnum regex="^MSP430FR20.*\(Bootloader\)" />
+		<partnum regex="^MSP430FR4.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_MSP430FR2xx">
+		<partnum regex="^MSP430FR23.*\(Bootloader\)" />
+		<partnum regex="^MSP430FR24.*\(Bootloader\)" />
+		<partnum regex="^MSP430FR25.*\(Bootloader\)" />
+		<partnum regex="^MSP430FR26.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_MSP430FR5xx_6xx">
+		<partnum regex="^MSP430FR5.*\(Bootloader\)" />
+		<partnum regex="^MSP430FR6.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_MSP432E4">
+		<partnum regex="^MSP432E.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_MSP432P4">
+		<partnum regex="^MSP432P.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="BL_MSP430Flash-Legacy">
+		<partnum regex="^MSP430F1.*\(Bootloader\)" />
+		<partnum regex="^MSP430F2.*\(Bootloader\)" />
+		<partnum regex="^MSP430F4.*\(Bootloader\)" />
+		<partnum regex="^MSP430G.*\(Bootloader\)" />
+	</FlashProperties>
+	<FlashProperties name="CC13x2x7_CC26x2x7">
+		<partnum regex="^CC13[1|5]2[R|P]7" />
+		<partnum regex="^CC2652[R|P]7" />
+	</FlashProperties>
+	<FlashProperties name="CC13x1_CC26x1">
+		<partnum regex="^CC1311[R|P]3" />
+		<partnum regex="^CC2651[R|P]3" />
+	</FlashProperties>
+	<FlashProperties name="CC13x4x10_CC26x4x10">
+		<partnum regex="^CC13[1|5]4[R|P]10" />
+		<partnum regex="^CC2654[R|P]10" />
+	</FlashProperties>
+	<FlashProperties name="CC25">
+		<partnum beginsWith="CC25" />
+		<partnum beginsWith="CM25" />
+	</FlashProperties>
+	<FlashProperties name="CC13x2">
+		<partnum beginsWith="CC13*2" />
+		<partnum beginsWith="CC13*4" />
+	</FlashProperties>
+	<FlashProperties name="CC26x2">
+		<partnum beginsWith="CC26*2" />
+		<partnum beginsWith="CC26*4" />
+	</FlashProperties>
+	<FlashProperties name="CC13">
+		<partnum beginsWith="CC13" />
+	</FlashProperties>
+	<FlashProperties name="CC26">
+		<partnum beginsWith="CC26" />
+	</FlashProperties>
+	<FlashProperties name="CC3220SF">
+		<partnum beginsWith="CC3220SF" />
+	</FlashProperties>
+	<FlashProperties name="CC3235SF">
+		<partnum beginsWith="CC3235SF" />
+	</FlashProperties>
+	<FlashProperties name="LMx">
+		<partnum beginsWith="LM3" />
+		<partnum beginsWith="LM4" />
+	</FlashProperties>
+	<FlashProperties name="TM4Ex">
+		<partnum beginsWith="TM4E" />
+		<partnum beginsWith="SC4E" />
+	</FlashProperties>
+	<FlashProperties name="TM4Cx">
+		<partnum beginsWith="TM4C" />
+		<partnum beginsWith="SC4C" />
+	</FlashProperties>
+	<FlashProperties name="TMS470MF03x">
+		<partnum beginsWith="TMS470MF03" />
+	</FlashProperties>
+	<FlashProperties name="TMS470MF06x">
+		<partnum beginsWith="TMS470MF06" />
+	</FlashProperties>
+	<FlashProperties name="TMS470MSF2x">
+		<partnum beginsWith="TMS470MSF2" />
+	</FlashProperties>
+	<FlashProperties name="TMS570LS20x">
+		<partnum beginsWith="TMS570LS20" />
+	</FlashProperties>
+	<FlashProperties name="TMS570LS10x">
+		<partnum beginsWith="TMS570LS10" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM48_3MB">
+		<partnum beginsWith="TMS570LS31" />
+		<partnum beginsWith="RM48L9" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM48_2MB">
+		<partnum beginsWith="TMS570LS21" />
+		<partnum beginsWith="RM48L7" />
+		<partnum beginsWith="RM48L5" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM46_125MB">
+		<partnum beginsWith="TMS570LS12" />
+		<partnum beginsWith="RM46L8" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM46_1MB">
+		<partnum beginsWith="TMS570LS11" />
+		<partnum beginsWith="RM46L4" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM46_768KB">
+		<partnum beginsWith="TMS570LS08" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM44_1MB">
+		<partnum beginsWith="TMS570LS09" />
+		<partnum beginsWith="RM44L9" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM44_768KB">
+		<partnum beginsWith="TMS570LS07" />
+		<partnum beginsWith="RM44L5" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM42_384KB">
+		<partnum beginsWith="TMS570LS04" />
+		<partnum beginsWith="RM42L4" />
+	</FlashProperties>
+	<FlashProperties name="TMS570xC_RM57_4MB">
+		<partnum beginsWith="TMS570LC4" />
+		<partnum beginsWith="TMS570DC4" />
+		<partnum beginsWith="RM57L8" />
+		<partnum beginsWith="RM57D8" />
+	</FlashProperties>
+	<FlashProperties name="TMS570xC_RM57_3MB">
+		<partnum beginsWith="TMS570LC3" />
+		<partnum beginsWith="TMS570DC3" />
+		<partnum beginsWith="RM57L6" />
+		<partnum beginsWith="RM57D6" />
+	</FlashProperties>
+	<FlashProperties name="TMS570_RM41_128KB">
+		<partnum beginsWith="TMS570LS02" />
+		<partnum beginsWith="RM41L2" />
+	</FlashProperties>
+	<FlashProperties name="TMS570LS033x">
+		<partnum beginsWith="TMS570LS03" />
+	</FlashProperties>
+	<FlashProperties name="TMS320F28004x_128KB">
+		<partnum beginsWith="TMS320F280040" />
+		<partnum beginsWith="TMS320F280041" />
+		<partnum beginsWith="TMS320F280042" />
+		<partnum beginsWith="F280040" />
+		<partnum beginsWith="F280041" />
+		<partnum beginsWith="F280042" />
+	</FlashProperties>
+	<FlashProperties name="TMS320F28004x_256KB">
+		<partnum beginsWith="TMS320F28004" />
+		<partnum beginsWith="F28004" />
+	</FlashProperties>
+	<FlashProperties name="TMS320F28002x_32KB">
+		<partnum beginsWith="TMS320F280021" />
+		<partnum beginsWith="F280021" />
+	</FlashProperties>
+	<FlashProperties name="TMS320F28002x_64KB">
+		<partnum beginsWith="TMS320F280023" />
+		<partnum beginsWith="TMS320F280022" />
+		<partnum beginsWith="F280023" />
+		<partnum beginsWith="F280022" />
+	</FlashProperties>
+	<FlashProperties name="TMS320F28002x_128KB">
+		<partnum beginsWith="TMS320F28002" />
+		<partnum beginsWith="F28002" />
+	</FlashProperties>
+	<FlashProperties name="TMS320F2838x">
+		<partnum beginsWith="TMS320F2838" />
+		<partnum beginsWith="F2838" />
+	</FlashProperties>
+	<FlashProperties name="F28M35_512KB">
+		<partnum beginsWith="F28M35H5" />
+		<partnum beginsWith="F28M35M5" />
+	</FlashProperties>
+	<FlashProperties name="F28M35_256KB">
+		<partnum beginsWith="F28M35" />
+	</FlashProperties>
+	<FlashProperties name="F28M36_C512KB_M1MB">
+		<partnum beginsWith="F28M36P63" />
+	</FlashProperties>
+	<FlashProperties name="F28M36_C512KB_M512KB">
+		<partnum beginsWith="F28M36" />
+	</FlashProperties>
+	<!-- UCD3138 FLASH PROPERTIES -->
+	<FlashProperties name="UCD3138064">
+		<partnum beginsWith="UCD3138064" />
+	</FlashProperties>
+	<FlashProperties name="UCD3138A64">
+		<partnum beginsWith="UCD3138A64" />
+	</FlashProperties>
+	<FlashProperties name="UCD3138128">
+		<partnum beginsWith="UCD3138128" />
+	</FlashProperties>
+	<FlashProperties name="UCD3138">
+		<partnum beginsWith="UCD3138" />
+	</FlashProperties>
+	<FlashProperties name="AWR14xx">
+		<partnum beginsWith="AWR14" />
+		<partnum beginsWith="AWR12" />
+		<partnum beginsWith="AWR22" />
+		<partnum beginsWith="IWR14" />
+		<partnum beginsWith="IWR12" />
+	</FlashProperties>
+	<FlashProperties name="AWR16xx">
+		<partnum beginsWith="AWR16" />
+		<partnum beginsWith="AWR18" />
+		<partnum beginsWith="AWR64" />
+		<partnum beginsWith="AWR68" />
+		<partnum beginsWith="IWR16" />
+		<partnum beginsWith="IWR18" />
+		<partnum beginsWith="IWR68" />
+	</FlashProperties>
+	<FlashProperties name="MSP430">
+		<partnum beginsWith="MSP430" />
+		<partnum beginsWith="RF430" />
+		<partnum beginsWith="CC430" />
+		<partnum beginsWith="F20x*_G2x*x_G2x*x" />
+		<partnum beginsWith="MSP432" msp432fet="true" />
+	</FlashProperties>
+</FlashPropertiesTranslator>

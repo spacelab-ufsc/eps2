@@ -1,0 +1,44 @@
+<module HW_revision="" XML_version="1" description="USCI_B1  SPI Mode" id="USCI_B1  SPI Mode">
+<register acronym="UCB1CTLW0__SPI" description="USCI B1 Control Word Register 0" id="UCB1CTLW0__SPI" offset=" 0x0620" width="16"></register>
+<register acronym="UCB1CTL0__SPI" description="USCI B1 Control Register 0" id="UCB1CTL0__SPI" offset=" 0x0621" width="8">
+<bitfield begin="0" description="Sync-Mode  0:UART-Mode / 1:SPI-Mode" end="0" id="UCSYNC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Sync. Mode: USCI Mode 1" end="1" id="UCMODE" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Sync. Mode: USCI Mode: 0" id="UCMODE_0" token="UCMODE_0" value="0"></bitenum>
+<bitenum description="Sync. Mode: USCI Mode: 1" id="UCMODE_1" token="UCMODE_1" value="1"></bitenum>
+<bitenum description="Sync. Mode: USCI Mode: 2" id="UCMODE_2" token="UCMODE_2" value="2"></bitenum>
+<bitenum description="Sync. Mode: USCI Mode: 3" id="UCMODE_3" token="UCMODE_3" value="3"></bitenum></bitfield>
+<bitfield begin="3" description="Sync. Mode: Master Select" end="3" id="UCMST" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Sync. Mode: Data Bits 0:8-bits / 1:7-bits" end="4" id="UC7BIT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Sync. Mode: MSB first 0:LSB / 1:MSB" end="5" id="UCMSB" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Sync. Mode: Clock Polarity" end="6" id="UCCKPL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Sync. Mode: Clock Phase" end="7" id="UCCKPH" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCB1CTL1__SPI" description="USCI B1 Control Register 1" id="UCB1CTL1__SPI" offset=" 0x0620" width="8">
+<bitfield begin="0" description="USCI Software Reset" end="0" id="UCSWRST" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USCI 1 Clock Source Select 1" end="6" id="UCSSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="USCI 0 Clock Source: 0" id="UCSSEL_0" token="UCSSEL_0" value="0"></bitenum>
+<bitenum description="USCI 0 Clock Source: 1" id="UCSSEL_1" token="UCSSEL_1" value="1"></bitenum>
+<bitenum description="USCI 0 Clock Source: 2" id="UCSSEL_2" token="UCSSEL_2" value="2"></bitenum>
+<bitenum description="USCI 0 Clock Source: 3" id="UCSSEL_3" token="UCSSEL_3" value="3"></bitenum></bitfield></register>
+<register acronym="UCB1BRW__SPI" description="USCI B1 Baud Word Rate 0" id="UCB1BRW__SPI" offset=" 0x0626" width="16"></register>
+<register acronym="UCB1BR0__SPI" description="USCI B1 Baud Rate 0" id="UCB1BR0__SPI" offset=" 0x0626" width="8"></register>
+<register acronym="UCB1BR1__SPI" description="USCI B1 Baud Rate 1" id="UCB1BR1__SPI" offset=" 0x0627" width="8"></register>
+<register acronym="UCB1STAT__SPI" description="USCI B1 Status Register" id="UCB1STAT__SPI" offset=" 0x062A" width="8">
+<bitfield begin="0" description="USCI Busy Flag" end="0" id="UCBUSY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USCI Overrun Error Flag" end="5" id="UCOE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="USCI Frame Error Flag" end="6" id="UCFE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USCI Listen mode" end="7" id="UCLISTEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCB1RXBUF__SPI" description="USCI B1 Receive Buffer" id="UCB1RXBUF__SPI" offset=" 0x062C" width="8"></register>
+<register acronym="UCB1TXBUF__SPI" description="USCI B1 Transmit Buffer" id="UCB1TXBUF__SPI" offset=" 0x062E" width="8"></register>
+<register acronym="UCB1ICTL__SPI" description="USCI B1 Interrupt Enable Register" id="UCB1ICTL__SPI" offset=" 0x063C" width="16"></register>
+<register acronym="UCB1IE__SPI" description="USCI B1 Interrupt Enable Register" id="UCB1IE__SPI" offset=" 0x063C" width="8">
+<bitfield begin="0" description="USCI Receive Interrupt Enable" end="0" id="UCRXIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USCI Transmit Interrupt Enable" end="1" id="UCTXIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="START Condition interrupt enable" end="2" id="UCSTTIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="STOP Condition interrupt enable" end="3" id="UCSTPIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Arbitration Lost interrupt enable" end="4" id="UCALIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="NACK Condition interrupt enable" end="5" id="UCNACKIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCB1IFG__SPI" description="USCI B1 Interrupt Flags Register" id="UCB1IFG__SPI" offset=" 0x063D" width="8">
+<bitfield begin="0" description="USCI Receive Interrupt Flag" end="0" id="UCRXIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USCI Transmit Interrupt Flag" end="1" id="UCTXIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCB1IV__SPI" description="USCI B1 Interrupt Vector Register" id="UCB1IV__SPI" offset=" 0x063E" width="16"></register>
+</module>

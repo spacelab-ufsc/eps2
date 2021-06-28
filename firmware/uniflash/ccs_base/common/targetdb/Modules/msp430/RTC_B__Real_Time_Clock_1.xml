@@ -1,0 +1,150 @@
+<module HW_revision="" XML_version="1" description="RTC_B  Real Time Clock" id="RTC_B  Real Time Clock">
+<register acronym="RTCCTL01" description="Real Timer Control 0/1" id="RTCCTL01" offset=" 0x04A0" width="16">
+<bitfield begin="0" description="RTC Ready Interrupt Flag" end="0" id="RTCRDYIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="RTC Alarm Interrupt Flag" end="1" id="RTCAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="RTC Time Event Interrupt Flag" end="2" id="RTCTEVIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="RTC 32kHz cyrstal oscillator fault interrupt flag" end="3" id="RTCOFIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="RTC Ready Interrupt Enable Flag" end="4" id="RTCRDYIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="RTC Alarm Interrupt Enable Flag" end="5" id="RTCAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="RTC Time Event Interrupt Enable Flag" end="6" id="RTCTEVIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="RTC 32kHz cyrstal oscillator fault interrupt enable" end="7" id="RTCOFIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="RTC Time Event 1" end="8" id="RTCTEV" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="RTC Time Event: 0 (Min. changed)" id="RTCTEV_0" token="RTCTEV_0" value="0"></bitenum>
+<bitenum description="RTC Time Event: 1 (Hour changed)" id="RTCTEV_1" token="RTCTEV_1" value="1"></bitenum>
+<bitenum description="RTC Time Event: 2 (12:00 changed)" id="RTCTEV_2" token="RTCTEV_2" value="2"></bitenum>
+<bitenum description="RTC Time Event: 3 (00:00 changed)" id="RTCTEV_3" token="RTCTEV_3" value="3"></bitenum></bitfield>
+<bitfield begin="12" description="RTC Ready" end="12" id="RTCRDY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="RTC Hold" end="14" id="RTCHOLD" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="RTC BCD  0:Binary / 1:BCD" end="15" id="RTCBCD" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCCTL23" description="Real Timer Control 2/3" id="RTCCTL23" offset=" 0x04A2" width="16">
+<bitfield begin="0" description="RTC Calibration Bit 0" end="0" id="RTCCAL0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="RTC Calibration Bit 1" end="1" id="RTCCAL1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="RTC Calibration Bit 2" end="2" id="RTCCAL2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="RTC Calibration Bit 3" end="3" id="RTCCAL3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="RTC Calibration Bit 4" end="4" id="RTCCAL4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="RTC Calibration Bit 5" end="5" id="RTCCAL5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="RTC Calibration Sign" end="7" id="RTCCALS" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="RTC Calibration Frequency Bit 1" end="8" id="RTCCALF" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="RTC Calibration Frequency: No Output" id="RTCCALF_0" token="RTCCALF_0" value="0"></bitenum>
+<bitenum description="RTC Calibration Frequency: 512 Hz" id="RTCCALF_1" token="RTCCALF_1" value="1"></bitenum>
+<bitenum description="RTC Calibration Frequency: 256 Hz" id="RTCCALF_2" token="RTCCALF_2" value="2"></bitenum>
+<bitenum description="RTC Calibration Frequency: 1 Hz" id="RTCCALF_3" token="RTCCALF_3" value="3"></bitenum></bitfield></register>
+<register acronym="RTCPS0CTL" description="Real Timer Prescale Timer 0 Control" id="RTCPS0CTL" offset=" 0x04A8" width="16">
+<bitfield begin="0" description="RTC Prescale Timer 0 Interrupt Flag" end="0" id="RT0PSIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="RTC Prescale Timer 0 Interrupt Enable Flag" end="1" id="RT0PSIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="RTC Prescale Timer 0 Interrupt Interval Bit: 2" end="2" id="RT0IP" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /2" id="RT0IP_0" token="RT0IP_0" value="0"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /4" id="RT0IP_1" token="RT0IP_1" value="1"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /8" id="RT0IP_2" token="RT0IP_2" value="2"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /16" id="RT0IP_3" token="RT0IP_3" value="3"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /32" id="RT0IP_4" token="RT0IP_4" value="4"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /64" id="RT0IP_5" token="RT0IP_5" value="5"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /128" id="RT0IP_6" token="RT0IP_6" value="6"></bitenum>
+<bitenum description="RTC Prescale Timer 0 Interrupt Interval /256" id="RT0IP_7" token="RT0IP_7" value="7"></bitenum></bitfield></register>
+<register acronym="RTCPS1CTL" description="Real Timer Prescale Timer 1 Control" id="RTCPS1CTL" offset=" 0x04AA" width="16">
+<bitfield begin="0" description="RTC Prescale Timer 1 Interrupt Flag" end="0" id="RT1PSIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="RTC Prescale Timer 1 Interrupt Enable Flag" end="1" id="RT1PSIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="RTC Prescale Timer 1 Interrupt Interval Bit: 2" end="2" id="RT1IP" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /2" id="RT1IP_0" token="RT1IP_0" value="0"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /4" id="RT1IP_1" token="RT1IP_1" value="1"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /8" id="RT1IP_2" token="RT1IP_2" value="2"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /16" id="RT1IP_3" token="RT1IP_3" value="3"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /32" id="RT1IP_4" token="RT1IP_4" value="4"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /64" id="RT1IP_5" token="RT1IP_5" value="5"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /128" id="RT1IP_6" token="RT1IP_6" value="6"></bitenum>
+<bitenum description="RTC Prescale Timer 1 Interrupt Interval /256" id="RT1IP_7" token="RT1IP_7" value="7"></bitenum></bitfield></register>
+<register acronym="RTCPS" description="Real Timer Prescale Timer Control" id="RTCPS" offset=" 0x04AC" width="16"></register>
+<register acronym="RTCIV" description="Real Time Clock Interrupt Vector" id="RTCIV" offset=" 0x04AE" width="16"></register>
+<register acronym="RTCTIM0" description="Real Time Clock Time 0" id="RTCTIM0" offset=" 0x04B0" width="16"></register>
+<register acronym="RTCTIM1" description="Real Time Clock Time 1" id="RTCTIM1" offset=" 0x04B2" width="16"></register>
+<register acronym="RTCDATE" description="Real Time Clock Date" id="RTCDATE" offset=" 0x04B4" width="16"></register>
+<register acronym="RTCYEAR" description="Real Time Clock Year" id="RTCYEAR" offset=" 0x04B6" width="16"></register>
+<register acronym="RTCAMINHR" description="Real Time Clock Alarm Min/Hour" id="RTCAMINHR" offset=" 0x04B8" width="16"></register>
+<register acronym="RTCADOWDAY" description="Real Time Clock Alarm day of week/day" id="RTCADOWDAY" offset=" 0x04BA" width="16"></register>
+<register acronym="BIN2BCD" description="Real Time Binary-to-BCD conversion register" id="BIN2BCD" offset=" 0x04BC" width="16"></register>
+<register acronym="BCD2BIN" description="Real Time BCD-to-binary conversion register" id="BCD2BIN" offset=" 0x04BE" width="16"></register>
+<register acronym="RTCSEC" description="Real Time Clock Seconds" id="RTCSEC" offset=" 0x04B0" width="8">
+<bitfield begin="0" description="Real Time Clock Seconds Bit: 0" end="0" id="SECONDS0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Seconds Bit: 1" end="1" id="SECONDS1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Seconds Bit: 2" end="2" id="SECONDS2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Seconds Bit: 3" end="3" id="SECONDS3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Seconds Bit: 4" end="4" id="SECONDS4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Seconds Bit: 5" end="5" id="SECONDS5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Seconds Bit: 6" end="6" id="SECONDS6" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCMIN" description="Real Time Clock Minutes" id="RTCMIN" offset=" 0x04B1" width="8">
+<bitfield begin="0" description="Real Time Clock Minutes Bit: 0" end="0" id="MINUTES0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Minutes Bit: 1" end="1" id="MINUTES1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Minutes Bit: 2" end="2" id="MINUTES2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Minutes Bit: 3" end="3" id="MINUTES3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Minutes Bit: 4" end="4" id="MINUTES4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Minutes Bit: 5" end="5" id="MINUTES5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Minutes Bit: 6" end="6" id="MINUTES6" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCHOUR" description="Real Time Clock Hour" id="RTCHOUR" offset=" 0x04B2" width="8">
+<bitfield begin="0" description="Real Time Clock Hour Bit: 0" end="0" id="HOUR0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Hour Bit: 1" end="1" id="HOUR1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Hour Bit: 2" end="2" id="HOUR2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Hour Bit: 3" end="3" id="HOUR3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Hour Bit: 4" end="4" id="HOUR4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Hour Bit: 5" end="5" id="HOUR5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Hour Bit: 6" end="6" id="HOUR6" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCDOW" description="Real Time Clock Day of week" id="RTCDOW" offset=" 0x04B3" width="8">
+<bitfield begin="0" description="Real Time Clock DOW Bit: 0" end="0" id="DOW0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock DOW Bit: 1" end="1" id="DOW1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock DOW Bit: 2" end="2" id="DOW2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock DOW Bit: 3" end="3" id="DOW3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock DOW Bit: 4" end="4" id="DOW4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock DOW Bit: 5" end="5" id="DOW5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock DOW Bit: 6" end="6" id="DOW6" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCDAY" description="Real Time Clock Day" id="RTCDAY" offset=" 0x04B4" width="8">
+<bitfield begin="0" description="Real Time Clock Day Bit: 0" end="0" id="DAY0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Day Bit: 1" end="1" id="DAY1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Day Bit: 2" end="2" id="DAY2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Day Bit: 3" end="3" id="DAY3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Day Bit: 4" end="4" id="DAY4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Day Bit: 5" end="5" id="DAY5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Day Bit: 6" end="6" id="DAY6" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCMON" description="Real Time Clock Month" id="RTCMON" offset=" 0x04B5" width="8">
+<bitfield begin="0" description="Real Time Clock Month Bit: 0" end="0" id="MONTH0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Month Bit: 1" end="1" id="MONTH1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Month Bit: 2" end="2" id="MONTH2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Month Bit: 3" end="3" id="MONTH3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Month Bit: 4" end="4" id="MONTH4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Month Bit: 5" end="5" id="MONTH5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Month Bit: 6" end="6" id="MONTH6" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCAMIN" description="Real Time Clock Alarm Min" id="RTCAMIN" offset=" 0x04B8" width="8">
+<bitfield begin="0" description="Real Time Clock Minutes Bit: 0" end="0" id="MINUTES0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Minutes Bit: 1" end="1" id="MINUTES1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Minutes Bit: 2" end="2" id="MINUTES2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Minutes Bit: 3" end="3" id="MINUTES3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Minutes Bit: 4" end="4" id="MINUTES4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Minutes Bit: 5" end="5" id="MINUTES5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Minutes Bit: 6" end="6" id="MINUTES6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Real Time Clock Alarm enable" end="7" id="RTCAE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCAHOUR" description="Real Time Clock Alarm Hour" id="RTCAHOUR" offset=" 0x04B9" width="8">
+<bitfield begin="0" description="Real Time Clock Hour Bit: 0" end="0" id="HOUR0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Hour Bit: 1" end="1" id="HOUR1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Hour Bit: 2" end="2" id="HOUR2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Hour Bit: 3" end="3" id="HOUR3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Hour Bit: 4" end="4" id="HOUR4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Hour Bit: 5" end="5" id="HOUR5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Hour Bit: 6" end="6" id="HOUR6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Real Time Clock Alarm enable" end="7" id="RTCAE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCADOW" description="Real Time Clock Alarm Day of week" id="RTCADOW" offset=" 0x04BA" width="8">
+<bitfield begin="0" description="Real Time Clock DOW Bit: 0" end="0" id="DOW0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock DOW Bit: 1" end="1" id="DOW1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock DOW Bit: 2" end="2" id="DOW2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock DOW Bit: 3" end="3" id="DOW3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock DOW Bit: 4" end="4" id="DOW4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock DOW Bit: 5" end="5" id="DOW5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock DOW Bit: 6" end="6" id="DOW6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Real Time Clock Alarm enable" end="7" id="RTCAE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="RTCADAY" description="Real Time Clock Alarm Day" id="RTCADAY" offset=" 0x04BB" width="8">
+<bitfield begin="0" description="Real Time Clock Day Bit: 0" end="0" id="DAY0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Real Time Clock Day Bit: 1" end="1" id="DAY1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Real Time Clock Day Bit: 2" end="2" id="DAY2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Real Time Clock Day Bit: 3" end="3" id="DAY3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Real Time Clock Day Bit: 4" end="4" id="DAY4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Real Time Clock Day Bit: 5" end="5" id="DAY5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Real Time Clock Day Bit: 6" end="6" id="DAY6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Real Time Clock Alarm enable" end="7" id="RTCAE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

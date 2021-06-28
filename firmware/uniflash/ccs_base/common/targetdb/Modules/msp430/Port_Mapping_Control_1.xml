@@ -1,0 +1,6 @@
+<module HW_revision="" XML_version="1" description="Port Mapping Control" id="Port Mapping Control">
+<register acronym="PMAPKEYID" description="Port Mapping Key register" id="PMAPKEYID" offset=" 0x01C0" width="16"></register>
+<register acronym="PMAPCTL" description="Port Mapping control register" id="PMAPCTL" offset=" 0x01C2" width="16">
+<bitfield begin="0" description="Port Mapping Lock bit. Read only" end="0" id="PMAPLOCKED" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Port Mapping re-configuration control bit" end="1" id="PMAPRECFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

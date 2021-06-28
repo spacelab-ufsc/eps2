@@ -1,0 +1,6 @@
+<properties XML_version="1.2">
+<property Type="stringfield" Value="1.210" id="GNUOptionsVersion"></property>
+<property Type="stringfield" Value="-mmcu=msp430f6659 -lc -lgcc --gc-sections -L ${CCS_BASE_ROOT}/msp430/include_gcc " id="GNULinkerBuildOptions"></property>
+<property Type="stringfield" Value="-mmcu=msp430f6659 -I${CCS_BASE_ROOT}/msp430/include_gcc -Os -mlarge -mhwmult=f5series -mcode-region=none -mdata-region=lower" id="GNUCompilerBuildOptions"></property>
+<property Type="stringfield" Value="../include_gcc/msp430f6659.ld" id="GNUFilesToCopy"></property>
+</properties>

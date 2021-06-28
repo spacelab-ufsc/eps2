@@ -7,8 +7,8 @@ TOOLS {
     MIN_TOL=0
     MAX_TOL=0
     BIT=
-    FINISH_SIZE=10
-    DRILL_SIZE=10
+    FINISH_SIZE=11.811
+    DRILL_SIZE=11.811
 }
 
 TOOLS {
@@ -27,12 +27,22 @@ TOOLS {
     MIN_TOL=0
     MAX_TOL=0
     BIT=
+    FINISH_SIZE=23.622
+    DRILL_SIZE=23.622
+}
+
+TOOLS {
+    NUM=4
+    TYPE=VIA
+    MIN_TOL=0
+    MAX_TOL=0
+    BIT=
     FINISH_SIZE=28
     DRILL_SIZE=28
 }
 
 TOOLS {
-    NUM=4
+    NUM=5
     TYPE=PLATED
     MIN_TOL=0
     MAX_TOL=0
@@ -42,7 +52,17 @@ TOOLS {
 }
 
 TOOLS {
-    NUM=5
+    NUM=6
+    TYPE=PLATED
+    MIN_TOL=0
+    MAX_TOL=0
+    BIT=
+    FINISH_SIZE=39
+    DRILL_SIZE=39
+}
+
+TOOLS {
+    NUM=7
     TYPE=PLATED
     MIN_TOL=0
     MAX_TOL=0
@@ -52,7 +72,7 @@ TOOLS {
 }
 
 TOOLS {
-    NUM=6
+    NUM=8
     TYPE=PLATED
     MIN_TOL=0
     MAX_TOL=0

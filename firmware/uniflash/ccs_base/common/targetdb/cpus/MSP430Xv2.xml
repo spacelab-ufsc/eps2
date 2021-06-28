@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cpu id="MSP430" isa="MSP430" XML_version="2.0" HW_revision="1.0" description="MSP430X CPU">
+   
+	<address_space id="program" increment="8" endianess="little" addr_width="20" max_data_width="20" align_8="8" align_16="16" align_32="16" align_64="16"/>
+	<address_space id="data"    increment="8" endianess="little" addr_width="20" max_data_width="20" align_8="8" align_16="16" align_32="16" align_64="16"/>
+
+	<register id="PC"  acronym="PC"  width="20" description=""/>
+	<register id="SP"  acronym="SP"  width="20" description=""/>
+	<register id="SR"  acronym="SR"  width="16" description="">
+        <bitfield id="C" width="1" begin="0" end="0" resetval="0" description="Carry bit. This bit is set when the result of a byte or word operation
+produced a carry and cleared when no carry occurred." range="" rwaccess="RW" />
+       <bitfield id="Z" width="1" begin="1" end="1" resetval="0" description="Zero bit. This bit is set when the result of a byte or word operation is 0
+and cleared when the result is not 0." range="" rwaccess="RW" />
+        <bitfield id="N" width="1" begin="2" end="2" resetval="0" description="Negative bit. This bit is set when the result of a byte or word operation
+is negative and cleared when the result is not negative." range="" rwaccess="RW" />
+        <bitfield id="GIE" width="1" begin="3" end="3" resetval="0" description="General interrupt enable. This bit, when set, enables maskable
+interrupts. When reset, all maskable interrupts are disabled." range="" rwaccess="RW" />
+        <bitfield id="CPUOFF" width="1" begin="4" end="4" resetval="0" description="CPU off. This bit, when set, turns off the CPU." range="" rwaccess="RW" />
+        <bitfield id="OSCOFF" width="1" begin="5" end="5" resetval="0" description="Oscillator Off. This bit, when set, turns off the LFXT1 crystal oscillator,
+when LFXT1CLK is not use for MCLK or SMCLK" range="" rwaccess="RW" />
+       <bitfield id="SCG0" width="1" begin="6" end="6" resetval="0" description="System clock generator 0. This bit, when set, turns off the FLL+ loop
+control" range="" rwaccess="RW" />        
+        <bitfield id="SCG1" width="1" begin="7" end="7" resetval="0" description="System clock generator 1. This bit, when set, turns off the DCO dc
+generator, if DCOCLK is not used for MCLK or SMCLK." range="" rwaccess="RW" />        
+        <bitfield id="V" width="1" begin="8" end="8" resetval="0" description="Overflow bit. This bit is set when the result of an arithmetic operation
+overflows the signed-variable range." range="" rwaccess="RW" />        
+    </register>
+	<register id="R3"  acronym="R3"  width="20" description=""/> 
+	<register id="R4"  acronym="R4"  width="20" description=""/>  
+	<register id="R5"  acronym="R5"  width="20" description=""/> 
+	<register id="R6"  acronym="R6"  width="20" description=""/>  
+	<register id="R7"  acronym="R7"  width="20" description=""/> 
+	<register id="R8"  acronym="R8"  width="20" description=""/> 
+	<register id="R9"  acronym="R9"  width="20" description=""/> 
+	<register id="R10" acronym="R10" width="20" description=""/>     
+	<register id="R11" acronym="R11" width="20" description=""/>  
+	<register id="R12" acronym="R12" width="20" description=""/> 
+	<register id="R13" acronym="R13" width="20" description=""/> 
+	<register id="R14" acronym="R14" width="20" description=""/> 
+	<register id="R15" acronym="R15" width="20" description=""/>	
+</cpu>
