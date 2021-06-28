@@ -31,9 +31,6 @@
     <a href="#license">
         <img src="https://img.shields.io/badge/license-GPL3-yellow?style=for-the-badge">
     </a>
-    <a href="https://github.com/spacelab-ufsc/eps">
-        <img src="https://img.shields.io/badge/flight-heritage-lightgray?style=for-the-badge">
-    </a>
 </p>
 
 <p align="center">
