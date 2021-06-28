@@ -58,8 +58,11 @@ uint16_t current_sensor_raw_to_ma(uint16_t raw)
 int current_sensor_read(adc_port_t port, uint16_t *cur)
 {
     uint16_t raw_cur = 0;
+    int read_result = 0;
 
-    if (max9934_read((max9934_config_t){.adc_port = port}, &raw_cur) != 0)
+    read_result = max9934_read((max9934_config_t){.adc_port = port}, &raw_cur);
+
+    if (read_result != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, CURRENT_SENSOR_MODULE_NAME, "Error reading the raw current value!");
         sys_log_new_line();

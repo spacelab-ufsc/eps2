@@ -39,8 +39,12 @@
 
 int power_conv_init()
 {
-	if (tps54x0_init((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN}) != 0
-	|| tps54x0_init((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN}) != 0)
+    int result_init_obdh = 0, result_init_payload = 0;
+
+    result_init_obdh = tps54x0_init((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
+    result_init_payload = tps54x0_init((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
+
+	if (result_init_obdh != 0 || result_init_payload != 0)
 	{
 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         sys_log_print_event_from_module(SYS_LOG_ERROR, POWER_CONV_MODULE_NAME, "Error initializing Power Converter devices!");
@@ -54,22 +58,30 @@ int power_conv_init()
 
 int enable_obdh_power()
 {
-	return tps54x0_enable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
+    int result = 0;
+    result = tps54x0_enable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
+	return result;
 }
 
 int disable_obdh_power()
 {
-	return tps54x0_disable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
+    int result = 0;
+    result = tps54x0_disable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
+    return result;
 }
 
 int enable_payload_power()
 {
-	return tps54x0_enable((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
+    int result = 0;
+    result = tps54x0_enable((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
+	return result;
 }
 
 int disable_payload_power()
 {
-	return tps54x0_disable((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
+    int result = 0;
+	result = tps54x0_disable((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
+	return result;
 }
 
 /** \} End of power_conv group */
