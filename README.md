@@ -53,11 +53,13 @@ This project is open-source and under the GPLv3 license, but some third-part fil
 The EPS2 software and hardware releases are synchronized in order to garantee compatibility. Then, using diferent versions might lead to unpredictable behavior. Refer to the [documentation](https://github.com/spacelab-ufsc/eps2/tree/master/doc/) for compatibility notes.
 
 #### v0.1
-	- TBD!
+	Hardware improvements and fixes based on the first EPS board.
+
+
 
 ## Notes
 
-More info about the OBDH2 target mission: [GOLDS-UFSC](https://github.com/spacelab-ufsc/golds-ufsc-doc) 
+More info about the EPS2 target mission: [FloripaSat-2](https://github.com/spacelab-ufsc/floripasat2-doc)
 
 More info about the SpaceLab: [GitHub](https://github.com/spacelab-ufsc/spacelab) and [Website](https://spacelab.ufsc.br/en/home/)
 
