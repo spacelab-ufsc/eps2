@@ -26,7 +26,7 @@
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.16
+ * \version 0.2.0
  * 
  * \date 2021/05/19
  * 
@@ -183,7 +183,7 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 		
 		default:
 			#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-	            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid PWM source!");
+	            sys_log_print_event_from_module(SYS_LOG_ERROR, PWM_MODULE_NAME, "Invalid PWM source!");
 	            sys_log_new_line();
         	#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 			return -1;
@@ -304,7 +304,7 @@ int pwm_stop(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			return 0;
 		default:
 			#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-	            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid PWM source!");
+	            sys_log_print_event_from_module(SYS_LOG_ERROR, PWM_MODULE_NAME, "Invalid PWM source!");
 	            sys_log_new_line();
         	#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 			return -1;
@@ -335,7 +335,7 @@ int pwm_disable(pwm_source_t source)
 			return 0;
 		default:
 			#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-	            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid PWM source!");
+	            sys_log_print_event_from_module(SYS_LOG_ERROR, PWM_MODULE_NAME, "Invalid PWM source!");
 	            sys_log_new_line();
         	#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 			return -1;
