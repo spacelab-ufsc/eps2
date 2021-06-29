@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.2.0
  * 
  * \date 2021/01/25
  * 
@@ -41,7 +41,7 @@
 #define CONFIG_TASK_WATCHDOG_RESET_ENABLED              1
 #define CONFIG_TASK_HEARTBEAT_ENABLED					1
 #define CONFIG_TASK_SYSTEM_RESET_ENABLED				0
-#define CONFIG_TASK_READ_SENSORS_ENABLED                0
+#define CONFIG_TASK_READ_SENSORS_ENABLED                1
 
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 

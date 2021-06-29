@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.2.0
  * 
  * \date 2021/04/09
  * 
@@ -43,6 +43,7 @@
 #include "heartbeat.h"
 #include "watchdog_reset.h"
 #include "system_reset.h"
+#include "read_sensors.h"
 
 void create_tasks()
 {
