@@ -18,7 +18,7 @@
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
-% \version 0.1.1
+% \version 0.2.0
 %
 % \date 2021/02/16
 %
@@ -121,7 +121,8 @@ The microcontroller has 6 Universal Serial Communication Interfaces (USCI) that 
                            &                           &               &                      &                    & Polarity: Low \\
         USCI\_A2           & UART1                     & -             & 8 bits               & 9600 bps           & Stop bits: 1 \\
                            &                           &               &                      &                    & Parity: None \\
-        USCI\_B2           & I2C2                      & Slave         & 8 bits               & 100 kbps           & Address value: 0x36 \\
+        USCI\_B0           & I2C0                      & Master        & 8 bits               & 100 kbps           & Adr. len: 7 bits \\
+        USCI\_B2           & I2C1                      & Slave         & 8 bits               & 100 kbps           & Address value: 0x36 \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{USCI configuration.}
