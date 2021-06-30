@@ -24,8 +24,9 @@
  * \brief OBDH device implementation.
  *
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.1.1
+ * \version 0.2.1
  *
  * \date 12/06/2021
  *
@@ -50,6 +51,18 @@ int obdh_init()
             return 0;   /* EPS device already initialized */
         }
     return -1;
+}
+
+int obdh_decode(void) {
+	// call crc package
+	// return action to be performed from a list
+	return -1;
+}
+
+int obdh_answer(void) {
+	// select answer action
+	// populate TX buffer
+	return -1;
 }
 
 /** \} End of obdh group */
