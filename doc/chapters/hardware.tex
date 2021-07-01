@@ -53,7 +53,7 @@ The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't ha
 
 \section{Interfaces}
 
-The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 4 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debbuging via USB without the use of an external UART to USB converter. The SPI comunicaton bus it actually an dedicated internall channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
+The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 5 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B0-I2C (dedicated for DS2777); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debbuging via USB without the use of an external UART to USB converter. The SPI comunicaton bus it actually an dedicated internall channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -72,6 +72,7 @@ The \autoref{fig:diagram-interfaces} presents the board interfaces, which consis
         ADS1248                 & A1            & SPI               & - \\
         Beacon Radio            & A0            & UART              & - \\
         PC (log messages)       & A2            & UART              & ANSI messages \\
+        DS2777                  & B0            & I$^{2}$C          & - \\
         OBDH                    & B2            & I$^{2}$C          & FSP \\
         External Interface      & -             & JTAG              & Spy-Bi-Wire \\
         \bottomrule[1.5pt]
@@ -173,21 +174,21 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
     \midrule
     P1.0              & 34                  & -                 \\
     P1.1              & 35                  & -                 \\
-    P1.2              & 36                  & EN\_3V3\_OBDH     \\
+    P1.2              & 36                  & -                 \\
     P1.3              & 37                  & EN\_5V\_PAYLOADS  \\
     P1.4              & 38                  & -             \\
     P1.5              & 39                  & BAT\_GPIO1    \\
     P1.6              & 40                  & BAT\_GPIO2    \\
     P1.7              & 41                  & -             \\
     \midrule
-    P2.0              & 17                  & -             \\
-    P2.1              & 18                  & PC104\_GPIO0  \\
-    P2.2              & 19                  & PC104\_GPIO1  \\
+    P2.0              & 17                  & PIO           \\
+    P2.1              & 18                  & I2C0\_SDA     \\
+    P2.2              & 19                  & I2C0\_SCL     \\
     P2.3              & 20                  & PC104\_GPIO2  \\
     P2.4              & 21                  & UART\_EPS\_TX\_BEACON\_RX     \\
     P2.5              & 22                  & UART\_EPS\_RX\_BEACON\_TX     \\
-    P2.6              & 23                  & -                     \\
-    P2.7              & 24                  & -                     \\
+    P2.6              & 23                  & PC104\_GPIO1                  \\            
+    P2.7              & 24                  & PC104\_GPIO0                   \\
     \midrule
     P3.0              & 42                  & -                     \\
     P3.1              & 43                  & -                     \\
@@ -210,8 +211,8 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
     P5.0              & 9                   & VREF                  \\
     P5.1              & 10                  & AGND                  \\
     P5.2              & 28                  & -                     \\
-    P5.3              & 31                  & -                     \\
-    P5.4              & 32                  & SYSTEM\_LED           \\
+    P5.3              & 31                  & SYSTEM\_\_FAULT\_LED  \\
+    P5.4              & 32                  & SYSTEM\_ON           \\
     P5.5              & 33                  & -                     \\
     P5.6              & 16                  & -                     \\
     P5.7              & 88                  & -                     \\
@@ -241,14 +242,14 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
     P8.6              & 66                  & RTD\_START            \\
     P8.7              & 67                  & RTD\_DRDY             \\
     \midrule
-    P9.0              & 68                  & PIO                   \\
-    P9.1              & 69                  & 1-WIRE                \\
+    P9.0              & 68                  & -                     \\
+    P9.1              & 69                  & -                     \\
     P9.2              & 70                  & UART0\_TX             \\
     P9.3              & 71                  & UART0\_RX             \\
-    P9.4              & 72                  & I2C2\_EN              \\
-    P9.5              & 73                  & I2C2\_SDA             \\
-    P9.6              & 74                  & I2C2\_SCL             \\
-    P9.7              & 75                  & I2C2\_READY           \\
+    P9.4              & 72                  & I2C1\_EN              \\
+    P9.5              & 73                  & I2C1\_SDA             \\
+    P9.6              & 74                  & I2C1\_SCL             \\
+    P9.7              & 75                  & I2C1\_READY           \\
     \midrule
     PJ.0              & 92                  & -                     \\
     PJ.1              & 93                  & -                     \\
@@ -421,7 +422,7 @@ On \autoref{kill-switches-picoblades} and \autoref{rbf-picoblade} it is showed t
 
 \subsection{Battery Control Circuit}
 
-The batteries are monitored by the \textit{DS2775} chip. It measures several parameters and sends them to the EPS2 MCU via one-wire protocol. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two \textit{FDS6898AZ} mosfets.
+The batteries are monitored by the \textit{DS2777} chip. It measures several parameters and sends them to the EPS2 MCU via I2C protocol. The factory default value for its slave address is 0x59. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two \textit{FDS6898AZ} mosfets.
 Its circuit schematic can be seen in \autoref{fig:bms-circuit-schematic} and location on the PCB in \autoref{fig:bms-circuit-3d}.
 
 \begin{figure}[!ht]

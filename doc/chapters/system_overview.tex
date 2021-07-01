@@ -33,11 +33,11 @@ The EPS 2.0 is compatible with GOMspace Solar Panels or with panels of similar c
 \section{MCU Block Diagram}
 
 The \autoref{fig:mcu-block-diagram} presents a simplified view of the module subsystems and interfaces though the microcontroller perspective. 
-The MCU has a programming JTAG\nomenclature{\textbf{JTAG}}{\textit{Joint Test Action Group.}}, a dedicated UART\nomenclature{\textbf{UART}}{\textit{Universal Asynchronous Receiver/Transmitter.}} debug interface and 4 communication buses, divided in 4 different protocols (I2C\nomenclature{\textbf{I2C}}{\textit{Inter-Integrated Circuit.}}, SPI\nomenclature{\textbf{SPI}}{\textit{Serial Peripheral Interface.}}, 1-Wire\nomenclature{\textbf{1-Wire}}{\textit{One-Wire.}} and UART). 
+The MCU has a programming JTAG\nomenclature{\textbf{JTAG}}{\textit{Joint Test Action Group.}}, a dedicated UART\nomenclature{\textbf{UART}}{\textit{Universal Asynchronous Receiver/Transmitter.}} debug interface and 4 communication buses, divided in 4 different protocols (I2C\nomenclature{\textbf{I2C}}{\textit{Inter-Integrated Circuit.}}, SPI\nomenclature{\textbf{SPI}}{\textit{Serial Peripheral Interface.}} and UART). 
 
 There is a I2C buffer to allow secure and proper communication with the OBDH 2.0 module \cite{obdh2}.
 The SPI protocol is used for controling and retriving data from a additional ADC\nomenclature{\textbf{ADC}}{\textit{Analog-to-Digital Converter.}} IC that measures temperature sensors (RTDs\nomenclature{\textbf{RTD}}{\textit{Resistance Temperature Detector.}}) on the batteries board and solar panels.
-The 1-Wire protocol measures several parameters from the Batteries Managment Subsystem and sends them to the EPS 2.0 MCU.
+The I2C protocol measures several parameters from the Batteries Managment Subsystem and sends them to the EPS 2.0 MCU.
 The UART bus that goes to the PC/104 is used for basic telemetry to be sent to the beacon microcontroller within the TTC module.
 Besides this channels, there are GPIO\nomenclature{\textbf{GPIO}}{\textit{General Purpose Input/Output.}} connections for enabling and disabling power buses, for hard code PCB versioning and some optional GPIOs that can be added and used though the PC/104 interface. 
 
