@@ -1,5 +1,5 @@
 /*
- * version.h
+ * param_server.h
  * 
  * Copyright (C) 2021, SpaceLab.
  * 
@@ -21,29 +21,35 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief Parameter server task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.1
  * 
- * \date 2020/10/21
+ * \date 2021/06/30
  * 
- * \defgroup version Version control
+ * \addtogroup param_server
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include "param_server.h"
 
-#define FIRMWARE_VERSION            "0.2.1"
+xTaskHandle xTaskParamServerHandle;
 
-#define FIRMWARE_STATUS             "Development"
+void vTaskParamServer(void *pvParameters)
+{
+    /* Delay before the first cycle */
+    vTaskDelay(pdMS_TO_TICKS(TASK_PARAM_SERVER_INITIAL_DELAY_MS));
 
-#define FIRMWARE_AUTHOR             "SpaceLab"
+    while(1)
+    {
+        TickType_t last_cycle = xTaskGetTickCount();
 
-#define FIRMWARE_AUTHOR_EMAIL       "spacelab.ufsc@gmail.com"
+        /* TODO */
 
-#endif /* VERSION_H_ */
+        vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_PARAM_SERVER_PERIOD_MS));
+    }
+}
 
-/** \} End of version group */
+/** \} End of param_server group */

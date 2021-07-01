@@ -1,7 +1,7 @@
 /*
  * config.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -23,9 +23,10 @@
 /**
  * \brief Configuration parameters definition.
  * 
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.2.0
+ * \version 0.2.1
  * 
  * \date 2021/01/25
  * 
@@ -42,6 +43,7 @@
 #define CONFIG_TASK_HEARTBEAT_ENABLED					1
 #define CONFIG_TASK_SYSTEM_RESET_ENABLED				0
 #define CONFIG_TASK_READ_SENSORS_ENABLED                1
+#define CONFIG_TASK_PARAM_SERVER_ENABLED                1
 
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 

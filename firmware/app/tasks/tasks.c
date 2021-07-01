@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.0
+ * \version 0.2.1
  * 
  * \date 2021/04/09
  * 
@@ -44,6 +44,7 @@
 #include "watchdog_reset.h"
 #include "system_reset.h"
 #include "read_sensors.h"
+#include "param_server.h"
 
 void create_tasks()
 {
@@ -95,6 +96,15 @@ void create_tasks()
         /* Error creating the read sensors task */
     }
 #endif /* CONFIG_TASK_READ_SENSORS_ENABLED */
+
+#if CONFIG_TASK_PARAM_SERVER_ENABLED == 1
+    xTaskCreate(vTaskParamServer, TASK_PARAM_SERVER_NAME, TASK_PARAM_SERVER_STACK_SIZE, NULL, TASK_PARAM_SERVER_PRIORITY, &xTaskParamServerHandle);
+
+    if (xTaskParamServerHandle == NULL)
+    {
+        /* Error creating the parameter server task */
+    }
+#endif /* CONFIG_TASK_PARAM_SERVER_ENABLED */
 
     create_event_groups();
 }
