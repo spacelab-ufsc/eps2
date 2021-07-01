@@ -502,7 +502,7 @@ The circuit schematic is almost the same as \autoref{fig:solar-panels-current-ci
 
 \subsection{OBDH Regulator}
 
-The OBDH is powered by a \textit{TPS5410QDRQ1} regulator, with an output voltage of 3.3 V and 1 A current capability. The EPS2 can enable/disable this regulator.
+The OBDH is powered by a \textit{TPS5410QDRQ1} regulator, with an output voltage of 3.3 V and 1 A current capability.
 Its location on the PCB can be seen in \autoref{fig:obdh-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -526,9 +526,9 @@ Its location on the PCB can be seen in \autoref{fig:ant-buck-circuit-3d}.
     \end{center}
 \end{figure}
 
-\subsection{Main Radio Transceiver Regulator}
+\subsection{Radio 0 Transceiver Regulator}
 
-The main radio XCVR\nomenclature{\textbf{XCVR}}{\textit{Transceiver.}} responsible for the Downlink/Uplink of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with an output voltage of 5V and 5A campability. The OBDH can enable/disable this regulator.
+The radio 0 XCVR\nomenclature{\textbf{XCVR}}{\textit{Transceiver.}} responsible for the Downlink/Uplink of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with an output voltage of 5V and 5A campability. The OBDH can enable/disable this regulator.
 Its location on the PCB can be seen in \autoref{fig:main-radio-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -539,9 +539,9 @@ Its location on the PCB can be seen in \autoref{fig:main-radio-buck-circuit-3d}.
     \end{center}
 \end{figure}
 
-\subsection{Beacon Transceiver Regulator}
+\subsection{Radio 1 Transceiver Regulator}
 
-The Beacon XCVR is powered by a regulator \textit{TPS54540QDDARQ1} regulator, with 6V output voltage and 5A campability. The Beacon MCU can enable/disable this regulator.
+The radio 1 XCVR responsible for a periodic data sent status of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with 6V output voltage and 5A campability. The Beacon MCU can enable/disable this regulator.
 Its location on the PCB can be seen in \autoref{fig:beacon-radio-buck-circuit-3d}.
 
 \begin{figure}[!ht]
