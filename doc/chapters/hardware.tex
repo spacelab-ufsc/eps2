@@ -847,7 +847,10 @@ When the EPS and BAT4C are assembled together the batteries can be charged from 
 
 \subsection{JTAG PicoBlade} \label{jtag-picoblade}
 
-The EPS module can be programed and debugged through its JTAG PicoBlade connector, see \autoref{ch:instructions} for more information regarding right use of this interface. The connector pinout is showed in \autoref{tab:jtag-picoblade} and position on the PCB in \autoref{fig:jtag-picoblade}.
+The EPS module can be programed and debugged through its JTAG PicoBlade connector as showed in \autoref{fig:jtag-picoblade}. 
+The pin header labeled CN1 serves as a jumper for shorting the power from the flash emulator tool to the 3V3 power used for the EPS MCU and subcircuits.
+This feature enables powering the board partially using MSP-FET, be advised to leave this connector open if the EPS is on from other means, for more details see \autoref{ch:instructions}.
+The JTAG connector pinout is showed in \autoref{tab:jtag-picoblade}.
 
 \begin{table}[!h]
     \centering
