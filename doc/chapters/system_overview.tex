@@ -114,3 +114,24 @@ A description of each of these LEDs are available below:
 \end{itemize}
 
 These LEDs are not mounted in the flight version of the module.
+
+\section{Hard Code Versioning}
+
+On the EPS2 board there are 2 GPIOs dedicated for hard code versioning.
+The on-board firmware can read these pins to indentify the correct version of the hardware project.
+Each line can be either pulled to VCC or ground, representing in binary as 1 and 0 respectively.
+The \autoref{tab:versioning-resistors} shows the representation of the versioning up to the latest revision of the project.
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule[1.5pt]
+        \textbf{Version}    &   \textbf{P3.5 (pin code) / 47 (pin number)}    &    \textbf{P3.4 (pin code) / 46 (pin number)}\\
+        \midrule
+        v0.1                & 0                 & 0              \\
+        v0.2                & 0                 & 1              \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{Hard code versioning table.}
+    \label{tab:versioning-resistors}
+\end{table}
