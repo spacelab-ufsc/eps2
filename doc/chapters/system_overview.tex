@@ -89,11 +89,11 @@ The system operates through the sequencial execution of routines (tasks in the c
 
 \subsection{Status LEDs} \label{status-leds}
 
-On the development version of the board, there are nine LED\nomenclature{\textbf{LED}}{\textit{Light-Emitting Diode.}}s that indicates some behaviours of the systems. This set of LEDs can be seen on \autoref{fig:status-leds}.
+On the development version of the board, there are ten LED\nomenclature{\textbf{LED}}{\textit{Light-Emitting Diode.}}s that indicates some behaviours of the systems. This set of LEDs can be seen on \autoref{fig:status-leds}.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/status_leds.png}
+        \includegraphics[width=\textwidth]{figures/status_leds.png}
         \caption{Available status LEDs.}
         \label{fig:status-leds}
     \end{center}
@@ -102,9 +102,10 @@ On the development version of the board, there are nine LED\nomenclature{\textbf
 A description of each of these LEDs are available below:
 
 \begin{itemize}
-    \item \textbf{6V\_BEACON\_LED}: Indicates that the beacon transceiver 6V power is being sourced.
-    \item \textbf{5V\_RADIO\_LED}: Indicates that the radio transceiver 5V power is being sourced.
+    \item \textbf{6V\_RADIO\_1\_LED}: Indicates that the radio 1 transceiver 6V power is being sourced.
+    \item \textbf{5V\_RADIO\_0\_LED}: Indicates that the radio 0 transceiver 5V power is being sourced.
     \item \textbf{SYSTEM\_ON}: Heartbeat of the system. Blinks at a frequency of 1 Hz when the system is running properly.
+    \item \textbf{SYSTEM\_FAULT}: Indicates an error has occurred during the running firmware of the board.
     \item \textbf{3V3\_ANT}: Indicates that the antenna deployer 3.3V power is being sourced.
     \item \textbf{3V3\_MCU}: Indicates that the EPS2 MCU 3.3V power is being sourced.
     \item \textbf{3V3\_OBDH}: Indicates that the OBDH module 3.3V power is being sourced.
