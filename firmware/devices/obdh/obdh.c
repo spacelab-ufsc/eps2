@@ -68,8 +68,7 @@ int obdh_init()
             sys_log_print_int(err);
             sys_log_print_msg(")");
             sys_log_new_line();
-
-
+        }
     return -1;
 }
 
