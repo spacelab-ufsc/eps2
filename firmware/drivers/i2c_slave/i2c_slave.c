@@ -182,18 +182,18 @@ int i2c_slave_disable(i2c_port_t port)
 };
 
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=USCI_B0_VECTOR
+#pragma vector=USCI_B1_VECTOR
 __interrupt
 #elif defined(__GNUC__)
-__attribute__((interrupt(USCI_B0_VECTOR)))
+__attribute__((interrupt(USCI_B1_VECTOR)))
 #endif
-void USCI_B0_ISR (void)
+void USCI_B1_ISR (void)
 {
-    switch (__even_in_range(UCB0IV,12)){
+    switch (__even_in_range(UCB1IV,12)){
         case USCI_I2C_UCRXIFG:
             //receive data
             // USCI_B_I2C_slaveGetData(
-            // USCI_B0_BASE);
+            // USCI_B1_BASE);
             break;
     }
 }
