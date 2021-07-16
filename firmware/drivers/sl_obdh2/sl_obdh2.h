@@ -41,6 +41,8 @@
 
 #include <drivers/tca4311a/tca4311a.h>
 
+#define SL_OBDH2_MODULE_NAME "SL_OBDH2"
+
 #define SL_EPS2_SLAVE_ADR                       0x36    /**< 7-bit slave address. */
 
 #define SL_EPS2_DEVICE_ID                       0xEEE2  /**< EPS 2.0 device ID. */
