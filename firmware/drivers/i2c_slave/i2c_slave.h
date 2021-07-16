@@ -76,6 +76,26 @@ typedef uint8_t i2c_mode_t;
 int i2c_slave_init(i2c_port_t port);
 
 /**
+ * @brief I2C interface mode selection.
+ *
+ * @param[in] port
+ * \parblock
+ *      -\b I2C_PORT_0
+ *      -\b I2C_PORT_1
+ *      -\b I2C_PORT_2
+ * \endparblock
+ *
+ * @param[in] mode
+ * \parblock
+ *      -\b I2C_RECEIVE_MODE
+ *      -\b I2C_TRANSMIT_MODE
+ * \endparblock
+ *
+ * @return The status/error code.
+ */
+int i2c_slave_set_mode(i2c_port_t port, i2c_mode_t mode);
+
+/**
  * @brief I2C interface operation start as slave and interrupt enabling.
  * 
  * @param[in] port 

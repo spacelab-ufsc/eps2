@@ -37,6 +37,7 @@
 
 #include <drivers/tca4311a/tca4311a.h>
 #include <drivers/i2c/i2c.h>
+#include <drivers/i2c_slave/i2c_slave.h>
 #include <drivers/gpio/gpio.h>
 
 #include "sl_obdh2.h"
