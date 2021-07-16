@@ -46,10 +46,8 @@ int power_conv_init()
 
 	if (result_init_obdh != 0 || result_init_payload != 0)
 	{
-#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         sys_log_print_event_from_module(SYS_LOG_ERROR, POWER_CONV_MODULE_NAME, "Error initializing Power Converter devices!");
         sys_log_new_line();
-#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
 	}
 
