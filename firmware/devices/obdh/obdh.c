@@ -38,6 +38,8 @@
 
 #include <drivers/sl_obdh2/sl_obdh2.h>
 
+#include <drivers/i2c/i2c.h>
+
 #include <system/sys_log/sys_log.h>
 
 #include "obdh.h"
@@ -57,7 +59,7 @@ int obdh_init()
         sys_log_new_line();
 
         obdh_config.i2c_port     = I2C_PORT_1;
-        obdh_config.i2c_config   = (i2c_config_t){.speed_hz=100000};
+        // obdh_config.i2c_config   = (i2c_config_t){.speed_hz=100000};
         obdh_config.en_pin       = GPIO_PIN_17;
         obdh_config.ready_pin    = GPIO_PIN_20;
 
