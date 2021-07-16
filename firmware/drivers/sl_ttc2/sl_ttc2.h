@@ -106,7 +106,7 @@ typedef struct uart_config_t sl_ttc2_config_t;
  *
  * \return The status/error code.
  */
-int sl_ttc2_init(sl_ttc2_config_t config);
+int sl_ttc2_init(sl_ttc2_config_t *config);
 
 /**
  * \brief Computes the CRC-8 of a sequence of bytes.
@@ -143,7 +143,7 @@ bool sl_ttc2_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
  *
  * \return The status/error code.
  */
-int sl_ttc2_answer(sl_ttc2_config_t config, uint8_t adr, uint32_t val);
+int sl_ttc2_answer(sl_ttc2_config_t *config, uint8_t adr, uint32_t val);
 
 #endif /* SL_TTC2_H_ */
 

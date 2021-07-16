@@ -198,8 +198,8 @@ void USCI_B1_ISR (void)
             sys_log_print_int(receivedData);
             sys_log_new_line();
             break;
-        case: USCI_I2C_UCSTPIFG:
-            break;
+        // case USCI_I2C_UCSTPIFG:
+        //     break;
         default:
             break;
     }

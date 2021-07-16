@@ -40,7 +40,7 @@
 
 #include "ttc.h"
 
-sl_ttc2_config_t ttc_config = {0};
+// sl_ttc2_config_t ttc_config = {0};
 
 int ttc_init()
 {

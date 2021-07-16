@@ -44,12 +44,12 @@
 #define SL_TTC2_CRC8_POLYNOMIAL             0x07    /**< CRC8-CCITT polynomial. */
 
 
-int sl_ttc2_init(sl_ttc2_config_t config)
+int sl_ttc2_init(sl_ttc2_config_t *config)
 {
     return -1;
 }
 
-int sl_ttc2_answer(sl_ttc2_config_t config, uint8_t adr, uint32_t val)
+int sl_ttc2_answer(sl_ttc2_config_t *config, uint8_t adr, uint32_t val)
 {
 /*
     uint8_t buf[1+4+1] = {0};
