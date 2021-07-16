@@ -42,6 +42,8 @@
 
 #include "i2c_slave.h"
 
+uint8_t receivedData = 0;
+
 int i2c_slave_init(i2c_port_t port)
 {
     uint16_t base_address;
@@ -191,9 +193,14 @@ void USCI_B1_ISR (void)
 {
     switch (__even_in_range(UCB1IV,12)){
         case USCI_I2C_UCRXIFG:
-            //receive data
-            // USCI_B_I2C_slaveGetData(
-            // USCI_B1_BASE);
+            receivedData = USCI_B_I2C_slaveGetData(USCI_B1_BASE);
+            sys_log_print_event_from_module(SYS_LOG_INFO, I2C_SLAVE_MODULE_NAME, "Received data: ");
+            sys_log_print_int(receivedData);
+            sys_log_new_line();
+            break;
+        case: USCI_I2C_UCSTPIFG:
+            break;
+        default:
             break;
     }
 }

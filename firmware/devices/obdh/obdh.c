@@ -53,7 +53,7 @@ int obdh_init()
             return 0;   /* EPS device already initialized */
         }
 
-    sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
+        sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
         sys_log_new_line();
 
         obdh_config.i2c_port     = I2C_PORT_1;
