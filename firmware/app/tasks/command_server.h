@@ -1,5 +1,5 @@
 /*
- * obdh_package.h
+ * command_server.h
  *
  * Copyright (C) 2020, SpaceLab.
  *
@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief OBDH package task definition.
+ * \brief Command server task definition.
  *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  *
@@ -29,37 +29,37 @@
  *
  * \date 20/07/2021
  *
- * \defgroup obdh_package OBDH package
+ * \defgroup command_server Command server
  * \ingroup tasks
  * \{
  */
 
-#ifndef OBDH_PACKAGE_H_
-#define OBDH_PACKAGE_H_
+#ifndef COMMAND_SERVER_H_
+#define COMMAND_SERVER_H_
 
 #include <FreeRTOS.h>
 #include <task.h>
 
-#define TASK_OBDH_PACKAGE_NAME                "OBDH_Package"    /**< Task name. */
-#define TASK_OBDH_PACKAGE_STACK_SIZE          1024            /**< Memory stack size in bytes. */ // >> TDB <<
-#define TASK_OBDH_PACKAGE_PRIORITY            5               /**< Priority. */
-#define TASK_OBDH_PACKAGE_PERIOD_MS           10             /**< Period in milliseconds. */ // >> Unblocked by I2C_Slave ISR <<
-#define TASK_OBDH_PACKAGE_INIT_TIMEOUT_MS     4500            /**< Wait time to initialize the task in milliseconds. */
+#define TASK_COMMAND_SERVER_NAME                "Command_Server"    /**< Task name. */
+#define TASK_COMMAND_SERVER_STACK_SIZE          1024            /**< Memory stack size in bytes. */ // >> TDB <<
+#define TASK_COMMAND_SERVER_PRIORITY            5               /**< Priority. */
+#define TASK_COMMAND_SERVER_PERIOD_MS           10             /**< Period in milliseconds. */ // >> Unblocked by I2C_Slave ISR <<
+#define TASK_COMMAND_SERVER_INIT_TIMEOUT_MS     4500            /**< Wait time to initialize the task in milliseconds. */
 
 /**
- * \brief OBDH package task handle.
+ * \brief Command server task handle.
  */
-extern xTaskHandle xTaskOBDHPackageHandle;
+extern xTaskHandle xTaskCommandServerHandle;
 
 /**
- * \brief OBDH package task.
+ * \brief Command server task.
  *
  * \param[in] pvParameters is a value that will passed as the task's parameter.
  *
  * \return None.
  */
-void vTaskOBDHPackage(void *pvParameters);
+void vTaskCommandServer(void *pvParameters);
 
-#endif /* OBDH_PACKAGE_H_ */
+#endif /* COMMAND_SERVER_H_ */
 
-/** \} End of obdh_package group */
+/** \} End of command_server group */

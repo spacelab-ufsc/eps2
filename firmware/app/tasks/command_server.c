@@ -1,5 +1,5 @@
 /*
- * obdh_package.c
+ * command_server.c
  *
  * Copyright (C) 2020, SpaceLab.
  *
@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief OBDH package task implementation.
+ * \brief Command server task implementation.
  *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  *
@@ -29,26 +29,26 @@
  *
  * \date 20/07/2021
  *
- * \addtogroup obdh_package
+ * \addtogroup command_server
  * \{
  */
 
-#include "obdh_package.h"
+#include "command_server.h"
 #include "startup.h"
 
-xTaskHandle xTaskOBDHPackageHandle;
+xTaskHandle xTaskCommandServerHandle;
 
-void vTaskOBDHPackage(void *pvParameters)
+void vTaskCommandServer(void *pvParameters)
 {
     /* Wait startup task to finish */
-    xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_OBDH_PACKAGE_INIT_TIMEOUT_MS));
+    xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_COMMAND_SERVER_INIT_TIMEOUT_MS));
 
     while(1)
     {
         /* TO DO. */
 
-        vTaskDelay(pdMS_TO_TICKS(TASK_OBDH_PACKAGE_PERIOD_MS));
+        vTaskDelay(pdMS_TO_TICKS(TASK_COMMAND_SERVER_PERIOD_MS));
     }
 }
 
-/** \} End of obdh_package group */
+/** \} End of command_server group */
