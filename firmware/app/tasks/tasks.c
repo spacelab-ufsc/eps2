@@ -45,7 +45,6 @@
 #include "system_reset.h"
 #include "read_sensors.h"
 #include "param_server.h"
-#include "command_server.h"
 
 void create_tasks()
 {
