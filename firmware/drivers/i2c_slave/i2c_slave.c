@@ -42,6 +42,8 @@
 
 #include "i2c_slave.h"
 
+uint8_t receivedData = 0;
+
 int i2c_slave_init(i2c_port_t port)
 {
     uint16_t base_address;
@@ -182,18 +184,23 @@ int i2c_slave_disable(i2c_port_t port)
 };
 
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=USCI_B0_VECTOR
+#pragma vector=USCI_B1_VECTOR
 __interrupt
 #elif defined(__GNUC__)
-__attribute__((interrupt(USCI_B0_VECTOR)))
+__attribute__((interrupt(USCI_B1_VECTOR)))
 #endif
-void USCI_B0_ISR (void)
+void USCI_B1_ISR (void)
 {
-    switch (__even_in_range(UCB0IV,12)){
+    switch (__even_in_range(UCB1IV,12)){
         case USCI_I2C_UCRXIFG:
-            //receive data
-            // USCI_B_I2C_slaveGetData(
-            // USCI_B0_BASE);
+            receivedData = USCI_B_I2C_slaveGetData(USCI_B1_BASE);
+            sys_log_print_event_from_module(SYS_LOG_INFO, I2C_SLAVE_MODULE_NAME, "Received data: ");
+            sys_log_print_int(receivedData);
+            sys_log_new_line();
+            break;
+        // case USCI_I2C_UCSTPIFG:
+        //     break;
+        default:
             break;
     }
 }

@@ -37,6 +37,7 @@
 
 #include <drivers/tca4311a/tca4311a.h>
 #include <drivers/i2c/i2c.h>
+#include <drivers/i2c_slave/i2c_slave.h>
 #include <drivers/gpio/gpio.h>
 
 #include "sl_obdh2.h"
@@ -49,7 +50,32 @@ int sl_obdh2_init(sl_obdh2_config_t config)
 {
     if (tca4311a_init(config, true) != TCA4311A_READY)
     {
-        return -1;      /* Error initializing the I2C port */
+        return -1;      /* Error initializing the I2C port buffer CI*/
+    }
+
+    if (i2c_slave_init(config.i2c_port) != 0)
+    {
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, SL_OBDH2_MODULE_NAME, "Error initializing I2C as slave!");
+        sys_log_new_line();
+#endif             /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        return -1;
+    }
+
+    if (i2c_slave_set_mode(config.i2c_port, I2C_RECEIVE_MODE) != 0)
+    {
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, SL_OBDH2_MODULE_NAME, "Error setting I2C slave mode!");
+        sys_log_new_line();
+#endif             /* CONFIG_DRIVERS_DEBUG_ENABLED */
+    }
+
+    if (i2c_slave_enable(config.i2c_port) != 0)
+    {
+#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_ERROR, SL_OBDH2_MODULE_NAME, "Error enabling I2C slave!");
+        sys_log_new_line();
+#endif             /* CONFIG_DRIVERS_DEBUG_ENABLED */
     }
 
     return 0;

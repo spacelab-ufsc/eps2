@@ -33,7 +33,14 @@
  * \{
  */
 
+#include <stdbool.h>
+
+#include <system/sys_log/sys_log.h>
+#include <drivers/sl_ttc2/sl_ttc2.h>
+
 #include "ttc.h"
+
+// sl_ttc2_config_t ttc_config = {0};
 
 int ttc_init()
 {

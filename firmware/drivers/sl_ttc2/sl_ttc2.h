@@ -1,47 +1,43 @@
 /*
- * sl_eps2.h
- * 
+ * sl_ttc2.h
+ *
  * Copyright (C) 2021, SpaceLab.
- * 
- * This file is part of OBDH 2.0.
- * 
- * OBDH 2.0 is free software: you can redistribute it and/or modify
+ *
+ * This file is part of EPS 2.0.
+ *
+ * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
- * OBDH 2.0 is distributed in the hope that it will be useful,
+ *
+ * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
- * along with OBDH 2.0. If not, see <http://www.gnu.org/licenses/>.
- * 
+ * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 
 /**
- * \brief SpaceLab OBDH 2.0 driver definition.
- * 
- * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
- * 
+ * \brief SpaceLab EPS 2.0 driver definition.
+ *
+ * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ *
  * \version 0.2.1
- * 
- * \date 2021/06/30
- * 
- * \defgroup sl_obdh2 SpaceLab OBDH 2.0
+ *
+ * \date 2021/07/12
+ *
+ * \defgroup sl_ttc2 SpaceLab EPS 2.0
  * \ingroup drivers
  * \{
  */
 
-#ifndef SL_OBDH2_H_
-#define SL_OBDH2_H_
+#ifndef SL_TTC2_H_
+#define SL_TTC2_H_
 
 #include <stdint.h>
-
-#include <drivers/tca4311a/tca4311a.h>
-
-#define SL_OBDH2_MODULE_NAME "SL_OBDH2"
 
 #define SL_EPS2_SLAVE_ADR                       0x36    /**< 7-bit slave address. */
 
@@ -90,7 +86,7 @@
 #define SL_EPS2_REG_BAT_HEATER_1_DUTY_CYCLE     39      /**< Battery heater 1 duty cycle in %. */
 #define SL_EPS2_REG_BAT_HEATER_2_DUTY_CYCLE     40      /**< Battery heater 2 duty cycle in %. */
 #define SL_EPS2_REG_HARDWARE_VERSION            41      /**< Hardware version. */
-#define SL_EPS2_REG_FIRMWARE_VERSION            42      /**< Firmware version (ex.: “v1.2.3”’ = 0x00010203). */
+#define SL_EPS2_REG_FIRMWARE_VERSION            42      /**< Firmware version (ex.: â€œv1.2.3â€�â€™ = 0x00010203). */
 #define SL_EPS2_REG_MPPT_1_MODE                 43      /**< MPPT 1 mode (0x00 = automatic, 0x01 = manual). */
 #define SL_EPS2_REG_MPPT_2_MODE                 44      /**< MPPT 2 mode (0x00 = automatic, 0x01 = manual). */
 #define SL_EPS2_REG_MPPT_3_MODE                 45      /**< MPPT 3 mode (0x00 = automatic, 0x01 = manual). */
@@ -99,9 +95,9 @@
 #define SL_EPS2_REG_DEVICE_ID                   48      /**< Device ID (0xEEE2). */
 
 /**
- * \brief Configuration parameters structure of the driver.
+ * \brief TTC 2.0 configuration type.
  */
-typedef tca4311a_config_t sl_obdh2_config_t;
+typedef struct uart_config_t sl_ttc2_config_t;
 
 /**
  * \brief Initialization of the EPS module driver.
@@ -110,7 +106,7 @@ typedef tca4311a_config_t sl_obdh2_config_t;
  *
  * \return The status/error code.
  */
-int sl_obdh2_init(sl_obdh2_config_t config);
+int sl_ttc2_init(sl_ttc2_config_t *config);
 
 /**
  * \brief Computes the CRC-8 of a sequence of bytes.
@@ -121,7 +117,7 @@ int sl_obdh2_init(sl_obdh2_config_t config);
  *
  * \return The computed CRC-8 value of the given data.
  */
-uint8_t sl_obdh2_crc8(uint8_t *data, uint8_t len);
+uint8_t sl_ttc2_crc8(uint8_t *data, uint8_t len);
 
 /**
  * \brief Checks the CRC value of a given sequence of bytes.
@@ -134,7 +130,7 @@ uint8_t sl_obdh2_crc8(uint8_t *data, uint8_t len);
  *
  * \return TRUE/FALSE if the given CRC value is correct or not.
  */
-bool sl_obdh2_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
+bool sl_ttc2_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
 
 /**
  * \brief Writes a value to a register of the EPS module.
@@ -147,8 +143,8 @@ bool sl_obdh2_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
  *
  * \return The status/error code.
  */
-int sl_obdh2_answer(sl_obdh2_config_t config, uint8_t adr, uint32_t val);
+int sl_ttc2_answer(sl_ttc2_config_t *config, uint8_t adr, uint32_t val);
 
-#endif /* SL_OBDH2_H_ */
+#endif /* SL_TTC2_H_ */
 
-/** \} End of sl_obdh2 group */
+/** \} End of sl_ttc2 group */

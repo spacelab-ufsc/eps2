@@ -24,6 +24,7 @@
  * \brief MPPT device definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
  * 
  * \version 0.1.3
  * 
@@ -37,7 +38,38 @@
 #ifndef MPPT_H_
 #define MPPT_H_
 
+#include <stdint.h>
+#include <stdbool.h>
+#include <drivers/pwm/pwm.h>
+
 #define MPPT_MODULE_NAME        "MPPT"
+
+/**
+ * \brief constants.
+ */
+#define K 1
+
+/**
+ * \brief power measurements.
+ */
+typedef struct
+{
+    uint16_t previous_power;
+    uint16_t current_power;
+}power_measurement_t;
+
+power_measurement_t power_measurement;
+
+/**
+ * \brief last operation.
+ */
+typedef struct
+{
+    uint8_t previous_duty_cycle;
+    uint8_t current_duty_cycle;
+}duty_cycle_measurement_t;
+
+duty_cycle_measurement_t duty_cycle_measurement;
 
 /**
  * \brief Initialization routine of the MPPT.
@@ -45,6 +77,12 @@
  * \return The status/error code.
  */
 int mppt_init();
+
+int get_power(uint16_t current, uint16_t voltage);
+void increase_duty_cycle(pwm_config_t config, pwm_port_t port);
+void decrease_duty_cycle(pwm_config_t config, pwm_port_t port);
+int update_duty_cycle(pwm_port_t port, pwm_config_t config);
+
 
 #endif /* MPPT_H_ */
 

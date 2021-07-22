@@ -23,11 +23,11 @@
 /**
  * \brief TCA4311A driver definition.
  * 
- * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>, Vinicius Pimenta Bernardo <viniciuspibi@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
  * \version 0.1.7
  * 
- * \date 2021/06/05
+ * \date 2021/07/05
  * 
  * \defgroup tca4311a TCA4311A
  * \ingroup drivers
@@ -50,6 +50,8 @@
  */
 typedef struct
 {
+    i2c_port_t i2c_port;                /**< I2C port number.*/
+    i2c_config_t i2c_config;            /**< I2C port configuration. */
     gpio_pin_t en_pin;                  /**< EN GPIO pin. */
     gpio_pin_t ready_pin;               /**< READY GPIO pin. */
 } tca4311a_config_t;
@@ -60,8 +62,8 @@ typedef struct
 typedef enum
 {
     TCA4311A_ERROR=-1,                  /**< Error during initialization. */
-    TCA4311A_NOT_READY,                 /**< The chip is not ready. */
-    TCA4311A_READY                      /**< The chip is ready. */
+    TCA4311A_READY,                     /**< The chip is ready. */
+    TCA4311A_NOT_READY                  /**< The chip is not ready. */
 } tca4311a_status_e;
 
 /**

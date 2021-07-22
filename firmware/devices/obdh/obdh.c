@@ -28,7 +28,7 @@
  *
  * \version 0.2.1
  *
- * \date 12/06/2021
+ * \date 05/07/2021
  *
  * \addtogroup obdh
  * \{
@@ -36,7 +36,9 @@
 
 #include <stdbool.h>
 
-#include <drivers/i2c_slave/i2c_slave.h>
+#include <drivers/sl_obdh2/sl_obdh2.h>
+
+#include <drivers/i2c/i2c.h>
 
 #include <system/sys_log/sys_log.h>
 
@@ -44,11 +46,30 @@
 
 bool obdh_is_open = false;
 
+sl_obdh2_config_t obdh_config = {0};
+
 int obdh_init()
 {
     if (obdh_is_open)
         {
             return 0;   /* EPS device already initialized */
+        }
+
+        sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
+        sys_log_new_line();
+
+        obdh_config.i2c_port     = I2C_PORT_1;
+        // obdh_config.i2c_config   = (i2c_config_t){.speed_hz=100000};
+        obdh_config.en_pin       = GPIO_PIN_17;
+        obdh_config.ready_pin    = GPIO_PIN_20;
+
+        int err = sl_obdh2_init(obdh_config);
+        if (err != 0)
+        {
+            sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization! (error ");
+            sys_log_print_int(err);
+            sys_log_print_msg(")");
+            sys_log_new_line();
         }
     return -1;
 }

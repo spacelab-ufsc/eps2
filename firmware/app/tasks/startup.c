@@ -48,6 +48,7 @@
 #include <devices/media/media.h>
 #include <devices/mppt/mppt.h>
 #include <devices/watchdog/watchdog.h>
+#include <devices/obdh/obdh.h>
 
 #include "startup.h"
 
@@ -87,6 +88,12 @@ void vTaskStartup(void *pvParameters)
     sys_log_print_event_from_module(SYS_LOG_INFO, TASK_STARTUP_NAME, "Last reset cause: ");
     sys_log_print_hex(system_get_reset_cause());
     sys_log_new_line();
+
+    /* Obdh device initialization (TEST VERSION)*/
+    if (obdh_init() != 0)
+    {
+        error = true;
+    }
 
     /* Battery manager device initialization */
     if (bat_manager_init() != 0)
