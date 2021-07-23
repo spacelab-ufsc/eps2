@@ -112,17 +112,17 @@ int ads1248_config_regs(ads1248_config_t *config)
     uint8_t data_config_regs[17];
 
     data_config_regs[0] = ADS1248_CMD_WREG;  /* command WREG plus information to write to the first register MUX0 (0x00) */
-    data_config_regs[1] = 0x0E; /* number of bytes minus 1 to be writen by WREG command */
+    data_config_regs[1] = 0x0E; /* number of bytes minus 1 to be written by WREG command */
     data_config_regs[2] = 0x37; /* value to register MUX0: burn out detect current off, positive input channel AIN3 and negative channel AIN7 */
     data_config_regs[3] = 0x00; /* value to register VBIAS: bias voltage not enabled */
     data_config_regs[4] = 0x20; /* value to register MUX1: internal reference always on, REFP0 and REFPN0 reference inputs and normal operation */
     data_config_regs[5] = 0x03; /* value to register SYSO: data output rate of 40 SPS */
-    data_config_regs[6] = 0x00; /* value to register OFC0: stadard value on first offset calibration coefficient register */
-    data_config_regs[7] = 0x00; /* value to register OFC1: stadard value on second offset calibration coefficient register */
-    data_config_regs[8] = 0x00; /* value to register OFC2: stadard value on third offset calibration coefficient register */
-    data_config_regs[9] = 0x00; /* value to register FSC0: stadard value on first full-scale calibration coefficient register */
-    data_config_regs[10] = 0x00; /* value to register FSC1: stadard value on second full-scale calibration coefficient register */
-    data_config_regs[11] = 0x00; /* value to register FSC2: stadard value on third full-scale calibration coefficient register */
+    data_config_regs[6] = 0x00; /* value to register OFC0: standard value on first offset calibration coefficient register */
+    data_config_regs[7] = 0x00; /* value to register OFC1: standard value on second offset calibration coefficient register */
+    data_config_regs[8] = 0x00; /* value to register OFC2: standard value on third offset calibration coefficient register */
+    data_config_regs[9] = 0x00; /* value to register FSC0: standard value on first full-scale calibration coefficient register */
+    data_config_regs[10] = 0x00; /* value to register FSC1: standard value on second full-scale calibration coefficient register */
+    data_config_regs[11] = 0x00; /* value to register FSC2: standard value on third full-scale calibration coefficient register */
     data_config_regs[12] = 0x02; /* value to register IDAC0: DOUT/DRDY pins functions only as data out and excitation output current magnitude to 100uA */
     data_config_regs[13] = 0x06; /* value to register IDAC1: excitation outputs 1 to AIN0 and 2 to AIN6 pins */
     data_config_regs[14] = 0x00; /* value to register GPIOCFG: GPIOS not enabled */
