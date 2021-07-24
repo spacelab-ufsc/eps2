@@ -39,6 +39,7 @@
 
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
+#include <app/tasks/param_server.h>
 
 #include "i2c_slave.h"
 
@@ -198,8 +199,19 @@ void USCI_B1_ISR (void)
             sys_log_print_int(receivedData);
             sys_log_new_line();
             break;
-        // case USCI_I2C_UCSTPIFG:
-        //     break;
+        case USCI_I2C_UCSTPIFG:            
+            BaseType_t xHigherPriorityTaskWoken;
+            /* xHigherPriorityTaskWoken must be initialised to pdFALSE.  If calling
+            xTaskNotifyFromISR() unblocks the handling task, and the priority of
+            the handling task is higher than the priority of the currently running task,
+            then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
+            xHigherPriorityTaskWoken = pdFALSE;
+
+            xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_FROM_I2C_SLAVE_ISR, eSetBits, &xHigherPriorityTaskWoken);
+
+            /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
+            portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
+            break;
         default:
             break;
     }
