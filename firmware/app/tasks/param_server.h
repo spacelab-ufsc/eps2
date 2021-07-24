@@ -27,7 +27,7 @@
  * 
  * \version 0.2.1
  * 
- * \date 2021/06/30
+ * \date 2021/07/24
  * 
  * \defgroup param_server Parameter server
  * \ingroup tasks
@@ -45,6 +45,9 @@
 #define TASK_PARAM_SERVER_PRIORITY                  4                   /**< Task priority. */
 #define TASK_PARAM_SERVER_PERIOD_MS                 50                  /**< Task period in milliseconds. */
 #define TASK_PARAM_SERVER_INITIAL_DELAY_MS          1000                /**< Delay, in milliseconds, before the first execution. */
+
+#define NOTIFICATION_VALUE_FROM_I2C_SLAVE_ISR       (1UL << 0UL)        /**< Bit to set on i2c_slave ISR notification. */
+#define NOTIFICATION_VALUE_FROM_UART                (1UL << 1UL)        /**< Bit to set on uart notification. */
 
 /**
  * \brief Parameter server handle.
