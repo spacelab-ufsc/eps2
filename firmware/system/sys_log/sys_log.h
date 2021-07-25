@@ -40,9 +40,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <FreeRTOS.h>
-#include <semphr.h>
-
 /**
  * \brief Event types.
  */
@@ -67,11 +64,6 @@ typedef enum
     SYS_LOG_COLOR_CYAN,         /**< Color cyan. */
     SYS_LOG_COLOR_WHITE         /**< Color white. */
 } sys_log_colors_e;
-
-/**
- * \brief System log mutex.
- */
-extern SemaphoreHandle_t xSysLogSemaphore;
 
 /**
  * \brief Initialization of the system log.
