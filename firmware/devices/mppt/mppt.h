@@ -41,6 +41,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <drivers/pwm/pwm.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
+#include <devices/current_sensor/current_sensor.h>
 
 #define MPPT_MODULE_NAME        "MPPT"
 
@@ -55,7 +57,7 @@
 typedef struct
 {
     uint16_t previous_power;
-    uint16_t current_power;
+    uint16_t power;
 }power_measurement_t;
 
 power_measurement_t power_measurement;
@@ -66,10 +68,25 @@ power_measurement_t power_measurement;
 typedef struct
 {
     uint8_t previous_duty_cycle;
-    uint8_t current_duty_cycle;
+    uint8_t duty_cycle;
 }duty_cycle_measurement_t;
 
 duty_cycle_measurement_t duty_cycle_measurement;
+
+/**
+ * \brief last operation.
+ */
+typedef struct
+{
+    uint8_t previous_duty_cycle_PWM_0;
+    uint16_t previous_power_PWM_0;
+    uint8_t previous_duty_cycle_PWM_1;
+    uint16_t previous_power_PWM_1;
+    uint8_t previous_duty_cycle_PWM_2;
+    uint16_t previous_power_PWM_2;
+}previous_values_t;
+
+previous_values_t previous_values;
 
 /**
  * \brief Initialization routine of the MPPT.
@@ -78,7 +95,8 @@ duty_cycle_measurement_t duty_cycle_measurement;
  */
 int mppt_init();
 
-int get_power(uint16_t current, uint16_t voltage);
+int get_power(pwm_port_t port);
+int get_duty_cycle(pwm_port_t port, pwm_config_t config);
 void increase_duty_cycle(pwm_config_t config, pwm_port_t port);
 void decrease_duty_cycle(pwm_config_t config, pwm_port_t port);
 int update_duty_cycle(pwm_port_t port, pwm_config_t config);

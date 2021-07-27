@@ -33,11 +33,10 @@
  * \addtogroup mppt
  * \{
  */
+#include <system/sys_log/sys_log.h>
 
 #include "mppt.h"
 
-#include <config/config.h>
-#include <system/sys_log/sys_log.h>
 
 int mppt_init()
 {
@@ -64,37 +63,102 @@ int mppt_init()
 
 int update_duty_cycle(pwm_port_t port, pwm_config_t config)
 {
-    duty_cycle_measurement.current_duty_cycle = config.duty_cycle;
+    get_power(port);
+    get_duty_cycle(port,config);
 
-    if(power_measurement.current_power > power_measurement.previous_power){                         // P(x)-P(x-1)>0
-        if(duty_cycle_measurement.current_duty_cycle > duty_cycle_measurement.previous_duty_cycle)  // PWM(x)-PWM(x-1)>0
+    if(power_measurement.power > power_measurement.previous_power){                         // P(x)-P(x-1)>0
+        if(duty_cycle_measurement.duty_cycle > duty_cycle_measurement.previous_duty_cycle)  // PWM(x)-PWM(x-1)>0
         {
             increase_duty_cycle(config, port);
         }
-        //else
-        decrease_duty_cycle(config, port);
+        else
+        {
+            decrease_duty_cycle(config, port);
+        }
     }
-    else if(power_measurement.current_power < power_measurement.previous_power){                    // P(x)-P(x-1)<0
-        if(duty_cycle_measurement.current_duty_cycle < duty_cycle_measurement.previous_duty_cycle)  // PWM(x)-PWM(x-1)<0
+    else{                                                                                   // P(x)-P(x-1)<0
+        if(duty_cycle_measurement.duty_cycle < duty_cycle_measurement.previous_duty_cycle)  // PWM(x)-PWM(x-1)<0
         {
             increase_duty_cycle(config, port);
         }
-        //else
-        decrease_duty_cycle(config, port);
+        else
+        {
+            decrease_duty_cycle(config, port);
+
+        }
     }
 
-    duty_cycle_measurement.previous_duty_cycle = duty_cycle_measurement.current_duty_cycle;
-    power_measurement.previous_power = power_measurement.current_power;
-
-
-    return -1;
+    switch(port)
+    {
+        case PWM_PORT_0:
+            previous_values.previous_power_PWM_0 = power_measurement.power;
+            previous_values.previous_duty_cycle_PWM_0 = duty_cycle_measurement.duty_cycle;
+            break;
+        case PWM_PORT_1:
+            previous_values.previous_power_PWM_1 = power_measurement.power;
+            previous_values.previous_duty_cycle_PWM_1 = duty_cycle_measurement.duty_cycle;
+            break;
+        case PWM_PORT_2:
+            previous_values.previous_power_PWM_2 = power_measurement.power;
+            previous_values.previous_duty_cycle_PWM_2 = duty_cycle_measurement.duty_cycle;
+            break;
+    }
+    return 0;
 }
 
-int get_power(uint16_t current, uint16_t voltage)
-{
-    power_measurement.current_power = current*voltage;
 
-    return -1;
+int get_duty_cycle(pwm_port_t port, pwm_config_t config)
+{
+    switch(port)
+        {
+            case PWM_PORT_0:
+                duty_cycle_measurement.duty_cycle = config.duty_cycle;
+                duty_cycle_measurement.previous_duty_cycle = previous_values.previous_duty_cycle_PWM_0;
+                break;
+            case PWM_PORT_1:
+                duty_cycle_measurement.duty_cycle = config.duty_cycle;
+                duty_cycle_measurement.previous_duty_cycle = previous_values.previous_duty_cycle_PWM_1;
+                break;
+            case PWM_PORT_2:
+                duty_cycle_measurement.duty_cycle = config.duty_cycle;
+                duty_cycle_measurement.previous_duty_cycle = previous_values.previous_duty_cycle_PWM_2;
+                break;
+        }
+        return 0;
+
+}
+
+int get_power(pwm_port_t port)
+{
+    uint16_t current_1 = 0;
+    uint16_t current_2 = 0;
+    uint16_t voltage = 0;
+
+    switch(port)
+    {
+        case PWM_PORT_0:
+            current_sensor_read(ADC_PORT_0, &current_1);
+            current_sensor_read(ADC_PORT_1, &current_2);
+            voltage_sensor_read(ADC_PORT_12, &voltage);
+            power_measurement.power = (current_1+current_2)*voltage;
+            power_measurement.previous_power = previous_values.previous_power_PWM_0;
+            break;
+        case PWM_PORT_1:
+            current_sensor_read(ADC_PORT_2, &current_1);
+            current_sensor_read(ADC_PORT_3, &current_2);
+            voltage_sensor_read(ADC_PORT_13, &voltage);
+            power_measurement.power = (current_1+current_2)*voltage;
+            power_measurement.previous_power = previous_values.previous_power_PWM_1;
+            break;
+        case PWM_PORT_2:
+            current_sensor_read(ADC_PORT_4, &current_1);
+            current_sensor_read(ADC_PORT_5, &current_2);
+            voltage_sensor_read(ADC_PORT_14, &voltage);
+            power_measurement.power = (current_1+current_2)*voltage;
+            power_measurement.previous_power = previous_values.previous_power_PWM_2;
+            break;
+    }
+    return 0;
 }
 
 void increase_duty_cycle(pwm_config_t config, pwm_port_t port)
