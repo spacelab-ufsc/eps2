@@ -26,7 +26,7 @@
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.1
+ * \version 0.2.3
  *
  * \date 05/07/2021
  *
@@ -58,10 +58,10 @@ int obdh_init()
         sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
         sys_log_new_line();
 
-        obdh_config.i2c_port     = I2C_PORT_1;
-        // obdh_config.i2c_config   = (i2c_config_t){.speed_hz=100000};
-        obdh_config.en_pin       = GPIO_PIN_17;
-        obdh_config.ready_pin    = GPIO_PIN_20;
+        obdh_config.i2c_port     = I2C_PORT_2;
+        obdh_config.i2c_config   = (i2c_config_t){.speed_hz=100000};
+        obdh_config.en_pin       = GPIO_PIN_66;
+        obdh_config.ready_pin    = GPIO_PIN_69;
 
         int err = sl_obdh2_init(obdh_config);
         if (err != 0)
