@@ -34,6 +34,8 @@
  * \{
  */
 
+#include <stddef.h>
+
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
 
