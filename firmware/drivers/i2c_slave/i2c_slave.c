@@ -25,7 +25,7 @@
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.2.3
  * 
  * \date 2021/06/22
  * 
@@ -185,16 +185,16 @@ int i2c_slave_disable(i2c_port_t port)
 };
 
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
-#pragma vector=USCI_B1_VECTOR
+#pragma vector=USCI_B2_VECTOR
 __interrupt
 #elif defined(__GNUC__)
-__attribute__((interrupt(USCI_B1_VECTOR)))
+__attribute__((interrupt(USCI_B2_VECTOR)))
 #endif
-void USCI_B1_ISR (void)
+void USCI_B2_ISR (void)
 {
     switch (__even_in_range(UCB1IV,12)){
         case USCI_I2C_UCRXIFG:
-            receivedData = USCI_B_I2C_slaveGetData(USCI_B1_BASE);
+            receivedData = USCI_B_I2C_slaveGetData(USCI_B2_BASE);
             sys_log_print_event_from_module(SYS_LOG_INFO, I2C_SLAVE_MODULE_NAME, "Received data: ");
             sys_log_print_int(receivedData);
             sys_log_new_line();
