@@ -36,7 +36,7 @@
 #ifndef VERSION_H_
 #define VERSION_H_
 
-#define FIRMWARE_VERSION            "0.2.3"
+#define FIRMWARE_VERSION            "0.2.4"
 
 #define FIRMWARE_STATUS             "Development"
 
