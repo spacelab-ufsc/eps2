@@ -170,7 +170,7 @@ typedef struct
      */
     uint32_t firmware_version;                  /**< Hard-coded firmware version of EPS. */
     uint8_t hardware_version;                   /**< Hard-coded hardware version of EPS. */
-    uint8_t device_id;                          /**< Hard-coded device id of EPS. */
+    uint16_t device_id;                          /**< Hard-coded device id of EPS. */
 
 } eps_data_t;
 

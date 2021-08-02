@@ -24,8 +24,9 @@
  * \brief Read external sensors task implementation.
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.0
+ * \version 0.2.5
  * 
  * \date 2021/04/23
  * 
@@ -58,77 +59,77 @@ void vTaskReadSensors(void *pvParameters)
         /* -Y Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_y_solar_panel_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MY_CURRENT, &buf);
         }
 
         /* +X Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.plus_x_solar_panel_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_PX_CURRENT, &buf);
         }
 
         /* -X Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_x_solar_panel_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MX_CURRENT, &buf);
         }
         
         /* +Z Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_PLUS_Z_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.plus_z_solar_panel_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_PZ_CURRENT, &buf);
         }
 
         /* -Z Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_MINUS_Z_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_z_solar_panel_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MZ_CURRENT, &buf);
         }
 
         /* +Y Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.plus_y_solar_panel_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_PY_CURRENT, &buf);
         }
         
         /* -Y and +X Solar Panels voltage in mV.*/
         if (voltage_sensor_read(PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_y_plus_x_solar_panel_mv = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MY_PX_VOLTAGE, &buf);
         }
         
         /* -Z and +Y Solar Panels voltage in mV.*/
         if (voltage_sensor_read(PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_x_plus_z_solar_panel_mv = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE, &buf);
         }
 
         /* -Y and +X Solar Panels voltage in mV.*/
         if (voltage_sensor_read(PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_z_plus_y_solar_panel_mv = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE, &buf);
         }
 
         /* Total solar panels output voltage after MPPT in mV.*/
         if (voltage_sensor_read(TOTAL_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.total_solar_panels_mv = buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_VOLTAGE_MPPT, &buf);
         }
         
-         /* Main power bus voltage in mV.*/
+        /* Main power bus voltage in mV.*/
         if (voltage_sensor_read(MAIN_POWER_BUS_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.main_power_buss_mv = buf;
+            eps_buffer_write(EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE, &buf);
         }
 
-         /* EPS circuitry and Beacon MCU current in mA.*/
+        /* EPS circuitry and Beacon MCU current in mA.*/
         if (current_sensor_read(EPS_BEACON_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.eps_beacon_ma = buf;
+            eps_buffer_write(EPS2_PARAM_ID_EPS_CURRENT, &buf);
         }
 
         /* Data timestamp */
-        eps_data_buff.time_counter_ms = (uint32_t)xTaskGetTickCount();
+        eps_buffer_write(EPS2_PARAM_ID_TIME_COUNTER, (uint32_t)xTaskGetTickCount());
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_READ_SENSORS_PERIOD_MS));
     }
