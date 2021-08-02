@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.6
+ * \version 0.2.8
  * 
  * \date 2021/07/24
  * 
@@ -66,46 +66,91 @@ void vTaskParamServer(void *pvParameters)
             /* Process interrupt from UART ISR. */
             if ( (ulNotifiedValue & NOTIFICATION_VALUE_FROM_I2C_ISR) != 0)
             {
-                /* TO DO. */
+                if (obdh_decode(&adr, &val, &cmd))
+                {
+                    sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "OBDH command received: ");
+                    sys_log_print_msg("cmd="); 
+                    sys_log_print_int(cmd);
+                    sys_log_new_line();   
+                    
+                    switch(cmd)
+                    {
+                        case OBDH_COMMAND_WRITE: 
+                            if (eps_buffer_write(adr, &val) != 0)
+                            {
+                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH write command has failed to complete!");
+                                sys_log_new_line();
+                            }
+                            break;
+                        case OBDH_COMMAND_READ: 
+                            if (eps_buffer_read(adr, &val) != 0)
+                            {
+                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH read command has failed to complete (buffer)!");
+                                sys_log_new_line();
+                            }
+                            else 
+                            {
+                                if (obdh_answer(adr, val) != 0)
+                                {
+                                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH read command has failed to complete (answer)!");
+                                    sys_log_new_line();
+                                }
+                            }
+                            break;
+                        default: 
+                            break;
+                    }
+                }
+                else 
+                {
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "The received OBDH command was corrupted!");
+                    sys_log_new_line();
+                }  
             }
             
             /* Process interrupt from UART ISR. */
             if ( (ulNotifiedValue & NOTIFICATION_VALUE_FROM_UART_ISR) != 0)
             {
-                ttc_decode(&adr, &val, &cmd);
-
-                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "TTC command received: ");
-                sys_log_print_msg("cmd="); 
-                sys_log_print_int(cmd);
-                sys_log_new_line();   
-                
-                switch(cmd)
+                if (ttc_decode(&adr, &val, &cmd))
                 {
-                    case TTC_COMMAND_WRITE: 
-                        if (eps_buffer_write(adr, &val) != 0)
-                        {
-                            sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "TTC write command has failed to complete!");
-                            sys_log_new_line();
-                        }
-                        break;
-                    case TTC_COMMAND_READ: 
-                        if (eps_buffer_read(adr, &val) != 0)
-                        {
-                            sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "TTC read command has failed to complete!");
-                            sys_log_new_line();
-                        }
-                        else 
-                        {
-                            if (ttc_answer(adr, val) != 0)
+                    sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "TTC command received: ");
+                    sys_log_print_msg("cmd="); 
+                    sys_log_print_int(cmd);
+                    sys_log_new_line();   
+                    
+                    switch(cmd)
+                    {
+                        case TTC_COMMAND_WRITE: 
+                            if (eps_buffer_write(adr, &val) != 0)
                             {
-                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "TTC read command has failed to complete!");
+                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "TTC write command has failed to complete!");
                                 sys_log_new_line();
                             }
-                        }
-                        break;
-                    default: 
-                        break;
+                            break;
+                        case TTC_COMMAND_READ: 
+                            if (eps_buffer_read(adr, &val) != 0)
+                            {
+                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "TTC read command has failed to complete (buffer)!");
+                                sys_log_new_line();
+                            }
+                            else 
+                            {
+                                if (ttc_answer(adr, val) != 0)
+                                {
+                                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "TTC read command has failed to complete (answer)!");
+                                    sys_log_new_line();
+                                }
+                            }
+                            break;
+                        default: 
+                            break;
+                    }
                 }
+                else 
+                {
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "The received TTC command was corrupted!");
+                    sys_log_new_line();
+                }  
             }
         }
         else
