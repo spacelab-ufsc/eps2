@@ -43,13 +43,13 @@
 #define UART_INTERRUPT_MODULE_NAME      "UART_INTERRUPT"
 
 #define UART_RX_BUFFER_MAX_SIZE         16                  /**< Number of bytes of the maximum UART RX buffer size. */
-#define NOTIFICATION_VALUE_UART_ISR     (1UL << 1UL)        /**< Bit to set on uart notification for tasks. */
+#define NOTIFICATION_VALUE_TO_UART_ISR  (1UL << 1UL)        /**< Bit to set on uart notification for tasks. */
 
 /**
  * \brief UART interrupt RX buffer and size.
  */
-uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];  
-uint8_t received_data_size = 0;
+extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];  
+extern uint8_t received_data_size;
 
 /**
  * \brief UART ports.

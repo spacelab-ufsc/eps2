@@ -40,13 +40,15 @@
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
 
-#include <FreeRTOS.h>
+#include <app/tasks/param_server.h>
 
 #include "uart_interrupt.h"
 
+uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];
+uint8_t received_data_size = 0;
 uint8_t index = 0; 
 
-int uart_interrupt_init(uart_port_t port, uart_config_t config)
+int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config)
 {
     USCI_A_UART_initParam uart_params = {0};
 
@@ -153,7 +155,7 @@ int uart_interrupt_init(uart_port_t port, uart_config_t config)
     return 0;
 }
 
-int uart_interrupt_enable(uart_port_t port)
+int uart_interrupt_enable(uart_interrupt_port_t port)
 {
     uint16_t base_address;
     switch (port)
@@ -188,7 +190,7 @@ int uart_interrupt_enable(uart_port_t port)
     return 0;
 };
 
-int uart_interrupt_disable(uart_port_t port)
+int uart_interrupt_disable(uart_interrupt_port_t port)
 {
     uint16_t base_address;
     switch (port)
@@ -211,7 +213,7 @@ int uart_interrupt_disable(uart_port_t port)
     }
 
     USCI_A_UART_disable(base_address);
-    USCI_A_UART_disablInterrupt(base_address, 
+    USCI_A_UART_disableInterrupt(base_address,
         USCI_A_UART_RECEIVE_INTERRUPT +
         USCI_A_UART_BREAKCHAR_INTERRUPT
     );
@@ -219,7 +221,7 @@ int uart_interrupt_disable(uart_port_t port)
     return 0;
 };
 
-int uart_interrupt_write(uart_port_t port, uint8_t *data, uint16_t len)
+int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len)
 {
     uint16_t base_address;
 
@@ -288,7 +290,7 @@ void USCI_A0_ISR(void)
                 then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
                 BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-                xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_UART_ISR, eSetBits, &xHigherPriorityTaskWoken);
+                xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_TO_UART_ISR, eSetBits, &xHigherPriorityTaskWoken);
 
                 /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
                 portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
