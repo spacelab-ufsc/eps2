@@ -24,8 +24,9 @@
  * \brief Parameter server task definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.1
+ * \version 0.2.6
  * 
  * \date 2021/07/24
  * 
@@ -43,11 +44,11 @@
 #define TASK_PARAM_SERVER_NAME                      "Param Server"      /**< Task name. */
 #define TASK_PARAM_SERVER_STACK_SIZE                300                 /**< Stack size in bytes. */
 #define TASK_PARAM_SERVER_PRIORITY                  4                   /**< Task priority. */
-#define TASK_PARAM_SERVER_PERIOD_MS                 50                  /**< Task period in milliseconds. */
-#define TASK_PARAM_SERVER_INITIAL_DELAY_MS          1000                /**< Delay, in milliseconds, before the first execution. */
+#define TASK_PARAM_SERVER_INIT_TIMEOUT_MS           1000                /**< Wait time to initialize the task in milliseconds. */
+#define TASK_PARAM_SERVER_MAX_BLOCK_TIME_MS         60*1000             /**< Maximum block time in milliseconds. */
 
-#define NOTIFICATION_VALUE_FROM_I2C_SLAVE_ISR       (1UL << 0UL)        /**< Bit to set on i2c_slave ISR notification. */
-#define NOTIFICATION_VALUE_FROM_UART                (1UL << 1UL)        /**< Bit to set on uart notification. */
+#define NOTIFICATION_VALUE_FROM_I2C_ISR       		(1UL << 0UL)        /**< Bit to set on i2c_slave ISR notification. */
+#define NOTIFICATION_VALUE_FROM_UART_ISR            (1UL << 1UL)        /**< Bit to set on uart ISR notification. */
 
 /**
  * \brief Parameter server handle.
