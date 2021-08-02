@@ -40,6 +40,8 @@
 
 #include <stdint.h>
 
+#include <drivers/uart_interrupt/uart_interrupt.h>
+
 #define TTC_MODULE_NAME         "TTC"
 
 #define TTC_COMMAND_READ_SIZE	 2
@@ -71,6 +73,19 @@ typedef struct
 int ttc_init(void);
 
 /**
+ * \brief Decodes a command from the TTC.
+ *
+ * \param[out] adr is the decoded register address.
+ *
+ * \param[out] val is the decoded register data.
+ *
+ * \param[out] cmd is the decoded command resquested.
+ *
+ * \return The status/error code.
+ */
+int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd);
+
+/**
  * \brief Answers a command from the TTC.
  *
  * \param[in] adr is the register address requested.
@@ -79,7 +94,7 @@ int ttc_init(void);
  *
  * \return The status/error code.
  */
-int sl_ttc2_answer(uint8_t adr, uint32_t val);
+int ttc_answer(uint8_t adr, uint32_t val);
 
 #endif /* TTC_H_ */
 

@@ -36,7 +36,6 @@
 
 #include <stdbool.h>
 
-#include <drivers/uart_interrupt/uart_interrupt.h>
 #include <system/sys_log/sys_log.h>
 
 #include "ttc.h"
@@ -101,11 +100,11 @@ int ttc_init(void)
 
 int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
 {
-	uint8_t buf[received_data_size] = {0};
+	uint8_t buf[received_data_size];
 
 	for (int i = 0; i < received_data_size; i++)
 	{
-		buf[i] = uart_rx_buffer[i]
+		buf[i] = uart_rx_buffer[i];
 	}
 
 	if(ttc_check_crc(buf, received_data_size, buf[received_data_size-1]) == true) 
@@ -113,17 +112,17 @@ int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd)
 		switch(received_data_size) 
 		{
 			case TTC_COMMAND_WRITE_SIZE:
-			    adr = buf[0];
-			    val = ((uint32_t)buf[1] << 24) | 
-			    	  ((uint32_t)buf[2] << 16) | 
-			    	  ((uint32_t)buf[3] << 8)  | 
-			    	  ((uint32_t)buf[4] << 0);
-			   	cmd = TTC_COMMAND_WRITE;
+			    *adr = buf[0];
+			    *val = ((uint32_t)buf[1] << 24) |
+			    	   ((uint32_t)buf[2] << 16) |
+			    	   ((uint32_t)buf[3] << 8)  |
+			    	   ((uint32_t)buf[4] << 0);
+			   	*cmd = TTC_COMMAND_WRITE;
 				break;
 			case TTC_COMMAND_READ_SIZE:
-				adr = buf[0];
-			    val = 0;
-			   	cmd = TTC_COMMAND_READ;
+				*adr = buf[0];
+			    *val = 0;
+			   	*cmd = TTC_COMMAND_READ;
 				break;
 			default:
 				sys_log_print_event_from_module(SYS_LOG_ERROR, TTC_MODULE_NAME, "Invalid command received (CMD)!");
