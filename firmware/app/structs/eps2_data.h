@@ -24,8 +24,9 @@
  * \brief EPS data structure definition.
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.2
+ * \version 0.2.5
  * 
  * \date 2021/04/09
  * 
@@ -38,6 +39,8 @@
 #define EPS_DATA_H_
 
 #include <stdint.h>
+
+#define EPS_DATA_NAME       "EPS2 Buffer"
 
 /**
  * \brief Parameters' IDs.
@@ -93,7 +96,7 @@ typedef enum
     EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 46,
     EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 47,
     EPS2_PARAM_ID_DEVICE_ID                 = 48
-} eps2_param_id_t;
+} eps2_param_id_e;
 
 /**
  * \brief EPS data.
@@ -111,7 +114,12 @@ typedef struct
     uint16_t main_power_buss_mv;                /**< Main power buss voltage in mV. */
     uint8_t mppt_1_duty_cycle;                  /**< MPPT 1 duty cycle in %. */
     uint8_t mppt_2_duty_cycle;                  /**< MPPT 2 duty cycle in %. */
-    uint8_t mppt_3_duty_cycle;                  /**< MPPT 3 duty cycle in %. */   
+    uint8_t mppt_3_duty_cycle;                  /**< MPPT 3 duty cycle in %. */ 
+    uint8_t mppt_1_mode;                        /**< MPPT 1 mode flag. */
+    uint8_t mppt_2_mode;                        /**< MPPT 2 mode flag. */
+    uint8_t mppt_3_mode;                        /**< MPPT 3 mode flag. */ 
+    uint8_t heater1_mode;                       /**< Heater 1 mode flag. */
+    uint8_t heater2_mode;                       /**< Heater 2 mode flag. */   
     
     /**
      *  Solar panels related data. 
@@ -162,10 +170,31 @@ typedef struct
      */
     uint32_t firmware_version;                  /**< Hard-coded firmware version of EPS. */
     uint8_t hardware_version;                   /**< Hard-coded hardware version of EPS. */
+    uint8_t device_id;                          /**< Hard-coded device id of EPS. */
 
 } eps_data_t;
 
-extern eps_data_t eps_data_buff; 
+/**
+ * \brief Function to write a value into the EPS data buffer.
+ *
+ * \param[in] id is a value to select a variable within the data buffer.
+ *
+ * \param[out] value is the data that will overwrite the previous data.
+ *
+ * \return The status/error code.
+ */
+int eps_buffer_write(uint8_t id, uint32_t *value);
+
+/**
+ * \brief Function to read a value of the EPS data buffer.
+ *
+ * \param[in] id is a value to select a variable within the data buffer.
+ *
+ * \param[out] value is the data that will be read from the buffer.
+ *
+ * \return The status/error code.
+ */
+int eps_buffer_read(uint8_t id, uint32_t *value);
 
 #endif /* EPS_DATA_H_ */
 
