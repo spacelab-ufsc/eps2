@@ -26,7 +26,7 @@
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.2.4
+ * \version 0.2.6
  *
  * \date 22/04/2020
  *
@@ -48,7 +48,7 @@
 #define TTC_COMMAND_WRITE_SIZE	 6
 
 /**
- * \brief UART ports.
+ * \brief TTC command types.
  */
 typedef enum
 {

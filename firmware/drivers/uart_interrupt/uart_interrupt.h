@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.4
+ * \version 0.2.6
  * 
  * \date 2021/08/01
  * 
@@ -49,7 +49,7 @@
  * \brief UART interrupt RX buffer and size.
  */
 extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];  
-extern uint8_t received_data_size;
+extern uint8_t uart_received_data_size;
 
 /**
  * \brief UART ports.

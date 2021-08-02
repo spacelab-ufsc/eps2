@@ -26,7 +26,7 @@
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.2.4
+ * \version 0.2.6
  *
  * \date 22/04/2021
  *
@@ -100,16 +100,16 @@ int ttc_init(void)
 
 int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
 {
-	uint8_t buf[received_data_size];
+	uint8_t buf[uart_received_data_size];
 
-	for (int i = 0; i < received_data_size; i++)
+	for (int i = 0; i < uart_received_data_size; i++)
 	{
 		buf[i] = uart_rx_buffer[i];
 	}
 
-	if(ttc_check_crc(buf, received_data_size, buf[received_data_size-1]) == true) 
+	if(ttc_check_crc(buf, uart_received_data_size, buf[uart_received_data_size-1]) == true) 
 	{
-		switch(received_data_size) 
+		switch(uart_received_data_size) 
 		{
 			case TTC_COMMAND_WRITE_SIZE:
 			    *adr = buf[0];

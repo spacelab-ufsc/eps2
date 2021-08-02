@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.4
+ * \version 0.2.6
  * 
  * \date 2021/08/01
  * 
@@ -45,8 +45,8 @@
 #include "uart_interrupt.h"
 
 uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];
-uint8_t received_data_size = 0;
-uint8_t index = 0; 
+uint8_t uart_received_data_size = 0;
+uint8_t uart_buffer_index = 0; 
 
 int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config)
 {
@@ -272,8 +272,8 @@ void USCI_A0_ISR(void)
             if (USCI_A_UART_queryStatusFlags(USCI_A0_BASE, USCI_A_UART_BREAK_DETECT) == USCI_A_UART_BREAK_DETECT)
             {
                 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-                    sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Received data: ");
-                    for (int i = 0; i < index; i++)
+                    sys_log_print_event_from_module(SYS_LOG_INFO, UART_MODULE_NAME, "Received data: ");
+                    for (int i = 0; i < uart_buffer_index; i++)
                     {
                         sys_log_print_hex(uart_rx_buffer[i]);
                         sys_log_print_msg(",");
@@ -281,8 +281,8 @@ void USCI_A0_ISR(void)
                     sys_log_new_line();
                 #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
                 
-                received_data_size = index;
-                index = 0;
+                uart_received_data_size = uart_buffer_index;
+                uart_buffer_index = 0;
 
                 /* xHigherPriorityTaskWoken must be initialised to pdFALSE.  If calling
                 xTaskNotifyFromISR() unblocks the handling task, and the priority of
@@ -297,7 +297,7 @@ void USCI_A0_ISR(void)
             }
             else 
             {
-                uart_rx_buffer[index++] = USCI_A_UART_receiveData(USCI_A0_BASE);
+                uart_rx_buffer[uart_buffer_index++] = USCI_A_UART_receiveData(USCI_A0_BASE);
             }
             break;
         default: 
