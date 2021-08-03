@@ -25,8 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.3
+ * \version 0.2.9
  * 
  * \date 2021/02/10
  * 
@@ -40,6 +41,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+
 #include <drivers/pwm/pwm.h>
 #include <devices/voltage_sensor/voltage_sensor.h>
 #include <devices/current_sensor/current_sensor.h>
@@ -47,9 +49,38 @@
 #define MPPT_MODULE_NAME        "MPPT"
 
 /**
- * \brief constants.
+ * \brief MPPT algorithm constants.
  */
-#define K 1
+#define MPPT_DUTY_CYCLE_STEP    1       /**< PWM duty cycle step in % for the MPPT algorithm. */
+#define MPPT_DUTY_CYCLE_INIT    50      /**< PWM initial duty cycle in % for the MPPT algorithm. */
+#define MPPT_PERIOD_INIT        2       /**< PWM period (1/f) in us for the MPPT algorithm. */
+
+/**
+ * \brief MPPT control loop channels.
+ */
+#define MPPT_CONTROL_LOOP_CH_SOURCE   TIMER_B0        /**< MPPT control loop channels source. */
+#define MPPT_CONTROL_LOOP_CH_0        PWM_PORT_1      /**< MPPT control loop channel 0. */
+#define MPPT_CONTROL_LOOP_CH_1        PWM_PORT_2      /**< MPPT control loop channel 1. */
+#define MPPT_CONTROL_LOOP_CH_2        PWM_PORT_3      /**< MPPT control loop channel 2. */
+#define MPPT_VOLTAGE_SENSOR_CH_0      ADC_PORT_12     /**< MPPT voltage sensor for channel 0. */
+#define MPPT_VOLTAGE_SENSOR_CH_1      ADC_PORT_13     /**< MPPT voltage sensor for channel 1. */
+#define MPPT_VOLTAGE_SENSOR_CH_2      ADC_PORT_14     /**< MPPT voltage sensor for channel 2. */
+#define MPPT_CURRENT_SENSOR_0_CH_0    ADC_PORT_0      /**< MPPT current sensor 0 for channel 0. */
+#define MPPT_CURRENT_SENSOR_1_CH_0    ADC_PORT_1      /**< MPPT current sensor 1 for channel 0. */
+#define MPPT_CURRENT_SENSOR_0_CH_1    ADC_PORT_2      /**< MPPT current sensor 0 for channel 1. */
+#define MPPT_CURRENT_SENSOR_1_CH_1    ADC_PORT_3      /**< MPPT current sensor 1 for channel 1. */
+#define MPPT_CURRENT_SENSOR_0_CH_2    ADC_PORT_4      /**< MPPT current sensor 0 for channel 2. */
+#define MPPT_CURRENT_SENSOR_1_CH_2    ADC_PORT_5      /**< MPPT current sensor 1 for channel 2. */
+
+/**
+ * \brief MPPT control loop channel type.
+ */
+typedef pwm_port_t mppt_channel_t;
+
+/**
+ * \brief MPPT control loop configuration type.
+ */
+typedef pwm_config_t mppt_config_t;
 
 /**
  * \brief power measurements.
@@ -58,9 +89,7 @@ typedef struct
 {
     uint16_t previous_power;
     uint16_t power;
-}power_measurement_t;
-
-power_measurement_t power_measurement;
+} power_measurement_t;
 
 /**
  * \brief last operation.
@@ -69,24 +98,20 @@ typedef struct
 {
     uint8_t previous_duty_cycle;
     uint8_t duty_cycle;
-}duty_cycle_measurement_t;
-
-duty_cycle_measurement_t duty_cycle_measurement;
+} duty_cycle_measurement_t;
 
 /**
  * \brief last operation.
  */
 typedef struct
 {
-    uint8_t previous_duty_cycle_PWM_0;
-    uint16_t previous_power_PWM_0;
-    uint8_t previous_duty_cycle_PWM_1;
-    uint16_t previous_power_PWM_1;
-    uint8_t previous_duty_cycle_PWM_2;
-    uint16_t previous_power_PWM_2;
-}previous_values_t;
-
-previous_values_t previous_values;
+    uint8_t previous_duty_cycle_ch_0;
+    uint8_t previous_duty_cycle_ch_1;
+    uint8_t previous_duty_cycle_ch_2;
+    uint16_t previous_power_ch_0;
+    uint16_t previous_power_ch_1;
+    uint16_t previous_power_ch_2;
+} previous_values_t;
 
 /**
  * \brief Initialization routine of the MPPT.
@@ -95,11 +120,14 @@ previous_values_t previous_values;
  */
 int mppt_init();
 
-int get_power(pwm_port_t port);
-int get_duty_cycle(pwm_port_t port, pwm_config_t config);
-void increase_duty_cycle(pwm_config_t config, pwm_port_t port);
-void decrease_duty_cycle(pwm_config_t config, pwm_port_t port);
-int update_duty_cycle(pwm_port_t port, pwm_config_t config);
+/**
+ * \brief Function to implement the perturb and observe maximum power point tracking algorithm.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ * \return The status/error code.
+ */
+int mppt_algorithm(mppt_channel_t channel);
 
 
 #endif /* MPPT_H_ */
