@@ -64,7 +64,7 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			
 			/* User PWM configuration */
 			timer_a1_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */ 
-			timer_a1_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us);	/* Convertion from % to number of cycles in high */
+			timer_a1_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us * CONVERT_CLK_PERIOD_TO_US);	/* Convertion from % to number of cycles in high */
 
 			switch(port) 
 			{
@@ -101,7 +101,7 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			
 			/* User PWM configuration */
 			timer_a2_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */ 
-			timer_a2_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us);	/* Convertion from % to number of cycles in high */
+			timer_a2_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us * CONVERT_CLK_PERIOD_TO_US);	/* Convertion from % to number of cycles in high */
 
 			switch(port) 
 			{
@@ -137,8 +137,8 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			timer_b0_config.compareOutputMode = TIMER_B_OUTPUTMODE_RESET_SET;
 			
 			/* User PWM configuration */
-			timer_b0_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */ 
-			timer_b0_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us);	/* Convertion from % to number of cycles in high */
+			timer_b0_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */
+			timer_b0_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us * CONVERT_CLK_PERIOD_TO_US);	/* Convertion from % to number of cycles in high */
 
 			switch(port) 
 			{
