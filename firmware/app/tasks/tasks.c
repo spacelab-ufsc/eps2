@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.1
+ * \version 0.2.10
  * 
  * \date 2021/04/09
  * 
@@ -45,6 +45,7 @@
 #include "system_reset.h"
 #include "read_sensors.h"
 #include "param_server.h"
+#include "mppt_algorithm.h"
 
 void create_tasks()
 {
@@ -105,6 +106,15 @@ void create_tasks()
         /* Error creating the parameter server task */
     }
 #endif /* CONFIG_TASK_PARAM_SERVER_ENABLED */
+
+#if CONFIG_TASK_MPPT_ALGORITHM_ENABLED == 1
+    xTaskCreate(vTaskParamServer, TASK_MPPT_ALGORITHM_NAME, TASK_MPPT_ALGORITHM_STACK_SIZE, NULL, TASK_MPPT_ALGORITHM_PRIORITY, &xTaskMPPTAlgorithmHandle);
+
+    if (xTaskMPPTAlgorithmHandle == NULL)
+    {
+        /* Error creating the parameter server task */
+    }
+#endif /* CONFIG_TASK_MPPT_ALGORITHM_ENABLED */
 
     create_event_groups();
 }
