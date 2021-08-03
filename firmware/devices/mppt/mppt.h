@@ -53,7 +53,7 @@
  */
 #define MPPT_DUTY_CYCLE_STEP    1       /**< PWM duty cycle step in % for the MPPT algorithm. */
 #define MPPT_DUTY_CYCLE_INIT    50      /**< PWM initial duty cycle in % for the MPPT algorithm. */
-#define MPPT_PERIOD_INIT        2       /**< PWM period (1/f) in us for the MPPT algorithm. */
+#define MPPT_PERIOD_INIT        4       /**< PWM period (1/f) in us for the MPPT algorithm. */
 
 /**
  * \brief MPPT control loop channels.
