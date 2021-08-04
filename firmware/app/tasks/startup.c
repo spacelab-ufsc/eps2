@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.12
  * 
  * \date 2021/03/09
  * 
@@ -133,6 +133,12 @@ void vTaskStartup(void *pvParameters)
 
     /* MPPT device initialization */
     if (mppt_init() != 0)
+    {
+        error = true;
+    }
+
+    /* Heater device initialization */
+    if (heater_init() != 0)
     {
         error = true;
     }
