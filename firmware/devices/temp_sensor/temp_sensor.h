@@ -25,7 +25,7 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.11
  * 
  * \date 2021/06/11
  * 
@@ -52,6 +52,20 @@
 #define TEMP_SENSOR_START_PIN       GPIO_PIN_60
 #define TEMP_SENSOR_SPI_CS          GPIO_PIN_59
 #define TEMP_SENSOR_RESET_PIN       GPIO_PIN_58
+
+/**
+ * \brief Temperature sensor RTD channels.
+ */
+typedef enum
+{
+    TEMP_SENSOR_RTD_CH_0=0,
+    TEMP_SENSOR_RTD_CH_1,
+    TEMP_SENSOR_RTD_CH_2,
+    TEMP_SENSOR_RTD_CH_3,
+    TEMP_SENSOR_RTD_CH_4,
+    TEMP_SENSOR_RTD_CH_5,
+    TEMP_SENSOR_RTD_CH_6,
+} temp_rtd_channel_e;
 
 /**
  * \brief Temperature sensor device type.
@@ -176,14 +190,14 @@ uint16_t temp_rtd_raw_to_k(uint16_t raw);
  *
  * \return The status/error code.
  */
-int temp_rtd_read_c();
+int temp_rtd_read_c(uint8_t channel, uint16_t *temp);
 
 /**
  * \brief read temperatures from rtds in kelvin.
  *
  * \return The status/error code.
  */
-int temp_rtd_read_k();
+int temp_rtd_read_k(uint8_t channel, uint16_t *temp);
 
 #endif /* TEMP_SENSOR_H_ */
 

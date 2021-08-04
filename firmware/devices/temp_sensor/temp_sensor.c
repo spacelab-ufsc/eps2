@@ -25,7 +25,7 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.11
  * 
  * \date 2021/06/11
  * 
@@ -189,12 +189,12 @@ uint16_t temp_rtd_raw_to_k(uint16_t raw)
     return -1;
 }
 
-int temp_rtd_read_c(uint16_t *temp)
+int temp_rtd_read_c(uint8_t channel, uint16_t *temp)
 {
     return -1;
 }
 
-int temp_rtd_read_k(uint16_t *temp)
+int temp_rtd_read_k(uint8_t channel, uint16_t *temp)
 {
     return -1;
 }
