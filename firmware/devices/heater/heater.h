@@ -49,6 +49,7 @@
 /**
  * \brief PID algorithm constants.
  */
+#define PID_BASE_SET_POINT                      5           /**< TODO. */         
 #define PID_PROPORTIONAL_CONSTANT               1           /**< Kp: Modulate the proportional actuation influence. */
 #define PID_INTEGRATOR_CONSTANT                 1           /**< Ki: Modulate the integrator actuation influence. */
 #define PID_DIFFERENTIATOR_CONSTANT             1           /**< Kd: Modulate the differentiator actuation influence. */
@@ -62,7 +63,7 @@
 #define PID_PREVIOUS_ERROR_INIT                 0           /**< TODO. */                  
 #define PID_DIFFERENTIATOR_INIT                 0           /**< TODO. */                
 #define PID_PREVIOUS_MEASUREMENT_INIT           0           /**< TODO. */                       
-#define PID_OUTPUT_INIT                         50          /**< TODO. */          
+#define PID_OUTPUT_INIT                         50          /**< TODO. */ 
 
 /**
  * \brief PWM constants.
