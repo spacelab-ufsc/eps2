@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.2.10
+ * \version 0.2.12
  * 
  * \date 2021/01/25
  * 
@@ -45,6 +45,7 @@
 #define CONFIG_TASK_READ_SENSORS_ENABLED                1
 #define CONFIG_TASK_PARAM_SERVER_ENABLED                1
 #define CONFIG_TASK_MPPT_ALGORITHM_ENABLED              1
+#define CONFIG_TASK_HEATER_CONTROL_ENABLED              1
 
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 

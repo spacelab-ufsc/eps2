@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.10
+ * \version 0.2.12
  * 
  * \date 2021/04/09
  * 
@@ -46,6 +46,7 @@
 #include "read_sensors.h"
 #include "param_server.h"
 #include "mppt_algorithm.h"
+#include "heater_controller.h"
 
 void create_tasks()
 {
@@ -115,6 +116,15 @@ void create_tasks()
         /* Error creating the parameter server task */
     }
 #endif /* CONFIG_TASK_MPPT_ALGORITHM_ENABLED */
+
+#if CONFIG_TASK_HEATER_CONTROLLER_ENABLED == 1
+    xTaskCreate(vTaskHeaterController, TASK_HEATER_CONTROLLER_NAME, TASK_HEATER_CONTROLLER_STACK_SIZE, NULL, TASK_HEATER_CONTROLLER_PRIORITY, &xTaskHeaterControllerHandle);
+
+    if (xTaskMPPTAlgorithmHandle == NULL)
+    {
+        /* Error creating the parameter server task */
+    }
+#endif /* CONFIG_TASK_HEATER_CONTROLLER_ENABLED */
 
     create_event_groups();
 }
