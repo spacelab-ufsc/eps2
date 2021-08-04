@@ -53,6 +53,8 @@ void vTaskMPPTAlgorithm(void *pvParameters)
 	
 	while(1)
 	{
+		TickType_t last_cycle = xTaskGetTickCount();
+		
 		eps_buffer_read(EPS2_PARAM_ID_MPPT_1_MODE, &mppt_mode);
 		switch(mppt_mode) 
 		{
@@ -112,6 +114,8 @@ void vTaskMPPTAlgorithm(void *pvParameters)
         		sys_log_new_line();
 				break;
 		}
+
+        vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_MPPT_ALGORITHM_PERIOD_MS));
 	}
 }
 
