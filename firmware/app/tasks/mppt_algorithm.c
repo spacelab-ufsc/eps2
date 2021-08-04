@@ -25,7 +25,7 @@
  *
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.10
+ * \version 0.2.12
  *
  * \date 2021/08/02
  *

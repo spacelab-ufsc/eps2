@@ -91,21 +91,21 @@ int mppt_init(void)
 
     if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_0, mppt_config) != 0) 
     {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization!");
+        sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH0)!");
         sys_log_new_line();
         return -1;
     }
 
     if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_1, mppt_config) != 0)
     {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization!");
+        sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH1)!");
         sys_log_new_line();
         return -1;
     }
 
     if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_2, mppt_config) != 0)
     {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization!");
+        sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH2)!");
         sys_log_new_line();
         return -1;
     }
@@ -246,4 +246,5 @@ int decrease_duty_cycle(mppt_channel_t channel)
     mppt_config.duty_cycle -= MPPT_DUTY_CYCLE_STEP;
     return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
 }
+
 /** \} End of mppt group */

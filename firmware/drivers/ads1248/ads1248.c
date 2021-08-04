@@ -197,29 +197,23 @@ int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, 
     switch(cmd)
     {
         case ADS1248_CMD_WREG:
-        ads1248_config_regs(config);  
-        break;
-
+            ads1248_config_regs(config);  
+            break;
         case ADS1248_CMD_RREG:  
-        ads1248_read_regs(config, rd);          
-        break;
-
+            ads1248_read_regs(config, rd);          
+            break;
         case ADS1248_CMD_RDATA:
-        ads1248_read_data(config, rd, positive_channel);
-        break;
-
+            ads1248_read_data(config, rd, positive_channel);
+            break;
         case ADS1248_CMD_WAKEUP:
-        
-        if(gpio_get_state(config->start_pin) != true)
-        {
-          gpio_set_state(config->start_pin, true);  
-        }
-        
-        spi_write(config->spi_port, config->spi_cs, &cmd, 1);
-        break;
-
+            if(gpio_get_state(config->start_pin) != true)
+            {
+              gpio_set_state(config->start_pin, true);  
+            }
+            spi_write(config->spi_port, config->spi_cs, &cmd, 1);
+            break;
         default:
-        spi_write(config->spi_port, config->spi_cs, &cmd, 1);
+            spi_write(config->spi_port, config->spi_cs, &cmd, 1);
     }
     return 0;
 }

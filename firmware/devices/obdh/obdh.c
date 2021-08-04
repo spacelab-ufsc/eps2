@@ -85,7 +85,6 @@ int obdh_init(void)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C buffer init)!");
         sys_log_new_line();
-
         return -1;      /* Error initializing the I2C port buffer CI*/
     }
 
