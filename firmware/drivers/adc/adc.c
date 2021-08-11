@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.15
  * 
  * \date 2021/06/11
  * 
@@ -77,69 +77,79 @@ int adc_init(adc_port_t port, adc_config_t config)
 
     ADC12_A_configureMemoryParam param = {0};
 
+    /* Temperature sensor */
     param.memoryBufferControlIndex          = ADC12_A_MEMORY_0;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A0;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_1;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A1;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_2;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A2;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_3;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A3;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_4;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A4;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_5;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A6;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_6;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A6;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_7;
-    param.inputSourceSelect                 = ADC12_A_INPUT_A7;
-    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
-    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
-    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
-    ADC12_A_configureMemory(ADC12_A_BASE, &param);
-
-    param.memoryBufferControlIndex          = ADC12_A_MEMORY_10;
     param.inputSourceSelect                 = ADC12_A_INPUT_TEMPSENSOR;
     param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_INT;
     param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
     param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
     ADC12_A_configureMemory(ADC12_A_BASE, &param);
 
+    /* Solar Panel -Y current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_1;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A0;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Solar Panel +X current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_2;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A1;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Solar Panel -X current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_3;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A2;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Solar Panel +Z current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_4;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A3;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Solar Panel -Z current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_5;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A4;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Solar Panel +Y current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_6;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A5;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* TTC/EPS regulator current sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_7;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A6;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Main bus voltage sensor */
+    param.memoryBufferControlIndex          = ADC12_A_MEMORY_10;
+    param.inputSourceSelect                 = ADC12_A_INPUT_A7;
+    param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
+    param.negativeRefVoltageSourceSelect    = ADC12_A_VREFNEG_AVSS;
+    param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
+    ADC12_A_configureMemory(ADC12_A_BASE, &param);
+
+    /* Solar Panel -Y/+X voltage sensor */
     param.memoryBufferControlIndex          = ADC12_A_MEMORY_12;
     param.inputSourceSelect                 = ADC12_A_INPUT_A12;
     param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
@@ -147,6 +157,7 @@ int adc_init(adc_port_t port, adc_config_t config)
     param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
     ADC12_A_configureMemory(ADC12_A_BASE, &param);
 
+    /* Solar Panel -X/+Z voltage sensor */
     param.memoryBufferControlIndex          = ADC12_A_MEMORY_13;
     param.inputSourceSelect                 = ADC12_A_INPUT_A13;
     param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
@@ -154,6 +165,7 @@ int adc_init(adc_port_t port, adc_config_t config)
     param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
     ADC12_A_configureMemory(ADC12_A_BASE, &param);
 
+    /* Solar Panel -Z/+Y voltage sensor */
     param.memoryBufferControlIndex          = ADC12_A_MEMORY_14;
     param.inputSourceSelect                 = ADC12_A_INPUT_A14;
     param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
@@ -161,6 +173,7 @@ int adc_init(adc_port_t port, adc_config_t config)
     param.endOfSequence                     = ADC12_A_NOTENDOFSEQUENCE;
     ADC12_A_configureMemory(ADC12_A_BASE, &param);
 
+    /* Solar Panel total voltage sensor */
     param.memoryBufferControlIndex          = ADC12_A_MEMORY_15;
     param.inputSourceSelect                 = ADC12_A_INPUT_A15;
     param.positiveRefVoltageSourceSelect    = ADC12_A_VREFPOS_EXT;
