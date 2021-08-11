@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.12
+ * \version 0.2.18
  * 
  * \date 2021/03/09
  * 
@@ -47,8 +47,10 @@
 #include <devices/temp_sensor/temp_sensor.h>
 #include <devices/media/media.h>
 #include <devices/mppt/mppt.h>
+#include <devices/heater/heater.h>
 #include <devices/watchdog/watchdog.h>
 #include <devices/obdh/obdh.h>
+#include <devices/ttc/ttc.h>
 
 #include "startup.h"
 
@@ -89,8 +91,20 @@ void vTaskStartup(void *pvParameters)
     sys_log_print_hex(system_get_reset_cause());
     sys_log_new_line();
 
-    /* Obdh device initialization (TEST VERSION)*/
-    if (obdh_init() != 0)
+    /* LEDs device initialization */
+    if (leds_init() != 0)
+    {
+        error = true;
+    }
+
+    /* Heater device initialization */
+    if (heater_init() != 0)
+    {
+        error = true;
+    }
+
+    /* MPPT device initialization */
+    if (mppt_init() != 0)
     {
         error = true;
     }
@@ -100,9 +114,9 @@ void vTaskStartup(void *pvParameters)
     {
         error = true;
     }
-    
-    /* LEDs device initialization */
-    if (leds_init() != 0)
+
+    /* Internal non-volatile memory initialization */
+    if (media_init() != 0)
     {
         error = true;
     }
@@ -125,20 +139,14 @@ void vTaskStartup(void *pvParameters)
         error = true;
     }
 
-    /* Internal non-volatile memory initialization */
-    if (media_init() != 0)
+    /* OBDH device initialization */
+    if (obdh_init() != 0)
     {
         error = true;
     }
 
-    /* MPPT device initialization */
-    if (mppt_init() != 0)
-    {
-        error = true;
-    }
-
-    /* Heater device initialization */
-    if (heater_init() != 0)
+    /* TTC device initialization */
+    if (ttc_init() != 0)
     {
         error = true;
     }
