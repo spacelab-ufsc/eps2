@@ -27,7 +27,7 @@
  * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.9
+ * \version 0.2.16
  * 
  * \date 2021/02/10
  * 
@@ -62,15 +62,15 @@
 #define MPPT_CONTROL_LOOP_CH_0        PWM_PORT_1      /**< MPPT control loop channel 0. */
 #define MPPT_CONTROL_LOOP_CH_1        PWM_PORT_2      /**< MPPT control loop channel 1. */
 #define MPPT_CONTROL_LOOP_CH_2        PWM_PORT_3      /**< MPPT control loop channel 2. */
-#define MPPT_VOLTAGE_SENSOR_CH_0      ADC_PORT_12     /**< MPPT voltage sensor for channel 0. */
-#define MPPT_VOLTAGE_SENSOR_CH_1      ADC_PORT_13     /**< MPPT voltage sensor for channel 1. */
-#define MPPT_VOLTAGE_SENSOR_CH_2      ADC_PORT_14     /**< MPPT voltage sensor for channel 2. */
-#define MPPT_CURRENT_SENSOR_0_CH_0    ADC_PORT_0      /**< MPPT current sensor 0 for channel 0. */
-#define MPPT_CURRENT_SENSOR_1_CH_0    ADC_PORT_1      /**< MPPT current sensor 1 for channel 0. */
-#define MPPT_CURRENT_SENSOR_0_CH_1    ADC_PORT_2      /**< MPPT current sensor 0 for channel 1. */
-#define MPPT_CURRENT_SENSOR_1_CH_1    ADC_PORT_3      /**< MPPT current sensor 1 for channel 1. */
-#define MPPT_CURRENT_SENSOR_0_CH_2    ADC_PORT_4      /**< MPPT current sensor 0 for channel 2. */
-#define MPPT_CURRENT_SENSOR_1_CH_2    ADC_PORT_5      /**< MPPT current sensor 1 for channel 2. */
+#define MPPT_VOLTAGE_SENSOR_CH_0      PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT  /**< MPPT voltage sensor for channel 0. */
+#define MPPT_VOLTAGE_SENSOR_CH_1      PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT  /**< MPPT voltage sensor for channel 1. */
+#define MPPT_VOLTAGE_SENSOR_CH_2      PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT  /**< MPPT voltage sensor for channel 2. */
+#define MPPT_CURRENT_SENSOR_0_CH_0    PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT          /**< MPPT current sensor 0 for channel 0. */
+#define MPPT_CURRENT_SENSOR_1_CH_0    PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT           /**< MPPT current sensor 1 for channel 0. */
+#define MPPT_CURRENT_SENSOR_0_CH_1    PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT          /**< MPPT current sensor 0 for channel 1. */
+#define MPPT_CURRENT_SENSOR_1_CH_1    PANNEL_PLUS_Z_CURRENT_SENSOR_ADC_PORT           /**< MPPT current sensor 1 for channel 1. */
+#define MPPT_CURRENT_SENSOR_0_CH_2    PANNEL_MINUS_Z_CURRENT_SENSOR_ADC_PORT          /**< MPPT current sensor 0 for channel 2. */
+#define MPPT_CURRENT_SENSOR_1_CH_2    PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT           /**< MPPT current sensor 1 for channel 2. */
 
 /**
  * \brief MPPT control loop channel type.
@@ -87,8 +87,8 @@ typedef pwm_config_t mppt_config_t;
  */
 typedef struct
 {
-    uint16_t previous_power;
-    uint16_t power;
+    uint32_t previous_power;
+    uint32_t power;
 } power_measurement_t;
 
 /**
@@ -108,9 +108,9 @@ typedef struct
     uint8_t previous_duty_cycle_ch_0;
     uint8_t previous_duty_cycle_ch_1;
     uint8_t previous_duty_cycle_ch_2;
-    uint16_t previous_power_ch_0;
-    uint16_t previous_power_ch_1;
-    uint16_t previous_power_ch_2;
+    uint32_t previous_power_ch_0;
+    uint32_t previous_power_ch_1;
+    uint32_t previous_power_ch_2;
 } previous_values_t;
 
 /**

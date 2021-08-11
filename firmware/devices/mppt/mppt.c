@@ -27,7 +27,7 @@
  * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.9
+ * \version 0.2.16
  * 
  * \date 2021/02/10
  * 
@@ -208,21 +208,21 @@ int get_power(mppt_channel_t channel)
             err |= current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_0, &current_0);
             err |= current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_0, &current_1);
             err |= voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_0, &voltage);
-            power_measurement.power = (current_0 + current_1) * voltage;
+            power_measurement.power = (current_0 + current_1) * (uint32_t)voltage;
             power_measurement.previous_power = previous_values.previous_power_ch_0;
             break;
         case MPPT_CONTROL_LOOP_CH_1:
             err |= current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_1, &current_0);
             err |= current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_1, &current_1);
             err |= voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_1, &voltage);
-            power_measurement.power = (current_0 + current_1) * voltage;
+            power_measurement.power = (current_0 + current_1) * (uint32_t)voltage;
             power_measurement.previous_power = previous_values.previous_power_ch_1;
             break;
         case MPPT_CONTROL_LOOP_CH_2:
             err |= current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_2, &current_0);
             err |= current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_2, &current_1);
             err |= voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_2, &voltage);
-            power_measurement.power = (current_0 + current_1) * voltage;
+            power_measurement.power = (current_0 + current_1) * (uint32_t)voltage;
             power_measurement.previous_power = previous_values.previous_power_ch_2;
             break;
     }
