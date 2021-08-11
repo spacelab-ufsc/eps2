@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.15
  * 
  * \date 2021/06/11
  * 
@@ -50,19 +50,23 @@ int current_sensor_init()
     return max9934_init(curr_sense_max9934_config);
 };
 
-uint16_t current_sensor_raw_to_ma(uint16_t raw)
+uint16_t current_sensor_raw_to_ma(adc_port_t port, uint16_t raw)
 {
-    return (uint16_t)(1000 * raw * (ADC_VREF_V / (ADC_RANGE * CURRENT_SENSOR_RL_VALUE_OHM * CURRENT_SENSOR_GAIN * CURRENT_SENSOR_RSENSE_VALUE_OHM)));
+    if(port == EPS_BEACON_CURRENT_SENSOR_ADC_PORT)
+    {
+        return (uint16_t)(1000UL * (uint32_t)raw * (ADC_VREF_MV / (ADC_RANGE * EPS_CURRENT_SENSOR_RL_VALUE_KOHM * EPS_CURRENT_SENSOR_GAIN * EPS_CURRENT_SENSOR_RSENSE_VALUE_MOHM)));
+    }
+    else 
+    {
+        return (uint16_t)(1000UL * (uint32_t)raw * (ADC_VREF_MV / (ADC_RANGE * SP_CURRENT_SENSOR_RL_VALUE_KOHM * SP_CURRENT_SENSOR_GAIN * SP_CURRENT_SENSOR_RSENSE_VALUE_MOHM)));
+    }
 };
 
 int current_sensor_read(adc_port_t port, uint16_t *cur)
 {
     uint16_t raw_cur = 0;
-    int read_result = 0;
 
-    read_result = max9934_read((max9934_config_t){.adc_port = port}, &raw_cur);
-
-    if (read_result != 0)
+    if (max9934_read((max9934_config_t){.adc_port = port}, &raw_cur) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, CURRENT_SENSOR_MODULE_NAME, "Error reading the raw current value!");
         sys_log_new_line();
@@ -70,7 +74,7 @@ int current_sensor_read(adc_port_t port, uint16_t *cur)
         return -1;
     }
 
-    *cur = current_sensor_raw_to_ma(raw_cur);
+    *cur = current_sensor_raw_to_ma(port, raw_cur);
 
     return 0;
 };
