@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.9
+ * \version 0.2.15
  * 
  * \date 2021/06/07
  * 
@@ -43,20 +43,20 @@
 
 #define VOLTAGE_SENSOR_MODULE_NAME "Voltage Sensor"
 
-#define PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_12
-#define PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_13
-#define PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_14
-#define TOTAL_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_15
-#define MAIN_POWER_BUS_VOLTAGE_SENSOR_ADC_PORT ADC_PORT_7
-#define VOLTAGE_SENSOR_DIV_1 4.0  /**< Voltage divisor factor for main solar pannels and bus voltage. */
-#define VOLTAGE_SENSOR_DIV_2 1.93 /**< Voltage divisor factor for other voltages. */
+#define PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT 	ADC_PORT_12
+#define PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT 	ADC_PORT_13
+#define PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT 	ADC_PORT_14
+#define TOTAL_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT 	ADC_PORT_15
+#define MAIN_POWER_BUS_VOLTAGE_SENSOR_ADC_PORT 			ADC_PORT_10
+#define VOLTAGE_SENSOR_DIV_1 		4.0  		/**< Voltage divisor factor for main solar pannels and bus voltage. */
+#define VOLTAGE_SENSOR_DIV_2 		1.93 		/**< Voltage divisor factor for other voltages. */
 
 /**
  * \brief Voltage sensor device initialization routine.
  *
  * \return The status/error code.
  */
-int voltage_sensor_init();
+int voltage_sensor_init(void);
 
 /**
  * \brief 

@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.9
+ * \version 0.2.15
  * 
  * \date 2021/06/07
  * 
@@ -39,9 +39,19 @@
 
 int voltage_sensor_init(void)
 {
+    sys_log_print_event_from_module(SYS_LOG_INFO, VOLTAGE_SENSOR_MODULE_NAME, "Initializing the voltage sensor...");
+    sys_log_new_line();
+
     static const adc_config_t volt_sense_adc_config = {0};
 
-    return adc_init((adc_port_t){0}, volt_sense_adc_config);
+    if (adc_init((adc_port_t){0}, volt_sense_adc_config) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, VOLTAGE_SENSOR_MODULE_NAME, "Error initializing voltage sensor device!");
+        sys_log_new_line();
+        return -1;
+    }
+
+    return 0;
 }
 
 uint16_t voltage_sensor_raw_to_mv(adc_port_t port, uint16_t raw)
