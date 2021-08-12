@@ -26,7 +26,7 @@
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.27
+ * \version 0.2.30
  * 
  * \date 2021/04/23
  * 
@@ -98,13 +98,13 @@ void vTaskReadSensors(void *pvParameters)
             eps_buffer_write(EPS2_PARAM_ID_SP_MY_PX_VOLTAGE, (uint32_t *)&buf);
         }
         
-        /* -Z and +Y Solar Panels voltage in mV.*/
+        /* -X and +Z Solar Panels voltage in mV.*/
         if (voltage_sensor_read(PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE, (uint32_t *)&buf);
         }
 
-        /* -Y and +X Solar Panels voltage in mV.*/
+        /* -Z and +Y Solar Panels voltage in mV.*/
         if (voltage_sensor_read(PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE, (uint32_t *)&buf);

@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.8
+ * \version 0.2.30
  * 
  * \date 2021/07/24
  * 
@@ -66,7 +66,7 @@ void vTaskParamServer(void *pvParameters)
             /* Process interrupt from UART ISR. */
             if ( (ulNotifiedValue & NOTIFICATION_VALUE_FROM_I2C_ISR) != 0)
             {
-                if (obdh_decode(&adr, &val, &cmd))
+                if (obdh_decode(&adr, &val, &cmd) == 0)
                 {
                     sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "OBDH command received: ");
                     sys_log_print_msg("cmd="); 
@@ -111,7 +111,7 @@ void vTaskParamServer(void *pvParameters)
             /* Process interrupt from UART ISR. */
             if ( (ulNotifiedValue & NOTIFICATION_VALUE_FROM_UART_ISR) != 0)
             {
-                if (ttc_decode(&adr, &val, &cmd))
+                if (ttc_decode(&adr, &val, &cmd) == 0)
                 {
                     sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "TTC command received: ");
                     sys_log_print_msg("cmd="); 
