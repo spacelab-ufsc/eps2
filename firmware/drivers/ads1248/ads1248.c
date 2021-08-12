@@ -131,7 +131,7 @@ int ads1248_config_regs(ads1248_config_t *config)
     data_config_regs[15] = 0x00; /* value to register GPIODIR: GPIOS not enabled */
     data_config_regs[16] = 0x00; /* value to register GPIODAT: GPIOS not enabled */
         
-    spi_write(config->spi_port, config->spi_cs, &data_config_regs, 17); /* Writes to all registers in one half-duplex SPI communication */
+    spi_write(config->spi_port, config->spi_cs, data_config_regs, 17); /* Writes to all registers in one half-duplex SPI communication */
 
     return 0;
 }
@@ -158,7 +158,7 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
     data_read_regs[15] = ADS1248_CMD_NOP;
     data_read_regs[16] = ADS1248_CMD_NOP;
 
-    spi_transfer(config->spi_port, config->spi_cs, &data_read_regs, rd, 17); /* Reads all registers in one full-duplex SPI communication */
+    spi_transfer(config->spi_port, config->spi_cs, data_read_regs, rd, 17); /* Reads all registers in one full-duplex SPI communication */
 
     /* implement system log debug for registers configuration here or somewhere else */
 
@@ -175,20 +175,21 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
     select_channel_to_read[1] = 0x00;  /* number of bytes minus 1 to be writen by WREG command, in this case 1 byte will be 0 in hex */
     select_channel_to_read[2] = (positive_channel | 0x07); /* positive channel selection + the negative (reference) channel fixed to be AIN7*/
 
-    spi_write(config->spi_port, config->spi_cs, &select_channel_to_read, 3); /* Multiplexes channel */
+    spi_write(config->spi_port, config->spi_cs, select_channel_to_read, 3); /* Multiplexes channel */
 
     select_channel_excitation_current[0] = 0x4B; /* WREG command (0x40) plus information to write to the IDAC1 register (0x4B) */
     select_channel_excitation_current[1] = 0x00;  /* number of bytes minus 1 to be writen by WREG command, in this case 1 byte than 0 in hex */
     select_channel_excitation_current[2] = positive_channel; /* output current to selected positive channel*/
 
-    spi_write(config->spi_port, config->spi_cs, &select_channel_to_read, 3); /* Multiplexes channel */
+    spi_write(config->spi_port, config->spi_cs, select_channel_excitation_current, 3); /* Multiplexes channel */
 
     data_read_conversion[0] = ADS1248_CMD_RDATA; /* command read last ADC conversion */
     data_read_conversion[1] = ADS1248_CMD_NOP; /* 3 no operation commands to clockout data from the device without clocking in a command during SPI duplex communication*/
     data_read_conversion[2] = ADS1248_CMD_NOP;
     data_read_conversion[3] = ADS1248_CMD_NOP;
     
-    spi_transfer(config->spi_port, config->spi_cs, &data_read_conversion, rd, 4);
+    spi_transfer(config->spi_port, config->spi_cs, data_read_conversion, rd, 4);
+
     return 0;
 }
 
