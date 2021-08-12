@@ -25,7 +25,7 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.11
+ * \version 0.2.26
  * 
  * \date 2021/06/11
  * 
@@ -48,10 +48,12 @@
 #define TEMP_SENSOR_ADC_PORT        ADC_PORT_0
 #define TEMP_SENSOR_SPI_PORT        SPI_PORT_1
 #define TEMP_SENSOR_SPI_MODE        SPI_MODE_0
-#define TEMP_SENSOR_SPI_SPEED_HZ    (1000000UL)
+#define TEMP_SENSOR_SPI_SPEED_HZ    (100000UL)
 #define TEMP_SENSOR_START_PIN       GPIO_PIN_60
 #define TEMP_SENSOR_SPI_CS          GPIO_PIN_59
 #define TEMP_SENSOR_RESET_PIN       GPIO_PIN_58
+
+#define TEMP_SENSOR_CONV(VALUE)     ((((uint32_t)VALUE * (1.65 * 2 / 16777216) * 1000) - 1000 ) * (1/3.85))   /**< TODO: Solve magic conversion */
 
 /**
  * \brief Temperature sensor RTD channels.
@@ -165,7 +167,7 @@ int temp_mcu_read_k(uint16_t *temp);
  *
  * \return The status/error code.
  */
-int temp_rtd_read_raw(temp_sensor_t *config, uint8_t positive_channel, uint8_t *val);
+int temp_rtd_read_raw(uint8_t positive_channel, uint32_t *val);
 
 /**
  * \brief Converts a raw reading of temperature from rtds to a real temperature in degrees celsius.
@@ -174,7 +176,7 @@ int temp_rtd_read_raw(temp_sensor_t *config, uint8_t positive_channel, uint8_t *
  *
  * \return The converted temperature in degrees celsius.
  */
-int16_t temp_rtd_raw_to_c(uint16_t raw);
+int16_t temp_rtd_raw_to_c(uint32_t raw);
 
 /**
  * \brief Converts a raw reading of temperature from rtds to a real temperature in kelvin.
@@ -183,7 +185,7 @@ int16_t temp_rtd_raw_to_c(uint16_t raw);
  *
  * \return The converted temperature in kelvin.
  */
-uint16_t temp_rtd_raw_to_k(uint16_t raw);
+uint16_t temp_rtd_raw_to_k(uint32_t raw);
 
 /**
  * \brief read temperatures from rtds in degrees celsius.

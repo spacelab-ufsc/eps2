@@ -25,7 +25,7 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.21
+ * \version 0.2.26
  * 
  * \date 2021/06/11
  * 
@@ -33,14 +33,13 @@
  * \{
  */
 
-#include <drivers/adc/adc.h>
-#include <drivers/ads1248/ads1248.h>
-
 #include <system/sys_log/sys_log.h>
+
+#include <drivers/adc/adc.h>
 
 #include "temp_sensor.h"
 
-temp_sensor_t *config;
+temp_sensor_t config;
 
 int temp_sensor_init(void)
 {
@@ -74,14 +73,14 @@ int temp_sensor_init(void)
     sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing ADS1248 device...");
     sys_log_new_line();
 
-	config->spi_port = TEMP_SENSOR_SPI_PORT;
-	config->spi_config.mode = TEMP_SENSOR_SPI_MODE;
-	config->spi_config.speed_hz = TEMP_SENSOR_SPI_SPEED_HZ;
-	config->start_pin = TEMP_SENSOR_START_PIN;
-	config->spi_cs = TEMP_SENSOR_SPI_CS;
-	config->reset_pin = TEMP_SENSOR_RESET_PIN;
+	config.spi_port = TEMP_SENSOR_SPI_PORT;
+	config.spi_config.mode = TEMP_SENSOR_SPI_MODE;
+	config.spi_config.speed_hz = TEMP_SENSOR_SPI_SPEED_HZ;
+	config.start_pin = TEMP_SENSOR_START_PIN;
+	config.spi_cs = TEMP_SENSOR_SPI_CS;
+	config.reset_pin = TEMP_SENSOR_RESET_PIN;
 	
-   if(ads1248_init(config) != 0)
+   if(ads1248_init(&config) != 0)
    {
 		sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error initializing ADS1248 device!");
 		sys_log_new_line();
@@ -138,11 +137,6 @@ uint16_t temp_mcu_raw_to_k(uint16_t raw)
 {
     int16_t temp_c = temp_mcu_raw_to_c(raw);
 
-    if (temp_c < 273)
-    {
-        temp_c = 273;
-    }
-
     return (uint16_t)(temp_c + 273);
 }
 
@@ -180,29 +174,62 @@ int temp_mcu_read_k(uint16_t *temp)
     return 0;
 }
 
-int temp_rtd_read_raw(temp_sensor_t *config, uint8_t positive_channel, uint8_t *val)
+int temp_rtd_read_raw(uint8_t positive_channel, uint32_t *val)
 {    
-    return ads1248_write_cmd(config, ADS1248_CMD_RDATA, val, positive_channel);
+    return ads1248_write_cmd(&config, ADS1248_CMD_RDATA, (uint8_t *)val, positive_channel);
 }
 
-int16_t temp_rtd_raw_to_c(uint16_t raw)
+int16_t temp_rtd_raw_to_c(uint32_t raw)
 {
-    return -1;
+    float buf = TEMP_SENSOR_CONV(raw);
+
+    if (buf < (-273))
+    {
+        buf = (-273);
+    }
+
+    return (int16_t)buf;
 }
 
-uint16_t temp_rtd_raw_to_k(uint16_t raw)
+uint16_t temp_rtd_raw_to_k(uint32_t raw)
 {
-    return -1;
+    int16_t temp_c = temp_rtd_raw_to_c(raw);
+
+    return (uint16_t)(temp_c + 273);
 }
 
 int temp_rtd_read_c(uint8_t channel, uint16_t *temp)
 {
-    return -1;
+    uint32_t raw_temp = 0;
+
+    if (temp_rtd_read_raw(channel, &raw_temp) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw RTD temperature value!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    *temp = temp_rtd_raw_to_c(raw_temp);
+
+    return 0;
 }
 
 int temp_rtd_read_k(uint8_t channel, uint16_t *temp)
 {
-    return -1;
+    uint32_t raw_temp = 0;
+
+    if (temp_rtd_read_raw(channel, &raw_temp) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error reading the raw RTD temperature value!");
+        sys_log_new_line();
+
+        return -1;
+    }
+
+    *temp = temp_rtd_raw_to_k(raw_temp);
+
+    return 0;
 }
 
 /** \} End of temp_sensor group */
