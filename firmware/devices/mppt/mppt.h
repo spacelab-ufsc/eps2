@@ -27,7 +27,7 @@
  * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.16
+ * \version 0.2.22
  * 
  * \date 2021/02/10
  * 
@@ -54,6 +54,8 @@
 #define MPPT_DUTY_CYCLE_STEP    1       /**< PWM duty cycle step in % for the MPPT algorithm. */
 #define MPPT_DUTY_CYCLE_INIT    50      /**< PWM initial duty cycle in % for the MPPT algorithm. */
 #define MPPT_PERIOD_INIT        4       /**< PWM period (1/f) in us for the MPPT algorithm. */
+#define MPPT_MIN_DUTY_CYCLE     0       /**< Minimum duty cycle allowed. */
+#define MPPT_MAX_DUTY_CYCLE     100     /**< Maximum duty cycle allowed. */
 
 /**
  * \brief MPPT control loop channels.

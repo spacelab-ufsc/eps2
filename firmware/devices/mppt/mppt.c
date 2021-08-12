@@ -27,7 +27,7 @@
  * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.16
+ * \version 0.2.22
  * 
  * \date 2021/02/10
  * 
@@ -236,15 +236,31 @@ int get_power(mppt_channel_t channel)
 }
 
 int increase_duty_cycle(mppt_channel_t channel)
-{
-    mppt_config.duty_cycle += MPPT_DUTY_CYCLE_STEP;
-    return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+{   
+    if(mppt_config.duty_cycle >= MPPT_MAX_DUTY_CYCLE)
+    {
+        mppt_config.duty_cycle = MPPT_MAX_DUTY_CYCLE;
+        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+    }
+    else
+    {
+        mppt_config.duty_cycle += MPPT_DUTY_CYCLE_STEP;
+        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+    }
 }
 
 int decrease_duty_cycle(mppt_channel_t channel)
 {
-    mppt_config.duty_cycle -= MPPT_DUTY_CYCLE_STEP;
-    return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+    if(mppt_config.duty_cycle == MPPT_MIN_DUTY_CYCLE)
+    {
+        mppt_config.duty_cycle = MPPT_MIN_DUTY_CYCLE;
+        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+    }
+    else
+    {
+        mppt_config.duty_cycle -= MPPT_DUTY_CYCLE_STEP;
+        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);    
+    }
 }
 
 /** \} End of mppt group */
