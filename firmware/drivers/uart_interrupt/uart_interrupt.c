@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.6
+ * \version 0.2.19
  * 
  * \date 2021/08/01
  * 
@@ -106,7 +106,7 @@ int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t conf
             break;
         default:
         #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-            sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during the initialization: Invalid baudrate!");
+            sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during the initialization: Invalid baudrate!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
             return -1;      /* Invalid baudrate value */
@@ -137,7 +137,7 @@ int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t conf
             break;
         default:
             #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-                sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during the initialization: Invalid port!");
+                sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during the initialization: Invalid port!");
                 sys_log_new_line();
             #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
             return -1;      /* Invalid port */
@@ -146,7 +146,7 @@ int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t conf
     if (USCI_A_UART_init(base_address, &uart_params) != STATUS_SUCCESS)
     {
         #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-            sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during the initialization!");
+            sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during the initialization!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
@@ -238,7 +238,7 @@ int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len
             break;
         default:
             #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-                sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during writing: Invalid port!");
+                sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during writing: Invalid port!");
                 sys_log_new_line();
             #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
             return -1;
@@ -272,7 +272,7 @@ void USCI_A0_ISR(void)
             if (USCI_A_UART_queryStatusFlags(USCI_A0_BASE, USCI_A_UART_BREAK_DETECT) == USCI_A_UART_BREAK_DETECT)
             {
                 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-                    sys_log_print_event_from_module(SYS_LOG_INFO, UART_MODULE_NAME, "Received data: ");
+                    sys_log_print_event_from_module(SYS_LOG_INFO, UART_INTERRUPT_MODULE_NAME, "Received data: ");
                     for (int i = 0; i < uart_buffer_index; i++)
                     {
                         sys_log_print_hex(uart_rx_buffer[i]);

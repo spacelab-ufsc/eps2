@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.18
+ * \version 0.2.19
  * 
  * \date 2020/10/21
  * 
@@ -36,7 +36,7 @@
 #ifndef VERSION_H_
 #define VERSION_H_
 
-#define FIRMWARE_VERSION            "0.2.18"
+#define FIRMWARE_VERSION            "0.2.19"
 
 #define FIRMWARE_STATUS             "Development"
 
