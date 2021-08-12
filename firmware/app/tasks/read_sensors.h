@@ -26,7 +26,7 @@
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.5
+ * \version 0.2.23
  * 
  * \date 2021/04/23
  * 
@@ -43,7 +43,7 @@
 
 #define TASK_READ_SENSORS_NAME                  "Read Sensors"      /**< Task name. */
 #define TASK_READ_SENSORS_STACK_SIZE            128                 /**< Stack size in bytes. */
-#define TASK_READ_SENSORS_PRIORITY              3                   /**< Task priority. */
+#define TASK_READ_SENSORS_PRIORITY              2                   /**< Task priority. */
 #define TASK_READ_SENSORS_PERIOD_MS             (10*1000)           /**< Task period in milliseconds. */
 #define TASK_READ_SENSORS_INIT_TIMEOUT_MS       2000                /**< Wait time to initialize the task in milliseconds. */
 
