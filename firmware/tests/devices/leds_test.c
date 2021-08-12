@@ -25,7 +25,7 @@
  *
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.2.31
  *
  * \date 2021/07/22
  *
@@ -50,10 +50,12 @@
 #define LED_FAULT_NUM               1
 
 #define LED_SYSTEM_GPIO_PIN         GPIO_PIN_36
+#define LED_FAULT_GPIO_PIN          GPIO_PIN_35
 
 static void leds_init_test(void **state)
 {
     expect_value(__wrap_gpio_init, pin, LED_SYSTEM_GPIO_PIN);
+    expect_value(__wrap_gpio_init, pin, LED_FAULT_GPIO_PIN);
 
     int result = leds_init();
 
@@ -68,6 +70,15 @@ static void led_set_test(void **state)
         if (i == LED_SYSTEM_NUM)
         {
             expect_value(__wrap_gpio_set_state, pin, LED_SYSTEM_GPIO_PIN);
+            expect_value(__wrap_gpio_set_state, level, true);
+
+            int result = led_set(i);
+
+            assert_return_code(result, 0);
+        }
+        else if (i == LED_FAULT_NUM)
+        {
+            expect_value(__wrap_gpio_set_state, pin, LED_FAULT_GPIO_PIN);
             expect_value(__wrap_gpio_set_state, level, true);
 
             int result = led_set(i);
@@ -97,6 +108,15 @@ static void led_clear_test(void **state)
 
             assert_return_code(result, 0);
         }
+        else if (i == LED_FAULT_NUM)
+        {
+            expect_value(__wrap_gpio_set_state, pin, LED_FAULT_GPIO_PIN);
+            expect_value(__wrap_gpio_set_state, level, false);
+
+            int result = led_clear(i);
+
+            assert_return_code(result, 0);
+        }
         else
         {
             int result = led_clear(i);
@@ -114,6 +134,14 @@ static void led_toggle_test(void **state)
         if (i == LED_SYSTEM_NUM)
         {
             expect_value(__wrap_gpio_toggle, pin, LED_SYSTEM_GPIO_PIN);
+
+            int result = led_toggle(i);
+
+            assert_return_code(result, 0);
+        }
+        else if (i == LED_FAULT_NUM)
+        {
+            expect_value(__wrap_gpio_toggle, pin, LED_FAULT_GPIO_PIN);
 
             int result = led_toggle(i);
 
