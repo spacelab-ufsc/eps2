@@ -26,7 +26,7 @@
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.19
+ * \version 0.2.28
  * 
  * \date 2021/06/22
  * 
@@ -191,7 +191,11 @@ void USCI_B2_ISR (void)
     switch (__even_in_range(UCB1IV,12))
     {
         case USCI_I2C_UCRXIFG:
-            i2c_rx_buffer[i2c_buffer_index++] = USCI_B_I2C_slaveGetData(USCI_B2_BASE);
+            if(i2c_buffer_index++ >= I2C_RX_BUFFER_MAX_SIZE)
+            {
+                i2c_buffer_index = 0;
+            }
+            i2c_rx_buffer[i2c_buffer_index] = USCI_B_I2C_slaveGetData(USCI_B2_BASE);
             break;
         case USCI_I2C_UCSTPIFG:     
             #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
