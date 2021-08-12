@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.15
+ * \version 0.2.20
  * 
  * \date 2021/06/11
  * 
@@ -207,6 +207,9 @@ int adc_init(adc_port_t port, adc_config_t config)
 
     adc_mref = ((float)(adc_cal_data->adc_ref15_85_temp - adc_cal_data->adc_ref15_30_temp)) / (85 - 30);
     adc_nref = adc_cal_data->adc_ref15_85_temp - adc_mref * 85;
+
+    /* Mutex initialization */
+    adc_mutex_create();
 
     adc_is_ready = true;
 
