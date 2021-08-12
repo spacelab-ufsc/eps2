@@ -34,6 +34,9 @@
  * \{
  */
 
+#include <FreeRTOS.h>
+#include <semphr.h>
+
 #include "sys_log.h"
 #include "sys_log_config.h"
 

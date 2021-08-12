@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.2.15
  * 
  * \date 2021/01/17
  * 
@@ -47,8 +47,7 @@
  */
 typedef struct
 {
-    gpio_pin_t cs_pin;       /**< CS pin. */
-    gpio_config_t cs_config; /**< Configuration parameters of the CS pin. */
+    /*gpio_pin_t cs_pin;*/       /**< CS pin. */
     adc_port_t adc_port;     /**< ADC port. */
     adc_config_t adc_config; /**< Configuration parameters of the ADC port. */
 } max9934_config_t;
@@ -71,7 +70,7 @@ int max9934_init(max9934_config_t config);
  *
  * \return The status/error code.
  */
-int max9934_enable(max9934_config_t config);
+/* int max9934_enable(max9934_config_t config); */
 
 /**
  * \brief Disables a given MAX9934 device.
@@ -82,7 +81,7 @@ int max9934_enable(max9934_config_t config);
  *
  * \return The status/error code.
  */
-int max9934_disable(max9934_config_t config);
+/* int max9934_disable(max9934_config_t config); */
 
 /**
  * \brief Reads the raw current value of the sensor.

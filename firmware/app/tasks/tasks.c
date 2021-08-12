@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.2.12
  * 
  * \date 2021/04/09
  * 
@@ -43,6 +43,10 @@
 #include "heartbeat.h"
 #include "watchdog_reset.h"
 #include "system_reset.h"
+#include "read_sensors.h"
+#include "param_server.h"
+#include "mppt_algorithm.h"
+#include "heater_controller.h"
 
 void create_tasks()
 {
@@ -94,6 +98,33 @@ void create_tasks()
         /* Error creating the read sensors task */
     }
 #endif /* CONFIG_TASK_READ_SENSORS_ENABLED */
+
+#if CONFIG_TASK_PARAM_SERVER_ENABLED == 1
+    xTaskCreate(vTaskParamServer, TASK_PARAM_SERVER_NAME, TASK_PARAM_SERVER_STACK_SIZE, NULL, TASK_PARAM_SERVER_PRIORITY, &xTaskParamServerHandle);
+
+    if (xTaskParamServerHandle == NULL)
+    {
+        /* Error creating the parameter server task */
+    }
+#endif /* CONFIG_TASK_PARAM_SERVER_ENABLED */
+
+#if CONFIG_TASK_MPPT_ALGORITHM_ENABLED == 1
+    xTaskCreate(vTaskMPPTAlgorithm, TASK_MPPT_ALGORITHM_NAME, TASK_MPPT_ALGORITHM_STACK_SIZE, NULL, TASK_MPPT_ALGORITHM_PRIORITY, &xTaskMPPTAlgorithmHandle);
+
+    if (xTaskMPPTAlgorithmHandle == NULL)
+    {
+        /* Error creating the parameter server task */
+    }
+#endif /* CONFIG_TASK_MPPT_ALGORITHM_ENABLED */
+
+#if CONFIG_TASK_HEATER_CONTROLLER_ENABLED == 1
+    xTaskCreate(vTaskHeaterController, TASK_HEATER_CONTROLLER_NAME, TASK_HEATER_CONTROLLER_STACK_SIZE, NULL, TASK_HEATER_CONTROLLER_PRIORITY, &xTaskHeaterControllerHandle);
+
+    if (xTaskMPPTAlgorithmHandle == NULL)
+    {
+        /* Error creating the parameter server task */
+    }
+#endif /* CONFIG_TASK_HEATER_CONTROLLER_ENABLED */
 
     create_event_groups();
 }

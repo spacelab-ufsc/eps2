@@ -1,34 +1,34 @@
 /*
  * sys_log.h
- * 
+ *
  * Copyright (C) 2020, SpaceLab.
- * 
+ *
  * This file is part of EPS 2.0.
- * 
+ *
  * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 /**
  * \brief Functions for printing messages and variables over an UART port.
- * 
+ *
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * 
- * \version 0.1.0
- * 
+ *
+ * \version 0.1.1
+ *
  * \date 2020/10/22
- * 
+ *
  * \defgroup sys_log System Log
  * \ingroup system
  * \{
@@ -39,9 +39,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
-#include <FreeRTOS.h>
-#include <semphr.h>
 
 /**
  * \brief Event types.
@@ -69,16 +66,11 @@ typedef enum
 } sys_log_colors_e;
 
 /**
- * \brief System log mutex.
- */
-extern SemaphoreHandle_t xSysLogSemaphore;
-
-/**
  * \brief Initialization of the system log.
- * 
+ *
  * \return The error/status code.
  */
-int sys_log_init();
+int sys_log_init(void);
 
 /**
  * \brief Sets the foreground color for the next log message.
@@ -107,7 +99,7 @@ void sys_log_set_color(uint8_t color);
  *
  * \return None.
  */
-void sys_log_reset_color();
+void sys_log_reset_color(void);
 
 /**
  * \brief Prints a general event.
@@ -147,9 +139,9 @@ void sys_log_print_event_from_module(uint8_t type, const char *module, const cha
 
 /**
  * \brief Prints a message over the system log module.
- * 
+ *
  * \param[in] msg is the message to be written.
- * 
+ *
  * \return None.
  */
 void sys_log_print_msg(const char *msg);
@@ -168,13 +160,13 @@ void sys_log_print_str(char *str);
  *
  * \return None.
  */
-void sys_log_new_line();
+void sys_log_new_line(void);
 
 /**
  * \brief Prints a integer digit over the system log module.
- * 
+ *
  * \param[in] d is the digit to be written (0 to 9)
- * 
+ *
  * \return None.
  */
 void sys_log_print_digit(uint8_t d);
@@ -199,15 +191,15 @@ void sys_log_print_int(int32_t sint);
 
 /**
  * \brief Prints a hexadecimal value over the system log module.
- * 
+ *
  * Example:
  *      - Integer   = 0x65
  *      - Output    = "0x65"
- * 
+ *
  * \note The integer is printed in ASCII code.
- * 
+ *
  * \param hex is the hexadecimal to be written.
- * 
+ *
  * \return None.
  */
 void sys_log_print_hex(uint32_t hex);
@@ -236,9 +228,9 @@ void sys_log_print_float(float flt, uint8_t digits);
 
 /**
  * \brief Prints a raw byte over the system log module.
- * 
+ *
  * \param[in] byte is the byte to be printed.
- * 
+ *
  * \return None.
  */
 void sys_log_print_byte(uint8_t byte);
@@ -248,32 +240,32 @@ void sys_log_print_byte(uint8_t byte);
  *
  * \return None.
  */
-void sys_log_print_system_time();
+void sys_log_print_system_time(void);
 
 /**
  * \brief Prints the license text and genreal firmware information.
  *
  * \return None.
  */
-void sys_log_print_license_msg();
+void sys_log_print_license_msg(void);
 
 /**
  * \brief Prints the splash screen of the firmware.
  *
  * \return None.
  */
-void sys_log_print_splash_screen();
+void sys_log_print_splash_screen(void);
 
 /**
  * \brief Writes the current firmware version.
  *
  * \return None.
  */
-void sys_log_print_firmware_version();
+void sys_log_print_firmware_version(void);
 
 /**
  * \brief Initialization of the system log UART port.
- * 
+ *
  * UART settings:
  *      -\b MCU interface = USCI_A1
  *      -\b Baudrate      = 115200 bps
@@ -281,10 +273,10 @@ void sys_log_print_firmware_version();
  *      -\b Parity bit    = None
  *      -\b Stop bits     = 1
  *      .
- * 
+ *
  * \return TRUE/FALSE if successful or not.
  */
-bool sys_log_uart_init();
+bool sys_log_uart_init(void);
 
 /**
  * \brief Writes a byte over the UART port.
@@ -300,21 +292,21 @@ void sys_log_uart_write_byte(uint8_t byte);
  *
  * \return TRUE/FALSE if successful or not.
  */
-bool sys_log_mutex_create();
+bool sys_log_mutex_create(void);
 
 /**
  * \brief Holds the resource (system log module).
  *
  * \return TRUE/FALSE if successful or not.
  */
-bool sys_log_mutex_take();
+bool sys_log_mutex_take(void);
 
 /**
  * \brief Frees the resource (system log).
  *
  * \return TRUE/FALSE if successful or not.
  */
-bool sys_log_mutex_give();
+bool sys_log_mutex_give(void);
 
 #endif /* SYS_LOG_H_ */
 

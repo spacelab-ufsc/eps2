@@ -24,8 +24,9 @@
  * \brief Read external sensors task implementation.
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.0
+ * \version 0.2.27
  * 
  * \date 2021/04/23
  * 
@@ -53,82 +54,125 @@ void vTaskReadSensors(void *pvParameters)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
-        uint16_t *buf = 0;
+        uint16_t buf = 0;
 
         /* -Y Solar Panel current in mA.*/
-        if (current_sensor_read(PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        if (current_sensor_read(PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_y_solar_panel_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MY_CURRENT, (uint32_t *)&buf);
         }
 
         /* +X Solar Panel current in mA.*/
-        if (current_sensor_read(PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        if (current_sensor_read(PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.plus_x_solar_panel_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_PX_CURRENT, (uint32_t *)&buf);
         }
 
         /* -X Solar Panel current in mA.*/
-        if (current_sensor_read(PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        if (current_sensor_read(PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_x_solar_panel_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MX_CURRENT, (uint32_t *)&buf);
         }
         
         /* +Z Solar Panel current in mA.*/
-        if (current_sensor_read(PANNEL_PLUS_Z_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        if (current_sensor_read(PANNEL_PLUS_Z_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.plus_z_solar_panel_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_PZ_CURRENT, (uint32_t *)&buf);
         }
 
         /* -Z Solar Panel current in mA.*/
-        if (current_sensor_read(PANNEL_MINUS_Z_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        if (current_sensor_read(PANNEL_MINUS_Z_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_z_solar_panel_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MZ_CURRENT, (uint32_t *)&buf);
         }
 
         /* +Y Solar Panel current in mA.*/
-        if (current_sensor_read(PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        if (current_sensor_read(PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.plus_y_solar_panel_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_PY_CURRENT, (uint32_t *)&buf);
         }
         
         /* -Y and +X Solar Panels voltage in mV.*/
-        if (voltage_sensor_read(PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT, buf) == 0)
+        if (voltage_sensor_read(PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_y_plus_x_solar_panel_mv = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MY_PX_VOLTAGE, (uint32_t *)&buf);
         }
         
         /* -Z and +Y Solar Panels voltage in mV.*/
-        if (voltage_sensor_read(PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT, buf) == 0)
+        if (voltage_sensor_read(PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_x_plus_z_solar_panel_mv = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE, (uint32_t *)&buf);
         }
 
         /* -Y and +X Solar Panels voltage in mV.*/
-        if (voltage_sensor_read(PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT, buf) == 0)
+        if (voltage_sensor_read(PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.minus_z_plus_y_solar_panel_mv = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE, (uint32_t *)&buf);
         }
 
         /* Total solar panels output voltage after MPPT in mV.*/
-        if (voltage_sensor_read(TOTAL_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT, buf) == 0)
+        if (voltage_sensor_read(TOTAL_SOLAR_PANNELS_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.total_solar_panels_mv = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_SP_VOLTAGE_MPPT, (uint32_t *)&buf);
         }
         
-         /* Main power bus voltage in mV.*/
-        if (voltage_sensor_read(MAIN_POWER_BUS_VOLTAGE_SENSOR_ADC_PORT, buf) == 0)
+        /* Main power bus voltage in mV.*/
+        if (voltage_sensor_read(MAIN_POWER_BUS_VOLTAGE_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.main_power_buss_mv = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE, (uint32_t *)&buf);
         }
 
-         /* EPS circuitry and Beacon MCU current in mA.*/
-        if (voltage_sensor_read(EPS_BEACON_CURRENT_SENSOR_ADC_PORT, buf) == 0)
+        /* EPS and TTC circuitry current in mA.*/
+        if (current_sensor_read(EPS_BEACON_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
-            eps_data_buff.eps_beacon_ma = *buf;
+            eps_buffer_write(EPS2_PARAM_ID_EPS_CURRENT, (uint32_t *)&buf);
+        }
+
+        /* RTD 0 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_0, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_0_TEMP, (uint32_t *)&buf);
+        }
+
+        /* RTD 1 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_1, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_1_TEMP, (uint32_t *)&buf);
+        }
+
+        /* RTD 2 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_2, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_2_TEMP, (uint32_t *)&buf);
+        }
+
+        /* RTD 3 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_3, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_3_TEMP, (uint32_t *)&buf);
+        }
+
+        /* RTD 4 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_4, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_4_TEMP, (uint32_t *)&buf);
+        }
+
+        /* RTD 5 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_5, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_5_TEMP, (uint32_t *)&buf);
+        }
+
+        /* RTD 6 temperature .*/
+        if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_6, &buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_RTD_6_TEMP, (uint32_t *)&buf);
         }
 
         /* Data timestamp */
-        eps_data_buff.time_counter_ms = (uint32_t)xTaskGetTickCount();
+        uint32_t time_counter = (uint32_t)xTaskGetTickCount();
+        eps_buffer_write(EPS2_PARAM_ID_TIME_COUNTER, &time_counter);
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_READ_SENSORS_PERIOD_MS));
     }

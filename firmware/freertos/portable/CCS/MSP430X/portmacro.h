@@ -140,4 +140,3 @@ run time stats information is to be displayed. */
 #define portLU_PRINTF_SPECIFIER_REQUIRED
 
 #endif /* PORTMACRO_H */
-

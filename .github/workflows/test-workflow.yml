@@ -1,0 +1,102 @@
+#
+# test-workflow.yml
+#
+# Copyright (C) 2021, SpaceLab.
+#
+# This file is part of OBDH 2.0.
+#
+# OBDH 2.0 is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# OBDH 2.0 is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with OBDH 2.0. If not, see <http://www.gnu.org/licenses/>.
+#
+#
+
+
+name: Test Workflow
+
+on:
+  push:
+    branches: [ dev_firmware ]
+  pull_request:
+    branches: [ master, dev, dev_firmware]
+
+  # 'workflow_dispatch' allows manual execution
+  # of this workflow under the repository's 'Actions' tab
+  workflow_dispatch:
+
+jobs:
+
+  # Generates Matrix
+  # This job executes the 'deployJSON.py' script
+  # which compiles a list of all files ending in '_test.c'
+  # in a given directory and includes them in a .json file
+  # along with the path to the executable file.
+  generate-matrix:
+    name:
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
+    steps:
+      # Checks-out the repository under $GITHUB_WORKSPACE, so the job can navigate it
+      - uses: actions/checkout@v2
+
+      - name: Create JSON file
+        run: python3 .github/workflows/deployJSON.py --source firmware/tests/devices/
+
+      - name: Resulting JSON file for matrix generation
+        run: echo "$(cat .github/workflows/test-list.json)"
+
+      # Set the matrix output from the JSON (manipulated to remove spaces and replace \n -> %0A, " -> \")
+      - id: set-matrix
+        name: Set matrix output from the JSON file
+        run: echo "::set-output name=matrix::$( echo "$(cat .github/workflows/test-list.json)" | sed ':a;N;$!ba;s/\n/%0A/g' )"
+
+  # This job reads the matrix containing the paths
+  # created by the previous job and runs each program
+  # individually, i.e. spawning one job for every
+  # test file included in the matrix.
+  run-tests:
+    name: run-tests
+    needs: generate-matrix
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+      matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
+
+
+    env:
+      MAKE_TARGET: ${{ matrix.name }}
+      TEST_FILE: ${{ matrix.test_name }}
+      TEST_PATH: ${{ matrix.path }}
+
+    steps:
+      - uses: actions/checkout@v2
+      # Install required libs
+      - name: Install CMocka
+        run: sudo apt-get install libcmocka0 libcmocka-dev
+
+      - name: Signal make target
+        run: echo "Generating make file for $MAKE_TARGET"
+
+      - name: Generate Test File
+        run: cd firmware/tests/devices && make $MAKE_TARGET
+
+      - name: Signal running test
+        run: echo "Running $TEST_FILE"
+
+      - name: Run test
+        run: $TEST_PATH

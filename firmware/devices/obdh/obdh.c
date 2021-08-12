@@ -23,11 +23,12 @@
 /**
  * \brief OBDH device implementation.
  *
+ * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.1
+ * \version 0.2.7
  *
- * \date 12/06/2021
+ * \date 05/07/2021
  *
  * \addtogroup obdh
  * \{
@@ -36,20 +37,165 @@
 #include <stdbool.h>
 
 #include <drivers/i2c_slave/i2c_slave.h>
-
 #include <system/sys_log/sys_log.h>
 
 #include "obdh.h"
 
-bool obdh_is_open = false;
+#define OBDH_CRC8_INITIAL_VALUE          0       /**< CRC8-CCITT initial value. */
+#define OBDH_CRC8_POLYNOMIAL             0x07    /**< CRC8-CCITT polynomial. */
 
-int obdh_init()
+obdh_config_t obdh_config = {0};
+
+/**
+ * \brief Computes the CRC-8 of a sequence of bytes.
+ *
+ * \param[in] data is an array of data to compute the CRC-8.
+ *
+ * \param[in] len is the number of bytes of the given array.
+ *
+ * \return The computed CRC-8 value of the given data.
+ */
+uint8_t obdh_crc8(uint8_t *data, uint8_t len);
+
+/**
+ * \brief Checks the CRC value of a given sequence of bytes.
+ *
+ * \param[in] data is the data to check the CRC.
+ *
+ * \param[in] len is the number of bytes to check the CRC value.
+ *
+ * \param[in] crc is the CRC-8 value to check.
+ *
+ * \return TRUE/FALSE if the given CRC value is correct or not.
+ */
+bool obdh_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
+
+int obdh_init(void)
 {
-    if (obdh_is_open)
+    sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
+    sys_log_new_line();
+
+    /* OBDH configuration */
+    obdh_config.i2c_port     = I2C_PORT_2;
+    obdh_config.i2c_config   = (i2c_slave_config_t){.speed_hz=100000};
+    obdh_config.en_pin       = GPIO_PIN_66;
+    obdh_config.ready_pin    = GPIO_PIN_69;
+
+    if (tca4311a_init(obdh_config, true) != TCA4311A_READY)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C buffer init)!");
+        sys_log_new_line();
+        return -1;      /* Error initializing the I2C port buffer CI*/
+    }
+
+    if (i2c_slave_init(obdh_config.i2c_port) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C slave init)!");
+        sys_log_new_line();
+        return -1;
+    }
+
+    if (i2c_slave_enable(obdh_config.i2c_port) != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C slave enable)!");
+        sys_log_new_line();
+        return -1;
+    }
+
+    return 0;
+}
+
+int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
+{
+	uint8_t buf[i2c_received_data_size];
+
+	for (int i = 0; i < i2c_received_data_size; i++)
+	{
+		buf[i] = i2c_rx_buffer[i];
+	}
+
+	if(obdh_check_crc(buf, i2c_received_data_size, buf[i2c_received_data_size-1]) == true)
+	{
+		switch(i2c_received_data_size) 
+		{
+			case OBDH_COMMAND_WRITE_SIZE:
+			    *adr = buf[0];
+			    *val = ((uint32_t)buf[1] << 24) |
+			    	   ((uint32_t)buf[2] << 16) |
+			    	   ((uint32_t)buf[3] << 8)  |
+			    	   ((uint32_t)buf[4] << 0);
+			   	*cmd = OBDH_COMMAND_WRITE;
+				break;
+			case OBDH_COMMAND_READ_SIZE:
+				*adr = buf[0];
+			    *val = 0;
+			   	*cmd = OBDH_COMMAND_READ;
+				break;
+			default:
+				sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Invalid command received (CMD)!");
+        		sys_log_new_line();
+				
+				return -1;
+		}
+	}
+	else 
+	{
+		sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Invalid command received (CRC)!");
+        sys_log_new_line();
+		
+		return -1;
+	}
+
+    return 0;
+}
+
+int obdh_answer(uint8_t adr, uint32_t val) 
+{
+	uint8_t buf[1+4+1] = {0};
+
+    buf[0] = adr;
+    buf[1] = (val >> 24) & 0xFF;
+    buf[2] = (val >> 16) & 0xFF;
+    buf[3] = (val >> 8)  & 0xFF;
+    buf[4] = (val >> 0)  & 0xFF;
+    buf[5] = obdh_crc8(buf, 5);
+
+    if (i2c_slave_write(obdh_config.i2c_port, buf, 6) != 0)
+    {
+        return -1;
+    }
+
+    return 0;
+}
+
+uint8_t obdh_crc8(uint8_t *data, uint8_t len)
+{
+    uint8_t crc = OBDH_CRC8_INITIAL_VALUE;
+
+    while(len--)
+    {
+        crc ^= *data++;
+
+        uint8_t j = 0;
+        for (j=0; j<8; j++)
         {
-            return 0;   /* EPS device already initialized */
+            crc = (crc << 1) ^ ((crc & 0x80)? OBDH_CRC8_POLYNOMIAL : 0);
         }
-    return -1;
+
+        crc &= 0xFF;
+    }
+
+    return crc;
+}
+
+bool obdh_check_crc(uint8_t *data, uint8_t len, uint8_t crc)
+{
+    if (crc != obdh_crc8(data, len))
+    {
+        return false;
+    }
+
+    return true;
 }
 
 /** \} End of obdh group */

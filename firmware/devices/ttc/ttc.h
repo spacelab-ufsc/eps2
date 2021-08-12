@@ -23,9 +23,10 @@
 /**
  * \brief TTC device definition.
  *
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.2.6
  *
  * \date 22/04/2020
  *
@@ -39,14 +40,61 @@
 
 #include <stdint.h>
 
+#include <drivers/uart_interrupt/uart_interrupt.h>
+
 #define TTC_MODULE_NAME         "TTC"
+
+#define TTC_COMMAND_READ_SIZE	 2
+#define TTC_COMMAND_WRITE_SIZE	 6
+
+/**
+ * \brief TTC command types.
+ */
+typedef enum
+{
+    TTC_COMMAND_WRITE=0,        /**< TTC command for writing an EPS register. */
+    TTC_COMMAND_READ            /**< TTC command for reading an EPS register. */
+} ttc_command_e;
+
+/**
+ * \brief TTC configuration type.
+ */
+typedef struct
+{
+    uart_interrupt_port_t uart_port;      		/**< UART port number. */
+    uart_interrupt_config_t uart_config;		/**< UART port configuration. */
+} ttc_config_t;
 
 /**
  * \brief Initialization routine of the TTC device.
  *
  * \return The status/error code.
  */
-int ttc_init();
+int ttc_init(void);
+
+/**
+ * \brief Decodes a command from the TTC.
+ *
+ * \param[out] adr is the decoded register address.
+ *
+ * \param[out] val is the decoded register data.
+ *
+ * \param[out] cmd is the decoded command resquested.
+ *
+ * \return The status/error code.
+ */
+int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd);
+
+/**
+ * \brief Answers a command from the TTC.
+ *
+ * \param[in] adr is the register address requested.
+ *
+ * \param[in,out] val is the value to answer to the TTC.
+ *
+ * \return The status/error code.
+ */
+int ttc_answer(uint8_t adr, uint32_t val);
 
 #endif /* TTC_H_ */
 

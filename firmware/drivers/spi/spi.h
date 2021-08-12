@@ -38,6 +38,7 @@
 #define SPI_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define SPI_MODULE_NAME         "SPI"
 
@@ -105,6 +106,10 @@ typedef uint8_t spi_port_t;
  * \brief SPI chip select type.
  */
 typedef uint8_t spi_cs_t;
+
+int spi_setup_gpio(spi_port_t port);
+
+int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active);
 
 /**
  * \brief SPI port initialization.
