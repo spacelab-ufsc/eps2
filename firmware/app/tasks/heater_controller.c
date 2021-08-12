@@ -25,7 +25,7 @@
  *
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.12
+ * \version 0.2.23
  *
  * \date 2021/08/04
  *
@@ -63,20 +63,22 @@ void vTaskHeaterController(void *pvParameters)
 			case HEATER_AUTOMATIC_MODE:
 				if(heater_get_sensor(HEATER_CONTROL_LOOP_CH_0, &temp) != 0) 
 				{
-					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 0 failed!");
+					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 0 failed (get_sensor)!");
 	        		sys_log_new_line();
+	        		break;
 				}
 
 				actuator_output = heater_algorithm(PID_BASE_SET_POINT, temp);
 
 				if(heater_set_actuator(HEATER_CONTROL_LOOP_CH_0, actuator_output) != 0) 
 				{
-					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 0 failed!");
+					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 0 failed (set_actuator)!");
 	        		sys_log_new_line();
+	        		break;
 				}
 				break;
 			case HEATER_MANUAL_MODE:
-				/* TODO: Implemente manual mode */
+				/* TODO: Implement manual mode */
 				break;
 			default:
 				sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Invalid mode!");
@@ -90,20 +92,22 @@ void vTaskHeaterController(void *pvParameters)
 			case HEATER_AUTOMATIC_MODE:
 				if(heater_get_sensor(HEATER_CONTROL_LOOP_CH_1, &temp) != 0) 
 				{
-					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 1 failed!");
+					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 1 failed (get_sensor)!");
 	        		sys_log_new_line();
+	        		break;
 				}
 
 				actuator_output = heater_algorithm(PID_BASE_SET_POINT, temp);
 				
 				if(heater_set_actuator(HEATER_CONTROL_LOOP_CH_1, actuator_output) != 0) 
 				{
-					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 1 failed!");
+					sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel 1 failed (set_actuator)!");
 	        		sys_log_new_line();
+	        		break;
 				}
 				break;
 			case HEATER_MANUAL_MODE:
-				/* TODO: Implemente manual mode */
+				/* TODO: Implement manual mode */
 				break;
 			default:
 				sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Invalid mode!");
