@@ -25,7 +25,7 @@
  *
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.12
+ * \version 0.2.19
  *
  * \date 2021/08/02
  *
@@ -67,7 +67,7 @@ void vTaskMPPTAlgorithm(void *pvParameters)
 				break;
 			case MPPT_MANUAL_MODE:
 				eps_buffer_read(EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE, &mppt_duty_cyle);
-				/* TODO: Implemente manual mode */
+				/* TODO: Implement manual mode */
 				break;
 			default:
 				sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "Invalid mode!");
@@ -87,7 +87,7 @@ void vTaskMPPTAlgorithm(void *pvParameters)
 				break;
 			case MPPT_MANUAL_MODE:
 				eps_buffer_read(EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE, &mppt_duty_cyle);
-				/* TODO: Implemente manual mode */
+				/* TODO: Implement manual mode */
 				break;
 			default:
 				sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "Invalid mode!");
@@ -107,7 +107,7 @@ void vTaskMPPTAlgorithm(void *pvParameters)
 				break;
 			case MPPT_MANUAL_MODE:
 				eps_buffer_read(EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE, &mppt_duty_cyle);
-				/* TODO: Implemente manual mode */
+				/* TODO: Implement manual mode */
 				break;
 			default:
 				sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "Invalid mode!");

@@ -122,7 +122,7 @@ void vTaskReadSensors(void *pvParameters)
             eps_buffer_write(EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE, &buf);
         }
 
-        /* EPS circuitry and Beacon MCU current in mA.*/
+        /* EPS and TTC circuitry current in mA.*/
         if (current_sensor_read(EPS_BEACON_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_EPS_CURRENT, &buf);

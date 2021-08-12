@@ -26,7 +26,7 @@
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.7
+ * \version 0.2.19
  * 
  * \date 2021/06/22
  * 
@@ -198,7 +198,7 @@ void USCI_B2_ISR (void)
                 sys_log_print_event_from_module(SYS_LOG_INFO, I2C_SLAVE_MODULE_NAME, "Received data: ");
                 for (int i = 0; i < i2c_buffer_index; i++)
                 {
-                    sys_log_print_hex(uart_rx_buffer[i]);
+                    sys_log_print_hex(i2c_rx_buffer[i]);
                     sys_log_print_msg(",");
                 }
                 sys_log_new_line();
