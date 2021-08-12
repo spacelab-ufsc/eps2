@@ -26,7 +26,7 @@
  * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.11
+ * \version 0.2.27
  *
  * \date 2021/08/04
  *
@@ -142,9 +142,9 @@ int heater_get_sensor(heater_channel_t channel, temperature_t *temp)
     switch(channel) 
     {
         case HEATER_CONTROL_LOOP_CH_0:
-            return temp_rtd_read_k(HEATER_SENSOR_CH_0, &temp);
+            return temp_rtd_read_k(HEATER_SENSOR_CH_0, (uint16_t *)&temp);
         case HEATER_CONTROL_LOOP_CH_1:
-            return temp_rtd_read_k(HEATER_SENSOR_CH_1, &temp);
+            return temp_rtd_read_k(HEATER_SENSOR_CH_1, (uint16_t *)&temp);
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_MODULE_NAME, "Invalid sensor channel!");
             sys_log_new_line();
