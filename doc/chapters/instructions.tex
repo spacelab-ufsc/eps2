@@ -1,7 +1,7 @@
 %
 % instructions.tex
 %
-% Copyright (C) 2020 by SpaceLab.
+% Copyright (C) 2021 by SpaceLab.
 %
 % EPS 2.0 Documentation
 %
@@ -17,7 +17,7 @@
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
-% \version 0.1.0
+% \version 0.2.0
 %
 % \date 2020/11/05
 %
@@ -37,12 +37,13 @@ It is advised to to have either the kill-switches on "NO" position and/or the RB
 
 The JTAG interface is used for programing and debugging the module using a Flash Emulation Tool (refer to \autoref{jtag-picoblade} on the hardware chapter). 
 This is done using a MSP-FET with the Spy-Bi-Wire protocol.
-The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be used for minimal testing and debbuging purposes.
+The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be used for minimal testing and debbuging purposes, for this the CN1 header pins must be shorted.
+Remember that the CN1 connector should only be used if the EPS board is not been powered by any other means like batteries or externall power supply.
 
 For the interfacing the 14 pin cable of the MSP-FET to the EPS it is required an adapted cabel or an external interface. 
 The IIP\cite{iip} Nº1 and Nº2 boards have a 14 pin header that translates in a picoblade connector for the required connector couterpart on the EPS module, any of the pin header slots from 1 to 4 can be used.
 When the MSP-FET is correctly connected and the necessary cable connections are done the kill-switches can be put on "NC" position and/or the RBF switch can be released.
-The 3V3 MCU (refer to \autoref{status-leds} on the hardware chapter) indicates that the 3.3V power is being sourced, the system on led can be checked to see any easily dectable missbehavior right after the programming of the board. 
+The 3V3 MCU (refer to \autoref{status-leds} on the system overview chapter) indicates that the 3.3V power is being sourced, the system on led can be checked to see any easily dectable missbehavior right after the programming of the board. 
 %On \autoref{eps-iip-connection} is showed the connection betweem EPS and IIP.
 
 
