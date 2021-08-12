@@ -26,7 +26,7 @@
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.2.7
+ * \version 0.2.29
  *
  * \date 05/07/2021
  *
@@ -107,16 +107,17 @@ int obdh_init(void)
 
 int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
 {
-	uint8_t buf[i2c_received_data_size];
+    uint8_t buf[I2C_RX_BUFFER_MAX_SIZE];
+    uint8_t received_size = i2c_received_data_size;
 
-	for (int i = 0; i < i2c_received_data_size; i++)
+	for (int i = 0; i < received_size; i++)
 	{
 		buf[i] = i2c_rx_buffer[i];
 	}
 
-	if(obdh_check_crc(buf, i2c_received_data_size, buf[i2c_received_data_size-1]) == true)
+	if(obdh_check_crc(buf, received_size, buf[received_size-1]) == true)
 	{
-		switch(i2c_received_data_size) 
+		switch(received_size) 
 		{
 			case OBDH_COMMAND_WRITE_SIZE:
 			    *adr = buf[0];
