@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.2.15
+ * \version 0.2.21
  * 
  * \date 2021/06/11
  * 
@@ -65,8 +65,13 @@ uint16_t current_sensor_raw_to_ma(adc_port_t port, uint16_t raw)
 int current_sensor_read(adc_port_t port, uint16_t *cur)
 {
     uint16_t raw_cur = 0;
+    int err = 0;
 
-    if (max9934_read((max9934_config_t){.adc_port = port}, &raw_cur) != 0)
+    adc_mutex_take();
+    err = max9934_read((max9934_config_t){.adc_port = port}, &raw_cur);
+    adc_mutex_give();
+
+    if (err != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, CURRENT_SENSOR_MODULE_NAME, "Error reading the raw current value!");
         sys_log_new_line();

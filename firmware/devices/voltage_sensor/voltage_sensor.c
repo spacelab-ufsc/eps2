@@ -25,7 +25,7 @@
  * 
  * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * 
- * \version 0.2.15
+ * \version 0.2.21
  * 
  * \date 2021/06/07
  * 
@@ -69,8 +69,13 @@ uint16_t voltage_sensor_raw_to_mv(adc_port_t port, uint16_t raw)
 int voltage_sensor_read(adc_port_t port, uint16_t *volt)
 {
     uint16_t raw_volt = 0;
+    int err = 0;
 
-    if (adc_read(port, &raw_volt) != 0)
+    adc_mutex_take();
+    err = adc_read(port, &raw_volt);
+    adc_mutex_give();
+
+    if (err != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, VOLTAGE_SENSOR_MODULE_NAME, "Error reading the raw voltage value!");
         sys_log_new_line();

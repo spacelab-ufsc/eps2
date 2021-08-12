@@ -25,7 +25,7 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.11
+ * \version 0.2.21
  * 
  * \date 2021/06/11
  * 
@@ -112,7 +112,13 @@ int temp_sensor_suspend(temp_sensor_t *config, temp_sensor_power_down_t mode)
 
 int temp_mcu_read_raw(uint16_t *val)
 {
-    return adc_read(TEMP_SENSOR_ADC_PORT, val);
+    int err = 0;
+    
+    adc_mutex_take();
+    err = adc_read(TEMP_SENSOR_ADC_PORT, val);
+    adc_mutex_give();
+
+    return err;
 }
 
 int16_t temp_mcu_raw_to_c(uint16_t raw)
