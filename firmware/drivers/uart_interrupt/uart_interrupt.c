@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.19
+ * \version 0.2.28
  * 
  * \date 2021/08/01
  * 
@@ -268,8 +268,8 @@ void USCI_A0_ISR(void)
 {
     switch(__even_in_range(UCA0IV,4))
     {
-        case USCI_A_UART_RECEIVE_INTERRUPT_FLAG:
-            if (USCI_A_UART_queryStatusFlags(USCI_A0_BASE, USCI_A_UART_BREAK_DETECT) == USCI_A_UART_BREAK_DETECT)
+        case UART_RECEIVE_INTERRUPT_FLAG:
+            if(USCI_A_UART_queryStatusFlags(USCI_A0_BASE, USCI_A_UART_BREAK_DETECT) == USCI_A_UART_BREAK_DETECT)
             {
                 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
                     sys_log_print_event_from_module(SYS_LOG_INFO, UART_INTERRUPT_MODULE_NAME, "Received data: ");
@@ -297,7 +297,11 @@ void USCI_A0_ISR(void)
             }
             else 
             {
-                uart_rx_buffer[uart_buffer_index++] = USCI_A_UART_receiveData(USCI_A0_BASE);
+                if(uart_buffer_index++ >= UART_RX_BUFFER_MAX_SIZE)
+                {
+                    uart_buffer_index = 0;
+                }
+                uart_rx_buffer[uart_buffer_index] = USCI_A_UART_receiveData(USCI_A0_BASE);
             }
             break;
         default: 

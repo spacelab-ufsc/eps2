@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.2.6
+ * \version 0.2.28
  * 
  * \date 2021/08/01
  * 
@@ -44,6 +44,8 @@
 
 #define UART_RX_BUFFER_MAX_SIZE         16                  /**< Number of bytes of the maximum UART RX buffer size. */
 #define NOTIFICATION_VALUE_TO_UART_ISR  (1UL << 1UL)        /**< Bit to set on uart notification for tasks. */
+
+#define UART_RECEIVE_INTERRUPT_FLAG     2
 
 /**
  * \brief UART interrupt RX buffer and size.
