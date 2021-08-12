@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.2.19
+ * \version 0.2.25
  * 
  * \date 2021/01/25
  * 
@@ -45,7 +45,18 @@
 #define CONFIG_TASK_READ_SENSORS_ENABLED                1
 #define CONFIG_TASK_PARAM_SERVER_ENABLED                1
 #define CONFIG_TASK_MPPT_ALGORITHM_ENABLED              1
-#define CONFIG_TASK_HEATER_CONTROLER_ENABLED            1
+#define CONFIG_TASK_HEATER_CONTROLLER_ENABLED           0
+
+#define CONFIG_DEV_LEDS_ENABLED							1	
+#define CONFIG_DEV_HEATER_ENABLED						0		
+#define CONFIG_DEV_MPPT_ENABLED							1	
+#define CONFIG_DEV_BAT_MANAGER_ENABLED					1			
+#define CONFIG_DEV_MEDIA_ENABLED						1		
+#define CONFIG_DEV_CURRENT_SENSOR_ENABLED				1				
+#define CONFIG_DEV_VOLTAGE_SENSOR_ENABLED				1				
+#define CONFIG_DEV_TEMP_SENSOR_ENABLED					1			
+#define CONFIG_DEV_OBDH_ENABLED							1	
+#define CONFIG_DEV_TTC_ENABLED							1	
 
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 

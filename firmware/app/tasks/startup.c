@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.18
+ * \version 0.2.25
  * 
  * \date 2021/03/09
  * 
@@ -60,7 +60,7 @@ EventGroupHandle_t task_startup_status;
 
 void vTaskStartup(void *pvParameters)
 {
-    bool error = false;
+    unsigned int error_counter = 0;
 
     /* Logger device initialization */
     sys_log_init();
@@ -91,79 +91,101 @@ void vTaskStartup(void *pvParameters)
     sys_log_print_hex(system_get_reset_cause());
     sys_log_new_line();
 
+#if CONFIG_DEV_LEDS_ENABLED == 1
     /* LEDs device initialization */
     if (leds_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_LEDS_ENABLED */
 
+#if CONFIG_DEV_HEATER_ENABLED == 1
     /* Heater device initialization */
     if (heater_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_HEATER_ENABLED */
 
+#if CONFIG_DEV_MPPT_ENABLED == 1
     /* MPPT device initialization */
     if (mppt_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_MPPT_ENABLED */
 
+#if CONFIG_DEV_BAT_MANAGER_ENABLED == 1
     /* Battery manager device initialization */
     if (bat_manager_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_BAT_MANAGER_ENABLED */
 
+#if CONFIG_DEV_MEDIA_ENABLED == 1
     /* Internal non-volatile memory initialization */
     if (media_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_MEDIA_ENABLED */
 
+#if CONFIG_DEV_CURRENT_SENSOR_ENABLED == 1
     /* Current sensor device initialization */
     if (current_sensor_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_CURRENT_SENSOR_ENABLED */
 
+#if CONFIG_DEV_VOLTAGE_SENSOR_ENABLED == 1
     /* Voltage sensor device initialization */
     if (voltage_sensor_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_VOLTAGE_SENSOR_ENABLED */
 
+#if CONFIG_DEV_TEMP_SENSOR_ENABLED == 1
     /* Temperature sensor device initialization */
     if (temp_sensor_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_TEMP_SENSOR_ENABLED */
 
+#if CONFIG_DEV_OBDH_ENABLED == 1
     /* OBDH device initialization */
     if (obdh_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_OBDH_ENABLED */
 
+#if CONFIG_DEV_TTC_ENABLED == 1
     /* TTC device initialization */
     if (ttc_init() != 0)
     {
-        error = true;
+        error_counter++;
     }
+#endif /* CONFIG_DEV_TTC_ENABLED */
 
-    if (error)
+    if (error_counter > 0)
     {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_STARTUP_NAME, "Boot completed with ERRORS!");
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_STARTUP_NAME, "Boot completed with ");
+        sys_log_print_uint(error_counter);
+        sys_log_print_msg(" ERROR(S)!");
         sys_log_new_line();
 
-        /* led_set(LED_FAULT); No led fault on EPS2 version 0.1*/
+        led_set(LED_FAULT);
     }
     else
     {
         sys_log_print_event_from_module(SYS_LOG_INFO, TASK_STARTUP_NAME, "Boot completed with SUCCESS!");
         sys_log_new_line();
 
-        /* led_clear(LED_FAULT); No led fault on EPS2 version 0.1 */
+        led_clear(LED_FAULT);
     }
 
     /* Startup task status = Done */
