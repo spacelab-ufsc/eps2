@@ -38,7 +38,9 @@
 
 int tps54x0_init(tps54x0_config_t config)
 {
-    return gpio_init(config.enable_pin, (gpio_config_t){.mode = GPIO_MODE_OUTPUT});
+    int init_result = 0;
+    init_result = gpio_init(config.enable_pin, (gpio_config_t){.mode = GPIO_MODE_OUTPUT});
+    return init_result;
 }
 
 int tps54x0_enable(tps54x0_config_t config)

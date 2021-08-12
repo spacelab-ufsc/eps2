@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.2.14
  * 
  * \date 2021/02/17
  * 
@@ -52,25 +52,14 @@ int spi_setup_gpio(spi_port_t port)
     {
         case SPI_PORT_0:
             GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P2, GPIO_PIN0 + GPIO_PIN3 + GPIO_PIN4);
-
-            gpio_init(GPIO_PIN_5, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
-            gpio_init(GPIO_PIN_6, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
-            gpio_init(GPIO_PIN_28, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
-            gpio_init(GPIO_PIN_45, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
-            gpio_init(GPIO_PIN_46, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
-
-            /* Set all CS pins to high */
-            gpio_set_state(GPIO_PIN_5, true);
-            gpio_set_state(GPIO_PIN_6, true);
-            gpio_set_state(GPIO_PIN_28, true);
-            gpio_set_state(GPIO_PIN_45, true);
-            gpio_set_state(GPIO_PIN_46, true);
-
             break;
         case SPI_PORT_1:
             GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P8, GPIO_PIN1 + GPIO_PIN2 + GPIO_PIN3);
             
-            /* Set the only CS pin the EPS2 uses to high */
+            /* Init the only CS pin used */
+            gpio_init(GPIO_PIN_59, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
+
+            /* Set the only CS pin used to high */
             gpio_set_state(GPIO_PIN_59, true);
             
             break;
@@ -102,24 +91,10 @@ int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active)
     switch(port)
     {
         case SPI_PORT_0:
-            switch(cs)
-            {
-                case SPI_CS_0:      gpio_set_state(GPIO_PIN_5, !active);      break;
-                case SPI_CS_1:      gpio_set_state(GPIO_PIN_6, !active);      break;
-                case SPI_CS_2:      gpio_set_state(GPIO_PIN_28, !active);     break;
-                case SPI_CS_3:      gpio_set_state(GPIO_PIN_45, !active);     break;
-                case SPI_CS_4:      gpio_set_state(GPIO_PIN_46, !active);     break;
-                default:
-                #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-                    sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Error selecting a slave from port 0: Invalid CS pin!");
-                    sys_log_new_line();
-                #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-                    return -1;  /* Invalid CS pin */
-            }
-
+            /* TODO: Define the CS pins pf port 0 */
             break;
         case SPI_PORT_1:
-             switch(cs)
+            switch(cs)
             {
                 case SPI_CS_0:      gpio_set_state(GPIO_PIN_59, !active);      break;
                 default:
@@ -129,7 +104,7 @@ int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active)
                 #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
                     return -1;  /* Invalid CS pin */
             }
-            
+
             break;
         case SPI_PORT_2:
             /* TODO: Define the CS pins pf port 2 */

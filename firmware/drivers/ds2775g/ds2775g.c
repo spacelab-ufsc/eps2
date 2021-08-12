@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.0
  * 
  * \date 2021/06/11
  * 
@@ -148,43 +148,45 @@ int ds2775g_init(ds2775g_config_t *config)
 
 #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
 
-    /* Declaring UART port */
-    uart_port_t UART_port = UART_PORT_0;
+    /* TODO: Legacy code, this should not be here */
+    //uart_port_t UART_port = UART_PORT_0;
 
     uint8_t ds2775g_data_sent_back[8] = {0};
 
-    ds2775g_read_register(OW_port, protection_register, &ds2775g_data_sent_back[0]);
-    ds2775g_read_register(OW_port, protector_threshold_register, &ds2775g_data_sent_back[1]);
-    ds2775g_read_register(OW_port, status_register, &ds2775g_data_sent_back[2]);
-    ds2775g_data_sent_back[2] &= 0xf0;
-    ds2775g_read_register(OW_port, control_register, &ds2775g_data_sent_back[3]);
-    ds2775g_read_register(OW_port, overcurrent_thresholds_register, &ds2775g_data_sent_back[4]);
-    ds2775g_read_register(OW_port, current_gain_LSB_register, &ds2775g_data_sent_back[5]);
-    ds2775g_read_register(OW_port, accumulated_current_MSB_register, &ds2775g_data_sent_back[6]);
-    ds2775g_read_register(OW_port, accumulated_current_LSB_register, &ds2775g_data_sent_back[7]);
+    /* TODO: Legacy code, there is no more "OW_port" defined, up to corrent debug routine */
+    //ds2775g_read_register(OW_port, protection_register, &ds2775g_data_sent_back[0]);
+    //ds2775g_read_register(OW_port, protector_threshold_register, &ds2775g_data_sent_back[1]);
+    //ds2775g_read_register(OW_port, status_register, &ds2775g_data_sent_back[2]);
+    //ds2775g_data_sent_back[2] &= 0xf0;
+    //ds2775g_read_register(OW_port, control_register, &ds2775g_data_sent_back[3]);
+    //ds2775g_read_register(OW_port, overcurrent_thresholds_register, &ds2775g_data_sent_back[4]);
+    //ds2775g_read_register(OW_port, current_gain_LSB_register, &ds2775g_data_sent_back[5]);
+    //ds2775g_read_register(OW_port, accumulated_current_MSB_register, &ds2775g_data_sent_back[6]);
+    //ds2775g_read_register(OW_port, accumulated_current_LSB_register, &ds2775g_data_sent_back[7]);
 
     uint8_t i = 0;
     uint8_t string[4];
 
-    if(uart_avaliable(UART_port)){
-
-        for(i = 0; i < 8; i++){
-              sprintf(string, "%#04x", one_wire_data_sent_back[i]);
-              uart_write(UART_port, string, 0x4);
-              if(i != 7){
-                  string = {','};
-                  uart_write(UART_port, string, 0x1);
-              }
-              else{
-                  string = {'\r\n'};
-                  uart_write(UART_port, string, 0x4);
-              }
-          }
-
-    }
-    else{
-        sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "UART bus is not avaliable!");
-    }
+    /* TODO: Legacy code, update to newer clean log scheme! */
+    //if(uart_avaliable(UART_port)){
+    //
+    //    for(i = 0; i < 8; i++){
+    //          sprintf(string, "%#04x", one_wire_data_sent_back[i]);
+    //          uart_write(UART_port, string, 0x4);
+    //          if(i != 7){
+    //              string = {','};
+    //              uart_write(UART_port, string, 0x1);
+    //          }
+    //          else{
+    //              string = {'\r\n'};
+    //              uart_write(UART_port, string, 0x4);
+    //          }
+    //      }
+    //
+    //}
+    //else{
+    //    sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "UART bus is not avaliable!");
+    //}
 
 #endif //End debug routine
 

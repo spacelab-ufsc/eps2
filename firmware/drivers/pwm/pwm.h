@@ -26,7 +26,7 @@
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.16
+ * \version 0.2.10
  * 
  * \date 2021/05/15
  * 
@@ -41,10 +41,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define PWM_MODULE_NAME         "PWM"
+#define PWM_MODULE_NAME             "PWM"
 
-#define FORCE_SCOURCE_STOP		true
-#define KEEP_SCOURCE_RUNNING	false
+#define FORCE_SCOURCE_STOP		    true
+#define KEEP_SCOURCE_RUNNING	    false
+
+#define CONVERT_CLK_PERIOD_TO_US    32
 
 /**
  * \brief PWM source.

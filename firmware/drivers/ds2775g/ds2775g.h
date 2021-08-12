@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.0
  * 
  * \date 2021/06/11
  * 
@@ -41,6 +41,8 @@
 
 #include <drivers/onewire/onewire.h>
 #include <drivers/gpio/gpio.h>
+
+#define DS2775_MODULE_NAME         "DS2775"
 
 /**
  * \brief declaring DS2775G+ units.

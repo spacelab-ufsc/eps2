@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.12
+ * \version 0.2.20
  * 
  * \date 2021/06/11
  * 
@@ -38,6 +38,7 @@
 #define ADC_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #define ADC_MODULE_NAME     "ADC"
 
@@ -152,6 +153,27 @@ float adc_temp_get_mref(void);
  * \return The nref value.
  */
 float adc_temp_get_nref(void);
+
+/**
+ * \brief Creates a mutex to use the ADC module.
+ *
+ * \return TRUE/FALSE if successful or not.
+ */
+bool adc_mutex_create(void);
+
+/**
+ * \brief Holds the resource (ADC module).
+ *
+ * \return TRUE/FALSE if successful or not.
+ */
+bool adc_mutex_take(void);
+
+/**
+ * \brief Frees the resource (ADC module).
+ *
+ * \return TRUE/FALSE if successful or not.
+ */
+bool adc_mutex_give(void);
 
 #endif /* ADC_H_ */
 

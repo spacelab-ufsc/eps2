@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.2.14
  * 
  * \date 2020/10/24
  * 
@@ -183,11 +183,13 @@ int gpio_set_state(gpio_pin_t pin, bool state);
  *      - -1 on error
  *      .
  * \endparblock
+ *
+ * \return The status/error code.
  */
 int gpio_get_state(gpio_pin_t pin);
 
 /**
- * \brief Toggles the staate of a GPIO pin.
+ * \brief Toggles the state of a GPIO pin.
  *
  * \param[in] pin is the the GPIO pin to get the state.
  *

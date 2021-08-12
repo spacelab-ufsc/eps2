@@ -24,8 +24,9 @@
  * \brief EPS data structure definition.
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.1
+ * \version 0.2.5
  * 
  * \date 2021/04/09
  * 
@@ -38,6 +39,64 @@
 #define EPS_DATA_H_
 
 #include <stdint.h>
+
+#define EPS_DATA_NAME       "EPS2 Buffer"
+
+/**
+ * \brief Parameters' IDs.
+ */
+typedef enum
+{
+    EPS2_PARAM_ID_TIME_COUNTER              = 0,
+    EPS2_PARAM_ID_MCU_TEMP                  = 1,
+    EPS2_PARAM_ID_EPS_CURRENT               = 2,
+    EPS2_PARAM_ID_LAST_RESET_CAUSE          = 3,
+    EPS2_PARAM_ID_RESET_COUNTER             = 4,
+    EPS2_PARAM_ID_SP_MY_PX_VOLTAGE          = 5,
+    EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE          = 6,
+    EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE          = 7,
+    EPS2_PARAM_ID_SP_MY_CURRENT             = 8,
+    EPS2_PARAM_ID_SP_PY_CURRENT             = 9,
+    EPS2_PARAM_ID_SP_MX_CURRENT             = 10,
+    EPS2_PARAM_ID_SP_PX_CURRENT             = 11,
+    EPS2_PARAM_ID_SP_MZ_CURRENT             = 12,
+    EPS2_PARAM_ID_SP_PZ_CURRENT             = 13,
+    EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE         = 14,
+    EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE         = 15,
+    EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE         = 16,
+    EPS2_PARAM_ID_SP_VOLTAGE_MPPT           = 17,
+    EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE    = 18,
+    EPS2_PARAM_ID_RTD_0_TEMP                = 19,
+    EPS2_PARAM_ID_RTD_1_TEMP                = 20,
+    EPS2_PARAM_ID_RTD_2_TEMP                = 21,
+    EPS2_PARAM_ID_RTD_3_TEMP                = 22,
+    EPS2_PARAM_ID_RTD_4_TEMP                = 23,
+    EPS2_PARAM_ID_RTD_5_TEMP                = 24,
+    EPS2_PARAM_ID_RTD_6_TEMP                = 25,
+    EPS2_PARAM_ID_BAT_VOLTAGE               = 26,
+    EPS2_PARAM_ID_BAT_CURRENT               = 27,
+    EPS2_PARAM_ID_BAT_AVERAGE_CURRENT       = 28,
+    EPS2_PARAM_ID_BAT_ACC_CURRENT           = 29,
+    EPS2_PARAM_ID_BAT_CHARGE                = 30,
+    EPS2_PARAM_ID_BAT_MONITOR_TEMP          = 31,
+    EPS2_PARAM_ID_BAT_MONITOR_STATUS        = 32,
+    EPS2_PARAM_ID_BAT_MONITOR_PROTECT       = 33,
+    EPS2_PARAM_ID_BAT_MONITOR_CYCLE_COUNTER = 34,
+    EPS2_PARAM_ID_BAT_MONITOR_RAAC          = 35,
+    EPS2_PARAM_ID_BAT_MONITOR_RSAC          = 36,
+    EPS2_PARAM_ID_BAT_MONITOR_RARC          = 37,
+    EPS2_PARAM_ID_BAT_MONITOR_RSRC          = 38,
+    EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE   = 39,
+    EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE   = 40,
+    EPS2_PARAM_ID_HW_VERSION                = 41,
+    EPS2_PARAM_ID_FW_VERSION                = 42,
+    EPS2_PARAM_ID_MPPT_1_MODE               = 43,
+    EPS2_PARAM_ID_MPPT_2_MODE               = 44,
+    EPS2_PARAM_ID_MPPT_3_MODE               = 45,
+    EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 46,
+    EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 47,
+    EPS2_PARAM_ID_DEVICE_ID                 = 48
+} eps2_param_id_e;
 
 /**
  * \brief EPS data.
@@ -55,7 +114,12 @@ typedef struct
     uint16_t main_power_buss_mv;                /**< Main power buss voltage in mV. */
     uint8_t mppt_1_duty_cycle;                  /**< MPPT 1 duty cycle in %. */
     uint8_t mppt_2_duty_cycle;                  /**< MPPT 2 duty cycle in %. */
-    uint8_t mppt_3_duty_cycle;                  /**< MPPT 3 duty cycle in %. */   
+    uint8_t mppt_3_duty_cycle;                  /**< MPPT 3 duty cycle in %. */ 
+    uint8_t mppt_1_mode;                        /**< MPPT 1 mode flag. */
+    uint8_t mppt_2_mode;                        /**< MPPT 2 mode flag. */
+    uint8_t mppt_3_mode;                        /**< MPPT 3 mode flag. */ 
+    uint8_t heater1_mode;                       /**< Heater 1 mode flag. */
+    uint8_t heater2_mode;                       /**< Heater 2 mode flag. */   
     
     /**
      *  Solar panels related data. 
@@ -106,10 +170,31 @@ typedef struct
      */
     uint32_t firmware_version;                  /**< Hard-coded firmware version of EPS. */
     uint8_t hardware_version;                   /**< Hard-coded hardware version of EPS. */
+    uint16_t device_id;                          /**< Hard-coded device id of EPS. */
 
 } eps_data_t;
 
-extern eps_data_t eps_data_buff; 
+/**
+ * \brief Function to write a value into the EPS data buffer.
+ *
+ * \param[in] id is a value to select a variable within the data buffer.
+ *
+ * \param[out] value is the data that will overwrite the previous data.
+ *
+ * \return The status/error code.
+ */
+int eps_buffer_write(uint8_t id, uint32_t *value);
+
+/**
+ * \brief Function to read a value of the EPS data buffer.
+ *
+ * \param[in] id is a value to select a variable within the data buffer.
+ *
+ * \param[out] value is the data that will be read from the buffer.
+ *
+ * \return The status/error code.
+ */
+int eps_buffer_read(uint8_t id, uint32_t *value);
 
 #endif /* EPS_DATA_H_ */
 

@@ -26,7 +26,7 @@
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
- * \version 0.1.16
+ * \version 0.2.10
  * 
  * \date 2021/05/19
  * 
@@ -58,13 +58,13 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			Timer_A_outputPWMParam timer_a1_config;
 
 			/* Base PWM configuration */
-			timer_a1_config.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;				/* SMCLK ~ 32MHz */
-			timer_a1_config.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_32;	/* SMCLK/32 ~ 1MHz => base period of 1us */
+			timer_a1_config.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;						/* SMCLK ~ 32MHz */
+			timer_a1_config.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_1;				/* SMCLK ~ 32MHz => base period of 0.0313us */
 			timer_a1_config.compareOutputMode = TIMER_A_OUTPUTMODE_RESET_SET;
 			
 			/* User PWM configuration */
-			timer_a1_config.timerPeriod = config.period_us;								/* Period in us due to previous parameters */ 
-			timer_a1_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us);	/* Convertion from % to number of cycles in high */
+			timer_a1_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */ 
+			timer_a1_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us * CONVERT_CLK_PERIOD_TO_US);	/* Convertion from % to number of cycles in high */
 
 			switch(port) 
 			{
@@ -95,13 +95,13 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			Timer_A_outputPWMParam timer_a2_config;
 
 			/* Base PWM configuration */
-			timer_a2_config.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;				/* SMCLK ~ 32MHz */
-			timer_a2_config.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_32;	/* SMCLK/32 ~ 1MHz => base period of 1us */
+			timer_a2_config.clockSource = TIMER_A_CLOCKSOURCE_SMCLK;						/* SMCLK ~ 32MHz */
+			timer_a2_config.clockSourceDivider = TIMER_A_CLOCKSOURCE_DIVIDER_1;				/* SMCLK ~ 32MHz => base period of 0.0313us */
 			timer_a2_config.compareOutputMode = TIMER_A_OUTPUTMODE_RESET_SET;
 			
 			/* User PWM configuration */
-			timer_a2_config.timerPeriod = config.period_us;								/* Period in us due to previous parameters */ 
-			timer_a2_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us);	/* Convertion from % to number of cycles in high */
+			timer_a2_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */ 
+			timer_a2_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us * CONVERT_CLK_PERIOD_TO_US);	/* Convertion from % to number of cycles in high */
 
 			switch(port) 
 			{
@@ -132,13 +132,13 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 		    Timer_B_outputPWMParam timer_b0_config;
 
 			/* Base PWM configuration */
-			timer_b0_config.clockSource = TIMER_B_CLOCKSOURCE_SMCLK;				/* SMCLK ~ 32MHz */
-			timer_b0_config.clockSourceDivider = TIMER_B_CLOCKSOURCE_DIVIDER_32;	/* SMCLK/32 ~ 1MHz => base period of 1us */
+			timer_b0_config.clockSource = TIMER_B_CLOCKSOURCE_SMCLK;						/* SMCLK ~ 32MHz */
+			timer_b0_config.clockSourceDivider = TIMER_B_CLOCKSOURCE_DIVIDER_1;				/* SMCLK ~ 32MHz => base period of 0.0313us */
 			timer_b0_config.compareOutputMode = TIMER_B_OUTPUTMODE_RESET_SET;
 			
 			/* User PWM configuration */
-			timer_b0_config.timerPeriod = config.period_us;								/* Period in us due to previous parameters */ 
-			timer_b0_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us);	/* Convertion from % to number of cycles in high */
+			timer_b0_config.timerPeriod = config.period_us * CONVERT_CLK_PERIOD_TO_US;		/* Period in us due to previous parameters */
+			timer_b0_config.dutyCycle = (config.duty_cycle / 100.0) * (config.period_us * CONVERT_CLK_PERIOD_TO_US);	/* Convertion from % to number of cycles in high */
 
 			switch(port) 
 			{
@@ -183,7 +183,7 @@ int pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 		
 		default:
 			#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-	            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid PWM source!");
+	            sys_log_print_event_from_module(SYS_LOG_ERROR, PWM_MODULE_NAME, "Invalid PWM source!");
 	            sys_log_new_line();
         	#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 			return -1;
@@ -304,7 +304,7 @@ int pwm_stop(pwm_source_t source, pwm_port_t port, pwm_config_t config)
 			return 0;
 		default:
 			#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-	            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid PWM source!");
+	            sys_log_print_event_from_module(SYS_LOG_ERROR, PWM_MODULE_NAME, "Invalid PWM source!");
 	            sys_log_new_line();
         	#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 			return -1;
@@ -335,7 +335,7 @@ int pwm_disable(pwm_source_t source)
 			return 0;
 		default:
 			#if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-	            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid PWM source!");
+	            sys_log_print_event_from_module(SYS_LOG_ERROR, PWM_MODULE_NAME, "Invalid PWM source!");
 	            sys_log_new_line();
         	#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 			return -1;

@@ -23,9 +23,10 @@
 /**
  * \brief OBDH device definition.
  *
+ * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.2.7
  *
  * \date 22/04/2020
  *
@@ -39,14 +40,57 @@
 
 #include <stdint.h>
 
+#include <drivers/tca4311a/tca4311a.h>
+
 #define OBDH_MODULE_NAME         "OBDH"
+
+#define OBDH_COMMAND_READ_SIZE	 2
+#define OBDH_COMMAND_WRITE_SIZE	 6
+
+/**
+ * \brief OBDH command types.
+ */
+typedef enum
+{
+    OBDH_COMMAND_WRITE=0,        /**< OBDH command for writing an EPS register. */
+    OBDH_COMMAND_READ            /**< OBDH command for reading an EPS register. */
+} obdh_command_e;
+
+/**
+ * \brief Configuration parameters structure of the driver.
+ */
+typedef tca4311a_config_t obdh_config_t;
 
 /**
  * \brief Initialization routine of the OBDH device.
  *
  * \return The status/error code.
  */
-int obdh_init();
+int obdh_init(void);
+
+/**
+ * \brief Decodes a command from the OBDH.
+ *
+ * \param[out] adr is the decoded register address.
+ *
+ * \param[out] val is the decoded register data.
+ *
+ * \param[out] cmd is the decoded command resquested.
+ *
+ * \return The status/error code.
+ */
+int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd);
+
+/**
+ * \brief Answers a command from the OBDH.
+ *
+ * \param[in] adr is the register address requested.
+ *
+ * \param[in,out] val is the value to answer to the OBDH.
+ *
+ * \return The status/error code.
+ */
+int obdh_answer(uint8_t adr, uint32_t val);
 
 #endif /* OBDH_H_ */
 

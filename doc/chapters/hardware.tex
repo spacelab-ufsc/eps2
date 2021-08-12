@@ -18,7 +18,7 @@
 %
 % \institution Universidade Federal de Santa Catarina (UFSC)
 %
-% \version 0.1.1
+% \version 0.2.0
 %
 % \date 2021/02/16
 %
@@ -53,7 +53,7 @@ The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't ha
 
 \section{Interfaces}
 
-The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 4 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debbuging via USB without the use of an external UART to USB converter. The SPI comunicaton bus it actually an dedicated internall channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
+The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 5 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B0-I2C (dedicated for DS2777); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debbuging via USB without the use of an external UART to USB converter. The SPI comunicaton bus it actually an dedicated internall channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -72,6 +72,7 @@ The \autoref{fig:diagram-interfaces} presents the board interfaces, which consis
         ADS1248                 & A1            & SPI               & - \\
         Beacon Radio            & A0            & UART              & - \\
         PC (log messages)       & A2            & UART              & ANSI messages \\
+        DS2777                  & B0            & I$^{2}$C          & - \\
         OBDH                    & B2            & I$^{2}$C          & FSP \\
         External Interface      & -             & JTAG              & Spy-Bi-Wire \\
         \bottomrule[1.5pt]
@@ -121,7 +122,8 @@ The microcontroller has 6 Universal Serial Communication Interfaces (USCI) that 
                            &                           &               &                      &                    & Polarity: Low \\
         USCI\_A2           & UART1                     & -             & 8 bits               & 9600 bps           & Stop bits: 1 \\
                            &                           &               &                      &                    & Parity: None \\
-        USCI\_B2           & I2C2                      & Slave         & 8 bits               & 100 kbps           & Address value: 0x36 \\
+        USCI\_B0           & I2C0                      & Master        & 8 bits               & 100 kbps           & Adr. len: 7 bits \\
+        USCI\_B2           & I2C1                      & Slave         & 8 bits               & 100 kbps           & Address value: 0x36 \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{USCI configuration.}
@@ -172,21 +174,21 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
     \midrule
     P1.0              & 34                  & -                 \\
     P1.1              & 35                  & -                 \\
-    P1.2              & 36                  & EN\_3V3\_OBDH     \\
+    P1.2              & 36                  & -                 \\
     P1.3              & 37                  & EN\_5V\_PAYLOADS  \\
     P1.4              & 38                  & -             \\
     P1.5              & 39                  & BAT\_GPIO1    \\
     P1.6              & 40                  & BAT\_GPIO2    \\
     P1.7              & 41                  & -             \\
     \midrule
-    P2.0              & 17                  & -             \\
-    P2.1              & 18                  & PC104\_GPIO0  \\
-    P2.2              & 19                  & PC104\_GPIO1  \\
+    P2.0              & 17                  & PIO           \\
+    P2.1              & 18                  & I2C0\_SDA     \\
+    P2.2              & 19                  & I2C0\_SCL     \\
     P2.3              & 20                  & PC104\_GPIO2  \\
     P2.4              & 21                  & UART\_EPS\_TX\_BEACON\_RX     \\
     P2.5              & 22                  & UART\_EPS\_RX\_BEACON\_TX     \\
-    P2.6              & 23                  & -                     \\
-    P2.7              & 24                  & -                     \\
+    P2.6              & 23                  & PC104\_GPIO1                  \\            
+    P2.7              & 24                  & PC104\_GPIO0                   \\
     \midrule
     P3.0              & 42                  & -                     \\
     P3.1              & 43                  & -                     \\
@@ -209,8 +211,8 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
     P5.0              & 9                   & VREF                  \\
     P5.1              & 10                  & AGND                  \\
     P5.2              & 28                  & -                     \\
-    P5.3              & 31                  & -                     \\
-    P5.4              & 32                  & SYSTEM\_LED           \\
+    P5.3              & 31                  & SYSTEM\_\_FAULT\_LED  \\
+    P5.4              & 32                  & SYSTEM\_ON           \\
     P5.5              & 33                  & -                     \\
     P5.6              & 16                  & -                     \\
     P5.7              & 88                  & -                     \\
@@ -240,14 +242,14 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
     P8.6              & 66                  & RTD\_START            \\
     P8.7              & 67                  & RTD\_DRDY             \\
     \midrule
-    P9.0              & 68                  & PIO                   \\
-    P9.1              & 69                  & 1-WIRE                \\
+    P9.0              & 68                  & -                     \\
+    P9.1              & 69                  & -                     \\
     P9.2              & 70                  & UART0\_TX             \\
     P9.3              & 71                  & UART0\_RX             \\
-    P9.4              & 72                  & I2C2\_EN              \\
-    P9.5              & 73                  & I2C2\_SDA             \\
-    P9.6              & 74                  & I2C2\_SCL             \\
-    P9.7              & 75                  & I2C2\_READY           \\
+    P9.4              & 72                  & I2C1\_EN              \\
+    P9.5              & 73                  & I2C1\_SDA             \\
+    P9.6              & 74                  & I2C1\_SCL             \\
+    P9.7              & 75                  & I2C1\_READY           \\
     \midrule
     PJ.0              & 92                  & -                     \\
     PJ.1              & 93                  & -                     \\
@@ -420,12 +422,12 @@ On \autoref{kill-switches-picoblades} and \autoref{rbf-picoblade} it is showed t
 
 \subsection{Battery Control Circuit}
 
-The batteries are monitored by the \textit{DS2775} chip. It measures several parameters and sends them to the EPS2 MCU via one-wire protocol. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two \textit{FDS6898AZ} mosfets.
+The batteries are monitored by the \textit{DS2777} chip. It measures several parameters and sends them to the EPS2 MCU via I2C protocol. The factory default value for its slave address is 0x59. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two \textit{FDS6898AZ} mosfets.
 Its circuit schematic can be seen in \autoref{fig:bms-circuit-schematic} and location on the PCB in \autoref{fig:bms-circuit-3d}.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=\textwidth]{figures/bms-circuit-schematic.png}
+        \includegraphics[width=0.85\textwidth]{figures/bms-circuit-schematic.png}
         \caption{Battery monitor circuit schematic.}
         \label{fig:bms-circuit-schematic}
     \end{center}
@@ -464,7 +466,7 @@ Its circuit schematic can be seen in \autoref{fig:heaters-circuit-schematic} and
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=\textwidth]{figures/heaters-drivers-circuit-schematic.png}
+        \includegraphics[width=0.85\textwidth]{figures/heaters-drivers-circuit-schematic.png}
         \caption{Hearter drivers circuit schematic.}
         \label{fig:heaters-circuit-schematic}
     \end{center}
@@ -500,7 +502,7 @@ The circuit schematic is almost the same as \autoref{fig:solar-panels-current-ci
 
 \subsection{OBDH Regulator}
 
-The OBDH is powered by a \textit{TPS5410QDRQ1} regulator, with an output voltage of 3.3 V and 1 A current capability. The EPS2 can enable/disable this regulator.
+The OBDH is powered by a \textit{TPS5410QDRQ1} regulator, with an output voltage of 3.3 V and 1 A current capability.
 Its location on the PCB can be seen in \autoref{fig:obdh-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -524,9 +526,9 @@ Its location on the PCB can be seen in \autoref{fig:ant-buck-circuit-3d}.
     \end{center}
 \end{figure}
 
-\subsection{Main Radio Transceiver Regulator}
+\subsection{Radio 0 Transceiver Regulator}
 
-The main radio XCVR\nomenclature{\textbf{XCVR}}{\textit{Transceiver.}} responsible for the Downlink/Uplink of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with an output voltage of 5V and 5A campability. The OBDH can enable/disable this regulator.
+The radio 0 XCVR\nomenclature{\textbf{XCVR}}{\textit{Transceiver.}} responsible for the Downlink/Uplink of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with an output voltage of 5V and 5A campability. The OBDH can enable/disable this regulator.
 Its location on the PCB can be seen in \autoref{fig:main-radio-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -537,9 +539,9 @@ Its location on the PCB can be seen in \autoref{fig:main-radio-buck-circuit-3d}.
     \end{center}
 \end{figure}
 
-\subsection{Beacon Transceiver Regulator}
+\subsection{Radio 1 Transceiver Regulator}
 
-The Beacon XCVR is powered by a regulator \textit{TPS54540QDDARQ1} regulator, with 6V output voltage and 5A campability. The Beacon MCU can enable/disable this regulator.
+The radio 1 XCVR responsible for a periodic data sent status of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with 6V output voltage and 5A campability. The Beacon MCU can enable/disable this regulator.
 Its location on the PCB can be seen in \autoref{fig:beacon-radio-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -845,7 +847,10 @@ When the EPS and BAT4C are assembled together the batteries can be charged from 
 
 \subsection{JTAG PicoBlade} \label{jtag-picoblade}
 
-The EPS module can be programed and debugged through its JTAG PicoBlade connector, see \autoref{ch:instructions} for more information regarding right use of this interface. The connector pinout is showed in \autoref{tab:jtag-picoblade} and position on the PCB in \autoref{fig:jtag-picoblade}.
+The EPS module can be programed and debugged through its JTAG PicoBlade connector as showed in \autoref{fig:jtag-picoblade}. 
+The pin header labeled CN1 serves as a jumper for shorting the power from the flash emulator tool to the 3V3 power used for the EPS MCU and subcircuits.
+This feature enables powering the board partially using MSP-FET, be advised to leave this connector open if the EPS is on from other means, for more details see \autoref{ch:instructions}.
+The JTAG connector pinout is showed in \autoref{tab:jtag-picoblade}.
 
 \begin{table}[!h]
     \centering
