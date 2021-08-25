@@ -132,7 +132,7 @@ int ds2777g_read_temperature_raw(ds2777g_config_t config, int16_t *temp_raw)
     int res = 0;
     uint8_t temp_buf[2];
     res = ds2777g_read_data(config, TEMPERATURE_REGISTER_MSB, temp_buf, 2);
-    temp_raw = ((temp_buf[1] << 8) + temp_buf[0]) >> 5;
+    temp_raw = ((int16_t)((temp_buf[1] << 8) + temp_buf[0])) >> 5;
     return res;
 }
 
