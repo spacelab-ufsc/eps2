@@ -42,125 +42,127 @@
 
 #include <drivers/i2c/i2c.h>
 
-#define DS2777_MODULE_NAME          "DS2777"
+#define DS2777G_MODULE_NAME "DS2777"
+
+#define DS2777G_RSENSE                                          0.01 /* Unit: Ohm. */
 
 /**
  * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
  */
-#define DS2777_DEFAULT_SLAVE_ADDRESS        0b1011001
+#define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001
 
 /**
  * \brief Memory map.
  */
 // Read/Write registers.
-#define PROTECTION_REGISTER                             0x00
-#define STATUS_REGISTER                                 0x01
-#define ACCUMULATED_CURRENT_MSB                         0x10
-#define ACCUMULATED_CURRENT_LSB                         0x11
-#define AGE_SCALAR_REGISTER                             0x14
-#define SPECIAL_FEATURE_REGISTER                        0x15
-#define CYCLE_COUNTER_REGISTER                          0x1E
-#define EEPROM_REGISTER                                 0x1F
+#define DS2777G_PROTECTION_REGISTER                             0x00
+#define DS2777G_STATUS_REGISTER                                 0x01
+#define DS2777G_ACCUMULATED_CURRENT_MSB                         0x10
+#define DS2777G_ACCUMULATED_CURRENT_LSB                         0x11
+#define DS2777G_AGE_SCALAR_REGISTER                             0x14
+#define DS2777G_SPECIAL_FEATURE_REGISTER                        0x15
+#define DS2777G_CYCLE_COUNTER_REGISTER                          0x1E
+#define DS2777G_EEPROM_REGISTER                                 0x1F
 // 0x20 to 0x2F <-- User EEPROM Register, Lockable, Block 0.
-#define USER_EEPROM_BYTE_1                              0x20
-#define USER_EEPROM_BYTE_2                              0x21
-#define USER_EEPROM_BYTE_3                              0x22
-#define USER_EEPROM_BYTE_4                              0x23
-#define USER_EEPROM_BYTE_5                              0x24
-#define USER_EEPROM_BYTE_6                              0x25
-#define USER_EEPROM_BYTE_7                              0x26
-#define USER_EEPROM_BYTE_8                              0x27
-#define USER_EEPROM_BYTE_9                              0x28
-#define USER_EEPROM_BYTE_10                             0x29
-#define USER_EEPROM_BYTE_11                             0x2A
-#define USER_EEPROM_BYTE_12                             0x2B
-#define USER_EEPROM_BYTE_13                             0x2C
-#define USER_EEPROM_BYTE_14                             0x2D
-#define USER_EEPROM_BYTE_15                             0x2E
-#define USER_EEPROM_BYTE_16                             0x2F
+#define DS2777G_USER_EEPROM_BYTE_1                              0x20
+#define DS2777G_USER_EEPROM_BYTE_2                              0x21
+#define DS2777G_USER_EEPROM_BYTE_3                              0x22
+#define DS2777G_USER_EEPROM_BYTE_4                              0x23
+#define DS2777G_USER_EEPROM_BYTE_5                              0x24
+#define DS2777G_USER_EEPROM_BYTE_6                              0x25
+#define DS2777G_USER_EEPROM_BYTE_7                              0x26
+#define DS2777G_USER_EEPROM_BYTE_8                              0x27
+#define DS2777G_USER_EEPROM_BYTE_9                              0x28
+#define DS2777G_USER_EEPROM_BYTE_10                             0x29
+#define DS2777G_USER_EEPROM_BYTE_11                             0x2A
+#define DS2777G_USER_EEPROM_BYTE_12                             0x2B
+#define DS2777G_USER_EEPROM_BYTE_13                             0x2C
+#define DS2777G_USER_EEPROM_BYTE_14                             0x2D
+#define DS2777G_USER_EEPROM_BYTE_15                             0x2E
+#define DS2777G_USER_EEPROM_BYTE_16                             0x2F
 // 0x60 to 0x80 <-- Parameter EEPROM Register, Lockable, Block 1.
-#define CONTROL_REGISTER                                0x60
-#define ACCUMULATION_BIAS_REGISTER                      0x61
-#define AGING_CAPACITY_REGISTER_MSB                     0x62
-#define AGING_CAPACITY_REGISTER_LSB                     0x63
-#define CHARGE_VOLTAGE_REGISTER                         0x64
-#define MINIMUN_CHARGE_CURRENT_REGISTER                 0x65
-#define ACTIVE_EMPTY_VOLTAGE_REGISTER                   0x66
-#define ACTIVE_EMPTY_CURRENT_REGISTER                   0x67
-#define ACTIVE_EMPTY_40_REGISTER                        0x68
-#define SENSE_RESISTOR_PRIME_REGISTER                   0x69
-#define FULL_40_MSB_REGISTER                            0x6A
-#define FULL_40_LSB_REGISTER                            0x6B
-#define FULL_SEGMENTE_4_SLOPE_REGISTER                  0x6C
-#define FULL_SEGMENTE_3_SLOPE_REGISTER                  0x6D
-#define FULL_SEGMENTE_2_SLOPE_REGISTER                  0x6E
-#define FULL_SEGMENTE_1_SLOPE_REGISTER                  0x6F
-#define AE_SEGMENTE_4_SLOPE_REGISTER                    0x70
-#define AE_SEGMENTE_3_SLOPE_REGISTER                    0x71
-#define AE_SEGMENTE_2_SLOPE_REGISTER                    0x72
-#define AE_SEGMENTE_1_SLOPE_REGISTER                    0x73
-#define SE_SEGMENTE_4_SLOPE_REGISTER                    0x74
-#define SE_SEGMENTE_3_SLOPE_REGISTER                    0x75
-#define SE_SEGMENTE_2_SLOPE_REGISTER                    0x76
-#define SE_SEGMENTE_1_SLOPE_REGISTER                    0x77
-#define SENSE_RESISTOR_GAIN_REGISTER_MSB                0x78
-#define SENSE_RESISTOR_GAIN_REGISTER_LSB                0x79
-#define SENSE_RESISTOR_TEMPERATURE_COEFFICIENT_REGISTER 0x7A
-#define CURRENT_OFFSET_BIAS_REGISTER                    0x7B
-#define TBP34_REGISTER                                  0x7C
-#define TBP23_REGISTER                                  0x7D
-#define TBP12_REGISTER                                  0x7E
-#define PROTECTOR_THRESHOLD_REGISTER                    0x7F
-#define TWO_WIRE_SLAVE_ADDRESS_REGISTER                 0x80
+#define DS2777G_CONTROL_REGISTER                                0x60
+#define DS2777G_ACCUMULATION_BIAS_REGISTER                      0x61
+#define DS2777G_AGING_CAPACITY_REGISTER_MSB                     0x62
+#define DS2777G_AGING_CAPACITY_REGISTER_LSB                     0x63
+#define DS2777G_CHARGE_VOLTAGE_REGISTER                         0x64
+#define DS2777G_MINIMUN_CHARGE_CURRENT_REGISTER                 0x65
+#define DS2777G_ACTIVE_EMPTY_VOLTAGE_REGISTER                   0x66
+#define DS2777G_ACTIVE_EMPTY_CURRENT_REGISTER                   0x67
+#define DS2777G_ACTIVE_EMPTY_40_REGISTER                        0x68
+#define DS2777G_SENSE_RESISTOR_PRIME_REGISTER                   0x69
+#define DS2777G_FULL_40_MSB_REGISTER                            0x6A
+#define DS2777G_FULL_40_LSB_REGISTER                            0x6B
+#define DS2777G_FULL_SEGMENTE_4_SLOPE_REGISTER                  0x6C
+#define DS2777G_FULL_SEGMENTE_3_SLOPE_REGISTER                  0x6D
+#define DS2777G_FULL_SEGMENTE_2_SLOPE_REGISTER                  0x6E
+#define DS2777G_FULL_SEGMENTE_1_SLOPE_REGISTER                  0x6F
+#define DS2777G_AE_SEGMENTE_4_SLOPE_REGISTER                    0x70
+#define DS2777G_AE_SEGMENTE_3_SLOPE_REGISTER                    0x71
+#define DS2777G_AE_SEGMENTE_2_SLOPE_REGISTER                    0x72
+#define DS2777G_AE_SEGMENTE_1_SLOPE_REGISTER                    0x73
+#define DS2777G_SE_SEGMENTE_4_SLOPE_REGISTER                    0x74
+#define DS2777G_SE_SEGMENTE_3_SLOPE_REGISTER                    0x75
+#define DS2777G_SE_SEGMENTE_2_SLOPE_REGISTER                    0x76
+#define DS2777G_SE_SEGMENTE_1_SLOPE_REGISTER                    0x77
+#define DS2777G_SENSE_RESISTOR_GAIN_REGISTER_MSB                0x78
+#define DS2777G_SENSE_RESISTOR_GAIN_REGISTER_LSB                0x79
+#define DS2777G_SENSE_RESISTOR_TEMPERATURE_COEFFICIENT_REGISTER 0x7A
+#define DS2777G_CURRENT_OFFSET_BIAS_REGISTER                    0x7B
+#define DS2777G_TBP34_REGISTER                                  0x7C
+#define DS2777G_TBP23_REGISTER                                  0x7D
+#define DS2777G_TBP12_REGISTER                                  0x7E
+#define DS2777G_PROTECTOR_THRESHOLD_REGISTER                    0x7F
+#define DS2777G_TWO_WIRE_SLAVE_ADDRESS_REGISTER                 0x80
 // Read registers.
-#define RAAC_REGISTER_MSB                               0x02
-#define RAAC_REGISTER_LSB                               0x03
-#define RSAC_REGISTER_MSB                               0x04
-#define RSAC_REGISTER_LSB                               0x05
-#define RARC_REGISTER                                   0x06
-#define RSRC_REGISTER                                   0x07
-#define AVERAGE_CURRENT_REGISTER_MSB                    0x08
-#define AVERAGE_CURRENT_REGISTER_LSB                    0x09
-#define TEMPERATURE_REGISTER_MSB                        0x0A
-#define TEMPERATURE_REGISTER_LSB                        0x0B
-#define VOLTAGE_REGISTER_MSB_Vin1_Vss                   0x0C
-#define VOLTAGE_REGISTER_LSB_Vin1_Vss                   0x0D
-#define CURRENT_REGISTER_MSB                            0x0E
-#define CURRENT_REGISTER_LSB                            0x0F
-#define ACCUMULATED_CURRENT_LSB_MINUS_1                 0x12
-#define ACCUMULATED_CURRENT_LSB_MINUS_2                 0x13
-#define FULL_REGISTER_MSB                               0x16
-#define FULL_REGISTER_LSB                               0x17
-#define ACTIVE_EMPTY_REGISTER_MSB                       0x18
-#define ACTIVE_EMPTY_REGISTER_LSB                       0x19
-#define STANDBY_EMPTY_REGISTER_MSB                      0x1A
-#define STANDBY_EMPTY_REGISTER_LSB                      0x1B
-#define VOLTAGE_REGISTER_MSB_Vin2_Vin1                  0x1C
-#define VOLTAGE_REGISTER_LSB_Vin2_Vin1                  0x1D
-#define FACTORY_GAIN_RSGAIN_REGISTER_MSB                0xB0
-#define FACTORY_GAIN_RSGAIN_REGISTER_LSB                0xB1
+#define DS2777G_RAAC_REGISTER_MSB                               0x02
+#define DS2777G_RAAC_REGISTER_LSB                               0x03
+#define DS2777G_RSAC_REGISTER_MSB                               0x04
+#define DS2777G_RSAC_REGISTER_LSB                               0x05
+#define DS2777G_RARC_REGISTER                                   0x06
+#define DS2777G_RSRC_REGISTER                                   0x07
+#define DS2777G_AVERAGE_CURRENT_REGISTER_MSB                    0x08
+#define DS2777G_AVERAGE_CURRENT_REGISTER_LSB                    0x09
+#define DS2777G_TEMPERATURE_REGISTER_MSB                        0x0A
+#define DS2777G_TEMPERATURE_REGISTER_LSB                        0x0B
+#define DS2777G_VOLTAGE_REGISTER_MSB_Vin1_Vss                   0x0C
+#define DS2777G_VOLTAGE_REGISTER_LSB_Vin1_Vss                   0x0D
+#define DS2777G_CURRENT_REGISTER_MSB                            0x0E
+#define DS2777G_CURRENT_REGISTER_LSB                            0x0F
+#define DS2777G_ACCUMULATED_CURRENT_LSB_MINUS_1                 0x12
+#define DS2777G_ACCUMULATED_CURRENT_LSB_MINUS_2                 0x13
+#define DS2777G_FULL_REGISTER_MSB                               0x16
+#define DS2777G_FULL_REGISTER_LSB                               0x17
+#define DS2777G_ACTIVE_EMPTY_REGISTER_MSB                       0x18
+#define DS2777G_ACTIVE_EMPTY_REGISTER_LSB                       0x19
+#define DS2777G_STANDBY_EMPTY_REGISTER_MSB                      0x1A
+#define DS2777G_STANDBY_EMPTY_REGISTER_LSB                      0x1B
+#define DS2777G_VOLTAGE_REGISTER_MSB_Vin2_Vin1                  0x1C
+#define DS2777G_VOLTAGE_REGISTER_LSB_Vin2_Vin1                  0x1D
+#define DS2777G_FACTORY_GAIN_RSGAIN_REGISTER_MSB                0xB0
+#define DS2777G_FACTORY_GAIN_RSGAIN_REGISTER_LSB                0xB1
 // Write registers.
-#define TWO_WIRE_COMMAND_REGISTER                       0xFE
+#define DS2777G_TWO_WIRE_COMMAND_REGISTER                       0xFE
 
 /**
  * @brief Function commands.
  */
-#define COPY_DATA_USER_EEPROM                           0x42
-#define COPY_DATA_PARAMETER_EEPROM                      0x44
-#define RECALL_DATA_USER_EEPROM                         0xB2
-#define RECALL_DATA_PARAMETER_EEPROM                    0xB4
-#define LOCK_USER_EEPROM                                0x63
-#define LOCK_PARAMETER_EEPROM                           0x66
-#define READ_ROM_ID                                     0x39
+#define DS2777G_COPY_DATA_USER_EEPROM                           0x42
+#define DS2777G_COPY_DATA_PARAMETER_EEPROM                      0x44
+#define DS2777G_RECALL_DATA_USER_EEPROM                         0xB2
+#define DS2777G_RECALL_DATA_PARAMETER_EEPROM                    0xB4
+#define DS2777G_LOCK_USER_EEPROM                                0x63
+#define DS2777G_LOCK_PARAMETER_EEPROM                           0x66
+#define DS2777G_READ_ROM_ID                                     0x39
 
 /**
  * @brief Register specific bit mask.
  */
 // Protection register.
-#define CHARGE_CONTROL_FLAG                             (1 << 3)
-#define DISCHARGE_CONTROL_FLAG                          (1 << 2)
-#define CHARGE_ENABLE_BIT                               (1 << 1)
-#define DISCHARGE_ENABLE_BIT                            (1 << 0)
+#define DS2777G_CHARGE_CONTROL_FLAG                             (1 << 3)
+#define DS2777G_DISCHARGE_CONTROL_FLAG                          (1 << 2)
+#define DS2777G_CHARGE_ENABLE_BIT                               (1 << 1)
+#define DS2777G_DISCHARGE_ENABLE_BIT                            (1 << 0)
 
 typedef struct
 {
@@ -209,26 +211,96 @@ int ds2777g_disable_charge(ds2777g_config_t config);
 int ds2777g_disable_discharge(ds2777g_config_t config);
 
 /**
+ * @brief Get the raw voltage in two's complement form from the DS2777G.
+ * 
+ * @param config DS2777G configuration parameters.
+ * @param voltage_raw The raw voltage value.
+ * @param battery_select Must be either 1 or 2.
+ * @return int The status/error code.
+ */
+int ds2777g_read_voltage_raw(ds2777g_config_t config, int16_t *voltage_raw, uint8_t battery_select);
+
+/**
+ * @brief Convert from raw data to mV.
+ * 
+ * Resolution: 4.8828mV. Goes from -5000mV to 4995.1mV
+ * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
+ *                       MSB                      |                    LSB              
+ * 
+ * @param raw The raw voltage value.
+ * @return float Converted voltage in mV.
+ */
+int16_t ds2777g_voltage_raw_to_mv(int16_t raw);
+
+/**
+ * @brief Get the voltage in mV from one of the batteries connected to the DS2777G.
+ * 
+ * @param config DS2777G configuration parameters.
+ * @param voltage_mv Voltage in mV.
+ * @param battery_select Must be either 1 or 2.
+ * @return int The status/error code.
+ */
+int ds2777g_read_voltage_mv(ds2777g_config_t config, int16_t *voltage_mv, uint8_t battery_select);
+
+/**
+ * @brief Get the raw temperature in two's complement form from the DS2777G.
+ * 
+ * @param config DS2777G configuration parameters.
+ * @param temp_raw The raw temperature value.
+ * @return int The status/error code.
+ */
+int ds2777g_read_temperature_raw(ds2777g_config_t config, int16_t *temp_raw);
+
+/**
+ * @brief Convert from raw data to celsius.
+ * 
+ * Resolution: 0.125 degrees celsius.
+ * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
+ *                       MSB                      |                    LSB              
+ * 
+ * @param raw The raw temperature value.
+ * @return float Converted temperature in celsius.
+ */
+float ds2777g_temperature_raw_to_celsius(int16_t raw);
+
+/**
  * @brief Get the temperature in celsius from the DS2777G.
  * 
  * @param config DS2777G configuration parameters.
- * @param valid Tell whether the read value is valid (1 valid, 0 not valid).
- * @return float Temperature in celsius (0xFFFF if error).
+ * @param temp_celsius Temperature in celsius.
+ * @return int The status/error code.
  */
-float ds2777g_read_temperature(ds2777g_config_t config, bool *valid);
+int ds2777g_read_temperature_celsius(ds2777g_config_t config, float *temp_celsius);
 
 /**
- * @brief Reads both temperature registers (MSB and LSB).
- * 
- * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
- *                       MSB                      |                    LSB              
- * Resolution: 0.125 degree C.
+ * @brief Get the raw current in two's complement form from the DS2777G.
  * 
  * @param config DS2777G configuration parameters.
- * @param temperature Pointer to store the raw value.
- * @return int 
+ * @param current_raw The raw current value.
+ * @param read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
+ * @return int The status/error code.
  */
-int ds2777g_read_temperature_raw(ds2777g_config_t config, int16_t *temp_raw);
+int ds2777g_read_current_raw(ds2777g_config_t config, int16_t *current_raw, bool read_average);
+
+/**
+ * @brief Convert from raw data to mA.
+ * 
+ * Resolution: 1.5625uV/R_sense. Goes from -51.2mV/R_sense to 51.2mV/R_sense.
+ * 
+ * @param raw The raw current value.
+ * @return int16_t Converted current in mA.
+ */
+int16_t ds2777g_current_raw_to_ma(int16_t raw);
+
+/**
+ * @brief Get the voltage in mA from the DS2777G (instantaneous or average from last eight).
+ * 
+ * @param config DS2777G configuration parameters.
+ * @param current_ma Current in mA.
+ * @param read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
+ * @return int The status/error code.
+ */
+int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool read_average);
 
 /**
  * \brief Write-Data Protocol
