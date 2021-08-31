@@ -201,6 +201,7 @@ int ds2777g_read_current_raw(ds2777g_config_t config, int16_t *current_raw, bool
     {
         res = ds2777g_read_data(config, DS2777G_CURRENT_REGISTER_MSB, buf, 2);
     }
+    *current_raw = (uint16_t)((buf[1] << 8) + buf[0]);
     return res;
 }
 
@@ -223,6 +224,37 @@ int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool r
     }
 
     *current_ma = ds2777g_current_raw_to_ma(current_raw);
+    return res;
+}
+
+int ds2777g_read_accumulated_current_raw(ds2777g_config_t config, uint16_t *acc_current_raw)
+{
+    int res = -1;
+    uint8_t buf[2];
+    res = ds2777g_read_data(config, DS2777G_ACCUMULATED_CURRENT_MSB, buf, 2);
+    *acc_current_raw = (uint16_t)((buf[1] << 8) + buf[0]);
+    return res;
+}
+
+uint16_t ds2777g_accumulated_current_raw_to_mah(uint16_t raw)
+{
+    return raw * (6.25 / 1000) / (DS2777G_RSENSE);
+}
+
+int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_current_mah)
+{
+    int res = -1;
+    uint16_t acc_current_raw = 0;
+
+    res = ds2777g_read_accumulated_current_raw(config, &acc_current_raw);
+    if (res != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, DS2777G_MODULE_NAME, "Error reading the raw accumulated current value!");
+        sys_log_new_line();
+        return res;
+    }
+
+    *acc_current_mah = ds2777g_current_raw_to_ma(acc_current_raw);
     return res;
 }
 

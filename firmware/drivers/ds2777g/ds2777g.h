@@ -293,7 +293,7 @@ int ds2777g_read_current_raw(ds2777g_config_t config, int16_t *current_raw, bool
 int16_t ds2777g_current_raw_to_ma(int16_t raw);
 
 /**
- * @brief Get the voltage in mA from the DS2777G (instantaneous or average from last eight).
+ * @brief Get the current in mA from the DS2777G (instantaneous or average from last eight).
  * 
  * @param config DS2777G configuration parameters.
  * @param current_ma Current in mA.
@@ -301,6 +301,34 @@ int16_t ds2777g_current_raw_to_ma(int16_t raw);
  * @return int The status/error code.
  */
 int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool read_average);
+
+/**
+ * @brief Get the raw accumulated current in two's complement form from the DS2777G.
+ * 
+ * @param config DS2777G configuration parameters.
+ * @param current_raw The raw accumulated current value.
+ * @return int The status/error code.
+ */
+int ds2777g_read_accumulated_current_raw(ds2777g_config_t config, uint16_t *acc_current_raw);
+
+/**
+ * @brief Convert from raw data to mAh.
+ * 
+ * Resolution: 6.25uVh/R_sense. Goes from 0 to 409.6mVh/R_sense.
+ * 
+ * @param raw The raw accumulated current value.
+ * @return uint16_t Converted accumulated current in mAh.
+ */
+uint16_t ds2777g_accumulated_current_raw_to_mah(uint16_t raw);
+
+/**
+ * @brief Get the accumulated current in mAh from the DS2777G.
+ * 
+ * @param config DS2777G configuration parameters.
+ * @param current_ma Accumulated current in mAh.
+ * @return int The status/error code.
+ */
+int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_current_mah);
 
 /**
  * \brief Write-Data Protocol
