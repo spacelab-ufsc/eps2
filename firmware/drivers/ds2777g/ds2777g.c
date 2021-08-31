@@ -34,6 +34,7 @@
  */
 
 #include <stdio.h>
+#include <config/config.h>
 #include <system/sys_log/sys_log.h>
 #include "ds2777g.h"
 
@@ -225,6 +226,29 @@ int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool r
 
     *current_ma = ds2777g_current_raw_to_ma(current_raw);
     return res;
+}
+
+int ds2777g_write_accumulated_current_raw(ds2777g_config_t config, uint16_t acc_current_raw)
+{
+    int res = -1;
+    uint8_t buf[3] = {DS2777G_ACCUMULATED_CURRENT_MSB, ((uint8_t)(acc_current_raw >> 8)), ((uint8_t)acc_current_raw)};
+    res = ds2777g_write_data(config, buf, 3);
+    return res;
+}
+
+uint16_t ds2777g_accumulated_current_mah_to_raw(uint16_t mah)
+{
+    return mah * (DS2777G_RSENSE) / (6.25 / 1000);
+}
+
+int ds2777g_write_accumulated_current_mah(ds2777g_config_t config, uint16_t acc_current_mah)
+{
+    return ds2777g_write_accumulated_current_raw(config, ds2777g_accumulated_current_mah_to_raw(acc_current_mah));
+}
+
+int ds2777g_write_accumulated_current_max_value(ds2777g_config_t config)
+{
+    return ds2777g_write_accumulated_current_mah(config, MAX_BATTERY_CHARGE);
 }
 
 int ds2777g_read_accumulated_current_raw(ds2777g_config_t config, uint16_t *acc_current_raw)

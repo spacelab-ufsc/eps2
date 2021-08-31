@@ -23,7 +23,7 @@
 /**
  * \brief DS2777G+ driver definition.
  * 
- * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \author Vinicius Pimenta Bernardo <viniciuspibi\gmail.com>
  * 
  * \version 0.2.0
  * 
@@ -145,7 +145,7 @@
 #define DS2777G_TWO_WIRE_COMMAND_REGISTER                       0xFE
 
 /**
- * @brief Function commands.
+ * \brief Function commands.
  */
 #define DS2777G_COPY_DATA_USER_EEPROM                           0x42
 #define DS2777G_COPY_DATA_PARAMETER_EEPROM                      0x44
@@ -156,7 +156,7 @@
 #define DS2777G_READ_ROM_ID                                     0x39
 
 /**
- * @brief Register specific bit mask.
+ * \brief Register specific bit mask.
  */
 // Protection register.
 #define DS2777G_CHARGE_CONTROL_FLAG                             (1 << 3)
@@ -173,160 +173,194 @@ typedef struct
 /**
  * \brief
  * 
- * \param config DS2777G configuration parameters.
+ * \param[in] config DS2777G configuration parameters.
  * \return int The status/error code.
  */
 int ds2777g_init(ds2777g_config_t config);
 
 /**
- * @brief Set charge enable bit in protection register.
+ * \brief Set charge enable bit in protection register.
  * 
- * @param config DS2777G configuration parameters.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \return int The status/error code.
  */
 int ds2777g_enable_charge(ds2777g_config_t config);
 
 /**
- * @brief Set discharge enable bit in protection register.
+ * \brief Set discharge enable bit in protection register.
  * 
- * @param config DS2777G configuration parameters.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \return int The status/error code.
  */
 int ds2777g_enable_discharge(ds2777g_config_t config);
 
 /**
- * @brief Reset charge enable bit in protection register.
+ * \brief Reset charge enable bit in protection register.
  * 
- * @param config DS2777G configuration parameters.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \return int The status/error code.
  */
 int ds2777g_disable_charge(ds2777g_config_t config);
 
 /**
- * @brief Reset discharge enable bit in protection register.
+ * \brief Reset discharge enable bit in protection register.
  * 
- * @param config DS2777G configuration parameters.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \return int The status/error code.
  */
 int ds2777g_disable_discharge(ds2777g_config_t config);
 
 /**
- * @brief Get the raw voltage in two's complement form from the DS2777G.
+ * \brief Get the raw voltage in two's complement form from the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param voltage_raw The raw voltage value.
- * @param battery_select Must be either 1 or 2.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] voltage_raw The raw voltage value.
+ * \param[in] battery_select Must be either 1 or 2.
+ * \return int The status/error code.
  */
 int ds2777g_read_voltage_raw(ds2777g_config_t config, int16_t *voltage_raw, uint8_t battery_select);
 
 /**
- * @brief Convert from raw data to mV.
+ * \brief Convert from raw data to mV.
  * 
  * Resolution: 4.8828mV. Goes from -5000mV to 4995.1mV
  * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
  *                       MSB                      |                    LSB              
  * 
- * @param raw The raw voltage value.
- * @return float Converted voltage in mV.
+ * \param[in] raw The raw voltage value.
+ * \return float Converted voltage in mV.
  */
 int16_t ds2777g_voltage_raw_to_mv(int16_t raw);
 
 /**
- * @brief Get the voltage in mV from one of the batteries connected to the DS2777G.
+ * \brief Get the voltage in mV from one of the batteries connected to the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param voltage_mv Voltage in mV.
- * @param battery_select Must be either 1 or 2.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] voltage_mv Voltage in mV.
+ * \param[in] battery_select Must be either 1 or 2.
+ * \return int The status/error code.
  */
 int ds2777g_read_voltage_mv(ds2777g_config_t config, int16_t *voltage_mv, uint8_t battery_select);
 
 /**
- * @brief Get the raw temperature in two's complement form from the DS2777G.
+ * \brief Get the raw temperature in two's complement form from the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param temp_raw The raw temperature value.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] temp_raw The raw temperature value.
+ * \return int The status/error code.
  */
 int ds2777g_read_temperature_raw(ds2777g_config_t config, int16_t *temp_raw);
 
 /**
- * @brief Convert from raw data to celsius.
+ * \brief Convert from raw data to celsius.
  * 
  * Resolution: 0.125 degrees celsius.
  * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
  *                       MSB                      |                    LSB              
  * 
- * @param raw The raw temperature value.
- * @return float Converted temperature in celsius.
+ * \param[in] raw The raw temperature value.
+ * \return float Converted temperature in celsius.
  */
 float ds2777g_temperature_raw_to_celsius(int16_t raw);
 
 /**
- * @brief Get the temperature in celsius from the DS2777G.
+ * \brief Get the temperature in celsius from the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param temp_celsius Temperature in celsius.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] temp_celsius Temperature in celsius.
+ * \return int The status/error code.
  */
 int ds2777g_read_temperature_celsius(ds2777g_config_t config, float *temp_celsius);
 
 /**
- * @brief Get the raw current in two's complement form from the DS2777G.
+ * \brief Get the raw current in two's complement form from the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param current_raw The raw current value.
- * @param read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] current_raw The raw current value.
+ * \param[in] read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
+ * \return int The status/error code.
  */
 int ds2777g_read_current_raw(ds2777g_config_t config, int16_t *current_raw, bool read_average);
 
 /**
- * @brief Convert from raw data to mA.
+ * \brief Convert from raw data to mA.
  * 
  * Resolution: 1.5625uV/R_sense. Goes from -51.2mV/R_sense to 51.2mV/R_sense.
  * 
- * @param raw The raw current value.
- * @return int16_t Converted current in mA.
+ * \param[in] raw The raw current value.
+ * \return int16_t Converted current in mA.
  */
 int16_t ds2777g_current_raw_to_ma(int16_t raw);
 
 /**
- * @brief Get the current in mA from the DS2777G (instantaneous or average from last eight).
+ * \brief Get the current in mA from the DS2777G (instantaneous or average from last eight).
  * 
- * @param config DS2777G configuration parameters.
- * @param current_ma Current in mA.
- * @param read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] current_ma Current in mA.
+ * \param[in] read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
+ * \return int The status/error code.
  */
 int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool read_average);
 
 /**
- * @brief Get the raw accumulated current in two's complement form from the DS2777G.
+ * \brief Write the raw accumulated current in two's complement form to the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param current_raw The raw accumulated current value.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in] acc_current_raw The raw accumulated current value to write.
+ * \return int The status/error code.
+ */
+int ds2777g_write_accumulated_current_raw(ds2777g_config_t config, uint16_t acc_current_raw);
+
+/**
+ * \brief Convert from mAh data to raw.
+ * 
+ * \param[in] mah The mAh accumulated current value.
+ * \return uint16_t Converted raw accumulated current value.
+ */
+uint16_t ds2777g_accumulated_current_mah_to_raw(uint16_t mah);
+
+/**
+ * \brief Write the accumulated current in mAh to the DS2777G.
+ * 
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in] acc_current_mah Accumulated current in mAh.
+ * \return int The status/error code.
+ */
+int ds2777g_write_accumulated_current_mah(ds2777g_config_t config, uint16_t acc_current_mah);
+
+/**
+ * \brief Write the battery max charge value in mAh to the DS2777G.
+ * 
+ * \param[in] config DS2777G configuration parameters.
+ * \return int The status/error code.
+ */
+int ds2777g_write_accumulated_current_max_value(ds2777g_config_t config);
+
+/**
+ * \brief Get the raw accumulated current in two's complement form from the DS2777G.
+ * 
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] acc_current_raw The raw accumulated current value.
+ * \return int The status/error code.
  */
 int ds2777g_read_accumulated_current_raw(ds2777g_config_t config, uint16_t *acc_current_raw);
 
 /**
- * @brief Convert from raw data to mAh.
+ * \brief Convert from raw data to mAh.
  * 
  * Resolution: 6.25uVh/R_sense. Goes from 0 to 409.6mVh/R_sense.
  * 
- * @param raw The raw accumulated current value.
- * @return uint16_t Converted accumulated current in mAh.
+ * \param[in] raw The raw accumulated current value.
+ * \return uint16_t Converted accumulated current in mAh.
  */
 uint16_t ds2777g_accumulated_current_raw_to_mah(uint16_t raw);
 
 /**
- * @brief Get the accumulated current in mAh from the DS2777G.
+ * \brief Get the accumulated current in mAh from the DS2777G.
  * 
- * @param config DS2777G configuration parameters.
- * @param current_ma Accumulated current in mAh.
- * @return int The status/error code.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] acc_current_mah Accumulated current in mAh.
+ * \return int The status/error code.
  */
 int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_current_mah);
 
@@ -335,22 +369,22 @@ int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_
  * 
  * Start SAddr MAddr Data0 Data1 ... DataN Stop
  * 
- * \param config DS2777G configuration parameters.
- * \param data Data to write. First byte must be target register address.
- * \param len Length of the data to write, including target register.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in] data Data to write. First byte must be target register address.
+ * \param[in] len Length of the data to write, including target register.
  * \return int The status/error code.
  */
 int ds2777g_write_data(ds2777g_config_t config, uint8_t *data, uint16_t len);
 
 /**
- * @brief 
+ * \brief 
  * 
  * Start SAddr MAddr StartRepeat SAddr Data0 Data1 ... DataN Stop
  * 
- * \param config DS2777G configuration parameters.
- * \param target_reg Target register to read from.
- * \param data Pointer to store data read.
- * \param len Length of the data do read.
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in] target_reg Target register to read from.
+ * \param[in,out] data Pointer to store data read.
+ * \param[in] len Length of the data do read.
  * \return int The status/error code.
  */
 int ds2777g_read_data(ds2777g_config_t config, uint8_t target_reg, uint8_t *data, uint16_t len);
