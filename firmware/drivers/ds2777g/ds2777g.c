@@ -206,7 +206,7 @@ int ds2777g_read_current_raw(ds2777g_config_t config, int16_t *current_raw, bool
 
 int16_t ds2777g_current_raw_to_ma(int16_t raw)
 {
-    return raw * (1.5625 * 1000) / (DS2777G_RSENSE);
+    return raw * (1.5625 / 1000) / (DS2777G_RSENSE);
 }
 
 int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool read_average)
