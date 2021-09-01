@@ -282,6 +282,24 @@ int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_
     return res;
 }
 
+int ds2777g_write_cycle_counter(ds2777g_config_t config, uint16_t cycles)
+{
+    int res = 1;
+    if(cycles > 510) { cycles = 510; }
+    uint8_t buf[2] = {DS2777G_CYCLE_COUNTER_REGISTER, (uint8_t)(cycles >> 1)}; // shift right to divide by two.
+    res = ds2777g_write_data(config, buf, 2);
+    return res;
+}
+
+int ds2777g_read_cycle_counter(ds2777g_config_t config, uint16_t *cycles)
+{
+    int res = -1;
+    uint8_t buf[1];
+    res = ds2777g_read_data(config, DS2777G_CYCLE_COUNTER_REGISTER, buf, 1);
+    *cycles = ((uint16_t)buf) << 1; // shift left to multiply by two.
+    return res;
+}
+
 int ds2777g_write_data(ds2777g_config_t config, uint8_t *data, const uint16_t len)
 {
     int res = -1;

@@ -365,6 +365,24 @@ uint16_t ds2777g_accumulated_current_raw_to_mah(uint16_t raw);
 int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_current_mah);
 
 /**
+ * \brief Write number of cycles to the DS2777G.
+ * 
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in] cycles The number of cycles to write. Goes from 0 to 510.
+ * \return int The status/error code.
+ */
+int ds2777g_write_cycle_counter(ds2777g_config_t config, uint16_t cycles);
+
+/**
+ * \brief Read number of cycles from the DS2777G.
+ * 
+ * \param[in] config DS2777G configuration parameters.
+ * \param[in,out] cycles The number of cycles to write. Goes from 0 to 510.
+ * \return int The status/error code.
+ */
+int ds2777g_read_cycle_counter(ds2777g_config_t config, uint16_t *cycles);
+
+/**
  * \brief Write-Data Protocol
  * 
  * Start SAddr MAddr Data0 Data1 ... DataN Stop
