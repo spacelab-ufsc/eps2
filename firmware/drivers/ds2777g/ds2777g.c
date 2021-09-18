@@ -41,100 +41,86 @@
 int ds2777g_init(ds2777g_config_t config)
 {
     /* Protection register configuration. */
-    int res = -1;
-    res = ds2777g_enable_charge(config);
-    if (res != 0) {return res;}
-    res = ds2777g_enable_discharge(config);
-    if (res != 0) {return res;}
+    if (ds2777g_enable_charge(config) != 0) {return -1;}
+    if (ds2777g_enable_discharge(config) != 0) {return -1;}
 
     /* Control register configuration. */
     // Check if already set correctly from EEPROM on power-up.
     uint8_t control_register_current_value[1];
-    res = ds2777g_read_data(config, DS2777G_CONTROL_REGISTER, control_register_current_value, 1);
-    if (res != 0) {return res;}
+    if (ds2777g_read_data(config, DS2777G_CONTROL_REGISTER, control_register_current_value, 1) != 0) {return -1;}
     if (control_register_current_value[0] != 0x0C)
     {
         // Write to control register.
         uint8_t buf[2] = {DS2777G_CONTROL_REGISTER, 0x0C}; // <-- Sets undervoltage treshold to 2.60V.
-        res = ds2777g_write_data(config, buf, 2);
-        if (res != 0) {return res;}
+        if (ds2777g_write_data(config, buf, 2) != 0) {return -1;}
         // Copy from shadow RAM to EEPROM.
         buf[0] = DS2777G_COPY_DATA_PARAMETER_EEPROM;
-        ds2777g_write_data(config, buf, 1);
-        if (res != 0) {return res;}
+        if (ds2777g_write_data(config, buf, 1) != 0) {return -1;}
     }
 
-    /* TO DO. */
-
-    return -1;
+    return 0;
 }
 
 int ds2777g_enable_charge(ds2777g_config_t config)
 {
     uint8_t value = 0;
-    int res = -1;
-    res = ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1);
-    if (res != 0) {return res;}
+    if (ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
 
     uint8_t temp[2] = {DS2777G_PROTECTION_REGISTER, (value | DS2777G_CHARGE_ENABLE_BIT)};
-    res = ds2777g_write_data(config, temp, 2);
-    return res;
+    if (ds2777g_write_data(config, temp, 2) != 0) {return -1;}
+
+    return 0;
 }
 
 int ds2777g_enable_discharge(ds2777g_config_t config)
 {
     uint8_t value = 0;
-    int res = -1;
-    res = ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1);
-    if (res != 0) {return res;}
+    if (ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
 
     uint8_t temp[2] = {DS2777G_PROTECTION_REGISTER, (value | DS2777G_DISCHARGE_ENABLE_BIT)};
-    res = ds2777g_write_data(config, temp, 2);
-    return res;
+    if (ds2777g_write_data(config, temp, 2) != 0) {return -1;}
+    return 0;
 }
 
 int ds2777g_disable_charge(ds2777g_config_t config)
 {
     uint8_t value = 0;
-    int res = -1;
-    res = ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1);
-    if (res != 0) {return res;}
+    if (ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
 
     uint8_t temp[2] = {DS2777G_PROTECTION_REGISTER, (value & (0xFF - DS2777G_CHARGE_ENABLE_BIT))};
-    res = ds2777g_write_data(config, temp, 2);
-    return res;
+    if (ds2777g_write_data(config, temp, 2) != 0) {return -1;}
+
+    return 0;
 }
 
 int ds2777g_disable_discharge(ds2777g_config_t config)
 {
     uint8_t value = 0;
-    int res = -1;
-    res = ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1);
-    if (res != 0) {return res;}
+    if (ds2777g_read_data(config, DS2777G_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
 
     uint8_t temp[2] = {DS2777G_PROTECTION_REGISTER, (value & (0xFF - DS2777G_DISCHARGE_ENABLE_BIT))};
-    res = ds2777g_write_data(config, temp, 2);
-    return res;    
+    if (ds2777g_write_data(config, temp, 2) != 0) {return -1;}
+
+    return 0;
 }
 
 int ds2777g_read_voltage_raw(ds2777g_config_t config, int16_t *voltage_raw, uint8_t battery_select)
 {
-    int res = -1;
     uint8_t buf[2];
     if (battery_select == 1)
     {
-        res = ds2777g_read_data(config, DS2777G_VOLTAGE_REGISTER_MSB_Vin1_Vss, buf, 2);
+        if (ds2777g_read_data(config, DS2777G_VOLTAGE_REGISTER_MSB_Vin1_Vss, buf, 2) != 0) {return -1;}
     }
     else if (battery_select == 2)
     {
-        res = ds2777g_read_data(config, DS2777G_VOLTAGE_REGISTER_MSB_Vin2_Vin1, buf, 2);
+        if (ds2777g_read_data(config, DS2777G_VOLTAGE_REGISTER_MSB_Vin2_Vin1, buf, 2) != 0) {return -1;}
     }
     else{
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS2777G_MODULE_NAME, "Invalid value for battery number. (Must either 1 or 2)");
-        return res;
+        return -1;
     }
     *voltage_raw = ((int16_t)((buf[1] << 8) + buf[0])) >> 5;
-    return res;
+    return 0;
 }
 
 int16_t ds2777g_voltage_raw_to_mv(int16_t raw)
@@ -144,28 +130,25 @@ int16_t ds2777g_voltage_raw_to_mv(int16_t raw)
 
 int ds2777g_read_voltage_mv(ds2777g_config_t config, int16_t *voltage_mv, uint8_t battery_select)
 {
-    int res = -1;
     int16_t voltage_raw = 0;
 
-    res = ds2777g_read_voltage_raw(config, &voltage_raw, battery_select);
-    if (res != 0)
+    if (ds2777g_read_voltage_raw(config, &voltage_raw, battery_select) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS2777G_MODULE_NAME, "Error reading the raw voltage value!");
         sys_log_new_line();
-        return res;
+        return -1;
     }
 
     *voltage_mv = ds2777g_voltage_raw_to_mv(voltage_raw);
-    return res;
+    return 0;
 }
 
 int ds2777g_read_temperature_raw(ds2777g_config_t config, int16_t *temp_raw)
 {
-    int res = -1;
     uint8_t buf[2];
-    res = ds2777g_read_data(config, DS2777G_TEMPERATURE_REGISTER_MSB, buf, 2);
+    if (ds2777g_read_data(config, DS2777G_TEMPERATURE_REGISTER_MSB, buf, 2) != 0) {return -1;}
     *temp_raw = ((int16_t)((buf[1] << 8) + buf[0])) >> 5;
-    return res;
+    return 0;
 }
 
 float ds2777g_temperature_raw_to_celsius(int16_t raw)
@@ -175,35 +158,32 @@ float ds2777g_temperature_raw_to_celsius(int16_t raw)
 
 int ds2777g_read_temperature_celsius(ds2777g_config_t config, float *temp_celsius)
 {
-    int res = -1;
     int16_t temp_raw = 0;
 
-    res = ds2777g_read_temperature_raw(config, &temp_raw);
-    if (res != 0)
+    if (ds2777g_read_temperature_raw(config, &temp_raw) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS2777G_MODULE_NAME, "Error reading the raw temperature value!");
         sys_log_new_line();
-        return res;
+        return -1;
     }
 
     *temp_celsius = ds2777g_temperature_raw_to_celsius(temp_raw);
-    return res;
+    return 0;
 }
 
 int ds2777g_read_current_raw(ds2777g_config_t config, int16_t *current_raw, bool read_average)
 {
-    int res = -1;
     uint8_t buf[2];
     if (read_average == true)
     {
-        res = ds2777g_read_data(config, DS2777G_AVERAGE_CURRENT_REGISTER_MSB, buf, 2);
+        if (ds2777g_read_data(config, DS2777G_AVERAGE_CURRENT_REGISTER_MSB, buf, 2) != 0) {return -1;}
     }
     else /* Read instantaneous instead; */
     {
-        res = ds2777g_read_data(config, DS2777G_CURRENT_REGISTER_MSB, buf, 2);
+        if (ds2777g_read_data(config, DS2777G_CURRENT_REGISTER_MSB, buf, 2) != 0) {return -1;}
     }
     *current_raw = (uint16_t)((buf[1] << 8) + buf[0]);
-    return res;
+    return 0;
 }
 
 int16_t ds2777g_current_raw_to_ma(int16_t raw)
@@ -213,27 +193,24 @@ int16_t ds2777g_current_raw_to_ma(int16_t raw)
 
 int ds2777g_read_current_ma(ds2777g_config_t config, int16_t *current_ma, bool read_average)
 {
-    int res = -1;
     int16_t current_raw = 0;
 
-    res = ds2777g_read_current_raw(config, &current_raw, read_average);
-    if (res != 0)
+    if (ds2777g_read_current_raw(config, &current_raw, read_average) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS2777G_MODULE_NAME, "Error reading the raw current value!");
         sys_log_new_line();
-        return res;
+        return -1;
     }
 
     *current_ma = ds2777g_current_raw_to_ma(current_raw);
-    return res;
+    return 0;
 }
 
 int ds2777g_write_accumulated_current_raw(ds2777g_config_t config, uint16_t acc_current_raw)
 {
-    int res = -1;
     uint8_t buf[3] = {DS2777G_ACCUMULATED_CURRENT_MSB, ((uint8_t)(acc_current_raw >> 8)), ((uint8_t)acc_current_raw)};
-    res = ds2777g_write_data(config, buf, 3);
-    return res;
+    if (ds2777g_write_data(config, buf, 3) != 0) {return -1;}
+    return 0;
 }
 
 uint16_t ds2777g_accumulated_current_mah_to_raw(uint16_t mah)
@@ -253,11 +230,10 @@ int ds2777g_write_accumulated_current_max_value(ds2777g_config_t config)
 
 int ds2777g_read_accumulated_current_raw(ds2777g_config_t config, uint16_t *acc_current_raw)
 {
-    int res = -1;
     uint8_t buf[2];
-    res = ds2777g_read_data(config, DS2777G_ACCUMULATED_CURRENT_MSB, buf, 2);
+    if (ds2777g_read_data(config, DS2777G_ACCUMULATED_CURRENT_MSB, buf, 2) != 0) {return -1;}
     *acc_current_raw = (uint16_t)((buf[1] << 8) + buf[0]);
-    return res;
+    return 0;
 }
 
 uint16_t ds2777g_accumulated_current_raw_to_mah(uint16_t raw)
@@ -267,55 +243,46 @@ uint16_t ds2777g_accumulated_current_raw_to_mah(uint16_t raw)
 
 int ds2777g_read_accumulated_current_mah(ds2777g_config_t config, uint16_t *acc_current_mah)
 {
-    int res = -1;
     uint16_t acc_current_raw = 0;
 
-    res = ds2777g_read_accumulated_current_raw(config, &acc_current_raw);
-    if (res != 0)
+    if (ds2777g_read_accumulated_current_raw(config, &acc_current_raw) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS2777G_MODULE_NAME, "Error reading the raw accumulated current value!");
         sys_log_new_line();
-        return res;
+        return -1;
     }
 
     *acc_current_mah = ds2777g_current_raw_to_ma(acc_current_raw);
-    return res;
+    return 0;
 }
 
 int ds2777g_write_cycle_counter(ds2777g_config_t config, uint16_t cycles)
 {
-    int res = 1;
     if(cycles > 510) { cycles = 510; }
     uint8_t buf[2] = {DS2777G_CYCLE_COUNTER_REGISTER, (uint8_t)(cycles >> 1)}; // shift right to divide by two.
-    res = ds2777g_write_data(config, buf, 2);
-    return res;
+    if (ds2777g_write_data(config, buf, 2) != 0) {return -1;}
+    return 0;
 }
 
 int ds2777g_read_cycle_counter(ds2777g_config_t config, uint16_t *cycles)
 {
-    int res = -1;
     uint8_t buf[1];
-    res = ds2777g_read_data(config, DS2777G_CYCLE_COUNTER_REGISTER, buf, 1);
+    if (ds2777g_read_data(config, DS2777G_CYCLE_COUNTER_REGISTER, buf, 1) != 0) {return -1;}
     *cycles = ((uint16_t)buf) << 1; // shift left to multiply by two.
-    return res;
+    return 0;
 }
 
 int ds2777g_write_data(ds2777g_config_t config, uint8_t *data, const uint16_t len)
 {
-    int res = -1;
-    res = i2c_write(config.port, config.slave_adr, data, len);
-    return res;
+    return i2c_write(config.port, config.slave_adr, data, len);
 }
 
 int ds2777g_read_data(ds2777g_config_t config, uint8_t target_reg, uint8_t *data, uint16_t len)
 {
-    int res = -1;
     uint8_t reg[1] = {target_reg};
-    res = i2c_write(config.port, config.slave_adr, reg, 1);
-    if (res != 0) {return res;}
+    if (i2c_write(config.port, config.slave_adr, reg, 1) != 0) {return -1;}
 
-    res = i2c_read(config.port, config.slave_adr, data, len);
-    return res;
+    return i2c_read(config.port, config.slave_adr, data, len);
 }
 
 /** \} End of ds2777g group */
