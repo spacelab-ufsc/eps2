@@ -1,5 +1,5 @@
 /*
- * current_sensor_test.c
+ * voltage_sensor_test.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,15 +21,15 @@
  */
 
 /**
- * \brief Unit test of the Current Sensor device
+ * \brief Unit test of the Voltage Sensor device.
  *
- * \author Lucas Zacchi de Medeiros <lzacchi@pm.me>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/08/23
+ * \date 2021/09/06
  *
- * \defgroup current_sensor_test Current Sensor
+ * \defgroup voltage_sensor_unit_test Voltage Sensor
  * \ingroup tests
  * \{
  */
@@ -37,31 +37,34 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
 
-#include <devices/current_sensor/current_sensor.h>
-#include <tests/mockups/sys_log_wrap/sys_log_wrap.h>
-#include <tests/mockups/adc_wrap/adc_wrap.h>
-#include <tests/mockups/max9934_wrap/max9934_wrap.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
+#include <drivers/adc/adc.h>
 
-static void current_sensor_init_test(void **state) {
+static void voltage_sensor_init_test(void **state) {
 
 }
 
-static void current_sensor_raw_read_test(void **state) {
+static void voltage_sensor_raw_to_mv_test(void **state) {
+
+}
+
+static void voltage_sensor_read_test(void **state) {
 
 }
 
 int main(void) {
-    const struct CMUnitTest current_sensor_tests[] = {
-        cmocka_unit_test(current_sensor_init_test),
-        cmocka_unit_test(current_sensor_raw_read_test),
+    const struct CMUnitTest voltage_sensor_tests[] = {
+        cmocka_unit_test(voltage_sensor_init_test),
+        cmocka_unit_test(voltage_sensor_raw_to_mv_test),
+        cmocka_unit_test(voltage_sensor_read_test)
     };
 
-    return cmocka_run_group_tests(current_sensor_tests, NULL, NULL);
+    return cmocka_run_group_tests(voltage_sensor_tests, NULL, NULL);
 }
 
-
-/** \} End of current_sensor_test group */
+/** \} End of voltage_sensor_unit_test group */
