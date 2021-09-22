@@ -39,11 +39,11 @@
 
 #include <stdint.h>
 
-#include "drivers/ds2777g/ds2777g.h"
+#include "drivers/ds277Xg/ds277Xg.h"
 
 #define BATTERY_MONITOR_MODULE_NAME         "Battery Monitor"
 
-extern const ds2777g_config_t battery_monitor_config;
+extern const ds277Xg_config_t battery_monitor_config;
 
 /**
  * \brief Battery Monitor device initialization.
@@ -55,34 +55,66 @@ int battery_monitor_init();
 /**
  * \brief Get the cell one voltage.
  * 
- * \param voltage Voltage in mV.
+ * \param[in,out] voltage Voltage in mV.
  * \return int The status/error code.
  */
-int get_cell_one_voltage(int16_t *voltage);
+int bm_get_cell_one_voltage(int16_t *voltage);
 
 /**
  * \brief Get the cell two voltage.
  * 
- * \param voltage Voltage in mV.
+ * \param[in,out] voltage Voltage in mV.
  * \return int The status/error code.
  */
-int get_cell_two_voltage(int16_t *voltage);
+int bm_get_cell_two_voltage(int16_t *voltage);
+
+/**
+ * \brief Get the batteries voltage in mV.
+ * 
+ * \param[in,out] voltage Voltage in mV.
+ * \return int The status/error code.
+ */
+int bm_get_voltage(uint16_t *voltage);
+
+/**
+ * \brief Get the batteries temperature in kelvin.
+ * 
+ * \param[in,out] temp Temperature in kelvin
+ * \return int The status/error code.
+ */
+int bm_get_temperature_kelvin(uint16_t *temp);
 
 /**
  * \brief Get the last read current value.
  * 
- * \param current Current in mA.
+ * \param[in,out] current Current in mA.
  * \return int The status/error code.
  */
-int get_instantaneous_current(int16_t *current);
+int bm_get_instantaneous_current(int16_t *current);
 
 /**
  * \brief Get the average from last eight read current values.
  * 
- * \param current Current in mA.
+ * \param[in,out] current Current in mA.
  * \return int The status/error code.
  */
-int get_average_current(int16_t *current);
+int bm_get_average_current(int16_t *current);
+
+/**
+ * \brief Get the status register data.
+ * 
+ * \param[in,out] data Register data.
+ * \return int The status/error code.
+ */
+int bm_get_status_register_data(uint8_t *data);
+
+/**
+ * \brief Get the protection register data.
+ * 
+ * \param[in,out] data Register data.
+ * \return int The status/error code.
+ */
+int bm_get_protection_register_data(uint8_t *data);
 
 #endif /* BATTERY_MONITOR_H_ */
 

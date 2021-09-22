@@ -39,17 +39,21 @@
 
 #include <system/sys_log/sys_log.h>
 
-#include <drivers/ds2777g/ds2777g.h>
+#include <drivers/ds277Xg/ds277Xg.h>
 #include <drivers/i2c/i2c.h>
 
-const ds2777g_config_t battery_monitor_config = {.port = I2C_PORT_2, .slave_adr = DS2777G_DEFAULT_SLAVE_ADDRESS};
+#ifdef CONFIG_DRIVERS_ONEWIRE_VERSION
+const ds277Xg_config_t battery_monitor_config = {.port = GPIO_PIN_69};
+#else
+const ds277Xg_config_t battery_monitor_config = {.port = I2C_PORT_2, .slave_adr = DS277XG_DEFAULT_SLAVE_ADDRESS};
+#endif
 
 int battery_monitor_init()
 {
     sys_log_print_event_from_module(SYS_LOG_INFO, BATTERY_MONITOR_MODULE_NAME, "Initializing the battery monitor...");
     sys_log_new_line();
 
-    if(ds2777g_init(battery_monitor_config) != 0)
+    if(ds277Xg_init(battery_monitor_config) != 0)
     {
        sys_log_print_event_from_module(SYS_LOG_ERROR, BATTERY_MONITOR_MODULE_NAME, "Error initializing the battery monitor!");
        sys_log_new_line();
@@ -60,26 +64,54 @@ int battery_monitor_init()
     return 0;
 }
 
-int get_cell_one_voltage(int16_t *voltage)
+int bm_get_cell_one_voltage(int16_t *voltage)
 {
-    if (ds2777g_read_voltage_mv(battery_monitor_config, voltage, 1) != 0) {return -1;}
+    if (ds277Xg_read_voltage_mv(battery_monitor_config, voltage, 1) != 0) {return -1;}
     return 0;
 }
 
-int get_cell_two_voltage(int16_t *voltage)
+int bm_get_cell_two_voltage(int16_t *voltage)
 {
-    if (ds2777g_read_voltage_mv(battery_monitor_config, voltage, 2) != 0) {return -1;}
+    if (ds277Xg_read_voltage_mv(battery_monitor_config, voltage, 2) != 0) {return -1;}
     return 0;
 }
 
-int get_instantaneous_current(int16_t *current)
+int bm_get_voltage(uint16_t *voltage)
 {
-    if (ds2777g_read_current_ma(battery_monitor_config, current, false) != 0) {return -1;}
+    int16_t buf = 0;
+    if (bm_get_cell_one_voltage(&buf) != 0) {return -1;}
+    *voltage = buf;
+    if (bm_get_cell_two_voltage(&buf) != 0) {return -1;}
+    *voltage += buf;
     return 0;
 }
 
-int get_average_current(int16_t *current)
+int bm_get_temperature_kelvin(uint16_t *temp)
 {
-    if (ds2777g_read_current_ma(battery_monitor_config, current, true) != 0) {return -1;}
+    if (ds277Xg_read_temperature_kelvin(battery_monitor_config, temp) != 0) {return -1;}
+    return 0;
+}
+
+int bm_get_instantaneous_current(int16_t *current)
+{
+    if (ds277Xg_read_current_ma(battery_monitor_config, current, false) != 0) {return -1;}
+    return 0;
+}
+
+int bm_get_average_current(int16_t *current)
+{
+    if (ds277Xg_read_current_ma(battery_monitor_config, current, true) != 0) {return -1;}
+    return 0;
+}
+
+int bm_get_status_register_data(uint8_t *data)
+{
+    if (ds277Xg_read_data(battery_monitor_config, DS277XG_STATUS_REGISTER, data, 1) != 0) {return -1;}
+    return 0;
+}
+
+int bm_get_protection_register_data(uint8_t *data)
+{
+    if (ds277Xg_read_data(battery_monitor_config, DS277XG_PROTECTION_REGISTER, data, 1) != 0) {return -1;}
     return 0;
 }
