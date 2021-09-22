@@ -37,6 +37,7 @@
 #include <devices/current_sensor/current_sensor.h>
 #include <devices/voltage_sensor/voltage_sensor.h>
 #include <devices/temp_sensor/temp_sensor.h>
+#include <devices/battery_monitor/battery_monitor.h>
 
 #include <structs/eps2_data.h>
 
@@ -128,46 +129,82 @@ void vTaskReadSensors(void *pvParameters)
             eps_buffer_write(EPS2_PARAM_ID_EPS_CURRENT, (uint32_t *)&buf);
         }
 
-        /* RTD 0 temperature .*/
+        /* RTD 0 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_0, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_0_TEMP, (uint32_t *)&buf);
         }
 
-        /* RTD 1 temperature .*/
+        /* RTD 1 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_1, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_1_TEMP, (uint32_t *)&buf);
         }
 
-        /* RTD 2 temperature .*/
+        /* RTD 2 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_2, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_2_TEMP, (uint32_t *)&buf);
         }
 
-        /* RTD 3 temperature .*/
+        /* RTD 3 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_3, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_3_TEMP, (uint32_t *)&buf);
         }
 
-        /* RTD 4 temperature .*/
+        /* RTD 4 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_4, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_4_TEMP, (uint32_t *)&buf);
         }
 
-        /* RTD 5 temperature .*/
+        /* RTD 5 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_5, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_5_TEMP, (uint32_t *)&buf);
         }
 
-        /* RTD 6 temperature .*/
+        /* RTD 6 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_6, &buf) == 0)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_6_TEMP, (uint32_t *)&buf);
+        }
+
+        /* Battery monitor voltage.*/
+        if (bm_get_voltage(&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_VOLTAGE, (uint32_t *)&buf);
+        }
+
+        /* Battery monitor CI temperature.*/
+        if (bm_get_temperature_kelvin(&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_TEMP, (uint32_t *)&buf);
+        }
+
+        /* Battery monitor current.*/
+        if (bm_get_instantaneous_current((int16_t *)&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_CURRENT, (uint32_t *)&buf);
+        }
+
+        /* Battery monitor average current.*/
+        if (bm_get_average_current((int16_t *)&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_AVERAGE_CURRENT, (uint32_t *)&buf);
+        }
+
+        /* Battery monitor status register.*/
+        if (bm_get_status_register_data((uint8_t *)&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_STATUS, (uint32_t *)&buf);
+        }
+
+        /* Battery monitor protection register.*/
+        if (bm_get_protection_register_data((uint8_t *)&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_PROTECT, (uint32_t *)&buf);
         }
 
         /* Data timestamp */
