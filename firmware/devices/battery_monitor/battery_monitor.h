@@ -43,7 +43,7 @@
 
 #define BATTERY_MONITOR_MODULE_NAME         "Battery Monitor"
 
-extern const ds277Xg_config_t battery_monitor_config;
+extern ds277Xg_config_t battery_monitor_config;
 
 /**
  * \brief Battery Monitor device initialization.

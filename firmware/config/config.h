@@ -60,7 +60,7 @@
 #define CONFIG_DEV_TTC_ENABLED							1	
 
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
-#define CONFIG_DRIVERS_ONEWIRE_VERSION                  1
+#define CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION           1
 
 #define MAX_BATTERY_CHARGE                          2450 //[mAh]
 #define BAT_MONITOR_CHARGE_VALUE                    (uint16_t)(MAX_BATTERY_CHARGE/0.625) //0.625 is a conversion factor for the  battery monitor
