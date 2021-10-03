@@ -209,22 +209,22 @@ void vTaskReadSensors(void *pvParameters)
 
         if (bm_get_raac_mah(&buf) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RAAC, &buf);
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RAAC, (uint32_t *)&buf);
         }
 
         if (bm_get_rsac_mah(&buf) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSAC, &buf);
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSAC, (uint32_t *)&buf);
         }
 
         if (bm_get_rarc_percent((uint8_t *)&buf) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RARC, (uint8_t *)&buf);
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RARC, (uint32_t *)&buf);
         }
 
         if (bm_get_rsrc_percent((uint8_t *)&buf) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, (uint8_t *)&buf);
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, (uint32_t *)&buf);
         }
 
         /* Data timestamp */
