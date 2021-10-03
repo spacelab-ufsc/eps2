@@ -51,9 +51,12 @@
 #define DS277XG_MODULE_NAME "DS277X"
 
 #define DS277XG_RSENSE                                          0.01 /* Unit: Ohm. */
+#define CELL_NOMINAL_VOLTAGE                                    3.78 /* Unit: Volts (ICR18650-30B-Samsung). */
 
 /**
  * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
+ * https://www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
+ * https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
  */
 #define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001
 #define DS2775G_SKIP_ADDRESS                                    0xCC    //Address that access any onewire device (used when there's only one device at the onewire bus)

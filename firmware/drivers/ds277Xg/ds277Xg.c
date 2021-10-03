@@ -43,18 +43,53 @@ int ds277Xg_init(ds277Xg_config_t *config)
     if (ds277Xg_enable_charge(config) != 0) {return -1;}
     if (ds277Xg_enable_discharge(config) != 0) {return -1;}
 
-    /* Control register configuration. */
+    /* Parameters registers configuration. */
     // Check if already set correctly from EEPROM on power-up.
-    uint8_t control_register_current_value[1];
-    if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, control_register_current_value, 1) != 0) {return -1;}
-    if (control_register_current_value[0] != 0x0C)
+    bool copy_to_eeprom_flag = false;
+    uint8_t wr_buf[2] = {0};
+    uint8_t rd_buf[1] = {0};
+
+    if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, rd_buf, 1) != 0) {return -1;}
+    else if (rd_buf[0] != 0x0C) // <-- Undervoltage treshold to 2.60V.
     {
-        // Write to control register.
-        uint8_t buf[2] = {DS277XG_CONTROL_REGISTER, 0x0C}; // <-- Sets undervoltage treshold to 2.60V.
-        if (ds277Xg_write_data(config, buf, 2) != 0) {return -1;}
+        wr_buf[0] = DS277XG_CONTROL_REGISTER;
+        wr_buf[1] = 0x0C; // <-- Sets undervoltage treshold to 2.60V.
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        copy_to_eeprom_flag = true;
+    }
+
+    if (ds277Xg_read_data(config, DS277XG_SENSE_RESISTOR_PRIME_REGISTER, rd_buf, 1) != 0) {return -1;}
+    else if (rd_buf[0] != (uint8_t)(1/DS277XG_RSENSE))
+    {
+        wr_buf[0] = DS277XG_SENSE_RESISTOR_PRIME_REGISTER;
+        wr_buf[1] = (uint8_t)(1/DS277XG_RSENSE);
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
+    }
+
+    if (ds277Xg_read_data(config, DS277XG_CHARGE_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
+    else if (rd_buf[0] != (uint8_t)((0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) / 0.0195))
+    {
+        wr_buf[0] = DS277XG_CHARGE_VOLTAGE_REGISTER;
+        wr_buf[1] = (uint8_t)((0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) / 0.0195);
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
+    }
+
+    if (ds277Xg_read_data(config, DS277XG_MINIMUN_CHARGE_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
+    else if (rd_buf[0] != (uint8_t)((0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) / 50))
+    {
+        wr_buf[0] = DS277XG_MINIMUN_CHARGE_CURRENT_REGISTER;
+        wr_buf[1] = (uint8_t)((0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) / 50);
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
+    }
+
+    if (copy_to_eeprom_flag == true)
+    {
         // Copy from shadow RAM to EEPROM.
-        buf[0] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
-        if (ds277Xg_write_data(config, buf, 1) != 0) {return -1;}
+        wr_buf[0] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
+        if (ds277Xg_write_data(config, wr_buf, 1) != 0) {return -1;}
     }
 
     return 0;
