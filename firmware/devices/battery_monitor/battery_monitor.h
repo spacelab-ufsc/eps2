@@ -116,6 +116,38 @@ int bm_get_status_register_data(uint8_t *data);
  */
 int bm_get_protection_register_data(uint8_t *data);
 
+/**
+ * \brief Get the battery monitor Remaining Active-Absolute Capacity (RAAC) in mAh.
+ * 
+ * \param[in,out] data Register data.
+ * \return int The status/error code.
+ */
+int bm_get_raac_mah(uint16_t *data);
+
+/**
+ * \brief Get the battery monitor Remaining Standby-Absolute Capacity (RSAC) in mAh.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_rsac_mah(uint16_t *data);
+
+/**
+ * \brief Get the battery monitor Remaining Active-Relative Capacity (RARC) in %.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_rarc_percent(uint8_t *data);
+
+/**
+ * \brief Get the battery monitor Remaining Standby-Relative Capacity (RSRC) in %.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_rsrc_percent(uint8_t *data);
+
 #endif /* BATTERY_MONITOR_H_ */
 
 /** \} End of battery_monitor group */

@@ -115,3 +115,31 @@ int bm_get_protection_register_data(uint8_t *data)
     if (ds277Xg_read_data(&battery_monitor_config, DS277XG_PROTECTION_REGISTER, data, 1) != 0) {return -1;}
     return 0;
 }
+
+int bm_get_raac_mah(uint16_t *data)
+{
+    uint8_t rd_buf[2] = {0};
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RAAC_REGISTER_MSB, rd_buf, 2) != 0) {return -1;}
+    *data = (uint16_t)((rd_buf[1] << 8) + rd_buf[0]);
+    return 0;
+}
+
+int bm_get_rsac_mah(uint16_t *data)
+{
+    uint8_t rd_buf[2] = {0};
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RSAC_REGISTER_MSB, rd_buf, 2) != 0) {return -1;}
+    *data = (uint16_t)((rd_buf[1] << 8) + rd_buf[0]);
+    return 0;
+}
+
+int bm_get_rarc_percent(uint8_t *data)
+{
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RARC_REGISTER, data, 1) != 0) {return -1;}
+    return 0;
+}
+
+int bm_get_rsrc_percent(uint8_t *data)
+{
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RSRC_REGISTER, data, 1) != 0) {return -1;}
+    return 0;
+}
