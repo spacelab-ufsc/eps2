@@ -76,10 +76,10 @@ int ds277Xg_init(ds277Xg_config_t *config)
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }
 
-    if (ds277Xg_read_data(config, DS277XG_MINIMUN_CHARGE_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
+    if (ds277Xg_read_data(config, DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
     else if (rd_buf[0] != (uint8_t)((0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) / 50))
     {
-        wr_buf[0] = DS277XG_MINIMUN_CHARGE_CURRENT_REGISTER;
+        wr_buf[0] = DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER;
         wr_buf[1] = (uint8_t)((0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) / 50);
         if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}

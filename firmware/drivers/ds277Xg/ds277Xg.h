@@ -98,7 +98,7 @@
 #define DS277XG_AGING_CAPACITY_REGISTER_MSB                     0x62
 #define DS277XG_AGING_CAPACITY_REGISTER_LSB                     0x63
 #define DS277XG_CHARGE_VOLTAGE_REGISTER                         0x64
-#define DS277XG_MINIMUN_CHARGE_CURRENT_REGISTER                 0x65
+#define DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER                 0x65
 #define DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER                   0x66
 #define DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER                   0x67
 #define DS277XG_ACTIVE_EMPTY_40_REGISTER                        0x68
