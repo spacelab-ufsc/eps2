@@ -85,6 +85,17 @@ int ds277Xg_init(ds277Xg_config_t *config)
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }
 
+    /* TO DO
+        - Review values for:
+        --> Full point detection minimum current threshold (DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER)
+        --> Full point detection charge voltage threshold (DS277XG_CHARGE_VOLTAGE_REGISTER)
+        - Define and set the values for:
+        --> Active Empty point detection voltage threshold register (DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER)
+        --> Active Empty point detection current threshold register (DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER)
+        --> Aging Capacity
+        --> Aging Scalar
+    */
+
     if (copy_to_eeprom_flag == true)
     {
         // Copy from shadow RAM to EEPROM.
