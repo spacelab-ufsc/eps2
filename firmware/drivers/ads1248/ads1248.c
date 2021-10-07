@@ -65,7 +65,7 @@ int ads1248_init(ads1248_config_t *config)
         return ADS1248_ERROR;
     }
 
-    if (gpio_set_state(config->start_pin, true) != 0)
+    if (gpio_set_state(config->start_pin, false) != 0)
     {
     #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting START pin to high state during initialization!");
@@ -74,7 +74,13 @@ int ads1248_init(ads1248_config_t *config)
         return ADS1248_ERROR;
     }
     
+    ads1248_delay(1);
+
+    gpio_set_state(config->start_pin, true);
+
     ads1248_reset(config, ADS1248_RESET_CMD);
+
+    ads1248_delay(1);
 
     ads1248_write_cmd(config, ADS1248_CMD_SDATAC, NULL, 0);
 
@@ -83,8 +89,6 @@ int ads1248_init(ads1248_config_t *config)
     #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
         ads1248_config_regs(config);
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-
-    ads1248_write_cmd(config, ADS1248_CMD_SYNC, NULL, 0);
 
     return 0;
 }
@@ -111,7 +115,7 @@ int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode)
 
 int ads1248_config_regs(ads1248_config_t *config)
 {
-    uint8_t data_config_regs[17];
+    uint8_t data_config_regs[18];
 
     data_config_regs[0] = ADS1248_CMD_WREG;  /* command WREG plus information to write to the first register MUX0 (0x00) */
     data_config_regs[1] = 0x0E; /* number of bytes minus 1 to be written by WREG command */
@@ -125,20 +129,21 @@ int ads1248_config_regs(ads1248_config_t *config)
     data_config_regs[9] = 0x00; /* value to register FSC0: standard value on first full-scale calibration coefficient register */
     data_config_regs[10] = 0x00; /* value to register FSC1: standard value on second full-scale calibration coefficient register */
     data_config_regs[11] = 0x00; /* value to register FSC2: standard value on third full-scale calibration coefficient register */
-    data_config_regs[12] = 0x02; /* value to register IDAC0: DOUT/DRDY pins functions only as data out and excitation output current magnitude to 100uA */
-    data_config_regs[13] = 0x06; /* value to register IDAC1: excitation outputs 1 to AIN0 and 2 to AIN6 pins */
-    data_config_regs[14] = 0x00; /* value to register GPIOCFG: GPIOS not enabled */
-    data_config_regs[15] = 0x00; /* value to register GPIODIR: GPIOS not enabled */
-    data_config_regs[16] = 0x00; /* value to register GPIODAT: GPIOS not enabled */
+    data_config_regs[12] = 0x01; /* value to register FSC2: standard value on third full-scale calibration coefficient register */
+    data_config_regs[13] = 0x02; /* value to register IDAC0: DOUT/DRDY pins functions only as data out and excitation output current magnitude to 100uA */
+    data_config_regs[14] = 0x06; /* value to register IDAC1: excitation outputs 1 to AIN0 and 2 to AIN6 pins */
+    data_config_regs[15] = 0x00; /* value to register GPIOCFG: GPIOS not enabled */
+    data_config_regs[16] = 0x00; /* value to register GPIODIR: GPIOS not enabled */
+    data_config_regs[17] = 0x00; /* value to register GPIODAT: GPIOS not enabled */
         
-    spi_write(config->spi_port, config->spi_cs, data_config_regs, 17); /* Writes to all registers in one half-duplex SPI communication */
+    spi_write(config->spi_port, config->spi_cs, data_config_regs, 18); /* Writes to all registers in one half-duplex SPI communication */
 
     return 0;
 }
 
 int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
 {
-    uint8_t data_read_regs[17];
+    uint8_t data_read_regs[18];
 
     data_read_regs[0] = ADS1248_CMD_RREG;
     data_read_regs[1] = 0x0E;               /* number of bytes to be sent minus 1 */
@@ -157,8 +162,9 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
     data_read_regs[14] = ADS1248_CMD_NOP;
     data_read_regs[15] = ADS1248_CMD_NOP;
     data_read_regs[16] = ADS1248_CMD_NOP;
+    data_read_regs[17] = ADS1248_CMD_NOP;
 
-    spi_transfer(config->spi_port, config->spi_cs, data_read_regs, rd, 17); /* Reads all registers in one full-duplex SPI communication */
+    spi_transfer(config->spi_port, config->spi_cs, data_read_regs, rd, 18); /* Reads all registers in one full-duplex SPI communication */
 
     /* implement system log debug for registers configuration here or somewhere else */
 
@@ -171,6 +177,10 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
     uint8_t select_channel_excitation_current[3] = {0};
     uint8_t data_read_conversion[4] = {0};
 
+    ads1248_write_cmd(config, ADS1248_CMD_SDATAC, NULL, 0);
+
+    ads1248_delay(1);
+
     select_channel_to_read[0] = ADS1248_CMD_WREG; /* WREG command (0x40), since the last byte is zero it will write to the first register MUX0 (0x00) */
     select_channel_to_read[1] = 0x00;  /* number of bytes minus 1 to be writen by WREG command, in this case 1 byte will be 0 in hex */
     select_channel_to_read[2] = (positive_channel | 0x07); /* positive channel selection + the negative (reference) channel fixed to be AIN7*/
@@ -182,6 +192,12 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
     select_channel_excitation_current[2] = positive_channel; /* output current to selected positive channel*/
 
     spi_write(config->spi_port, config->spi_cs, select_channel_excitation_current, 3); /* Multiplexes channel */
+
+    ads1248_delay(1);
+
+    ads1248_write_cmd(config, ADS1248_CMD_SYNC, NULL, 0);
+
+    ads1248_delay(10);
 
     data_read_conversion[0] = ADS1248_CMD_RDATA; /* command read last ADC conversion */
     data_read_conversion[1] = ADS1248_CMD_NOP; /* 3 no operation commands to clockout data from the device without clocking in a command during SPI duplex communication*/
