@@ -1,5 +1,5 @@
 /*
- * ads1248_wrap.c
+ * tca4311a_wrap.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,48 +21,39 @@
  */
 
 /**
- * \brief ADS1248 driver wrap implementation.
+ * \brief tca4311a_wrap driver wrap implementation.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/09/06
+ * \date 2021/08/23
  *
- * \defgroup ads1248_wrap ADS1248 Wrap
+ * \defgroup tca4311a_wrap tca4311a_wrap Wrap
  * \ingroup tests
  * \{
  */
 
 
-#include "ads1248_wrap.h"
+#include "tca4311a_wrap.h"
+#include <stdint.h>
+#include <stdbool.h>
 
-int __wrap_ads1248_init(ads1248_config_t *config) {
+int __wrap_tca4311a_init(tca4311a_config_t config, bool en) {
     return 0;
 }
 
-int __wrap_ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode) {
+int __wrap_tca4311a_enable(tca4311a_config_t config) {
     return 0;
 }
 
-int __wrap_ads1248_config_regs(ads1248_config_t *config) {
+int __wrap_tca4311a_disable(tca4311a_config_t config) {
     return 0;
 }
 
-int __wrap_ads1248_read_regs(ads1248_config_t *config, uint8_t *rd) {
+int __tca4311a_is_ready(tca4311a_config_t config) {
     return 0;
 }
 
-int __wrap_ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_channel) {
-    return 0;
-}
 
-int __wrap_ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel) {
-    return 0;
-}
-
-int __wrap_ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode) {
-    return 0;
-}
-
-/** \} End of ads1248_wrap group */
+/** \} End of tca4311a_wrap group */

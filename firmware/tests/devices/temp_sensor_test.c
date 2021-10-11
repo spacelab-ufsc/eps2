@@ -23,7 +23,7 @@
 /**
  * \brief Unit test of the Temp Sensor device.
  *
- * \author Lucas Zacchi de Medeiros <lzacchi@pm.me>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
@@ -44,7 +44,6 @@
 
 #include <devices/temp_sensor/temp_sensor.h>
 #include <drivers/ads1248/ads1248.h>
-// #include <tests/mockups/ads1248_wrap/ads1248_wrap.h>
 
 static void temp_sensor_init_test(void **state) {
 

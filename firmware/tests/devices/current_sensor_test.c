@@ -23,7 +23,7 @@
 /**
  * \brief Unit test of the Current Sensor device
  *
- * \author Lucas Zacchi de Medeiros <lzacchi@pm.me>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
@@ -42,9 +42,9 @@
 #include <cmocka.h>
 
 #include <devices/current_sensor/current_sensor.h>
-#include <tests/mockups/sys_log_wrap/sys_log_wrap.h>
-#include <tests/mockups/adc_wrap/adc_wrap.h>
-#include <tests/mockups/max9934_wrap/max9934_wrap.h>
+#include <system/sys_log/sys_log.h>
+#include <drivers/adc/adc.h>
+#include <drivers/max9934/max9934.h>
 
 static void current_sensor_init_test(void **state) {
 

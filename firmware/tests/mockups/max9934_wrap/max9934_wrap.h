@@ -23,7 +23,7 @@
 /**
  * \brief MAX9934 driver wrap definition.
  *
- * \authors Lucas Zacchi de Medeiros <lzacchi@pm.me>
+ * \authors Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *

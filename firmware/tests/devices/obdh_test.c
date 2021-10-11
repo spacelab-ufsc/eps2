@@ -1,5 +1,5 @@
 /*
- * ads1248_wrap.c
+ * obdh_test.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,48 +21,52 @@
  */
 
 /**
- * \brief ADS1248 driver wrap implementation.
+ * \brief Unit test of the OBDH device.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/09/06
+ * \date 2021/09/15
  *
- * \defgroup ads1248_wrap ADS1248 Wrap
+ * \defgroup obdh_unit_test OBDH
  * \ingroup tests
  * \{
  */
 
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 
-#include "ads1248_wrap.h"
+#include <devices/obdh/obdh.h>
+#include <drivers/tca4311a/tca4311a.h>
+#include <drivers/i2c_slave/i2c_slave.h>
+#include <drivers/i2c/i2c.h>
 
-int __wrap_ads1248_init(ads1248_config_t *config) {
-    return 0;
+static void obdh_init_test(void** state) {
+
 }
 
-int __wrap_ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode) {
-    return 0;
+static void obdh_decocde_test(void **state) {
+
 }
 
-int __wrap_ads1248_config_regs(ads1248_config_t *config) {
-    return 0;
+static void obdh_answer_test(void** state) {
+
 }
 
-int __wrap_ads1248_read_regs(ads1248_config_t *config, uint8_t *rd) {
-    return 0;
+int main(void) {
+    const struct CMUnitTest obdh_tests[] = {
+        cmocka_unit_test(obdh_init_test),
+        cmocka_unit_test(obdh_decocde_test),
+        cmocka_unit_test(obdh_answer_test),
+
+    };
+
+    return cmocka_run_group_tests(obdh_tests, NULL, NULL);
 }
 
-int __wrap_ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_channel) {
-    return 0;
-}
-
-int __wrap_ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel) {
-    return 0;
-}
-
-int __wrap_ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode) {
-    return 0;
-}
-
-/** \} End of ads1248_wrap group */
+/** \} End of obdh_test group */

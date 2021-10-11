@@ -23,7 +23,7 @@
 /**
  * \brief ADS1248 driver wrap definition.
  *
- * \author Lucas Zacchi de Medeiros <lzacchi@pm.me>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *

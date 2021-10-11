@@ -1,5 +1,5 @@
 /*
- * adc_wrap.h
+ * tca4311a_wrap.h
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief ADC driver wrap definition.
+ * \brief tca4311a_wrap driver wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
@@ -29,34 +29,29 @@
  *
  * \date 2021/08/23
  *
- * \defgroup adc_wrap ADC Wrap
+ * \defgroup tca4311a_wrap tca4311a_wrap Wrap
  * \ingroup tests
  * \{
  */
 
-#ifndef ADC_WRAP_H
-#define ADC_WRAP_H
+#ifndef TCA4311A_WRAP_H
+#define TCA4311A_WRAP_H
+
+#include <drivers/i2c_slave/i2c_slave.h>
+#include <drivers/gpio/gpio.h>
+#include <drivers/tca4311a/tca4311a.h>
 
 #include <stdint.h>
+#include <stdbool.h>
 
-#include <drivers/adc/adc.h>
+int __wrap_tca4311a_init(tca4311a_config_t config, bool en);
 
-int __wrap_adc_init(adc_port_t port, adc_config_t config);
+int __wrap_tca4311a_enable(tca4311a_config_t config);
 
-int __wrap_adc_read(adc_port_t port, uint16_t *val);
+int __wrap_tca4311a_disable(tca4311a_config_t config);
 
-void __wrap_adc_delay_ms(uint16_t ms);
+int __wrap_tca4311a_is_ready(tca4311a_config_t config);
 
-float __wrap_adc_temp_get_mref(void);
+#endif /* TCA4311A_WRAP_H */
 
-float __wrap_adc_temp_get_nref(void);
-
-bool __wrap_adc_mutex_create(void);
-
-bool __wrap_adc_mutex_take(void);
-
-bool __wrap_adc_mutex_give(void);
-
-#endif /* ADC_WRAP_H_ */
-
-/** \} End of adc_wrap group */
+/** \} End of tca4311a_wrap group */

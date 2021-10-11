@@ -1,5 +1,5 @@
 /*
- * adc_wrap.h
+ * i2c_wrap.h
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,42 +21,29 @@
  */
 
 /**
- * \brief ADC driver wrap definition.
+ * \brief i2c driver wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/08/23
+ * \date 2021/09/28
  *
- * \defgroup adc_wrap ADC Wrap
+ * \defgroup i2c_wrap I2C Wrap
  * \ingroup tests
  * \{
  */
 
-#ifndef ADC_WRAP_H
-#define ADC_WRAP_H
+#ifndef I2C_WRAP_H
+#define I2C_WRAP_H
 
-#include <stdint.h>
+#include <drivers/i2c/i2c.h>
 
-#include <drivers/adc/adc.h>
+int __wrap_i2c_master_init(i2c_port_t port, i2c_config_t config);
 
-int __wrap_adc_init(adc_port_t port, adc_config_t config);
+int __wrap_i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
 
-int __wrap_adc_read(adc_port_t port, uint16_t *val);
+int __wrap_i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
 
-void __wrap_adc_delay_ms(uint16_t ms);
-
-float __wrap_adc_temp_get_mref(void);
-
-float __wrap_adc_temp_get_nref(void);
-
-bool __wrap_adc_mutex_create(void);
-
-bool __wrap_adc_mutex_take(void);
-
-bool __wrap_adc_mutex_give(void);
-
-#endif /* ADC_WRAP_H_ */
-
-/** \} End of adc_wrap group */
+#endif /* I2C_WRAP_H */
+/** \} End of i2c_wrap group */

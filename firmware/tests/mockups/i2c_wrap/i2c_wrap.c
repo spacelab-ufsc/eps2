@@ -1,5 +1,5 @@
 /*
- * ads1248_wrap.c
+ * i2c_wrap.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,48 +21,31 @@
  */
 
 /**
- * \brief ADS1248 driver wrap implementation.
+ * \brief i2c driver wrap implementation.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/09/06
+ * \date 2021/09/28
  *
- * \defgroup ads1248_wrap ADS1248 Wrap
+ * \defgroup i2c_wrap I2C Wrap
  * \ingroup tests
  * \{
  */
 
+#include "i2c_wrap.h"
 
-#include "ads1248_wrap.h"
-
-int __wrap_ads1248_init(ads1248_config_t *config) {
+int __wrap_i2c_master_init(i2c_port_t port, i2c_config_t config) {
     return 0;
 }
 
-int __wrap_ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode) {
+int __wrap_i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len) {
     return 0;
 }
 
-int __wrap_ads1248_config_regs(ads1248_config_t *config) {
+int __wrap_i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len) {
     return 0;
 }
 
-int __wrap_ads1248_read_regs(ads1248_config_t *config, uint8_t *rd) {
-    return 0;
-}
-
-int __wrap_ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_channel) {
-    return 0;
-}
-
-int __wrap_ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel) {
-    return 0;
-}
-
-int __wrap_ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode) {
-    return 0;
-}
-
-/** \} End of ads1248_wrap group */
+/** \} End of i2c_wrap group */

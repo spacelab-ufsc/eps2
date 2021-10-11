@@ -1,5 +1,5 @@
 /*
- * adc_wrap.h
+ * uart_interrupt_wrap.h
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,42 +21,37 @@
  */
 
 /**
- * \brief ADC driver wrap definition.
+ * \brief UART Interrupt wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/08/23
+ * \date 2021/09/15
  *
- * \defgroup adc_wrap ADC Wrap
+ * \defgroup uart_interrupt_wrap UART INTERRUPT Wrap
  * \ingroup tests
  * \{
  */
 
-#ifndef ADC_WRAP_H
-#define ADC_WRAP_H
+#ifndef UART_INTERRUPT_WRAP_H
+#define UART_INTERRUPT_WRAP_H
 
 #include <stdint.h>
 
-#include <drivers/adc/adc.h>
+#include <drivers/uart_interrupt/uart_interrupt.h>
 
-int __wrap_adc_init(adc_port_t port, adc_config_t config);
+extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];
+extern uint8_t uart_received_data_size;
 
-int __wrap_adc_read(adc_port_t port, uint16_t *val);
+int __wrap_uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config);
 
-void __wrap_adc_delay_ms(uint16_t ms);
+int __wrap_uart_interrupt_enable(uart_interrupt_port_t port);
 
-float __wrap_adc_temp_get_mref(void);
+int __wrap_uart_interrupt_disable(uart_interrupt_port_t port);
 
-float __wrap_adc_temp_get_nref(void);
+int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len);
 
-bool __wrap_adc_mutex_create(void);
+#endif /* UART_INTERRUPT_WRAP_H */
 
-bool __wrap_adc_mutex_take(void);
-
-bool __wrap_adc_mutex_give(void);
-
-#endif /* ADC_WRAP_H_ */
-
-/** \} End of adc_wrap group */
+/** \} End of uart_interrupt_wrap group */
