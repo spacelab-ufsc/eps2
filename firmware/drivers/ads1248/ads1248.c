@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.2.32
  * 
  * \date 2021/03/09
  * 
@@ -58,28 +58,27 @@ int ads1248_init(ads1248_config_t *config)
     
     if ((res_start != 0) || (res_reset != 0) || (res_spi != 0))
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during the initialization!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during the initialization!");
+            sys_log_new_line();
+        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return ADS1248_ERROR;
     }
 
-    if (gpio_set_state(config->start_pin, false) != 0)
+    if (gpio_set_state(config->start_pin, true) != 0)
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting START pin to high state during initialization!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during setting START pin to high state during initialization!");
+            sys_log_new_line();
+        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return ADS1248_ERROR;
     }
-    
     ads1248_delay(1);
 
-    gpio_set_state(config->start_pin, true);
+    ads1248_reset(config, ADS1248_RESET_PIN);
+    ads1248_delay(1);
 
     ads1248_reset(config, ADS1248_RESET_CMD);
-
     ads1248_delay(1);
 
     ads1248_write_cmd(config, ADS1248_CMD_SDATAC, NULL, 0);
@@ -87,7 +86,8 @@ int ads1248_init(ads1248_config_t *config)
     ads1248_config_regs(config);
 
     #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        ads1248_config_regs(config);
+        uint8_t regs[18];
+        ads1248_read_regs(config, regs);
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 
     return 0;
@@ -136,7 +136,12 @@ int ads1248_config_regs(ads1248_config_t *config)
     data_config_regs[16] = 0x00; /* value to register GPIODIR: GPIOS not enabled */
     data_config_regs[17] = 0x00; /* value to register GPIODAT: GPIOS not enabled */
         
-    spi_write(config->spi_port, config->spi_cs, data_config_regs, 18); /* Writes to all registers in one half-duplex SPI communication */
+    uint8_t i;
+    for(i = 0; i < 18; i++)
+    {
+        spi_write(config->spi_port, config->spi_cs, data_config_regs[i], 1); /* Writes to all registers in one half-duplex SPI communication */
+        ads1248_delay(1);
+    }
 
     return 0;
 }
@@ -164,7 +169,12 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
     data_read_regs[16] = ADS1248_CMD_NOP;
     data_read_regs[17] = ADS1248_CMD_NOP;
 
-    spi_transfer(config->spi_port, config->spi_cs, data_read_regs, rd, 18); /* Reads all registers in one full-duplex SPI communication */
+    uint8_t i;
+    for(i = 0; i < 18; i++)
+    {
+        spi_transfer(config->spi_port, config->spi_cs, data_read_regs[i], rd, 1); /* Reads all registers in one full-duplex SPI communication */
+        ads1248_delay(1);
+    }
 
     /* implement system log debug for registers configuration here or somewhere else */
 
