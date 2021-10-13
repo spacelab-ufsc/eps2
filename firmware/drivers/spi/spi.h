@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.2.33
  * 
  * \date 2020/10/24
  * 
@@ -69,7 +69,8 @@ typedef enum
     SPI_CS_6,           /**< SPI chip select 6. */
     SPI_CS_7,           /**< SPI chip select 7. */
     SPI_CS_8,           /**< SPI chip select 8. */
-    SPI_CS_9            /**< SPI chip select 9. */
+    SPI_CS_9,           /**< SPI chip select 9. */
+    SPI_CS_0_FORCED     /**< SPI chip select 0 forced. */
 } spi_cs_e;
 
 /**

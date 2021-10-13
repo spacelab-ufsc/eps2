@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.14
+ * \version 0.2.33
  * 
  * \date 2021/02/17
  * 
@@ -96,12 +96,17 @@ int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active)
         case SPI_PORT_1:
             switch(cs)
             {
-                case SPI_CS_0:      gpio_set_state(GPIO_PIN_59, !active);      break;
+                case SPI_CS_0:
+                    /* gpio_set_state(GPIO_PIN_59, !active);   Let high level code handles CS (allow driver specific protocol) */
+                    break;
+                case SPI_CS_0_FORCED:
+                    gpio_set_state(GPIO_PIN_59, !active);   /* High level code handles this case (allow driver specific protocol) */
+                    break;
                 default:
-                #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-                    sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Error selecting a slave from port 1: Invalid CS pin!");
-                    sys_log_new_line();
-                #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+                    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+                        sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Error selecting a slave from port 1: Invalid CS pin!");
+                        sys_log_new_line();
+                    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
                     return -1;  /* Invalid CS pin */
             }
 

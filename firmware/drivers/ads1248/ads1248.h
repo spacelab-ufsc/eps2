@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.2.33
  * 
  * \date 2021/03/09
  * 
@@ -45,7 +45,8 @@
 
 #define ADS1248_RANGE       16777216    /**< ADS1248 resolution (24-bit). */
 
-#define ADS1248_NEGATIVE_INPUT  0x07     /**< ADS1248 negative (reference) input channel for ADC measurements */
+#define ADS1248_POSITIVE_INPUTS    0x06 /**< Number of ADS1248 positive input channels for ADC measurements */
+#define ADS1248_NEGATIVE_INPUT     0x07 /**< ADS1248 negative (reference) input channel for ADC measurements */
 
 /* SPI Commands */
 #define ADS1248_CMD_WAKEUP      0x00    /**< Exit power-down mode. */
