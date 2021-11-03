@@ -44,7 +44,6 @@
 
 #include <devices/leds/leds.h>
 #include <drivers/gpio/gpio.h>
-#include <tests/mockups/gpio_wrap.h>
 
 #define LED_SYSTEM_NUM              0
 #define LED_FAULT_NUM               1
