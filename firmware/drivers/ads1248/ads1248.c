@@ -54,7 +54,7 @@ int ads1248_init(ads1248_config_t *config)
     
     int res_spi = spi_init(config->spi_port, config->spi_config);
     
-    if ((res_start != 0) || (res_reset != 0) || (res_spi != 0))
+    if ((res_start != 0) || (res_start != 0) || (res_spi != 0))
     {
         #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
             sys_log_print_event_from_module(SYS_LOG_ERROR, ADS1248_MODULE_NAME, "Error during the initialization!");
@@ -239,7 +239,7 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
     {
         spi_write(config->spi_port, config->spi_cs, &data_read_conversion[i], 1);
         ads1248_delay(1);
-        spi_read(config->spi_port, config->spi_cs, rd[i], 1);
+        spi_read(config->spi_port, config->spi_cs, &rd[i], 1);
         ads1248_delay(1);
     }
 
