@@ -1,7 +1,7 @@
 /*
  * read_sensors.c
  * 
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -25,8 +25,9 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.30
+ * \version 0.2.35
  * 
  * \date 2021/04/23
  * 
@@ -46,7 +47,7 @@
 
 xTaskHandle xTaskReadSensorsHandle;
 
-void vTaskReadSensors(void *pvParameters)
+void vTaskReadSensors(void)
 {
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_READ_SENSORS_INIT_TIMEOUT_MS));
@@ -55,7 +56,7 @@ void vTaskReadSensors(void *pvParameters)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
-        uint16_t buf = 0;
+        uint16_t buf = 0U;
 
         /* -Y Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
@@ -129,6 +130,8 @@ void vTaskReadSensors(void *pvParameters)
             eps_buffer_write(EPS2_PARAM_ID_EPS_CURRENT, (uint32_t *)&buf);
         }
 
+        vTaskDelay(pdMS_TO_TICKS(5));
+
         /* RTD 0 temperature. */
         if (temp_rtd_read_k(TEMP_SENSOR_RTD_CH_0, &buf) == 0)
         {
@@ -170,6 +173,8 @@ void vTaskReadSensors(void *pvParameters)
         {
             eps_buffer_write(EPS2_PARAM_ID_RTD_6_TEMP, (uint32_t *)&buf);
         }
+
+        vTaskDelay(pdMS_TO_TICKS(5));
 
         /* Battery monitor voltage.*/
         if (bm_get_voltage(&buf) == 0)
