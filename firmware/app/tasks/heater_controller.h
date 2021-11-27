@@ -1,7 +1,7 @@
 /*
  * heater_controller.h
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -25,7 +25,7 @@
  *
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
- * \version 0.2.12
+ * \version 0.2.36
  *
  * \date 2021/08/04
  *
@@ -43,11 +43,12 @@
 #define TASK_HEATER_CONTROLLER_NAME             "Heater Controller" /**< Task name. */
 #define TASK_HEATER_CONTROLLER_STACK_SIZE       160             	/**< Memory stack size in bytes. */
 #define TASK_HEATER_CONTROLLER_PRIORITY         3               	/**< Priority. */
-#define TASK_HEATER_CONTROLLER_PERIOD_MS        500             	/**< Period in milliseconds. */
+#define TASK_HEATER_CONTROLLER_PERIOD_MS        2000             	/**< Period in milliseconds. */
 #define TASK_HEATER_CONTROLLER_INIT_TIMEOUT_MS  2000            	/**< Wait time to initialize the task in milliseconds. */
 
-#define HEATER_AUTOMATIC_MODE		0x00
-#define HEATER_MANUAL_MODE 			0x01
+/* Heater modes */
+#define HEATER_AUTOMATIC_MODE                   0
+#define HEATER_MANUAL_MODE                      1
 
 /**
  * \brief Heater controller task handle.
@@ -57,11 +58,9 @@ extern xTaskHandle xTaskHeaterControllerHandle;
 /**
  * \brief Heater controller task.
  *
- * \param[in] pvParameters is a value that will passed as the task's parameter.
- *
  * \return None.
  */
-void vTaskHeaterController(void *pvParameters);
+void vTaskHeaterController(void);
 
 #endif /* HEATER_CONTROLLER_H_ */
 
