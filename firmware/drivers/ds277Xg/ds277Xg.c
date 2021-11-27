@@ -1,7 +1,7 @@
 /*
  * ds277Xg.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -24,8 +24,9 @@
  * \brief DS277XG+ driver implementation.
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.0
+ * \version 0.2.34
  * 
  * \date 2021/08/17
  * 
@@ -33,8 +34,9 @@
  * \{
  */
 
-#include <stdio.h>
+#include <config/config.h>
 #include <system/sys_log/sys_log.h>
+
 #include "ds277Xg.h"
 
 int ds277Xg_init(ds277Xg_config_t *config)
@@ -160,8 +162,12 @@ int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uin
     {
         if (ds277Xg_read_data(config, DS277XG_VOLTAGE_REGISTER_MSB_Vin2_Vin1, buf, 2) != 0) {return -1;}
     }
-    else{
-        sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Invalid value for battery number. (Must either 1 or 2)");
+    else
+    {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+        sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Invalid value for battery number! (Must either 1 or 2)");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
     }
     *voltage_raw = ((int16_t)((buf[1] << 8) + buf[0])) >> 5;
@@ -179,8 +185,10 @@ int ds277Xg_read_voltage_mv(ds277Xg_config_t *config, int16_t *voltage_mv, uint8
 
     if (ds277Xg_read_voltage_raw(config, &voltage_raw, battery_select) != 0)
     {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw voltage value!");
         sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
     }
 
@@ -207,8 +215,10 @@ int ds277Xg_read_temperature_kelvin(ds277Xg_config_t *config, uint16_t *temp_kel
 
     if (ds277Xg_read_temperature_raw(config, &temp_raw) != 0)
     {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw temperature value!");
         sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
     }
 
@@ -242,8 +252,10 @@ int ds277Xg_read_current_ma(ds277Xg_config_t *config, int16_t *current_ma, bool 
 
     if (ds277Xg_read_current_raw(config, &current_raw, read_average) != 0)
     {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw current value!");
         sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
     }
 
@@ -292,8 +304,10 @@ int ds277Xg_read_accumulated_current_mah(ds277Xg_config_t *config, uint16_t *acc
 
     if (ds277Xg_read_accumulated_current_raw(config, &acc_current_raw) != 0)
     {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw accumulated current value!");
         sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
     }
 
