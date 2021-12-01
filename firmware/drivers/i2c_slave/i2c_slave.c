@@ -25,8 +25,9 @@
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author Andr√© M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Jo„o Cl·udio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * 
- * \version 0.2.28
+ * \version 0.2.38
  * 
  * \date 2021/06/22
  * 
@@ -154,13 +155,13 @@ int i2c_slave_write(i2c_slave_port_t port, uint8_t *data, uint16_t len)
     switch(port)
     {
         case I2C_PORT_0:   
-            base_address = USCI_A0_BASE;    
+            base_address = USCI_B0_BASE;
             break;
         case I2C_PORT_1:   
-            base_address = USCI_A1_BASE;    
+            base_address = USCI_B1_BASE;
             break;
         case I2C_PORT_2:   
-            base_address = USCI_A2_BASE;    
+            base_address = USCI_B2_BASE;
             break;
         default:
             #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
@@ -188,14 +189,14 @@ __attribute__((interrupt(USCI_B2_VECTOR)))
 #endif
 void USCI_B2_ISR (void)
 {
-    switch (__even_in_range(UCB1IV,12))
+    switch (__even_in_range(UCB2IV,12))
     {
         case USCI_I2C_UCRXIFG:
             if(i2c_buffer_index++ >= I2C_RX_BUFFER_MAX_SIZE)
             {
                 i2c_buffer_index = 0;
             }
-            i2c_rx_buffer[i2c_buffer_index] = USCI_B_I2C_slaveGetData(USCI_B2_BASE);
+            i2c_rx_buffer[i2c_buffer_index-1] = USCI_B_I2C_slaveGetData(USCI_B2_BASE);
             break;
         case USCI_I2C_UCSTPIFG:     
             #if CONFIG_DRIVERS_DEBUG_ENABLED == 1

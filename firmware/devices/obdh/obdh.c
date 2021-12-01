@@ -25,8 +25,9 @@
  *
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  *
- * \version 0.2.29
+ * \version 0.2.38
  *
  * \date 05/07/2021
  *
@@ -115,7 +116,7 @@ int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd)
 		buf[i] = i2c_rx_buffer[i];
 	}
 
-	if(obdh_check_crc(buf, received_size, buf[received_size-1]) == true)
+	if(obdh_check_crc(buf, received_size-1, buf[received_size-1]) == true)
 	{
 		switch(received_size) 
 		{
@@ -173,17 +174,18 @@ uint8_t obdh_crc8(uint8_t *data, uint8_t len)
 {
     uint8_t crc = OBDH_CRC8_INITIAL_VALUE;
 
-    while(len--)
+    uint8_t i = 0U;
+    for(i = 0; i < len; i++)
     {
-        crc ^= *data++;
+        crc ^= data[i];
 
-        uint8_t j = 0;
-        for (j=0; j<8; j++)
+        uint8_t j = 0U;
+        for (j = 0U; j < 8U; j++)
         {
-            crc = (crc << 1) ^ ((crc & 0x80)? OBDH_CRC8_POLYNOMIAL : 0);
+            crc = (crc << 1) ^ ((crc & 0x80U) ? OBDH_CRC8_POLYNOMIAL : 0U);
         }
 
-        crc &= 0xFF;
+        crc &= 0xFFU;
     }
 
     return crc;
