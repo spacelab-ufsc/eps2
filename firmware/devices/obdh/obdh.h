@@ -1,7 +1,7 @@
 /*
  * obdh.h
  *
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -25,10 +25,11 @@
  *
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.2.7
+ * \version 0.2.40
  *
- * \date 22/04/2020
+ * \date 2020/04/22
  *
  * \defgroup obdh OBDH
  * \ingroup devices
@@ -43,6 +44,8 @@
 #include <drivers/tca4311a/tca4311a.h>
 
 #define OBDH_MODULE_NAME         "OBDH"
+
+#define EPS_SLAVE_ADDRESS        0x36
 
 #define OBDH_COMMAND_READ_SIZE	 2
 #define OBDH_COMMAND_WRITE_SIZE	 6
@@ -82,15 +85,15 @@ int obdh_init(void);
 int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd);
 
 /**
- * \brief Answers a command from the OBDH.
+ * \brief Writes data to the output buffer.
  *
  * \param[in] adr is the register address requested.
  *
- * \param[in,out] val is the value to answer to the OBDH.
+ * \param[in,out] val is the value to be read by the OBDH.
  *
  * \return The status/error code.
  */
-int obdh_answer(uint8_t adr, uint32_t val);
+int obdh_write_output_buffer(uint8_t adr, uint32_t val);
 
 #endif /* OBDH_H_ */
 

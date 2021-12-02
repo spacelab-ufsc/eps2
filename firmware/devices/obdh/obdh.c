@@ -1,7 +1,7 @@
 /*
  * obdh.c
  *
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  *
  */
 
@@ -25,11 +25,12 @@
  *
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
- * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author João Claúdio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.2.38
+ * \version 0.2.40
  *
- * \date 05/07/2021
+ * \date 2021/07/05
  *
  * \addtogroup obdh
  * \{
@@ -78,7 +79,7 @@ int obdh_init(void)
 
     /* OBDH configuration */
     obdh_config.i2c_port     = I2C_PORT_2;
-    obdh_config.i2c_config   = (i2c_slave_config_t){.speed_hz=100000};
+    obdh_config.i2c_config   = (i2c_config_t){.speed_hz=100000};
     obdh_config.en_pin       = GPIO_PIN_66;
     obdh_config.ready_pin    = GPIO_PIN_69;
 
@@ -86,74 +87,85 @@ int obdh_init(void)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C buffer init)!");
         sys_log_new_line();
+
         return -1;      /* Error initializing the I2C port buffer CI*/
     }
 
-    if (i2c_slave_init(obdh_config.i2c_port) != 0)
+    if (i2c_slave_init(obdh_config.i2c_port, EPS_SLAVE_ADDRESS) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C slave init)!");
         sys_log_new_line();
+
         return -1;
     }
 
-    if (i2c_slave_enable(obdh_config.i2c_port) != 0)
+    if (i2c_slave_enable() != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Error during the initialization (I2C slave enable)!");
         sys_log_new_line();
+
         return -1;
     }
 
     return 0;
 }
 
-int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
+int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd)
 {
-    uint8_t buf[I2C_RX_BUFFER_MAX_SIZE];
-    uint8_t received_size = i2c_received_data_size;
+    int err = 0;
 
-	for (int i = 0; i < received_size; i++)
-	{
-		buf[i] = i2c_rx_buffer[i];
-	}
+    uint8_t buf[I2C_RX_BUFFER_MAX_SIZE] = {0};
+    uint8_t received_size = 0;
 
-	if(obdh_check_crc(buf, received_size-1, buf[received_size-1]) == true)
-	{
-		switch(received_size) 
-		{
-			case OBDH_COMMAND_WRITE_SIZE:
-			    *adr = buf[0];
-			    *val = ((uint32_t)buf[1] << 24) |
-			    	   ((uint32_t)buf[2] << 16) |
-			    	   ((uint32_t)buf[3] << 8)  |
-			    	   ((uint32_t)buf[4] << 0);
-			   	*cmd = OBDH_COMMAND_WRITE;
-				break;
-			case OBDH_COMMAND_READ_SIZE:
-				*adr = buf[0];
-			    *val = 0;
-			   	*cmd = OBDH_COMMAND_READ;
-				break;
-			default:
-				sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Invalid command received (CMD)!");
-        		sys_log_new_line();
-				
-				return -1;
-		}
-	}
-	else 
-	{
-		sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Invalid command received (CRC)!");
-        sys_log_new_line();
-		
-		return -1;
-	}
+    if (i2c_slave_read(buf, received_size) == 0)
+    {
+        if (obdh_check_crc(buf, received_size - 1U, buf[received_size - 1U]) == true)
+        {
+            switch(received_size)
+            {
+                case OBDH_COMMAND_WRITE_SIZE:
+                    *adr = buf[0];
+                    *val = ((uint32_t)buf[1] << 24) |
+                           ((uint32_t)buf[2] << 16) |
+                           ((uint32_t)buf[3] << 8)  |
+                           ((uint32_t)buf[4] << 0);
+                    *cmd = OBDH_COMMAND_WRITE;
 
-    return 0;
+                    break;
+                case OBDH_COMMAND_READ_SIZE:
+                    *adr = buf[0];
+                    *val = 0;
+                    *cmd = OBDH_COMMAND_READ;
+
+                    break;
+                default:
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Invalid command received (CMD)!");
+                    sys_log_new_line();
+
+                    err = -1;
+
+                    break;
+            }
+        }
+        else
+        {
+            sys_log_print_event_from_module(SYS_LOG_ERROR, OBDH_MODULE_NAME, "Invalid command received (CRC)!");
+            sys_log_new_line();
+
+            err = -1;
+        }
+    }
+    else
+    {
+        err = -1;
+    }
+
+    return err;
 }
 
-int obdh_answer(uint8_t adr, uint32_t val) 
+int obdh_write_output_buffer(uint8_t adr, uint32_t val)
 {
-	uint8_t buf[1+4+1] = {0};
+    uint8_t buf[1 + 4 + 1] = {0};
 
     buf[0] = adr;
     buf[1] = (val >> 24) & 0xFF;
@@ -162,12 +174,7 @@ int obdh_answer(uint8_t adr, uint32_t val)
     buf[4] = (val >> 0)  & 0xFF;
     buf[5] = obdh_crc8(buf, 5);
 
-    if (i2c_slave_write(obdh_config.i2c_port, buf, 6) != 0)
-    {
-        return -1;
-    }
-
-    return 0;
+    return i2c_slave_write(buf, 6);
 }
 
 uint8_t obdh_crc8(uint8_t *data, uint8_t len)
