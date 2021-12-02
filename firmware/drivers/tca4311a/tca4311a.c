@@ -1,7 +1,7 @@
 /*
  * tca4311a.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -16,18 +16,18 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
 /**
  * \brief TCA4311A driver implementation.
  * 
- * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com> and Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.7
+ * \version 0.2.40
  * 
- * \date 2021/06/05
+ * \date 2020/02/01
  * 
  * \addtogroup tca4311a
  * \{
@@ -40,77 +40,163 @@
 
 int tca4311a_init(tca4311a_config_t config, bool en)
 {
-    int res_en = gpio_init(config.en_pin, (gpio_config_t){.mode=GPIO_MODE_OUTPUT});
+    int res_i2c = i2c_init(config.i2c_port, config.i2c_config);
 
-    int res_ready = gpio_init(config.ready_pin, (gpio_config_t){.mode=GPIO_MODE_INPUT});
+    gpio_config_t gpio_conf = {0};
 
-    if ((res_en != 0) || (res_ready != 0))
+    gpio_conf.mode = GPIO_MODE_OUTPUT;
+
+    int res_en = gpio_init(config.en_pin, gpio_conf);
+
+    gpio_conf.mode = GPIO_MODE_INPUT;
+
+    int res_ready = gpio_init(config.ready_pin, gpio_conf);
+
+    int err = -1;
+
+    if ((res_i2c != 0) || (res_en != 0) || (res_ready != 0))
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during the initialization!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
-    }
-
-    if (en)
-    {
-        return tca4311a_enable(config);
+        err = TCA4311A_ERROR;
     }
     else
     {
-        return tca4311a_disable(config);
+        if (en)
+        {
+            err = tca4311a_enable(config);
+        }
+        else
+        {
+            err = tca4311a_disable(config);
+        }
     }
+
+    return err;
 }
 
 int tca4311a_enable(tca4311a_config_t config)
 {
+    int err = TCA4311A_READY;
+
     if (gpio_set_state(config.en_pin, true) != 0)
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during enable!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
+        err = TCA4311A_ERROR;
     }
 
-    return tca4311a_is_ready(config);
+    return err;
 }
 
 int tca4311a_disable(tca4311a_config_t config)
 {
+    int err = TCA4311A_READY;
+
     if (gpio_set_state(config.en_pin, false) != 0)
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during disable!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
+        err = TCA4311A_ERROR;
     }
 
-    return tca4311a_is_ready(config);
+    return err;
 }
 
 int tca4311a_is_ready(tca4311a_config_t config)
 {
+    int err = -1;
+
     int result = gpio_get_state(config.ready_pin);
 
     if (result == GPIO_STATE_HIGH)
     {
-        return TCA4311A_READY;
+        err = TCA4311A_READY;
     }
     else if (result == GPIO_STATE_LOW)
     {
-        return TCA4311A_NOT_READY;
+        err = TCA4311A_NOT_READY;
     }
     else
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
         sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error reading the state!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return TCA4311A_ERROR;
+        err = TCA4311A_ERROR;
     }
+
+    return err;
+}
+
+int tca4311a_write(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
+{
+    int err = TCA4311A_READY;
+
+    if (i2c_write(config.i2c_port, adr, data, len) != 0)
+    {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during writing!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        err = TCA4311A_ERROR;
+    }
+
+    return err;
+}
+
+int tca4311a_read(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
+{
+    int err = TCA4311A_READY;
+
+    if (i2c_read(config.i2c_port, adr, data, len) != 0)
+    {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error during reading!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        err = TCA4311A_ERROR;
+    }
+
+    return err;
+}
+
+int tca4311a_write_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t byte)
+{
+    int err = TCA4311A_READY;
+
+    if (i2c_write(config.i2c_port, adr, &byte, 1) != 0)
+    {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error writing a byte!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        err = TCA4311A_ERROR;
+    }
+
+    return err;
+}
+
+int tca4311a_read_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *byte)
+{
+    int err = TCA4311A_READY;
+
+    if (i2c_read(config.i2c_port, adr, byte, 1) != 0)
+    {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TCA4311A_MODULE_NAME, "Error reading a byte!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+        err = TCA4311A_ERROR;
+    }
+
+    return err;
 }
 
 /** \} End of tca4311a group */
