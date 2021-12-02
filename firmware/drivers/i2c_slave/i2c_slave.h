@@ -1,7 +1,7 @@
 /*
  * i2c_slave.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,8 +25,9 @@
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.7
+ * \version 0.2.39
  * 
  * \date 2021/06/22
  * 
@@ -42,17 +43,12 @@
 
 #include <drivers/i2c/i2c.h>
 
-#define I2C_SLAVE_MODULE_NAME "I2C_SLAVE"
+#define I2C_SLAVE_MODULE_NAME           "I2C_SLAVE"
 
 #define EPS_SLAVE_ADDRESS 				0x36 				/**< 7-bit slave address. */
 #define I2C_RX_BUFFER_MAX_SIZE          16                  /**< Number of bytes of the maximum I2C RX buffer size. */
+#define I2C_TX_BUFFER_MAX_SIZE          16                  /**< Number of bytes of the maximum I2C TX buffer size. */
 #define NOTIFICATION_VALUE_TO_I2C_ISR   (1UL << 0UL)        /**< Bit to set on i2c notification for tasks. */
-
-/**
- * \brief UART interrupt RX buffer and size.
- */
-extern uint8_t i2c_rx_buffer[I2C_RX_BUFFER_MAX_SIZE];
-extern uint8_t i2c_received_data_size;
 
 /**
  * \brief I2C bus configuration parameters.
@@ -98,51 +94,52 @@ typedef uint8_t i2c_mode_t;
 int i2c_slave_init(i2c_slave_port_t port);
 
 /**
- * @brief I2C interface mode selection.
+ * \brief I2C interface mode selection.
  *
- * @param[in] port
+ * \param[in] port
  * \parblock
  *      -\b I2C_PORT_0
  *      -\b I2C_PORT_1
  *      -\b I2C_PORT_2
  * \endparblock
  *
- * @param[in] mode
+ * \param[in] mode
  * \parblock
  *      -\b I2C_RECEIVE_MODE
  *      -\b I2C_TRANSMIT_MODE
  * \endparblock
  *
- * @return The status/error code.
+ * \return The status/error code.
  */
 int i2c_slave_set_mode(i2c_slave_port_t port, i2c_mode_t mode);
 
 /**
- * @brief I2C interface operation start as slave and interrupt enabling.
+ * \brief I2C interface operation start as slave and interrupt enabling.
  * 
- * @param[in] port 
- * @return The status/error code.
+ * \return The status/error code.
  */
-int i2c_slave_enable(i2c_slave_port_t port);
+int i2c_slave_enable(void);
 
 /**
- * @brief I2C interface operation stop as slave and interrupt disabling.
+ * \brief I2C interface operation stop as slave and interrupt disabling.
  * 
- * @param[in] port 
- * @return The status/error code. 
+ * \return The status/error code.
  */
-int i2c_slave_disable(i2c_slave_port_t port);
+int i2c_slave_disable(void);
+
+/**
+ * \brief Reads the I2C slave buffer.
+ *
+ * \param[in,out] data is the array to store the read data.
+ *
+ * \param[in,out] len is the number of read bytes.
+ *
+ * \reutrn The status/error code.
+ */
+int i2c_slave_read(uint8_t *data, uint16_t *len);
 
 /**
  * \brief Writes data to a given I2C port.
- *
- * \param[in] port is the UART port to write. It can be:
- * \parblock
- *      -\b I2C_PORT_0
- *      -\b I2C_PORT_1
- *      -\b I2C_PORT_2
- *      .
- * \endparblock
  *
  * \param[in] data is the data to write to the I2C port.
  *
@@ -150,7 +147,7 @@ int i2c_slave_disable(i2c_slave_port_t port);
  *
  * \return The status/error code.
  */
-int i2c_slave_write(i2c_slave_port_t port, uint8_t *data, uint16_t len);
+int i2c_slave_write(uint8_t *data, uint16_t len);
 
 #endif /* I2C_SLAVE_H_ */
 
