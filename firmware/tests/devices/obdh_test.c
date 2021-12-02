@@ -1,7 +1,7 @@
 /*
  * obdh_test.c
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -24,8 +24,9 @@
  * \brief Unit test of the OBDH device.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.2.41
  *
  * \date 2021/09/15
  *
@@ -50,19 +51,19 @@ static void obdh_init_test(void** state) {
 
 }
 
-static void obdh_decocde_test(void **state) {
+static void obdh_decode_test(void **state) {
 
 }
 
-static void obdh_answer_test(void** state) {
+static void obdh_write_output_buffer_test(void** state) {
 
 }
 
 int main(void) {
     const struct CMUnitTest obdh_tests[] = {
         cmocka_unit_test(obdh_init_test),
-        cmocka_unit_test(obdh_decocde_test),
-        cmocka_unit_test(obdh_answer_test),
+        cmocka_unit_test(obdh_decode_test),
+        cmocka_unit_test(obdh_write_output_buffer_test),
 
     };
 

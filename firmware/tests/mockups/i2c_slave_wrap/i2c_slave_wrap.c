@@ -1,7 +1,7 @@
 /*
  * i2c_slave_wrap.c
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -24,8 +24,9 @@
  * \brief i2c_slave driver wrap implementation.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.2.41
  *
  * \date 2021/09/28
  *
@@ -37,26 +38,23 @@
 #include <stdint.h>
 #include <drivers/i2c_slave/i2c_slave.h>
 
-uint8_t i2c_rx_buffer[I2C_RX_BUFFER_MAX_SIZE];
-uint8_t i2c_received_data_size = 0;
-
-int __wrap_i2c_slave_init(i2c_slave_port_t port) {
+int __wrap_i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr) {
     return 0;
 }
 
-int __wrap_i2c_slave_set_mode(i2c_slave_port_t port, i2c_mode_t mode) {
+int __wrap_i2c_slave_enable(void) {
     return 0;
 }
 
-int __wrap_i2c_slave_enable(i2c_slave_port_t port) {
+int __wrap_i2c_slave_disable(void) {
     return 0;
 }
 
-int __wrap_i2c_slave_disable(i2c_slave_port_t port) {
+int __wrap_i2c_slave_read(uint8_t *data, uint16_t *len) {
     return 0;
 }
 
-int __wrap_i2c_slave_write(i2c_slave_port_t port, uint8_t *data, uint16_t len) {
+int __wrap_i2c_slave_write(uint8_t *data, uint16_t len) {
     return 0;
 }
 
