@@ -43,75 +43,49 @@
 
 #include <drivers/i2c/i2c.h>
 
-#define I2C_SLAVE_MODULE_NAME           "I2C_SLAVE"
+#define I2C_SLAVE_MODULE_NAME               "I2C_SLAVE"
 
-#define EPS_SLAVE_ADDRESS 				0x36 				/**< 7-bit slave address. */
-#define I2C_RX_BUFFER_MAX_SIZE          16                  /**< Number of bytes of the maximum I2C RX buffer size. */
-#define I2C_TX_BUFFER_MAX_SIZE          16                  /**< Number of bytes of the maximum I2C TX buffer size. */
-#define NOTIFICATION_VALUE_TO_I2C_ISR   (1UL << 0UL)        /**< Bit to set on i2c notification for tasks. */
+#define I2C_RX_BUFFER_MAX_SIZE              16              /**< Number of bytes of the maximum I2C RX buffer size. */
+#define I2C_TX_BUFFER_MAX_SIZE              16              /**< Number of bytes of the maximum I2C TX buffer size. */
 
-/**
- * \brief I2C bus configuration parameters.
- */
-typedef struct
-{
-    uint32_t speed_hz;  /**< Transfer rate in bps (available values: 100 or 400 kbps). */
-} i2c_slave_config_t;
+#define I2C_SLAVE_NOTI_VAL_TO_I2C_RX_ISR    (1UL << 0UL)    /**< Bit to set on I2C RX notification for tasks. */
+#define I2C_SLAVE_NOTI_VAL_TO_I2C_TX_ISR    (1UL << 1UL)    /**< Bit to set on I2C TX notification for tasks. */
 
 /**
- * \brief I2C port.
+ * \brief I2C port type.
  */
 typedef uint8_t i2c_slave_port_t;
+
+/**
+ * \brief I2C address type.
+ */
+typedef uint8_t i2c_slave_address_t;
 
 /**
  * \brief I2C modes.
  */
 typedef enum
 {
-    I2C_RECEIVE_MODE = 0,
-    I2C_TRANSMIT_MODE
-} i2c_mode_e;
+    I2C_SLAVE_RECEIVE_MODE = 0,
+    I2C_SLAVE_TRANSMIT_MODE
+} i2c_mode_t;
 
 /**
- * \brief I2C mode.
- */
-typedef uint8_t i2c_mode_t;
-
-/**
- * @brief I2C interface configuration as slave.
+ * \brief I2C interface configuration as slave.
  * 
- * @param[in] port
+ * \param[in] port is the I2C port to initialize as slave. It can be:
  * \parblock
  *      -\b I2C_PORT_0
  *      -\b I2C_PORT_1
  *      -\b I2C_PORT_2
+ *      .
  * \endparblock
  * 
- * @param[in] config 
+ * \param[in] adr is the address to use as an slave device.
  * 
- * @return The status/error code.
- */
-int i2c_slave_init(i2c_slave_port_t port);
-
-/**
- * \brief I2C interface mode selection.
- *
- * \param[in] port
- * \parblock
- *      -\b I2C_PORT_0
- *      -\b I2C_PORT_1
- *      -\b I2C_PORT_2
- * \endparblock
- *
- * \param[in] mode
- * \parblock
- *      -\b I2C_RECEIVE_MODE
- *      -\b I2C_TRANSMIT_MODE
- * \endparblock
- *
  * \return The status/error code.
  */
-int i2c_slave_set_mode(i2c_slave_port_t port, i2c_mode_t mode);
+int i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr);
 
 /**
  * \brief I2C interface operation start as slave and interrupt enabling.

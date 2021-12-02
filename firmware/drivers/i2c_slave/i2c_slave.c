@@ -46,6 +46,16 @@
 
 #include "i2c_slave.h"
 
+/**
+ * \brief Status (idle, RX or TX).
+ */
+typedef enum
+{
+    I2C_SLAVE_STATUS_IDLE=0,
+    I2C_SLAVE_STATUS_RX,
+    I2C_SLAVE_STATUS_TX
+} i2c_slave_mode_t;
+
 uint16_t i2c_slave_base_address = UINT16_MAX;
 
 uint8_t i2c_rx_buffer[I2C_RX_BUFFER_MAX_SIZE] = {0};
@@ -53,10 +63,12 @@ uint8_t i2c_rx_data_size = 0;
 uint8_t i2c_rx_buffer_index = 0;
 
 uint8_t i2c_tx_buffer[I2C_TX_BUFFER_MAX_SIZE] = {0};
-uint8_t i2c_tx_buffer_data_size = 0
+uint8_t i2c_tx_buffer_data_size = 0;
 uint8_t i2c_tx_buffer_index = 0;
 
-int i2c_slave_init(i2c_slave_port_t port)
+uint8_t i2c_slave_status = I2C_SLAVE_STATUS_IDLE;
+
+int i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr)
 {
     int err = 0;
 
@@ -92,7 +104,7 @@ int i2c_slave_init(i2c_slave_port_t port)
 
     if (err == 0)
     {
-        USCI_B_I2C_initSlave(i2c_slave_base_address, EPS_SLAVE_ADDRESS);
+        USCI_B_I2C_initSlave(i2c_slave_base_address, adr);
 
         /* Setting the mode is only required during the initialization, the rest are automatically switched */
         USCI_B_I2C_setMode(i2c_slave_base_address, USCI_B_I2C_RECEIVE_MODE);
@@ -216,7 +228,6 @@ int i2c_slave_write(uint8_t *data, uint16_t len)
     return err;
 }
 
-
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 #pragma vector=USCI_B2_VECTOR
 __interrupt
@@ -228,6 +239,8 @@ void USCI_B2_ISR(void)
     switch(__even_in_range(UCB2IV, 12))
     {
         case USCI_I2C_UCRXIFG:
+            i2c_slave_status = I2C_SLAVE_STATUS_RX;
+
             i2c_rx_buffer[i2c_rx_buffer_index] = USCI_B_I2C_slaveGetData(USCI_B2_BASE);
 
             i2c_rx_buffer_index++;
@@ -239,6 +252,8 @@ void USCI_B2_ISR(void)
 
             break;
         case USCI_I2C_UCTXIFG:
+            i2c_slave_status = I2C_SLAVE_STATUS_TX;
+
             USCI_B_I2C_slavePutData(USCI_B2_BASE, i2c_tx_buffer[i2c_tx_buffer_index]);
 
             i2c_tx_buffer_index++;
@@ -250,16 +265,6 @@ void USCI_B2_ISR(void)
 
             break;
         case USCI_I2C_UCSTPIFG:     
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-            sys_log_print_event_from_module(SYS_LOG_INFO, I2C_SLAVE_MODULE_NAME, "Received data: ");
-            for (int i = 0; i < i2c_rx_buffer_index; i++)
-            {
-                sys_log_print_hex(i2c_rx_buffer[i]);
-                sys_log_print_msg(",");
-            }
-            sys_log_new_line();
-        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-
             i2c_rx_data_size = i2c_rx_buffer_index;
             i2c_rx_buffer_index = 0;
 
@@ -269,10 +274,16 @@ void USCI_B2_ISR(void)
             then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
             BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-            xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_TO_I2C_ISR, eSetBits, &xHigherPriorityTaskWoken);
+            if (i2c_slave_status == I2C_SLAVE_STATUS_RX)
+            {
+                xTaskNotifyFromISR(xTaskParamServerHandle, I2C_SLAVE_NOTI_VAL_TO_I2C_RX_ISR, eSetBits, &xHigherPriorityTaskWoken);
 
-            /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
-            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+                /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
+                portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
+            }
+
+            i2c_slave_status = I2C_SLAVE_STATUS_IDLE;
 
             break;
         default:
