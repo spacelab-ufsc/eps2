@@ -28,7 +28,7 @@
  * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.39
+ * \version 0.2.42
  * 
  * \date 2021/06/22
  * 
@@ -107,7 +107,7 @@ int i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr)
         USCI_B_I2C_initSlave(i2c_slave_base_address, adr);
 
         /* Setting the mode is only required during the initialization, the rest are automatically switched */
-        USCI_B_I2C_setMode(i2c_slave_base_address, USCI_B_I2C_RECEIVE_MODE);
+        USCI_B_I2C_setMode(i2c_slave_base_address, USCI_B_I2C_RECEIVE_MODE + USCI_B_I2C_TRANSMIT_MODE);
     }
 
     return err;
@@ -135,8 +135,8 @@ int i2c_slave_enable(void)
     if (err == 0)
     {
         USCI_B_I2C_enable(i2c_slave_base_address);
-        USCI_B_I2C_clearInterrupt(i2c_slave_base_address, USCI_B_I2C_RECEIVE_INTERRUPT + USCI_B_I2C_STOP_INTERRUPT);
-        USCI_B_I2C_enableInterrupt(i2c_slave_base_address, USCI_B_I2C_RECEIVE_INTERRUPT + USCI_B_I2C_STOP_INTERRUPT);
+        USCI_B_I2C_clearInterrupt(i2c_slave_base_address, USCI_B_I2C_TRANSMIT_INTERRUPT + USCI_B_I2C_RECEIVE_INTERRUPT + USCI_B_I2C_STOP_INTERRUPT);
+        USCI_B_I2C_enableInterrupt(i2c_slave_base_address, USCI_B_I2C_TRANSMIT_INTERRUPT + USCI_B_I2C_RECEIVE_INTERRUPT + USCI_B_I2C_STOP_INTERRUPT);
     }
 
     return err;
@@ -164,7 +164,7 @@ int i2c_slave_disable(void)
     if (err == 0)
     {
         USCI_B_I2C_disable(i2c_slave_base_address);
-        USCI_B_I2C_disableInterrupt(i2c_slave_base_address, USCI_B_I2C_RECEIVE_INTERRUPT + USCI_B_I2C_STOP_INTERRUPT);
+        USCI_B_I2C_disableInterrupt(i2c_slave_base_address, USCI_B_I2C_TRANSMIT_INTERRUPT + USCI_B_I2C_RECEIVE_INTERRUPT + USCI_B_I2C_STOP_INTERRUPT);
     }
 
     return err;
