@@ -1,7 +1,7 @@
 /*
  * i2c.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.2.43
  * 
  * \date 2021/06/22
  * 
@@ -85,7 +85,7 @@ typedef uint8_t i2c_slave_adr_t;
  *
  * \return The status/error code.
  */
-int i2c_master_init(i2c_port_t port, i2c_config_t config);
+int i2c_init(i2c_port_t port, i2c_config_t config);
 
 /**
  * \brief Writes data to a given I2C port and address.

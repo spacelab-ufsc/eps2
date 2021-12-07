@@ -1,7 +1,7 @@
 /*
  * i2c.c
  * 
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.2.43
  * 
  * \date 2021/06/22
  * 
@@ -42,7 +42,7 @@
 
 #include "i2c.h"
 
-int i2c_master_init(i2c_port_t port, i2c_config_t config)
+int i2c_init(i2c_port_t port, i2c_config_t config)
 {
     switch(config.speed_hz)
     {

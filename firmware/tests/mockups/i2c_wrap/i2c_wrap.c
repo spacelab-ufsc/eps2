@@ -1,7 +1,7 @@
 /*
  * i2c_wrap.c
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -25,7 +25,7 @@
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
- * \version 0.1.0
+ * \version 0.2.43
  *
  * \date 2021/09/28
  *
@@ -36,7 +36,7 @@
 
 #include "i2c_wrap.h"
 
-int __wrap_i2c_master_init(i2c_port_t port, i2c_config_t config) {
+int __wrap_i2c_init(i2c_port_t port, i2c_config_t config) {
     return 0;
 }
 
