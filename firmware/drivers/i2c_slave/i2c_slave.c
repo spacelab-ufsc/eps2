@@ -24,11 +24,11 @@
  * \brief I2C driver definition.
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
- * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Joao Claudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.42
+ * \version 0.2.44
  * 
  * \date 2021/06/22
  * 
@@ -264,7 +264,7 @@ void USCI_B2_ISR(void)
             }
 
             break;
-        case USCI_I2C_UCSTPIFG:     
+        case USCI_I2C_UCSTPIFG:
             i2c_rx_data_size = i2c_rx_buffer_index;
             i2c_rx_buffer_index = 0;
 
@@ -280,7 +280,6 @@ void USCI_B2_ISR(void)
 
                 /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
                 portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-
             }
 
             i2c_slave_status = I2C_SLAVE_STATUS_IDLE;
