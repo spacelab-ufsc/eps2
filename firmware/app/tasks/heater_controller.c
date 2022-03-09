@@ -44,6 +44,27 @@
 
 xTaskHandle xTaskHeaterControllerHandle;
 
+/**
+ * \brief Heater control routine.
+ *
+ * \param[in] channel is the heater channel to controle. It can be:
+ * \parblock
+ *      - HEATER_CONTROL_LOOP_CH_0
+ *      - HEATER_CONTROL_LOOP_CH_1
+ *      .
+ * \endparblock
+ *
+ * \param[in] mode is the heater mode. It can be:
+ * \parblock
+ *      - HEATER_AUTOMATIC_MODE
+ *      - HEATER_MANUAL_MODE
+ *      .
+ * \endparblock
+ *
+ * \return None.
+ */
+void heater_control(int channel, uint32_t mode);
+
 void vTaskHeaterController(void)
 {
     uint32_t heater_mode = 0;
