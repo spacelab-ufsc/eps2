@@ -59,7 +59,7 @@ typedef enum
 uint16_t i2c_slave_base_address = UINT16_MAX;
 
 uint8_t i2c_rx_buffer[I2C_RX_BUFFER_MAX_SIZE] = {0};
-uint8_t i2c_rx_data_size = 0;
+//uint8_t i2c_rx_data_size = 0;
 uint8_t i2c_rx_buffer_index = 0;
 
 uint8_t i2c_tx_buffer[I2C_TX_BUFFER_MAX_SIZE] = {0};
@@ -249,7 +249,6 @@ void USCI_B2_ISR(void)
             {
                 i2c_rx_buffer_index = 0;
             }
-
             break;
         case USCI_I2C_UCTXIFG:
             i2c_slave_status = I2C_SLAVE_STATUS_TX;
@@ -262,7 +261,6 @@ void USCI_B2_ISR(void)
             {
                 i2c_tx_buffer_index = 0;
             }
-
             break;
         case USCI_I2C_UCSTPIFG:
             i2c_rx_data_size = i2c_rx_buffer_index;

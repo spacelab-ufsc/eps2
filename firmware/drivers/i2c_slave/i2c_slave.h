@@ -70,6 +70,9 @@ typedef enum
     I2C_SLAVE_TRANSMIT_MODE
 } i2c_mode_t;
 
+// global variable, a provisional solution
+uint8_t i2c_rx_data_size;
+
 /**
  * \brief I2C interface configuration as slave.
  * 
