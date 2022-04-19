@@ -21,13 +21,13 @@
  */
 
 /**
- * \brief Unit test of the EPS2 Data structure
+ * \brief Unit test of the EPS2 Data structure if flag CONFIG_SET_DUMMY is set
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
- * \version 0.1.0
+ * \version 0.1.1
  *
- * \date 2021/11/09
+ * \date 2022/04/19
  *
  * \defgroup eps2_data_test EPS2 Data
  * \ingroup tests
@@ -57,6 +57,8 @@ int main(void) {
     const struct CMUnitTest eps_data_tests[] = {
         cmocka_unit_test(eps_buffer_read_test),
     };
-
+    
+    #if CONFIG_SET_DUMMY_EPS == 1
     return cmocka_run_group_tests(eps_data_tests, NULL, NULL);
+    #endif
 }
