@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
- * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Joï¿½o Clï¿½udio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * 
  * \version 0.2.38
  * 
@@ -50,7 +50,7 @@
 #define CONFIG_TASK_TIME_CONTROL_ENABLED                1
 
 /* Devices */
-#define CONFIG_SET_DUMMY_EPS                            0
+#define CONFIG_SET_DUMMY_EPS                            1
 #define CONFIG_DEV_LEDS_ENABLED                         1
 #define CONFIG_DEV_HEATER_ENABLED                       0
 #define CONFIG_DEV_MPPT_ENABLED                         1
