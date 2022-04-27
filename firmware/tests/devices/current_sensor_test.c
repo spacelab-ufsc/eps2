@@ -46,15 +46,24 @@
 #include <drivers/adc/adc.h>
 #include <drivers/max9934/max9934.h>
 
-static void current_sensor_init_test(void **state) {
+#define PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT ADC_PORT_1
+#define PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT ADC_PORT_2
+#define PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT ADC_PORT_3
+#define PANNEL_PLUS_Z_CURRENT_SENSOR_ADC_PORT ADC_PORT_4
+#define PANNEL_MINUS_Z_CURRENT_SENSOR_ADC_PORT ADC_PORT_5
+#define PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT ADC_PORT_6
+#define EPS_BEACON_CURRENT_SENSOR_ADC_PORT ADC_PORT_7
 
+static void current_sensor_init_test(void **state)
+{
 }
 
-static void current_sensor_raw_read_test(void **state) {
-
+static void current_sensor_raw_read_test(void **state)
+{
 }
 
-int main(void) {
+int main(void)
+{
     const struct CMUnitTest current_sensor_tests[] = {
         cmocka_unit_test(current_sensor_init_test),
         cmocka_unit_test(current_sensor_raw_read_test),
@@ -62,6 +71,5 @@ int main(void) {
 
     return cmocka_run_group_tests(current_sensor_tests, NULL, NULL);
 }
-
 
 /** \} End of current_sensor_test group */

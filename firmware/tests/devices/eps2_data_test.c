@@ -43,22 +43,39 @@
 #include <app/structs/eps2_data.h>
 #include <system/sys_log/sys_log.h>
 
-static void eps_buffer_read_test(void **state) {
+static void eps_buffer_write_test(void **state)
+{
+    uint8_t id = 0;
     uint32_t value = 0;
-    for (uint8_t id = EPS2_PARAM_ID_TIME_COUNTER; id < EPS2_PARAM_ID_DEVICE_ID; ++id) {
+
+    /* Test all values with 0 */
+    for (id = EPS2_PARAM_ID_TIME_COUNTER; id == EPS2_PARAM_ID_DEVICE_ID; ++id)
+    {
+        int result = eps_buffer_write(id, &value);
+        assert_return_code(result, 0);
+    }
+}
+
+static void eps_buffer_read_test(void **state)
+{
+
+#if CONFIG_SET_DUMMY_EPS == 1
+    uint32_t value = 0;
+    for (uint8_t id = EPS2_PARAM_ID_TIME_COUNTER; id < EPS2_PARAM_ID_DEVICE_ID; ++id)
+    {
         int result = eps_buffer_read(id, &value);
         assert_return_code(result, 0);
         assert_true(value == id);
     }
-
+#endif
 }
 
-int main(void) {
+int main(void)
+{
     const struct CMUnitTest eps_data_tests[] = {
+        cmocka_unit_test(eps_buffer_write_test),
         cmocka_unit_test(eps_buffer_read_test),
     };
-    
-    #if CONFIG_SET_DUMMY_EPS == 1
+
     return cmocka_run_group_tests(eps_data_tests, NULL, NULL);
-    #endif
 }
