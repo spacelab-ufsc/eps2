@@ -1,5 +1,5 @@
 /*
- * max9934_wrap.h
+ * gpio_wrap.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,32 +21,65 @@
  */
 
 /**
- * \brief MAX9934 driver wrap implementation.
+ * \brief GPIO driver wrap implementation.
  *
- * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
  * \version 0.1.0
  *
- * \date 2021/08/24
+ * \date 2021/07/22
  *
- * \defgroup max9934_wrap MAX9934 Wrap
- * \ingroup tests
+ * \addtogroup gpio_wrap
  * \{
  */
 
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
 
-#include "max9934_wrap.h"
+#include "gpio_wrap.h"
 
-int __wrap_max9934_init(max9934_config_t config) {
-    return 0;
+int __wrap_gpio_init(gpio_pin_t pin, gpio_config_t config)
+{
+    check_expected(pin);
+    check_expected(config.mode);
+
+    return mock_type(int);
 }
 
-int __wrap_max9934_read(max9934_config_t config, uint16_t *raw_val) {
-    return 0;
+int __wrap_gpio_set_state(gpio_pin_t pin, bool level)
+{
+    check_expected(pin);
+    check_expected(level);
+
+    return mock_type(int);
 }
+
+int __wrap_gpio_get_state(gpio_pin_t pin)
+{
+    check_expected(pin);
+
+    int pin_val = mock_type(int);
+
+    if ((pin_val == 0) || (pin_val == 1))
+    {
+        return pin_val;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+int __wrap_gpio_toggle(gpio_pin_t pin)
+{
+    check_expected(pin);
+
+    return mock_type(int);
+}
+
+/** \} End of gpio_wrap group */

@@ -33,13 +33,16 @@
  * \{
  */
 
-#include <stdint.h>
+#include <stdarg.h>
+#include <stddef.h>
+#include <setjmp.h>
+#include <cmocka.h>
 
 #include "sys_log_wrap.h"
 
 int __wrap_sys_log_init(void)
 {
-    return 0;
+    return mock_type(int);
 }
 
 void __wrap_sys_log_print_event(uint8_t type, const char *event)

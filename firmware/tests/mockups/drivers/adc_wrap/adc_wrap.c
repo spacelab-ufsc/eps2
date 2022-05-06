@@ -1,5 +1,5 @@
 /*
- * gpio_wrap.c
+ * adc_wrap.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,64 +21,72 @@
  */
 
 /**
- * \brief GPIO driver wrap implementation.
+ * \brief ADC driver wrap definition.
  *
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/07/22
+ * \date 2021/08/23
  *
- * \addtogroup gpio_wrap
+ * \defgroup adc_wrap ADC Wrap
+ * \ingroup tests
  * \{
  */
 
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
 
-#include "gpio_wrap.h"
+#include "adc_wrap.h"
 
-int __wrap_gpio_init(gpio_pin_t pin, gpio_config_t config)
+int __wrap_adc_init(adc_port_t port, adc_config_t config)
 {
-    check_expected(pin);
+    check_expected(port);
 
-    return 0;
+    return mock_type(int);
 }
 
-int __wrap_gpio_set_state(gpio_pin_t pin, bool level)
+int __wrap_adc_read(adc_port_t port, uint16_t *val)
 {
-    check_expected(pin);
-    check_expected(level);
+    check_expected(port);
 
-    return 0;
-}
+    uint16_t adc_val = mock_type(uint16_t);
 
-int __wrap_gpio_get_state(gpio_pin_t pin)
-{
-    check_expected(pin);
-
-    int pin_val = mock_type(int);
-
-    if ((pin_val == 0) || (pin_val == 1))
+    if (val != NULL)
     {
-        return pin_val;
+        *val = adc_val;
     }
-    else
-    {
-        return -1;
-    }
+
+    return mock_type(int);
 }
 
-int __wrap_gpio_toggle(gpio_pin_t pin)
+float __wrap_adc_temp_get_mref(void)
 {
-    check_expected(pin);
-
-    return 0;
+    return mock_type(float);
 }
 
-/** \} End of gpio_wrap group */
+float __wrap_adc_temp_get_nref(void)
+{
+    return mock_type(float);
+}
+
+bool __wrap_adc_mutex_create(void)
+{
+    return true;
+}
+
+bool __wrap_adc_mutex_take(void)
+{
+    return true;
+}
+
+bool __wrap_adc_mutex_give(void)
+{
+    return true;
+}
+
+/** \} End of adc_wrap group */

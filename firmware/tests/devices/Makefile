@@ -4,7 +4,6 @@ TARGET_TEMP_SENSOR=temp_sensor_unit_test
 TARGET_VOLTAGE_SENSOR=voltage_sensor_unit_test
 TARGET_OBDH=obdh_unit_test
 TARGET_TTC=ttc_unit_test
-TARGET_EPS_DATA=eps2_data_unit_test
 
 ifndef BUILD_DIR
 	BUILD_DIR=$(CURDIR)
@@ -21,7 +20,7 @@ OBDH_TEST_FLAGS=$(FLAGS),--wrap=tca4311a_init,--wrap=tca4311a_enable,--wrap=tca4
 TTC_TEST_FLAGS=$(FLAGS),--wrap=uart_interrupt_init,--wrap=uart_interrupt_enable,--wrap=uart_interrupt_disable,--wrap=uart_interrupt_write
 
 .PHONY: all
-all: leds_test current_sensor_test temp_sensor_test voltage_sensor_test obdh_test ttc_test eps2_data_test
+all: leds_test current_sensor_test temp_sensor_test voltage_sensor_test obdh_test ttc_test
 
 .PHONY: leds_test
 leds_test: $(BUILD_DIR)/leds.o $(BUILD_DIR)/leds_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
@@ -48,10 +47,6 @@ obdh_test: $(BUILD_DIR)/obdh.o $(BUILD_DIR)/obdh_test.o $(BUILD_DIR)/sys_log_wra
 ttc_test: $(BUILD_DIR)/ttc.o $(BUILD_DIR)/ttc_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/uart_interrupt_wrap.o
 	$(CC) $(TTC_TEST_FLAGS) $(BUILD_DIR)/ttc.o $(BUILD_DIR)/ttc_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/uart_interrupt_wrap.o -o $(BUILD_DIR)/$(TARGET_TTC) -lcmocka
 
-.PHONY: eps2_data_test
-eps2_data_test: $(BUILD_DIR)/eps2_data.o $(BUILD_DIR)/eps2_data_test.o $(BUILD_DIR)/sys_log_wrap.o
-	$(CC) $(TTC_TEST_FLAGS) $(BUILD_DIR)/eps2_data.o $(BUILD_DIR)/eps2_data_test.o $(BUILD_DIR)/sys_log_wrap.o -o $(BUILD_DIR)/$(TARGET_EPS_DATA) -lcmocka
-
 
 
 # Devices
@@ -73,8 +68,7 @@ $(BUILD_DIR)/obdh.o: ../../devices/obdh/obdh.c
 $(BUILD_DIR)/ttc.o: ../../devices/ttc/ttc.c
 	$(CC) $(TTC_TEST_FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/eps2_data.o: ../../app/structs/eps2_data.c
-	$(CC) $(FLAGS) -c $< -o $@
+
 
 # Tests
 $(BUILD_DIR)/current_sensor_test.o: current_sensor_test.c
@@ -95,38 +89,37 @@ $(BUILD_DIR)/obdh_test.o: obdh_test.c
 $(BUILD_DIR)/ttc_test.o: ttc_test.c
 	$(CC) $(TTC_TEST_FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/eps2_data_test.o: eps2_data_test.c
-	$(CC) $(FLAGS) -c $< -o $@
+
 
 # Mockups
 $(BUILD_DIR)/sys_log_wrap.o: ../mockups/sys_log_wrap/sys_log_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/gpio_wrap.o: ../mockups/gpio_wrap/gpio_wrap.c
+$(BUILD_DIR)/gpio_wrap.o: ../mockups/drivers/gpio_wrap/gpio_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/adc_wrap.o: ../mockups/adc_wrap/adc_wrap.c
+$(BUILD_DIR)/adc_wrap.o: ../mockups/drivers/adc_wrap/adc_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/max9934_wrap.o: ../mockups/max9934_wrap/max9934_wrap.c
+$(BUILD_DIR)/max9934_wrap.o: ../mockups/drivers/max9934_wrap/max9934_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/ads1248_wrap.o: ../mockups/ads1248_wrap/ads1248_wrap.c
+$(BUILD_DIR)/ads1248_wrap.o: ../mockups/drivers/ads1248_wrap/ads1248_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/tca4311a_wrap.o: ../mockups/tca4311a_wrap/tca4311a_wrap.c
+$(BUILD_DIR)/tca4311a_wrap.o: ../mockups/drivers/tca4311a_wrap/tca4311a_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/i2c_wrap.o: ../mockups/i2c_wrap/i2c_wrap.c
+$(BUILD_DIR)/i2c_wrap.o: ../mockups/drivers/i2c_wrap/i2c_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/i2c_slave_wrap.o: ../mockups/i2c_slave_wrap/i2c_slave_wrap.c
+$(BUILD_DIR)/i2c_slave_wrap.o: ../mockups/drivers/i2c_slave_wrap/i2c_slave_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/uart_interrupt_wrap.o: ../mockups/uart_interrupt_wrap/uart_interrupt_wrap.c
+$(BUILD_DIR)/uart_interrupt_wrap.o: ../mockups/drivers/uart_interrupt_wrap/uart_interrupt_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 
 .PHONY: clean
 clean:
-	rm $(BUILD_DIR)/$(TARGET_LEDS) $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) $(BUILD_DIR)/$(TARGET_TEMP_SENSOR) $(BUILD_DIR)/$(TARGET_VOLTAGE_SENSOR) $(BUILD_DIR)/$(TARGET_OBDH) $(BUILD_DIR)/$(TARGET_TTC) $(BUILD_DIR)/$(TARGET_EPS_DATA) $(BUILD_DIR)/*.o
+	rm $(BUILD_DIR)/$(TARGET_LEDS) $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) $(BUILD_DIR)/$(TARGET_TEMP_SENSOR) $(BUILD_DIR)/$(TARGET_VOLTAGE_SENSOR) $(BUILD_DIR)/$(TARGET_OBDH) $(BUILD_DIR)/$(TARGET_TTC) $(BUILD_DIR)/*.o

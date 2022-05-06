@@ -48,12 +48,21 @@ static void eps_buffer_write_test(void **state)
     uint8_t id = 0;
     uint32_t value = 0;
 
-    /* Test all values with 0 */
+    /*
+     * Test valid id values
+     */
     for (id = EPS2_PARAM_ID_TIME_COUNTER; id == EPS2_PARAM_ID_DEVICE_ID; ++id)
     {
         int result = eps_buffer_write(id, &value);
         assert_return_code(result, 0);
     }
+
+    /*
+     * Test invalid id
+     */
+    uint8_t id_fail = -1;
+    int id_invalid = eps_buffer_write(id_fail, &value);
+    assert_int_equal(id_invalid, -1);
 }
 
 static void eps_buffer_read_test(void **state)
