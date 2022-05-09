@@ -70,9 +70,6 @@ typedef enum
     I2C_SLAVE_TRANSMIT_MODE
 } i2c_mode_t;
 
-// global variable, a provisional solution
-uint8_t i2c_rx_data_size;
-
 /**
  * \brief I2C interface configuration as slave.
  * 
@@ -125,6 +122,13 @@ int i2c_slave_read(uint8_t *data, uint16_t *len);
  * \return The status/error code.
  */
 int i2c_slave_write(uint8_t *data, uint16_t len);
+
+/**
+ * @brief Notifies the I2C slave RX handler task.
+ *
+ * @note This function should be implemented at a higher level.
+ */
+void i2c_slave_notify_from_i2c_rx_isr(void);
 
 #endif /* I2C_SLAVE_H_ */
 
