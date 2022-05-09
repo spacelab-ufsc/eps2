@@ -166,4 +166,18 @@ void vTaskParamServer(void *pvParameters)
     }
 }
 
+void i2c_slave_notify_from_i2c_rx_isr(void)
+{
+    /* xHigherPriorityTaskWoken must be initialised to pdFALSE. If calling
+    xTaskNotifyFromISR() unblocks the handling task, and the priority of
+    the handling task is higher than the priority of the currently running task,
+    then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+    xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_FROM_I2C_ISR, eSetBits, &xHigherPriorityTaskWoken);
+
+    /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
 /** \} End of param_server group */

@@ -42,8 +42,6 @@
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
 
-#include <app/tasks/param_server.h>
-
 #include "i2c_slave.h"
 
 /**
@@ -59,7 +57,7 @@ typedef enum
 uint16_t i2c_slave_base_address = UINT16_MAX;
 
 uint8_t i2c_rx_buffer[I2C_RX_BUFFER_MAX_SIZE] = {0};
-//uint8_t i2c_rx_data_size = 0;
+uint8_t i2c_rx_data_size = 0;
 uint8_t i2c_rx_buffer_index = 0;
 
 uint8_t i2c_tx_buffer[I2C_TX_BUFFER_MAX_SIZE] = {0};
@@ -192,6 +190,8 @@ int i2c_slave_read(uint8_t *data, uint16_t *len)
     if (err == 0)
     {
         memcpy(data, i2c_rx_buffer, i2c_rx_data_size);
+
+        *len = i2c_rx_data_size;
     }
 
     return err;
@@ -266,18 +266,9 @@ void USCI_B2_ISR(void)
             i2c_rx_data_size = i2c_rx_buffer_index;
             i2c_rx_buffer_index = 0;
 
-            /* xHigherPriorityTaskWoken must be initialised to pdFALSE. If calling
-            xTaskNotifyFromISR() unblocks the handling task, and the priority of
-            the handling task is higher than the priority of the currently running task,
-            then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
-            BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-
             if (i2c_slave_status == I2C_SLAVE_STATUS_RX)
             {
-                xTaskNotifyFromISR(xTaskParamServerHandle, I2C_SLAVE_NOTI_VAL_TO_I2C_RX_ISR, eSetBits, &xHigherPriorityTaskWoken);
-
-                /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
-                portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+                i2c_slave_notify_from_i2c_rx_isr();
             }
 
             i2c_slave_status = I2C_SLAVE_STATUS_IDLE;
@@ -286,6 +277,14 @@ void USCI_B2_ISR(void)
         default:
             break;
     }
+}
+
+__attribute__((weak)) void i2c_slave_notify_from_i2c_rx_isr(void)
+{
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_DEBUG, I2C_SLAVE_MODULE_NAME, "Notify to I2C RX handler");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 }
 
 /** \} End of i2c_slave group */
