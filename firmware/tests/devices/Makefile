@@ -4,6 +4,7 @@ TARGET_TEMP_SENSOR=temp_sensor_unit_test
 TARGET_VOLTAGE_SENSOR=voltage_sensor_unit_test
 TARGET_OBDH=obdh_unit_test
 TARGET_TTC=ttc_unit_test
+TARGET_HEATER=heater_unit_test
 
 ifndef BUILD_DIR
 	BUILD_DIR=$(CURDIR)
@@ -18,9 +19,10 @@ VOLTAGE_SENSOR_TEST_FLAGS=$(FLAGS),--wrap=adc_init,--wrap=adc_read,--wrap=adc_te
 TEMP_SENSOR_TEST_FLAGS=$(FLAGS),--wrap=ads1248_init,--wrap=ads1248_reset,--wrap=ads1248_config_regs,--wrap=ads1248_read_regs,--wrap=ads1248_read_data,--wrap=ads1248_write_cmd,--wrap=ads1248_set_powerdown_mode,--wrap=adc_init,--wrap=adc_read,--wrap=adc_temp_get_mref,--wrap=adc_temp_get_nref,--wrap=adc_mutex_give,--wrap=adc_mutex_take
 OBDH_TEST_FLAGS=$(FLAGS),--wrap=tca4311a_init,--wrap=tca4311a_enable,--wrap=tca4311a_disable,--wrap=tca4311a_is_ready,--wrap=i2c_slave_init,--wrap=i2c_slave_enable,--wrap=i2c_slave_disable,--wrap=i2c_slave_read,--wrap=i2c_slave_write,--wrap=i2c_init,--wrap=i2c_write,--wrap=i2c_read
 TTC_TEST_FLAGS=$(FLAGS),--wrap=uart_interrupt_init,--wrap=uart_interrupt_enable,--wrap=uart_interrupt_disable,--wrap=uart_interrupt_write
+HEATER_TEST_FLAGS=$(FLAGS),--wrap=pwm_init,--wrap=pwm_update,--wrap=pwm_stop,--wrap=pwm_disable
 
 .PHONY: all
-all: leds_test current_sensor_test temp_sensor_test voltage_sensor_test obdh_test ttc_test
+all: leds_test current_sensor_test temp_sensor_test voltage_sensor_test obdh_test ttc_test heater_test
 
 .PHONY: leds_test
 leds_test: $(BUILD_DIR)/leds.o $(BUILD_DIR)/leds_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
@@ -47,6 +49,9 @@ obdh_test: $(BUILD_DIR)/obdh.o $(BUILD_DIR)/obdh_test.o $(BUILD_DIR)/sys_log_wra
 ttc_test: $(BUILD_DIR)/ttc.o $(BUILD_DIR)/ttc_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/uart_interrupt_wrap.o
 	$(CC) $(TTC_TEST_FLAGS) $(BUILD_DIR)/ttc.o $(BUILD_DIR)/ttc_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/uart_interrupt_wrap.o -o $(BUILD_DIR)/$(TARGET_TTC) -lcmocka
 
+.PHONY: heater_test
+heater_test: $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o
+	$(CC) $(HEATER_TEST_FLAGS) $(TEMP_SENSOR_TEST_FLAGS) $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o -o $(BUILD_DIR)/$(TARGET_HEATER) -lcmocka
 
 
 # Devices
@@ -68,7 +73,8 @@ $(BUILD_DIR)/obdh.o: ../../devices/obdh/obdh.c
 $(BUILD_DIR)/ttc.o: ../../devices/ttc/ttc.c
 	$(CC) $(TTC_TEST_FLAGS) -c $< -o $@
 
-
+$(BUILD_DIR)/heater.o: ../../devices/heater/heater.c
+	$(CC) $(HEATER_TEST_FLAGS) -c $< -o $@
 
 # Tests
 $(BUILD_DIR)/current_sensor_test.o: current_sensor_test.c
@@ -89,7 +95,8 @@ $(BUILD_DIR)/obdh_test.o: obdh_test.c
 $(BUILD_DIR)/ttc_test.o: ttc_test.c
 	$(CC) $(TTC_TEST_FLAGS) -c $< -o $@
 
-
+$(BUILD_DIR)/heater_test.o: heater_test.c
+	$(CC) $(HEATER_TEST_FLAGS) -c $< -o $@
 
 # Mockups
 $(BUILD_DIR)/sys_log_wrap.o: ../mockups/sys_log_wrap/sys_log_wrap.c
@@ -119,7 +126,9 @@ $(BUILD_DIR)/i2c_slave_wrap.o: ../mockups/drivers/i2c_slave_wrap/i2c_slave_wrap.
 $(BUILD_DIR)/uart_interrupt_wrap.o: ../mockups/drivers/uart_interrupt_wrap/uart_interrupt_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
+$(BUILD_DIR)/pwm_wrap.o: ../mockups/drivers/pwm_wrap/pwm_wrap.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	rm $(BUILD_DIR)/$(TARGET_LEDS) $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) $(BUILD_DIR)/$(TARGET_TEMP_SENSOR) $(BUILD_DIR)/$(TARGET_VOLTAGE_SENSOR) $(BUILD_DIR)/$(TARGET_OBDH) $(BUILD_DIR)/$(TARGET_TTC) $(BUILD_DIR)/*.o
+	rm $(BUILD_DIR)/$(TARGET_LEDS) $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) $(BUILD_DIR)/$(TARGET_TEMP_SENSOR) $(BUILD_DIR)/$(TARGET_VOLTAGE_SENSOR) $(BUILD_DIR)/$(TARGET_OBDH) $(BUILD_DIR)/$(TARGET_TTC) $(BUILD_DIR)/$(TARGET_HEATER) $(BUILD_DIR)/*.o
