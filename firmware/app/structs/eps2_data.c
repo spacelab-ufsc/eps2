@@ -351,7 +351,7 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = 47;
             break;
         case EPS2_PARAM_ID_DEVICE_ID:
-            *value = 48;
+            *value = 0xEEE2U;
             break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
