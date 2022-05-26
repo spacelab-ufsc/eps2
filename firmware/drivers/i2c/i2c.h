@@ -122,6 +122,8 @@ int i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
  */
 int i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
 
+int i2c_write_test(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
 #endif /* I2C_H_ */
 
 /** \} End of i2c group */
