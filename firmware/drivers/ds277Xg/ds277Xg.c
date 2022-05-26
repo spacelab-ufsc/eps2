@@ -41,6 +41,7 @@
 
 int ds277Xg_init(ds277Xg_config_t *config)
 {
+    i2c_init(config->port, (i2c_config_t){.speed_hz = 100000});
     /* Protection register configuration. */
     if (ds277Xg_enable_charge(config) != 0) {return -1;}
     if (ds277Xg_enable_discharge(config) != 0) {return -1;}
