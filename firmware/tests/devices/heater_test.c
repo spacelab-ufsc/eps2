@@ -43,6 +43,7 @@
 #include <cmocka.h>
 
 #include <devices/heater/heater.h>
+#include <devices/temp_sensor/temp_sensor.h>
 #include <system/sys_log/sys_log.h>
 
 #define HEATER_SETPOINT 15.0
@@ -100,14 +101,15 @@ static void heater_algorithm_test(void **state)
 static void heater_get_sensor_test(void **state)
 {
     heater_channel_t ch_0 = HEATER_CONTROL_LOOP_CH_0;
-    heater_channel_t ch_1 = HEATER_SENSOR_CH_1;
+    heater_channel_t ch_1 = HEATER_CONTROL_LOOP_CH_1;
 
     for (temperature_t i = HEATER_TEMPERATURE_MIN; i <= HEATER_TEMPERATURE_MAX; ++i)
     {
-        int case_ch_0 = heater_get_sensor(ch_0, &i);
-        int case_ch_1 = heater_get_sensor(ch_1, &i);
-        assert_return_code(case_ch_0, 0);
-        assert_return_code(case_ch_1, 0);
+        will_return(__wrap_temp_rtd_read_k, 0);
+        assert_return_code(heater_get_sensor(ch_0, &i), 0);
+
+        will_return(__wrap_temp_rtd_read_k, 0);
+        assert_return_code(heater_get_sensor(ch_1, &i), 0);
     }
 }
 
@@ -148,7 +150,7 @@ int main(void)
     const struct CMUnitTest heater_tests[] = {
         cmocka_unit_test(heater_init_test),
         cmocka_unit_test(heater_algorithm_test),
-        // cmocka_unit_test(heater_get_sensor_test),  /* TODO: implement mockup for the temp_sensor device */
+        cmocka_unit_test(heater_get_sensor_test),
         cmocka_unit_test(heater_set_actuator_test),
     };
 
