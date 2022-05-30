@@ -115,9 +115,9 @@ int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd)
     int err = 0;
 
     uint8_t buf[I2C_RX_BUFFER_MAX_SIZE] = {0};
-    uint8_t received_size = 0;
+    uint16_t received_size = 0;
 
-    if (i2c_slave_read(buf, received_size) == 0)
+    if (i2c_slave_read(buf, &received_size) == 0)
     {
         if (obdh_check_crc(buf, received_size - 1U, buf[received_size - 1U]) == true)
         {
