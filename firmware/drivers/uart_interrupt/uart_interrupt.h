@@ -40,6 +40,8 @@
 
 #include <stdint.h>
 
+#include <drivers/uart/uart.h>
+
 #define UART_INTERRUPT_MODULE_NAME      "UART_INTERRUPT"
 
 #define UART_RX_BUFFER_MAX_SIZE         16                  /**< Number of bytes of the maximum UART RX buffer size. */
@@ -52,35 +54,6 @@
  */
 extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];  
 extern uint8_t uart_received_data_size;
-
-/**
- * \brief UART ports.
- */
-typedef enum
-{
-    UART_PORT_0=0,          /**< UART port 0. */
-    UART_PORT_1,            /**< UART port 1. */
-    UART_PORT_2             /**< UART port 2. */
-} uart_interrupt_ports_e;
-
-/**
- * \brief Parity configuration.
- */
-typedef enum
-{
-    UART_NO_PARITY=0,       /**< No parity. */
-    UART_ODD_PARITY,        /**< Odd parity. */
-    UART_EVEN_PARITY        /**< Even parity. */
-} uart_interrupt_parity_e;
-
-/**
- * \brief Number of stop bits.
- */
-typedef enum
-{
-    UART_ONE_STOP_BIT=0,    /**< One stop bit. */
-    UART_TWO_STOP_BITS      /**< Two stop bits. */
-} uart_interrupt_stop_bits_e;
 
 /**
  * \brief UART port configuration parameters.

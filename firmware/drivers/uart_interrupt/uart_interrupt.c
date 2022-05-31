@@ -297,11 +297,12 @@ void USCI_A0_ISR(void)
             }
             else 
             {
+                uart_rx_buffer[uart_buffer_index] = USCI_A_UART_receiveData(USCI_A0_BASE);
                 if(uart_buffer_index++ >= UART_RX_BUFFER_MAX_SIZE)
                 {
                     uart_buffer_index = 0;
                 }
-                uart_rx_buffer[uart_buffer_index] = USCI_A_UART_receiveData(USCI_A0_BASE);
+
             }
             break;
         default: 
