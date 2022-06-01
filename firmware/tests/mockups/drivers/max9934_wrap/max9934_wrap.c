@@ -50,5 +50,10 @@ int __wrap_max9934_init(max9934_config_t config)
 
 int __wrap_max9934_read(max9934_config_t config, uint16_t *raw_val)
 {
+    if (raw_val != NULL)
+    {
+        *raw_val = mock_type(uint16_t);
+    }
+
     return mock_type(int);
 }

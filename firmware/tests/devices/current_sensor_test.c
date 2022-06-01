@@ -46,6 +46,8 @@
 #include <drivers/adc/adc.h>
 #include <drivers/max9934/max9934.h>
 
+#include <stdio.h>
+
 #define PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT ADC_PORT_1
 #define PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT ADC_PORT_2
 #define PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT ADC_PORT_3
@@ -54,19 +56,61 @@
 #define PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT ADC_PORT_6
 #define EPS_BEACON_CURRENT_SENSOR_ADC_PORT ADC_PORT_7
 
+#define CURRENT_SENSOR_RAW_READING_MIN 0
+#define CURRENT_SENSOR_RAW_READING_MAX 100
+
 static void current_sensor_init_test(void **state)
 {
+    will_return(__wrap_max9934_init, 0);
+    assert_return_code(current_sensor_init(), 0);
+
+    will_return(__wrap_max9934_init, 1);
+    assert_int_equal(current_sensor_init(), 1);
 }
 
-static void current_sensor_raw_read_test(void **state)
+static void current_sensor_raw_to_ma_test(void **state)
 {
+    adc_port_t port = PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT;
+    for (uint16_t i = CURRENT_SENSOR_RAW_READING_MIN; i <= CURRENT_SENSOR_RAW_READING_MAX; ++i)
+    {
+        int ma_value = current_sensor_raw_to_ma(port, i);
+        int expected_value = (uint16_t)(1000UL * (uint32_t)i * (ADC_VREF_MV / (ADC_RANGE * SP_CURRENT_SENSOR_RL_VALUE_KOHM * SP_CURRENT_SENSOR_GAIN * SP_CURRENT_SENSOR_RSENSE_VALUE_MOHM)));
+        assert_int_equal(ma_value, expected_value);
+    }
+    /* EPS current sensor test */
+    adc_port_t eps_port = EPS_BEACON_CURRENT_SENSOR_ADC_PORT;
+    for (uint16_t i = CURRENT_SENSOR_RAW_READING_MIN; i <= CURRENT_SENSOR_RAW_READING_MAX; ++i)
+    {
+        int ma_value = current_sensor_raw_to_ma(eps_port, i);
+        int expected_value = (uint16_t)(1000UL * (uint32_t)i * (ADC_VREF_MV / (ADC_RANGE * EPS_CURRENT_SENSOR_RL_VALUE_KOHM * EPS_CURRENT_SENSOR_GAIN * EPS_CURRENT_SENSOR_RSENSE_VALUE_MOHM)));
+        assert_int_equal(ma_value, expected_value);
+    }
+}
+
+static void current_sensor_read_test(void **state)
+{
+    uint16_t curr = 0;
+    uint16_t raw_curr = 0;
+    adc_port_t port = EPS_BEACON_CURRENT_SENSOR_ADC_PORT;
+
+    will_return(__wrap_max9934_read, 1);
+    will_return(__wrap_max9934_read, 1);
+
+    assert_int_equal(current_sensor_read(port, &curr), -1);
+
+    will_return(__wrap_max9934_read, 0);
+    will_return(__wrap_max9934_read, 0);
+
+    assert_return_code(current_sensor_read(port, &curr), 0);
 }
 
 int main(void)
 {
     const struct CMUnitTest current_sensor_tests[] = {
         cmocka_unit_test(current_sensor_init_test),
-        cmocka_unit_test(current_sensor_raw_read_test),
+        cmocka_unit_test(current_sensor_raw_to_ma_test),
+        cmocka_unit_test(current_sensor_read_test),
+
     };
 
     return cmocka_run_group_tests(current_sensor_tests, NULL, NULL);
