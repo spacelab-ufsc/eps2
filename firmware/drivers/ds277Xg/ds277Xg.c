@@ -352,8 +352,21 @@ int ds277Xg_read_data(ds277Xg_config_t *config, uint8_t target_reg, uint8_t *dat
     return 0;
 #else
     uint8_t reg[1] = {target_reg};
+
+    sys_log_print_event_from_module(SYS_LOG_INFO, DS277XG_MODULE_NAME, "Reading data from DS2777G+...");
+    sys_log_new_line();
+    sys_log_print_msg("Register: ");
+    sys_log_dump_hex(reg, 1);
+    sys_log_new_line();
+
     if (i2c_write(config->port, config->slave_adr, reg, 1) != 0) {return -1;}
-    return i2c_read(config->port, config->slave_adr, data, len);
+    int r = i2c_read(config->port, config->slave_adr, data, len);
+
+    sys_log_print_msg("Value: ");
+    sys_log_dump_hex(data, len);
+    sys_log_new_line();
+
+    return r;
 #endif
 }
 
