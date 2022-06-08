@@ -41,7 +41,17 @@
 
 int ds277Xg_init(ds277Xg_config_t *config)
 {
-    i2c_init(config->port, (i2c_config_t){.speed_hz = 100000});
+    /* I2C port initialization. */
+    if (i2c_init(config->port, (i2c_config_t){.speed_hz = 100000}) != 0)
+    {
+    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+        sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error initializing I2C port!");
+        sys_log_new_line();
+    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+
+        return -1;
+    }
+    
     /* Protection register configuration. */
     if (ds277Xg_enable_charge(config) != 0) {return -1;}
     if (ds277Xg_enable_discharge(config) != 0) {return -1;}
@@ -329,7 +339,7 @@ int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles)
 {
     uint8_t buf[1];
     if (ds277Xg_read_data(config, DS277XG_CYCLE_COUNTER_REGISTER, buf, 1) != 0) {return -1;}
-    *cycles = ((uint16_t)buf) << 1; // shift left to multiply by two.
+    *cycles = ((uint16_t)*buf) << 1; // shift left to multiply by two.
     return 0;
 }
 
