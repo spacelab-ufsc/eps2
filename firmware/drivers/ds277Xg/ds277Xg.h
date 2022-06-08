@@ -42,7 +42,7 @@
 
 #include <config/config.h>
 
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
 #include <drivers/onewire/onewire.h>
 #else
 #include <drivers/i2c/i2c.h>
@@ -178,7 +178,7 @@
 
 typedef struct
 {
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
     onewire_port_t port;
 #else
     i2c_port_t  port;

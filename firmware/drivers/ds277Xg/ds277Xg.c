@@ -52,10 +52,6 @@ int ds277Xg_init(ds277Xg_config_t *config)
     uint8_t wr_buf[2] = {0};
     uint8_t rd_buf[1] = {0};
 
-    wr_buf[0] = DS277XG_TWO_WIRE_COMMAND_REGISTER;
-    wr_buf[1] = DS277XG_RECALL_DATA_PARAMETER_EEPROM;
-    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-    __delay_cycles(160);
     if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, rd_buf, 1) != 0) {return -1;}
     else if (rd_buf[0] != 0x0C) // <-- Undervoltage treshold to 2.60V.
     {
@@ -339,7 +335,7 @@ int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles)
 
 int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, const uint16_t len)
 {
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
     if(onewire_reset(config->port) == 0) {return -1;}
     if(onewire_write_byte(config->port, data, len) == -1) {return -1;}
     return 0;
@@ -350,7 +346,7 @@ int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, const uint16_t l
 
 int ds277Xg_read_data(ds277Xg_config_t *config, uint8_t target_reg, uint8_t *data, uint16_t len)
 {
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
     uint8_t read_command[3] = {DS2775G_SKIP_ADDRESS, DS2775G_READ_DATA, target_reg};
     if(ds277Xg_write_data(config, read_command, 0x3) == -1) {return -1;}
     if(onewire_read_byte(config->port, data, len) == -1) {return -1;}
