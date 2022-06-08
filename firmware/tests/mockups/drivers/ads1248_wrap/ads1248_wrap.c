@@ -77,13 +77,26 @@ int __wrap_ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t posi
 int __wrap_ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel)
 {
     check_expected(cmd);
-    check_expected(rd);
     check_expected(positive_channel);
+
+    if (config != NULL)
+    {
+        if (cmd == ADS1248_CMD_RDATA)
+        {
+            config = 0;
+        }
+    }
+
     return mock_type(int);
 }
 
 int __wrap_ads1248_set_powerdown_mode(ads1248_config_t *config, ads1248_power_down_t mode)
 {
+    if (config != NULL)
+    {
+        config->spi_port = mock_type(gpio_pin_t);
+        config->start_pin = mock_type(gpio_pin_t);
+    }
     check_expected(mode);
     return mock_type(int);
 }
