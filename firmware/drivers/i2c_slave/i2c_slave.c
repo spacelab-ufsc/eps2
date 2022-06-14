@@ -282,7 +282,7 @@ void USCI_B2_ISR(void)
 __attribute__((weak)) void i2c_slave_notify_from_i2c_rx_isr(void)
 {
     #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
-        sys_log_print_event_from_module(SYS_LOG_DEBUG, I2C_SLAVE_MODULE_NAME, "Notify to I2C RX handler");
+        sys_log_print_event_from_module(SYS_LOG_INFO, I2C_SLAVE_MODULE_NAME, "Notify to I2C RX handler");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 }
