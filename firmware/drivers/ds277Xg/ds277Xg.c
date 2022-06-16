@@ -59,8 +59,8 @@ int ds277Xg_init(ds277Xg_config_t *config)
     /* Parameters registers configuration. */
     // Check if already set correctly from EEPROM on power-up.
     bool copy_to_eeprom_flag = false;
-    uint8_t wr_buf[2] = {0};
-    uint8_t rd_buf[1] = {0};
+    uint8_t wr_buf[3] = {0};
+    uint8_t rd_buf[2] = {0};
 
     if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, rd_buf, 1) != 0) {return -1;}
     else if (rd_buf[0] != 0x0C) // <-- Undervoltage treshold to 2.60V.
@@ -98,15 +98,34 @@ int ds277Xg_init(ds277Xg_config_t *config)
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }
 
+    if (ds277Xg_read_data(config, DS277XG_AGING_CAPACITY_REGISTER_MSB, rd_buf, 2) != 0) {return -1;}
+    else if ((uint16_t)((rd_buf[0] << 8) + rd_buf[1]) != (uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000))
+    {
+        wr_buf[0] = DS277XG_AGING_CAPACITY_REGISTER_MSB;
+        wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) >> 8);
+        wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000));
+        if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
+        copy_to_eeprom_flag = true;
+    }
+
+    if (ds277Xg_read_data(config, DS277XG_AGE_SCALAR_REGISTER, rd_buf, 2) != 0) {return -1;}
+    else if (rd_buf[0] != (uint8_t)(0.95/0.0078125))
+    {
+        wr_buf[0] = DS277XG_AGE_SCALAR_REGISTER;
+        wr_buf[1] = (uint8_t)(0.95/0.0078125);
+        if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
+        copy_to_eeprom_flag = true;
+    }
+
     /* TO DO
         - Review values for:
         --> Full point detection minimum current threshold (DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER)
         --> Full point detection charge voltage threshold (DS277XG_CHARGE_VOLTAGE_REGISTER)
+        --> Aging Capacity
+        --> Aging Scalar
         - Define and set the values for:
         --> Active Empty point detection voltage threshold register (DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER)
         --> Active Empty point detection current threshold register (DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER)
-        --> Aging Capacity
-        --> Aging Scalar
     */
 
     if (copy_to_eeprom_flag == true)
@@ -182,7 +201,7 @@ int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uin
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         return -1;
     }
-    *voltage_raw = ((int16_t)((buf[1] << 8) + buf[0])) >> 5;
+    *voltage_raw = ((int16_t)((buf[0] << 8) + buf[1])) >> 5;
     return 0;
 }
 
@@ -212,7 +231,7 @@ int ds277Xg_read_temperature_raw(ds277Xg_config_t *config, int16_t *temp_raw)
 {
     uint8_t buf[2];
     if (ds277Xg_read_data(config, DS277XG_TEMPERATURE_REGISTER_MSB, buf, 2) != 0) {return -1;}
-    *temp_raw = ((int16_t)((buf[1] << 8) + buf[0])) >> 5;
+    *temp_raw = ((int16_t)((buf[0] << 8) + buf[1])) >> 5;
     return 0;
 }
 
@@ -249,7 +268,7 @@ int ds277Xg_read_current_raw(ds277Xg_config_t *config, int16_t *current_raw, boo
     {
         if (ds277Xg_read_data(config, DS277XG_CURRENT_REGISTER_MSB, buf, 2) != 0) {return -1;}
     }
-    *current_raw = (uint16_t)((buf[1] << 8) + buf[0]);
+    *current_raw = (int16_t)((buf[0] << 8) + buf[1]);
     return 0;
 }
 
@@ -301,7 +320,7 @@ int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc
 {
     uint8_t buf[2];
     if (ds277Xg_read_data(config, DS277XG_ACCUMULATED_CURRENT_MSB, buf, 2) != 0) {return -1;}
-    *acc_current_raw = (uint16_t)((buf[1] << 8) + buf[0]);
+    *acc_current_raw = (int16_t)((buf[0] << 8) + buf[1]);
     return 0;
 }
 
