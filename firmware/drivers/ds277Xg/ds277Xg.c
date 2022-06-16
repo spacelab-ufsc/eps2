@@ -25,6 +25,7 @@
  * 
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Ramon de Araujo Borba     <ramonborba97@gmail.com>
  * 
  * \version 0.2.34
  * 
@@ -98,25 +99,6 @@ int ds277Xg_init(ds277Xg_config_t *config)
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }
 
-    if (ds277Xg_read_data(config, DS277XG_AGING_CAPACITY_REGISTER_MSB, rd_buf, 2) != 0) {return -1;}
-    else if ((uint16_t)((rd_buf[0] << 8) + rd_buf[1]) != (uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000))
-    {
-        wr_buf[0] = DS277XG_AGING_CAPACITY_REGISTER_MSB;
-        wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) >> 8);
-        wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000));
-        if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
-        copy_to_eeprom_flag = true;
-    }
-
-    if (ds277Xg_read_data(config, DS277XG_AGE_SCALAR_REGISTER, rd_buf, 2) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(0.95/0.0078125))
-    {
-        wr_buf[0] = DS277XG_AGE_SCALAR_REGISTER;
-        wr_buf[1] = (uint8_t)(0.95/0.0078125);
-        if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
-        copy_to_eeprom_flag = true;
-    }
-
     /* TO DO
         - Review values for:
         --> Full point detection minimum current threshold (DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER)
@@ -135,6 +117,45 @@ int ds277Xg_init(ds277Xg_config_t *config)
         wr_buf[1] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
         if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
     }
+
+#if defined(RESET_BATTERY_TO_INITIAL_STATE) && (RESET_BATTERY_TO_INITIAL_STATE == 1)
+    if (ds277Xg_set_battery_to_initial_state() != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error configuring battery to initial state!");
+        sys_log_new_line();
+    }
+#endif /* RESET_BATTERY_TO_INITIAL_STATE */
+
+    return 0;
+}
+
+int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config)
+{
+    uint8_t wr_buf[3] = {0};
+
+    /* Set battery configurations to initial state */
+
+    /* Set Aging Capacity register to maximum battery capacity */
+    wr_buf[0] = DS277XG_AGING_CAPACITY_REGISTER_MSB;
+    wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) >> 8);
+    wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000));
+    if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
+
+    /* Set Age Scalar to 95% (recomended on datasheet) */
+    wr_buf[0] = DS277XG_AGE_SCALAR_REGISTER;
+    wr_buf[1] = (uint8_t)(0.95/0.0078125);
+    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+
+    /* Set accumulated current to maximum battery capacity */
+    wr_buf[0] = DS277XG_ACCUMULATED_CURRENT_MSB;
+    wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000) >> 8);
+    wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE * 1000));
+    if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
+
+    // Copy from shadow RAM to EEPROM.
+    wr_buf[0] = DS277XG_TWO_WIRE_COMMAND_REGISTER;
+    wr_buf[1] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
+    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
 
     return 0;
 }

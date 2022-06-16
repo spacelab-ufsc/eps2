@@ -195,6 +195,17 @@ typedef struct
 int ds277Xg_init(ds277Xg_config_t *config);
 
 /**
+ * @brief Set battery configuration to initial state.
+ * 
+ * Run this function ONCE when a new battery is connected to reset
+ * accumulated current and aging estimation to initial values.
+ * 
+ * @param config DS277XG configuration parameters.
+ * @return int The status/error code.
+ */
+int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config);
+
+/**
  * \brief Set charge enable bit in protection register.
  * 
  * \param[in] config DS277XG configuration parameters.
