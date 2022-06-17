@@ -23,7 +23,8 @@
 /**
  * \brief DS277XG+ driver definition.
  * 
- * \author Vinicius Pimenta Bernardo <viniciuspibi\gmail.com>
+ * \author Vinicius Pimenta Bernardo    <viniciuspibi@gmail.com>
+ * \author Ramon de Araujo Borba        <ramonborba97@gmail.com>
  * 
  * \version 0.2.0
  * 
