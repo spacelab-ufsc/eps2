@@ -147,10 +147,7 @@ int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config)
     if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
 
     /* Set accumulated current to maximum battery capacity */
-    wr_buf[0] = DS277XG_ACCUMULATED_CURRENT_MSB;
-    wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) >> 8);
-    wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS));
-    if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
+    ds277Xg_write_accumulated_current_max_value(config);
 
     // Copy from shadow RAM to EEPROM.
     wr_buf[0] = DS277XG_TWO_WIRE_COMMAND_REGISTER;
