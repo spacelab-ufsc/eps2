@@ -50,8 +50,27 @@
 
 #define DS277XG_MODULE_NAME "DS277X"
 
-#define DS277XG_RSENSE                                          0.01 /* Unit: Ohm. */
+/**
+ * @brief DS277XG IC parameters
+ */
+#define DS277XG_RSENSE                                          0.01        /* Unit: Ohm. */
+#define DS277XG_RSENSE_MOHMS                                    10          /* Unit: milliohms. */
+#define DS277XG_RSENSE_CONDUCTANCE                              100         /* Unit: Siemens. */
+#define DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION                   0.0195      /* Unit: millivolts */
+#define DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION           50          /* Unit: microvolts */
+#define DS277XG_AGE_SCALAR_REG_RESOLUTION                       0.0078125   /* Unit: Dimentionless (percentage) */
+#define DS277XG_VOLTAGE_REG_RESOLUTION                          4.8828      /* Unit: millivolts */
+#define DS277XG_CURRENT_REG_RESOLUTION                          1.5625      /* Unit: microvolts */
+#define DS277XG_TEMPERATURE_REG_RESOLUTION                      0.125       /* Unit: degrees Celsius */
+#define DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION              6.25        /* Unit: microvolts */
+
+/**
+ * @brief Battery cell parameters
+ */
 #define CELL_NOMINAL_VOLTAGE                                    3.78 /* Unit: Volts (ICR18650-30B-Samsung). */
+#define CELL_FULLY_CHARGED_VOLTAGE                              (0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) /* Unit: Volts */
+#define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE)
+#define CELL_INITIAL_AGE_SCALAR                                 0.95        /* Unit: Dimentionless (percentage) */
 
 /**
  * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
