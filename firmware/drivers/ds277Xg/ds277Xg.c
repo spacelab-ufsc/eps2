@@ -63,6 +63,7 @@ int ds277Xg_init(ds277Xg_config_t *config)
     uint8_t wr_buf[3] = {0};
     uint8_t rd_buf[2] = {0};
 
+    /* Checking control register */
     if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, rd_buf, 1) != 0) {return -1;}
     else if (rd_buf[0] != 0x0C) // <-- Undervoltage treshold to 2.60V.
     {
@@ -72,29 +73,57 @@ int ds277Xg_init(ds277Xg_config_t *config)
         copy_to_eeprom_flag = true;
     }
 
+    /* Checking sense resistor prime register */
     if (ds277Xg_read_data(config, DS277XG_SENSE_RESISTOR_PRIME_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(DS277XG_RSENSE_CONDUCTANCE))
+    else if (rd_buf[0] != (uint8_t)(DS277XG_RSENSE_CONDUCTANCE)) // <-- Register value must be Rsense conductanvce
     {
+        // Sets the correct value
         wr_buf[0] = DS277XG_SENSE_RESISTOR_PRIME_REGISTER;
         wr_buf[1] = (uint8_t)(DS277XG_RSENSE_CONDUCTANCE);
         if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }
 
+    /* Checking charge voltage register */
     if (ds277Xg_read_data(config, DS277XG_CHARGE_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION))
+    else if (rd_buf[0] != (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION)) // <-- Fully charged baterry voltage (in register units)
     {
+        // Sets the correct value
         wr_buf[0] = DS277XG_CHARGE_VOLTAGE_REGISTER;
         wr_buf[1] = (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION);
         if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }
 
+    /* Checking minimum charge current ragister */
     if (ds277Xg_read_data(config, DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION))
+    else if (rd_buf[0] != (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION)) // <-- Minimum charging current (in register units)
     {
+        // Sets the correct value
         wr_buf[0] = DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER;
         wr_buf[1] = (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION);
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
+    }
+
+        /* Checking active empty voltage register */
+    if (ds277Xg_read_data(config, DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
+    else if (rd_buf[0] != (uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE/DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION)) // <-- Active empty voltage threshold (in register units)
+    {
+        // Sets the correct value
+        wr_buf[0] = DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER;
+        wr_buf[1] = /* PLACEHOLDER VALUE --> */(uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE/DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION);
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
+    }
+
+    /* Checking active empty current register */
+    if (ds277Xg_read_data(config, DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
+    else if (rd_buf[0] != /* PLACEHOLDER VALUE --> */(uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS/DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION)) // <-- Active empty discharge current (in register units)
+    {
+        // Sets the correct value
+        wr_buf[0] = DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER;
+        wr_buf[1] = (uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS/DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION);
         if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
         if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
     }

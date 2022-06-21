@@ -59,6 +59,8 @@
 #define DS277XG_RSENSE_CONDUCTANCE                              100         /* Unit: Siemens. */
 #define DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION                   0.0195      /* Unit: millivolts */
 #define DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION           50          /* Unit: microvolts */
+#define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION             0.0195      /* Unit: Volts */
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION             200         /* Unit: microolts */
 #define DS277XG_AGE_SCALAR_REG_RESOLUTION                       0.0078125   /* Unit: Dimentionless (percentage) */
 #define DS277XG_VOLTAGE_REG_RESOLUTION                          4.8828      /* Unit: millivolts */
 #define DS277XG_CURRENT_REG_RESOLUTION                          1.5625      /* Unit: microvolts */
@@ -72,6 +74,8 @@
 #define CELL_FULLY_CHARGED_VOLTAGE                              (0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) /* Unit: Volts */
 #define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE)
 #define CELL_INITIAL_AGE_SCALAR                                 0.95        /* Unit: Dimentionless (percentage) */
+#define CELL_ACTIVE_EMPTY_VOLTAGE                               3 // REVIEW THIS VALUE /* Unit: Volts */
+#define CELL_ACTIVE_EMPTY_CURRENT                               360 // REVIEW THIS VALUE /* Unit: miliamperes */
 
 /**
  * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
