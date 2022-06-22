@@ -42,10 +42,10 @@
 #include <drivers/ds277Xg/ds277Xg.h>
 #include <drivers/i2c/i2c.h>
 
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
 ds277Xg_config_t battery_monitor_config = {.port = GPIO_PIN_69};
 #else
-ds277Xg_config_t battery_monitor_config = {.port = I2C_PORT_2, .slave_adr = DS277XG_DEFAULT_SLAVE_ADDRESS};
+ds277Xg_config_t battery_monitor_config = {.port = I2C_PORT_0, .slave_adr = DS2777G_DEFAULT_SLAVE_ADDRESS};
 #endif
 
 int battery_monitor_init()
