@@ -27,7 +27,7 @@
  *
  * \version 0.1.0
  *
- * \date 2021/09/15
+ * \date 2022/06/15
  *
  * \defgroup ttc_unit_test TTC
  * \ingroup tests
@@ -44,19 +44,53 @@
 #include <devices/ttc/ttc.h>
 #include <drivers/uart_interrupt/uart_interrupt.h>
 
-static void ttc_init_test(void **state) {
+static void ttc_init_test(void **state)
+{
+    expect_value(__wrap_uart_interrupt_init, port, UART_PORT_0);
+    will_return(__wrap_uart_interrupt_init, 1);
 
+    assert_int_equal(ttc_init(), -1);
+
+    expect_value(__wrap_uart_interrupt_init, port, UART_PORT_0);
+    will_return(__wrap_uart_interrupt_init, 0);
+
+    expect_value(__wrap_uart_interrupt_enable, port, UART_PORT_0);
+    will_return(__wrap_uart_interrupt_enable, 1);
+
+    assert_int_equal(ttc_init(), -1);
+
+    expect_value(__wrap_uart_interrupt_init, port, UART_PORT_0);
+    will_return(__wrap_uart_interrupt_init, 0);
+
+    expect_value(__wrap_uart_interrupt_enable, port, UART_PORT_0);
+    will_return(__wrap_uart_interrupt_enable, 0);
+
+    assert_return_code(ttc_init(), 1);
 }
 
-static void ttc_decode_test(void **state) {
+static void ttc_decode_test(void **state)
+{
+    uint8_t address = 0;
+    uint32_t value = 0;
+    uint8_t command = 0;
 
+    assert_int_equal(ttc_decode(&address, &value, &command), -1);
 }
 
-static void ttc_answer_test(void **state) {
+static void ttc_answer_test(void **state)
+{
+    expect_value(__wrap_uart_interrupt_write, port, UART_PORT_0);
+    expect_value(__wrap_uart_interrupt_write, len, 6);
+    will_return(__wrap_uart_interrupt_write, 0);
 
+    uint8_t address = 0;
+    uint32_t value = 2;
+
+    assert_return_code(ttc_answer(address, value), 0);
 }
 
-int main(void) {
+int main(void)
+{
     const struct CMUnitTest ttc_tests[] = {
         cmocka_unit_test(ttc_init_test),
         cmocka_unit_test(ttc_decode_test),
