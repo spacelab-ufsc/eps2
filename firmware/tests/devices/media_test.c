@@ -54,6 +54,7 @@ static void media_write_test(void **state)
 {
     uint32_t adr = 0;
     uint32_t data[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+    uint32_t *data_ptr = data;
     uint16_t len = 4;
 
     for (uint16_t i = 0; i < len; i += 4)
@@ -61,13 +62,14 @@ static void media_write_test(void **state)
         expect_value(__wrap_flash_write_long, data, data[i]);
     }
 
-    assert_return_code(media_write(adr, &data, len), 0);
+    assert_return_code(media_write(adr, data_ptr, len), 0);
 }
 
 static void media_read_test(void **state)
 {
     uint32_t adr = 0;
     uint32_t data[8] = {0, 1, 2, 3, 4, 5, 6, 7};
+    uint32_t *data_ptr = data;
     uint16_t len = 4;
 
     for (uint16_t i = 0; i < len; i += 4)
@@ -75,7 +77,7 @@ static void media_read_test(void **state)
         will_return(__wrap_flash_read_long, adr - FLASH_SEG_A_ADR);
     }
 
-    assert_return_code(media_read(adr, &data, len), 0);
+    assert_return_code(media_read(adr, data_ptr, len), 0);
 }
 
 static void media_erase_test(void **state)
