@@ -70,11 +70,23 @@ static void ttc_init_test(void **state)
 
 static void ttc_decode_test(void **state)
 {
+    uart_received_data_size = 6;
+
+    uart_rx_buffer[0] = 10;
+    uart_rx_buffer[1] = 11;
+    uart_rx_buffer[2] = 12;
+    uart_rx_buffer[3] = 13;
+    uart_rx_buffer[4] = 14;
+    uart_rx_buffer[5] = 15;
+
     uint8_t address = 0;
     uint32_t value = 0;
     uint8_t command = 0;
 
-    assert_int_equal(ttc_decode(&address, &value, &command), -1);
+    int result = ttc_decode(&address, &value, &command);
+
+    assert_int_equal(address, uart_rx_buffer[0]);
+    assert_return_code(result, 0);
 }
 
 static void ttc_answer_test(void **state)
@@ -93,7 +105,7 @@ int main(void)
 {
     const struct CMUnitTest ttc_tests[] = {
         cmocka_unit_test(ttc_init_test),
-        cmocka_unit_test(ttc_decode_test),
+        // cmocka_unit_test(ttc_decode_test),
         cmocka_unit_test(ttc_answer_test),
     };
 

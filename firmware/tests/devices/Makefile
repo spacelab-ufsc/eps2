@@ -58,8 +58,8 @@ heater_test: $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_l
 	$(CC) $(HEATER_TEST_FLAGS) $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor_wrap.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o -o $(BUILD_DIR)/$(TARGET_HEATER) -lcmocka
 
 .PHONY: bat_manager_test
-bat_manager_test: $(BUILD_DIR)/bat_manager.o $(BUILD_DIR)/bat_manager_test.o $(BUILD_DIR)/ds2775g_wrap.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
-	$(CC) $(BAT_MANAGER_TEST_FLAGS) $(BUILD_DIR)/bat_manager.o $(BUILD_DIR)/bat_manager_test.o $(BUILD_DIR)/ds2775g_wrap.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o -o $(BUILD_DIR)/$(TARGET_BAT_MANAGER) -lcmocka
+bat_manager_test: $(BUILD_DIR)/bat_manager.o $(BUILD_DIR)/bat_manager_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/ds2775g_wrap.o $(BUILD_DIR)/gpio_wrap.o
+	$(CC) $(BAT_MANAGER_TEST_FLAGS) $(BUILD_DIR)/bat_manager.o $(BUILD_DIR)/bat_manager_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/ds2775g_wrap.o $(BUILD_DIR)/gpio_wrap.o -o $(BUILD_DIR)/$(TARGET_BAT_MANAGER) -lcmocka
 
 .PHONY: media_test
 media_test: $(BUILD_DIR)/media.o $(BUILD_DIR)/media_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/flash_wrap.o $(BUILD_DIR)/gpio_wrap.o
