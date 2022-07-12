@@ -77,7 +77,7 @@ static void ttc_decode_test(void **state)
     uart_rx_buffer[2] = 12;
     uart_rx_buffer[3] = 13;
     uart_rx_buffer[4] = 14;
-    uart_rx_buffer[5] = 15;
+    uart_rx_buffer[5] = ttc_crc8(uart_rx_buffer, uart_received_data_size - 1);
 
     uint8_t address = 0;
     uint32_t value = 0;
@@ -86,6 +86,8 @@ static void ttc_decode_test(void **state)
     int result = ttc_decode(&address, &value, &command);
 
     assert_int_equal(address, uart_rx_buffer[0]);
+    assert_int_equal(value, (uint32_t)uart_rx_buffer[1]);
+    assert_int_equal(command, TTC_COMMAND_WRITE);
     assert_return_code(result, 0);
 }
 

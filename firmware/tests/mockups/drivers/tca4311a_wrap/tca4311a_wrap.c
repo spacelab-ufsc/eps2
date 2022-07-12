@@ -34,26 +34,56 @@
  * \{
  */
 
-
 #include "tca4311a_wrap.h"
+#include <stdarg.h>
+#include <stddef.h>
 #include <stdint.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 #include <stdbool.h>
 
-int __wrap_tca4311a_init(tca4311a_config_t config, bool en) {
-    return 0;
+#include <cmocka.h>
+
+int __wrap_tca4311a_init(tca4311a_config_t config, bool en)
+{
+    check_expected(en);
+    return mock_type(int);
 }
 
-int __wrap_tca4311a_enable(tca4311a_config_t config) {
-    return 0;
+int __wrap_tca4311a_enable(tca4311a_config_t config)
+{
+    return mock_type(int);
 }
 
-int __wrap_tca4311a_disable(tca4311a_config_t config) {
-    return 0;
+int __wrap_tca4311a_disable(tca4311a_config_t config)
+{
+    return mock_type(int);
 }
 
-int __tca4311a_is_ready(tca4311a_config_t config) {
-    return 0;
+int __wrap_tca4311a_is_ready(tca4311a_config_t config)
+{
+    return mock_type(int);
 }
 
+int __wrap_tca4311a_write(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
+{
+    return mock_type(int);
+}
+
+int __wrap_tca4311a_read(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
+{
+    return mock_type(int);
+}
+
+int __wrap_tca4311a_write_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t byte)
+{
+    return mock_type(int);
+}
+
+int __wrap_tca4311a_read_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *byte)
+{
+    return mock_type(int);
+}
 
 /** \} End of tca4311a_wrap group */

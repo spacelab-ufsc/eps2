@@ -52,6 +52,14 @@ int __wrap_tca4311a_disable(tca4311a_config_t config);
 
 int __wrap_tca4311a_is_ready(tca4311a_config_t config);
 
+int __wrap_tca4311a_write(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+int __wrap_tca4311a_read(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+int __wrap_tca4311a_write_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t byte);
+
+int __wrap_tca4311a_read_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *byte);
+
 #endif /* TCA4311A_WRAP_H */
 
 /** \} End of tca4311a_wrap group */
