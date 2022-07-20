@@ -197,7 +197,7 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
             sys_log_print_hex(*rd[i]);
             sys_log_new_line();
         }
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+    #endif*/ /* CONFIG_DRIVERS_DEBUG_ENABLED */
 
     return 0;
 }
@@ -253,6 +253,7 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
 
 int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, uint8_t positive_channel)
 {
+    uint8_t dummy[1]={0};
     switch(cmd)
     {
         case ADS1248_CMD_WREG:
@@ -276,7 +277,6 @@ int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, 
             ads1248_delay(1);
             break;
         default:
-            uint8_t dummy[1]={0};
             spi_transfer_no_cs(config->spi_port, &cmd, dummy, 1);
             ads1248_delay(1);
     }
