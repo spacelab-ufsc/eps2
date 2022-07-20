@@ -93,9 +93,9 @@ int ads1248_init(ads1248_config_t *config)
     uint8_t dummy[2]={0};
     cmd[0] = ADS1248_CMD_SYNC;
     cmd[1] = ADS1248_CMD_SYNC;
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, cmd, dummy, 2);
+    spi_transfer_no_cs(config->spi_port, cmd, dummy, 2);
     cmd[0] = ADS1248_CMD_SLEEP;
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, cmd, dummy, 1);
+    spi_transfer_no_cs(config->spi_port, cmd, dummy, 1);
 
     return 0;
 }
@@ -180,7 +180,7 @@ int ads1248_read_regs(ads1248_config_t *config, uint8_t *rd)
     data_read_regs[15] = ADS1248_CMD_NOP;
     data_read_regs[16] = ADS1248_CMD_NOP;
 
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, data_read_regs, rd, 17);
+    spi_transfer_no_cs(config->spi_port, data_read_regs, rd, 17);
 
     /* implement system log debug for registers configuration here or somewhere else */
     /*
@@ -211,28 +211,28 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
 
     // Wake up device
     cmd[0] = ADS1248_CMD_WAKEUP;
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, cmd, dummy, 1);
+    spi_transfer_no_cs(config->spi_port, cmd, dummy, 1);
 
     // Configure desired channel for conversion
     select_channel_to_read[0] = ADS1248_CMD_WREG; /* WREG command (0x40), since the last byte is zero it will write to the first register MUX0 (0x00) */
     select_channel_to_read[1] = 0x00;  /* number of bytes minus 1 to be writen by WREG command, in this case 1 byte will be 0 in hex */
     select_channel_to_read[2] = (positive_channel << 3) | ADS1248_NEGATIVE_INPUT; /* positive channel selection + the negative (reference) channel fixed to be AIN7*/
 
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, select_channel_to_read, dummy, 3); /* Multiplexes channel */
+    spi_transfer_no_cs(config->spi_port, select_channel_to_read, dummy, 3); /* Multiplexes channel */
 
     select_channel_excitation_current[0] = 0x4B; /* WREG command (0x40) plus information to write to the IDAC1 register (0x4B) */
     select_channel_excitation_current[1] = 0x00;  /* number  of bytes minus 1 to be writen by WREG command, in this case 1 byte than 0 in hex */
     select_channel_excitation_current[2] = (positive_channel << 4) | positive_channel; /* output current to selected positive channel*/
 
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, select_channel_excitation_current, dummy, 3); /* Multiplexes channel */
+    spi_transfer_no_cs(config->spi_port, select_channel_excitation_current, dummy, 3); /* Multiplexes channel */
 
     // Start a new conversion
     cmd[0] = ADS1248_CMD_SYNC;
     cmd[1] = ADS1248_CMD_SYNC;
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, cmd, dummy, 2);
+    spi_transfer_no_cs(config->spi_port, cmd, dummy, 2);
     // Set device to enter power down mode
     cmd[0] = ADS1248_CMD_SLEEP;
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, cmd, dummy, 1);
+    spi_transfer_no_cs(config->spi_port, cmd, dummy, 1);
 
     // Wait for conversion to finish
     ads1248_delay(50);
@@ -243,7 +243,7 @@ int ads1248_read_data(ads1248_config_t *config, uint8_t *rd, uint8_t positive_ch
     data_read_conversion[3] = ADS1248_CMD_NOP;
     
     // Read conversion result
-    spi_transfer_no_cs(config->spi_port, config->spi_cs, data_read_conversion, rd, 4);
+    spi_transfer_no_cs(config->spi_port, data_read_conversion, rd, 4);
 
 
     return 0;
