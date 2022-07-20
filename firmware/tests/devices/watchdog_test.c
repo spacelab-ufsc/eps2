@@ -1,5 +1,5 @@
 /*
- * i2c_slave_wrap.c
+ * watchdog_test.c
  *
  * Copyright The EPS 2.0 Contributors.
  *
@@ -21,16 +21,15 @@
  */
 
 /**
- * \brief i2c_slave driver wrap implementation.
+ * \brief Unit test of the Watchdog device.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.2.41
+ * \version 0.1.0
  *
- * \date 2021/09/28
+ * \date 2022/07/12
  *
- * \defgroup i2c_slave_wrap I2C SLAVE Wrap
+ * \defgroup watchdog_unit_test Watchdog
  * \ingroup tests
  * \{
  */
@@ -38,42 +37,33 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
 
-#include <drivers/i2c_slave/i2c_slave.h>
+#include <devices/watchdog/watchdog.h>
+#include <drivers/wdt/wdt.h>
 
-int __wrap_i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr)
+static void watchdog_init_test(void **state)
 {
-    check_expected(port);
-    check_expected(adr);
-
-    return mock_type(int);
+    will_return(__wrap_wdt_init, 0);
+    assert_return_code(watchdog_init(), 0);
 }
 
-int __wrap_i2c_slave_enable(void)
+static void watchdog_reset_test()
 {
-    return mock_type(int);
+    expect_function_call(__wrap_wdt_reset);
+    watchdog_reset();
 }
 
-int __wrap_i2c_slave_disable(void)
+int main(void)
 {
-    return 0;
+    const struct CMUnitTest watchdog_tests[] = {
+        cmocka_unit_test(watchdog_init_test),
+        cmocka_unit_test(watchdog_reset_test),
+    };
+
+    return cmocka_run_group_tests(watchdog_tests, NULL, NULL);
 }
 
-int __wrap_i2c_slave_read(uint8_t *data, uint16_t *len)
-{
-    *data = mock_type(uint8_t);
-    *len = mock_type(uint16_t);
-
-    return mock_type(int);
-}
-
-int __wrap_i2c_slave_write(uint8_t *data, uint16_t len)
-{
-    return mock_type(int);
-}
-
-/** \} End of i2c_slave_wrap group */
+/** \} End of watchdog_test group */

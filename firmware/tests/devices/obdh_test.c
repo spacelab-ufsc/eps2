@@ -47,19 +47,82 @@
 #include <drivers/i2c_slave/i2c_slave.h>
 #include <drivers/i2c/i2c.h>
 
-static void obdh_init_test(void** state) {
+static void obdh_init_test(void **state)
+{
+    /* Success case */
+    expect_value(__wrap_tca4311a_init, en, true);
+    will_return(__wrap_tca4311a_init, TCA4311A_READY);
 
+    expect_value(__wrap_i2c_slave_init, port, I2C_PORT_2);
+    expect_value(__wrap_i2c_slave_init, adr, EPS_SLAVE_ADDRESS);
+    will_return(__wrap_i2c_slave_init, 0);
+
+    will_return(__wrap_i2c_slave_enable, 0);
+
+    assert_return_code(obdh_init(), 0);
+
+    /* Fail 1 case */
+    expect_value(__wrap_tca4311a_init, en, true);
+    will_return(__wrap_tca4311a_init, 1);
+
+    assert_int_equal(obdh_init(), -1);
+
+    /* Fail 2 Case */
+    expect_value(__wrap_tca4311a_init, en, true);
+    will_return(__wrap_tca4311a_init, TCA4311A_READY);
+
+    expect_value(__wrap_i2c_slave_init, port, I2C_PORT_2);
+    expect_value(__wrap_i2c_slave_init, adr, EPS_SLAVE_ADDRESS);
+    will_return(__wrap_i2c_slave_init, -1);
+
+    assert_int_equal(obdh_init(), -1);
+
+    /* Fail 3 Case */
+    expect_value(__wrap_tca4311a_init, en, true);
+    will_return(__wrap_tca4311a_init, TCA4311A_READY);
+
+    expect_value(__wrap_i2c_slave_init, port, I2C_PORT_2);
+    expect_value(__wrap_i2c_slave_init, adr, EPS_SLAVE_ADDRESS);
+    will_return(__wrap_i2c_slave_init, 0);
+
+    will_return(__wrap_i2c_slave_enable, 1);
+
+    assert_int_equal(obdh_init(), -1);
 }
 
-static void obdh_decode_test(void **state) {
+static void obdh_decode_test(void **state)
+{
+    uint8_t adr;
+    uint32_t val;
+    uint8_t cmd = -2;
 
+    uint8_t buf[I2C_RX_BUFFER_MAX_SIZE] = {0};
+    buf[0] = 155;
+    buf[1] = 11;
+    buf[2] = 12;
+    buf[3] = 13;
+    buf[4] = 14;
+
+    // case OBDH_COMMAND_WRITE_SIZE
+    will_return(__wrap_i2c_slave_read, buf);
+    will_return(__wrap_i2c_slave_read, 6);
+    will_return(__wrap_i2c_slave_read, 0);
+
+    int result = obdh_decode(&adr, &val, &cmd);
 }
 
-static void obdh_write_output_buffer_test(void** state) {
+static void obdh_write_output_buffer_test(void **state)
+{
+    uint8_t adr = 10;
+    uint32_t val = 10;
 
+    will_return(__wrap_i2c_slave_write, 0);
+
+    assert_return_code(obdh_write_output_buffer(adr, val), 0);
 }
 
-int main(void) {
+int main(void)
+{
     const struct CMUnitTest obdh_tests[] = {
         cmocka_unit_test(obdh_init_test),
         cmocka_unit_test(obdh_decode_test),
