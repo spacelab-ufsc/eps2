@@ -250,6 +250,28 @@ int spi_read(spi_port_t port, spi_cs_t cs, uint8_t *data, uint16_t len);
  */
 int spi_transfer(spi_port_t port, spi_cs_t cs, uint8_t *wd, uint8_t *rd, uint16_t len);
 
+/**
+ * \brief Transfer data over a SPI port (full-duplex operation) leaving 
+ * the chip select pin to be controlled externally.
+ * 
+ * \param[in] port is the SPI port to transfer data. It can be:
+ * \parblock
+ *      -\b SPI_PORT_0
+ *      -\b SPI_PORT_1
+ *      -\b SPI_PORT_2
+ *      .
+ * \endparblock 
+ *
+ * \param[in] wd is the data to write during the SPI transfer.
+ *
+ * \param[in] rd is a pointer to store the read data during the SPI transfer.
+ *
+ * \param[in] len is the number of bytes to transfer.
+ *
+ * \return The status/error code.
+ */
+int spi_transfer_no_cs(spi_port_t port, uint8_t *wd, uint8_t *rd, uint16_t len);
+
 #endif /* SPI_H_ */
 
 /** \} End of spi group */

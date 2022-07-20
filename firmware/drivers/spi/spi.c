@@ -577,4 +577,49 @@ bool spi_check_port(spi_port_t port)
     return state;
 }
 
+
+int spi_transfer_no_cs(spi_port_t port, uint8_t *wd, uint8_t *rd, uint16_t len)
+{
+    int err = 0;
+
+    uint16_t base_address = 0;
+
+    switch(port)
+    {
+        case SPI_PORT_0:    base_address = USCI_A0_BASE;    break;
+        case SPI_PORT_1:    base_address = USCI_A1_BASE;    break;
+        case SPI_PORT_2:    base_address = USCI_A2_BASE;    break;
+        case SPI_PORT_3:    base_address = USCI_B0_BASE;    break;
+        case SPI_PORT_4:    base_address = USCI_B1_BASE;    break;
+        case SPI_PORT_5:    base_address = USCI_B2_BASE;    break;
+        default:            err = -1;                       break;
+    }
+
+    if (err == 0)
+    {
+        if (spi_check_port(port))
+        {
+                /* Transfer data (write and read) */
+                uint16_t i = 0;
+                for(i = 0; i < len; i++)
+                {
+                    rd[i] = spi_transfer_byte(base_address, wd[i]);
+                }
+        }
+        else
+        {
+        #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+            sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Error during writing: Port ");
+            sys_log_print_uint(port);
+            sys_log_print_msg(" is not initialized!");
+            sys_log_new_line();
+        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+            err = -1;
+        }
+    }
+
+    return err;
+}
+
+
 /** \} End of spi group */
