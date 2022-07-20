@@ -89,6 +89,7 @@ int ads1248_init(ads1248_config_t *config)
         ads1248_delay(1);
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 
+    spi_select_slave(config->spi_port, SPI_CS_0, true);  /* Enable device communication (protocol specific) */
     uint8_t cmd[2]={0};
     uint8_t dummy[2]={0};
     cmd[0] = ADS1248_CMD_SYNC;
@@ -124,6 +125,7 @@ int ads1248_reset(ads1248_config_t *config, ads1248_reset_mode_t mode)
 int ads1248_config_regs(ads1248_config_t *config)
 {
     uint8_t data_config_regs[18];
+    uint8_t dummy[7]={0};
 
     data_config_regs[0] = ADS1248_CMD_WREG;  /* command WREG plus information to write to the first register MUX0 (0x00) */
     data_config_regs[1] = 0x03; /* number of bytes minus 1 to be written by WREG command */
@@ -143,7 +145,7 @@ int ads1248_config_regs(ads1248_config_t *config)
     data_config_regs[15] = 0x00; /* value to register GPIODIR: GPIOS not enabled */
     data_config_regs[16] = 0x00; /* value to register GPIODAT: GPIOS not enabled */
         
-    spi_write(config->spi_port, config->spi_cs, data_config_regs, 6); /* Writes to all registers in one half-duplex SPI communication */
+    spi_transfer_no_cs(config->spi_port, data_config_regs, dummy, 6); /* Writes to all registers in one half-duplex SPI communication */
 
     data_config_regs[0] = ADS1248_CMD_WREG | 0x0A;  /* command WREG plus information to write to the first register MUX0 (0x00) */
     data_config_regs[1] = 0x04; /* number of bytes minus 1 to be written by WREG command */
@@ -153,7 +155,7 @@ int ads1248_config_regs(ads1248_config_t *config)
     data_config_regs[5] = 0x00; /* value to register GPIODIR: GPIOS not enabled */
     data_config_regs[6] = 0x00; /* value to register GPIODAT: GPIOS not enabled */
 
-    spi_write(config->spi_port, config->spi_cs, data_config_regs, 7);
+    spi_transfer_no_cs(config->spi_port, data_config_regs, dummy, 7);
 
     return 0;
 }
@@ -274,7 +276,8 @@ int ads1248_write_cmd(ads1248_config_t *config, ads1248_cmd_t cmd, uint8_t *rd, 
             ads1248_delay(1);
             break;
         default:
-            spi_write(config->spi_port, config->spi_cs, &cmd, 1);
+            uint8_t dummy[1]={0};
+            spi_transfer_no_cs(config->spi_port, &cmd, dummy, 1);
             ads1248_delay(1);
     }
 
