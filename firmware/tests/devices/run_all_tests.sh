@@ -5,6 +5,7 @@
 ./heater_unit_test
 ./leds_unit_test
 ./media_unit_test
+./power_conv_unit_test
 ./temp_sensor_unit_test
 ./obdh_unit_test
 ./ttc_unit_test

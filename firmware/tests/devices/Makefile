@@ -8,6 +8,7 @@ TARGET_HEATER=heater_unit_test
 TARGET_BATTERY_MONITOR=battery_monitor_unit_test
 TARGET_MEDIA=media_unit_test
 TARGET_WATCHDOG=watchdog_unit_test
+TARGET_POWER_CONV=power_conv_unit_test
 
 ifndef BUILD_DIR
 	BUILD_DIR=$(CURDIR)
@@ -25,9 +26,10 @@ TTC_TEST_FLAGS=$(FLAGS),--wrap=uart_interrupt_init,--wrap=uart_interrupt_enable,
 HEATER_TEST_FLAGS=$(FLAGS),--wrap=pwm_init,--wrap=pwm_update,--wrap=pwm_stop,--wrap=pwm_disable,--wrap=temp_rtd_read_k,--wrap=temp_rtd_raw_to_k,--wrap=temp_rtd_read_raw
 BATTERY_MONITOR_TEST_FLAGS=$(FLAGS),--wrap=ds277Xg_init,--wrap=ds277Xg_read_voltage_mv,--wrap=ds277Xg_read_temperature_kelvin,--wrap=ds277Xg_read_current_ma,--wrap=ds277Xg_read_data
 MEDIA_TEST_FLAGS=$(FLAGS),--wrap=flash_init,--wrap=flash_write,--wrap=flash_write_single,--wrap=flash_read_single,--wrap=flash_write_long,--wrap=flash_read_long,--wrap=flash_erase
+POWER_CONV_FLAGS=$(FLAGS),--wrap=tps54x0_init,--wrap=tps54x0_enable,--wrap=tps54x0_disable
 
 .PHONY: all
-all: leds_test current_sensor_test temp_sensor_test voltage_sensor_test obdh_test ttc_test heater_test media_test battery_monitor_test watchdog_test
+all: leds_test current_sensor_test temp_sensor_test voltage_sensor_test obdh_test ttc_test heater_test media_test battery_monitor_test watchdog_test power_conv_test
 
 .PHONY: leds_test
 leds_test: $(BUILD_DIR)/leds.o $(BUILD_DIR)/leds_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
@@ -70,6 +72,10 @@ media_test: $(BUILD_DIR)/media.o $(BUILD_DIR)/media_test.o $(BUILD_DIR)/sys_log_
 watchdog_test: $(BUILD_DIR)/watchdog.o $(BUILD_DIR)/watchdog_test.o $(BUILD_DIR)/wdt_wrap.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
 	$(CC) $(FLAGS) $(BUILD_DIR)/watchdog.o $(BUILD_DIR)/watchdog_test.o $(BUILD_DIR)/wdt_wrap.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o -o $(BUILD_DIR)/$(TARGET_WATCHDOG) -lcmocka
 
+.PHONY: power_conv_test
+power_conv_test: $(BUILD_DIR)/power_conv.o $(BUILD_DIR)/power_conv_test.o $(BUILD_DIR)/tps54x0_wrap.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
+	$(CC) $(POWER_CONV_FLAGS) $(BUILD_DIR)/power_conv.o $(BUILD_DIR)/power_conv_test.o $(BUILD_DIR)/tps54x0_wrap.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o -o $(BUILD_DIR)/$(TARGET_POWER_CONV) -lcmocka
+
 
 # Devices
 $(BUILD_DIR)/leds.o: ../../devices/leds/leds.c
@@ -102,6 +108,9 @@ $(BUILD_DIR)/media.o: ../../devices/media/media.c
 $(BUILD_DIR)/watchdog.o: ../../devices/watchdog/watchdog.c
 	$(CC) $(FLAGS) -c $< -o $@
 
+$(BUILD_DIR)/power_conv.o: ../../devices/power_conv/power_conv.c
+	$(CC) $(POWER_CONV_FLAGS) -c $< -o $@
+
 
 # Tests
 $(BUILD_DIR)/current_sensor_test.o: current_sensor_test.c
@@ -132,6 +141,9 @@ $(BUILD_DIR)/media_test.o: media_test.c
 	$(CC) $(MEDIA_TEST_FLAGS) -c $< -o $@
 
 $(BUILD_DIR)/watchdog_test.o: watchdog_test.c
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(BUILD_DIR)/power_conv_test.o: power_conv_test.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 # Mockups
@@ -175,10 +187,13 @@ $(BUILD_DIR)/flash_wrap.o: ../mockups/drivers/flash_wrap/flash_wrap.c
 $(BUILD_DIR)/wdt_wrap.o: ../mockups/drivers/wdt_wrap/wdt_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
+$(BUILD_DIR)/tps54x0_wrap.o: ../mockups/drivers/tps54x0_wrap/tps54x0_wrap.c
+	$(CC) $(POWER_CONV_FLAGS) -c $< -o $@
+
 # Devices
 $(BUILD_DIR)/temp_sensor_wrap.o: ../mockups/devices/temp_sensor_wrap/temp_sensor_wrap.c
 	$(CC) $(FLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-	rm $(BUILD_DIR)/$(TARGET_LEDS) $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) $(BUILD_DIR)/$(TARGET_TEMP_SENSOR) $(BUILD_DIR)/$(TARGET_VOLTAGE_SENSOR) $(BUILD_DIR)/$(TARGET_OBDH) $(BUILD_DIR)/$(TARGET_TTC) $(BUILD_DIR)/$(TARGET_HEATER) $(BUILD_DIR)/$(TARGET_BATTERY_MONITOR) $(BUILD_DIR)/$(TARGET_MEDIA) $(BUILD_DIR)/$(TARGET_WATCHDOG) $(BUILD_DIR)/*.o
+	rm $(BUILD_DIR)/$(TARGET_LEDS) $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) $(BUILD_DIR)/$(TARGET_TEMP_SENSOR) $(BUILD_DIR)/$(TARGET_VOLTAGE_SENSOR) $(BUILD_DIR)/$(TARGET_OBDH) $(BUILD_DIR)/$(TARGET_TTC) $(BUILD_DIR)/$(TARGET_HEATER) $(BUILD_DIR)/$(TARGET_BATTERY_MONITOR) $(BUILD_DIR)/$(TARGET_MEDIA) $(BUILD_DIR)/$(TARGET_WATCHDOG) $(BUILD_DIR)/$(TARGET_POWER_CONV) $(BUILD_DIR)/*.o
