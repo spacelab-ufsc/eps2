@@ -67,7 +67,7 @@ void vTaskParamServer(void *pvParameters)
         if (result == pdPASS)
         {
             /* Process interrupt from I2C ISR. */
-            if ((notified_value & I2C_SLAVE_NOTI_VAL_TO_I2C_RX_ISR) != 0)
+            if ((notified_value & NOTIFICATION_VALUE_FROM_I2C_ISR) != 0)
             {
                 if (obdh_decode(&adr, &val, &cmd) == 0)
                 {

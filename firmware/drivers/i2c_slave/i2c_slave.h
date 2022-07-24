@@ -48,8 +48,6 @@
 #define I2C_RX_BUFFER_MAX_SIZE              16              /**< Number of bytes of the maximum I2C RX buffer size. */
 #define I2C_TX_BUFFER_MAX_SIZE              16              /**< Number of bytes of the maximum I2C TX buffer size. */
 
-#define I2C_SLAVE_NOTI_VAL_TO_I2C_RX_ISR    (1UL << 0UL)    /**< Bit to set on I2C RX notification for tasks. */
-#define I2C_SLAVE_NOTI_VAL_TO_I2C_TX_ISR    (1UL << 1UL)    /**< Bit to set on I2C TX notification for tasks. */
 
 /**
  * \brief I2C port type.
