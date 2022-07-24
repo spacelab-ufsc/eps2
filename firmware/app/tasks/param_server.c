@@ -38,6 +38,7 @@
 #include <structs/eps2_data.h>
 
 #include <drivers/i2c_slave/i2c_slave.h>
+#include <drivers/uart_interrupt/uart_interrupt.h>
 
 #include <devices/ttc/ttc.h>
 #include <devices/obdh/obdh.h>
@@ -175,6 +176,20 @@ void i2c_slave_notify_from_i2c_rx_isr(void)
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
     xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_FROM_I2C_ISR, eSetBits, &xHigherPriorityTaskWoken);
+
+    /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
+void uart_interrupt_notify_from_rcv_isr(void)
+{
+    /* xHigherPriorityTaskWoken must be initialised to pdFALSE.  If calling
+    xTaskNotifyFromISR() unblocks the handling task, and the priority of
+    the handling task is higher than the priority of the currently running task,
+    then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+    xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_FROM_UART_ISR, eSetBits, &xHigherPriorityTaskWoken);
 
     /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);

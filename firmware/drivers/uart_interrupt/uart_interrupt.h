@@ -45,7 +45,6 @@
 #define UART_INTERRUPT_MODULE_NAME      "UART_INTERRUPT"
 
 #define UART_RX_BUFFER_MAX_SIZE         16                  /**< Number of bytes of the maximum UART RX buffer size. */
-#define NOTIFICATION_VALUE_TO_UART_ISR  (1UL << 1UL)        /**< Bit to set on uart notification for tasks. */
 
 #define UART_RECEIVE_INTERRUPT_FLAG     2
 
@@ -137,6 +136,13 @@ int uart_interrupt_disable(uart_interrupt_port_t port);
  * \return The status/error code.
  */
 int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len);
+
+/**
+ * @brief Notifies the uart receive interrupt hanlder task.
+ * 
+ * @note This function should be implemented at a higher level.
+ */
+void uart_interrupt_notify_from_rcv_isr(void)
 
 #endif /* UART_INTERRUPT_H_ */
 

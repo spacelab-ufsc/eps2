@@ -40,8 +40,6 @@
 #include <config/config.h>
 #include <system/sys_log/sys_log.h>
 
-#include <app/tasks/param_server.h>
-
 #include "uart_interrupt.h"
 
 uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];
@@ -284,16 +282,7 @@ void USCI_A0_ISR(void)
                 uart_received_data_size = uart_buffer_index;
                 uart_buffer_index = 0;
 
-                /* xHigherPriorityTaskWoken must be initialised to pdFALSE.  If calling
-                xTaskNotifyFromISR() unblocks the handling task, and the priority of
-                the handling task is higher than the priority of the currently running task,
-                then xHigherPriorityTaskWoken will automatically get set to pdTRUE. */
-                BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-
-                xTaskNotifyFromISR(xTaskParamServerHandle, NOTIFICATION_VALUE_TO_UART_ISR, eSetBits, &xHigherPriorityTaskWoken);
-
-                /* Force a context switch if xHigherPriorityTaskWoken is now set to pdTRUE. */
-                portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+                uart_interrupt_notify_from_rcv_isr();
             }
             else 
             {
@@ -310,5 +299,12 @@ void USCI_A0_ISR(void)
     }
 }
 
+__attribute__((weak)) void uart_interrupt_notify_from_rcv_isr(void)
+{
+    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        sys_log_print_event_from_module(SYS_LOG_INFO, UART_INTERRUPT_MODULE_NAME, "Notified to uart rcv handler");
+        sys_log_new_line();
+    #endif
+}
 
 /** \} End of uart group */
