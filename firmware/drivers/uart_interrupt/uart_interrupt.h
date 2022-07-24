@@ -142,7 +142,7 @@ int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len
  * 
  * @note This function should be implemented at a higher level.
  */
-void uart_interrupt_notify_from_rcv_isr(void)
+void uart_interrupt_notify_from_rcv_isr(void);
 
 #endif /* UART_INTERRUPT_H_ */
 
