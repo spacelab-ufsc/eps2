@@ -1,7 +1,7 @@
 /*
- * max9934_wrap.h
+ * i2c_slave_wrap.c
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,15 +21,16 @@
  */
 
 /**
- * \brief MAX9934 driver wrap implementation.
+ * \brief i2c_slave driver wrap implementation.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.1.0
+ * \version 0.2.41
  *
- * \date 2021/08/24
+ * \date 2021/09/28
  *
- * \defgroup max9934_wrap MAX9934 Wrap
+ * \defgroup i2c_slave_wrap I2C SLAVE Wrap
  * \ingroup tests
  * \{
  */
@@ -37,16 +38,42 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
 
-#include "max9934_wrap.h"
+#include <drivers/i2c_slave/i2c_slave.h>
 
-int __wrap_max9934_init(max9934_config_t config) {
+int __wrap_i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr)
+{
+    check_expected(port);
+    check_expected(adr);
+
+    return mock_type(int);
+}
+
+int __wrap_i2c_slave_enable(void)
+{
+    return mock_type(int);
+}
+
+int __wrap_i2c_slave_disable(void)
+{
     return 0;
 }
 
-int __wrap_max9934_read(max9934_config_t config, uint16_t *raw_val) {
-    return 0;
+int __wrap_i2c_slave_read(uint8_t *data, uint16_t *len)
+{
+    *data = mock_type(uint8_t);
+    *len = mock_type(uint16_t);
+
+    return mock_type(int);
 }
+
+int __wrap_i2c_slave_write(uint8_t *data, uint16_t len)
+{
+    return mock_type(int);
+}
+
+/** \} End of i2c_slave_wrap group */

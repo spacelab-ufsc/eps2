@@ -23,7 +23,8 @@
 /**
  * \brief DS277XG+ driver definition.
  * 
- * \author Vinicius Pimenta Bernardo <viniciuspibi\gmail.com>
+ * \author Vinicius Pimenta Bernardo    <viniciuspibi@gmail.com>
+ * \author Ramon de Araujo Borba        <ramonborba97@gmail.com>
  * 
  * \version 0.2.0
  * 
@@ -42,7 +43,7 @@
 
 #include <config/config.h>
 
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
 #include <drivers/onewire/onewire.h>
 #else
 #include <drivers/i2c/i2c.h>
@@ -50,8 +51,31 @@
 
 #define DS277XG_MODULE_NAME "DS277X"
 
-#define DS277XG_RSENSE                                          0.01 /* Unit: Ohm. */
+/**
+ * @brief DS277XG IC parameters
+ */
+#define DS277XG_RSENSE                                          0.01        /* Unit: Ohm. */
+#define DS277XG_RSENSE_MOHMS                                    10          /* Unit: milliohms. */
+#define DS277XG_RSENSE_CONDUCTANCE                              100         /* Unit: Siemens. */
+#define DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION                   0.0195      /* Unit: millivolts */
+#define DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION           50          /* Unit: microvolts */
+#define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION             0.0195      /* Unit: Volts */
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION             200         /* Unit: microolts */
+#define DS277XG_AGE_SCALAR_REG_RESOLUTION                       0.0078125   /* Unit: Dimentionless (percentage) */
+#define DS277XG_VOLTAGE_REG_RESOLUTION                          4.8828      /* Unit: millivolts */
+#define DS277XG_CURRENT_REG_RESOLUTION                          1.5625      /* Unit: microvolts */
+#define DS277XG_TEMPERATURE_REG_RESOLUTION                      0.125       /* Unit: degrees Celsius */
+#define DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION              6.25        /* Unit: microvolts */
+
+/**
+ * @brief Battery cell parameters
+ */
 #define CELL_NOMINAL_VOLTAGE                                    3.78 /* Unit: Volts (ICR18650-30B-Samsung). */
+#define CELL_FULLY_CHARGED_VOLTAGE                              (0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) /* Unit: Volts */
+#define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE)
+#define CELL_INITIAL_AGE_SCALAR                                 0.95        /* Unit: Dimentionless (percentage) */
+#define CELL_ACTIVE_EMPTY_VOLTAGE                               3 // REVIEW THIS VALUE /* Unit: Volts */
+#define CELL_ACTIVE_EMPTY_CURRENT                               360 // REVIEW THIS VALUE /* Unit: miliamperes */
 
 /**
  * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
@@ -178,7 +202,7 @@
 
 typedef struct
 {
-#ifdef CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION
+#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
     onewire_port_t port;
 #else
     i2c_port_t  port;
@@ -193,6 +217,17 @@ typedef struct
  * \return int The status/error code.
  */
 int ds277Xg_init(ds277Xg_config_t *config);
+
+/**
+ * @brief Set battery configuration to initial state.
+ * 
+ * Run this function ONCE when a new battery is connected to reset
+ * accumulated current and aging estimation to initial values.
+ * 
+ * @param config DS277XG configuration parameters.
+ * @return int The status/error code.
+ */
+int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config);
 
 /**
  * \brief Set charge enable bit in protection register.

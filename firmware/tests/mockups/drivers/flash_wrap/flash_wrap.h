@@ -1,7 +1,7 @@
 /*
- * i2c_slave_wrap.c
+ * flash_wrap.h
  *
- * Copyright The EPS 2.0 Contributors.
+ * Copyright (C) 2022, SpaceLab.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,41 +21,40 @@
  */
 
 /**
- * \brief i2c_slave driver wrap implementation.
+ * \brief Flash driver wrap definition.
  *
- * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.2.41
+ * \version 0.1.0
  *
- * \date 2021/09/28
+ * \date 2022/06/16
  *
- * \defgroup i2c_slave_wrap I2C SLAVE Wrap
+ * \defgroup flash_wrap Flash Wrap
  * \ingroup tests
  * \{
  */
 
+#ifndef FLASH_WRAP_H_
+#define FLASH_WRAP_H_
+
 #include <stdint.h>
-#include <drivers/i2c_slave/i2c_slave.h>
 
-int __wrap_i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr) {
-    return 0;
-}
+#include <drivers/flash/flash.h>
 
-int __wrap_i2c_slave_enable(void) {
-    return 0;
-}
+int __wrap_flash_init(void);
 
-int __wrap_i2c_slave_disable(void) {
-    return 0;
-}
+void __wrap_flash_write(uint8_t *data, uint16_t len);
 
-int __wrap_i2c_slave_read(uint8_t *data, uint16_t *len) {
-    return 0;
-}
+void __wrap_flash_write_single(uint8_t data, uint8_t *addr);
 
-int __wrap_i2c_slave_write(uint8_t *data, uint16_t len) {
-    return 0;
-}
+uint8_t __wrap_flash_read_single(uint8_t *addr);
 
-/** \} End of i2c_slave_wrap group */
+void __wrap_flash_write_long(uint32_t data, uint32_t *addr);
+
+uint32_t __wrap_flash_read_long(uint32_t *addr);
+
+void __wrap_flash_erase(uint32_t *region);
+
+#endif /* FLASH_WRAP_H_ */
+
+/** \} End of flash_wrap group */

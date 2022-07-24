@@ -1,7 +1,7 @@
 /*
- * gpio_wrap.c
+ * watchdog_test.c
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,64 +21,49 @@
  */
 
 /**
- * \brief GPIO driver wrap implementation.
+ * \brief Unit test of the Watchdog device.
  *
- * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/07/22
+ * \date 2022/07/12
  *
- * \addtogroup gpio_wrap
+ * \defgroup watchdog_unit_test Watchdog
+ * \ingroup tests
  * \{
  */
 
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
 
-#include "gpio_wrap.h"
+#include <devices/watchdog/watchdog.h>
+#include <drivers/wdt/wdt.h>
 
-int __wrap_gpio_init(gpio_pin_t pin, gpio_config_t config)
+static void watchdog_init_test(void **state)
 {
-    check_expected(pin);
-
-    return 0;
+    will_return(__wrap_wdt_init, 0);
+    assert_return_code(watchdog_init(), 0);
 }
 
-int __wrap_gpio_set_state(gpio_pin_t pin, bool level)
+static void watchdog_reset_test()
 {
-    check_expected(pin);
-    check_expected(level);
-
-    return 0;
+    expect_function_call(__wrap_wdt_reset);
+    watchdog_reset();
 }
 
-int __wrap_gpio_get_state(gpio_pin_t pin)
+int main(void)
 {
-    check_expected(pin);
+    const struct CMUnitTest watchdog_tests[] = {
+        cmocka_unit_test(watchdog_init_test),
+        cmocka_unit_test(watchdog_reset_test),
+    };
 
-    int pin_val = mock_type(int);
-
-    if ((pin_val == 0) || (pin_val == 1))
-    {
-        return pin_val;
-    }
-    else
-    {
-        return -1;
-    }
+    return cmocka_run_group_tests(watchdog_tests, NULL, NULL);
 }
 
-int __wrap_gpio_toggle(gpio_pin_t pin)
-{
-    check_expected(pin);
-
-    return 0;
-}
-
-/** \} End of gpio_wrap group */
+/** \} End of watchdog_test group */
