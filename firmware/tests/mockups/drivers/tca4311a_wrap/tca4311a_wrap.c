@@ -1,5 +1,5 @@
 /*
- * adc_wrap.c
+ * tca4311a_wrap.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief ADC driver wrap definition.
+ * \brief tca4311a_wrap driver wrap implementation.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
@@ -29,57 +29,61 @@
  *
  * \date 2021/08/23
  *
- * \defgroup adc_wrap ADC Wrap
+ * \defgroup tca4311a_wrap tca4311a_wrap Wrap
  * \ingroup tests
  * \{
  */
 
+#include "tca4311a_wrap.h"
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
+#include <stdbool.h>
 
-#include "adc_wrap.h"
+#include <cmocka.h>
 
-int __wrap_adc_init(adc_port_t port, adc_config_t config) {
-    check_expected(port);
-
+int __wrap_tca4311a_init(tca4311a_config_t config, bool en)
+{
+    check_expected(en);
     return mock_type(int);
 }
 
-int __wrap_adc_read(adc_port_t port, uint16_t *val) {
-    check_expected(port);
-
-    uint16_t adc_val = mock_type(uint16_t);
-
-    if (val != NULL) {
-        *val = adc_val;
-    }
-
+int __wrap_tca4311a_enable(tca4311a_config_t config)
+{
     return mock_type(int);
 }
 
-float __wrap_adc_temp_get_mref(void) {
-    return mock_type(float);
+int __wrap_tca4311a_disable(tca4311a_config_t config)
+{
+    return mock_type(int);
 }
 
-float __wrap_adc_temp_get_nref(void) {
-    return mock_type(float);
+int __wrap_tca4311a_is_ready(tca4311a_config_t config)
+{
+    return mock_type(int);
 }
 
-bool __wrap_adc_mutex_create(void) {
-    return true;
+int __wrap_tca4311a_write(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
+{
+    return mock_type(int);
 }
 
-bool __wrap_adc_mutex_take(void) {
-    return true;
+int __wrap_tca4311a_read(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
+{
+    return mock_type(int);
 }
 
-bool __wrap_adc_mutex_give(void) {
-    return true;
+int __wrap_tca4311a_write_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t byte)
+{
+    return mock_type(int);
 }
 
+int __wrap_tca4311a_read_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *byte)
+{
+    return mock_type(int);
+}
 
-/** \} End of adc_wrap group */
+/** \} End of tca4311a_wrap group */

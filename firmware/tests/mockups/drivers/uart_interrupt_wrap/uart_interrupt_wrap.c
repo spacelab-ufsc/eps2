@@ -34,26 +34,43 @@
  * \{
  */
 
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
+
 #include "uart_interrupt_wrap.h"
 
 uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];
 uint8_t uart_received_data_size = 0;
 uint8_t uart_buffer_index = 0;
 
-int __wrap_uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config) {
-    return 0;
-}
-int __wrap_uart_interrupt_enable(uart_interrupt_port_t port) {
-    return 0;
-}
-
-int __wrap_uart_interrupt_disable(uart_interrupt_port_t port) {
-    return 0;
+int __wrap_uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config)
+{
+    check_expected(port);
+    return mock_type(int);
 }
 
-int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len) {
-    return 0;
+int __wrap_uart_interrupt_enable(uart_interrupt_port_t port)
+{
+    check_expected(port);
+    return mock_type(int);
 }
 
+int __wrap_uart_interrupt_disable(uart_interrupt_port_t port)
+{
+    check_expected(port);
+    return mock_type(int);
+}
+
+int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len)
+{
+    check_expected(port);
+    check_expected(len);
+
+    return mock_type(int);
+}
 
 /** \} End of uart_interrupt_wrap group */

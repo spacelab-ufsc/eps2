@@ -1,7 +1,7 @@
 /*
- * tca4311a_wrap.c
+ * wdt_wrap.c
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright (C) 2022, SpaceLab.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,39 +21,36 @@
  */
 
 /**
- * \brief tca4311a_wrap driver wrap implementation.
+ * \brief wdt driver wrap implementation.
  *
- * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
+ * \author Lucas Zacchi <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/08/23
+ * \date 2022/07/12
  *
- * \defgroup tca4311a_wrap tca4311a_wrap Wrap
- * \ingroup tests
+ * \addtogroup wdt_wrap
  * \{
  */
 
-
-#include "tca4311a_wrap.h"
+#include <stdarg.h>
+#include <stddef.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 
-int __wrap_tca4311a_init(tca4311a_config_t config, bool en) {
-    return 0;
+#include "wdt_wrap.h"
+
+int __wrap_wdt_init(wdt_config_t config)
+{
+    return mock_type(int);
 }
 
-int __wrap_tca4311a_enable(tca4311a_config_t config) {
-    return 0;
+void __wrap_wdt_reset(void)
+{
+    function_called();
 }
 
-int __wrap_tca4311a_disable(tca4311a_config_t config) {
-    return 0;
-}
-
-int __tca4311a_is_ready(tca4311a_config_t config) {
-    return 0;
-}
-
-
-/** \} End of tca4311a_wrap group */
+/** \} End of wdt_wrap group */

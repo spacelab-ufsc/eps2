@@ -1,7 +1,7 @@
 /*
- * tca4311a_wrap.h
+ * wdt_wrap.h
  *
- * Copyright (C) 2021, SpaceLab.
+ * Copyright (C) 2022, SpaceLab.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,37 +21,30 @@
  */
 
 /**
- * \brief tca4311a_wrap driver wrap definition.
+ * \brief WDT driver wrap definition.
  *
- * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
+ * \author Lucas Zacchi <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/08/23
+ * \date 2022/07/12
  *
- * \defgroup tca4311a_wrap tca4311a_wrap Wrap
+ * \defgroup wdt_wrap WDT Wrap
  * \ingroup tests
  * \{
  */
 
-#ifndef TCA4311A_WRAP_H
-#define TCA4311A_WRAP_H
-
-#include <drivers/i2c_slave/i2c_slave.h>
-#include <drivers/gpio/gpio.h>
-#include <drivers/tca4311a/tca4311a.h>
+#ifndef WDT_WRAP_H_
+#define WDT_WRAP_H_
 
 #include <stdint.h>
-#include <stdbool.h>
 
-int __wrap_tca4311a_init(tca4311a_config_t config, bool en);
+#include <drivers/wdt/wdt.h>
 
-int __wrap_tca4311a_enable(tca4311a_config_t config);
+int __wrap_wdt_init(wdt_config_t config);
 
-int __wrap_tca4311a_disable(tca4311a_config_t config);
+void __wrap_wdt_reset(void);
 
-int __wrap_tca4311a_is_ready(tca4311a_config_t config);
+#endif /* WDT_WRAP_H_ */
 
-#endif /* TCA4311A_WRAP_H */
-
-/** \} End of tca4311a_wrap group */
+/** \} End of wdt group */

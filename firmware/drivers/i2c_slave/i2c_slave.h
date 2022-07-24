@@ -48,7 +48,6 @@
 #define I2C_RX_BUFFER_MAX_SIZE              16              /**< Number of bytes of the maximum I2C RX buffer size. */
 #define I2C_TX_BUFFER_MAX_SIZE              16              /**< Number of bytes of the maximum I2C TX buffer size. */
 
-
 /**
  * \brief I2C port type.
  */
@@ -106,7 +105,7 @@ int i2c_slave_disable(void);
  *
  * \param[in,out] len is the number of read bytes.
  *
- * \reutrn The status/error code.
+ * \return The status/error code.
  */
 int i2c_slave_read(uint8_t *data, uint16_t *len);
 
@@ -122,9 +121,9 @@ int i2c_slave_read(uint8_t *data, uint16_t *len);
 int i2c_slave_write(uint8_t *data, uint16_t len);
 
 /**
- * @brief Notifies the I2C slave RX handler task.
+ * \brief Notifies the I2C slave RX handler task.
  *
- * @note This function should be implemented at a higher level.
+ * \note This function should be implemented at a higher level.
  */
 void i2c_slave_notify_from_i2c_rx_isr(void);
 
