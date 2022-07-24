@@ -100,7 +100,7 @@ int ttc_init(void)
 
 int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
 {
-	uint8_t buf[UART_RX_BUFFER_MAX_SIZE];
+	uint8_t buf[UART_RX_BUFFER_MAX_SIZE] = {0};
     uint8_t received_size = uart_received_data_size;
 
 	for (int i = 0; i < received_size; i++)
@@ -108,7 +108,7 @@ int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd)
 		buf[i] = uart_rx_buffer[i];
 	}
 
-	if(ttc_check_crc(buf, received_size, buf[received_size-1]) == true) 
+	if(ttc_check_crc(buf, received_size - 1U, buf[received_size - 1U]) == true)
 	{
 		switch(received_size) 
 		{
