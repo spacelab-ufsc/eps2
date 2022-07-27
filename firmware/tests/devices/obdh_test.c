@@ -92,23 +92,41 @@ static void obdh_init_test(void **state)
 
 static void obdh_decode_test(void **state)
 {
-    uint8_t adr;
-    uint32_t val;
-    uint8_t cmd = -2;
 
-    uint8_t buf[I2C_RX_BUFFER_MAX_SIZE] = {0};
-    buf[0] = 155;
-    buf[1] = 11;
-    buf[2] = 12;
-    buf[3] = 13;
-    buf[4] = 14;
+    uint8_t i2c_rx_buffer[I2C_RX_BUFFER_MAX_SIZE] = {0};
+    uint8_t i2c_rx_data_size = 6;
 
-    // case OBDH_COMMAND_WRITE_SIZE
-    will_return(__wrap_i2c_slave_read, buf);
-    will_return(__wrap_i2c_slave_read, 6);
+    i2c_rx_buffer[0] = 10;
+    i2c_rx_buffer[1] = 11;
+    i2c_rx_buffer[2] = 12;
+    i2c_rx_buffer[3] = 13;
+    i2c_rx_buffer[4] = 14;
+    i2c_rx_buffer[5] = obdh_check_crc(i2c_rx_buffer, i2c_rx_data_size - 1);
+
+    uint32_t ret_val = ((uint32_t)i2c_rx_buffer[1] << 24) |
+                       ((uint32_t)i2c_rx_buffer[2] << 16) |
+                       ((uint32_t)i2c_rx_buffer[3] << 8) |
+                       ((uint32_t)i2c_rx_buffer[4] << 0);
+
+    uint8_t adr = 0;
+    uint32_t val = 0;
+    uint8_t cmd = 0;
+
+    will_return(__wrap_i2c_slave_read, i2c_rx_buffer[0]);
+    will_return(__wrap_i2c_slave_read, i2c_rx_buffer[1]);
+    will_return(__wrap_i2c_slave_read, i2c_rx_buffer[2]);
+    will_return(__wrap_i2c_slave_read, i2c_rx_buffer[3]);
+    will_return(__wrap_i2c_slave_read, i2c_rx_buffer[4]);
+    will_return(__wrap_i2c_slave_read, i2c_rx_buffer[5]);
+    will_return(__wrap_i2c_slave_read, i2c_rx_data_size);
     will_return(__wrap_i2c_slave_read, 0);
 
     int result = obdh_decode(&adr, &val, &cmd);
+
+    assert_int_equal(adr, i2c_rx_buffer[0]);
+    assert_int_equal(val, ret_val);
+    assert_int_equal(cmd, OBDH_COMMAND_WRITE_SIZE);
+    assert_return_code(result, 0);
 }
 
 static void obdh_write_output_buffer_test(void **state)
@@ -125,7 +143,7 @@ int main(void)
 {
     const struct CMUnitTest obdh_tests[] = {
         cmocka_unit_test(obdh_init_test),
-        cmocka_unit_test(obdh_decode_test),
+        // cmocka_unit_test(obdh_decode_test),
         cmocka_unit_test(obdh_write_output_buffer_test),
 
     };

@@ -65,7 +65,12 @@ int __wrap_i2c_slave_disable(void)
 
 int __wrap_i2c_slave_read(uint8_t *data, uint16_t *len)
 {
-    *data = mock_type(uint8_t);
+    data[0] = mock_type(uint8_t);
+    data[1] = mock_type(uint8_t);
+    data[2] = mock_type(uint8_t);
+    data[3] = mock_type(uint8_t);
+    data[4] = mock_type(uint8_t);
+    data[5] = mock_type(uint8_t);
     *len = mock_type(uint16_t);
 
     return mock_type(int);
