@@ -125,7 +125,7 @@ static void obdh_decode_test(void **state)
 
     assert_int_equal(adr, i2c_rx_buffer[0]);
     assert_int_equal(val, ret_val);
-    assert_int_equal(cmd, OBDH_COMMAND_WRITE_SIZE);
+    assert_int_equal(cmd, OBDH_COMMAND_WRITE);
     assert_return_code(result, 0);
 }
 
