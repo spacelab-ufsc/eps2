@@ -101,7 +101,7 @@ static void obdh_decode_test(void **state)
     i2c_rx_buffer[2] = 12;
     i2c_rx_buffer[3] = 13;
     i2c_rx_buffer[4] = 14;
-    i2c_rx_buffer[5] = obdh_check_crc(i2c_rx_buffer, i2c_rx_data_size - 1);
+    i2c_rx_buffer[5] = obdh_crc8(i2c_rx_buffer, i2c_rx_data_size - 1);
 
     uint32_t ret_val = ((uint32_t)i2c_rx_buffer[1] << 24) |
                        ((uint32_t)i2c_rx_buffer[2] << 16) |
