@@ -42,10 +42,10 @@
 #include <float.h>
 #include <cmocka.h>
 
-#include <devices/obdh/obdh.h>
-#include <drivers/tca4311a/tca4311a.h>
-#include <drivers/i2c_slave/i2c_slave.h>
-#include <drivers/i2c/i2c.h>
+#include "devices/obdh/obdh.h"
+#include "drivers/tca4311a/tca4311a.h"
+#include "drivers/i2c_slave/i2c_slave.h"
+#include "drivers/i2c/i2c.h"
 
 static void obdh_init_test(void **state)
 {
@@ -143,7 +143,7 @@ int main(void)
 {
     const struct CMUnitTest obdh_tests[] = {
         cmocka_unit_test(obdh_init_test),
-        // cmocka_unit_test(obdh_decode_test),
+        cmocka_unit_test(obdh_decode_test),
         cmocka_unit_test(obdh_write_output_buffer_test),
 
     };
