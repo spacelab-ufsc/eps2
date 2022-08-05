@@ -59,14 +59,14 @@ int heater_on_off_init(void)
         return -1;
     }
 
-    if(gpio_set_state(HEATER_ACTUATOR_CH_0, HEATER_ON))
+    if(gpio_set_state(HEATER_ACTUATOR_CH_0, HEATER_OFF))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH0)!");
         sys_log_new_line();
         return -1;
     }
 
-    if(gpio_set_state(HEATER_ACTUATOR_CH_1, HEATER_ON))
+    if(gpio_set_state(HEATER_ACTUATOR_CH_1, HEATER_OFF))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH1)!");
         sys_log_new_line();
@@ -76,25 +76,54 @@ int heater_on_off_init(void)
     return 0;
 }
 
-bool heater_on_off_algorithm(bool state, float measurement)
+bool heater_on_off_algorithm(heater_channel_t channel, float measurement)
 {
+    static bool heater1_status = false;
+    static bool heater2_status = false;
+    bool new_status = false;
 
-    if(measurement >= TEMP_LIMIT_MAXIMUM){
+    if(measurement >= TEMP_LIMIT_MAXIMUM)
+    {
         /* Return controller output */
-        return HEATER_OFF;
+        new_status = HEATER_OFF;
     }
-
-    if(measurement <= TEMP_LIMIT_MINIMUM){
+    else if(measurement <= TEMP_LIMIT_MINIMUM)
+    {
         /* Return controller output */
-        return HEATER_ON;
+        new_status = HEATER_ON;
     }
-
-    if(measurement < TEMP_LIMIT_MAXIMUM && measurement > TEMP_LIMIT_MINIMUM){
+    else
+    {
         /* Return controller output */
-        return state;
+        switch (channel)
+        {
+        case HEATER_CONTROL_LOOP_CH_0:
+            return heater1_status;
+            break;
+            
+        case HEATER_CONTROL_LOOP_CH_1:
+            return heater2_status;
+            break;
+        
+        default:
+            break;
+        }   
     }
-
-    return state;
+    /* Return controller output */
+    switch (channel)
+    {
+    case HEATER_CONTROL_LOOP_CH_0:
+        heater1_status = new_status;
+        break;
+        
+    case HEATER_CONTROL_LOOP_CH_1:
+        heater2_status = new_status;
+        break;
+    
+    default:
+        break;
+    }   
+    return new_status;
 }
 
 int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp)
@@ -102,9 +131,9 @@ int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp)
     switch(channel) 
     {
         case HEATER_CONTROL_LOOP_CH_0:
-            return temp_rtd_read_k(HEATER_SENSOR_CH_0, (uint16_t *)&temp);
+            return temp_rtd_read_k(HEATER_SENSOR_CH_0, temp);
         case HEATER_CONTROL_LOOP_CH_1:
-            return temp_rtd_read_k(HEATER_SENSOR_CH_1, (uint16_t *)&temp);
+            return temp_rtd_read_k(HEATER_SENSOR_CH_1, temp);
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Invalid sensor channel!");
             sys_log_new_line();

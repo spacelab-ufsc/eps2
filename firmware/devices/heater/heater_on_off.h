@@ -48,8 +48,8 @@
 /**
  * \brief Hysteresis controller parameters.
  */
-#define TEMP_LIMIT_MINIMUM                  25           /**< TODO. */               
-#define TEMP_LIMIT_MAXIMUM                  26         /**< TODO. */                  
+#define TEMP_LIMIT_MINIMUM                  303           /**< TODO. */
+#define TEMP_LIMIT_MAXIMUM                  305           /**< TODO. */
 #define HEATER_OFF                          false
 #define HEATER_ON                           true
 
@@ -61,8 +61,8 @@
 #define HEATER_CONTROL_LOOP_CH_1        1
 #define HEATER_ACTUATOR_CH_0            GPIO_PIN_18
 #define HEATER_ACTUATOR_CH_1            GPIO_PIN_19
-#define HEATER_SENSOR_CH_0              TEMP_SENSOR_RTD_CH_6
-#define HEATER_SENSOR_CH_1              TEMP_SENSOR_RTD_CH_2
+#define HEATER_SENSOR_CH_0              TEMP_SENSOR_RTD_CH_4
+#define HEATER_SENSOR_CH_1              TEMP_SENSOR_RTD_CH_5
 #define HEATER_SENSOR_BOARD             TEMP_SENSOR_RTD_CH_3
 
 /**
@@ -110,7 +110,7 @@ int heater_on_off_init(void);
  *
  * \return The control loop output value.
  */
-bool heater_on_off_algorithm(bool state, float measurement);
+bool heater_on_off_algorithm(heater_channel_t state, float measurement);
 
 /**
  * \brief Gets the temperature sensor value in kelvin.
@@ -121,7 +121,7 @@ bool heater_on_off_algorithm(bool state, float measurement);
  *
  * \return The status/error code.
  */
-int heater_on_off__get_sensor(heater_channel_t channel, temperature_t *temp);
+int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp);
 
 /**
  * \brief Sets the PWM actuator duty cycle.
