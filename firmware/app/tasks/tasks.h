@@ -1,7 +1,7 @@
 /*
  * tasks.h
  * 
- * Copyright (C) 2019, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.1
+ * \version 0.2.37
  * 
  * \date 2020/10/25
  * 
@@ -41,14 +41,14 @@
  *
  * \return None.
  */
-void create_tasks();
+void create_tasks(void);
 
 /**
  * \brief Creates the system event groups.
  *
  * \return None.
  */
-void create_event_groups();
+void create_event_groups(void);
 
 #endif /* TASKS_H_ */
 

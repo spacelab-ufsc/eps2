@@ -25,7 +25,7 @@ name: Test Workflow
 
 on:
   push:
-    branches: [ dev_firmware ]
+    branches: [ dev_firmware, feat_unit_tests ]
   pull_request:
     branches: [ master, dev, dev_firmware]
 

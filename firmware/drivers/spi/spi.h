@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.0
+ * \version 0.2.33
  * 
  * \date 2020/10/24
  * 
@@ -53,7 +53,7 @@ typedef enum
     SPI_PORT_3,         /**< SPI port 3. */
     SPI_PORT_4,         /**< SPI port 4. */
     SPI_PORT_5          /**< SPI port 5. */
-} spi_ports_e;
+} spi_port_t;
 
 /**
  * \brief SPI chips select.
@@ -69,8 +69,9 @@ typedef enum
     SPI_CS_6,           /**< SPI chip select 6. */
     SPI_CS_7,           /**< SPI chip select 7. */
     SPI_CS_8,           /**< SPI chip select 8. */
-    SPI_CS_9            /**< SPI chip select 9. */
-} spi_cs_e;
+    SPI_CS_9,           /**< SPI chip select 9. */
+    SPI_CS_NONE         /**< No SPI chip select. */
+} spi_cs_t;
 
 /**
  * \brief SPI modes.
@@ -81,12 +82,7 @@ typedef enum
     SPI_MODE_1,         /**< SPI mode 1 (Clock Polarity = 0, Clock Phase = 1). */
     SPI_MODE_2,         /**< SPI mode 2 (Clock Polarity = 1, Clock Phase = 0). */
     SPI_MODE_3          /**< SPI mode 3 (Clock Polarity = 1, Clock Phase = 1). */
-} spi_modes_e;
-
-/**
- * \brief SPI mode type.
- */
-typedef uint8_t spi_mode_t;
+} spi_mode_t;
 
 /**
  * \brief SPI bus configuration parameters.
@@ -96,20 +92,6 @@ typedef struct
     uint32_t speed_hz;  /**< Transfer rate in Hertz. */
     spi_mode_t mode;    /**< SPI mode (0, 1, 2 or 3). */
 } spi_config_t;
-
-/**
- * \brief SPI port type.
- */
-typedef uint8_t spi_port_t;
-
-/**
- * \brief SPI chip select type.
- */
-typedef uint8_t spi_cs_t;
-
-int spi_setup_gpio(spi_port_t port);
-
-int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active);
 
 /**
  * \brief SPI port initialization.
@@ -127,6 +109,39 @@ int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active);
  * \return The status/error code.
  */
 int spi_init(spi_port_t port, spi_config_t config);
+
+/**
+ * \brief Selects or unselects an SPI device.
+ *
+ * \param[in] port is the SPI port of the device to select. It can be:
+ * \parblock
+ *      -\b SPI_PORT_0
+ *      -\b SPI_PORT_1
+ *      -\b SPI_PORT_2
+ *      .
+ * \endparblock
+ *
+ * \param[in] cs is the chip select pin of the device to select. It can be:
+ * \parblock
+ *      -\b SPI_CS_0
+ *      -\b SPI_CS_1
+ *      -\b SPI_CS_2
+ *      -\b SPI_CS_3
+ *      -\b SPI_CS_4
+ *      -\b SPI_CS_5
+ *      -\b SPI_CS_6
+ *      -\b SPI_CS_7
+ *      -\b SPI_CS_8
+ *      -\b SPI_CS_9
+ *      -\b SPI_CS_NONE
+ *      .
+ * \endparblock
+ *
+ * \param[in] active is TRUE/FALSE to select/unselect the SPI device.
+ *
+ * \return The status/error code.
+ */
+int spi_select_slave(spi_port_t port, spi_cs_t cs, bool active);
 
 /**
  * \brief Writes data to a given SPI port.
@@ -151,6 +166,7 @@ int spi_init(spi_port_t port, spi_config_t config);
  *      -\b SPI_CS_7
  *      -\b SPI_CS_8
  *      -\b SPI_CS_9
+ *      -\b SPI_CS_NONE
  *      .
  * \endparblock
  *
@@ -185,6 +201,7 @@ int spi_write(spi_port_t port, spi_cs_t cs, uint8_t *data, uint16_t len);
  *      -\b SPI_CS_7
  *      -\b SPI_CS_8
  *      -\b SPI_CS_9
+ *      -\b SPI_CS_NONE
  *      .
  * \endparblock
  *
@@ -219,6 +236,7 @@ int spi_read(spi_port_t port, spi_cs_t cs, uint8_t *data, uint16_t len);
  *      -\b SPI_CS_7
  *      -\b SPI_CS_8
  *      -\b SPI_CS_9
+ *      -\b SPI_CS_NONE
  *      .
  * \endparblock
  *
@@ -231,6 +249,28 @@ int spi_read(spi_port_t port, spi_cs_t cs, uint8_t *data, uint16_t len);
  * \return The status/error code.
  */
 int spi_transfer(spi_port_t port, spi_cs_t cs, uint8_t *wd, uint8_t *rd, uint16_t len);
+
+/**
+ * \brief Transfer data over a SPI port (full-duplex operation) leaving 
+ * the chip select pin to be controlled externally.
+ * 
+ * \param[in] port is the SPI port to transfer data. It can be:
+ * \parblock
+ *      -\b SPI_PORT_0
+ *      -\b SPI_PORT_1
+ *      -\b SPI_PORT_2
+ *      .
+ * \endparblock 
+ *
+ * \param[in] wd is the data to write during the SPI transfer.
+ *
+ * \param[in] rd is a pointer to store the read data during the SPI transfer.
+ *
+ * \param[in] len is the number of bytes to transfer.
+ *
+ * \return The status/error code.
+ */
+int spi_transfer_no_cs(spi_port_t port, uint8_t *wd, uint8_t *rd, uint16_t len);
 
 #endif /* SPI_H_ */
 
