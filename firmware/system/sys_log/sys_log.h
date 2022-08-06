@@ -25,7 +25,7 @@
  *
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
- * \version 0.1.1
+ * \version 0.3.0
  *
  * \date 2020/10/22
  *
@@ -45,9 +45,11 @@
  */
 typedef enum
 {
+    SYS_LOG_DEBUG,              /**< Debug message. */
     SYS_LOG_INFO,               /**< Information message. */
     SYS_LOG_WARNING,            /**< Warning message. */
-    SYS_LOG_ERROR               /**< Error message. */
+    SYS_LOG_ERROR,              /**< Error message. */
+    SYS_LOG_NONE                /**< No message. */
 } sys_log_event_type_e;
 
 /**

@@ -40,8 +40,12 @@
 
 #include <version.h>
 
+#include "config/config.h"
+
 #include "sys_log.h"
 #include "sys_log_config.h"
+
+static volatile uint8_t sys_log_current_level = SYS_LOG_LEVEL_INFO;
 
 int sys_log_init()
 {
@@ -124,205 +128,243 @@ void sys_log_reset_color()
 
 void sys_log_print_event(uint8_t type, const char *event)
 {
-    sys_log_mutex_take();
-
-    sys_log_print_system_time();
-    sys_log_print_msg(" ");
-
-    switch(type)
+    sys_log_current_level = type;
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        case SYS_LOG_INFO:
-            break;
-        case SYS_LOG_WARNING:
-            sys_log_set_color(SYS_LOG_WARNING_COLOR);
-            break;
-        case SYS_LOG_ERROR:
-            sys_log_set_color(SYS_LOG_ERROR_COLOR);
-            break;
-        default:
-            break;
-    }
+        sys_log_mutex_take();
 
-    sys_log_print_msg(event);
+        sys_log_print_system_time();
+        sys_log_print_msg(" ");
+
+        switch(type)
+        {
+            case SYS_LOG_INFO:
+                break;
+            case SYS_LOG_WARNING:
+                sys_log_set_color(SYS_LOG_WARNING_COLOR);
+                break;
+            case SYS_LOG_ERROR:
+                sys_log_set_color(SYS_LOG_ERROR_COLOR);
+                break;
+            default:
+                break;
+        }
+
+        sys_log_print_msg(event);
+    }
 }
 
 void sys_log_print_event_from_module(uint8_t type, const char *module, const char *event)
 {
-    sys_log_mutex_take();
-
-    sys_log_print_system_time();
-
-    sys_log_set_color(SYS_LOG_MODULE_NAME_COLOR);
-    sys_log_print_msg(" ");
-    sys_log_print_msg(module);
-    sys_log_reset_color();
-    sys_log_print_msg(": ");
-
-    switch(type)
+    sys_log_current_level = type;
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        case SYS_LOG_INFO:
-            break;
-        case SYS_LOG_WARNING:
-            sys_log_set_color(SYS_LOG_WARNING_COLOR);
-            break;
-        case SYS_LOG_ERROR:
-            sys_log_set_color(SYS_LOG_ERROR_COLOR);
-            break;
-        default:
-            break;
-    }
+        sys_log_mutex_take();
 
-    sys_log_print_msg(event);
+        sys_log_print_system_time();
+
+        sys_log_set_color(SYS_LOG_MODULE_NAME_COLOR);
+        sys_log_print_msg(" ");
+        sys_log_print_msg(module);
+        sys_log_reset_color();
+        sys_log_print_msg(": ");
+
+        switch(type)
+        {
+            case SYS_LOG_INFO:
+                break;
+            case SYS_LOG_WARNING:
+                sys_log_set_color(SYS_LOG_WARNING_COLOR);
+                break;
+            case SYS_LOG_ERROR:
+                sys_log_set_color(SYS_LOG_ERROR_COLOR);
+                break;
+            default:
+                break;
+        }
+
+        sys_log_print_msg(event);
+    }
 }
 
 void sys_log_print_msg(const char *msg)
 {
-    uint16_t i = 0;
-    while(msg[i] != '\0')
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_byte(msg[i]);
-        i++;
+        uint16_t i = 0;
+        while(msg[i] != '\0')
+        {
+            sys_log_print_byte(msg[i]);
+            i++;
+        }
     }
 }
 
 void sys_log_new_line()
 {
-    sys_log_reset_color();
-    sys_log_print_msg("\n\r");
-    sys_log_mutex_give();
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
+    {
+        sys_log_reset_color();
+        sys_log_print_msg("\n\r");
+        sys_log_mutex_give();
+    }
 }
 
 void sys_log_print_digit(uint8_t digit)
 {
-    if (digit < 0x0A)
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_byte(digit + 0x30);    /* 0x30 = ascii 0 */
-    }
-    else if (digit <= 0x0F)
-    {
-        sys_log_print_byte(digit + 0x37);    /* 0x37 = ascii 7 */
-    }
-    else
-    {
-        sys_log_print_byte('N');
+        if (digit < 0x0A)
+        {
+            sys_log_print_byte(digit + 0x30);    /* 0x30 = ascii 0 */
+        }
+        else if (digit <= 0x0F)
+        {
+            sys_log_print_byte(digit + 0x37);    /* 0x37 = ascii 7 */
+        }
+        else
+        {
+            sys_log_print_byte('N');
+        }
     }
 }
 
 void sys_log_print_str(char *str)
 {
-    uint16_t i = 0;
-    while(str[i] != '\0')
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_byte(str[i]);
-        i++;
+        uint16_t i = 0;
+        while(str[i] != '\0')
+        {
+            sys_log_print_byte(str[i]);
+            i++;
+        }
     }
 }
 
 void sys_log_print_uint(uint32_t uint)
 {
-    if (uint == 0)
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_digit(0);
-    }
-    else
-    {
-        uint8_t uint_str[10];               /* 32-bits = decimal with 10 digits */
-
-        uint8_t digits = log10(uint) + 1;
-
-        uint8_t i = 0;
-        for(i=0; i<digits; ++i, uint /= 10)
+        if (uint == 0)
         {
-            uint_str[i] = uint % 10;
+            sys_log_print_digit(0);
         }
-
-        uint8_t j = 0;
-        for(j=i; j>0; j--)
+        else
         {
-            sys_log_print_digit(uint_str[j-1]);
+            uint8_t uint_str[10];               /* 32-bits = decimal with 10 digits */
+
+            uint8_t digits = log10(uint) + 1;
+
+            uint8_t i = 0;
+            for(i=0; i<digits; ++i, uint /= 10)
+            {
+                uint_str[i] = uint % 10;
+            }
+
+            uint8_t j = 0;
+            for(j=i; j>0; j--)
+            {
+                sys_log_print_digit(uint_str[j-1]);
+            }
         }
     }
 }
 
 void sys_log_print_int(int32_t sint)
 {
-    if (sint < 0)
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sint = abs(sint);
-        sys_log_print_msg("-");
-    }
+        if (sint < 0)
+        {
+            sint = abs(sint);
+            sys_log_print_msg("-");
+        }
 
-    sys_log_print_uint((uint32_t)sint);
+        sys_log_print_uint((uint32_t)sint);
+    }
 }
 
 void sys_log_print_hex(uint32_t hex)
 {
-    sys_log_print_msg("0x");
-    
-    if (hex > 0x00FFFFFF)
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_digit((uint8_t)(hex >> 28) & 0x0F);
-        sys_log_print_digit((uint8_t)(hex >> 24) & 0x0F);
-    }
+        sys_log_print_msg("0x");
+        
+        if (hex > 0x00FFFFFF)
+        {
+            sys_log_print_digit((uint8_t)(hex >> 28) & 0x0F);
+            sys_log_print_digit((uint8_t)(hex >> 24) & 0x0F);
+        }
 
-    if (hex > 0x0000FFFF)
-    {
-        sys_log_print_digit((uint8_t)(hex >> 20) & 0x0F);
-        sys_log_print_digit((uint8_t)(hex >> 16) & 0x0F);
-    }
+        if (hex > 0x0000FFFF)
+        {
+            sys_log_print_digit((uint8_t)(hex >> 20) & 0x0F);
+            sys_log_print_digit((uint8_t)(hex >> 16) & 0x0F);
+        }
 
-    if (hex > 0x000000FF)
-    {
-        sys_log_print_digit((uint8_t)(hex >> 12) & 0x0F);
-        sys_log_print_digit((uint8_t)(hex >> 8) & 0x0F);
-    }
+        if (hex > 0x000000FF)
+        {
+            sys_log_print_digit((uint8_t)(hex >> 12) & 0x0F);
+            sys_log_print_digit((uint8_t)(hex >> 8) & 0x0F);
+        }
 
-    sys_log_print_digit((uint8_t)(hex >> 4) & 0x0F);
-    sys_log_print_digit((uint8_t)(hex & 0x0F));
+        sys_log_print_digit((uint8_t)(hex >> 4) & 0x0F);
+        sys_log_print_digit((uint8_t)(hex & 0x0F));
+    }
 }
 
 void sys_log_dump_hex(uint8_t *data, uint16_t len)
 {
-    uint16_t i = 0;
-    for(i=0; i<len; i++)
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_hex(data[i]);
-
-        if (i < len-1)
+        uint16_t i = 0;
+        for(i=0; i<len; i++)
         {
-            sys_log_print_msg(", ");
+            sys_log_print_hex(data[i]);
+
+            if (i < len-1)
+            {
+                sys_log_print_msg(", ");
+            }
         }
     }
 }
 
 void sys_log_print_float(float flt, uint8_t digits)
 {
-    if (flt < 0)
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
     {
-        sys_log_print_msg("-");
+        if (flt < 0)
+        {
+            sys_log_print_msg("-");
 
-        flt = abs(flt);
+            flt = abs(flt);
+        }
+
+        /* Extract integer part */
+        uint32_t ipart = (uint32_t)flt;
+
+        /* Extract floating part */
+        float fpart = flt - (float)ipart;
+
+        /* Print integer part */
+        sys_log_print_uint(ipart);
+
+        /* Print decimal point */
+        sys_log_print_msg(".");
+
+        /* Print floating part */
+        sys_log_print_uint((uint32_t)(fpart*pow(10, digits)));
     }
-
-    /* Extract integer part */
-    uint32_t ipart = (uint32_t)flt;
-
-    /* Extract floating part */
-    float fpart = flt - (float)ipart;
-
-    /* Print integer part */
-    sys_log_print_uint(ipart);
-
-    /* Print decimal point */
-    sys_log_print_msg(".");
-
-    /* Print floating part */
-    sys_log_print_uint((uint32_t)(fpart*pow(10, digits)));
 }
 
 void sys_log_print_byte(uint8_t byte)
 {
-    sys_log_uart_write_byte(byte);
+    if (sys_log_current_level >= CONFIG_GLOBAL_LOG_LEVEL)
+    {
+        sys_log_uart_write_byte(byte);
+    }
 }
 
 void sys_log_print_system_time()
