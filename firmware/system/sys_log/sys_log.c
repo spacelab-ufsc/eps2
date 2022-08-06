@@ -139,6 +139,7 @@ void sys_log_print_event(uint8_t type, const char *event)
         switch(type)
         {
             case SYS_LOG_INFO:
+                sys_log_set_color(SYS_LOG_INFO_COLOR);
                 break;
             case SYS_LOG_WARNING:
                 sys_log_set_color(SYS_LOG_WARNING_COLOR);
@@ -172,6 +173,7 @@ void sys_log_print_event_from_module(uint8_t type, const char *module, const cha
         switch(type)
         {
             case SYS_LOG_INFO:
+                sys_log_set_color(SYS_LOG_INFO_COLOR);
                 break;
             case SYS_LOG_WARNING:
                 sys_log_set_color(SYS_LOG_WARNING_COLOR);
