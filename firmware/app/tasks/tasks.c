@@ -1,7 +1,7 @@
 /*
  * tasks.c
  * 
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.12
+ * \version 0.2.37
  * 
  * \date 2021/04/09
  * 
@@ -47,8 +47,9 @@
 #include "param_server.h"
 #include "mppt_algorithm.h"
 #include "heater_controller.h"
+#include "time_control.h"
 
-void create_tasks()
+void create_tasks(void)
 {
     /* Startup task */
 #if CONFIG_TASK_STARTUP_ENABLED == 1
@@ -126,10 +127,19 @@ void create_tasks()
     }
 #endif /* CONFIG_TASK_HEATER_CONTROLLER_ENABLED */
 
+#if defined(CONFIG_TASK_TIME_CONTROL_ENABLED) && (CONFIG_TASK_TIME_CONTROL_ENABLED == 1)
+    xTaskCreate(vTaskTimeControl, TASK_TIME_CONTROL_NAME, TASK_TIME_CONTROL_STACK_SIZE, NULL, TASK_TIME_CONTROL_PRIORITY, &xTaskTimeControlHandle);
+
+    if (xTaskTimeControlHandle == NULL)
+    {
+        /* Error creating the time control task */
+    }
+#endif /* CONFIG_TASK_TIME_CONTROL_ENABLED */
+
     create_event_groups();
 }
 
-void create_event_groups()
+void create_event_groups(void)
 {
     task_startup_status = xEventGroupCreate();
 

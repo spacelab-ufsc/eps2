@@ -1,7 +1,7 @@
 /*
  * config.h
  * 
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,8 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author Jo�o Cl�udio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * 
- * \version 0.2.25
+ * \version 0.2.38
  * 
  * \date 2021/01/25
  * 
@@ -46,23 +47,29 @@
 #define CONFIG_TASK_PARAM_SERVER_ENABLED                1
 #define CONFIG_TASK_MPPT_ALGORITHM_ENABLED              1
 #define CONFIG_TASK_HEATER_CONTROLLER_ENABLED           0
+#define CONFIG_TASK_TIME_CONTROL_ENABLED                1
 
-#define CONFIG_DEV_LEDS_ENABLED							1	
-#define CONFIG_DEV_HEATER_ENABLED						0		
-#define CONFIG_DEV_MPPT_ENABLED							1	
-#define CONFIG_DEV_BAT_MANAGER_ENABLED					0
-#define CONFIG_DEV_MEDIA_ENABLED						1		
-#define CONFIG_DEV_CURRENT_SENSOR_ENABLED				1				
-#define CONFIG_DEV_VOLTAGE_SENSOR_ENABLED				1				
-#define CONFIG_DEV_TEMP_SENSOR_ENABLED					1			
-#define CONFIG_DEV_OBDH_ENABLED							1	
-#define CONFIG_DEV_TTC_ENABLED							1	
+/* Devices */
+#define CONFIG_SET_DUMMY_EPS                            1
+#define CONFIG_DEV_LEDS_ENABLED                         1
+#define CONFIG_DEV_HEATER_ENABLED                       0
+#define CONFIG_DEV_MPPT_ENABLED                         1
+#define CONFIG_DEV_BAT_MANAGER_ENABLED                  0
+#define CONFIG_DEV_BATTERY_MONITOR_ENABLED              1
+#define CONFIG_DEV_MEDIA_ENABLED                        1
+#define CONFIG_DEV_CURRENT_SENSOR_ENABLED               1
+#define CONFIG_DEV_VOLTAGE_SENSOR_ENABLED               1
+#define CONFIG_DEV_TEMP_SENSOR_ENABLED                  1
+#define CONFIG_DEV_OBDH_ENABLED                         1
+#define CONFIG_DEV_TTC_ENABLED                          1
 
+/* Drivers */
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
+#define CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION           0
 
-#define MAX_BATTERY_CHARGE                          2450 //[mAh]
-#define BAT_MONITOR_CHARGE_VALUE                    (uint16_t)(MAX_BATTERY_CHARGE/0.625) //0.625 is a conversion factor for the  battery monitor
-#define RESET_BATTERY_ACCUMULATED_CURRENT           0
+#define MAX_BATTERY_CHARGE                              2450    /* [mAh] */
+#define BAT_MONITOR_CHARGE_VALUE                        (uint16_t)(MAX_BATTERY_CHARGE/0.625)    /* 0.625 is a conversion factor for the  battery monitor */
+#define RESET_BATTERY_TO_INITIAL_STATE                 0
 
 #endif /* CONFIG_H_ */
 

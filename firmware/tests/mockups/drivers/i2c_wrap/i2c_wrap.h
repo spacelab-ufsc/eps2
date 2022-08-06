@@ -1,7 +1,7 @@
 /*
- * csp_server.c
+ * i2c_wrap.h
  *
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,26 +21,29 @@
  */
 
 /**
- * \brief CSP server task implementation.
+ * \brief i2c driver wrap definition.
  *
- * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
- * \version 0.1.0
+ * \version 0.2.43
  *
- * \date 10/03/2021
+ * \date 2021/09/28
  *
- * \addtogroup csp_server
+ * \defgroup i2c_wrap I2C Wrap
+ * \ingroup tests
  * \{
  */
 
-#include "csp_server.h"
-#include "startup.h"
+#ifndef I2C_WRAP_H
+#define I2C_WRAP_H
 
-xTaskHandle xTaskCSPServerHandle;
+#include <drivers/i2c/i2c.h>
 
-void vTaskCSPServer(void *pvParameters)
-{
+int __wrap_i2c_init(i2c_port_t port, i2c_config_t config);
 
-}
+int __wrap_i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
 
-/** \} End of csp_server group */
+int __wrap_i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+#endif /* I2C_WRAP_H */
+/** \} End of i2c_wrap group */

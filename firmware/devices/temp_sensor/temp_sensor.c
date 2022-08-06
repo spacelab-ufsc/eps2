@@ -25,7 +25,7 @@
  * 
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * 
- * \version 0.2.26
+ * \version 0.2.33
  * 
  * \date 2021/06/11
  * 
@@ -175,8 +175,17 @@ int temp_mcu_read_k(uint16_t *temp)
 }
 
 int temp_rtd_read_raw(uint8_t positive_channel, uint32_t *val)
-{    
-    return ads1248_write_cmd(&config, ADS1248_CMD_RDATA, (uint8_t *)val, positive_channel);
+{
+    uint8_t buf[4];
+
+    if(ads1248_write_cmd(&config, ADS1248_CMD_RDATA, buf, positive_channel) != 0)
+    {
+        return -1;
+    }
+
+    *val = (uint32_t)buf;
+
+    return 0;
 }
 
 int16_t temp_rtd_raw_to_c(uint32_t raw)

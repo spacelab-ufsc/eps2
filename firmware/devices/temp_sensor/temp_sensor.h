@@ -47,10 +47,10 @@
 
 #define TEMP_SENSOR_ADC_PORT        ADC_PORT_0
 #define TEMP_SENSOR_SPI_PORT        SPI_PORT_1
-#define TEMP_SENSOR_SPI_MODE        SPI_MODE_0
+#define TEMP_SENSOR_SPI_MODE        SPI_MODE_1
 #define TEMP_SENSOR_SPI_SPEED_HZ    (100000UL)
 #define TEMP_SENSOR_START_PIN       GPIO_PIN_60
-#define TEMP_SENSOR_SPI_CS          GPIO_PIN_59
+#define TEMP_SENSOR_SPI_CS          SPI_CS_0
 #define TEMP_SENSOR_RESET_PIN       GPIO_PIN_58
 
 #define TEMP_SENSOR_CONV(VALUE)     ((((uint32_t)VALUE * (1.65 * 2 / 16777216) * 1000) - 1000 ) * (1/3.85))   /**< TODO: Solve magic conversion */

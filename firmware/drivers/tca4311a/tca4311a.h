@@ -1,7 +1,7 @@
 /*
  * tca4311a.h
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The EPS 2.0 Contributors.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -23,11 +23,11 @@
 /**
  * \brief TCA4311A driver definition.
  * 
- * \authors Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>, Vinicius Pimenta Bernardo <viniciuspibi@gmail.com> and Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.7
+ * \version 0.2.40
  * 
- * \date 2021/07/05
+ * \date 01/02/2020
  * 
  * \defgroup tca4311a TCA4311A
  * \ingroup drivers
@@ -40,7 +40,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <drivers/i2c_slave/i2c_slave.h>
+#include <drivers/i2c/i2c.h>
 #include <drivers/gpio/gpio.h>
 
 #define TCA4311A_MODULE_NAME            "TCA4311A"
@@ -50,8 +50,8 @@
  */
 typedef struct
 {
-    i2c_slave_port_t i2c_port;          /**< I2C (as slave) port number.*/
-    i2c_slave_config_t i2c_config;      /**< I2C (as slave) port configuration. */
+    i2c_port_t i2c_port;                /**< I2C port number.*/
+    i2c_config_t i2c_config;            /**< I2C port configuration. */
     gpio_pin_t en_pin;                  /**< EN GPIO pin. */
     gpio_pin_t ready_pin;               /**< READY GPIO pin. */
 } tca4311a_config_t;
@@ -62,14 +62,14 @@ typedef struct
 typedef enum
 {
     TCA4311A_ERROR=-1,                  /**< Error during initialization. */
-    TCA4311A_READY,                     /**< The chip is ready. */
-    TCA4311A_NOT_READY                  /**< The chip is not ready. */
+    TCA4311A_READY,                     /**< The chip is not ready. */
+    TCA4311A_NOT_READY                  /**< The chip is ready. */
 } tca4311a_status_e;
 
 /**
  * \brief Driver initialization.
  *
- * This function initializes the GPIO pins of EN and READY pins.
+ * This function initializes the given I2C port and the GPIO pins of EN and READY pins.
  *
  * \param[in] config is the configuration parameters of the TCA4311A chip.
  *
@@ -145,6 +145,86 @@ int tca4311a_disable(tca4311a_config_t config);
  * \endparblock
  */
 int tca4311a_is_ready(tca4311a_config_t config);
+
+/**
+ * \brief Writes data to a given I2C slave.
+ *
+ * \param[in] config is the configuration parameters of the TCA4311A chip.
+ *
+ * \param[in] adr is the 7-bit slave address to read.
+ *
+ * \param[in] data is the data to write.
+ *
+ * \param[in] len is the number of bytes to write.
+ *
+ * \return The status of the chip. It can be:
+ * \parblock
+ *      -\b TCA4311A_ERROR
+ *      -\b TCA4311A_NOT_READY
+ *      -\b TCA4311A_READY
+ *      .
+ * \endparblock
+ */
+int tca4311a_write(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+/**
+ * \brief Reads data from a given I2C slave.
+ *
+ * \param[in] config is the configuration parameters of the TCA4311A chip.
+ *
+ * \param[in] adr is the 7-bit slave address to read.
+ *
+ * \param[in] data is a pointer to store the read data.
+ *
+ * \param[in] len is the number of bytes to read.
+ *
+ * \return The status of the chip. It can be:
+ * \parblock
+ *      -\b TCA4311A_ERROR
+ *      -\b TCA4311A_NOT_READY
+ *      -\b TCA4311A_READY
+ *      .
+ * \endparblock
+ */
+int tca4311a_read(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+/**
+ * \brief Reads data from a given I2C slave.
+ *
+ * \param[in] config is the configuration parameters of the TCA4311A chip.
+ *
+ * \param[in] adr is the 7-bit slave address to read.
+ *
+ * \param[in] byte is the byte to be written to the slave.
+ *
+ * \return The status of the chip. It can be:
+ * \parblock
+ *      -\b TCA4311A_ERROR
+ *      -\b TCA4311A_NOT_READY
+ *      -\b TCA4311A_READY
+ *      .
+ * \endparblock
+ */
+int tca4311a_write_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t byte);
+
+/**
+ * \brief Reads data from a given I2C slave.
+ *
+ * \param[in] config is the configuration parameters of the TCA4311A chip.
+ *
+ * \param[in] adr is the 7-bit slave address to read.
+ *
+ * \param[in] byte is a pointer to store the read byte from the slave.
+ *
+ * \return The status of the chip. It can be:
+ * \parblock
+ *      -\b TCA4311A_ERROR
+ *      -\b TCA4311A_NOT_READY
+ *      -\b TCA4311A_READY
+ *      .
+ * \endparblock
+ */
+int tca4311a_read_byte(tca4311a_config_t config, i2c_slave_adr_t adr, uint8_t *byte);
 
 #endif /* TCA4311A_H_ */
 

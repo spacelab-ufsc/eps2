@@ -42,6 +42,7 @@
 #include <system/clocks.h>
 #include <devices/leds/leds.h>
 #include <devices/bat_manager/bat_manager.h>
+#include <devices/battery_monitor/battery_monitor.h>
 #include <devices/current_sensor/current_sensor.h>
 #include <devices/voltage_sensor/voltage_sensor.h>
 #include <devices/temp_sensor/temp_sensor.h>
@@ -122,6 +123,14 @@ void vTaskStartup(void *pvParameters)
         error_counter++;
     }
 #endif /* CONFIG_DEV_BAT_MANAGER_ENABLED */
+
+#if CONFIG_DEV_BATTERY_MONITOR_ENABLED == 1
+    /* Battery monitor device initialization */
+    if (battery_monitor_init() != 0)
+    {
+        error_counter++;
+    }
+#endif /* CONFIG_DEV_BATTERY_MONITOR_ENABLED */
 
 #if CONFIG_DEV_MEDIA_ENABLED == 1
     /* Internal non-volatile memory initialization */
