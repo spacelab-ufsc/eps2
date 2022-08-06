@@ -1,7 +1,7 @@
 %
 % system_overview.tex
 %
-% Copyright (C) 2021 by SpaceLab.
+% Copyright The EPS 2.0 Contributors.
 %
 % EPS 2.0 Documentation
 %
@@ -16,9 +16,7 @@
 % \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
 % \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
 %
-% \institution Universidade Federal de Santa Catarina (UFSC)
-%
-% \version 0.2.0
+% \version 0.3.0
 %
 % \date 2021/02/10
 %
@@ -29,6 +27,18 @@ The board has a MSP430 low-power MCU\nomenclature{\textbf{MCU}}{\textit{Microcon
 Then, in order to improve predictability, a Real Time Operating System (RTOS\nomenclature{\textbf{RTOS}}{\textit{Real Time Operating System.}}) is used to ensure that the deadlines are observed, even under a fault situation in a routine. The RTOS chosen is the FreeRTOS (v10.2.1), since it is designed for embedded systems applications and it was already validated in space applications. The firmware architecture follows an abstraction layer scheme to facilitate higher level implementations and allow more portability across different hardware platforms, see \autoref{sec:system-layers} for more details.
 
 The EPS 2.0 is compatible with GOMspace Solar Panels or with panels of similar characteristics. Algorithms are implemented for MPPT improving power generation, also through measurements the load output can be regulated for a more efficient power distribution to the nanosattelite.
+
+\section{Product tree}
+
+The product tree of the EPS 2.0 module is available in \autoref{fig:product-tree}.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/product-tree.pdf}
+        \caption{Product tree of the EPS 2.0 module.}
+        \label{fig:product-tree}
+    \end{center}
+\end{figure}
 
 \section{MCU Block Diagram}
 
