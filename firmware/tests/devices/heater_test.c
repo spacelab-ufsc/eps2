@@ -124,9 +124,6 @@ static void heater_set_actuator_test(void **state)
     will_return(__wrap_pwm_stop, 0);
     assert_return_code(heater_set_actuator(ch_0, 0), 0);
 
-    expect_value(__wrap_pwm_update, source, HEATER_CONTROL_LOOP_CH_SOURCE);
-    expect_value(__wrap_pwm_update, port, HEATER_ACTUATOR_CH_0);
-
     will_return(__wrap_pwm_update, 0);
     assert_return_code(heater_set_actuator(ch_0, 3.14), 0);
 
@@ -136,9 +133,6 @@ static void heater_set_actuator_test(void **state)
     will_return(__wrap_pwm_stop, 0);
 
     assert_return_code(heater_set_actuator(ch_1, 0), 0);
-
-    expect_value(__wrap_pwm_update, source, HEATER_CONTROL_LOOP_CH_SOURCE);
-    expect_value(__wrap_pwm_update, port, HEATER_ACTUATOR_CH_1);
 
     will_return(__wrap_pwm_update, 0);
 
