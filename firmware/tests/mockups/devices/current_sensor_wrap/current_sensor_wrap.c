@@ -1,7 +1,7 @@
 /*
- * pwm_wrap.c
+ * current_sensor_wrap.c
  *
- * Copyright The EPS 2.0 Contributors.
+ * Copyright (C) 2021, SpaceLab.
  *
  * This file is part of EPS 2.0.
  *
@@ -21,15 +21,15 @@
  */
 
 /**
- * \brief pwm driver wrap implementation.
+ * \brief Current Sensor device wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2022/05/09
+ * \date 2022/08/15
  *
- * \defgroup pwm_wrap PWM Wrap
+ * \defgroup current_sensor_wrap Current Sensor Wrap
  * \ingroup tests
  * \{
  */
@@ -41,37 +41,22 @@
 #include <float.h>
 #include <cmocka.h>
 
-#include "pwm_wrap.h"
+#include "current_sensor_wrap.h"
 
-int __wrap_pwm_init(pwm_source_t source, pwm_port_t port, pwm_config_t config)
+int __wrap_current_sensor_init()
 {
-    check_expected(source);
-    check_expected(port);
-
     return mock_type(int);
 }
 
-int __wrap_pwm_update(pwm_source_t source, pwm_port_t port, pwm_config_t config)
+uint16_t __wrap_current_sensor_raw_to_ma(adc_port_t port, uint16_t raw)
 {
-    // check_expected(source);
-    // check_expected(port);
+    return mock_type(uint16_t);
+}
 
+int __wrap_current_sensor_read(adc_port_t port, uint16_t *cur)
+{
+    *cur = mock_type(uint16_t);
     return mock_type(int);
 }
 
-int __wrap_pwm_stop(pwm_source_t source, pwm_port_t port, pwm_config_t config)
-{
-    check_expected(source);
-    check_expected(port);
-
-    return mock_type(int);
-}
-
-int __wrap_pwm_disable(pwm_source_t source)
-{
-    check_expected(source);
-
-    return mock_type(int);
-}
-
-/** \} End of pwm_wrap group */
+/** \} End of current_sensor_wrap group */
