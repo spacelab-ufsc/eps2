@@ -27,7 +27,11 @@
 \section{Powering the Board}
 
 The EPS 2.0 is the energy provider module within a satellite, its nominal operation is alongside a battery pack from the BAT4C module and solar panels. 
-During development and testing the board can also be powered its MCU using the JTAG interface or the full system directly through the battery connector with an equivalent power supply. The module's PC104 power pins are available to be accessed externally, but it is advised to be used only for test probes and not powering directly from them. 
+
+During development and testing the board can also be partially powered using the JTAG interface (only the MCU and peripherals connected to the 3V3 EPS regulator), or fully powered directly through the battery connector with an equivalent power supply.
+
+The module's PC104 power pins are available to be accessed externally, but it is advised to be used only for test probes and not powering directly from them. 
+
 In the following subsections powering from the JTAG interface and batteries connector are explained in detail. 
 It is advised to to have either the kill-switches on "NO" position and/or the RBF switch active before connecting the probes or cables to power the module.
 
@@ -37,11 +41,11 @@ It is advised to to have either the kill-switches on "NO" position and/or the RB
 
 The JTAG interface is used for programing and debugging the module using a Flash Emulation Tool (refer to \autoref{jtag-picoblade} on the hardware chapter). 
 This is done using a MSP-FET with the Spy-Bi-Wire protocol.
-The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be used for minimal testing and debbuging purposes, for this the CN1 header pins must be shorted.
-Remember that the CN1 connector should only be used if the EPS board is not been powered by any other means like batteries or externall power supply.
+The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be powered for minimal testing and debbuging purposes, for this the CN1 header pins must be shorted.
+Remember that the CN1 connector should only be used if the EPS board is not being powered by any other means like batteries or external power supply.
 
-For the interfacing the 14 pin cable of the MSP-FET to the EPS it is required an adapted cabel or an external interface. 
-The IIP\cite{iip} Nº1 and Nº2 boards have a 14 pin header that translates in a picoblade connector for the required connector couterpart on the EPS module, any of the pin header slots from 1 to 4 can be used.
+For the interfacing the 14 pin cable of the MSP-FET to the EPS it is required an adapted cable or an external interface. 
+The IIP\cite{iip} Nº1 and Nº2 boards have a 14 pin header that translates in a picoblade connector for the required connector counterpart on the EPS module, any of the pin header slots from 1 to 4 can be used.
 When the MSP-FET is correctly connected and the necessary cable connections are done the kill-switches can be put on "NC" position and/or the RBF switch can be released.
 The 3V3 MCU (refer to \autoref{status-leds} on the system overview chapter) indicates that the 3.3V power is being sourced, the system on led can be checked to see any easily dectable missbehavior right after the programming of the board. 
 %On \autoref{eps-iip-connection} is showed the connection betweem EPS and IIP.
@@ -51,11 +55,23 @@ The 3V3 MCU (refer to \autoref{status-leds} on the system overview chapter) indi
 
 \subsection{Powering through Power Supply}
 
+To power the EPS module through external power supply, two voltage sources are needed.
+The external power sources can be set up in two ways, either two \(3.7 V\) sources in series, or a \(3.7 V\) source for reference and a \(7.4 V\) source for power.
+In both cases the voltage sources should be connected to one of the battery board connectors (P1 or P5).
+
+To use two \(3.7 V\) sources, the first source should have it's negative and positive terminals connected to Vbat- and Vbat\_common pins of the batteries connector respectively, the second source should have it's negative and positive terminals connected to Vbat\_common and Vbat+ pins of the batteries connector respectively (refer to \autoref{fig:battery-connector} and \autoref{tab:battery-connector} on the hardware chapter).
+
+To use \(3.7 V\) and \(7.4 V\) sources, the \(3.7 V\) source should have it's negative and positive terminals connected to Vbat- and Vbat\_common pins of the batteries connector respectively, the \(7.4 V\) source should have it's negative and positive terminals connected to Vbat- and Vbat+ pins of the batteries connector respectively (refer to \autoref{fig:battery-connector} and \autoref{tab:battery-connector} on the hardware chapter).
+
+If the external power supply has configurable current limitation capability, it should be adjusted accordingly to the expected consumption of the load connected to the EPS module (other modules being powerd by the EPS, batteries heaters being active, etc.), if powering the EPS in isolation (no load connected) a limit of \(80 mA\) may be applied.
+
+After correctly connecting the voltage sources, the kill-switches can be put on "NC" position and/or the RBF switch can be released.
+
 % add appendix instructions for equivalent power supply powering
 
 \subsection{Powering through Batteries}
 
-To power the EPS module from the batteries the BAT4C module must be connected through the labeled P5 connector (refer to \autoref{fig:battery-connector} the hardware chapter).
+To power the EPS module from the batteries the BAT4C module must be connected through the P5 connector (refer to \autoref{fig:battery-connector} on the hardware chapter).
 The batteries can be charged if needed using the P3 PicoBlade connector (refer to \autoref{external-charge-picoblade} on the hardware chapter), it will also required an external interface or an adapted cable to be used for interfacing the charger device to the PicoBlade.
 The batteries also can be charged directly from the BAT4C module, for this refer to its documentation on the usage instruction chapter for more details \cite{bat4c}.
 

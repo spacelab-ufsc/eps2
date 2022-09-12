@@ -37,6 +37,38 @@ The product tree of the firmware part of the EPS 2.0 module is available in \aut
 
 \section{Dependencies}
 
+\section{Operating System}
+
+As operating system the FreeRTOS 10 \cite{freertos} is being used. FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
+
+The main configuration parameters of the operating system in this project are availabe in \autoref{tab:freertos-config}.
+
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{lrr}
+        \toprule[1.5pt]
+        \textbf{Parameter}       & \textbf{Value} & \textbf{Unit} \\
+        \midrule
+        Version                  & v10.2.0        & - \\
+        Tick rate (Hz)           & 1000           & Hz \\
+        CPU clock (HZ)           & 32             & MHz \\
+        Max. priorities          & 5              & - \\
+        Heap size                & 40690          & bytes \\
+        Max. length of task name & 20             & - \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+    \caption{FreeRTOS main configuration parameters.}
+    \label{tab:freertos-config}
+\end{table}
+
+More details of the used configuration parameters can be seen in the file \textit{\href{https://github.com/spacelab-ufsc/eps2/blob/master/firmware/config/FreeRTOSConfig.h}{firmware/config/FreeRTOSConfig.h}} from \cite{eps2}.
+
+\section{Hardware Abstraction Layer (HAL)}
+
+As the Hardware Abstraction Layer (HAL\nomenclature{\textbf{HAL}}{\textit{Hardware Abstraction Layer.}}), the DriverLib \cite{driverlib} from Texas Instruments is begin used. It is the official API to access the registers of the MSP430 microcontrollers.
+
+The DriverLib is meant to provide a ``software'' layer to the programmer in order to facilitate higher level of programming compared to direct register accesses. By using the high level software APIs provided by DriverLib, users can create powerful and intuitive code which is highly portable between not only devices within the MSP430 platform, but between different families in the MSP430/MSP432 platforms.
+
 \section{Tasks}
 
 A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
@@ -45,18 +77,20 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
     \centering
     \begin{tabular}{lccccc}
         \toprule[1.5pt]
-        \textbf{Name}          & \textbf{Priority} & \textbf{Initial delay [ms]} & \textbf{Period [ms]} & \textbf{Stack [bytes]} \\
+        \textbf{name}          & \textbf{priority} & \textbf{initial delay [ms]} & \textbf{period [ms]} & \textbf{stack [bytes]} \\
         \midrule
-        Startup (boot)         & Highest           & 0                           & Aperiodic            & 500                    \\
-        Watchdog reset         & Lowest            & 0                           & 100                  & 128                    \\
-        Heartbeat              & Lowest            & 0                           & 500                  & 128                    \\
-        System reset           & High              & 0                           & 36000000             & 128                    \\
-        Battery Heater Control & TBD               & 0                           & TBD                  & TBD                    \\
-        Read sensors           & Medium            & 0                           & 60000                & 128                    \\
-        CSP Server             & Lowest            & 0                           & 500                  & 1024                   \\
-        MPPT                   & TBD               & TBD                         & TBD                  & TBD                    \\
-        Beacon package         & TBD               & TBD                         & TBD                  & TBD                    \\
-        OBDH package           & Highest           & 4500   & Called by ISR\nomenclature{\textbf{ISR}}{\textit{Interrupt Service Routine.}}   & TBD \\
+        startup (boot)         & highest           & 0                           & aperiodic            & 500                    \\
+        watchdog reset         & lowest            & 0                           & 100                  & 150                    \\
+        heartbeat              & lowest            & 0                           & 500                  & 160                    \\
+        system reset           & low               & 0                           & 36000000             & 128                    \\
+        heater controller      & medium            & 0                           & tbd                  & 160                    \\
+        read sensors           & low               & 0                           & 60000                & 512                    \\
+       %csp server             & lowest            & 0                           & 500                  & 1024                   \\
+        mppt                   & high              & 0                           & tbd                  & 160                    \\
+       %beacon package         & tbd               & tbd                         & tbd                  & tbd                    \\
+       %obdh package           & highest           & 4500   & called by isr\nomenclature{\textbf{isr}}{\textit{interrupt service routine.}}   & tbd \\
+        parameter server       & high              & 0      & called by isr\nomenclature{\textbf{isr}}{\textit{interrupt service routine.}}   & 300 \\
+        time control           & high              & 0                           & 1000                 & 128                    \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{Firmware tasks.}
@@ -65,21 +99,87 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
 
 \subsection{Startup (boot)}
 
+This task is responsible for initializing all devices, drivers, libraries and data structures upon system power up or reboot.
+It's the first task executed and it unblocks the remaining tasks after initialization is completed.
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
 \subsection{Watchdog reset}
+
+This task is responsible for resetting the internal watchdog timer every \(100 ms\).
+The internal watchdog timer has a \(1 s\) timeout.
+
+This task has the lowest possible priority in order to prevent the watchdog from not triggering in case an anomaly happens in other tasks (longer than expected execution times for example).
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{Heartbeat}
 
+This task is responsible for providing a visual feedback indicating that the system is running properly.
+This feedback is given through blinking an LED ("SYSTEM\_ON" LED on Figure \ref{fig:status-leds}) at a frequency of \(1 Hz\) emulating a "heartbeat" for the system.
+
+The usefulness of this task comes during development with engineering model of the module, providing information to the developers.
+The flight model has no LEDs so this task serves no purpose in that case. 
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
 \subsection{System reset}
 
-\subsection{Battery heater control}
+This task is responsible for resetting the microcontroller, via software, every 10 hours.
+This helps to cleanup possible corrupted values in variables, retry failed initializations, cleanup RAM memory, etc.
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
+\subsection{Heater controller}
+
+This task is responsible for monitoring and controlling the batteries' heaters.
+
+The heaters and batteries temperature are monitored through a set of RTDs, read through an external ADC (\textit{ADS1248}), and activated through MOSFET drivers controlled by the MCUs GPIOs.
+
+The temperature readings occur every 2 seconds, and the heaters' status are updated accordingly, based on the new reading and a predefined temperature limit, through the algorithm defined in the heater device.
+This prevents damage to the batteries from operating below a critical temperature value.
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{Read sensors}
 
+This task is responsible for reading all sensors available to the EPS 2.0 module, recording their values.
+The readings occur every \(60 s\), and the results are written in the eps buffer data structure.
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
 \subsection{MPPT}
 
-\subsection{Beacon package}
+This task is responsible for running the MPPT algorithm for the solar panels, in order to operate them in their maximum power point.
+The algorithm itself is defined in the MPPT device.
 
-\subsection{OBDH package}
+The solar panels current and voltage sensors are read every \(300 ms\) and the results are passed as inputs to the MPPT algorithm, which then controls the MPPT Boost circuit through a set o PWM outputs.
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
+\subsection{Parameter Server}
+
+This task is responsible for processing and responding commands received from the OBDH and TTC modules.
+
+The commands are for reading and writing to the EPS buffer data structure, seen in \autoref{tab:eps2-variables}
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
+\subsection{Time Control}
+
+This task is responsible for the time management of the system.
+At every second it increments the system time (epoch).
+Also, at every minute it saves the current system time in the non-volatile memory.
+
+Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
+% \subsection{Beacon package}
+
+% Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
+
+% \subsection{OBDH package}
+
+% Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \section{Variables and Parameters}
 
@@ -161,34 +261,3 @@ A list of all the variables of EPS with their identification number (ID) and var
     \label{tab:eps2-variables}
 \end{longtable}
 
-\section{Operating System}
-
-As operating system the FreeRTOS 10 \cite{freertos} is being used. FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
-
-The main configuration parameters of the operating system in this project are availabe in \autoref{tab:freertos-config}.
-
-\begin{table}[!h]
-    \centering
-    \begin{tabular}{lrr}
-        \toprule[1.5pt]
-        \textbf{Parameter}       & \textbf{Value} & \textbf{Unit} \\
-        \midrule
-        Version                  & v10.2.0        & - \\
-        Tick rate (Hz)           & 1000           & Hz \\
-        CPU clock (HZ)           & 32             & MHz \\
-        Max. priorities          & TBD            & - \\
-        Heap size                & TBD            & bytes \\
-        Max. length of task name & 20             & - \\
-        \bottomrule[1.5pt]
-    \end{tabular}
-    \caption{FreeRTOS main configuration parameters.}
-    \label{tab:freertos-config}
-\end{table}
-
-More details of the used configuration parameters can be seen in the file \textit{\href{https://github.com/spacelab-ufsc/eps2/blob/master/firmware/config/FreeRTOSConfig.h}{firmware/config/FreeRTOSConfig.h}} from \cite{eps2}.
-
-\section{Hardware Abstraction Layer (HAL)}
-
-As the Hardware Abstraction Layer (HAL\nomenclature{\textbf{HAL}}{\textit{Hardware Abstraction Layer.}}), the DriverLib \cite{driverlib} from Texas Instruments is begin used. It is the official API to access the registers of the MSP430 microcontrollers.
-
-The DriverLib is meant to provide a ``software'' layer to the programmer in order to facilitate higher level of programming compared to direct register accesses. By using the high level software APIs provided by DriverLib, users can create powerful and intuitive code which is highly portable between not only devices within the MSP430 platform, but between different families in the MSP430/MSP432 platforms.
