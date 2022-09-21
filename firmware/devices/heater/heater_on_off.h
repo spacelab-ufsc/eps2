@@ -83,7 +83,7 @@ typedef uint16_t temperature_t;
 /**
  * \brief Heater configuration variable type.
  */
-typedef gpio_config_t heater_config_t;
+typedef gpio_config_t heater_on_off_config_t;
 
 /**
  * \brief Hysteresis controller variable type.
@@ -102,7 +102,7 @@ typedef gpio_config_t heater_config_t;
 int heater_on_off_init(void);
 
 /**
- * \brief Function to implement the PID controller algorithm.
+ * \brief Function to implement the On/Off controller algorithm.
  *
  * \param[in] state is the desired temperature value.
  *
@@ -110,7 +110,7 @@ int heater_on_off_init(void);
  *
  * \return The control loop output value.
  */
-bool heater_on_off_algorithm(heater_channel_t state, float measurement);
+bool heater_on_off_algorithm(heater_channel_t channel, float measurement);
 
 /**
  * \brief Gets the temperature sensor value in kelvin.
@@ -124,7 +124,7 @@ bool heater_on_off_algorithm(heater_channel_t state, float measurement);
 int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp);
 
 /**
- * \brief Sets the PWM actuator duty cycle.
+ * \brief Sets the selected heater actuator state.
  *
  * \param[in] channel is the channel to be used.
  *

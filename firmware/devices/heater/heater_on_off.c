@@ -42,9 +42,10 @@ int heater_on_off_init(void)
     sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_ON_OFF_MODULE_NAME, "Initializing the heater...");
     sys_log_new_line();
 
-    heater_config_t conf = {0};
+    heater_on_off_config_t conf = {0};
     conf.mode = HEATER_GPIO_MODE;
 
+    /* Initialize heaters pins and sets them to off state */
     if(gpio_init(HEATER_ACTUATOR_CH_0, conf))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH0)!");
@@ -82,19 +83,17 @@ bool heater_on_off_algorithm(heater_channel_t channel, float measurement)
     static bool heater2_status = false;
     bool new_status = false;
 
+    /* Check the temperature limits and return the updated heater status */
     if(measurement >= TEMP_LIMIT_MAXIMUM)
     {
-        /* Return controller output */
         new_status = HEATER_OFF;
     }
     else if(measurement <= TEMP_LIMIT_MINIMUM)
     {
-        /* Return controller output */
         new_status = HEATER_ON;
     }
     else
     {
-        /* Return controller output */
         switch (channel)
         {
         case HEATER_CONTROL_LOOP_CH_0:
@@ -109,7 +108,7 @@ bool heater_on_off_algorithm(heater_channel_t channel, float measurement)
             break;
         }   
     }
-    /* Return controller output */
+
     switch (channel)
     {
     case HEATER_CONTROL_LOOP_CH_0:
