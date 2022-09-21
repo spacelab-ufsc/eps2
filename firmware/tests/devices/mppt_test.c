@@ -47,11 +47,11 @@
 /**
  * \brief MPPT algorithm constants.
  */
-#define MPPT_DUTY_CYCLE_STEP 	1  	/**< PWM duty cycle step in % for the MPPT algorithm. */
-#define MPPT_DUTY_CYCLE_INIT 	50 	/**< PWM initial duty cycle in % for the MPPT algorithm. */
-#define MPPT_PERIOD_INIT 	4      	/**< PWM period (1/f) in us for the MPPT algorithm. */
-#define MPPT_MIN_DUTY_CYCLE 	0   	/**< Minimum duty cycle allowed. */
-#define MPPT_MAX_DUTY_CYCLE 	100 	/**< Maximum duty cycle allowed. */
+#define MPPT_DUTY_CYCLE_STEP 1  /**< PWM duty cycle step in % for the MPPT algorithm. */
+#define MPPT_DUTY_CYCLE_INIT 50 /**< PWM initial duty cycle in % for the MPPT algorithm. */
+#define MPPT_PERIOD_INIT 4      /**< PWM period (1/f) in us for the MPPT algorithm. */
+#define MPPT_MIN_DUTY_CYCLE 0   /**< Minimum duty cycle allowed. */
+#define MPPT_MAX_DUTY_CYCLE 100 /**< Maximum duty cycle allowed. */
 
 static void mppt_init_test(void **state)
 {
@@ -75,7 +75,7 @@ static void mppt_init_test(void **state)
     assert_int_equal(mppt_config.duty_cycle, MPPT_DUTY_CYCLE_INIT);
 }
 
-static void mppt_algorithm_test(void **state)
+static void mppt_algorithm_ch0_test(void **state)
 {
     extern mppt_config_t mppt_config;
     extern power_measurement_t power_measurement;
@@ -94,10 +94,9 @@ static void mppt_algorithm_test(void **state)
     previous_values.previous_power_ch_0 = 0;
 
     test_val = MPPT_DUTY_CYCLE_INIT;
-    duty_cycle_measurement.duty_cycle = test_val;
-    duty_cycle_measurement.previous_duty_cycle = 0;
 
     mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_0 = 0;
 
     /* Wrapper function calls needed by get_power() */
     will_return(__wrap_current_sensor_read, 1);
@@ -123,10 +122,9 @@ static void mppt_algorithm_test(void **state)
     previous_values.previous_power_ch_0 = 0;
 
     test_val = MPPT_DUTY_CYCLE_INIT;
-    duty_cycle_measurement.duty_cycle = test_val;
-    duty_cycle_measurement.previous_duty_cycle = MPPT_DUTY_CYCLE_INIT + 10;
 
     mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_0 = test_val + 10;
 
     /* Wrapper function calls needed by get_power() */
     will_return(__wrap_current_sensor_read, 1);
@@ -152,10 +150,9 @@ static void mppt_algorithm_test(void **state)
     previous_values.previous_power_ch_0 = 1;
 
     test_val = MPPT_DUTY_CYCLE_INIT;
-    duty_cycle_measurement.previous_duty_cycle = 0;
-    duty_cycle_measurement.duty_cycle = test_val;
 
     mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_0 = 0;
 
     /* Wrapper function calls needed by get_power() */
     will_return(__wrap_current_sensor_read, 0);
@@ -181,10 +178,9 @@ static void mppt_algorithm_test(void **state)
     previous_values.previous_power_ch_0 = 1;
 
     test_val = MPPT_DUTY_CYCLE_INIT;
-    duty_cycle_measurement.previous_duty_cycle = MPPT_DUTY_CYCLE_INIT + 10;
-    duty_cycle_measurement.duty_cycle = test_val;
 
     mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_0 = test_val + 10;
 
     /* Wrapper function calls needed by get_power() */
     will_return(__wrap_current_sensor_read, 0);
@@ -199,6 +195,254 @@ static void mppt_algorithm_test(void **state)
     will_return(__wrap_pwm_update, 0);
 
     assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_0), 0);
+
+    assert_int_equal(mppt_config.duty_cycle, test_val + MPPT_DUTY_CYCLE_STEP);
+}
+
+static void mppt_algorithm_ch1_test(void **state)
+{
+    extern mppt_config_t mppt_config;
+    extern power_measurement_t power_measurement;
+    extern duty_cycle_measurement_t duty_cycle_measurement;
+    extern previous_values_t previous_values;
+
+    int test_val;
+
+    /*
+     * Test case 0:
+     * Power increase and duty cycle increased:
+     * duty cycle increases
+     */
+
+    /* Information for get_duty_cycle() execution */
+    previous_values.previous_power_ch_1 = 0;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_1 = 0;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 1);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_1), 0);
+    assert_int_equal(mppt_config.duty_cycle, test_val + MPPT_DUTY_CYCLE_STEP);
+
+    /*
+     * Test case 1:
+     * Power increase and duty cycle decreased:
+     * duty cycle decreases
+     */
+
+    previous_values.previous_power_ch_1 = 0;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_1 = test_val + 10;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 1);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_1), 0);
+    assert_int_equal(mppt_config.duty_cycle, test_val - MPPT_DUTY_CYCLE_STEP);
+
+    /*
+     * Test case 2:
+     * Power decrease and duty cycle increased:
+     * duty cycle decreases
+     */
+
+    previous_values.previous_power_ch_1 = 1;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_1 = 0;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_1), 0);
+    assert_int_equal(mppt_config.duty_cycle, test_val - MPPT_DUTY_CYCLE_STEP);
+
+    /*
+     * Test case 3:
+     * Power decrease and duty cycle decreased:
+     * duty cycle increases
+     */
+
+    previous_values.previous_power_ch_1 = 1;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_1 = test_val + 10;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_1), 0);
+
+    assert_int_equal(mppt_config.duty_cycle, test_val + MPPT_DUTY_CYCLE_STEP);
+}
+
+static void mppt_algorithm_ch2_test(void **state)
+{
+    extern mppt_config_t mppt_config;
+    extern power_measurement_t power_measurement;
+    extern duty_cycle_measurement_t duty_cycle_measurement;
+    extern previous_values_t previous_values;
+
+    int test_val;
+
+    /*
+     * Test case 0:
+     * Power increase and duty cycle increased:
+     * duty cycle increases
+     */
+
+    /* Information for get_duty_cycle() execution */
+    previous_values.previous_power_ch_2 = 0;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_2 = 0;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 1);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_2), 0);
+    assert_int_equal(mppt_config.duty_cycle, test_val + MPPT_DUTY_CYCLE_STEP);
+
+    /*
+     * Test case 1:
+     * Power increase and duty cycle decreased:
+     * duty cycle decreases
+     */
+
+    previous_values.previous_power_ch_2 = 0;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_2 = test_val + 10;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 1);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_2), 0);
+    assert_int_equal(mppt_config.duty_cycle, test_val - MPPT_DUTY_CYCLE_STEP);
+
+    /*
+     * Test case 2:
+     * Power decrease and duty cycle increased:
+     * duty cycle decreases
+     */
+
+    previous_values.previous_power_ch_2 = 1;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_2 = 0;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_2), 0);
+    assert_int_equal(mppt_config.duty_cycle, test_val - MPPT_DUTY_CYCLE_STEP);
+
+    /*
+     * Test case 3:
+     * Power decrease and duty cycle decreased:
+     * duty cycle increases
+     */
+
+    previous_values.previous_power_ch_2 = 1;
+
+    test_val = MPPT_DUTY_CYCLE_INIT;
+
+    mppt_config.duty_cycle = test_val;
+    previous_values.previous_duty_cycle_ch_2 = test_val + 10;
+
+    /* Wrapper function calls needed by get_power() */
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_current_sensor_read, 0);
+    will_return(__wrap_current_sensor_read, 0);
+
+    will_return(__wrap_voltage_sensor_read, 1);
+    will_return(__wrap_voltage_sensor_read, 0);
+
+    will_return(__wrap_pwm_update, 0);
+
+    assert_return_code(mppt_algorithm(MPPT_CONTROL_LOOP_CH_2), 0);
 
     assert_int_equal(mppt_config.duty_cycle, test_val + MPPT_DUTY_CYCLE_STEP);
 }
@@ -312,7 +556,9 @@ int main(void)
 {
     const struct CMUnitTest mppt_tests[] = {
         cmocka_unit_test(mppt_init_test),
-        cmocka_unit_test(mppt_algorithm_test),
+        cmocka_unit_test(mppt_algorithm_ch0_test),
+        cmocka_unit_test(mppt_algorithm_ch1_test),
+        cmocka_unit_test(mppt_algorithm_ch2_test),
         cmocka_unit_test(get_power_test),
         cmocka_unit_test(get_duty_cycle_test),
         cmocka_unit_test(increase_duty_cycle_test),
