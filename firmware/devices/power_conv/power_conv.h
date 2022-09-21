@@ -55,20 +55,6 @@
 int power_conv_init();
 
 /**
- * \brief Emable power for OBDH.
- *
- * \return The status/error code.
- */
-int enable_obdh_power();
-
-/**
- * \brief Disables power for OBDH.
- *
- * \return The status/error code.
- */
-int disable_obdh_power();
-
-/**
  * \brief Enables power for payloads.
  *
  * \return The status/error code.

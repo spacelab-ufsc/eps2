@@ -39,12 +39,11 @@
 
 int power_conv_init()
 {
-    int result_init_obdh = 0, result_init_payload = 0;
+    int result_init_payload = 0;
 
-    result_init_obdh = tps54x0_init((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
     result_init_payload = tps54x0_init((tps54x0_config_t){.enable_pin = EN_PAYLOAD_PIN});
 
-	if (result_init_obdh != 0 || result_init_payload != 0)
+	if (result_init_payload != 0)
 	{
         sys_log_print_event_from_module(SYS_LOG_ERROR, POWER_CONV_MODULE_NAME, "Error initializing Power Converter devices!");
         sys_log_new_line();
@@ -52,20 +51,6 @@ int power_conv_init()
 	}
 
 	return 0;
-}
-
-int enable_obdh_power()
-{
-    int result = 0;
-    result = tps54x0_enable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
-	return result;
-}
-
-int disable_obdh_power()
-{
-    int result = 0;
-    result = tps54x0_disable((tps54x0_config_t){.enable_pin = EN_3V3_OBDH_PIN});
-    return result;
 }
 
 int enable_payload_power()
