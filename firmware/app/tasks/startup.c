@@ -48,7 +48,8 @@
 #include <devices/temp_sensor/temp_sensor.h>
 #include <devices/media/media.h>
 #include <devices/mppt/mppt.h>
-#include <devices/heater/heater.h>
+// #include <devices/heater/heater.h>
+#include <devices/heater/heater_on_off.h>
 #include <devices/watchdog/watchdog.h>
 #include <devices/obdh/obdh.h>
 #include <devices/ttc/ttc.h>
@@ -102,7 +103,7 @@ void vTaskStartup(void *pvParameters)
 
 #if CONFIG_DEV_HEATER_ENABLED == 1
     /* Heater device initialization */
-    if (heater_init() != 0)
+    if (heater_on_off_init() != 0)
     {
         error_counter++;
     }

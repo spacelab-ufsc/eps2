@@ -37,7 +37,8 @@
 #include <system/sys_log/sys_log.h>
 #include <structs/eps2_data.h>
 
-#include <devices/heater/heater.h>
+// #include <devices/heater/heater.h>
+#include <devices/heater/heater_on_off.h>
 
 #include "heater_controller.h"
 #include "startup.h"
@@ -98,9 +99,12 @@ void heater_control(int channel, uint32_t mode)
         {
             temperature_t temp = 0;
 
-            if (heater_get_sensor(channel, &temp) == 0)
+            if (heater_on_off_get_sensor(channel, &temp) == 0)
             {
-                if (heater_set_actuator(channel, heater_algorithm(PID_BASE_SET_POINT, temp)) != 0)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_HEATER_CONTROLLER_NAME, "Temp Reading [K]: ");
+                sys_log_print_int(temp);
+                sys_log_new_line();
+                if (heater_on_off_set_actuator(channel, heater_on_off_algorithm(channel, temp)) != 0)
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
                     sys_log_print_uint(channel);

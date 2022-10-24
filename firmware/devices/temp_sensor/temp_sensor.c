@@ -183,7 +183,7 @@ int temp_rtd_read_raw(uint8_t positive_channel, uint32_t *val)
         return -1;
     }
 
-    *val = (uint32_t)buf;
+    *val = (uint32_t)((((uint32_t)buf[1] << 8) << 8) | ((uint32_t)buf[2] << 8) | (uint32_t)buf[3]);
 
     return 0;
 }

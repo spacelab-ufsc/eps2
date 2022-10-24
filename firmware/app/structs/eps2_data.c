@@ -345,10 +345,10 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = 45;
             break;
         case EPS2_PARAM_ID_BAT_HEATER_1_MODE:
-            *value = 46;
+            *value = 0;
             break;
         case EPS2_PARAM_ID_BAT_HEATER_2_MODE:
-            *value = 47;
+            *value = 0;
             break;
         case EPS2_PARAM_ID_DEVICE_ID:
             *value = 0xEEE2U;
