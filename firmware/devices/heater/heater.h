@@ -23,8 +23,8 @@
 /**
  * \brief Heater device definition.
  *
- * \author Jo„o Cl·udio <joaoclaudiobarcellos@gmail.com>
- * \author AndrÈ M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Jo√£o Cl√°udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andr√© M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
  * \version 0.2.11
  *
@@ -68,7 +68,7 @@
 /**
  * \brief PWM constants.
  */
-#define HEATER_PERIOD_INIT        20      /**< PWM period (1/f) in us for the heater device. */
+#define HEATER_PERIOD_INIT        1000      /**< PWM period (1/f) in us for the heater device. */
 #define HEATER_DUTY_CYCLE_INIT    50      /**< PWM initial duty cycle in % for the heater device. */
 
 /**
