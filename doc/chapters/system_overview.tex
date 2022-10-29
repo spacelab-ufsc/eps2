@@ -23,10 +23,10 @@
 
 \chapter{System Overview} \label{ch:system-overview}
 
-The board has a MSP430 low-power MCU\nomenclature{\textbf{MCU}}{\textit{Microcontroller.}} that runs the firmware application intended to control and comunicate with its peripherals, subsystems and other modules. The programming language used is C and the firmware was developed using the Code Composer Studio IDE\nomenclature{\textbf{IDE}}{\textit{Integrated Development Environment.}} (a.k.a. CCS) for compiling, programming and testing. The module has many tasks, such as interfacing internal peripherals and communicating with other boards, over distinct protocols and time requirements. 
+The board has a MSP430 low-power MCU\nomenclature{\textbf{MCU}}{\textit{Microcontroller.}} that runs the firmware application intended to control and communicate with its peripherals, subsystems and other modules. The programming language used is C and the firmware was developed using the Code Composer Studio IDE\nomenclature{\textbf{IDE}}{\textit{Integrated Development Environment.}} (a.k.a. CCS) for compiling, programming and testing. The module has many tasks, such as interfacing internal peripherals and communicating with other boards, over distinct protocols and time requirements. 
 So, in order to improve predictability, a Real Time Operating System (RTOS\nomenclature{\textbf{RTOS}}{\textit{Real Time Operating System.}}) is used to ensure that the deadlines are observed, even under a fault situation in a routine. The RTOS chosen is the FreeRTOS (v10.2.1), since it is designed for embedded systems applications and it was already validated in space applications. The firmware architecture follows an abstraction layer scheme to facilitate higher level implementations and allow more portability across different hardware platforms, see \autoref{sec:system-layers} for more details.
 
-The EPS 2.0 is compatible with GOMspace Solar Panels or with panels of similar characteristics. Algorithms are implemented for MPPT improving power generation, also through measurements the load output can be regulated for a more efficient power distribution to the nanosattelite.
+The EPS 2.0 is compatible with GOMspace Solar Panels or with panels of similar characteristics. Algorithms are implemented for MPPT improving power generation, also through measurements the load output can be regulated for a more efficient power distribution to the nanosatellite.
 
 \section{Product tree}
 
@@ -46,12 +46,12 @@ The \autoref{fig:mcu-block-diagram} presents a simplified view of the module sub
 The MCU has a programming JTAG\nomenclature{\textbf{JTAG}}{\textit{Joint Test Action Group.}}, a dedicated UART\nomenclature{\textbf{UART}}{\textit{Universal Asynchronous Receiver/Transmitter.}} debug interface and 4 communication buses, divided in 4 different protocols (I2C\nomenclature{\textbf{I2C}}{\textit{Inter-Integrated Circuit.}}, SPI\nomenclature{\textbf{SPI}}{\textit{Serial Peripheral Interface.}} and UART). 
 
 There is a I2C buffer to allow secure and proper communication with the OBDH 2.0 module \cite{obdh2}.
-The SPI protocol is used for controling and retriving data from a additional ADC\nomenclature{\textbf{ADC}}{\textit{Analog-to-Digital Converter.}} IC that measures temperature sensors (RTDs\nomenclature{\textbf{RTD}}{\textit{Resistance Temperature Detector.}}) on the batteries board and solar panels.
-Several parameters from the Batteries Managment Subsystem are sent to the EPS 2.0 MCU via I2C protocol.
+The SPI protocol is used for controlling and retrieving data from a additional ADC\nomenclature{\textbf{ADC}}{\textit{Analog-to-Digital Converter.}} IC that measures temperature sensors (RTDs\nomenclature{\textbf{RTD}}{\textit{Resistance Temperature Detector.}}) on the batteries board and solar panels.
+Several parameters from the Batteries Management Subsystem are sent to the EPS 2.0 MCU via I2C protocol.
 The UART bus that goes to the PC/104 is used for basic telemetry to be sent to the beacon microcontroller within the TTC module.
 Besides this channels, there are GPIO\nomenclature{\textbf{GPIO}}{\textit{General Purpose Input/Output.}} connections for enabling and disabling power buses, for hard code PCB versioning and some optional GPIOs that can be added and used though the PC/104 interface. 
 
-The MCU reads meassuments of current and voltage of the solar panels from its ADC ports for the MPPT Subsystem, also from this data the MPPT is controled by the microcontroller through PWM\nomenclature{\textbf{PWM}}{\textit{Pulse Width Modulation.}} signals.
+The MCU reads the measurements of current and voltage of the solar panels from its ADC ports for the MPPT Subsystem, also from this data the MPPT is controlled by the microcontroller through PWM\nomenclature{\textbf{PWM}}{\textit{Pulse Width Modulation.}} signals.
 
 A external charger is used for charging the batteries and kill-switches for powering off the EPS 2.0 module during test phase, for flight the kill-switches are also connected to the button switches present on a CubeSat structure.   
 
@@ -89,19 +89,30 @@ As herein mentioned, the system is divided in various abstraction layers to favo
 
 \section{Operation} \label{sec:operation}
 
-The system operates through the sequencial execution of routines (tasks in the context of the operating system) that are scheduled and multiplexed through time. Each routine has a priority and a periodicity, which determine the following execution, the set of functionalities currentely running, and the memory usage management.
+The system operates through the sequential execution of routines (tasks in the context of the operating system) that are scheduled and multiplexed through time. Each routine has a priority and a periodicity, which determine the following execution, the set of functionalities currently running, and the memory usage management.
 
-Besides this deterministic scheduling system, the routines have communication channels with each other through the usage of queues, which provides a robust synchorization scheme. In the \autoref{ch:firmware} the system operation and the internal nuances are described in detail. This section is a top view, user perspective, to describe the module's operation.
+Besides this deterministic scheduling system, the routines have communication channels with each other through the usage of queues, which provides a robust synchronization scheme. In the \autoref{ch:firmware} the system operation and the internal nuances are described in detail. This section is a top view, user perspective, to describe the module's operation.
 
 \subsection{Execution Flow}
-% Add here a diagram showing a simple flowchart or use cases to represent how the EPS works.
 
-\subsection{Data Flow}
-% Add here a flowchart or diagram showing where and how the data is generated and transfered across diferent modules and peripherals.
+To better understand how the EPS2 is going to operate during the mission, a simplified representation of its operation is presented in \autoref{fig:execution-flow}. Overall, the EPS2 should control the temperature of the battery and its energy harvesting system operation, as well as obtaining the measurements of the sensors periodically. The OBDH or TTC modules can communicate with the EPS2, which should receive or transmit data as requested. Furthermore, every 10 hours the EPS2 will reset.
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/execution_flow.pdf}
+        \caption{Simplified representation of the EPS2'S execution flow.}
+        \label{fig:execution-flow}
+    \end{center}
+\end{figure}
+
+
+
+%\subsection{Data Flow}
+% Add here a flowchart or diagram showing where and how the data is generated and transferred across different modules and peripherals.
 
 \subsection{Status LEDs} \label{status-leds}
 
-On the development version of the board, there are ten LED\nomenclature{\textbf{LED}}{\textit{Light-Emitting Diode.}}s that indicates some behaviours of the systems. This set of LEDs can be seen on \autoref{fig:status-leds}.
+On the development version of the board, there are ten LED\nomenclature{\textbf{LED}}{\textit{Light-Emitting Diode.}}s that indicates some behaviors of the systems. This set of LEDs can be seen on \autoref{fig:status-leds}.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -131,7 +142,7 @@ These LEDs are not mounted in the flight version of the module.
 \section{Hard Code Versioning}
 
 On the EPS2 board there are 2 GPIOs dedicated for hard code versioning.
-The on-board firmware can read these pins to indentify the correct version of the hardware project.
+The on-board firmware can read these pins to identify the correct version of the hardware project.
 Each line can be either pulled to VCC or ground, representing in binary as 1 and 0 respectively.
 The \autoref{tab:versioning-resistors} shows the representation of the versioning up to the latest revision of the project.
 

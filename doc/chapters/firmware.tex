@@ -35,13 +35,13 @@ The product tree of the firmware part of the EPS 2.0 module is available in \aut
     \end{center}
 \end{figure}
 
-\section{Dependencies}
+%\section{Dependencies}
 
 \section{Operating System}
 
 As operating system the FreeRTOS 10 \cite{freertos} is being used. FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
 
-The main configuration parameters of the operating system in this project are availabe in \autoref{tab:freertos-config}.
+The main configuration parameters of the operating system in this project are available in \autoref{tab:freertos-config}.
 
 \begin{table}[!h]
     \centering
@@ -126,7 +126,7 @@ Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 \subsection{System reset}
 
 This task is responsible for resetting the microcontroller, via software, every 10 hours.
-This helps to cleanup possible corrupted values in variables, retry failed initializations, cleanup RAM memory, etc.
+This helps to cleanup possible corrupted values in variables, retry a failed initialization, cleanup RAM memory, etc.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
@@ -134,10 +134,14 @@ Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 This task is responsible for monitoring and controlling the batteries' heaters.
 
-The heaters and batteries temperature are monitored through a set of RTDs, read through an external ADC (\textit{ADS1248}), and activated through MOSFET drivers controlled by the MCUs GPIOs.
+The heaters and batteries temperature are monitored through a set of RTDs, read through an external ADC (\textit{ADS1248}), and activated through MOSFET drivers controlled by the MCUs GPIOs to prevent the batteries from operating below a critical temperature value.
 
-The temperature readings occur every 2 seconds, and the heaters' status are updated accordingly, based on the new reading and a predefined temperature limit, through the algorithm defined in the heater device.
-This prevents damage to the batteries from operating below a critical temperature value.
+This task has two modes of operation, automatic mode and manual mode.
+
+In automatic mode, the batteries' temperature readings occur every 2 seconds, and the heaters' status are updated accordingly, based on the new reading and a predefined temperature limit, through the algorithm defined in the heater device.
+This algorithm switches the heaters on of off based on the set temperature limits.
+
+In manual mode, the heater are controlled manually through telecommands, independent of the temperature readings. In this mode, the heaters are controlled with a PWM signal with a duty cycle defined via telecommand.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 

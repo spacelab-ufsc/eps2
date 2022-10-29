@@ -25,7 +25,7 @@
 
 \chapter{Hardware} \label{ch:hardware}
 
-The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't have any impedance control requirements, for this reason the layer stackup has 1oz (0.0347mm) thickness in inner and outer copper layers. In the following sections, the hardware design, interfaces, and standards are described in detail. Section are devided by subsystem blocks, following the diagrams present on \autoref{fig:mcu-block-diagram} and \autoref{fig:power-block-diagram}. The \autoref{fig:pcb-top}, \autoref{fig:pcb-bottom} and \autoref{fig:pcb-side} presents the 3D rendered images of the top, bottom and side views of the board, respectively.
+The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dielectric. The module doesn't have any impedance control requirements, for this reason the layer stackup has 1oz (0.0347mm) thickness in inner and outer copper layers. In the following sections, the hardware design, interfaces, and standards are described in detail. Section are divided by subsystem blocks, following the diagrams present on \autoref{fig:mcu-block-diagram} and \autoref{fig:power-block-diagram}. The \autoref{fig:pcb-top}, \autoref{fig:pcb-bottom} and \autoref{fig:pcb-side} presents the 3D rendered images of the top, bottom and side views of the board, respectively.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -53,7 +53,7 @@ The EPS2 is a 4 layer 1.6mm thick PCB with FR-4 dieletric. The module doesn't ha
 
 \section{Interfaces}
 
-The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 5 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B0-I2C (dedicated for DS2777); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debbuging via USB without the use of an external UART to USB converter. The SPI comunicaton bus it actually an dedicated internall channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
+The \autoref{fig:diagram-interfaces} presents the board interfaces, which consists of communication with other modules, debug access points, and internal peripherals. From the perspective of the microcontroller, there are 5 individual communication buses and the JTAG interface (Spy-Bi-Wire), in the \autoref{tab:interfaces}: A1-SPI (dedicated for RTD analog readings with ADS1248); A0-UART (dedicated for Beacon Radio); A2-UART (dedicated for debug); B0-I2C (dedicated for DS2777); B2-I2C (dedicated for OBDH); From the External Interface (IIP) can be acquired UART log messages for debugging via USB without the use of an external UART to USB converter. The SPI communication bus is actually an dedicated internal channel for the EPS MCU (master) to the ADS1248 (slave) ADC IC, the analog readings from BAT4C module (a.k.a Battery DaughterBoard) were also represented to show where the RTDs readings come from. \autoref{tab:usci-config} shows the interfaces configuration.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -267,7 +267,7 @@ An illustration of the microcontroller pinout positions can be seen in the \auto
 
 \section{Batteries DaughterBoard}
 
-Due to size restrictions the 4 cell batteries of the EPS2 were allocated to a dauhterboard named Battery Module 4 Cells, a.k.a BAT4C\nomenclature{\textbf{BAT4C}}{\textit{Battery Module 4 Cells.}}\cite{bat4c}. Both boards 3D models are assembled together in a EDA tool as seen in \autoref{fig:eps2-pcb-3d-battery}. BAT4C is connected below EPS2 in a board-to-board connector, the female counterpart (\textit{BAT4CIPS1-105-01-S-D}) present on the EPS is seen in \autoref{fig:battery-connector} with it pinout present on \autoref{tab:battery-connector}.
+Due to size restrictions the 4 cell batteries of the EPS2 were allocated to a dauhterboard named Battery Module 4 Cells, a.k.a BAT4C\nomenclature{\textbf{BAT4C}}{\textit{Battery Module 4 Cells.}}\cite{bat4c}. Both boards 3D models are assembled together in a EDA tool as seen in \autoref{fig:eps2-pcb-3d-battery}. BAT4C is connected below EPS2 in a board-to-board connector, the female counterpart (\textit{BAT4CIPS1-105-01-S-D}) present on the EPS is seen in \autoref{fig:battery-connector} with its pinout present on \autoref{tab:battery-connector}.
 
 For compatibility with the older version of the battery module, the same connector pads are present near the middle section of the PCB. If the BAT4C is to be used, the compatibility connector must not be soldered, more detail on \autoref{ch:assembly}. Also external connectors are used for temperature measurement and control with RTDs and heaters, more details can be seen on \autoref{rtd-picoblade} and \autoref{heater-picoblade}. 
 
@@ -311,7 +311,7 @@ For compatibility with the older version of the battery module, the same connect
 
 \section{Solar Panels}
 
-The energy harvesting system is based on solar energy conversion through ten solar panels attached to a 2U CubeSat structure. The solar panels are connected through six 4 pin PicoBlade connectors \textit{0533980471}. Because the EPS2 module has only six input connectors four pairs of solar panels will be connected in paralel. The connection scheme of the solar panels is visible in \autoref{fig:diagram-solar-panels}. The input connectors for the solar panels power are described in \autoref{solar-panels-picoblades}.
+The energy harvesting system is based on solar energy conversion through ten solar panels attached to a 2U CubeSat structure. The solar panels are connected through six 4 pin PicoBlade connectors \textit{0533980471}. Because the EPS2 module has only six input connectors four pairs of solar panels will be connected in parallel. The connection scheme of the solar panels is visible in \autoref{fig:diagram-solar-panels}. The input connectors for the solar panels power are described in \autoref{solar-panels-picoblades}.
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/diagram-solar-panels.png}
@@ -340,7 +340,7 @@ On the MPPT subsystem, the main components are the MPPT boost converters, solar 
 
 \subsection{MPPT Boost Converters}
 
-There are three boost converters in the system, one for each couple of solar panels in parallel connection. Each one is a discrete boost with a \textit{MSS1278T-104MLD} inductor, a \textit{SI4166DY} mosfet as the switch and a \textit{B340LA-13-F} diode. There are six \textit{GRM32ER1E226KE15L} capacitors and two \textit{GRM216R71H103KA01D} capacitors connected in parallel in the boost output. The output filter is the same for all the converters as their outputs are tied together. The control PWM signals are generated by the MCU at a frequency of 100 kHz.
+There are three boost converters in the system, one for each couple of solar panels in parallel connection. Each one is a discrete boost with a \textit{MSS1278T-104MLD} inductor, a \textit{SI4166DY} MOSFET as the switch and a \textit{B340LA-13-F} diode. There are six \textit{GRM32ER1E226KE15L} capacitors and two \textit{GRM216R71H103KA01D} capacitors connected in parallel in the boost output. The output filter is the same for all the converters as their outputs are tied together. The control PWM signals are generated by the MCU at a frequency of 100 kHz.
 One of the MPPT boosters circuit schematic can be seen in \autoref{fig:mppt-boosters-circuit-schematic} and location of all three at the PCB in \autoref{fig:mppt-boosters-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -396,7 +396,7 @@ The solar panels voltage measurement circuit is composed by a voltage divider an
 V_{out} = V_{sp} \cdot \frac{R_{2}}{R_{1} + R_{2}}
 \end{equation}
 
-In total there are three of these voltage measurement circuits, the solar panels sides that are meassured together are: $-$Y with $+$X, $-$X with $+$Z and $-$Z with $+$Y.
+In total there are three of these voltage measurement circuits, the solar panels sides that are measured together are: $-$Y with $+$X, $-$X with $+$Z and $-$Z with $+$Y.
 One of the voltage measurement circuit schematic can be seen in \autoref{fig:solar-panels-voltage-circuit-schematic}.
 
 \begin{figure}[!ht]
@@ -407,9 +407,9 @@ One of the voltage measurement circuit schematic can be seen in \autoref{fig:sol
     \end{center}
 \end{figure}
 
-\section{Batteries Managment Subsystem}
+\section{Batteries Management Subsystem}
 
-On the batteries managment subsystem the main components are the battery control circuit, external ADC chip, solar panels and batteries kill-switches, heater drivers and voltage sensors for the boosters output and main power bus. 
+On the batteries management subsystem the main components are the battery control circuit, external ADC chip, solar panels and batteries kill-switches, heater drivers and voltage sensors for the boosters output and main power bus. 
 
 \subsection{Boost Converters Output Voltage Measurement}
 
@@ -418,15 +418,15 @@ The schematic for the voltage measurement circuit of the solar panels can be see
 
 \subsection{Kill-Switches and Remove Before Flight}
 
-These switches are used to separate the solar panels and the batteries from the load during pre-flight and launch. Each one is composed of two \textit{SI4403-CDY-T1-GE3} P-channel mosfets in parallel, as a redundancy.
+These switches are used to separate the solar panels and the batteries from the load during pre-flight and launch. Each one is composed of two \textit{SI4403-CDY-T1-GE3} P-channel MOSFETs in parallel, as a redundancy.
 The Kill-Switches and RBF\nomenclature{\textbf{RBF}}{\textit{Remove Before Flight.}} are interfaced on the EPS board via external PicoBlade cables to its respective external mechanisms.
 
-RBF functions by simply short circuting the pins of the pin header present on an external interface\cite{iip}, and for the kill-switches it is required to press the spring buttons on the CubeSat structure, this is naturally done when the nanosatellite in integrated into the deployer.
+RBF functions by simply making a short circuit in the pins of the pin header present on an external interface\cite{iip}, and for the kill-switches it is required to press the spring buttons on the CubeSat structure, this is naturally done when the nanosatellite in integrated into the deployer.
 On \autoref{kill-switches-picoblades} and \autoref{rbf-picoblade} it is showed the pinouts and locations for these connectors.
 
 \subsection{Battery Monitor Circuit}
 
-The batteries are monitored by the \textit{DS2777} chip. It measures several parameters and sends them to the EPS2 MCU via I2C protocol. The factory default value for its slave address is 0x59. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two \textit{FDS6898AZ} mosfets.
+The batteries are monitored by the \textit{DS2777} chip. It measures several parameters and sends them to the EPS2 MCU via I2C protocol. The factory default value for its slave address is 0x59. Also it automatically protects the batteries against short-circuits, overvoltage and undervoltage situations by switching two \textit{FDS6898AZ} MOSFETs.
 Its circuit schematic can be seen in \autoref{fig:bms-circuit-schematic} and location on the PCB in \autoref{fig:bms-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -465,13 +465,13 @@ The location the IC and its subcircuitry can be seen in \autoref{fig:ads1248-cir
 
 \subsection{Heaters Drivers}
 
-The drivers are chopper converters controlled by the MCU, with a PWM frequency of 50 kHz. The switches of the chopper converters are \textit{Si4010DY} mosfets.
+The drivers are chopper converters managed by the MCU, either switched to on/off or controlled with a PWM signal with a frequency of 50 kHz, depending on the mode of operation (detailed in chapter \autoref{ch:firmware}). The switches of the chopper converters are \textit{Si4010DY} MOSFETs.
 Its circuit schematic can be seen in \autoref{fig:heaters-circuit-schematic} and location on the PCB in \autoref{fig:heaters-drivers-circuit-3d}.
 
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[width=0.85\textwidth]{figures/heaters-drivers-circuit-schematic.png}
-        \caption{Hearter drivers circuit schematic.}
+        \caption{Heater drivers circuit schematic.}
         \label{fig:heaters-circuit-schematic}
     \end{center}
 \end{figure}
@@ -479,7 +479,7 @@ Its circuit schematic can be seen in \autoref{fig:heaters-circuit-schematic} and
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/heaters-drivers-circuit-3d.png}
-        \caption{Hearter drivers circuit on the PCB.}
+        \caption{Heater drivers circuit on the PCB.}
         \label{fig:heaters-drivers-circuit-3d}
     \end{center}
 \end{figure}
@@ -532,7 +532,7 @@ Its location on the PCB can be seen in \autoref{fig:ant-buck-circuit-3d}.
 
 \subsection{Radio 0 Transceiver Regulator}
 
-The radio 0 XCVR\nomenclature{\textbf{XCVR}}{\textit{Transceiver.}} responsible for the Downlink/Uplink of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with an output voltage of 5V and 5A campability. The OBDH can enable/disable this regulator.
+The radio 0 XCVR\nomenclature{\textbf{XCVR}}{\textit{Transceiver.}} responsible for the Downlink/Uplink of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with an output voltage of 5V and 5A capability. The OBDH can enable/disable this regulator.
 Its location on the PCB can be seen in \autoref{fig:main-radio-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -545,7 +545,7 @@ Its location on the PCB can be seen in \autoref{fig:main-radio-buck-circuit-3d}.
 
 \subsection{Radio 1 Transceiver Regulator}
 
-The radio 1 XCVR responsible for a periodic data sent status of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with 6V output voltage and 5A campability. The Beacon MCU can enable/disable this regulator.
+The radio 1 XCVR responsible for a periodic data sent status of the CubeSat is powered by a \textit{TPS54540QDDARQ1} regulator, with 6V output voltage and 5A capability. The Beacon MCU can enable/disable this regulator.
 Its location on the PCB can be seen in \autoref{fig:beacon-radio-buck-circuit-3d}.
 
 \begin{figure}[!ht]
@@ -682,7 +682,7 @@ Their pinout is showed in \autoref{tab:solar-panels-picoblades} and position on 
 
 \subsection{Kill-Switches PicoBlades} \label{kill-switches-picoblades}
 
-There are two PicoBlade connectors to be connected to two separete kill-switch spring button mechanisms, one of the mechanism is ilustrated in \autoref{fig:kill-switch-installed}. The connection is done by manually soldering and isolating with a heat shrink tube, the other end of the cable goes to PicoBlades of the EPS, their pinout is showed in \autoref{tab:kill-switches-picoblades} and position on the PCB in \autoref{fig:kill-switches-picoblades}.
+There are two PicoBlade connectors to be connected to two separated kill-switch spring button mechanisms, one of the mechanism is illustrated in \autoref{fig:kill-switch-installed}. The connection is done by manually soldering and isolating with a heat shrink tube, the other end of the cable goes to PicoBlades of the EPS, their pinout is showed in \autoref{tab:kill-switches-picoblades} and position on the PCB in \autoref{fig:kill-switches-picoblades}.
 
 \begin{figure}[!ht]
     \begin{center}
@@ -712,7 +712,7 @@ There are two PicoBlade connectors to be connected to two separete kill-switch s
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.35\textwidth]{figures/kill-switches-picoblades-3d.png}
+        \includegraphics[width=0.25\textwidth]{figures/kill-switches-picoblades-3d.png}
         \caption{Kill-switches PicoBlade connectors on the PCB.}
         \label{fig:kill-switches-picoblades}
     \end{center}
@@ -720,7 +720,7 @@ There are two PicoBlade connectors to be connected to two separete kill-switch s
 
 \subsection{RBF PicoBlade} \label{rbf-picoblade}
 
-The RBF PicoBlade interconects the separation switches circuit present on the EPS to be acessed in a external interface. Its pinout is showed in \autoref{tab:rbf-picoblade} and position on the PCB in \autoref{fig:rbf-picoblade}.
+The RBF PicoBlade interconnects the separation switches circuit present on the EPS to be accessed in a external interface. Its pinout is showed in \autoref{tab:rbf-picoblade} and position on the PCB in \autoref{fig:rbf-picoblade}.
 
 \begin{table}[!h]
     \centering
@@ -748,7 +748,7 @@ The RBF PicoBlade interconects the separation switches circuit present on the EP
 
 \subsection{RTDs PicoBlade} \label{rtd-picoblade}
 
-EPS reads temperature from RTDs present in the BAT4C module with a external PicoBlade cable conected betweem both boards. The two connectors RTD1 and RTD2 pinouts are showed in \autoref{tab:rbf-picoblade} and positions on the PCB in \autoref{fig:rtds-picoblades}.
+EPS reads temperature from RTDs present in the BAT4C module with a external PicoBlade cable connected between both boards. The two connectors RTD1 and RTD2 pinouts are showed in \autoref{tab:rbf-picoblade} and positions on the PCB in \autoref{fig:rtds-picoblades}.
 
 \begin{table}[!h]
     \centering
@@ -785,7 +785,7 @@ EPS reads temperature from RTDs present in the BAT4C module with a external Pico
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.45\textwidth]{figures/rtds-picoblades-3d.png}
+        \includegraphics[width=0.25\textwidth]{figures/rtds-picoblades-3d.png}
         \caption{RTDs PicoBlade connectors on the PCB.}
         \label{fig:rtds-picoblades}
     \end{center}
@@ -817,7 +817,7 @@ The PWM signals that control the heaters present on the BAT4C module is also bro
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.4\textwidth]{figures/heaters-picoblade-3d.png}
+        \includegraphics[width=0.25\textwidth]{figures/heaters-picoblade-3d.png}
         \caption{Heaters PicoBlade connector on the PCB.}
         \label{fig:heaters-picoblade}
     \end{center}
@@ -845,7 +845,7 @@ When the EPS and BAT4C are assembled together the batteries can be charged from 
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.25\textwidth]{figures/battery-charger-picoblade-3d.png}
+        \includegraphics[width=0.2\textwidth]{figures/battery-charger-picoblade-3d.png}
         \caption{External batteries charger PicoBlade connector on the PCB.}
         \label{fig:batteries-picoblade}
     \end{center}
@@ -878,11 +878,13 @@ The JTAG connector pinout is showed in \autoref{tab:jtag-picoblade}.
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.35\textwidth]{figures/jtag-picoblade-3d.png}
+        \includegraphics[width=0.2\textwidth]{figures/jtag-picoblade-3d.png}
         \caption{JTAG PicoBlade connector on the PCB.}
         \label{fig:jtag-picoblade}
     \end{center}
 \end{figure}
+
+\newpage
 
 \subsection{Debug UART Pin Header} \label{uart-pin-header}
 
@@ -905,7 +907,7 @@ For debugging via UART using log messages during test phase a pin header can be 
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.15\textwidth]{figures/uart-pin-header-3d.png}
+        \includegraphics[width=0.10\textwidth]{figures/uart-pin-header-3d.png}
         \caption{Debug UART pin header connector on the PCB.}
         \label{fig:uart-pin-header}
     \end{center}

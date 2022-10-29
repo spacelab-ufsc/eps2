@@ -39,9 +39,9 @@ It is advised to to have either the kill-switches on "NO" position and/or the RB
  
 \subsection{Powering through JTAG Interface}
 
-The JTAG interface is used for programing and debugging the module using a Flash Emulation Tool (refer to \autoref{jtag-picoblade} on the hardware chapter). 
+The JTAG interface is used for programming and debugging the module using a Flash Emulation Tool (refer to \autoref{jtag-picoblade} on the hardware chapter). 
 This is done using a MSP-FET with the Spy-Bi-Wire protocol.
-The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be powered for minimal testing and debbuging purposes, for this the CN1 header pins must be shorted.
+The tool should provide $3.3 V$ and a maximum of $100\ mA$, due to this current limitation only the EPS MCU can be powered for minimal testing and debugging purposes, for this the CN1 header pins must be shorted.
 Remember that the CN1 connector should only be used if the EPS board is not being powered by any other means like batteries or external power supply.
 
 For the interfacing the 14 pin cable of the MSP-FET to the EPS it is required an adapted cable or an external interface. 
@@ -63,7 +63,7 @@ To use two \(3.7 V\) sources, the first source should have it's negative and pos
 
 To use \(3.7 V\) and \(7.4 V\) sources, the \(3.7 V\) source should have it's negative and positive terminals connected to Vbat- and Vbat\_common pins of the batteries connector respectively, the \(7.4 V\) source should have it's negative and positive terminals connected to Vbat- and Vbat+ pins of the batteries connector respectively (refer to \autoref{fig:battery-connector} and \autoref{tab:battery-connector} on the hardware chapter).
 
-If the external power supply has configurable current limitation capability, it should be adjusted accordingly to the expected consumption of the load connected to the EPS module (other modules being powerd by the EPS, batteries heaters being active, etc.), if powering the EPS in isolation (no load connected) a limit of \(80 mA\) may be applied.
+If the external power supply has configurable current limitation capability, it should be adjusted accordingly to the expected consumption of the load connected to the EPS module (other modules being powered by the EPS, batteries heaters being active, etc.), if powering the EPS in isolation (no load connected) a limit of \(80 mA\) may be applied.
 
 After correctly connecting the voltage sources, the kill-switches can be put on "NC" position and/or the RBF switch can be released.
 

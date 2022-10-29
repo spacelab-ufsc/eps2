@@ -29,12 +29,28 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 \begin{itemize}
     \item \textbf{PCB manufacturer}: PCBWay (China)
     \item \textbf{PCB assembly}: PCBWay (China)
-    \item \textbf{PCB arrival date}: 2022/04/14 % Não sei ao certo
-    \item \textbf{Execution date}: 2022/04/15 to \textcolor{red}{TBC} % Não sei ao certo
+    \item \textbf{PCB arrival date}: 2022/04/14 
+    \item \textbf{Execution date}: 2022/04/15 to 2022/05/15
     \item \textbf{Tester}: João Cláudio and Ramon Borba
 \end{itemize}
 
 \section{Visual Inspection}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{figures/v02/eps2-v02-top.jpg}
+        \caption{Top view of the EPS 2.0 v0.2 board.}
+        \label{fig:eps2-v01-top}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{figures/v02/eps2-v02-bottom.jpg}
+        \caption{Bottom view of the EPS 2.0 v0.2 board.}
+        \label{fig:eps2-v01-bottom}
+    \end{center}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Test description/Objective}: Inspection of the board, visually, searching for fabrication and assembly failures.
@@ -43,22 +59,6 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
     \item \textbf{Results}: First, the top and bottom side of the EPS 2.0 are shown in \autoref{fig:eps2-v01-top} (top view of the board) and \autoref{fig:eps2-v01-bottom} (bottom view of the board). It was possible to see that some components were not soldered. At the bottom side the R89, R90, R91, versioning resistors V1 and V4, R93, R87, R88, R\_ESD were not soldered. At the top side only half of the PC-104 and P1 were not connected. Furthermore, the P5 was connected in the wrong side.
     \item \textbf{Conclusion}: No major problems were identified on this test.  
 \end{itemize}
-
-\begin{figure}[!ht]
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/v02/eps2-v02-top.jpg}
-        \caption{Top view of the EPS 2.0 v0.2 board.}
-        \label{fig:eps2-v01-top}
-    \end{center}
-\end{figure}
-
-\begin{figure}[!ht]
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/v02/eps2-v02-bottom.jpg}
-        \caption{Bottom view of the EPS 2.0 v0.2 board.}
-        \label{fig:eps2-v01-bottom}
-    \end{center}
-\end{figure}
 
 \newpage
 
@@ -91,11 +91,27 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
     \item \textbf{Procedures:} \autoref{tab:electrical-inspection}.
     \item \textbf{Material}: None.
     \item \textbf{Results}: The top and bottom side of the EPS 2.0 are shown in \autoref{fig:eps2-v01-top} (top view of the board) and \autoref{fig:eps2-v01-bottom} (bottom view of the board).
-    \item \textbf{Conclusion}: No problems were identified on this test, omponents were correctly selected, placed and soldered (except for those already mentioned in the visual inspection).
+    \item \textbf{Conclusion}: No problems were identified on this test, components were correctly selected, placed and soldered (except for those already mentioned in the visual inspection).
 \end{itemize}
 
+\newpage
 
 \section{Electrical Testing}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \subfigure[5V bus to the payload.\label{fig:5v_payload_bus}]{\includegraphics[angle=270,width=0.35\linewidth]{figures/v02/5v_payload_bus.jpg}}
+        \hspace{10pt}%
+        \subfigure[5V bus to the TTC.\label{fig:5v_radio_0_bus}]{\includegraphics[angle=270,width=0.35\linewidth]{figures/v02/5v_radio_0_bus.jpg}} \\
+        
+        \subfigure[6V bus to the TTC.\label{fig:6v_radio_1_bus}]{\includegraphics[angle=270,width=0.35\linewidth]{figures/v02/6v_radio_1_bus.jpg}}
+        \hspace{10pt}%
+        \subfigure[3,3V bus to multiple modules.\label{fig:3v3_all_modules_buses}]{\includegraphics[angle=270,width=0.35\linewidth]{figures/v02/3v3_all_modules_buses.jpg}}        
+
+        \caption{Measuring the voltage of the power buses without a load.}
+        \label{fig:regulators_no_load}
+    \end{center}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Test description/Objective}: Perform basic tests to evaluate the board with nominal operating parameters.
@@ -109,21 +125,6 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
     \item \textbf{Conclusion}: The board turned on as expected and present stable power consumption. The voltage at the output of the step-down regulator of the 3,3V bus to power up the Beacon had a significant drop. The issue might be related to poor sizing of passive components required for the regulators. This problem \textbf{must} be solved for the next version (it is expected to be performed minor changes in components values).  
 \end{itemize}
 
-\begin{figure}[!htb]
-    \begin{center}
-        \subfigure[5V bus to the payload.\label{fig:5v_payload_bus}]{\includegraphics[angle=270,width=0.4\linewidth]{figures/v02/5v_payload_bus.jpg}}
-        \hspace{10pt}%
-        \subfigure[5V bus to the TTC.\label{fig:5v_radio_0_bus}]{\includegraphics[angle=270,width=0.4\linewidth]{figures/v02/5v_radio_0_bus.jpg}} \\
-        
-        \subfigure[6V bus to the TTC.\label{fig:6v_radio_1_bus}]{\includegraphics[angle=270,width=0.4\linewidth]{figures/v02/6v_radio_1_bus.jpg}}
-        \hspace{10pt}%
-        \subfigure[3,3V bus to multiple modules.\label{fig:3v3_all_modules_buses}]{\includegraphics[angle=270,width=0.4\linewidth]{figures/v02/3v3_all_modules_buses.jpg}}        
-
-        \caption{Measuring the voltage of the power buses without a load.}
-        \label{fig:regulators_no_load}
-    \end{center}
-\end{figure}
-
 \begin{figure}[!ht]
     \begin{center}
         \includegraphics[width=\columnwidth]{figures/v02/5v_6v_setup_test.jpg}
@@ -131,6 +132,8 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         \label{fig:5v_6v_setup_test}
     \end{center}
 \end{figure}
+
+\newpage
 
 \begin{figure}[!ht]
     \begin{center}
@@ -143,6 +146,16 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 \section{Functional Testing}
 
 \subsection{Firmware Programming}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \subfigure[Board connections using the MSP-FET and USB-UART converter.\label{fig:setup-first-boot}]{\includegraphics[height=0.23\textheight]{figures/v01/setup-first-boot.jpg}}
+        ~
+        \subfigure[Pin connections using the MSP-FET and USB-UART converter.\label{fig:electrical-test-board}]{\includegraphics[height=0.23\textheight]{figures/v01/tools-first-boot.jpg}}
+        \caption{Setup used for the first firmware boot}
+        \label{fig:setup-first-boot}
+    \end{center}
+\end{figure}
 
 \begin{itemize}
     \item \textbf{Test description/Objective}: Evaluate the board behavior under a firmware programming sequence.
@@ -157,164 +170,171 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
     \item \textbf{Conclusion}: Major problems were identified on this test, but it was expected since the available firmware version was at early stages of refactoring and development.
 \end{itemize}
 
-\begin{figure}[!htb]
-    \begin{center}
-        \subfigure[Board connections using the MSP-FET and USB-UART converter.\label{fig:setup-first-boot}]{\includegraphics[height=0.23\textheight]{figures/v01/setup-first-boot.jpg}}
-        ~
-        \subfigure[Pin connections using the MSP-FET and USB-UART converter.\label{fig:electrical-test-board}]{\includegraphics[height=0.23\textheight]{figures/v01/tools-first-boot.jpg}}
-        \caption{Setup used for the first firmware boot}
-        \label{fig:setup-first-boot}
-    \end{center}
-\end{figure}
-
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.7\columnwidth]{figures/v01/log-first-boot.png}
+        \includegraphics[width=0.6\columnwidth]{figures/v01/log-first-boot.png}
         \caption{Log messages during the first boot.}
         \label{fig:log-first-boot}
     \end{center}
 \end{figure}
 
 \subsection{Communication Buses}
-%
-%\begin{itemize}
-%    \item \textbf{Test description/Objective}: Test the communication busses of the board, as listed below:
-%        \begin{itemize}
-%            \item I$^{2}$C Port 0
-%            \item I$^{2}$C Port 1
-%            \item I$^{2}$C Port 2
-%        \end{itemize}
-%    \item \textbf{Material}:
-%        \begin{itemize}
-%            \item Saleae Logic Analyzer (24 MHz, 8 channels)
-%            \item Saleae Logic software (v1.2.18)
-%            \item MSP-FET Flash Emulation Tool
-%        \end{itemize}
-%    \item \textbf{Results}: The results of this test can be seen in Figures \ref{fig:test-i2c-0}, \ref{fig:test-i2c-1} and \ref{fig:test-i2c-2}.
-%    \item \textbf{Conclusion:} No problems were identified on this test, all buses are working as expected.
-%\end{itemize}
-%
-%\begin{figure}[!htb]
-%    \begin{center}
-%        \subfigure[Connections of the I$^{2}$C port 0 test.\label{fig:connections-i2c-0}]{\includegraphics[height=0.22\textheight]{figures/v05/test-i2c-0.jpg}}
-%        ~
-%        \subfigure[Waveforms of the I$^{2}$C port 0 test.\label{fig:waveform-i2c-0}]{\includegraphics[height=0.22\textheight]{figures/v05/waveform-i2c-0.png}}
-%        \caption{I$^{2}$C port 0 test.}
-%        \label{fig:test-i2c-0}
-%    \end{center}
-%\end{figure}
-%
-%
-%
-%\begin{figure}[!htb]
-%    \begin{center}
-%        \subfigure[Connections of the I$^{2}$C port 1 test.\label{fig:connections-i2c-1}]{\includegraphics[height=0.22\textheight]{figures/v05/test-i2c-1.jpg}}
-%        ~
-%        \subfigure[Waveforms of the I$^{2}$C port 1 test.\label{fig:waveform-i2c-1}]{\includegraphics[height=0.22\textheight]{figures/v05/waveform-i2c-1.png}}
-%        \caption{I$^{2}$C port 1 test.}
-%        \label{fig:test-i2c-1}
-%    \end{center}
-%\end{figure}
-%
-%
-%
-%\begin{figure}[!htb]
-%    \begin{center}
-%        \subfigure[Connections of the I$^{2}$C port 2 test.\label{fig:connections-i2c-2}]{\includegraphics[height=0.22\textheight]{figures/v05/test-i2c-2.jpg}}
-%        ~
-%        \subfigure[Waveforms of the I$^{2}$C port 2 test.\label{fig:waveform-i2c-2}]{\includegraphics[height=0.22\textheight]{figures/v05/waveform-i2c-2.png}}
-%        \caption{I$^{2}$C port 2 test.}
-%        \label{fig:test-i2c-2}
-%    \end{center}
-%\end{figure}
-%
+
+\begin{itemize}
+    \item \textbf{Test description/Objective}: Test the communication buses of the board, as listed below:
+        \begin{itemize}
+            \item I$^{2}$C bus, to communicate with the OBDH
+            \item UART bus, to communicate with the TTC
+        \end{itemize}
+    \item \textbf{Material}:
+        \begin{itemize}
+            \item Saleae Logic Analyzer (24 MHz, 8 channels)
+            \item Saleae Logic software (v1.2.18)
+            \item MSP-FET Flash Emulation Tool
+        \end{itemize}
+    \item \textbf{Results}: The results of this test can be seen in \autoref{fig:test-i2c} and \autoref{fig:test-uart}
+    \item \textbf{Conclusion:} Minor problems were identified on this test, but were corrected. The figures shows the buses after the corrections, working as expected.
+\end{itemize}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \subfigure[View of the communication.\label{fig:test-uart-1}]{\includegraphics[height=0.25\textheight]{figures/eps_uart_protocol_experiment.png}}
+        ~
+        \subfigure[Zoom in the data sent by EPS.\label{fig:test-uart-2}]{\includegraphics[height=0.25\textheight]{figures/eps_uart_protocol_experiment_zoom.png}}
+        \caption{Communication between the TTC and EPS}
+        \label{fig:test-uart}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=\columnwidth]{figures/eps_i2c_protocol_experiment.png}
+        \caption{Communication between the OBDH and EPS.}
+        \label{fig:test-i2c}
+    \end{center}
+\end{figure}
+
 \subsection{Sensors}
-%
-%\subsection{Input Voltage}
-%
-%\begin{itemize}
-%    \item \textbf{Test description/Objective}: .
-%    \item \textbf{Material}:
-%        \begin{itemize}
-%            \item Code Composer Studio v9.3.0
-%            \item MSP-FET Flash Emulation Tool
-%            \item USB-UART converter
-%            \item Screen (Linux software)
-%        \end{itemize}
-%    \item \textbf{Results}: .
-%    \item \textbf{Conclusion:} .
-%\end{itemize}
-%
-%\subsection{Input Current}
-%
-%\begin{itemize}
-%    \item \textbf{Test description/Objective}: .
-%    \item \textbf{Material}:
-%        \begin{itemize}
-%            \item Code Composer Studio v9.3.0
-%            \item MSP-FET Flash Emulation Tool
-%            \item USB-UART converter
-%            \item Screen (Linux software)
-%        \end{itemize}
-%    \item \textbf{Results}: .
-%    \item \textbf{Conclusion:} .
-%\end{itemize}
-%
-%\begin{figure}[!htb]
-%    \begin{center}
-%        \subfigure[Current sensing circuit.\label{fig:current-sensing-circuit-v05}]{\includegraphics[width=0.8\textwidth]{figures/v05/current-sensor-circuit.png}}
-%
-%        \subfigure[MAX9934 pinout.\label{fig:max9934-pinout}]{\includegraphics[width=0.4\textwidth]{figures/v05/max9934-top-view.png}}
-%        ~
-%        \subfigure[Current sensing layout (bottom layer).\label{fig:}]{\includegraphics[width=0.4\textwidth]{figures/v05/current-sensor-layout.png}}
-%        \caption{.}
-%        \label{fig:current-sensing-error-v05}
-%    \end{center}
-%\end{figure}
-%
-%\begin{figure}[!ht]
-%    \begin{center}
-%        \includegraphics[width=0.6\columnwidth]{figures/v05/max9934-fix.jpg}
-%        \caption{Current sensor fix.}
-%        \label{fig:current-sensor-fix}
-%    \end{center}
-%\end{figure}
-%
-%\begin{figure}[!ht]
-%    \begin{center}
-%        \includegraphics[width=0.7\columnwidth]{figures/v05/log-current-sensor.png}
-%        \caption{Log messages with the read values from the current sensor.}
-%        \label{fig:log-current-sensor}
-%    \end{center}
-%\end{figure}
-%
+
+\begin{itemize}
+    \item \textbf{Test description/Objective}: Test the EPSs' sensors, as listed below:
+        \begin{itemize}
+            \item Voltage sensors
+            \item Current sensors
+            \item Temperature sensors
+        \end{itemize}
+    \item \textbf{Material}:
+        \begin{itemize}
+            \item Code Composer Studio v9.3.0
+            \item MSP-FET Flash Emulation Tool
+            \item USB-UART converter
+            \item Screen (Linux software)
+        \end{itemize}
+    \item \textbf{Results}: The values of current, voltage and temperature are correct. The temperature values are shown in \autoref{fig:test-temperature}. The values shown in the figure were obtained during the tests of the heater's on-off controller.
+    \item \textbf{Conclusion:} In a first moment, the values of voltage and current were not correct, but it was figured out that the problem was in the firmware. The values of temperature were, in a first moment, all 0$^{\circ}$C. But, again, the problem was in the configuration of the ADS1248. When these problems were corrected, the values started to be correct.
+\end{itemize}
+
+\newpage
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.5\columnwidth]{figures/test_heater.PNG}
+        \caption{Values of temperature during the evaluation of heater's on-off controller.}
+        \label{fig:test-temperature}
+    \end{center}
+\end{figure}
+
 \subsection{Peripherals}
-%
-%\subsection{NOR Flash Memory}
-%
-%\begin{itemize}
-%    \item \textbf{Test description/Objective}: Test the functionality of the NOR flash memory by verifying the device ID register of the IC.
-%    \item \textbf{Material}:
-%        \begin{itemize}
-%            \item Saleae Logic Analyzer (24 MHz, 8 channels)
-%            \item Saleae Logic software (v1.2.18)
-%            \item MSP-FET Flash Emulation Tool
-%        \end{itemize}
-%    \item \textbf{Results}: The results of this test can be seen in \autoref{fig:test-nor-memory}.
-%    \item \textbf{Conclusion:} No problems were identified on this test, as can be seen in \autoref{fig:waveform-spi-mem}, the device ID register was read as expected.
-%\end{itemize}
-%
-%\begin{figure}[!htb]
-%    \begin{center}
-%        \subfigure[Connections of the NOR flash memory test.\label{fig:connections-nor-memory}]{\includegraphics[height=0.22\textheight]{figures/v05/test-nor-memory.jpg}}
-%        ~
-%        \subfigure[Waveforms of the NOR memory SPI.\label{fig:waveform-spi-mem}]{\includegraphics[height=0.22\textheight]{figures/v05/waveform-spi-mem.png}}
-%        \caption{NOR memory SPI test.}
-%        \label{fig:test-nor-memory}
-%    \end{center}
-%\end{figure}
-%
 
-\section{Conclusion}
+\subsection{Battery monitor}
 
-\textcolor{red}{TBD}
+\begin{itemize}
+    \item \textbf{Test description/Objective}: Test the functionality of the DS2777.
+    \item \textbf{Material}:
+        \begin{itemize}
+            \item Saleae Logic Analyzer (24 MHz, 8 channels)
+            \item Saleae Logic software (v1.2.18)
+            \item MSP-FET Flash Emulation Tool
+        \end{itemize}
+    \item \textbf{Results}: The results of this test can be seen in \autoref{fig:test-battery-monitor-1}, \autoref{fig:test-battery-monitor-2} and \autoref{fig:test-battery-monitor-3}.
+    \item \textbf{Conclusion:} In a first moment, the CI was not working as expected. It was found that the Zener diode, D6, was interfering in the I$^{2}$C communication. It was removed and the CI started to work properly.  
+\end{itemize}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.7\columnwidth]{figures/ds2777g_log_1.png}
+        \caption{First part of the log.}
+        \label{fig:test-battery-monitor-1}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.7\columnwidth]{figures/ds2777g_log_2.png}
+        \caption{Second part of the log.}
+        \label{fig:test-battery-monitor-2}
+    \end{center}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.7\columnwidth]{figures/ds2777g_log_3.png}
+        \caption{Last part of the log.}
+        \label{fig:test-battery-monitor-3}
+    \end{center}
+\end{figure}
+
+\subsection{Heater's on-off controller}
+
+\begin{itemize}
+    \item \textbf{Test description/Objective}: Test the functionality of the heater's on-off controller.
+    \item \textbf{Material}:
+        \begin{itemize}
+            \item Logs
+            \item MSP-FET Flash Emulation Tool
+        \end{itemize}
+    \item \textbf{Results}: The results of this test can be seen in \autoref{fig:test-temperature-control}.
+    \item \textbf{Conclusion:} The heater's on-off controller is working as expected. It was decided to used, during the tests in the workbench, thresholds such 26$^{\circ}$C and 32$^{\circ}$C.  
+\end{itemize}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=\columnwidth]{figures/heater_controller.pdf}
+        \caption{Temperature of the batteries being controlled.}
+        \label{fig:test-temperature-control}
+    \end{center}
+\end{figure}
+
+\subsection{MPPT controller}
+
+\begin{itemize}
+    \item \textbf{Test description/Objective}: Test the functionality of the MPPT controller.
+    \item \textbf{Material}:
+        \begin{itemize}
+            \item Oscilloscope
+            \item Unit tests
+            \item MSP-FET Flash Emulation Tool
+        \end{itemize}
+    \item \textbf{Results}: The PWM signal generated by the MPPT controller can be seen in \autoref{fig:test-pwm-1} and \autoref{fig:test-pwm-2}, as well as the test workflow can be accessed in the GitHub page.
+    \item \textbf{Conclusion:} The algorithm was tested using the unit tests, and worked as expected. The PWM signal for 100kHz and 50kHz are being generated correctly.  
+\end{itemize}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{figures/eps_pwm_50khz.png}
+        \caption{PWM signal, at 50kHz, generated by the MPPT controller.}
+        \label{fig:test-pwm-1}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!ht]
+    \begin{center}
+        \includegraphics[width=0.6\columnwidth]{figures/eps_pwm_100khz.png}
+        \caption{PWM signal, at 100kHz, generated by the MPPT controller.}
+        \label{fig:test-pwm-2}
+    \end{center}
+\end{figure}
+
+\section{Conclusion} The board can be connected with the rest of the satellite, using a FlatSat platform, to make system level tests.
