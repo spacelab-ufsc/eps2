@@ -1,12 +1,12 @@
 Altium Designer Pick and Place Locations
-C:\Users\joaoc\Documents\Altium\Projects\eps2\hardware\.\outputs\assembly_pick_place\assembly_pick_place.txt
+C:\Users\joaoc\Documents\GitHub\eps2\hardware\.\outputs\assembly_pick_place\assembly_pick_place.txt
 
 ========================================================================================================================
 File Design Information:
 
-Date:       23/10/22
-Time:       18:16
-Revision:   7a38004680ed8b5ad8206ddf8c690aca6e8b7996
+Date:       29/10/22
+Time:       17:36
+Revision:   e48083e648829a4c1cd7d32f93eb3f083f3ca398
 Variant:    No variations
 Units used: mil
 

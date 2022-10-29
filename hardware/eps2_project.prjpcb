@@ -25,16 +25,24 @@ NameNetsHierarchically=0
 PowerPortNamesTakePriority=0
 AutoSheetNumbering=0
 AutoCrossReferences=0
+NewIndexingOfSheetSymbols=0
 PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
 IsProjectConflictPreventionWarningsEnabled=1
+IsVirtualBomDocumentRemoved=0
 OutputPath=Project Outputs for PCB_Project_FlightModel_EPS
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
+CrossRefSheetStyle=1
+CrossRefLocationStyle=1
+CrossRefPorts=3
+CrossRefCrossSheets=1
+CrossRefSheetEntries=0
+CrossRefFollowFromMainSettings=1
 
 [Preferences]
 PrefsVaultGUID=
@@ -518,322 +526,230 @@ DocumentPath=outputs\assembly_odb\assembly_odb.REP
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=.\outputs\assembly_pick_place\assembly_pick_place.txt
-DItemRevisionGUID=
-
-[GeneratedDocument3]
 DocumentPath=outputs\assembly_pick_place\assembly_pick_place.txt
 DItemRevisionGUID=
 
-[GeneratedDocument4]
+[GeneratedDocument3]
 DocumentPath=outputs\assembly_test_point\assembly_test_point.ipc
 DItemRevisionGUID=
 
-[GeneratedDocument5]
+[GeneratedDocument4]
 DocumentPath=outputs\board_bom\board_bom.xls
 DItemRevisionGUID=
 
-[GeneratedDocument6]
-DocumentPath=outputs\board_bom\board_bom.xlsx
-DItemRevisionGUID=
-
-[GeneratedDocument7]
+[GeneratedDocument5]
 DocumentPath=outputs\board_drc\board_drc.html
 DItemRevisionGUID=
 
-[GeneratedDocument8]
-DocumentPath=.\outputs\board_gerber\board_gerber.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument9]
+[GeneratedDocument6]
 DocumentPath=outputs\board_gerber\board_gerber.EXTREP
 DItemRevisionGUID=
 
-[GeneratedDocument10]
-DocumentPath=.\outputs\board_gerber\board_gerber.G1
-DItemRevisionGUID=
-
-[GeneratedDocument11]
+[GeneratedDocument7]
 DocumentPath=outputs\board_gerber\board_gerber.G1
 DItemRevisionGUID=
 
-[GeneratedDocument12]
-DocumentPath=.\outputs\board_gerber\board_gerber.G2
-DItemRevisionGUID=
-
-[GeneratedDocument13]
+[GeneratedDocument8]
 DocumentPath=outputs\board_gerber\board_gerber.G2
 DItemRevisionGUID=
 
-[GeneratedDocument14]
-DocumentPath=.\outputs\board_gerber\board_gerber.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument15]
+[GeneratedDocument9]
 DocumentPath=outputs\board_gerber\board_gerber.GBL
 DItemRevisionGUID=
 
-[GeneratedDocument16]
-DocumentPath=.\outputs\board_gerber\board_gerber.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument17]
+[GeneratedDocument10]
 DocumentPath=outputs\board_gerber\board_gerber.GBO
 DItemRevisionGUID=
 
-[GeneratedDocument18]
-DocumentPath=.\outputs\board_gerber\board_gerber.GBP
-DItemRevisionGUID=
-
-[GeneratedDocument19]
+[GeneratedDocument11]
 DocumentPath=outputs\board_gerber\board_gerber.GBP
 DItemRevisionGUID=
 
-[GeneratedDocument20]
-DocumentPath=.\outputs\board_gerber\board_gerber.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument21]
+[GeneratedDocument12]
 DocumentPath=outputs\board_gerber\board_gerber.GBS
 DItemRevisionGUID=
 
-[GeneratedDocument22]
-DocumentPath=.\outputs\board_gerber\board_gerber.GD1
-DItemRevisionGUID=
-
-[GeneratedDocument23]
+[GeneratedDocument13]
 DocumentPath=outputs\board_gerber\board_gerber.GD1
 DItemRevisionGUID=
 
-[GeneratedDocument24]
-DocumentPath=.\outputs\board_gerber\board_gerber.GKO
-DItemRevisionGUID=
-
-[GeneratedDocument25]
+[GeneratedDocument14]
 DocumentPath=outputs\board_gerber\board_gerber.GKO
 DItemRevisionGUID=
 
-[GeneratedDocument26]
-DocumentPath=.\outputs\board_gerber\board_gerber.GM1
-DItemRevisionGUID=
-
-[GeneratedDocument27]
+[GeneratedDocument15]
 DocumentPath=outputs\board_gerber\board_gerber.GM1
 DItemRevisionGUID=
 
-[GeneratedDocument28]
-DocumentPath=.\outputs\board_gerber\board_gerber.GM2
-DItemRevisionGUID=
-
-[GeneratedDocument29]
+[GeneratedDocument16]
 DocumentPath=outputs\board_gerber\board_gerber.GM2
 DItemRevisionGUID=
 
-[GeneratedDocument30]
-DocumentPath=.\outputs\board_gerber\board_gerber.GM9
-DItemRevisionGUID=
-
-[GeneratedDocument31]
+[GeneratedDocument17]
 DocumentPath=outputs\board_gerber\board_gerber.GM9
 DItemRevisionGUID=
 
-[GeneratedDocument32]
-DocumentPath=.\outputs\board_gerber\board_gerber.GM16
-DItemRevisionGUID=
-
-[GeneratedDocument33]
+[GeneratedDocument18]
 DocumentPath=outputs\board_gerber\board_gerber.GM16
 DItemRevisionGUID=
 
-[GeneratedDocument34]
-DocumentPath=.\outputs\board_gerber\board_gerber.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument35]
+[GeneratedDocument19]
 DocumentPath=outputs\board_gerber\board_gerber.GTL
 DItemRevisionGUID=
 
-[GeneratedDocument36]
-DocumentPath=.\outputs\board_gerber\board_gerber.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument37]
+[GeneratedDocument20]
 DocumentPath=outputs\board_gerber\board_gerber.GTO
 DItemRevisionGUID=
 
-[GeneratedDocument38]
-DocumentPath=.\outputs\board_gerber\board_gerber.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument39]
+[GeneratedDocument21]
 DocumentPath=outputs\board_gerber\board_gerber.GTP
 DItemRevisionGUID=
 
-[GeneratedDocument40]
-DocumentPath=.\outputs\board_gerber\board_gerber.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument41]
+[GeneratedDocument22]
 DocumentPath=outputs\board_gerber\board_gerber.GTS
 DItemRevisionGUID=
 
-[GeneratedDocument42]
-DocumentPath=.\outputs\board_gerber\board_gerber.REP
-DItemRevisionGUID=
-
-[GeneratedDocument43]
+[GeneratedDocument23]
 DocumentPath=outputs\board_gerber\board_gerber.REP
 DItemRevisionGUID=
 
-[GeneratedDocument44]
-DocumentPath=.\outputs\board_nc_drill\board_nc_drill.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument45]
+[GeneratedDocument24]
 DocumentPath=outputs\board_nc_drill\board_nc_drill.DRR
 DItemRevisionGUID=
 
-[GeneratedDocument46]
-DocumentPath=.\outputs\board_nc_drill\board_nc_drill.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument47]
+[GeneratedDocument25]
 DocumentPath=outputs\board_nc_drill\board_nc_drill.LDP
 DItemRevisionGUID=
 
-[GeneratedDocument48]
-DocumentPath=.\outputs\board_nc_drill\board_nc_drill.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument49]
+[GeneratedDocument26]
 DocumentPath=outputs\board_nc_drill\board_nc_drill.TXT
 DItemRevisionGUID=
 
-[GeneratedDocument50]
+[GeneratedDocument27]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\components
 DItemRevisionGUID=
 
-[GeneratedDocument51]
+[GeneratedDocument28]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\components
 DItemRevisionGUID=
 
-[GeneratedDocument52]
+[GeneratedDocument29]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\eda\data
 DItemRevisionGUID=
 
-[GeneratedDocument53]
+[GeneratedDocument30]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\3d_body\features
 DItemRevisionGUID=
 
-[GeneratedDocument54]
+[GeneratedDocument31]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_layer\features
 DItemRevisionGUID=
 
-[GeneratedDocument55]
+[GeneratedDocument32]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_overlay\features
 DItemRevisionGUID=
 
-[GeneratedDocument56]
+[GeneratedDocument33]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_paste\features
 DItemRevisionGUID=
 
-[GeneratedDocument57]
+[GeneratedDocument34]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_solder\features
 DItemRevisionGUID=
 
-[GeneratedDocument58]
+[GeneratedDocument35]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\features
 DItemRevisionGUID=
 
-[GeneratedDocument59]
+[GeneratedDocument36]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\features
 DItemRevisionGUID=
 
-[GeneratedDocument60]
+[GeneratedDocument37]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\dimension\features
 DItemRevisionGUID=
 
-[GeneratedDocument61]
+[GeneratedDocument38]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\drill\features
 DItemRevisionGUID=
 
-[GeneratedDocument62]
+[GeneratedDocument39]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\keep-out_layer\features
 DItemRevisionGUID=
 
-[GeneratedDocument63]
+[GeneratedDocument40]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_1\features
 DItemRevisionGUID=
 
-[GeneratedDocument64]
+[GeneratedDocument41]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_2\features
 DItemRevisionGUID=
 
-[GeneratedDocument65]
+[GeneratedDocument42]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_layer\features
 DItemRevisionGUID=
 
-[GeneratedDocument66]
+[GeneratedDocument43]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_overlay\features
 DItemRevisionGUID=
 
-[GeneratedDocument67]
+[GeneratedDocument44]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_paste\features
 DItemRevisionGUID=
 
-[GeneratedDocument68]
+[GeneratedDocument45]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_solder\features
 DItemRevisionGUID=
 
-[GeneratedDocument69]
+[GeneratedDocument46]
 DocumentPath=outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_135\features
 DItemRevisionGUID=
 
-[GeneratedDocument70]
+[GeneratedDocument47]
 DocumentPath=outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_225\features
 DItemRevisionGUID=
 
-[GeneratedDocument71]
+[GeneratedDocument48]
 DocumentPath=outputs\assembly_odb\odb\symbols\rect55.3386x61.2441_135\features
 DItemRevisionGUID=
 
-[GeneratedDocument72]
+[GeneratedDocument49]
 DocumentPath=outputs\assembly_odb\odb\symbols\rect55.3386x61.2441_225\features
 DItemRevisionGUID=
 
-[GeneratedDocument73]
+[GeneratedDocument50]
 DocumentPath=outputs\assembly_odb\odb\symbols\s39.3701_225\features
 DItemRevisionGUID=
 
-[GeneratedDocument74]
+[GeneratedDocument51]
 DocumentPath=outputs\assembly_odb\odb\symbols\s53.3701_225\features
 DItemRevisionGUID=
 
-[GeneratedDocument75]
+[GeneratedDocument52]
 DocumentPath=outputs\assembly_odb\odb\matrix\matrix
 DItemRevisionGUID=
 
-[GeneratedDocument76]
+[GeneratedDocument53]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\netlists\cadnet\netlist
 DItemRevisionGUID=
 
-[GeneratedDocument77]
+[GeneratedDocument54]
 DocumentPath=outputs\board_3dmodels\parasolid_3dmodel.x_t
 DItemRevisionGUID=
 
-[GeneratedDocument78]
+[GeneratedDocument55]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\profile
 DItemRevisionGUID=
 
-[GeneratedDocument79]
+[GeneratedDocument56]
 DocumentPath=outputs\board_3dmodels\step_3dmodel.step
 DItemRevisionGUID=
 
-[GeneratedDocument80]
+[GeneratedDocument57]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\stephdr
 DItemRevisionGUID=
 
-[GeneratedDocument81]
+[GeneratedDocument58]
 DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\drill\tools
 DItemRevisionGUID=
 
@@ -1003,21 +919,11 @@ OutputName20=WireList Netlist
 OutputDocumentPath20=
 OutputVariantName20=
 OutputDefault20=0
-OutputType21=SIMetrixNetlist
-OutputName21=SIMetrix
+OutputType21=XSpiceNetlist
+OutputName21=Mixed Sim Netlist
 OutputDocumentPath21=
 OutputVariantName21=
 OutputDefault21=0
-OutputType22=SIMPLISNetlist
-OutputName22=SIMPLIS
-OutputDocumentPath22=
-OutputVariantName22=
-OutputDefault22=0
-OutputType23=XSpiceNetlist
-OutputName23=Mixed Sim Netlist
-OutputDocumentPath23=
-OutputVariantName23=
-OutputDefault23=0
 
 [OutputGroup2]
 Name=Simulator Outputs
@@ -1029,16 +935,6 @@ OutputName1=Mixed Sim
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
-OutputType2=SIMetrixSimulation
-OutputName2=SIMetrix
-OutputDocumentPath2=
-OutputVariantName2=
-OutputDefault2=0
-OutputType3=SIMPLISSimulation
-OutputName3=SIMPLIS
-OutputDocumentPath3=
-OutputVariantName3=
-OutputDefault3=0
 
 [OutputGroup3]
 Name=Documentation Outputs
@@ -1048,7 +944,7 @@ PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate
 OutputType1=Composite
 OutputName1=Composite Drawing
 OutputDocumentPath1=
-OutputVariantName1=
+OutputVariantName1=[No Variations]
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.96|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration1_Name1=OutputConfigurationParameter1
@@ -1102,7 +998,7 @@ PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintS
 OutputType4=PCB Print
 OutputName4=PCB Prints
 OutputDocumentPath4=
-OutputVariantName4=
+OutputVariantName4=[No Variations]
 OutputDefault4=0
 PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 Configuration4_Name1=OutputConfigurationParameter1
@@ -1146,7 +1042,7 @@ Configuration4_Item19=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Ful
 OutputType5=PCBLIB Print
 OutputName5=PCBLIB Prints
 OutputDocumentPath5=
-OutputVariantName5=
+OutputVariantName5=[No Variations]
 OutputDefault5=0
 PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType6=PDF3D
@@ -1185,6 +1081,18 @@ OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
 PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType12=Harness Layout Drawing Print
+OutputName12=Harness Layout Drawing Prints
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+PageOptions12=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType13=Harness Wiring Diagram Print
+OutputName13=Harness Wiring Diagram Prints
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 
 [OutputGroup4]
 Name=Assembly Outputs
@@ -1227,13 +1135,13 @@ Configuration1_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|Ge
 OutputType2=Mask
 OutputName2=Solder/Paste Mask Prints
 OutputDocumentPath2=
-OutputVariantName2=
+OutputVariantName2=[No Variations]
 OutputDefault2=0
 PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType3=IPC2581
 OutputName3=IPC-2581 Files
 OutputDocumentPath3=
-OutputVariantName3=
+OutputVariantName3=[No Variations]
 OutputDefault3=0
 OutputType4=Test Points
 OutputName4=Test Point Report
@@ -1243,7 +1151,7 @@ OutputDefault4=0
 OutputType5=Plane
 OutputName5=Power-Plane Prints
 OutputDocumentPath5=
-OutputVariantName5=
+OutputVariantName5=[No Variations]
 OutputDefault5=0
 PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType6=ODB
@@ -1254,13 +1162,13 @@ OutputDefault6=0
 OutputType7=Drill
 OutputName7=Drill Drawing/Guides
 OutputDocumentPath7=
-OutputVariantName7=
+OutputVariantName7=[No Variations]
 OutputDefault7=0
 PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType8=CompositeDrill
 OutputName8=Composite Drill Drawing
 OutputDocumentPath8=
-OutputVariantName8=
+OutputVariantName8=[No Variations]
 OutputDefault8=0
 PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
 OutputType9=Board Stack Report
@@ -1272,7 +1180,7 @@ PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintS
 OutputType10=Gerber X2
 OutputName10=Gerber X2 Files
 OutputDocumentPath10=
-OutputVariantName10=
+OutputVariantName10=[No Variations]
 OutputDefault10=0
 OutputType11=Final
 OutputName11=Final Artwork Prints
@@ -1569,6 +1477,11 @@ OutputName11=Export STEP
 OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
+OutputType12=Web ReviewOutputName
+OutputName12=Web Review Data
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
@@ -1701,6 +1614,7 @@ Type116=1
 Type117=1
 Type118=1
 Type119=1
+Type120=1
 
 [Difference Levels]
 Type1=1
@@ -1892,12 +1806,13 @@ Type116=2
 Type117=3
 Type118=3
 Type119=3
-MultiChannelAlternate=2
 AlternateItemFail=3
 Type122=2
 Type123=1
 Type124=1
 Type125=1
+Type126=1
+Type127=1
 
 [ERC Connection Matrix]
 L1=NNNNNNNNNNNWNNNWW

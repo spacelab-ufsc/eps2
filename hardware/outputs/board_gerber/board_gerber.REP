@@ -46,6 +46,19 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
+Generating : Keep-Out Layer
+      File : board_gerber.GKO
+
+    Adding Layer      : Keep-Out Layer
+
+    Adding Layer      : Board Edge
+
+
+Used DCodes :
+    D11
+*************************************************************
+
+*************************************************************
 Generating : 3D Body
       File : board_gerber.GM1
 
@@ -57,19 +70,6 @@ Generating : 3D Body
 Used DCodes :
     D11
     D177
-*************************************************************
-
-*************************************************************
-Generating : Keep-Out Layer
-      File : board_gerber.GKO
-
-    Adding Layer      : Keep-Out Layer
-
-    Adding Layer      : Board Edge
-
-
-Used DCodes :
-    D11
 *************************************************************
 
 *************************************************************
@@ -358,6 +358,62 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
+Generating : Signal Layer 2
+      File : board_gerber.G2
+
+    Adding Layer      : Signal Layer 2
+
+    Adding Layer      : Board Edge
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D101
+    D102
+    D105
+    D106
+    D107
+    D109
+    D110
+    D114
+    D115
+    D116
+    D117
+    D118
+*************************************************************
+
+*************************************************************
+Generating : Signal Layer 1
+      File : board_gerber.G1
+
+    Adding Layer      : Signal Layer 1
+
+    Adding Layer      : Board Edge
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D101
+    D102
+    D105
+    D107
+    D108
+    D109
+    D110
+    D112
+    D114
+    D115
+    D117
+    D118
+*************************************************************
+
+*************************************************************
 Generating : Bottom Layer
       File : board_gerber.GBL
 
@@ -427,62 +483,6 @@ Used DCodes :
     D143
     D144
     D145
-*************************************************************
-
-*************************************************************
-Generating : Signal Layer 2
-      File : board_gerber.G2
-
-    Adding Layer      : Signal Layer 2
-
-    Adding Layer      : Board Edge
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D10
-    D11
-    D101
-    D102
-    D105
-    D106
-    D107
-    D109
-    D110
-    D114
-    D115
-    D116
-    D117
-    D118
-*************************************************************
-
-*************************************************************
-Generating : Signal Layer 1
-      File : board_gerber.G1
-
-    Adding Layer      : Signal Layer 1
-
-    Adding Layer      : Board Edge
-
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D10
-    D11
-    D101
-    D102
-    D105
-    D107
-    D108
-    D109
-    D110
-    D112
-    D114
-    D115
-    D117
-    D118
 *************************************************************
 
 *************************************************************
