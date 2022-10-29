@@ -1,0 +1,3691 @@
+﻿[Design]
+Version=1.0
+HierarchyMode=0
+ChannelRoomNamingStyle=0
+ReleasesFolder=
+ChannelDesignatorFormatString=$Component_$RoomName
+ChannelRoomLevelSeperator=_
+OpenOutputs=1
+ArchiveProject=0
+TimestampOutput=0
+SeparateFolders=0
+TemplateLocationPath=
+PinSwapBy_Netlabel=1
+PinSwapBy_Pin=1
+AllowPortNetNames=0
+AllowSheetEntryNetNames=1
+AppendSheetNumberToLocalNets=0
+NetlistSinglePinNets=0
+DefaultConfiguration=Default Configuration
+UserID=0xFFFFFFFF
+DefaultPcbProtel=1
+DefaultPcbPcad=0
+ReorderDocumentsOnCompile=1
+NameNetsHierarchically=0
+PowerPortNamesTakePriority=0
+AutoSheetNumbering=0
+AutoCrossReferences=0
+NewIndexingOfSheetSymbols=0
+PushECOToAnnotationFile=1
+DItemRevisionGUID=
+ReportSuppressedErrorsInMessages=0
+FSMCodingStyle=eFMSDropDownList_OneProcess
+FSMEncodingStyle=eFMSDropDownList_OneHot
+IsProjectConflictPreventionWarningsEnabled=1
+IsVirtualBomDocumentRemoved=0
+OutputPath=Project Outputs for PCB_Project_FlightModel_EPS
+LogFolderPath=
+ManagedProjectGUID=
+IncludeDesignInRelease=0
+CrossRefSheetStyle=1
+CrossRefLocationStyle=1
+CrossRefPorts=3
+CrossRefCrossSheets=1
+CrossRefSheetEntries=0
+CrossRefFollowFromMainSettings=1
+
+[Preferences]
+PrefsVaultGUID=
+PrefsRevisionGUID=
+
+[Document1]
+DocumentPath=sources\0_architecture.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=0
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=XNGLLYTJ
+
+[Document2]
+DocumentPath=sources\1_interface.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=TUERPAIJ
+
+[Document3]
+DocumentPath=sources\2_topology.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=2
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=USIDLMAY
+
+[Document4]
+DocumentPath=sources\3_measurement_and_mppt.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=3
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=DNEWQRNE
+
+[Document5]
+DocumentPath=sources\4_battery_monitoring_and_switches.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=4
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=VGVOSMSB
+
+[Document6]
+DocumentPath=sources\5_mcu_main.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=5
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=PRSBMAGJ
+
+[Document7]
+DocumentPath=sources\6_battery_heater_controller.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=6
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=WTJVRJDL
+
+[Document8]
+DocumentPath=sources\7_dc_dc_3v3_ant_obdh.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=7
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OJNUVQFS
+
+[Document9]
+DocumentPath=sources\7_dc_dc_3v3_eps_ttc.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=8
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=OUJEXMHA
+
+[Document10]
+DocumentPath=sources\7_dc_dc_5v_payloads.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=9
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=TMIHKICB
+
+[Document11]
+DocumentPath=sources\7_dc_dc_5v_radios.schdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=10
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=KPCRMAAO
+
+[Document12]
+DocumentPath=libraries\footprints_library_legacy.pcblib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=PYEFNADF
+
+[Document13]
+DocumentPath=libraries\schematics_library_legacy.schlib
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=GTCYXPLE
+
+[Document14]
+DocumentPath=sources\1_interface.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document15]
+DocumentPath=sources\3_measurement_and_mppt.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document16]
+DocumentPath=sources\4_battery_monitoring_and_switches.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document17]
+DocumentPath=sources\5_mcu_main.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document18]
+DocumentPath=sources\6_battery_heater_controller.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document19]
+DocumentPath=sources\7_dc_dc_3v3_ant_obdh.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document20]
+DocumentPath=sources\7_dc_dc_5v_radios.harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document21]
+DocumentPath=sources\board_layout.pcbdoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=MNKAWOPK
+
+[Document22]
+DocumentPath=sources\eps2_outputjob.outjob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document23]
+DocumentPath=sources\board_draftsman.PCBDwf
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document24]
+DocumentPath=outputs\camtastic_fabrication_v02.cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[ProjectVariant1]
+UniqueID=DAEE0F17-C7D1-4E98-8DC4-A24E7F5DD222
+Description=test_model
+AllowFabrication=0
+ParameterCount=0
+VariationCount=29
+Variation1=Designator=D17|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\CQQPBBMT|Kind=1|AlternatePart= 
+Variation2=Designator=D8|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\CNACGIAN|Kind=1|AlternatePart= 
+Variation3=Designator=D18|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\XPGOLMBC|Kind=1|AlternatePart= 
+Variation4=Designator=D19|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\SLNWPWKT|Kind=1|AlternatePart= 
+Variation5=Designator=D20|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\MITSXSPF|Kind=1|AlternatePart= 
+Variation6=Designator=D21|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\GYMSAPFL|Kind=1|AlternatePart= 
+Variation7=Designator=D22|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\GGBUDTMC|Kind=1|AlternatePart= 
+Variation8=Designator=R93|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\NFOUHCLM|Kind=1|AlternatePart= 
+Variation9=Designator=J_V5|UniqueId=\FWURHRBX\NDGVENKM\CRVRAAYI\KQKWWIVL|Kind=1|AlternatePart= 
+Variation10=Designator=J_V3|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\AKVJBTJD|Kind=1|AlternatePart= 
+Variation11=Designator=J_V1|UniqueId=\FWURHRBX\NDGVENKM\XBRSCFVC\DASVNLKC|Kind=1|AlternatePart= 
+Variation12=Designator=J_V6|UniqueId=\FWURHRBX\NDGVENKM\XBRSCFVC\JQHHWXVX|Kind=1|AlternatePart= 
+Variation13=Designator=R50|UniqueId=\FWURHRBX\NDGVENKM\LBSGDSNU\HJYLGVUE|Kind=1|AlternatePart= 
+Variation14=Designator=R51|UniqueId=\FWURHRBX\NDGVENKM\LBSGDSNU\UFPKMFIS|Kind=1|AlternatePart= 
+Variation15=Designator=R56|UniqueId=\FWURHRBX\NDGVENKM\WPEOLFMX\OMYGNCNN|Kind=1|AlternatePart= 
+Variation16=Designator=R55|UniqueId=\FWURHRBX\NDGVENKM\WPEOLFMX\APOPXGVR|Kind=1|AlternatePart= 
+Variation17=Designator=R15|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\YGETBTXO|Kind=1|AlternatePart= 
+Variation18=Designator=R16|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\PICNLKNR|Kind=1|AlternatePart= 
+Variation19=Designator=R21|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\GDJVXFPE|Kind=1|AlternatePart= 
+Variation20=Designator=R20|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\XUIOORYQ|Kind=1|AlternatePart= 
+Variation21=Designator=R2|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\AFWFGXTD|Kind=1|AlternatePart= 
+Variation22=Designator=R3|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\IRPNTSMW|Kind=1|AlternatePart= 
+Variation23=Designator=R10|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\PDFDPAFJ|Kind=1|AlternatePart= 
+Variation24=Designator=R9|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\JYPJJUEP|Kind=1|AlternatePart= 
+Variation25=Designator=R46|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\YPGHGSNN|Kind=1|AlternatePart= 
+Variation26=Designator=R47|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\GHKEUTVM|Kind=1|AlternatePart= 
+Variation27=Designator=J_V4|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\SYXEBJWB|Kind=1|AlternatePart= 
+Variation28=Designator=R28|UniqueId=\FWURHRBX\NDGVENKM\XBRSCFVC\XRRQVSNF|Kind=1|AlternatePart= 
+Variation29=Designator=R32|UniqueId=\FWURHRBX\NDGVENKM\XBRSCFVC\INUABYSQ|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
+[ProjectVariant2]
+UniqueID=99B9080B-D9FF-4980-B3DA-6204D492BC36
+Description=flight_model
+AllowFabrication=0
+ParameterCount=0
+VariationCount=20
+Variation1=Designator=R93|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\NFOUHCLM|Kind=1|AlternatePart= 
+Variation2=Designator=P1|UniqueId=\FWURHRBX\SCUJZUWE|Kind=1|AlternatePart= 
+Variation3=Designator=UART|UniqueId=\FWURHRBX\WMAXHDRH|Kind=1|AlternatePart= 
+Variation4=Designator=R87|UniqueId=\FWURHRBX\FPGRRRFG|Kind=1|AlternatePart= 
+Variation5=Designator=R88|UniqueId=\FWURHRBX\VATFTJSX|Kind=1|AlternatePart= 
+Variation6=Designator=R89|UniqueId=\FWURHRBX\IMVGSAGG|Kind=1|AlternatePart= 
+Variation7=Designator=R90|UniqueId=\FWURHRBX\XOMVEBVC|Kind=1|AlternatePart= 
+Variation8=Designator=R91|UniqueId=\FWURHRBX\TOLWFOLN|Kind=1|AlternatePart= 
+Variation9=Designator=VBUS_LED|UniqueId=\FWURHRBX\NDGVENKM\FITLMODB\ITSFOTYH|Kind=1|AlternatePart= 
+Variation10=Designator=3V3_MCU|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\VUUWCQON|Kind=1|AlternatePart= 
+Variation11=Designator=SYSTEM_ON|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\DHROFRVN|Kind=1|AlternatePart= 
+Variation12=Designator=P11|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\YOYUNLAU|Kind=1|AlternatePart= 
+Variation13=Designator=J_V4|UniqueId=\FWURHRBX\NDGVENKM\JUUAETPN\SYXEBJWB|Kind=1|AlternatePart= 
+Variation14=Designator=3V3_ANT|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\CMMYAFOK|Kind=1|AlternatePart= 
+Variation15=Designator=3V3_OBDH|UniqueId=\FWURHRBX\NDGVENKM\KGGXOOXW\YOEFVUHP|Kind=1|AlternatePart= 
+Variation16=Designator=3V3_EPS_BEACON|UniqueId=\FWURHRBX\NDGVENKM\LBSGDSNU\RXVATHQC|Kind=1|AlternatePart= 
+Variation17=Designator=5V_PAYLOADS_LED|UniqueId=\FWURHRBX\NDGVENKM\WPEOLFMX\OIUUMQWO|Kind=1|AlternatePart= 
+Variation18=Designator=6V_RADIO_1_LED|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\PTRFNECQ|Kind=1|AlternatePart= 
+Variation19=Designator=5V_RADIO_0_LED|UniqueId=\FWURHRBX\NDGVENKM\ABOAUKDN\RWBOFYDK|Kind=1|AlternatePart= 
+Variation20=Designator=CN1|UniqueId=\FWURHRBX\OGWYOFGJ|Kind=1|AlternatePart= 
+ParamVariationCount=0
+
+[GeneratedDocument1]
+DocumentPath=outputs\assembly_odb\assembly_odb.REP
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=outputs\assembly_pick_place\assembly_pick_place.txt
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=outputs\assembly_test_point\assembly_test_point.ipc
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=outputs\board_bom\board_bom.xls
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=outputs\board_drc\board_drc.html
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=outputs\board_gerber\board_gerber.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=outputs\board_gerber\board_gerber.G1
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=outputs\board_gerber\board_gerber.G2
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=outputs\board_gerber\board_gerber.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=outputs\board_gerber\board_gerber.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=outputs\board_gerber\board_gerber.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=outputs\board_gerber\board_gerber.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=outputs\board_gerber\board_gerber.GD1
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=outputs\board_gerber\board_gerber.GKO
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=outputs\board_gerber\board_gerber.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=outputs\board_gerber\board_gerber.GM2
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=outputs\board_gerber\board_gerber.GM9
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=outputs\board_gerber\board_gerber.GM16
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=outputs\board_gerber\board_gerber.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=outputs\board_gerber\board_gerber.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=outputs\board_gerber\board_gerber.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=outputs\board_gerber\board_gerber.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=outputs\board_gerber\board_gerber.REP
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=outputs\board_nc_drill\board_nc_drill.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=outputs\board_nc_drill\board_nc_drill.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=outputs\board_nc_drill\board_nc_drill.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\components
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\components
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\eda\data
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\3d_body\features
+DItemRevisionGUID=
+
+[GeneratedDocument31]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_layer\features
+DItemRevisionGUID=
+
+[GeneratedDocument32]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_overlay\features
+DItemRevisionGUID=
+
+[GeneratedDocument33]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_paste\features
+DItemRevisionGUID=
+
+[GeneratedDocument34]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\bottom_solder\features
+DItemRevisionGUID=
+
+[GeneratedDocument35]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\features
+DItemRevisionGUID=
+
+[GeneratedDocument36]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\features
+DItemRevisionGUID=
+
+[GeneratedDocument37]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\dimension\features
+DItemRevisionGUID=
+
+[GeneratedDocument38]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\drill\features
+DItemRevisionGUID=
+
+[GeneratedDocument39]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\keep-out_layer\features
+DItemRevisionGUID=
+
+[GeneratedDocument40]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_1\features
+DItemRevisionGUID=
+
+[GeneratedDocument41]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_2\features
+DItemRevisionGUID=
+
+[GeneratedDocument42]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_layer\features
+DItemRevisionGUID=
+
+[GeneratedDocument43]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_overlay\features
+DItemRevisionGUID=
+
+[GeneratedDocument44]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_paste\features
+DItemRevisionGUID=
+
+[GeneratedDocument45]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\top_solder\features
+DItemRevisionGUID=
+
+[GeneratedDocument46]
+DocumentPath=outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_135\features
+DItemRevisionGUID=
+
+[GeneratedDocument47]
+DocumentPath=outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_225\features
+DItemRevisionGUID=
+
+[GeneratedDocument48]
+DocumentPath=outputs\assembly_odb\odb\symbols\rect55.3386x61.2441_135\features
+DItemRevisionGUID=
+
+[GeneratedDocument49]
+DocumentPath=outputs\assembly_odb\odb\symbols\rect55.3386x61.2441_225\features
+DItemRevisionGUID=
+
+[GeneratedDocument50]
+DocumentPath=outputs\assembly_odb\odb\symbols\s39.3701_225\features
+DItemRevisionGUID=
+
+[GeneratedDocument51]
+DocumentPath=outputs\assembly_odb\odb\symbols\s53.3701_225\features
+DItemRevisionGUID=
+
+[GeneratedDocument52]
+DocumentPath=outputs\assembly_odb\odb\matrix\matrix
+DItemRevisionGUID=
+
+[GeneratedDocument53]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\netlists\cadnet\netlist
+DItemRevisionGUID=
+
+[GeneratedDocument54]
+DocumentPath=outputs\board_3dmodels\parasolid_3dmodel.x_t
+DItemRevisionGUID=
+
+[GeneratedDocument55]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\profile
+DItemRevisionGUID=
+
+[GeneratedDocument56]
+DocumentPath=outputs\board_3dmodels\step_3dmodel.step
+DItemRevisionGUID=
+
+[GeneratedDocument57]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\stephdr
+DItemRevisionGUID=
+
+[GeneratedDocument58]
+DocumentPath=outputs\assembly_odb\odb\steps\pcb\layers\drill\tools
+DItemRevisionGUID=
+
+[Parameter1]
+Name=DesignedBy
+Value=André M. P. Mattos
+
+[Parameter2]
+Name=ProjectCode
+Value=EPS2
+
+[Parameter3]
+Name=ProjectRevision
+Value=v0.1
+
+[Configuration1]
+Name=Default Configuration
+ParameterCount=0
+ConstraintFileCount=0
+ReleaseItemId=
+Variant=[No Variations]
+OutputJobsCount=0
+ContentTypeGUID=
+ConfigurationType=
+
+[Generic_SmartPDF]
+AutoOpenFile=-1
+AutoOpenOutJob=-1
+
+[Generic_SmartPDFSettings]
+ProjectMode=-1
+ZoomPrecision=50
+AddNetsInformation=-1
+AddNetPins=-1
+AddNetNetLabels=-1
+AddNetPorts=-1
+ShowComponentParameters=-1
+GlobalBookmarks=0
+ExportBOM=-1
+TemplateFilename=BOM Variant Template.XLT
+TemplateStoreRelative=-1
+PCB_PrintColor=1
+SCH_PrintColor=0
+PrintQuality=-3
+SCH_ShowNoErc=-1
+SCH_ShowParameter=-1
+SCH_ShowProbes=-1
+SCH_ShowBlankets=-1
+SCH_NoERCSymbolsToShow="Thin Cross","Thick Cross","Small Cross",Checkbox,Triangle
+SCH_ShowNote=-1
+SCH_ShowNoteCollapsed=-1
+SCH_ExpandLogicalToPhysical=0
+SCH_VariantName=[No Variations]
+SCH_ExpandComponentDesignators=-1
+SCH_ExpandNetlabels=0
+SCH_ExpandPorts=0
+SCH_ExpandSheetNumber=0
+SCH_ExpandDocumentNumber=0
+SCH_HasExpandLogicalToPhysicalSheets=-1
+SaveSettingsToOutJob=-1
+
+[Generic_EDE]
+OutputDir=Project Outputs for PCB_Project_FlightModel_EPS
+
+[OutputGroup1]
+Name=Netlist Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=PCADNetlist
+OutputName1=PCAD Netlist
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+OutputType2=CadnetixNetlist
+OutputName2=Cadnetix Netlist
+OutputDocumentPath2=
+OutputVariantName2=
+OutputDefault2=0
+OutputType3=CalayNetlist
+OutputName3=Calay Netlist
+OutputDocumentPath3=
+OutputVariantName3=
+OutputDefault3=0
+OutputType4=EDIF
+OutputName4=EDIF for PCB
+OutputDocumentPath4=
+OutputVariantName4=
+OutputDefault4=0
+OutputType5=EESofNetlist
+OutputName5=EESof Netlist
+OutputDocumentPath5=
+OutputVariantName5=
+OutputDefault5=0
+OutputType6=IntergraphNetlist
+OutputName6=Intergraph Netlist
+OutputDocumentPath6=
+OutputVariantName6=
+OutputDefault6=0
+OutputType7=MentorBoardStationNetlist
+OutputName7=Mentor BoardStation Netlist
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
+OutputType8=MultiWire
+OutputName8=MultiWire
+OutputDocumentPath8=
+OutputVariantName8=
+OutputDefault8=0
+OutputType9=OrCadPCB2Netlist
+OutputName9=Orcad/PCB2 Netlist
+OutputDocumentPath9=
+OutputVariantName9=
+OutputDefault9=0
+OutputType10=PADSNetlist
+OutputName10=PADS ASCII Netlist
+OutputDocumentPath10=
+OutputVariantName10=
+OutputDefault10=0
+OutputType11=Pcad
+OutputName11=Pcad for PCB
+OutputDocumentPath11=
+OutputVariantName11=
+OutputDefault11=0
+OutputType12=PCADnltNetlist
+OutputName12=PCADnlt Netlist
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+OutputType13=Protel2Netlist
+OutputName13=Protel2 Netlist
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+OutputType14=ProtelNetlist
+OutputName14=Protel
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+OutputType15=RacalNetlist
+OutputName15=Racal Netlist
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+OutputType16=RINFNetlist
+OutputName16=RINF Netlist
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+OutputType17=SciCardsNetlist
+OutputName17=SciCards Netlist
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
+OutputType18=TangoNetlist
+OutputName18=Tango Netlist
+OutputDocumentPath18=
+OutputVariantName18=
+OutputDefault18=0
+OutputType19=TelesisNetlist
+OutputName19=Telesis Netlist
+OutputDocumentPath19=
+OutputVariantName19=
+OutputDefault19=0
+OutputType20=WireListNetlist
+OutputName20=WireList Netlist
+OutputDocumentPath20=
+OutputVariantName20=
+OutputDefault20=0
+OutputType21=XSpiceNetlist
+OutputName21=Mixed Sim Netlist
+OutputDocumentPath21=
+OutputVariantName21=
+OutputDefault21=0
+
+[OutputGroup2]
+Name=Simulator Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=AdvSimNetlist
+OutputName1=Mixed Sim
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+
+[OutputGroup3]
+Name=Documentation Outputs
+Description=
+TargetPrinter=Virtual Printer
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=Composite
+OutputName1=Composite Drawing
+OutputDocumentPath1=
+OutputVariantName1=[No Variations]
+OutputDefault1=0
+PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.96|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+Configuration1_Name1=OutputConfigurationParameter1
+Configuration1_Item1=DesignatorDisplayMode=Physical|PrintArea=DesignExtent|PrintAreaLowerLeftCornerX=0|PrintAreaLowerLeftCornerY=0|PrintAreaUpperRightCornerX=0|PrintAreaUpperRightCornerY=0|Record=PcbPrintView
+Configuration1_Name2=OutputConfigurationParameter2
+Configuration1_Item2=IncludeBottomLayerComponents=True|IncludeMultiLayerComponents=True|IncludeTopLayerComponents=True|IncludeViewports=True|Index=0|Mirror=False|Name=Multilayer Composite Print|PadNumberFontSize=14|Record=PcbPrintOut|ShowHoles=False|ShowPadNets=False|ShowPadNumbers=False|SubstituteFonts=False
+Configuration1_Name3=OutputConfigurationParameter3
+Configuration1_Item3=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopOverlay|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name4=OutputConfigurationParameter4
+Configuration1_Item4=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name5=OutputConfigurationParameter5
+Configuration1_Item5=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MidLayer1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name6=OutputConfigurationParameter6
+Configuration1_Item6=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MidLayer2|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name7=OutputConfigurationParameter7
+Configuration1_Item7=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name8=OutputConfigurationParameter8
+Configuration1_Item8=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MultiLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name9=OutputConfigurationParameter9
+Configuration1_Item9=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomOverlay|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name10=OutputConfigurationParameter10
+Configuration1_Item10=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=KeepOutLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name11=OutputConfigurationParameter11
+Configuration1_Item11=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name12=OutputConfigurationParameter12
+Configuration1_Item12=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical5|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name13=OutputConfigurationParameter13
+Configuration1_Item13=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical7|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name14=OutputConfigurationParameter14
+Configuration1_Item14=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical11|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name15=OutputConfigurationParameter15
+Configuration1_Item15=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical13|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name16=OutputConfigurationParameter16
+Configuration1_Item16=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical14|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration1_Name17=OutputConfigurationParameter17
+Configuration1_Item17=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical15|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+OutputType2=PCB 3D Print
+OutputName2=PCB 3D Print
+OutputDocumentPath2=
+OutputVariantName2=[No Variations]
+OutputDefault2=0
+PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+Configuration2_Name1=OutputConfigurationParameter1
+Configuration2_Item1=Record=Pcb3DPrintView|ResX=300|ResY=300|ViewX=36271884|ViewY=35092312|LookAtX=44248784|LookAtY=49753376|LookAtZ=0|UpX=0|UpY=1|UpZ=0|FOV=0|QuatX=0|QuatY=0|QuatZ=0|QuatW=1|Zoom=2.60455908405237E-5|UnitsPercent=True|UnitsDPI=True|LockResAspect=True|ViewConfigType=.config_3d|CustomCamera=False|ViewFromTop=True|ViewConfig=
+OutputType3=PCB 3D Video
+OutputName3=PCB 3D Video
+OutputDocumentPath3=
+OutputVariantName3=[No Variations]
+OutputDefault3=0
+PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType4=PCB Print
+OutputName4=PCB Prints
+OutputDocumentPath4=
+OutputVariantName4=[No Variations]
+OutputDefault4=0
+PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+Configuration4_Name1=OutputConfigurationParameter1
+Configuration4_Item1=DesignatorDisplayMode=Physical|PrintArea=DesignExtent|PrintAreaLowerLeftCornerX=0|PrintAreaLowerLeftCornerY=0|PrintAreaUpperRightCornerX=0|PrintAreaUpperRightCornerY=0|Record=PcbPrintView
+Configuration4_Name2=OutputConfigurationParameter2
+Configuration4_Item2=IncludeBottomLayerComponents=True|IncludeMultiLayerComponents=True|IncludeTopLayerComponents=True|IncludeViewports=True|Index=0|Mirror=False|Name=Multilayer Composite Print|PadNumberFontSize=14|Record=PcbPrintOut|ShowHoles=False|ShowPadNets=False|ShowPadNumbers=False|SubstituteFonts=False
+Configuration4_Name3=OutputConfigurationParameter3
+Configuration4_Item3=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopOverlay|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name4=OutputConfigurationParameter4
+Configuration4_Item4=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name5=OutputConfigurationParameter5
+Configuration4_Item5=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MidLayer1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name6=OutputConfigurationParameter6
+Configuration4_Item6=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MidLayer2|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name7=OutputConfigurationParameter7
+Configuration4_Item7=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name8=OutputConfigurationParameter8
+Configuration4_Item8=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MultiLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name9=OutputConfigurationParameter9
+Configuration4_Item9=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomOverlay|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name10=OutputConfigurationParameter10
+Configuration4_Item10=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=KeepOutLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name11=OutputConfigurationParameter11
+Configuration4_Item11=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical1|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name12=OutputConfigurationParameter12
+Configuration4_Item12=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical2|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name13=OutputConfigurationParameter13
+Configuration4_Item13=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical3|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name14=OutputConfigurationParameter14
+Configuration4_Item14=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical4|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name15=OutputConfigurationParameter15
+Configuration4_Item15=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical5|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name16=OutputConfigurationParameter16
+Configuration4_Item16=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical9|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name17=OutputConfigurationParameter17
+Configuration4_Item17=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical13|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name18=OutputConfigurationParameter18
+Configuration4_Item18=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical15|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration4_Name19=OutputConfigurationParameter19
+Configuration4_Item19=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=Mechanical16|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+OutputType5=PCBLIB Print
+OutputName5=PCBLIB Prints
+OutputDocumentPath5=
+OutputVariantName5=[No Variations]
+OutputDefault5=0
+PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType6=PDF3D
+OutputName6=PDF3D
+OutputDocumentPath6=
+OutputVariantName6=[No Variations]
+OutputDefault6=0
+PageOptions6=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType7=Report Print
+OutputName7=Report Prints
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType8=Schematic Print
+OutputName8=Schematic Prints
+OutputDocumentPath8=
+OutputVariantName8=
+OutputDefault8=0
+PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType9=SimView Print
+OutputName9=SimView Prints
+OutputDocumentPath9=
+OutputVariantName9=
+OutputDefault9=0
+PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType10=PCBDrawing
+OutputName10=Draftsman
+OutputDocumentPath10=
+OutputVariantName10=[No Variations]
+OutputDefault10=0
+PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType11=PDF3D MBA
+OutputName11=PDF3D MBA
+OutputDocumentPath11=
+OutputVariantName11=
+OutputDefault11=0
+PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType12=Harness Layout Drawing Print
+OutputName12=Harness Layout Drawing Prints
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+PageOptions12=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType13=Harness Wiring Diagram Print
+OutputName13=Harness Wiring Diagram Prints
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+
+[OutputGroup4]
+Name=Assembly Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=Test Points For Assembly
+OutputName1=Test Point Report
+OutputDocumentPath1=
+OutputVariantName1=[No Variations]
+OutputDefault1=0
+OutputType2=Pick Place
+OutputName2=Generates pick and place files
+OutputDocumentPath2=
+OutputVariantName2=[No Variations]
+OutputDefault2=0
+Configuration2_Name1=OutputConfigurationParameter1
+Configuration2_Item1=Record=PickPlaceView|Units=Imperial|GenerateCSVFormat=True|GenerateTextFormat=True|ShowUnits=False|Separator=.|ExcludeFilterParam=False|IncludeVariations=False|Filter= |FilterActive=False|Column#1=Name:Designator,Fixed:True,Metric:False,Visible:True,Sort:None,Position:0|Column#2=Name:Comment,Fixed:True,Metric:False,Visible:True,Sort:None,Position:1|Column#3=Name:Layer,Fixed:True,Metric:False,Visible:True,Sort:None,Position:2|Column#4=Name:Footprint,Fixed:True,Metric:False,Visible:True,Sort:None,Position:3|Column#5=Name:Footprint Description,Fixed:True,Metric:False,Visible:False,Sort:None,Position:4|Column#6=Name:Center-X,Fixed:True,Metric:True,Visible:True,Sort:None,Position:5|Column#7=Name:Center-Y,Fixed:True,Metric:True,Visible:True,Sort:None,Position:6|Column#8=Name:Rotation,Fixed:True,Metric:False,Visible:True,Sort:None,Position:7|Column#9=Name:Description,Fixed:True,Metric:False,Visible:True,Sort:None,Position:8|Column#10=Name:ComponentKind,Fixed:True,Metric:False,Visible:False,Sort:None,Position:9|Column#11=Name:Height,Fixed:True,Metric:True,Visible:False,Sort:None,Position:10|Column#12=Name:Ref-X,Fixed:True,Metric:True,Visible:False,Sort:None,Position:11|Column#13=Name:Ref-Y,Fixed:True,Metric:True,Visible:False,Sort:None,Position:12|Column#14=Name:Pad-X,Fixed:True,Metric:True,Visible:False,Sort:None,Position:13|Column#15=Name:Pad-Y,Fixed:True,Metric:True,Visible:False,Sort:None,Position:14|Column#16=Name:Variation,Fixed:True,Metric:False,Visible:False,Sort:None,Position:15|Column#17=Name:Package / Case,Fixed:False,Metric:False,Visible:False,Sort:None,Position:38|Column#18=Name:Part_Number,Fixed:False,Metric:False,Visible:False,Sort:None,Position:43|Column#19=Name:Configuration,Fixed:False,Metric:False,Visible:False,Sort:None,Position:23|Column#20=Name:Sampling Rate (Per Second),Fixed:False,Metric:False,Visible:False,Sort:None,Position:54|Column#21=Name:LatestRevisionNote,Fixed:False,Metric:False,Visible:False,Sort:None,Position:29|Column#22=Name:Number of Inputs,Fixed:False,Metric:False,Visible:False,Sort:None,Position:36|Column#23=Name:Category,Fixed:False,Metric:False,Visible:False,Sort:None,Position:19|Column#24=Name:Packaging,Fixed:False,Metric:False,Visible:False,Sort:None,Position:42|Column#25=Name:Datasheet,Fixed:False,Metric:False,Visible:False,Sort:None,Position:25|Column#26=Name:Supplier,Fixed:False,Metric:False,Visible:False,Sort:None,Position:56|Column#27=Name:Ratio - S/H:ADC,Fixed:False,Metric:False,Visible:False,Sort:None,Position:50|Column#28=Name:MountType,Fixed:False,Metric:False,Visible:False,Sort:None,Position:32|Column#29=Name:Number of A/D Converters,Fixed:False,Metric:False,Visible:False,Sort:None,Position:34|Column#30=Name:Supplier Part Number 2,Fixed:False,Metric:False,Visible:False,Sort:None,Position:62|Column#31=Name:Voltage - Supply, Analog,Fixed:False,Metric:False,Visible:False,Sort:None,Position:68|Column#32=Name:Pricing 1,Fixed:False,Metric:False,Visible:False,Sort:None,Position:47|Column#33=Name:Stock 1,Fixed:False,Metric:False,Visible:False,Sort:None,Position:55|Column#34=Name:Supplier_Part_Number,Fixed:False,Metric:False,Visible:False,Sort:None,Position:65|Column#35=Name:Reference Type,Fixed:False,Metric:False,Visible:False,Sort:None,Position:52|Column#36=Name:CompType,Fixed:False,Metric:False,Visible:False,Sort:None,Position:22|Column#37=Name:Supplier 1,Fixed:False,Metric:False,Visible:False,Sort:None,Position:57|Column#38=Name:Data Interface,Fixed:False,Metric:False,Visible:False,Sort:None,Position:24|Column#39=Name:Number of Bits,Fixed:False,Metric:False,Visible:False,Sort:None,Position:35|Column#40=Name:Published,Fixed:False,Metric:False,Visible:False,Sort:None,Position:48|Column#41=Name:Supplier Part Number 1,Fixed:False,Metric:False,Visible:False,Sort:None,Position:61|Column#42=Name:Manufacturer,Fixed:False,Metric:False,Visible:False,Sort:None,Position:30|Column#43=Name:Supplier Device Package,Fixed:False,Metric:False,Visible:False,Sort:None,Position:60|Column#44=Name:Supplier 2,Fixed:False,Metric:False,Visible:False,Sort:None,Position:58|Column#45=Name:NCM,Fixed:False,Metric:False,Visible:False,Sort:None,Position:33|Column#46=Name:RoHS,Fixed:False,Metric:False,Visible:False,Sort:None,Position:53|Column#47=Name:Type,Fixed:False,Metric:False,Visible:False,Sort:None,Position:66|Column#48=Name:Supplier 3,Fixed:False,Metric:False,Visible:False,Sort:None,Position:59|Column#49=Name:Partnumber,Fixed:False,Metric:False,Visible:False,Sort:None,Position:44|Column#50=Name:Alternate PartNumber,Fixed:False,Metric:False,Visible:False,Sort:None,Position:16|Column#51=Name:Application_BuildNumber,Fixed:False,Metric:False,Visible:False,Sort:None,Position:17|Column#52=Name:Voltage - Supply, Digital,Fixed:False,Metric:False,Visible:False,Sort:None,Position:69|Column#53=Name:PackageDescription,Fixed:False,Metric:False,Visible:False,Sort:None,Position:39|Column#54=Name:ComponentLink1URL,Fixed:False,Metric:False,Visible:False,Sort:None,Position:21|Column#55=Name:PIN_COUNT,Fixed:False,Metric:False,Visible:False,Sort:None,Position:45|Column#56=Name:Value,Fixed:False,Metric:False,Visible:False,Sort:None,Position:67|Column#57=Name:PackageReference,Fixed:False,Metric:False,Visible:False,Sort:None,Position:40|Column#58=Name:Architecture,Fixed:False,Metric:False,Visible:False,Sort:None,Position:18|Column#59=Name:Supplier_Link,Fixed:False,Metric:False,Visible:False,Sort:None,Position:64|Column#60=Name:LatestRevisionDate,Fixed:False,Metric:False,Visible:False,Sort:None,Position:28|Column#61=Name:Publisher,Fixed:False,Metric:False,Visible:False,Sort:None,Position:49|Column#62=Name:ComponentLink1Description,Fixed:False,Metric:False,Visible:False,Sort:None,Position:20|Column#63=Name:Features,Fixed:False,Metric:False,Visible:False,Sort:None,Position:26|Column#64=Name:RefDes,Fixed:False,Metric:False,Visible:False,Sort:None,Position:51|Column#65=Name:Input Type,Fixed:False,Metric:False,Visible:False,Sort:None,Position:27|Column#66=Name:Supplier Part Number 3,Fixed:False,Metric:False,Visible:False,Sort:None,Position:63|Column#67=Name:PackageVersion,Fixed:False,Metric:False,Visible:False,Sort:None,Position:41|Column#68=Name:Price,Fixed:False,Metric:False,Visible:False,Sort:None,Position:46|Column#69=Name:Operating Temperature,Fixed:False,Metric:False,Visible:False,Sort:None,Position:37|Column#70=Name:Manufacturer Part Number,Fixed:False,Metric:False,Visible:False,Sort:None,Position:31
+OutputType3=Assembly
+OutputName3=Assembly Drawings
+OutputDocumentPath3=
+OutputVariantName3=[No Variations]
+OutputDefault3=0
+PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+
+[OutputGroup5]
+Name=Fabrication Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=NC Drill
+OutputName1=NC Drill Files
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+Configuration1_Name1=ForceUpdateSettings
+Configuration1_Item1=False
+Configuration1_Name2=OutputConfigurationParameter1
+Configuration1_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
+OutputType2=Mask
+OutputName2=Solder/Paste Mask Prints
+OutputDocumentPath2=
+OutputVariantName2=[No Variations]
+OutputDefault2=0
+PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType3=IPC2581
+OutputName3=IPC-2581 Files
+OutputDocumentPath3=
+OutputVariantName3=[No Variations]
+OutputDefault3=0
+OutputType4=Test Points
+OutputName4=Test Point Report
+OutputDocumentPath4=
+OutputVariantName4=
+OutputDefault4=0
+OutputType5=Plane
+OutputName5=Power-Plane Prints
+OutputDocumentPath5=
+OutputVariantName5=[No Variations]
+OutputDefault5=0
+PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType6=ODB
+OutputName6=ODB++ Files
+OutputDocumentPath6=
+OutputVariantName6=[No Variations]
+OutputDefault6=0
+OutputType7=Drill
+OutputName7=Drill Drawing/Guides
+OutputDocumentPath7=
+OutputVariantName7=[No Variations]
+OutputDefault7=0
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType8=CompositeDrill
+OutputName8=Composite Drill Drawing
+OutputDocumentPath8=
+OutputVariantName8=[No Variations]
+OutputDefault8=0
+PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType9=Board Stack Report
+OutputName9=Report Board Stack
+OutputDocumentPath9=
+OutputVariantName9=
+OutputDefault9=0
+PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType10=Gerber X2
+OutputName10=Gerber X2 Files
+OutputDocumentPath10=
+OutputVariantName10=[No Variations]
+OutputDefault10=0
+OutputType11=Final
+OutputName11=Final Artwork Prints
+OutputDocumentPath11=
+OutputVariantName11=[No Variations]
+OutputDefault11=0
+PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType12=Gerber
+OutputName12=Gerber Files
+OutputDocumentPath12=
+OutputVariantName12=[No Variations]
+OutputDefault12=0
+Configuration12_Name1=ForceUpdateSettings
+Configuration12_Item1=False
+Configuration12_Name2=OutputConfigurationParameter1
+Configuration12_Item2=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=5|NumberOfDecimals=5|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16777218~1,16777219~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1,16908293~1,16908295~1,16908299~1,16908301~1,16908302~1,16908303~1,16973837~1,16973848~1,16973849~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=50|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
+
+[OutputGroup6]
+Name=Report Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=Script
+OutputName1=Script Output
+OutputDocumentPath1=
+OutputVariantName1=[No Variations]
+OutputDefault1=0
+OutputType2=SimpleBOM
+OutputName2=Simple BOM
+OutputDocumentPath2=
+OutputVariantName2=[No Variations]
+OutputDefault2=0
+Configuration2_Name1=OutputConfigurationParameter1
+Configuration2_Item1=Record=SimpleBOMView|SimpleBOMMode=0
+OutputType3=SinglePinNetReporter
+OutputName3=Report Single Pin Nets
+OutputDocumentPath3=
+OutputVariantName3=[No Variations]
+OutputDefault3=0
+OutputType4=BOM_PartType
+OutputName4=Bill of Materials
+OutputDocumentPath4=
+OutputVariantName4=[No Variations]
+OutputDefault4=0
+PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+Configuration4_Name1=ColumnNameFormat
+Configuration4_Item1=CaptionAsName
+Configuration4_Name2=Filter
+Configuration4_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
+Configuration4_Name3=ForceUpdateSettings
+Configuration4_Item3=False
+Configuration4_Name4=General
+Configuration4_Item4=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=False|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1169|FormHeight=816|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>|ViewType=0
+Configuration4_Name5=GroupOrder
+Configuration4_Item5=Comment=True|Footprint=True
+Configuration4_Name6=SortOrder
+Configuration4_Item6=Designator=Up|Comment=Up|Footprint=Up
+Configuration4_Name7=VisibleOrder
+Configuration4_Item7=Comment=100|Description=100|Designator=100|Footprint=100|LibRef=100|PartNumber=100|Quantity=100
+OutputType5=ComponentCrossReference
+OutputName5=Component Cross Reference Report
+OutputDocumentPath5=
+OutputVariantName5=[No Variations]
+OutputDefault5=0
+Configuration5_Name1=ColumnNameFormat
+Configuration5_Item1=CaptionAsName
+OutputType6=ReportHierarchy
+OutputName6=Report Project Hierarchy
+OutputDocumentPath6=
+OutputVariantName6=[No Variations]
+OutputDefault6=0
+OutputType7=BOM_ReportCompare
+OutputName7=BOM Compare
+OutputDocumentPath7=
+OutputVariantName7=[No Variations]
+OutputDefault7=0
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType8=Export Comments
+OutputName8=Export Comments
+OutputDocumentPath8=
+OutputVariantName8=[No Variations]
+OutputDefault8=0
+PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+
+[OutputGroup7]
+Name=Other Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=Text Print
+OutputName1=Text Print
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType2=Text Print
+OutputName2=Text Print
+OutputDocumentPath2=
+OutputVariantName2=
+OutputDefault2=0
+PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType3=Text Print
+OutputName3=Text Print
+OutputDocumentPath3=
+OutputVariantName3=
+OutputDefault3=0
+PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType4=Text Print
+OutputName4=Text Print
+OutputDocumentPath4=
+OutputVariantName4=
+OutputDefault4=0
+PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType5=Text Print
+OutputName5=Text Print
+OutputDocumentPath5=
+OutputVariantName5=
+OutputDefault5=0
+PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType6=Text Print
+OutputName6=Text Print
+OutputDocumentPath6=
+OutputVariantName6=
+OutputDefault6=0
+PageOptions6=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType7=Text Print
+OutputName7=Text Print
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType8=Text Print
+OutputName8=Text Print
+OutputDocumentPath8=
+OutputVariantName8=
+OutputDefault8=0
+PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType9=Text Print
+OutputName9=Text Print
+OutputDocumentPath9=
+OutputVariantName9=
+OutputDefault9=0
+PageOptions9=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType10=Text Print
+OutputName10=Text Print
+OutputDocumentPath10=
+OutputVariantName10=
+OutputDefault10=0
+PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType11=Text Print
+OutputName11=Text Print
+OutputDocumentPath11=
+OutputVariantName11=
+OutputDefault11=0
+PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType12=Text Print
+OutputName12=Text Print
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+PageOptions12=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType13=Text Print
+OutputName13=Text Print
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+PageOptions13=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType14=Text Print
+OutputName14=Text Print
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+PageOptions14=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType15=Text Print
+OutputName15=Text Print
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+PageOptions15=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType16=Text Print
+OutputName16=Text Print
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+PageOptions16=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType17=Text Print
+OutputName17=Text Print
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
+PageOptions17=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+
+[OutputGroup8]
+Name=Validation Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=Component states check
+OutputName1=Vault's components states check
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+OutputType2=Configuration compliance
+OutputName2=Environment configuration compliance check
+OutputDocumentPath2=
+OutputVariantName2=
+OutputDefault2=0
+OutputType3=Design Rules Check
+OutputName3=Design Rules Check
+OutputDocumentPath3=
+OutputVariantName3=
+OutputDefault3=0
+PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType4=Differences Report
+OutputName4=Differences Report
+OutputDocumentPath4=
+OutputVariantName4=
+OutputDefault4=0
+PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType5=Electrical Rules Check
+OutputName5=Electrical Rules Check
+OutputDocumentPath5=
+OutputVariantName5=
+OutputDefault5=0
+PageOptions5=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType6=Footprint Comparison Report
+OutputName6=Footprint Comparison Report
+OutputDocumentPath6=
+OutputVariantName6=
+OutputDefault6=0
+OutputType7=BOM_Violations
+OutputName7=BOM Checks Report
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
+
+[OutputGroup9]
+Name=Export Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=AutoCAD dwg/dxf PCB
+OutputName1=AutoCAD dwg/dxf File PCB
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+OutputType2=AutoCAD dwg/dxf Schematic
+OutputName2=AutoCAD dwg/dxf File Schematic
+OutputDocumentPath2=
+OutputVariantName2=
+OutputDefault2=0
+OutputType3=ExportIDF
+OutputName3=Export IDF
+OutputDocumentPath3=
+OutputVariantName3=
+OutputDefault3=0
+OutputType4=ExportSTEP
+OutputName4=Export STEP
+OutputDocumentPath4=
+OutputVariantName4=[No Variations]
+OutputDefault4=0
+OutputType5=ExportPARASOLID
+OutputName5=Export PARASOLID
+OutputDocumentPath5=
+OutputVariantName5=[No Variations]
+OutputDefault5=0
+OutputType6=ExportVRML
+OutputName6=Export VRML
+OutputDocumentPath6=
+OutputVariantName6=[No Variations]
+OutputDefault6=0
+OutputType7=Save As/Export PCB
+OutputName7=Save As/Export PCB
+OutputDocumentPath7=
+OutputVariantName7=
+OutputDefault7=0
+OutputType8=Save As/Export Schematic
+OutputName8=Save As/Export Schematic
+OutputDocumentPath8=
+OutputVariantName8=
+OutputDefault8=0
+OutputType9=Specctra Design PCB
+OutputName9=Specctra Design PCB
+OutputDocumentPath9=
+OutputVariantName9=
+OutputDefault9=0
+OutputType10=MBAExportPARASOLID
+OutputName10=Export PARASOLID
+OutputDocumentPath10=
+OutputVariantName10=
+OutputDefault10=0
+OutputType11=MBAExportSTEP
+OutputName11=Export STEP
+OutputDocumentPath11=
+OutputVariantName11=
+OutputDefault11=0
+OutputType12=Web ReviewOutputName
+OutputName12=Web Review Data
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+
+[OutputGroup10]
+Name=PostProcess Outputs
+Description=
+TargetPrinter=Microsoft Print to PDF
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
+OutputType1=Copy Files
+OutputName1=Copy Files
+OutputDocumentPath1=
+OutputVariantName1=
+OutputDefault1=0
+
+[Modification Levels]
+Type1=1
+Type2=1
+Type3=1
+Type4=1
+Type5=1
+Type6=1
+Type7=1
+Type8=1
+Type9=1
+Type10=1
+Type11=1
+Type12=1
+Type13=1
+Type14=1
+Type15=1
+Type16=1
+Type17=1
+Type18=1
+Type19=1
+Type20=1
+Type21=1
+Type22=1
+Type23=1
+Type24=1
+Type25=1
+Type26=1
+Type27=1
+Type28=1
+Type29=1
+Type30=1
+Type31=1
+Type32=1
+Type33=1
+Type34=1
+Type35=1
+Type36=0
+Type37=1
+Type38=1
+Type39=1
+Type40=1
+Type41=1
+Type42=1
+Type43=1
+Type44=1
+Type45=1
+Type46=1
+Type47=1
+Type48=1
+Type49=1
+Type50=1
+Type51=1
+Type52=1
+Type53=1
+Type54=1
+Type55=1
+Type56=1
+Type57=1
+Type58=1
+Type59=1
+Type60=1
+Type61=1
+Type62=1
+Type63=1
+Type64=1
+Type65=1
+Type66=1
+Type67=1
+Type68=1
+Type69=1
+Type70=1
+Type71=1
+Type72=1
+Type73=1
+Type74=1
+Type75=1
+Type76=1
+Type77=1
+Type78=1
+Type79=1
+Type80=1
+Type81=1
+Type82=1
+Type83=1
+Type84=1
+Type85=1
+Type86=1
+Type87=1
+Type88=1
+Type89=1
+Type90=1
+Type91=1
+Type92=1
+Type93=1
+Type94=1
+Type95=1
+Type96=1
+Type97=1
+Type98=1
+Type99=1
+Type100=1
+Type101=1
+Type102=1
+Type103=1
+Type104=1
+Type105=1
+Type106=1
+Type107=1
+Type108=1
+Type109=1
+Type110=1
+Type111=1
+Type112=1
+Type113=1
+Type114=1
+Type115=1
+Type116=1
+Type117=1
+Type118=1
+Type119=1
+Type120=1
+
+[Difference Levels]
+Type1=1
+Type2=1
+Type3=1
+Type4=1
+Type5=1
+Type6=1
+Type7=1
+Type8=1
+Type9=1
+Type10=1
+Type11=1
+Type12=1
+Type13=1
+Type14=1
+Type15=1
+Type16=1
+Type17=1
+Type18=1
+Type19=1
+Type20=1
+Type21=1
+Type22=1
+Type23=1
+Type24=1
+Type25=1
+Type26=1
+Type27=1
+Type28=1
+Type29=1
+Type30=1
+Type31=1
+Type32=1
+Type33=1
+Type34=1
+Type35=1
+Type36=1
+Type37=1
+Type38=1
+Type39=1
+Type40=1
+Type41=1
+Type42=1
+Type43=1
+Type44=1
+Type45=1
+Type46=1
+Type47=1
+Type48=1
+Type49=1
+Type50=1
+Type51=1
+Type52=1
+Type53=1
+Type54=1
+Type55=1
+Type56=1
+Type57=1
+Type58=1
+Type59=1
+Type60=1
+Type61=1
+Type62=1
+Type63=1
+Type64=1
+Type65=1
+Type66=1
+Type67=1
+Type68=1
+
+[Electrical Rules Check]
+Type1=1
+Type2=1
+Type3=2
+Type4=1
+Type5=2
+Type6=2
+Type7=0
+Type8=1
+Type9=1
+Type10=1
+Type11=2
+Type12=0
+Type13=0
+Type14=1
+Type15=1
+Type16=1
+Type17=1
+Type18=1
+Type19=1
+Type20=0
+Type21=0
+Type22=0
+Type23=0
+Type24=1
+Type25=2
+Type26=0
+Type27=2
+Type28=1
+Type29=1
+Type30=1
+Type31=1
+Type32=2
+Type33=0
+Type34=2
+Type35=1
+Type36=2
+Type37=1
+Type38=2
+Type39=2
+Type40=2
+Type41=0
+Type42=2
+Type43=1
+Type44=0
+Type45=0
+Type46=0
+Type47=0
+Type48=0
+Type49=0
+Type50=2
+Type51=0
+Type52=0
+Type53=1
+Type54=1
+Type55=1
+Type56=2
+Type57=1
+Type58=1
+Type59=0
+Type60=0
+Type61=0
+Type62=0
+Type63=0
+Type64=0
+Type65=2
+Type66=3
+Type67=2
+Type68=2
+Type69=2
+Type70=2
+Type71=2
+Type72=2
+Type73=2
+Type74=1
+Type75=2
+Type76=1
+Type77=1
+Type78=1
+Type79=1
+Type80=2
+Type81=3
+Type82=3
+Type83=3
+Type84=3
+Type85=3
+Type86=2
+Type87=2
+Type88=2
+Type89=1
+Type90=1
+Type91=3
+Type92=3
+Type93=2
+Type94=2
+Type95=2
+Type96=2
+Type97=2
+Type98=0
+Type99=1
+Type100=2
+Type101=0
+Type102=2
+Type103=2
+Type104=1
+Type105=2
+Type106=2
+Type107=2
+Type108=2
+Type109=1
+Type110=1
+Type111=1
+Type112=1
+Type113=1
+Type114=2
+Type115=2
+Type116=2
+Type117=3
+Type118=3
+Type119=3
+AlternateItemFail=3
+Type122=2
+Type123=1
+Type124=1
+Type125=1
+Type126=1
+Type127=1
+
+[ERC Connection Matrix]
+L1=NNNNNNNNNNNWNNNWW
+L2=NNWNNNNWWWNWNWNWN
+L3=NWEENEEEENEWNEEWN
+L4=NNENNNWEENNWNENWN
+L5=NNNNNNNNNNNNNNNNN
+L6=NNENNNNEENNWNENWN
+L7=NNEWNNWEENNWNENWN
+L8=NWEENEENEEENNEENN
+L9=NWEENEEEENEWNEEWW
+L10=NWNNNNNENNEWNNEWN
+L11=NNENNNNEEENWNENWN
+L12=WWWWNWWNWWWNWWWNN
+L13=NNNNNNNNNNNWNNNWW
+L14=NWEENEEEENEWNEEWW
+L15=NNENNNNEEENWNENWW
+L16=WWWWNWWNWWWNWWWNW
+L17=WNNNNNNNWNNNWWWWN
+
+[Annotate]
+SortOrder=3
+SortLocation=0
+ReplaceSubparts=0
+MatchParameter1=Comment
+MatchStrictly1=1
+MatchParameter2=Library Reference
+MatchStrictly2=1
+PhysicalNamingFormat=$Component_$RoomName
+GlobalIndexSortOrder=3
+GlobalIndexSortLocation=0
+
+[PrjClassGen]
+CompClassManualEnabled=0
+CompClassManualRoomEnabled=0
+NetClassAutoBusEnabled=1
+NetClassAutoCompEnabled=0
+NetClassAutoNamedHarnessEnabled=0
+NetClassManualEnabled=1
+NetClassSeparateForBusSections=0
+
+[LibraryUpdateOptions]
+SelectedOnly=0
+UpdateVariants=1
+UpdateToLatestRevision=1
+PartTypes=0
+ComponentLibIdentifierKind0=Library Name And Type
+ComponentLibraryIdentifier0=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID0=ADS1248IPW
+ComponentSymbolReference0=ADS1248IPW
+ComponentUpdate0=1
+ComponentIsDeviceSheet0=0
+ComponentLibIdentifierKind1=Library Name And Type
+ComponentLibraryIdentifier1=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID1=Cap_Cer_C0G_13pF_50V_0603
+ComponentSymbolReference1=Cap_Cer_C0G_13pF_50V_0603
+ComponentUpdate1=1
+ComponentIsDeviceSheet1=0
+ComponentLibIdentifierKind2=Library Name And Type
+ComponentLibraryIdentifier2=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID2=Cap_Cer_C0G_5.6nF_100V_0603
+ComponentSymbolReference2=Cap_Cer_C0G_5.6nF_100V_0603
+ComponentUpdate2=1
+ComponentIsDeviceSheet2=0
+ComponentLibIdentifierKind3=Library Name And Type
+ComponentLibraryIdentifier3=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID3=Cap_Cer_X7R_0.01uF_25V_0603
+ComponentSymbolReference3=Cap_Cer_X7R_0.01uF_25V_0603
+ComponentUpdate3=1
+ComponentIsDeviceSheet3=0
+ComponentLibIdentifierKind4=Library Name And Type
+ComponentLibraryIdentifier4=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID4=Cap_Cer_X7R_0.01uF_50V_0805
+ComponentSymbolReference4=Cap_Cer_X7R_0.01uF_50V_0805
+ComponentUpdate4=1
+ComponentIsDeviceSheet4=0
+ComponentLibIdentifierKind5=Library Name And Type
+ComponentLibraryIdentifier5=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID5=Cap_Cer_X7R_0.1uF_25V_0805
+ComponentSymbolReference5=Cap_Cer_X7R_0.1uF_25V_0805
+ComponentUpdate5=1
+ComponentIsDeviceSheet5=0
+ComponentLibIdentifierKind6=Library Name And Type
+ComponentLibraryIdentifier6=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID6=Cap_Cer_X7R_0.1uF_50V_0603
+ComponentSymbolReference6=Cap_Cer_X7R_0.1uF_50V_0603
+ComponentUpdate6=1
+ComponentIsDeviceSheet6=0
+ComponentLibIdentifierKind7=Library Name And Type
+ComponentLibraryIdentifier7=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID7=Cap_Cer_X7R_0.1uF_50V_0805
+ComponentSymbolReference7=Cap_Cer_X7R_0.1uF_50V_0805
+ComponentUpdate7=1
+ComponentIsDeviceSheet7=0
+ComponentLibIdentifierKind8=Library Name And Type
+ComponentLibraryIdentifier8=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID8=Cap_Cer_X7R_0.47uF_50V_0603
+ComponentSymbolReference8=Cap_Cer_X7R_0.47uF_50V_0603
+ComponentUpdate8=1
+ComponentIsDeviceSheet8=0
+ComponentLibIdentifierKind9=Library Name And Type
+ComponentLibraryIdentifier9=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID9=Cap_Cer_X7R_1000pF_50V_0603
+ComponentSymbolReference9=Cap_Cer_X7R_1000pF_50V_0603
+ComponentUpdate9=1
+ComponentIsDeviceSheet9=0
+ComponentLibIdentifierKind10=Library Name And Type
+ComponentLibraryIdentifier10=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID10=Cap_Cer_X7R_10pF_100V_0805
+ComponentSymbolReference10=Cap_Cer_X7R_10pF_100V_0805
+ComponentUpdate10=1
+ComponentIsDeviceSheet10=0
+ComponentLibIdentifierKind11=Library Name And Type
+ComponentLibraryIdentifier11=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID11=Cap_Cer_X7R_10uF_25V_1206
+ComponentSymbolReference11=Cap_Cer_X7R_10uF_25V_1206
+ComponentUpdate11=1
+ComponentIsDeviceSheet11=0
+ComponentLibIdentifierKind12=Library Name And Type
+ComponentLibraryIdentifier12=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID12=Cap_Cer_X7R_12pF_50V_0603
+ComponentSymbolReference12=Cap_Cer_X7R_12pF_50V_0603
+ComponentUpdate12=1
+ComponentIsDeviceSheet12=0
+ComponentLibIdentifierKind13=Library Name And Type
+ComponentLibraryIdentifier13=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID13=Cap_Cer_X7R_1nF_16V_0603
+ComponentSymbolReference13=Cap_Cer_X7R_1nF_16V_0603
+ComponentUpdate13=1
+ComponentIsDeviceSheet13=0
+ComponentLibIdentifierKind14=Library Name And Type
+ComponentLibraryIdentifier14=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID14=Cap_Cer_X7R_22uF_10V_1206
+ComponentSymbolReference14=Cap_Cer_X7R_22uF_10V_1206
+ComponentUpdate14=1
+ComponentIsDeviceSheet14=0
+ComponentLibIdentifierKind15=Library Name And Type
+ComponentLibraryIdentifier15=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID15=Cap_Cer_X7R_22uF_25V_1210
+ComponentSymbolReference15=Cap_Cer_X7R_22uF_25V_1210
+ComponentUpdate15=1
+ComponentIsDeviceSheet15=0
+ComponentLibIdentifierKind16=Library Name And Type
+ComponentLibraryIdentifier16=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID16=Cap_Cer_X7R_4.7uF_25V_0805
+ComponentSymbolReference16=Cap_Cer_X7R_4.7uF_25V_0805
+ComponentUpdate16=1
+ComponentIsDeviceSheet16=0
+ComponentLibIdentifierKind17=Library Name And Type
+ComponentLibraryIdentifier17=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID17=Cap_Tant_SMD_10uF_6V3_0805
+ComponentSymbolReference17=Cap_Tant_SMD_10uF_6V3_0805
+ComponentUpdate17=1
+ComponentIsDeviceSheet17=0
+ComponentLibIdentifierKind18=Library Name And Type
+ComponentLibraryIdentifier18=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID18=Cap_Tant_SMD_220uF_6.3V_1210
+ComponentSymbolReference18=Cap_Tant_SMD_220uF_6.3V_1210
+ComponentUpdate18=1
+ComponentIsDeviceSheet18=0
+ComponentLibIdentifierKind19=Library Name And Type
+ComponentLibraryIdentifier19=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID19=DIODE_SCHOTTKY_20V_2A_MB220-13-F
+ComponentSymbolReference19=DIODE_SCHOTTKY_20V_2A_MB220-13-F
+ComponentUpdate19=1
+ComponentIsDeviceSheet19=0
+ComponentLibIdentifierKind20=Library Name And Type
+ComponentLibraryIdentifier20=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID20=DIODE_SCHOTTKY_23V_1A_NSVR0320MW2T1G
+ComponentSymbolReference20=DIODE_SCHOTTKY_23V_1A_NSVR0320MW2T1G
+ComponentUpdate20=1
+ComponentIsDeviceSheet20=0
+ComponentLibIdentifierKind21=Library Name And Type
+ComponentLibraryIdentifier21=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID21=DIODE_SCHOTTKY_30V_2A_  CMS06(TE12L,Q,M)
+ComponentSymbolReference21=DIODE_SCHOTTKY_30V_2A_  CMS06(TE12L,Q,M)
+ComponentUpdate21=1
+ComponentIsDeviceSheet21=0
+ComponentLibIdentifierKind22=Library Name And Type
+ComponentLibraryIdentifier22=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID22=DIODE_SCHOTTKY_30V_5A_RB080L-30TE25
+ComponentSymbolReference22=DIODE_SCHOTTKY_30V_5A_RB080L-30TE25
+ComponentUpdate22=1
+ComponentIsDeviceSheet22=0
+ComponentLibIdentifierKind23=Library Name And Type
+ComponentLibraryIdentifier23=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID23=DIODE_SCHOTTKY_40V_3A_B340LA-13-F
+ComponentSymbolReference23=DIODE_SCHOTTKY_40V_3A_B340LA-13-F
+ComponentUpdate23=1
+ComponentIsDeviceSheet23=0
+ComponentLibIdentifierKind24=Library Name And Type
+ComponentLibraryIdentifier24=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID24=DIODE_ZENER_5.6V_3SMAJ5919B
+ComponentSymbolReference24=DIODE_ZENER_5.6V_3SMAJ5919B
+ComponentUpdate24=1
+ComponentIsDeviceSheet24=0
+ComponentLibIdentifierKind25=Library Name And Type
+ComponentLibraryIdentifier25=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID25=DS2775G+
+ComponentSymbolReference25=DS2775G+
+ComponentUpdate25=1
+ComponentIsDeviceSheet25=0
+ComponentLibIdentifierKind26=Library Name And Type
+ComponentLibraryIdentifier26=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID26=FB_30R_10A_100MHz_1210
+ComponentSymbolReference26=FB_30R_10A_100MHz_1210
+ComponentUpdate26=1
+ComponentIsDeviceSheet26=0
+ComponentLibIdentifierKind27=Library Name And Type
+ComponentLibraryIdentifier27=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID27=FB_30R_3A_100MHz_0805
+ComponentSymbolReference27=FB_30R_3A_100MHz_0805
+ComponentUpdate27=1
+ComponentIsDeviceSheet27=0
+ComponentLibIdentifierKind28=Library Name And Type
+ComponentLibraryIdentifier28=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID28=FDS6898AZ
+ComponentSymbolReference28=FDS6898AZ
+ComponentUpdate28=1
+ComponentIsDeviceSheet28=0
+ComponentLibIdentifierKind29=Library Name And Type
+ComponentLibraryIdentifier29=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID29=Header 3H
+ComponentSymbolReference29=Header 3H
+ComponentUpdate29=1
+ComponentIsDeviceSheet29=0
+ComponentLibIdentifierKind30=Library Name And Type
+ComponentLibraryIdentifier30=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID30=Header 4_PicoBlade
+ComponentSymbolReference30=Header 4_PicoBlade
+ComponentUpdate30=1
+ComponentIsDeviceSheet30=0
+ComponentLibIdentifierKind31=Library Name And Type
+ComponentLibraryIdentifier31=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID31=Header 5X2H_IPS1-105-01-S-D-VS
+ComponentSymbolReference31=Header 5X2H_IPS1-105-01-S-D-VS
+ComponentUpdate31=1
+ComponentIsDeviceSheet31=0
+ComponentLibIdentifierKind32=Library Name And Type
+ComponentLibraryIdentifier32=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID32=Header 6H_PicoBlade
+ComponentSymbolReference32=Header 6H_PicoBlade
+ComponentUpdate32=1
+ComponentIsDeviceSheet32=0
+ComponentLibIdentifierKind33=Library Name And Type
+ComponentLibraryIdentifier33=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID33=Header 8_PicoBlade
+ComponentSymbolReference33=Header 8_PicoBlade
+ComponentUpdate33=1
+ComponentIsDeviceSheet33=0
+ComponentLibIdentifierKind34=Library Name And Type
+ComponentLibraryIdentifier34=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID34=IND_POWER_10uH_6.4A_51.8mR
+ComponentSymbolReference34=IND_POWER_10uH_6.4A_51.8mR
+ComponentUpdate34=1
+ComponentIsDeviceSheet34=0
+ComponentLibIdentifierKind35=Library Name And Type
+ComponentLibraryIdentifier35=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID35=IND_POWER_16uH_5A_35.5mR
+ComponentSymbolReference35=IND_POWER_16uH_5A_35.5mR
+ComponentUpdate35=1
+ComponentIsDeviceSheet35=0
+ComponentLibIdentifierKind36=Library Name And Type
+ComponentLibraryIdentifier36=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID36=IND_POWER_2.2uH_9A_15mR
+ComponentSymbolReference36=IND_POWER_2.2uH_9A_15mR
+ComponentUpdate36=1
+ComponentIsDeviceSheet36=0
+ComponentLibIdentifierKind37=Library Name And Type
+ComponentLibraryIdentifier37=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID37=IND_POWER_22uH_6.3A_25.7mR
+ComponentSymbolReference37=IND_POWER_22uH_6.3A_25.7mR
+ComponentUpdate37=1
+ComponentIsDeviceSheet37=0
+ComponentLibIdentifierKind38=Library Name And Type
+ComponentLibraryIdentifier38=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID38=IND_POWER_27uH_4.3A_42.5mR
+ComponentSymbolReference38=IND_POWER_27uH_4.3A_42.5mR
+ComponentUpdate38=1
+ComponentIsDeviceSheet38=0
+ComponentLibIdentifierKind39=Library Name And Type
+ComponentLibraryIdentifier39=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID39=LED/G_0603
+ComponentSymbolReference39=LED/G_0603
+ComponentUpdate39=1
+ComponentIsDeviceSheet39=0
+ComponentLibIdentifierKind40=Library Name And Type
+ComponentLibraryIdentifier40=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID40=LED/R_0603
+ComponentSymbolReference40=LED/R_0603
+ComponentUpdate40=1
+ComponentIsDeviceSheet40=0
+ComponentLibIdentifierKind41=Library Name And Type
+ComponentLibraryIdentifier41=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID41=MAX9934TAUA+
+ComponentSymbolReference41=MAX9934TAUA+
+ComponentUpdate41=1
+ComponentIsDeviceSheet41=0
+ComponentLibIdentifierKind42=Library Name And Type
+ComponentLibraryIdentifier42=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID42=MOSFET-N_30V_Si4010DY
+ComponentSymbolReference42=MOSFET-N_30V_Si4010DY
+ComponentUpdate42=1
+ComponentIsDeviceSheet42=0
+ComponentLibIdentifierKind43=Library Name And Type
+ComponentLibraryIdentifier43=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID43=MOSFET-N_30V_SI4166DY
+ComponentSymbolReference43=MOSFET-N_30V_SI4166DY
+ComponentUpdate43=1
+ComponentIsDeviceSheet43=0
+ComponentLibIdentifierKind44=Library Name And Type
+ComponentLibraryIdentifier44=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID44=MOSFET-P- SI4403CDY-T1-GE3
+ComponentSymbolReference44=MOSFET-P- SI4403CDY-T1-GE3
+ComponentUpdate44=1
+ComponentIsDeviceSheet44=0
+ComponentLibIdentifierKind45=Library Name And Type
+ComponentLibraryIdentifier45=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID45=MSP430F6659IPZR
+ComponentSymbolReference45=MSP430F6659IPZR
+ComponentUpdate45=1
+ComponentIsDeviceSheet45=0
+ComponentLibIdentifierKind46=Library Name And Type
+ComponentLibraryIdentifier46=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID46=PC104
+ComponentSymbolReference46=PC104
+ComponentUpdate46=1
+ComponentIsDeviceSheet46=0
+ComponentLibIdentifierKind47=Library Name And Type
+ComponentLibraryIdentifier47=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID47=R0.01R_0.5%_0.5W_1206_4_terminal
+ComponentSymbolReference47=R0.01R_0.5%_0.5W_1206_4_terminal
+ComponentUpdate47=1
+ComponentIsDeviceSheet47=0
+ComponentLibIdentifierKind48=Library Name And Type
+ComponentLibraryIdentifier48=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID48=R0.05R_0.5%_0.5W_1206
+ComponentSymbolReference48=R0.05R_0.5%_0.5W_1206
+ComponentUpdate48=1
+ComponentIsDeviceSheet48=0
+ComponentLibIdentifierKind49=Library Name And Type
+ComponentLibraryIdentifier49=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID49=R0.075R_1%_0.5W_1206
+ComponentSymbolReference49=R0.075R_1%_0.5W_1206
+ComponentUpdate49=1
+ComponentIsDeviceSheet49=0
+ComponentLibIdentifierKind50=Library Name And Type
+ComponentLibraryIdentifier50=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID50=R0R_JUMPER_1/8W_0805
+ComponentSymbolReference50=R0R_JUMPER_1/8W_0805
+ComponentUpdate50=1
+ComponentIsDeviceSheet50=0
+ComponentLibIdentifierKind51=Library Name And Type
+ComponentLibraryIdentifier51=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID51=R0R_JUMPER_3/4W_1206
+ComponentSymbolReference51=R0R_JUMPER_3/4W_1206
+ComponentUpdate51=1
+ComponentIsDeviceSheet51=0
+ComponentLibIdentifierKind52=Library Name And Type
+ComponentLibraryIdentifier52=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID52=R1.0k_1%_1/8W_0603
+ComponentSymbolReference52=R1.0k_1%_1/8W_0603
+ComponentUpdate52=1
+ComponentIsDeviceSheet52=0
+ComponentLibIdentifierKind53=Library Name And Type
+ComponentLibraryIdentifier53=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID53=R1.0k_1%_1/8W_0805
+ComponentSymbolReference53=R1.0k_1%_1/8W_0805
+ComponentUpdate53=1
+ComponentIsDeviceSheet53=0
+ComponentLibIdentifierKind54=Library Name And Type
+ComponentLibraryIdentifier54=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID54=R1.65K_1%_1/10W_0805
+ComponentSymbolReference54=R1.65K_1%_1/10W_0805
+ComponentUpdate54=1
+ComponentIsDeviceSheet54=0
+ComponentLibIdentifierKind55=Library Name And Type
+ComponentLibraryIdentifier55=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID55=R100k_0.1%_1/10W_0805
+ComponentSymbolReference55=R100k_0.1%_1/10W_0805
+ComponentUpdate55=1
+ComponentIsDeviceSheet55=0
+ComponentLibIdentifierKind56=Library Name And Type
+ComponentLibraryIdentifier56=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID56=R100K_1%_1/10W_0603
+ComponentSymbolReference56=R100K_1%_1/10W_0603
+ComponentUpdate56=1
+ComponentIsDeviceSheet56=0
+ComponentLibIdentifierKind57=Library Name And Type
+ComponentLibraryIdentifier57=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID57=R10k_1%_1/8W_0603
+ComponentSymbolReference57=R10k_1%_1/8W_0603
+ComponentUpdate57=1
+ComponentIsDeviceSheet57=0
+ComponentLibIdentifierKind58=Library Name And Type
+ComponentLibraryIdentifier58=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID58=R10k_1%_1/8W_0805
+ComponentSymbolReference58=R10k_1%_1/8W_0805
+ComponentUpdate58=1
+ComponentIsDeviceSheet58=0
+ComponentLibIdentifierKind59=Library Name And Type
+ComponentLibraryIdentifier59=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID59=R11.5k_1%_1/8W_0805
+ComponentSymbolReference59=R11.5k_1%_1/8W_0805
+ComponentUpdate59=1
+ComponentIsDeviceSheet59=0
+ComponentLibIdentifierKind60=Library Name And Type
+ComponentLibraryIdentifier60=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID60=R1200k_1%_1/8W_0805
+ComponentSymbolReference60=R1200k_1%_1/8W_0805
+ComponentUpdate60=1
+ComponentIsDeviceSheet60=0
+ComponentLibIdentifierKind61=Library Name And Type
+ComponentLibraryIdentifier61=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID61=R140k_1%_1/5W_0603
+ComponentSymbolReference61=R140k_1%_1/5W_0603
+ComponentUpdate61=1
+ComponentIsDeviceSheet61=0
+ComponentLibIdentifierKind62=Library Name And Type
+ComponentLibraryIdentifier62=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID62=R150R_1%_1/10W_0603
+ComponentSymbolReference62=R150R_1%_1/10W_0603
+ComponentUpdate62=1
+ComponentIsDeviceSheet62=0
+ComponentLibIdentifierKind63=Library Name And Type
+ComponentLibraryIdentifier63=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID63=R19.6k_1%_1/10W_0603
+ComponentSymbolReference63=R19.6k_1%_1/10W_0603
+ComponentUpdate63=1
+ComponentIsDeviceSheet63=0
+ComponentLibIdentifierKind64=Library Name And Type
+ComponentLibraryIdentifier64=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID64=R3.24k_1%_1/8W_0805
+ComponentSymbolReference64=R3.24k_1%_1/8W_0805
+ComponentUpdate64=1
+ComponentIsDeviceSheet64=0
+ComponentLibIdentifierKind65=Library Name And Type
+ComponentLibraryIdentifier65=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID65=R3.3k_0.1%_1/10W_0805
+ComponentSymbolReference65=R3.3k_0.1%_1/10W_0805
+ComponentUpdate65=1
+ComponentIsDeviceSheet65=0
+ComponentLibIdentifierKind66=Library Name And Type
+ComponentLibraryIdentifier66=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID66=R300K_0.1%_1/10W_0603
+ComponentSymbolReference66=R300K_0.1%_1/10W_0603
+ComponentUpdate66=1
+ComponentIsDeviceSheet66=0
+ComponentLibIdentifierKind67=Library Name And Type
+ComponentLibraryIdentifier67=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID67=R4.02k_0.1%_1/8W_0805
+ComponentSymbolReference67=R4.02k_0.1%_1/8W_0805
+ComponentUpdate67=1
+ComponentIsDeviceSheet67=0
+ComponentLibIdentifierKind68=Library Name And Type
+ComponentLibraryIdentifier68=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID68=R4.7K_1%_1/8W_0603
+ComponentSymbolReference68=R4.7K_1%_1/8W_0603
+ComponentUpdate68=1
+ComponentIsDeviceSheet68=0
+ComponentLibIdentifierKind69=Library Name And Type
+ComponentLibraryIdentifier69=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID69=R470R_1%_1/8W_0603
+ComponentSymbolReference69=R470R_1%_1/8W_0603
+ComponentUpdate69=1
+ComponentIsDeviceSheet69=0
+ComponentLibIdentifierKind70=Library Name And Type
+ComponentLibraryIdentifier70=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID70=R47k_1%_1/8W_0603
+ComponentSymbolReference70=R47k_1%_1/8W_0603
+ComponentUpdate70=1
+ComponentIsDeviceSheet70=0
+ComponentLibIdentifierKind71=Library Name And Type
+ComponentLibraryIdentifier71=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID71=R5.9K_1%_1/8W_0805
+ComponentSymbolReference71=R5.9K_1%_1/8W_0805
+ComponentUpdate71=1
+ComponentIsDeviceSheet71=0
+ComponentLibIdentifierKind72=Library Name And Type
+ComponentLibraryIdentifier72=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID72=R60.4k_1%_1/8W_0805
+ComponentSymbolReference72=R60.4k_1%_1/8W_0805
+ComponentUpdate72=1
+ComponentIsDeviceSheet72=0
+ComponentLibIdentifierKind73=Library Name And Type
+ComponentLibraryIdentifier73=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID73=R93.1K_1%_1/10W_0603
+ComponentSymbolReference73=R93.1K_1%_1/10W_0603
+ComponentUpdate73=1
+ComponentIsDeviceSheet73=0
+ComponentLibIdentifierKind74=Library Name And Type
+ComponentLibraryIdentifier74=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID74=REF5025A-Q1
+ComponentSymbolReference74=REF5025A-Q1
+ComponentUpdate74=1
+ComponentIsDeviceSheet74=0
+ComponentLibIdentifierKind75=Library Name And Type
+ComponentLibraryIdentifier75=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID75=Tactile_Switches_B3U-1000P
+ComponentSymbolReference75=Tactile_Switches_B3U-1000P
+ComponentUpdate75=1
+ComponentIsDeviceSheet75=0
+ComponentLibIdentifierKind76=Library Name And Type
+ComponentLibraryIdentifier76=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID76=TCA4311ADR
+ComponentSymbolReference76=TCA4311ADR
+ComponentUpdate76=1
+ComponentIsDeviceSheet76=0
+ComponentLibIdentifierKind77=Library Name And Type
+ComponentLibraryIdentifier77=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID77=TEST_POINT
+ComponentSymbolReference77=TEST_POINT
+ComponentUpdate77=1
+ComponentIsDeviceSheet77=0
+ComponentLibIdentifierKind78=Library Name And Type
+ComponentLibraryIdentifier78=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID78=TLV341AIDBVR
+ComponentSymbolReference78=TLV341AIDBVR
+ComponentUpdate78=1
+ComponentIsDeviceSheet78=0
+ComponentLibIdentifierKind79=Library Name And Type
+ComponentLibraryIdentifier79=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID79=TPS5410QDRQ1
+ComponentSymbolReference79=TPS5410QDRQ1
+ComponentUpdate79=1
+ComponentIsDeviceSheet79=0
+ComponentLibIdentifierKind80=Library Name And Type
+ComponentLibraryIdentifier80=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID80=TPS5420QDRQ1
+ComponentSymbolReference80=TPS5420QDRQ1
+ComponentUpdate80=1
+ComponentIsDeviceSheet80=0
+ComponentLibIdentifierKind81=Library Name And Type
+ComponentLibraryIdentifier81=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID81=TPS5430QDDARQ1
+ComponentSymbolReference81=TPS5430QDDARQ1
+ComponentUpdate81=1
+ComponentIsDeviceSheet81=0
+ComponentLibIdentifierKind82=Library Name And Type
+ComponentLibraryIdentifier82=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID82=TPS54540QDDARQ1
+ComponentSymbolReference82=TPS54540QDDARQ1
+ComponentUpdate82=1
+ComponentIsDeviceSheet82=0
+ComponentLibIdentifierKind83=Library Name And Type
+ComponentLibraryIdentifier83=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID83=Xtal_32.768kHz_12pF_2_SMD
+ComponentSymbolReference83=Xtal_32.768kHz_12pF_2_SMD
+ComponentUpdate83=1
+ComponentIsDeviceSheet83=0
+ComponentLibIdentifierKind84=Library Name And Type
+ComponentLibraryIdentifier84=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID84=XTAL_32MHz_SMD_4-SMD
+ComponentSymbolReference84=XTAL_32MHz_SMD_4-SMD
+ComponentUpdate84=1
+ComponentIsDeviceSheet84=0
+FullReplace=0
+UpdateDesignatorLock=1
+UpdatePartIDLock=1
+PreserveParameterLocations=1
+PreserveParameterVisibility=1
+DoGraphics=0
+DoParameters=1
+DoModels=1
+AddParameters=0
+RemoveParameters=0
+AddModels=1
+RemoveModels=1
+UpdateCurrentModels=1
+ParameterName0=-3db Bandwidth
+ParameterUpdate0=1
+ParameterName1=Actuator Length
+ParameterUpdate1=1
+ParameterName2=Actuator Type
+ParameterUpdate2=1
+ParameterName3=Alternate PartNumber
+ParameterUpdate3=1
+ParameterName4=Application_BuildNumber
+ParameterUpdate4=1
+ParameterName5=Approvals
+ParameterUpdate5=1
+ParameterName6=Architecture
+ParameterUpdate6=1
+ParameterName7=Average Rectified Current
+ParameterUpdate7=1
+ParameterName8=Bandwidth
+ParameterUpdate8=1
+ParameterName9=Board Standoff
+ParameterUpdate9=1
+ParameterName10=Body Plating
+ParameterUpdate10=1
+ParameterName11=Capacitance
+ParameterUpdate11=1
+ParameterName12=Case Code (Imperial)
+ParameterUpdate12=1
+ParameterName13=Case Code (Metric)
+ParameterUpdate13=1
+ParameterName14=Case/Package
+ParameterUpdate14=1
+ParameterName15=Category
+ParameterUpdate15=1
+ParameterName16=Color
+ParameterUpdate16=1
+ParameterName17=Comment
+ParameterUpdate17=1
+ParameterName18=Common Mode Rejection Ratio
+ParameterUpdate18=1
+ParameterName19=Component Kind
+ParameterUpdate19=1
+ParameterName20=ComponentLink10Description
+ParameterUpdate20=1
+ParameterName21=ComponentLink10URL
+ParameterUpdate21=1
+ParameterName22=ComponentLink11Description
+ParameterUpdate22=1
+ParameterName23=ComponentLink11URL
+ParameterUpdate23=1
+ParameterName24=ComponentLink1Description
+ParameterUpdate24=1
+ParameterName25=ComponentLink1URL
+ParameterUpdate25=1
+ParameterName26=ComponentLink2Description
+ParameterUpdate26=1
+ParameterName27=ComponentLink2URL
+ParameterUpdate27=1
+ParameterName28=ComponentLink3Description
+ParameterUpdate28=1
+ParameterName29=ComponentLink3URL
+ParameterUpdate29=1
+ParameterName30=ComponentLink4Description
+ParameterUpdate30=1
+ParameterName31=ComponentLink4URL
+ParameterUpdate31=1
+ParameterName32=ComponentLink5Description
+ParameterUpdate32=1
+ParameterName33=ComponentLink5URL
+ParameterUpdate33=1
+ParameterName34=ComponentLink6Description
+ParameterUpdate34=1
+ParameterName35=ComponentLink6URL
+ParameterUpdate35=1
+ParameterName36=ComponentLink7Description
+ParameterUpdate36=1
+ParameterName37=ComponentLink7URL
+ParameterUpdate37=1
+ParameterName38=ComponentLink8Description
+ParameterUpdate38=1
+ParameterName39=ComponentLink8URL
+ParameterUpdate39=1
+ParameterName40=ComponentLink9Description
+ParameterUpdate40=1
+ParameterName41=ComponentLink9URL
+ParameterUpdate41=1
+ParameterName42=Composition
+ParameterUpdate42=1
+ParameterName43=CompType
+ParameterUpdate43=1
+ParameterName44=Configuration
+ParameterUpdate44=1
+ParameterName45=Connector Type
+ParameterUpdate45=1
+ParameterName46=Contact Current Rating
+ParameterUpdate46=1
+ParameterName47=Contact Gender
+ParameterUpdate47=1
+ParameterName48=Contact Material
+ParameterUpdate48=1
+ParameterName49=Contact Mating Length
+ParameterUpdate49=1
+ParameterName50=Contact Plating
+ParameterUpdate50=1
+ParameterName51=Contact Post Length
+ParameterUpdate51=1
+ParameterName52=Contact Protection
+ParameterUpdate52=1
+ParameterName53=Contact Resistance
+ParameterUpdate53=1
+ParameterName54=Contact Shape
+ParameterUpdate54=1
+ParameterName55=Continuous Drain Current (ID)
+ParameterUpdate55=1
+ParameterName56=Conversion Rate
+ParameterUpdate56=1
+ParameterName57=Core Architecture
+ParameterUpdate57=1
+ParameterName58=Core Material
+ParameterUpdate58=1
+ParameterName59=Current Rating
+ParameterUpdate59=1
+ParameterName60=Data Bus Width
+ParameterUpdate60=1
+ParameterName61=Data Interface
+ParameterUpdate61=1
+ParameterName62=Datasheet
+ParameterUpdate62=1
+ParameterName63=DC Current
+ParameterUpdate63=1
+ParameterName64=DC Resistance (DCR)
+ParameterUpdate64=1
+ParameterName65=Depth
+ParameterUpdate65=1
+ParameterName66=Description
+ParameterUpdate66=1
+ParameterName67=Dielectric
+ParameterUpdate67=1
+ParameterName68=Dielectric Material
+ParameterUpdate68=1
+ParameterName69=Differential Nonlinearity
+ParameterUpdate69=1
+ParameterName70=Dissipation Factor
+ParameterUpdate70=1
+ParameterName71=Dominant Wavelength
+ParameterUpdate71=1
+ParameterName72=Drain to Source Breakdown Voltage
+ParameterUpdate72=1
+ParameterName73=Drain to Source Resistance
+ParameterUpdate73=1
+ParameterName74=Drain to Source Voltage (Vdss)
+ParameterUpdate74=1
+ParameterName75=Dual Supply Voltage
+ParameterUpdate75=1
+ParameterName76=Efficiency
+ParameterUpdate76=1
+ParameterName77=Electrical Life
+ParameterUpdate77=1
+ParameterName78=Element Configuration
+ParameterUpdate78=1
+ParameterName79=ELV
+ParameterUpdate79=1
+ParameterName80=ESR (Equivalent Series Resistance)
+ParameterUpdate80=1
+ParameterName81=Fall Time
+ParameterUpdate81=1
+ParameterName82=Features
+ParameterUpdate82=1
+ParameterName83=FET Type
+ParameterUpdate83=1
+ParameterName84=Fitted
+ParameterUpdate84=1
+ParameterName85=Flammability Rating
+ParameterUpdate85=1
+ParameterName86=Forward Current
+ParameterUpdate86=1
+ParameterName87=Forward Voltage
+ParameterUpdate87=1
+ParameterName88=Frequency
+ParameterUpdate88=1
+ParameterName89=Frequency Stability
+ParameterUpdate89=1
+ParameterName90=Frequency Tolerance
+ParameterUpdate90=1
+ParameterName91=Gain Bandwidth Product
+ParameterUpdate91=1
+ParameterName92=Gasket
+ParameterUpdate92=1
+ParameterName93=Gate to Source Voltage (Vgs)
+ParameterUpdate93=1
+ParameterName94=Gender
+ParameterUpdate94=1
+ParameterName95=Glow Wire Compliant
+ParameterUpdate95=1
+ParameterName96=Halogen Free
+ParameterUpdate96=1
+ParameterName97=Height
+ParameterUpdate97=1
+ParameterName98=Height - Seated (Max)
+ParameterUpdate98=1
+ParameterName99=High Speed Serial Data Connector
+ParameterUpdate99=1
+ParameterName100=High Temperature Housing
+ParameterUpdate100=1
+ParameterName101=Housing Color
+ParameterUpdate101=1
+ParameterName102=Housing Material
+ParameterUpdate102=1
+ParameterName103=Illumination Color
+ParameterUpdate103=1
+ParameterName104=Illumination Type
+ParameterUpdate104=1
+ParameterName105=Impedance
+ParameterUpdate105=1
+ParameterName106=Inductance
+ParameterUpdate106=1
+ParameterName107=Inductance Tolerance
+ParameterUpdate107=1
+ParameterName108=Input Bias Current
+ParameterUpdate108=1
+ParameterName109=Input Capacitance
+ParameterUpdate109=1
+ParameterName110=Input Offset Voltage (Vos)
+ParameterUpdate110=1
+ParameterName111=Input Type
+ParameterUpdate111=1
+ParameterName112=Insulation Resistance
+ParameterUpdate112=1
+ParameterName113=Interface
+ParameterUpdate113=1
+ParameterName114=Keyed
+ParameterUpdate114=1
+ParameterName115=LatestRevisionDate
+ParameterUpdate115=1
+ParameterName116=LatestRevisionNote
+ParameterUpdate116=1
+ParameterName117=Lead Free
+ParameterUpdate117=1
+ParameterName118=Lead Pitch
+ParameterUpdate118=1
+ParameterName119=Leakage Current
+ParameterUpdate119=1
+ParameterName120=Length
+ParameterUpdate120=1
+ParameterName121=Lens Color
+ParameterUpdate121=1
+ParameterName122=Lens Style
+ParameterUpdate122=1
+ParameterName123=Lens Transparency
+ParameterUpdate123=1
+ParameterName124=Library Reference
+ParameterUpdate124=1
+ParameterName125=Load Capacitance
+ParameterUpdate125=1
+ParameterName126=Luminous Intensity
+ParameterUpdate126=1
+ParameterName127=Manufacturer
+ParameterUpdate127=1
+ParameterName128=Manufacturer Part Number
+ParameterUpdate128=1
+ParameterName129=Material
+ParameterUpdate129=1
+ParameterName130=Mating Connector Lock
+ParameterUpdate130=1
+ParameterName131=Mating Cycles
+ParameterUpdate131=1
+ParameterName132=Max Current Rating
+ParameterUpdate132=1
+ParameterName133=Max DC Current
+ParameterUpdate133=1
+ParameterName134=Max Forward Surge Current (Ifsm)
+ParameterUpdate134=1
+ParameterName135=Max Frequency
+ParameterUpdate135=1
+ParameterName136=Max I/O Voltage
+ParameterUpdate136=1
+ParameterName137=Max Input Voltage
+ParameterUpdate137=1
+ParameterName138=Max Operating Temperature
+ParameterUpdate138=1
+ParameterName139=Max Output Current
+ParameterUpdate139=1
+ParameterName140=Max Output Voltage
+ParameterUpdate140=1
+ParameterName141=Max Power Dissipation
+ParameterUpdate141=1
+ParameterName142=Max Repetitive Reverse Voltage (Vrrm)
+ParameterUpdate142=1
+ParameterName143=Max Reverse Leakage Current
+ParameterUpdate143=1
+ParameterName144=Max Reverse Voltage (DC)
+ParameterUpdate144=1
+ParameterName145=Max Supply Current
+ParameterUpdate145=1
+ParameterName146=Max Supply Voltage
+ParameterUpdate146=1
+ParameterName147=Max Supply Voltage (DC)
+ParameterUpdate147=1
+ParameterName148=Max Surge Current
+ParameterUpdate148=1
+ParameterName149=Max Voltage Rating (AC)
+ParameterUpdate149=1
+ParameterName150=Max Voltage Rating (DC)
+ParameterUpdate150=1
+ParameterName151=Mechanical Life
+ParameterUpdate151=1
+ParameterName152=Memory Size
+ParameterUpdate152=1
+ParameterName153=Memory Type
+ParameterUpdate153=1
+ParameterName154=Military Standard
+ParameterUpdate154=1
+ParameterName155=Min Input Voltage
+ParameterUpdate155=1
+ParameterName156=Min Operating Temperature
+ParameterUpdate156=1
+ParameterName157=Min Output Voltage
+ParameterUpdate157=1
+ParameterName158=Min Supply Voltage
+ParameterUpdate158=1
+ParameterName159=Min Supply Voltage (DC)
+ParameterUpdate159=1
+ParameterName160=Mount
+ParameterUpdate160=1
+ParameterName161=MountType
+ParameterUpdate161=1
+ParameterName162=NCM
+ParameterUpdate162=1
+ParameterName163=Nominal Gain Bandwidth Product
+ParameterUpdate163=1
+ParameterName164=Nominal Supply Current
+ParameterUpdate164=1
+ParameterName165=Nominal Vgs
+ParameterUpdate165=1
+ParameterName166=Number of A/D Converters
+ParameterUpdate166=1
+ParameterName167=Number of Amplifiers
+ParameterUpdate167=1
+ParameterName168=Number of Bits
+ParameterUpdate168=1
+ParameterName169=Number of Channels
+ParameterUpdate169=1
+ParameterName170=Number of Circuits
+ParameterUpdate170=1
+ParameterName171=Number of Contacts
+ParameterUpdate171=1
+ParameterName172=Number of Converters
+ParameterUpdate172=1
+ParameterName173=Number of Elements
+ParameterUpdate173=1
+ParameterName174=Number of I/Os
+ParameterUpdate174=1
+ParameterName175=Number of Inputs
+ParameterUpdate175=1
+ParameterName176=Number of LEDs
+ParameterUpdate176=1
+ParameterName177=Number of Lines
+ParameterUpdate177=1
+ParameterName178=Number of Outputs
+ParameterUpdate178=1
+ParameterName179=Number of Pins
+ParameterUpdate179=1
+ParameterName180=Number of Ports
+ParameterUpdate180=1
+ParameterName181=Number of Positions
+ParameterUpdate181=1
+ParameterName182=Number of Programmable I/O
+ParameterUpdate182=1
+ParameterName183=Number of Resistors
+ParameterUpdate183=1
+ParameterName184=Number of Rows
+ParameterUpdate184=1
+ParameterName185=Number of Terminals
+ParameterUpdate185=1
+ParameterName186=Number of Terminations
+ParameterUpdate186=1
+ParameterName187=Number of Timers/Counters
+ParameterUpdate187=1
+ParameterName188=Number of UART Channels
+ParameterUpdate188=1
+ParameterName189=On-State Resistance
+ParameterUpdate189=1
+ParameterName190=Operating Force
+ParameterUpdate190=1
+ParameterName191=Operating Supply Current
+ParameterUpdate191=1
+ParameterName192=Operating Supply Voltage
+ParameterUpdate192=1
+ParameterName193=Operating Temperature
+ParameterUpdate193=1
+ParameterName194=Orientation
+ParameterUpdate194=1
+ParameterName195=Oscillator Type
+ParameterUpdate195=1
+ParameterName196=Output Configuration
+ParameterUpdate196=1
+ParameterName197=Output Current
+ParameterUpdate197=1
+ParameterName198=Output Current per Channel
+ParameterUpdate198=1
+ParameterName199=Output Type
+ParameterUpdate199=1
+ParameterName200=Output Voltage
+ParameterUpdate200=1
+ParameterName201=Package / Case
+ParameterUpdate201=1
+ParameterName202=Package Quantity
+ParameterUpdate202=1
+ParameterName203=PackageDescription
+ParameterUpdate203=1
+ParameterName204=PackageReference
+ParameterUpdate204=1
+ParameterName205=PackageVersion
+ParameterUpdate205=1
+ParameterName206=Packaging
+ParameterUpdate206=1
+ParameterName207=Part_Number
+ParameterUpdate207=1
+ParameterName208=Partnumber
+ParameterUpdate208=1
+ParameterName209=PCB Mount Retention
+ParameterUpdate209=1
+ParameterName210=PCB Mounting Orientation
+ParameterUpdate210=1
+ParameterName211=Peak Non-Repetitive Surge Current
+ParameterUpdate211=1
+ParameterName212=Peak Reverse Current
+ParameterUpdate212=1
+ParameterName213=Peripherals
+ParameterUpdate213=1
+ParameterName214=PIN_COUNT
+ParameterUpdate214=1
+ParameterName215=Pitch
+ParameterUpdate215=1
+ParameterName216=Polarity
+ParameterUpdate216=1
+ParameterName217=Power Consumption
+ParameterUpdate217=1
+ParameterName218=Power Dissipation
+ParameterUpdate218=1
+ParameterName219=Power Rating
+ParameterUpdate219=1
+ParameterName220=Price
+ParameterUpdate220=1
+ParameterName221=Pricing 1
+ParameterUpdate221=1
+ParameterName222=Pricing 2
+ParameterUpdate222=1
+ParameterName223=Pricing 4
+ParameterUpdate223=1
+ParameterName224=Pricing 5
+ParameterUpdate224=1
+ParameterName225=Published
+ParameterUpdate225=1
+ParameterName226=Publisher
+ParameterUpdate226=1
+ParameterName227=Quiescent Current
+ParameterUpdate227=1
+ParameterName228=Radiation Hardening
+ParameterUpdate228=1
+ParameterName229=RAM Size
+ParameterUpdate229=1
+ParameterName230=Ratings
+ParameterUpdate230=1
+ParameterName231=Ratio - S/H
+ParameterUpdate231=1
+ParameterName232=Rds On Max
+ParameterUpdate232=1
+ParameterName233=REACH SVHC
+ParameterUpdate233=1
+ParameterName234=RefDes
+ParameterUpdate234=1
+ParameterName235=Reference Type
+ParameterUpdate235=1
+ParameterName236=Resistance
+ParameterUpdate236=1
+ParameterName237=Resolution
+ParameterUpdate237=1
+ParameterName238=Reverse Recovery Time
+ParameterUpdate238=1
+ParameterName239=Reverse Voltage
+ParameterUpdate239=1
+ParameterName240=Ripple Current
+ParameterUpdate240=1
+ParameterName241=Rise Time
+ParameterUpdate241=1
+ParameterName242=RMS Current (Irms)
+ParameterUpdate242=1
+ParameterName243=RoHS
+ParameterUpdate243=1
+ParameterName244=Row Spacing
+ParameterUpdate244=1
+ParameterName245=Sampling Rate
+ParameterUpdate245=1
+ParameterName246=Sampling Rate (Per Second)
+ParameterUpdate246=1
+ParameterName247=Saturation Current
+ParameterUpdate247=1
+ParameterName248=Selectively Loaded
+ParameterUpdate248=1
+ParameterName249=Self Resonant Frequency
+ParameterUpdate249=1
+ParameterName250=Series Resistance
+ParameterUpdate250=1
+ParameterName251=Shielding
+ParameterUpdate251=1
+ParameterName252=Slew Rate
+ParameterUpdate252=1
+ParameterName253=Stabilizers
+ParameterUpdate253=1
+ParameterName254=Stock 1
+ParameterUpdate254=1
+ParameterName255=Stock 2
+ParameterUpdate255=1
+ParameterName256=Stock 4
+ParameterUpdate256=1
+ParameterName257=Stock 5
+ParameterUpdate257=1
+ParameterName258=Strain Relief
+ParameterUpdate258=1
+ParameterName259=Supplier
+ParameterUpdate259=1
+ParameterName260=Supplier 1
+ParameterUpdate260=1
+ParameterName261=Supplier 2
+ParameterUpdate261=1
+ParameterName262=Supplier 3
+ParameterUpdate262=1
+ParameterName263=Supplier 4
+ParameterUpdate263=1
+ParameterName264=Supplier 5
+ParameterUpdate264=1
+ParameterName265=Supplier Device Package
+ParameterUpdate265=1
+ParameterName266=Supplier Part Number 1
+ParameterUpdate266=1
+ParameterName267=Supplier Part Number 2
+ParameterUpdate267=1
+ParameterName268=Supplier Part Number 3
+ParameterUpdate268=1
+ParameterName269=Supplier Part Number 4
+ParameterUpdate269=1
+ParameterName270=Supplier Part Number 5
+ParameterUpdate270=1
+ParameterName271=Supplier_Link
+ParameterUpdate271=1
+ParameterName272=Supplier_Part_Number
+ParameterUpdate272=1
+ParameterName273=Supply Type
+ParameterUpdate273=1
+ParameterName274=Switch Function
+ParameterUpdate274=1
+ParameterName275=Switch Travel
+ParameterUpdate275=1
+ParameterName276=Switching Frequency
+ParameterUpdate276=1
+ParameterName277=Synchronous Rectifier
+ParameterUpdate277=1
+ParameterName278=Temperature Coefficient
+ParameterUpdate278=1
+ParameterName279=Termination
+ParameterUpdate279=1
+ParameterName280=Test Current
+ParameterUpdate280=1
+ParameterName281=Test Frequency
+ParameterUpdate281=1
+ParameterName282=Thickness
+ParameterUpdate282=1
+ParameterName283=Threshold Voltage
+ParameterUpdate283=1
+ParameterName284=Throw Configuration
+ParameterUpdate284=1
+ParameterName285=Tolerance
+ParameterUpdate285=1
+ParameterName286=Turn-Off Delay Time
+ParameterUpdate286=1
+ParameterName287=Turn-On Delay Time
+ParameterUpdate287=1
+ParameterName288=Type
+ParameterUpdate288=1
+ParameterName289=Unity Gain Bandwidth Product
+ParameterUpdate289=1
+ParameterName290=Value
+ParameterUpdate290=1
+ParameterName291=Viewing Angle
+ParameterUpdate291=1
+ParameterName292=Voltage
+ParameterUpdate292=1
+ParameterName293=Voltage - Supply, Analog
+ParameterUpdate293=1
+ParameterName294=Voltage - Supply, Digital
+ParameterUpdate294=1
+ParameterName295=Voltage Gain
+ParameterUpdate295=1
+ParameterName296=Voltage Rating
+ParameterUpdate296=1
+ParameterName297=Voltage Rating (AC)
+ParameterUpdate297=1
+ParameterName298=Voltage Rating (DC)
+ParameterUpdate298=1
+ParameterName299=Voltage Tolerance
+ParameterUpdate299=1
+ParameterName300=Watchdog Timer
+ParameterUpdate300=1
+ParameterName301=Wavelength
+ParameterUpdate301=1
+ParameterName302=Weight
+ParameterUpdate302=1
+ParameterName303=Width
+ParameterUpdate303=1
+ParameterName304=Working Voltage
+ParameterUpdate304=1
+ParameterName305=Zener Current
+ParameterUpdate305=1
+ParameterName306=Zener Voltage
+ParameterUpdate306=1
+ModelTypeGroup0=PCBLIB
+ModelTypeUpdate0=1
+ModelType0=PCBLIB
+ModelName0=0603
+ModelUpdate0=1
+ModelType1=PCBLIB
+ModelName1=0603-LED
+ModelUpdate1=1
+ModelType2=PCBLIB
+ModelName2=0805
+ModelUpdate2=1
+ModelType3=PCBLIB
+ModelName3=1206
+ModelUpdate3=1
+ModelType4=PCBLIB
+ModelName4=1206 - ohmite
+ModelUpdate4=1
+ModelType5=PCBLIB
+ModelName5=ABS06 0805
+ModelUpdate5=1
+ModelType6=PCBLIB
+ModelName6=B3U-1000P
+ModelUpdate6=1
+ModelType7=PCBLIB
+ModelName7=CC0603
+ModelUpdate7=1
+ModelType8=PCBLIB
+ModelName8=CC0805
+ModelUpdate8=1
+ModelType9=PCBLIB
+ModelName9=CC0805_Tantalum
+ModelUpdate9=1
+ModelType10=PCBLIB
+ModelName10=CC1206
+ModelUpdate10=1
+ModelType11=PCBLIB
+ModelName11=cc1210
+ModelUpdate11=1
+ModelType12=PCBLIB
+ModelName12=cms06
+ModelUpdate12=1
+ModelType13=PCBLIB
+ModelName13=DO-214AA
+ModelUpdate13=1
+ModelType14=PCBLIB
+ModelName14=DO-214AC
+ModelUpdate14=1
+ModelType15=PCBLIB
+ModelName15=HDR 1X3
+ModelUpdate15=1
+ModelType16=PCBLIB
+ModelName16=HDR4 PicoBlade
+ModelUpdate16=1
+ModelType17=PCBLIB
+ModelName17=HDR6 PicoBlade
+ModelUpdate17=1
+ModelType18=PCBLIB
+ModelName18=HDR8 PicoBlade
+ModelUpdate18=1
+ModelType19=PCBLIB
+ModelName19=IND_744325xxx
+ModelUpdate19=1
+ModelType20=PCBLIB
+ModelName20=IND_HC9
+ModelUpdate20=1
+ModelType21=PCBLIB
+ModelName21=Ind_IHLP
+ModelUpdate21=1
+ModelType22=PCBLIB
+ModelName22=Ind_SRP6540
+ModelUpdate22=1
+ModelType23=PCBLIB
+ModelName23=IND0805
+ModelUpdate23=1
+ModelType24=PCBLIB
+ModelName24=IND1210
+ModelUpdate24=1
+ModelType25=PCBLIB
+ModelName25=IPS1-105-01-S-D
+ModelUpdate25=1
+ModelType26=PCBLIB
+ModelName26=MSOP-8
+ModelUpdate26=1
+ModelType27=PCBLIB
+ModelName27=PC104
+ModelUpdate27=1
+ModelType28=PCBLIB
+ModelName28=PZ0100A_N
+ModelUpdate28=1
+ModelType29=PCBLIB
+ModelName29=SO8 Power PAD
+ModelUpdate29=1
+ModelType30=PCBLIB
+ModelName30=SOD323F
+ModelUpdate30=1
+ModelType31=PCBLIB
+ModelName31=SOIC8
+ModelUpdate31=1
+ModelType32=PCBLIB
+ModelName32=SOIC-8
+ModelUpdate32=1
+ModelType33=PCBLIB
+ModelName33=SOIC8_Mosfet
+ModelUpdate33=1
+ModelType34=PCBLIB
+ModelName34=SOT-23 6L
+ModelUpdate34=1
+ModelType35=PCBLIB
+ModelName35=TDFN-14-EP_3x5
+ModelUpdate35=1
+ModelType36=PCBLIB
+ModelName36=TEST_POINT
+ModelUpdate36=1
+ModelType37=PCBLIB
+ModelName37=TSSOP28
+ModelUpdate37=1
+ModelType38=PCBLIB
+ModelName38=XTAL_ABM8X
+ModelUpdate38=1
+ModelTypeGroup1=SI
+ModelTypeUpdate1=1
+ModelType39=SI
+ModelName39=Connector
+ModelUpdate39=1
+ModelTypeGroup2=SIM
+ModelTypeUpdate2=1
+ModelType40=SIM
+ModelName40=NMOS
+ModelUpdate40=1
+
+[DatabaseUpdateOptions]
+SelectedOnly=0
+UpdateVariants=1
+UpdateToLatestRevision=1
+PartTypes=0
+ComponentLibIdentifierKind0=Library Name And Type
+ComponentLibraryIdentifier0=componentes_6_11.SchLib
+ComponentDesignItemID0=MAX9934TAUA+
+ComponentSymbolReference0=MAX9934TAUA+
+ComponentUpdate0=1
+ComponentIsDeviceSheet0=0
+ComponentLibIdentifierKind1=Library Name And Type
+ComponentLibraryIdentifier1=componentes_6_11.SchLib
+ComponentDesignItemID1=TLV341AIDBVR
+ComponentSymbolReference1=TLV341AIDBVR
+ComponentUpdate1=1
+ComponentIsDeviceSheet1=0
+ComponentLibIdentifierKind2=Library Name And Type
+ComponentLibraryIdentifier2=Floripasat_lib.IntLib
+ComponentDesignItemID2=Cap_Cer_X7R_10uF_25V_1206
+ComponentSymbolReference2=Cap_Cer_X7R_10uF_25V_1206
+ComponentUpdate2=1
+ComponentIsDeviceSheet2=0
+ComponentLibIdentifierKind3=Library Name And Type
+ComponentLibraryIdentifier3=Floripasat_lib.IntLib
+ComponentDesignItemID3=Cap_Tant_SMD_220uF_6.3V_1210
+ComponentSymbolReference3=Cap_Tant_SMD_220uF_6.3V_1210
+ComponentUpdate3=1
+ComponentIsDeviceSheet3=0
+ComponentLibIdentifierKind4=Library Name And Type
+ComponentLibraryIdentifier4=Floripasat_lib.IntLib
+ComponentDesignItemID4=DIODE_SCHOTTKY_20V_2A_MB220-13-F
+ComponentSymbolReference4=DIODE_SCHOTTKY_20V_2A_MB220-13-F
+ComponentUpdate4=1
+ComponentIsDeviceSheet4=0
+ComponentLibIdentifierKind5=Library Name And Type
+ComponentLibraryIdentifier5=Floripasat_lib.IntLib
+ComponentDesignItemID5=DIODE_ZENER_5.6V_3SMAJ5919B
+ComponentSymbolReference5=DIODE_ZENER_5.6V_3SMAJ5919B
+ComponentUpdate5=1
+ComponentIsDeviceSheet5=0
+ComponentLibIdentifierKind6=Library Name And Type
+ComponentLibraryIdentifier6=Floripasat_lib.IntLib
+ComponentDesignItemID6=IND_POWER_10uH_6.4A_51.8mR
+ComponentSymbolReference6=IND_POWER_10uH_6.4A_51.8mR
+ComponentUpdate6=1
+ComponentIsDeviceSheet6=0
+ComponentLibIdentifierKind7=Library Name And Type
+ComponentLibraryIdentifier7=Floripasat_lib.IntLib
+ComponentDesignItemID7=TEST_POINT
+ComponentSymbolReference7=TEST_POINT
+ComponentUpdate7=1
+ComponentIsDeviceSheet7=0
+ComponentLibIdentifierKind8=Library Name And Type
+ComponentLibraryIdentifier8=Floripasat_lib.IntLib
+ComponentDesignItemID8=TPS5430QDDARQ1
+ComponentSymbolReference8=TPS5430QDDARQ1
+ComponentUpdate8=1
+ComponentIsDeviceSheet8=0
+ComponentLibIdentifierKind9=Library Name And Type
+ComponentLibraryIdentifier9=FloripaSatSchlib.SchLib
+ComponentDesignItemID9=Cap_Cer_C0G_5.6nF_100V_0603
+ComponentSymbolReference9=Cap_Cer_C0G_5.6nF_100V_0603
+ComponentUpdate9=1
+ComponentIsDeviceSheet9=0
+ComponentLibIdentifierKind10=Library Name And Type
+ComponentLibraryIdentifier10=FloripaSatSchlib.SchLib
+ComponentDesignItemID10=Cap_Cer_X7R_0.01uF_25V_0603
+ComponentSymbolReference10=Cap_Cer_X7R_0.01uF_25V_0603
+ComponentUpdate10=1
+ComponentIsDeviceSheet10=0
+ComponentLibIdentifierKind11=Library Name And Type
+ComponentLibraryIdentifier11=FloripaSatSchlib.SchLib
+ComponentDesignItemID11=Cap_Cer_X7R_0.1uF_25V_0805
+ComponentSymbolReference11=Cap_Cer_X7R_0.1uF_25V_0805
+ComponentUpdate11=1
+ComponentIsDeviceSheet11=0
+ComponentLibIdentifierKind12=Library Name And Type
+ComponentLibraryIdentifier12=FloripaSatSchlib.SchLib
+ComponentDesignItemID12=Cap_Cer_X7R_0.47uF_50V_0603
+ComponentSymbolReference12=Cap_Cer_X7R_0.47uF_50V_0603
+ComponentUpdate12=1
+ComponentIsDeviceSheet12=0
+ComponentLibIdentifierKind13=Library Name And Type
+ComponentLibraryIdentifier13=FloripaSatSchlib.SchLib
+ComponentDesignItemID13=Cap_Cer_X7R_10pF_100V_0805
+ComponentSymbolReference13=Cap_Cer_X7R_10pF_100V_0805
+ComponentUpdate13=1
+ComponentIsDeviceSheet13=0
+ComponentLibIdentifierKind14=Library Name And Type
+ComponentLibraryIdentifier14=FloripaSatSchlib.SchLib
+ComponentDesignItemID14=Cap_Cer_X7R_12pF_50V_0603
+ComponentSymbolReference14=Cap_Cer_X7R_12pF_50V_0603
+ComponentUpdate14=1
+ComponentIsDeviceSheet14=0
+ComponentLibIdentifierKind15=Library Name And Type
+ComponentLibraryIdentifier15=FloripaSatSchlib.SchLib
+ComponentDesignItemID15=Cap_Cer_X7R_4.7uF_25V_0805
+ComponentSymbolReference15=Cap_Cer_X7R_4.7uF_25V_0805
+ComponentUpdate15=1
+ComponentIsDeviceSheet15=0
+ComponentLibIdentifierKind16=Library Name And Type
+ComponentLibraryIdentifier16=FloripaSatSchlib.SchLib
+ComponentDesignItemID16=Cap_Tant_SMD_10uF_6V3_0805
+ComponentSymbolReference16=Cap_Tant_SMD_10uF_6V3_0805
+ComponentUpdate16=1
+ComponentIsDeviceSheet16=0
+ComponentLibIdentifierKind17=Library Name And Type
+ComponentLibraryIdentifier17=FloripaSatSchlib.SchLib
+ComponentDesignItemID17=DIODE_SCHOTTKY_23V_1A_NSVR0320MW2T1G
+ComponentSymbolReference17=DIODE_SCHOTTKY_23V_1A_NSVR0320MW2T1G
+ComponentUpdate17=1
+ComponentIsDeviceSheet17=0
+ComponentLibIdentifierKind18=Library Name And Type
+ComponentLibraryIdentifier18=FloripaSatSchlib.SchLib
+ComponentDesignItemID18=DIODE_SCHOTTKY_30V_2A_  CMS06(TE12L,Q,M)
+ComponentSymbolReference18=DIODE_SCHOTTKY_30V_2A_  CMS06(TE12L,Q,M)
+ComponentUpdate18=1
+ComponentIsDeviceSheet18=0
+ComponentLibIdentifierKind19=Library Name And Type
+ComponentLibraryIdentifier19=FloripaSatSchlib.SchLib
+ComponentDesignItemID19=DIODE_SCHOTTKY_30V_5A_RB080L-30TE25
+ComponentSymbolReference19=DIODE_SCHOTTKY_30V_5A_RB080L-30TE25
+ComponentUpdate19=1
+ComponentIsDeviceSheet19=0
+ComponentLibIdentifierKind20=Library Name And Type
+ComponentLibraryIdentifier20=FloripaSatSchlib.SchLib
+ComponentDesignItemID20=DIODE_SCHOTTKY_40V_3A_B340LA-13-F
+ComponentSymbolReference20=DIODE_SCHOTTKY_40V_3A_B340LA-13-F
+ComponentUpdate20=1
+ComponentIsDeviceSheet20=0
+ComponentLibIdentifierKind21=Library Name And Type
+ComponentLibraryIdentifier21=FloripaSatSchlib.SchLib
+ComponentDesignItemID21=DS2775G+
+ComponentSymbolReference21=DS2775G+
+ComponentUpdate21=1
+ComponentIsDeviceSheet21=0
+ComponentLibIdentifierKind22=Library Name And Type
+ComponentLibraryIdentifier22=FloripaSatSchlib.SchLib
+ComponentDesignItemID22=FB_30R_3A_100MHz_0805
+ComponentSymbolReference22=FB_30R_3A_100MHz_0805
+ComponentUpdate22=1
+ComponentIsDeviceSheet22=0
+ComponentLibIdentifierKind23=Library Name And Type
+ComponentLibraryIdentifier23=FloripaSatSchlib.SchLib
+ComponentDesignItemID23=FDS6898AZ
+ComponentSymbolReference23=FDS6898AZ
+ComponentUpdate23=1
+ComponentIsDeviceSheet23=0
+ComponentLibIdentifierKind24=Library Name And Type
+ComponentLibraryIdentifier24=FloripaSatSchlib.SchLib
+ComponentDesignItemID24=Header 3H
+ComponentSymbolReference24=Header 3H
+ComponentUpdate24=1
+ComponentIsDeviceSheet24=0
+ComponentLibIdentifierKind25=Library Name And Type
+ComponentLibraryIdentifier25=FloripaSatSchlib.SchLib
+ComponentDesignItemID25=Header 4_PicoBlade
+ComponentSymbolReference25=Header 4_PicoBlade
+ComponentUpdate25=1
+ComponentIsDeviceSheet25=0
+ComponentLibIdentifierKind26=Library Name And Type
+ComponentLibraryIdentifier26=FloripaSatSchlib.SchLib
+ComponentDesignItemID26=Header 5X2H_IPS1-105-01-S-D-VS
+ComponentSymbolReference26=Header 5X2H_IPS1-105-01-S-D-VS
+ComponentUpdate26=1
+ComponentIsDeviceSheet26=0
+ComponentLibIdentifierKind27=Library Name And Type
+ComponentLibraryIdentifier27=FloripaSatSchlib.SchLib
+ComponentDesignItemID27=Header 6H_PicoBlade
+ComponentSymbolReference27=Header 6H_PicoBlade
+ComponentUpdate27=1
+ComponentIsDeviceSheet27=0
+ComponentLibIdentifierKind28=Library Name And Type
+ComponentLibraryIdentifier28=FloripaSatSchlib.SchLib
+ComponentDesignItemID28=Header 8_PicoBlade
+ComponentSymbolReference28=Header 8_PicoBlade
+ComponentUpdate28=1
+ComponentIsDeviceSheet28=0
+ComponentLibIdentifierKind29=Library Name And Type
+ComponentLibraryIdentifier29=FloripaSatSchlib.SchLib
+ComponentDesignItemID29=IND_POWER_16uH_5A_35.5mR
+ComponentSymbolReference29=IND_POWER_16uH_5A_35.5mR
+ComponentUpdate29=1
+ComponentIsDeviceSheet29=0
+ComponentLibIdentifierKind30=Library Name And Type
+ComponentLibraryIdentifier30=FloripaSatSchlib.SchLib
+ComponentDesignItemID30=IND_POWER_2.2uH_9A_15mR
+ComponentSymbolReference30=IND_POWER_2.2uH_9A_15mR
+ComponentUpdate30=1
+ComponentIsDeviceSheet30=0
+ComponentLibIdentifierKind31=Library Name And Type
+ComponentLibraryIdentifier31=FloripaSatSchlib.SchLib
+ComponentDesignItemID31=IND_POWER_27uH_4.3A_42.5mR
+ComponentSymbolReference31=IND_POWER_27uH_4.3A_42.5mR
+ComponentUpdate31=1
+ComponentIsDeviceSheet31=0
+ComponentLibIdentifierKind32=Library Name And Type
+ComponentLibraryIdentifier32=FloripaSatSchlib.SchLib
+ComponentDesignItemID32=LED/G_0603
+ComponentSymbolReference32=LED/G_0603
+ComponentUpdate32=1
+ComponentIsDeviceSheet32=0
+ComponentLibIdentifierKind33=Library Name And Type
+ComponentLibraryIdentifier33=FloripaSatSchlib.SchLib
+ComponentDesignItemID33=LED/R_0603
+ComponentSymbolReference33=LED/R_0603
+ComponentUpdate33=1
+ComponentIsDeviceSheet33=0
+ComponentLibIdentifierKind34=Library Name And Type
+ComponentLibraryIdentifier34=FloripaSatSchlib.SchLib
+ComponentDesignItemID34=MOSFET-N_30V_Si4010DY
+ComponentSymbolReference34=MOSFET-N_30V_Si4010DY
+ComponentUpdate34=1
+ComponentIsDeviceSheet34=0
+ComponentLibIdentifierKind35=Library Name And Type
+ComponentLibraryIdentifier35=FloripaSatSchlib.SchLib
+ComponentDesignItemID35=MOSFET-P- SI4403CDY-T1-GE3
+ComponentSymbolReference35=MOSFET-P- SI4403CDY-T1-GE3
+ComponentUpdate35=1
+ComponentIsDeviceSheet35=0
+ComponentLibIdentifierKind36=Library Name And Type
+ComponentLibraryIdentifier36=FloripaSatSchlib.SchLib
+ComponentDesignItemID36=MSP430F6659IPZR
+ComponentSymbolReference36=MSP430F6659IPZR
+ComponentUpdate36=1
+ComponentIsDeviceSheet36=0
+ComponentLibIdentifierKind37=Library Name And Type
+ComponentLibraryIdentifier37=FloripaSatSchlib.SchLib
+ComponentDesignItemID37=PC104
+ComponentSymbolReference37=PC104
+ComponentUpdate37=1
+ComponentIsDeviceSheet37=0
+ComponentLibIdentifierKind38=Library Name And Type
+ComponentLibraryIdentifier38=FloripaSatSchlib.SchLib
+ComponentDesignItemID38=R0.01R_0.5%_0.5W_1206_4_terminal
+ComponentSymbolReference38=R0.01R_0.5%_0.5W_1206_4_terminal
+ComponentUpdate38=1
+ComponentIsDeviceSheet38=0
+ComponentLibIdentifierKind39=Library Name And Type
+ComponentLibraryIdentifier39=FloripaSatSchlib.SchLib
+ComponentDesignItemID39=R0.05R_0.5%_0.5W_1206
+ComponentSymbolReference39=R0.05R_0.5%_0.5W_1206
+ComponentUpdate39=1
+ComponentIsDeviceSheet39=0
+ComponentLibIdentifierKind40=Library Name And Type
+ComponentLibraryIdentifier40=FloripaSatSchlib.SchLib
+ComponentDesignItemID40=R1.0k_1%_1/8W_0603
+ComponentSymbolReference40=R1.0k_1%_1/8W_0603
+ComponentUpdate40=1
+ComponentIsDeviceSheet40=0
+ComponentLibIdentifierKind41=Library Name And Type
+ComponentLibraryIdentifier41=FloripaSatSchlib.SchLib
+ComponentDesignItemID41=R1.0k_1%_1/8W_0805
+ComponentSymbolReference41=R1.0k_1%_1/8W_0805
+ComponentUpdate41=1
+ComponentIsDeviceSheet41=0
+ComponentLibIdentifierKind42=Library Name And Type
+ComponentLibraryIdentifier42=FloripaSatSchlib.SchLib
+ComponentDesignItemID42=R1.65K_1%_1/10W_0805
+ComponentSymbolReference42=R1.65K_1%_1/10W_0805
+ComponentUpdate42=1
+ComponentIsDeviceSheet42=0
+ComponentLibIdentifierKind43=Library Name And Type
+ComponentLibraryIdentifier43=FloripaSatSchlib.SchLib
+ComponentDesignItemID43=R100K_1%_1/10W_0603
+ComponentSymbolReference43=R100K_1%_1/10W_0603
+ComponentUpdate43=1
+ComponentIsDeviceSheet43=0
+ComponentLibIdentifierKind44=Library Name And Type
+ComponentLibraryIdentifier44=FloripaSatSchlib.SchLib
+ComponentDesignItemID44=R10k_1%_1/8W_0603
+ComponentSymbolReference44=R10k_1%_1/8W_0603
+ComponentUpdate44=1
+ComponentIsDeviceSheet44=0
+ComponentLibIdentifierKind45=Library Name And Type
+ComponentLibraryIdentifier45=FloripaSatSchlib.SchLib
+ComponentDesignItemID45=R10k_1%_1/8W_0805
+ComponentSymbolReference45=R10k_1%_1/8W_0805
+ComponentUpdate45=1
+ComponentIsDeviceSheet45=0
+ComponentLibIdentifierKind46=Library Name And Type
+ComponentLibraryIdentifier46=FloripaSatSchlib.SchLib
+ComponentDesignItemID46=R11.5k_1%_1/8W_0805
+ComponentSymbolReference46=R11.5k_1%_1/8W_0805
+ComponentUpdate46=1
+ComponentIsDeviceSheet46=0
+ComponentLibIdentifierKind47=Library Name And Type
+ComponentLibraryIdentifier47=FloripaSatSchlib.SchLib
+ComponentDesignItemID47=R140k_1%_1/5W_0603
+ComponentSymbolReference47=R140k_1%_1/5W_0603
+ComponentUpdate47=1
+ComponentIsDeviceSheet47=0
+ComponentLibIdentifierKind48=Library Name And Type
+ComponentLibraryIdentifier48=FloripaSatSchlib.SchLib
+ComponentDesignItemID48=R19.6k_1%_1/10W_0603
+ComponentSymbolReference48=R19.6k_1%_1/10W_0603
+ComponentUpdate48=1
+ComponentIsDeviceSheet48=0
+ComponentLibIdentifierKind49=Library Name And Type
+ComponentLibraryIdentifier49=FloripaSatSchlib.SchLib
+ComponentDesignItemID49=R3.24k_1%_1/8W_0805
+ComponentSymbolReference49=R3.24k_1%_1/8W_0805
+ComponentUpdate49=1
+ComponentIsDeviceSheet49=0
+ComponentLibIdentifierKind50=Library Name And Type
+ComponentLibraryIdentifier50=FloripaSatSchlib.SchLib
+ComponentDesignItemID50=R3.3k_0.1%_1/10W_0805
+ComponentSymbolReference50=R3.3k_0.1%_1/10W_0805
+ComponentUpdate50=1
+ComponentIsDeviceSheet50=0
+ComponentLibIdentifierKind51=Library Name And Type
+ComponentLibraryIdentifier51=FloripaSatSchlib.SchLib
+ComponentDesignItemID51=R300K_0.1%_1/10W_0603
+ComponentSymbolReference51=R300K_0.1%_1/10W_0603
+ComponentUpdate51=1
+ComponentIsDeviceSheet51=0
+ComponentLibIdentifierKind52=Library Name And Type
+ComponentLibraryIdentifier52=FloripaSatSchlib.SchLib
+ComponentDesignItemID52=R4.7K_1%_1/8W_0603
+ComponentSymbolReference52=R4.7K_1%_1/8W_0603
+ComponentUpdate52=1
+ComponentIsDeviceSheet52=0
+ComponentLibIdentifierKind53=Library Name And Type
+ComponentLibraryIdentifier53=FloripaSatSchlib.SchLib
+ComponentDesignItemID53=R470R_1%_1/8W_0603
+ComponentSymbolReference53=R470R_1%_1/8W_0603
+ComponentUpdate53=1
+ComponentIsDeviceSheet53=0
+ComponentLibIdentifierKind54=Library Name And Type
+ComponentLibraryIdentifier54=FloripaSatSchlib.SchLib
+ComponentDesignItemID54=R47k_1%_1/8W_0603
+ComponentSymbolReference54=R47k_1%_1/8W_0603
+ComponentUpdate54=1
+ComponentIsDeviceSheet54=0
+ComponentLibIdentifierKind55=Library Name And Type
+ComponentLibraryIdentifier55=FloripaSatSchlib.SchLib
+ComponentDesignItemID55=R5.9K_1%_1/8W_0805
+ComponentSymbolReference55=R5.9K_1%_1/8W_0805
+ComponentUpdate55=1
+ComponentIsDeviceSheet55=0
+ComponentLibIdentifierKind56=Library Name And Type
+ComponentLibraryIdentifier56=FloripaSatSchlib.SchLib
+ComponentDesignItemID56=R60.4k_1%_1/8W_0805
+ComponentSymbolReference56=R60.4k_1%_1/8W_0805
+ComponentUpdate56=1
+ComponentIsDeviceSheet56=0
+ComponentLibIdentifierKind57=Library Name And Type
+ComponentLibraryIdentifier57=FloripaSatSchlib.SchLib
+ComponentDesignItemID57=R93.1K_1%_1/10W_0603
+ComponentSymbolReference57=R93.1K_1%_1/10W_0603
+ComponentUpdate57=1
+ComponentIsDeviceSheet57=0
+ComponentLibIdentifierKind58=Library Name And Type
+ComponentLibraryIdentifier58=FloripaSatSchlib.SchLib
+ComponentDesignItemID58=REF5025A-Q1
+ComponentSymbolReference58=REF5025A-Q1
+ComponentUpdate58=1
+ComponentIsDeviceSheet58=0
+ComponentLibIdentifierKind59=Library Name And Type
+ComponentLibraryIdentifier59=FloripaSatSchlib.SchLib
+ComponentDesignItemID59=TEST_POINT
+ComponentSymbolReference59=TEST_POINT
+ComponentUpdate59=1
+ComponentIsDeviceSheet59=0
+ComponentLibIdentifierKind60=Library Name And Type
+ComponentLibraryIdentifier60=FloripaSatSchlib.SchLib
+ComponentDesignItemID60=TPS5410QDRQ1
+ComponentSymbolReference60=TPS5410QDRQ1
+ComponentUpdate60=1
+ComponentIsDeviceSheet60=0
+ComponentLibIdentifierKind61=Library Name And Type
+ComponentLibraryIdentifier61=FloripaSatSchlib.SchLib
+ComponentDesignItemID61=TPS5420QDRQ1
+ComponentSymbolReference61=TPS5420QDRQ1
+ComponentUpdate61=1
+ComponentIsDeviceSheet61=0
+ComponentLibIdentifierKind62=Library Name And Type
+ComponentLibraryIdentifier62=FloripaSatSchlib.SchLib
+ComponentDesignItemID62=TPS54540QDDARQ1
+ComponentSymbolReference62=TPS54540QDDARQ1
+ComponentUpdate62=1
+ComponentIsDeviceSheet62=0
+ComponentLibIdentifierKind63=Library Name And Type
+ComponentLibraryIdentifier63=FloripaSatSchlib.SchLib
+ComponentDesignItemID63=Xtal_32.768kHz_12pF_2_SMD
+ComponentSymbolReference63=Xtal_32.768kHz_12pF_2_SMD
+ComponentUpdate63=1
+ComponentIsDeviceSheet63=0
+ComponentLibIdentifierKind64=Library Name And Type
+ComponentLibraryIdentifier64=OBDH_Eng_Model_2_ALT.SCHLIB
+ComponentDesignItemID64=Cap_Cer_X7R_1nF_16V_0603
+ComponentSymbolReference64=Cap_Cer_X7R_1nF_16V_0603
+ComponentUpdate64=1
+ComponentIsDeviceSheet64=0
+ComponentLibIdentifierKind65=Library Name And Type
+ComponentLibraryIdentifier65=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID65=Cap_Cer_C0G_13pF_50V_0603
+ComponentSymbolReference65=Cap_Cer_C0G_13pF_50V_0603
+ComponentUpdate65=1
+ComponentIsDeviceSheet65=0
+ComponentLibIdentifierKind66=Library Name And Type
+ComponentLibraryIdentifier66=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID66=Cap_Cer_X7R_0.01uF_50V_0805
+ComponentSymbolReference66=Cap_Cer_X7R_0.01uF_50V_0805
+ComponentUpdate66=1
+ComponentIsDeviceSheet66=0
+ComponentLibIdentifierKind67=Library Name And Type
+ComponentLibraryIdentifier67=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID67=Cap_Cer_X7R_0.1uF_50V_0603
+ComponentSymbolReference67=Cap_Cer_X7R_0.1uF_50V_0603
+ComponentUpdate67=1
+ComponentIsDeviceSheet67=0
+ComponentLibIdentifierKind68=Library Name And Type
+ComponentLibraryIdentifier68=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID68=Cap_Cer_X7R_0.1uF_50V_0805
+ComponentSymbolReference68=Cap_Cer_X7R_0.1uF_50V_0805
+ComponentUpdate68=1
+ComponentIsDeviceSheet68=0
+ComponentLibIdentifierKind69=Library Name And Type
+ComponentLibraryIdentifier69=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID69=Cap_Cer_X7R_1000pF_50V_0603
+ComponentSymbolReference69=Cap_Cer_X7R_1000pF_50V_0603
+ComponentUpdate69=1
+ComponentIsDeviceSheet69=0
+ComponentLibIdentifierKind70=Library Name And Type
+ComponentLibraryIdentifier70=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID70=Cap_Cer_X7R_22uF_10V_1206
+ComponentSymbolReference70=Cap_Cer_X7R_22uF_10V_1206
+ComponentUpdate70=1
+ComponentIsDeviceSheet70=0
+ComponentLibIdentifierKind71=Library Name And Type
+ComponentLibraryIdentifier71=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID71=Cap_Cer_X7R_22uF_25V_1210
+ComponentSymbolReference71=Cap_Cer_X7R_22uF_25V_1210
+ComponentUpdate71=1
+ComponentIsDeviceSheet71=0
+ComponentLibIdentifierKind72=Library Name And Type
+ComponentLibraryIdentifier72=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID72=Cap_Cer_X7R_4.7uF_25V_0805
+ComponentSymbolReference72=Cap_Cer_X7R_4.7uF_25V_0805
+ComponentUpdate72=1
+ComponentIsDeviceSheet72=0
+ComponentLibIdentifierKind73=Library Name And Type
+ComponentLibraryIdentifier73=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID73=Cap_Tant_SMD_10uF_6V3_0805
+ComponentSymbolReference73=Cap_Tant_SMD_10uF_6V3_0805
+ComponentUpdate73=1
+ComponentIsDeviceSheet73=0
+ComponentLibIdentifierKind74=Library Name And Type
+ComponentLibraryIdentifier74=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID74=FB_30R_10A_100MHz_1210
+ComponentSymbolReference74=FB_30R_10A_100MHz_1210
+ComponentUpdate74=1
+ComponentIsDeviceSheet74=0
+ComponentLibIdentifierKind75=Library Name And Type
+ComponentLibraryIdentifier75=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID75=Header 4_PicoBlade
+ComponentSymbolReference75=Header 4_PicoBlade
+ComponentUpdate75=1
+ComponentIsDeviceSheet75=0
+ComponentLibIdentifierKind76=Library Name And Type
+ComponentLibraryIdentifier76=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID76=IND_POWER_22uH_6.3A_25.7mR
+ComponentSymbolReference76=IND_POWER_22uH_6.3A_25.7mR
+ComponentUpdate76=1
+ComponentIsDeviceSheet76=0
+ComponentLibIdentifierKind77=Library Name And Type
+ComponentLibraryIdentifier77=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID77=MOSFET-N_30V_SI4166DY
+ComponentSymbolReference77=MOSFET-N_30V_SI4166DY
+ComponentUpdate77=1
+ComponentIsDeviceSheet77=0
+ComponentLibIdentifierKind78=Library Name And Type
+ComponentLibraryIdentifier78=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID78=R0.075R_1%_0.5W_1206
+ComponentSymbolReference78=R0.075R_1%_0.5W_1206
+ComponentUpdate78=1
+ComponentIsDeviceSheet78=0
+ComponentLibIdentifierKind79=Library Name And Type
+ComponentLibraryIdentifier79=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID79=R0R_JUMPER_1/8W_0805
+ComponentSymbolReference79=R0R_JUMPER_1/8W_0805
+ComponentUpdate79=1
+ComponentIsDeviceSheet79=0
+ComponentLibIdentifierKind80=Library Name And Type
+ComponentLibraryIdentifier80=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID80=R0R_JUMPER_3/4W_1206
+ComponentSymbolReference80=R0R_JUMPER_3/4W_1206
+ComponentUpdate80=1
+ComponentIsDeviceSheet80=0
+ComponentLibIdentifierKind81=Library Name And Type
+ComponentLibraryIdentifier81=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID81=R100k_0.1%_1/10W_0805
+ComponentSymbolReference81=R100k_0.1%_1/10W_0805
+ComponentUpdate81=1
+ComponentIsDeviceSheet81=0
+ComponentLibIdentifierKind82=Library Name And Type
+ComponentLibraryIdentifier82=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID82=R1200k_1%_1/8W_0805
+ComponentSymbolReference82=R1200k_1%_1/8W_0805
+ComponentUpdate82=1
+ComponentIsDeviceSheet82=0
+ComponentLibIdentifierKind83=Library Name And Type
+ComponentLibraryIdentifier83=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID83=R150R_1%_1/10W_0603
+ComponentSymbolReference83=R150R_1%_1/10W_0603
+ComponentUpdate83=1
+ComponentIsDeviceSheet83=0
+ComponentLibIdentifierKind84=Library Name And Type
+ComponentLibraryIdentifier84=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID84=R4.02k_0.1%_1/8W_0805
+ComponentSymbolReference84=R4.02k_0.1%_1/8W_0805
+ComponentUpdate84=1
+ComponentIsDeviceSheet84=0
+ComponentLibIdentifierKind85=Library Name And Type
+ComponentLibraryIdentifier85=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID85=Tactile_Switches_B3U-1000P
+ComponentSymbolReference85=Tactile_Switches_B3U-1000P
+ComponentUpdate85=1
+ComponentIsDeviceSheet85=0
+ComponentLibIdentifierKind86=Library Name And Type
+ComponentLibraryIdentifier86=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID86=TCA4311ADR
+ComponentSymbolReference86=TCA4311ADR
+ComponentUpdate86=1
+ComponentIsDeviceSheet86=0
+ComponentLibIdentifierKind87=Library Name And Type
+ComponentLibraryIdentifier87=PCB_Project_FlightModel_EPS.SCHLIB
+ComponentDesignItemID87=XTAL_32MHz_SMD_4-SMD
+ComponentSymbolReference87=XTAL_32MHz_SMD_4-SMD
+ComponentUpdate87=1
+ComponentIsDeviceSheet87=0
+ComponentLibIdentifierKind88=Library Name And Type
+ComponentLibraryIdentifier88=schematic_components.SchLib
+ComponentDesignItemID88=ADS1248IPW
+ComponentSymbolReference88=ADS1248IPW
+ComponentUpdate88=1
+ComponentIsDeviceSheet88=0
+
+[Comparison Options]
+ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=-1|UseName=-1|InclAllRules=0
+ComparisonOptions1=Kind=Net Class|MinPercent=75|MinMatch=3|ShowMatch=-1|UseName=-1|InclAllRules=0
+ComparisonOptions2=Kind=Component Class|MinPercent=75|MinMatch=3|ShowMatch=-1|UseName=-1|InclAllRules=0
+ComparisonOptions3=Kind=Rule|MinPercent=75|MinMatch=3|ShowMatch=-1|UseName=-1|InclAllRules=0
+ComparisonOptions4=Kind=Differential Pair|MinPercent=50|MinMatch=1|ShowMatch=0|UseName=0|InclAllRules=0
+ComparisonOptions5=Kind=Structure Class|MinPercent=75|MinMatch=3|ShowMatch=-1|UseName=-1|InclAllRules=0
+
+[SmartPDF]
+PageOptions=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+Configuration_Name1=OutputConfigurationParameter1
+Configuration_Item1=DesignatorDisplayMode=Physical|PrintArea=DesignExtent|PrintAreaLowerLeftCornerX=0|PrintAreaLowerLeftCornerY=0|PrintAreaUpperRightCornerX=0|PrintAreaUpperRightCornerY=0|Record=PcbPrintView
+Configuration_Name2=OutputConfigurationParameter2
+Configuration_Item2=IncludeBottomLayerComponents=True|IncludeMultiLayerComponents=True|IncludeTopLayerComponents=True|IncludeViewports=True|Index=0|Mirror=False|Name=Multilayer Composite Print|PadNumberFontSize=14|Record=PcbPrintOut|ShowHoles=False|ShowPadNets=False|ShowPadNumbers=False|SubstituteFonts=False
+Configuration_Name3=OutputConfigurationParameter3
+Configuration_Item3=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration_Name4=OutputConfigurationParameter4
+Configuration_Item4=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=BottomLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration_Name5=OutputConfigurationParameter5
+Configuration_Item5=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=MultiLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+Configuration_Name6=OutputConfigurationParameter6
+Configuration_Item6=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=KeepOutLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
+

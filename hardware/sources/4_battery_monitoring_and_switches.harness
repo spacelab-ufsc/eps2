@@ -1,0 +1,3 @@
+BAT_IC_SIGNALS=PIO,I2C0_SCL,I2C0_SDA
+Batteries_Input=+VBat,-VBat,VBat_Common
+External_Switches=NO_Kill_Switch1,NC_Kill_Switch1,Common_Kill_Switch1,NO_Kill_Switch2,NC_Kill_Switch2,Common_Kill_Switch2,+RBF,-RBF
