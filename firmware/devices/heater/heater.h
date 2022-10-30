@@ -23,8 +23,8 @@
 /**
  * \brief Heater device definition.
  *
- * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Jo�o Cl�udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andr� M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
  * \version 0.2.11
  *
