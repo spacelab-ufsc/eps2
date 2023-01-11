@@ -43,8 +43,8 @@
 #define TASK_HEATER_CONTROLLER_NAME             "Heater Controller" /**< Task name. */
 #define TASK_HEATER_CONTROLLER_STACK_SIZE       160             	/**< Memory stack size in bytes. */
 #define TASK_HEATER_CONTROLLER_PRIORITY         3               	/**< Priority. */
-#define TASK_HEATER_CONTROLLER_PERIOD_MS        2000             	/**< Period in milliseconds. */
-#define TASK_HEATER_CONTROLLER_INIT_TIMEOUT_MS  2000            	/**< Wait time to initialize the task in milliseconds. */
+#define TASK_HEATER_CONTROLLER_PERIOD_MS        2000UL             	/**< Period in milliseconds. */
+#define TASK_HEATER_CONTROLLER_INIT_TIMEOUT_MS  2000UL            	/**< Wait time to initialize the task in milliseconds. */
 
 /* Heater modes */
 #define HEATER_AUTOMATIC_MODE                   0
