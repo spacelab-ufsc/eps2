@@ -59,16 +59,16 @@
 #define HEATER_GPIO_MODE                GPIO_MODE_OUTPUT
 #define HEATER_CONTROL_LOOP_CH_0        0
 #define HEATER_CONTROL_LOOP_CH_1        1
-#define HEATER_ACTUATOR_CH_0            GPIO_PIN_18
-#define HEATER_ACTUATOR_CH_1            GPIO_PIN_19
-#define HEATER_SENSOR_CH_0              TEMP_SENSOR_RTD_CH_4
-#define HEATER_SENSOR_CH_1              TEMP_SENSOR_RTD_CH_5
+#define HEATER_DRIVER_CH_0            GPIO_PIN_18
+#define HEATER_DRIVER_CH_1            GPIO_PIN_19
+#define HEATER_RTD_CH_0              TEMP_SENSOR_RTD_CH_4
+#define HEATER_RTD_CH_1              TEMP_SENSOR_RTD_CH_5
 #define HEATER_SENSOR_BOARD             TEMP_SENSOR_RTD_CH_3
 
 /**
  * \brief Hysteresis controller channel type.
  */
-typedef uint8_t heater_channel_t;
+typedef uint8_t heater_on_off_channel_t;
 
 /**
  * \brief Heater state type.
@@ -110,7 +110,7 @@ int heater_on_off_init(void);
  *
  * \return The control loop output value.
  */
-bool heater_on_off_algorithm(heater_channel_t channel, float measurement);
+bool heater_on_off_algorithm(heater_on_off_channel_t channel, float measurement);
 
 /**
  * \brief Gets the temperature sensor value in kelvin.
@@ -121,7 +121,7 @@ bool heater_on_off_algorithm(heater_channel_t channel, float measurement);
  *
  * \return The status/error code.
  */
-int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp);
+int heater_on_off_get_sensor(heater_on_off_channel_t channel, temperature_t *temp);
 
 /**
  * \brief Sets the selected heater actuator state.
@@ -132,7 +132,7 @@ int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp);
  *
  * \return The status/error code.
  */
-int heater_on_off_set_actuator(heater_channel_t channel, bool heater_controller_output);
+int heater_on_off_set_actuator(heater_on_off_channel_t channel, bool heater_controller_output);
 
 
 #endif /* HEATER_ON_OFF_H_ */

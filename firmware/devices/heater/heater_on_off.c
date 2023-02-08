@@ -46,28 +46,28 @@ int heater_on_off_init(void)
     conf.mode = HEATER_GPIO_MODE;
 
     /* Initialize heaters pins and sets them to off state */
-    if(gpio_init(HEATER_ACTUATOR_CH_0, conf))
+    if(gpio_init(HEATER_DRIVER_CH_0, conf))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH0)!");
         sys_log_new_line();
         return -1;
     }
 
-    if(gpio_init(HEATER_ACTUATOR_CH_1, conf))
+    if(gpio_init(HEATER_DRIVER_CH_1, conf))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH1)!");
         sys_log_new_line();
         return -1;
     }
 
-    if(gpio_set_state(HEATER_ACTUATOR_CH_0, HEATER_OFF))
+    if(gpio_set_state(HEATER_DRIVER_CH_0, HEATER_OFF))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH0)!");
         sys_log_new_line();
         return -1;
     }
 
-    if(gpio_set_state(HEATER_ACTUATOR_CH_1, HEATER_OFF))
+    if(gpio_set_state(HEATER_DRIVER_CH_1, HEATER_OFF))
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH1)!");
         sys_log_new_line();
@@ -77,7 +77,7 @@ int heater_on_off_init(void)
     return 0;
 }
 
-bool heater_on_off_algorithm(heater_channel_t channel, float measurement)
+bool heater_on_off_algorithm(heater_on_off_channel_t channel, float measurement)
 {
     static bool heater1_status = false;
     static bool heater2_status = false;
@@ -125,14 +125,14 @@ bool heater_on_off_algorithm(heater_channel_t channel, float measurement)
     return new_status;
 }
 
-int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp)
+int heater_on_off_get_sensor(heater_on_off_channel_t channel, temperature_t *temp)
 {   
     switch(channel) 
     {
         case HEATER_CONTROL_LOOP_CH_0:
-            return temp_rtd_read_k(HEATER_SENSOR_CH_0, temp);
+            return temp_rtd_read_k(HEATER_RTD_CH_0, temp);
         case HEATER_CONTROL_LOOP_CH_1:
-            return temp_rtd_read_k(HEATER_SENSOR_CH_1, temp);
+            return temp_rtd_read_k(HEATER_RTD_CH_1, temp);
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Invalid sensor channel!");
             sys_log_new_line();
@@ -140,27 +140,27 @@ int heater_on_off_get_sensor(heater_channel_t channel, temperature_t *temp)
     }
 }
 
-int heater_on_off_set_actuator(heater_channel_t channel, bool heater_controller_output)
+int heater_on_off_set_actuator(heater_on_off_channel_t channel, bool heater_controller_output)
 {
     switch(channel) 
     {
         case HEATER_CONTROL_LOOP_CH_0:
             if (heater_controller_output == HEATER_OFF)
             {
-                return gpio_set_state(HEATER_ACTUATOR_CH_0, HEATER_OFF);
+                return gpio_set_state(HEATER_DRIVER_CH_0, HEATER_OFF);
             }
             else 
             {
-                return gpio_set_state(HEATER_ACTUATOR_CH_0, HEATER_ON);
+                return gpio_set_state(HEATER_DRIVER_CH_0, HEATER_ON);
             }
         case HEATER_CONTROL_LOOP_CH_1:
             if (heater_controller_output == HEATER_OFF)
             {
-                return gpio_set_state(HEATER_ACTUATOR_CH_1, HEATER_OFF);
+                return gpio_set_state(HEATER_DRIVER_CH_1, HEATER_OFF);
             }
             else 
             {
-                return gpio_set_state(HEATER_ACTUATOR_CH_1, HEATER_ON);
+                return gpio_set_state(HEATER_DRIVER_CH_1, HEATER_ON);
             }
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Invalid actuator channel!");
