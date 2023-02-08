@@ -24,8 +24,8 @@
  * \brief MPPT device implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Joï¿½o Clï¿½udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andrï¿½ M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
  * \version 0.2.22
  * 
@@ -262,5 +262,12 @@ int decrease_duty_cycle(mppt_channel_t channel)
         return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);    
     }
 }
+
+int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle)
+{
+    mppt_config.duty_cycle = duty_cycle;
+    return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+}
+
 
 /** \} End of mppt group */
