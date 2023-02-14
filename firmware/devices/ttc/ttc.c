@@ -100,47 +100,50 @@ int ttc_init(void)
 
 int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd) 
 {
-	uint8_t buf[UART_RX_BUFFER_MAX_SIZE] = {0};
-    uint8_t received_size = uart_received_data_size;
+    int err = 0;
+    uint8_t buf[UART_RX_BUFFER_MAX_SIZE] = {0};
+    uint16_t received_size = 0;
 
-	for (int i = 0; i < received_size; i++)
-	{
-		buf[i] = uart_rx_buffer[i];
-	}
-
-	if(ttc_check_crc(buf, received_size - 1U, buf[received_size - 1U]) == true)
-	{
-		switch(received_size) 
-		{
-			case TTC_COMMAND_WRITE_SIZE:
-			    *adr = buf[0];
-			    *val = ((uint32_t)buf[1] << 24) |
-			    	   ((uint32_t)buf[2] << 16) |
-			    	   ((uint32_t)buf[3] << 8)  |
-			    	   ((uint32_t)buf[4] << 0);
-			   	*cmd = TTC_COMMAND_WRITE;
-				break;
-			case TTC_COMMAND_READ_SIZE:
-				*adr = buf[0];
-			    *val = 0;
-			   	*cmd = TTC_COMMAND_READ;
-				break;
-			default:
-				sys_log_print_event_from_module(SYS_LOG_ERROR, TTC_MODULE_NAME, "Invalid command received (CMD)!");
-        		sys_log_new_line();
+    if (uart_interrupt_read(ttc_config.uart_port, buf, &received_size) == 0)
+    {
+	    if(ttc_check_crc(buf, received_size - 1U, buf[received_size - 1U]) == true)
+	    {
+		    switch(received_size - 1U)
+		    {
+			    case TTC_COMMAND_WRITE_SIZE:
+			        *adr = buf[1];
+			        *val = ((uint32_t)buf[2] << 24) |
+			    	       ((uint32_t)buf[3] << 16) |
+			    	       ((uint32_t)buf[4] << 8)  |
+			    	       ((uint32_t)buf[5] << 0);
+			   	    *cmd = TTC_COMMAND_WRITE;
+				    break;
+			    case TTC_COMMAND_READ_SIZE:
+				    *adr = buf[1];
+			        *val = 0;
+			   	    *cmd = TTC_COMMAND_READ;
+				    break;
+			    default:
+				    sys_log_print_event_from_module(SYS_LOG_ERROR, TTC_MODULE_NAME, "Invalid command received (CMD)!");
+        		    sys_log_new_line();
 				
-				return -1;
-		}
-	}
-	else 
-	{
-		sys_log_print_event_from_module(SYS_LOG_ERROR, TTC_MODULE_NAME, "Invalid command received (CRC)!");
-        sys_log_new_line();
+				    err = -1;
+		    }
+	    }
+	    else 
+	    {
+		    sys_log_print_event_from_module(SYS_LOG_ERROR, TTC_MODULE_NAME, "Invalid command received (CRC)!");
+            sys_log_new_line();
 		
-		return -1;
-	}
+		    err = -1;
+	    }
+    }
+    else
+    {
+        err = -1;
+    }
 
-    return 0;
+    return err;
 }
 
 int ttc_answer(uint8_t adr, uint32_t val) 
@@ -178,7 +181,7 @@ uint8_t ttc_crc8(uint8_t *data, uint8_t len)
 
         crc &= 0xFF;
     }
-
+    
     return crc;
 }
 
