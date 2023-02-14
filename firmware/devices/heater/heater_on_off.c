@@ -37,7 +37,7 @@
 
 #include "heater_on_off.h"
 
-int heater_on_off_init(void)
+int heater_on_off_init(heater_on_off_channel_t channel)
 {
     sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_ON_OFF_MODULE_NAME, "Initializing the heater...");
     sys_log_new_line();
@@ -46,32 +46,43 @@ int heater_on_off_init(void)
     conf.mode = HEATER_GPIO_MODE;
 
     /* Initialize heaters pins and sets them to off state */
-    if(gpio_init(HEATER_DRIVER_CH_0, conf))
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH0)!");
-        sys_log_new_line();
-        return -1;
-    }
+    switch(channel){
 
-    if(gpio_init(HEATER_DRIVER_CH_1, conf))
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH1)!");
-        sys_log_new_line();
-        return -1;
-    }
+        case HEATER_CONTROL_LOOP_CH_0:
 
-    if(gpio_set_state(HEATER_DRIVER_CH_0, HEATER_OFF))
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH0)!");
-        sys_log_new_line();
-        return -1;
-    }
+            if(gpio_init(HEATER_DRIVER_CH_0, conf))
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH0)!");
+                sys_log_new_line();
+                return -1;
+            }
 
-    if(gpio_set_state(HEATER_DRIVER_CH_1, HEATER_OFF))
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH1)!");
-        sys_log_new_line();
-        return -1;
+            if(gpio_set_state(HEATER_DRIVER_CH_0, HEATER_OFF))
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH0)!");
+                sys_log_new_line();
+                return -1;
+            }            
+
+            break;
+        
+        case HEATER_CONTROL_LOOP_CH_1:
+
+            if(gpio_init(HEATER_DRIVER_CH_1, conf))
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error during the initialization (CH1)!");
+                sys_log_new_line();
+                return -1;
+            }
+
+            if(gpio_set_state(HEATER_DRIVER_CH_1, HEATER_OFF))
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_ON_OFF_MODULE_NAME, "Error while setting state (CH1)!");
+                sys_log_new_line();
+                return -1;
+            }        
+
+            break;
     }
 
     return 0;

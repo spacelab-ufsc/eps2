@@ -113,7 +113,7 @@ void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
             
             if (last_mode[channel] != HEATER_AUTOMATIC_MODE)
             {
-                if (heater_on_off_init())
+                if (heater_on_off_init(channel))
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
                     sys_log_print_uint(channel);
@@ -151,7 +151,7 @@ void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
         {
             if (last_mode[channel] != HEATER_MANUAL_MODE)
             {
-                if (heater_init())
+                if (heater_init(channel))
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
                     sys_log_print_uint(channel);

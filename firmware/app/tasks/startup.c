@@ -103,7 +103,7 @@ void vTaskStartup(void *pvParameters)
 
 #if CONFIG_DEV_HEATER_ENABLED == 1
     /* Heater device initialization */
-    if (heater_on_off_init() != 0)
+    if (heater_on_off_init(HEATER_CONTROL_LOOP_CH_0) != 0 || heater_on_off_init(HEATER_CONTROL_LOOP_CH_1) != 0)
     {
         error_counter++;
     }
