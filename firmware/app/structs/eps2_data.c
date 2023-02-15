@@ -38,7 +38,16 @@
 
 #include "eps2_data.h"
 
-eps_data_t eps_data_buff;
+eps_data_t eps_data_buff = {
+    // EPS data buffer initial/default values
+    .heater1_mode = 0,
+    .heater1_duty_cycle = 50,
+    .heater2_mode = 0,
+    .heater2_duty_cycle = 50,
+    .firmware_version = 0,
+    .hardware_version = 0,
+    .device_id = 0xFFFF
+};
 
 int eps_buffer_write(uint8_t id, uint32_t *value)
 {
