@@ -96,6 +96,13 @@ int ttc_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd);
  */
 int ttc_answer(uint8_t adr, uint32_t val);
 
+/**
+ * \brief Sends data to the TTC.
+ *
+ * \return The status/error code.
+ */
+int ttc_answer_long(uint8_t *buf);
+
 #endif /* TTC_H_ */
 
 /** \} End of ttc group */

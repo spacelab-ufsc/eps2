@@ -165,6 +165,17 @@ int ttc_answer(uint8_t adr, uint32_t val)
     return 0;
 }
 
+int ttc_answer_long(uint8_t *buf) 
+{
+
+    if (uart_interrupt_write(UART_PORT_0, buf, 49) != 0)
+    {
+        return -1;
+    }
+
+    return 0;
+}
+
 uint8_t ttc_crc8(uint8_t *data, uint8_t len)
 {
     uint8_t crc = TTC_CRC8_INITIAL_VALUE;
