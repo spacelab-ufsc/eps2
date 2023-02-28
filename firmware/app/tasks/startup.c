@@ -37,6 +37,7 @@
 #include <stdbool.h>
 
 #include <config/config.h>
+#include <app/structs/eps2_data.h>
 #include <system/system.h>
 #include <system/sys_log/sys_log.h>
 #include <system/clocks.h>
@@ -74,8 +75,10 @@ void vTaskStartup(void *pvParameters)
 
     /* Print the hardware version */
     sys_log_print_event_from_module(SYS_LOG_INFO, TASK_STARTUP_NAME, "Hardware revision is ");
-    sys_log_print_uint(system_get_hw_version());
+    uint32_t hw_version = system_get_hw_version();
+    sys_log_print_uint(hw_version);
     sys_log_new_line();
+    eps_buffer_write(EPS2_PARAM_ID_HW_VERSION, (uint32_t*)&hw_version);
 
     /* Print the system clocks */
     clocks_config_t clks = clocks_read();
@@ -90,8 +93,10 @@ void vTaskStartup(void *pvParameters)
 
     /* Print last reset cause (code) */
     sys_log_print_event_from_module(SYS_LOG_INFO, TASK_STARTUP_NAME, "Last reset cause: ");
-    sys_log_print_hex(system_get_reset_cause());
+    uint32_t reset_cause = 0;
+    sys_log_print_hex(reset_cause);
     sys_log_new_line();
+    eps_buffer_write(EPS2_PARAM_ID_LAST_RESET_CAUSE, (uint32_t*)&reset_cause);
 
 #if CONFIG_DEV_LEDS_ENABLED == 1
     /* LEDs device initialization */
