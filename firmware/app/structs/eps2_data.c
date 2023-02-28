@@ -55,9 +55,9 @@ eps_data_t eps_data_buff = {
     .heater2_mode = 0,
     .heater2_duty_cycle = 50,
     
-    .firmware_version = 0,
+    .firmware_version = 0x00000300,
     .hardware_version = 0,
-    .device_id = 0xFFFF
+    .device_id = 0xEEE2
 };
 
 int eps_buffer_write(uint8_t id, uint32_t *value)
