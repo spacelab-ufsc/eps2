@@ -40,10 +40,21 @@
 
 eps_data_t eps_data_buff = {
     // EPS data buffer initial/default values
+    .mppt_1_mode = 0,
+    .mppt_1_duty_cycle = 50,
+
+    .mppt_2_mode = 0,
+    .mppt_2_duty_cycle = 50,
+    
+    .mppt_3_mode = 0,
+    .mppt_3_duty_cycle = 50,
+    
     .heater1_mode = 0,
     .heater1_duty_cycle = 50,
+    
     .heater2_mode = 0,
     .heater2_duty_cycle = 50,
+    
     .firmware_version = 0,
     .hardware_version = 0,
     .device_id = 0xFFFF
