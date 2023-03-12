@@ -54,12 +54,6 @@
 #define READ_COMMAND_MAX_SIZE           4
 
 /**
- * \brief UART interrupt RX buffer and size.
- */
-extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];  
-extern uint8_t uart_received_data_size;
-
-/**
  * \brief UART port configuration parameters.
  */
 typedef struct

@@ -45,31 +45,6 @@
 
 ttc_config_t ttc_config = {0};
 
-/**
- * \brief Computes the CRC-8 of a sequence of bytes.
- *
- * \param[in] data is an array of data to compute the CRC-8.
- *
- * \param[in] len is the number of bytes of the given array.
- *
- * \return The computed CRC-8 value of the given data.
- */
-uint8_t ttc_crc8(uint8_t *data, uint8_t len);
-
-/**
- * \brief Checks the CRC value of a given sequence of bytes.
- *
- * \param[in] data is the data to check the CRC.
- *
- * \param[in] len is the number of bytes to check the CRC value.
- *
- * \param[in] crc is the CRC-8 value to check.
- *
- * \return TRUE/FALSE if the given CRC value is correct or not.
- */
-bool ttc_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
-
-
 int ttc_init(void)
 {
     sys_log_print_event_from_module(SYS_LOG_INFO, TTC_MODULE_NAME, "Initializing TTC device...");

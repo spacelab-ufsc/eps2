@@ -95,6 +95,30 @@ int obdh_decode(uint8_t *adr, uint32_t *val, uint8_t *cmd);
  */
 int obdh_write_output_buffer(uint8_t adr, uint32_t val);
 
+/**
+ * \brief Computes the CRC-8 of a sequence of bytes.
+ *
+ * \param[in] data is an array of data to compute the CRC-8.
+ *
+ * \param[in] len is the number of bytes of the given array.
+ *
+ * \return The computed CRC-8 value of the given data.
+ */
+uint8_t obdh_crc8(uint8_t *data, uint8_t len);
+
+/**
+ * \brief Checks the CRC value of a given sequence of bytes.
+ *
+ * \param[in] data is the data to check the CRC.
+ *
+ * \param[in] len is the number of bytes to check the CRC value.
+ *
+ * \param[in] crc is the CRC-8 value to check.
+ *
+ * \return TRUE/FALSE if the given CRC value is correct or not.
+ */
+bool obdh_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
+
 #endif /* OBDH_H_ */
 
 /** \} End of obdh group */

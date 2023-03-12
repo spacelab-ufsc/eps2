@@ -270,7 +270,7 @@ int uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len
             base_address = USCI_A2_BASE;    
             break;
         default:
-            #if CONFIG_DRIVERS_DEBUG_ENABLED == 0
+            #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
                 sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during writing: Invalid port!");
                 sys_log_new_line();
             #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
@@ -284,7 +284,7 @@ int uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len
         *len = uart_rx_data_size;
     }
 
-    return 0;
+    return err;
 }
 
 /**
