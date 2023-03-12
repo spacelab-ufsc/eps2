@@ -39,10 +39,8 @@
 
 #include <stdint.h>
 
+#include <drivers/uart/uart.h>
 #include <drivers/uart_interrupt/uart_interrupt.h>
-
-extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];
-extern uint8_t uart_received_data_size;
 
 int __wrap_uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config);
 
@@ -51,6 +49,8 @@ int __wrap_uart_interrupt_enable(uart_interrupt_port_t port);
 int __wrap_uart_interrupt_disable(uart_interrupt_port_t port);
 
 int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len);
+
+int __wrap_uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len);
 
 #endif /* UART_INTERRUPT_WRAP_H */
 

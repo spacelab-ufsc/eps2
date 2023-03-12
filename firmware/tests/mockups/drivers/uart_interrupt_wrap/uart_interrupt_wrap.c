@@ -37,6 +37,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <stdbool.h>
 #include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
@@ -69,6 +70,22 @@ int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint1
 {
     check_expected(port);
     check_expected(len);
+
+    return mock_type(int);
+}
+
+int __wrap_uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len)
+{
+    check_expected(port);
+    
+    data[0] = mock_type(uint8_t);
+    data[1] = mock_type(uint8_t);
+    data[2] = mock_type(uint8_t);
+    data[3] = mock_type(uint8_t);
+    data[4] = mock_type(uint8_t);
+    data[5] = mock_type(uint8_t);
+    data[6] = mock_type(uint8_t);
+    *len = mock_type(uint16_t);
 
     return mock_type(int);
 }

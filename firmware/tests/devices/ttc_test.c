@@ -70,27 +70,40 @@ static void ttc_init_test(void **state)
 
 static void ttc_decode_test(void **state)
 {
-    uart_received_data_size = 6;
+    uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE] = {0};
+    uint8_t uart_rx_data_size = 7;
 
-    uart_rx_buffer[0] = 10;
-    uart_rx_buffer[1] = 11;
-    uart_rx_buffer[2] = 12;
-    uart_rx_buffer[3] = 13;
-    uart_rx_buffer[4] = 14;
-    uart_rx_buffer[5] = ttc_crc8(uart_rx_buffer, uart_received_data_size - 1);
+    uart_rx_buffer[0] = 0xA1;
+    uart_rx_buffer[1] = 0x10;
+    uart_rx_buffer[2] = 0x11;
+    uart_rx_buffer[3] = 0x12;
+    uart_rx_buffer[4] = 0x13;
+    uart_rx_buffer[5] = 0x14;
+    uart_rx_buffer[6] = ttc_crc8(uart_rx_buffer, uart_rx_data_size - 1);
 
-    uint32_t ret_val = ((uint32_t)uart_rx_buffer[1] << 24) |
-                       ((uint32_t)uart_rx_buffer[2] << 16) |
-                       ((uint32_t)uart_rx_buffer[3] << 8) |
-                       ((uint32_t)uart_rx_buffer[4] << 0);
+    uint32_t ret_val = ((uint32_t)uart_rx_buffer[2] << 24) |
+                       ((uint32_t)uart_rx_buffer[3] << 16) |
+                       ((uint32_t)uart_rx_buffer[4] << 8) |
+                       ((uint32_t)uart_rx_buffer[5] << 0);
 
     uint8_t address = 0;
     uint32_t value = 0;
     uint8_t command = 0;
 
+    expect_value(__wrap_uart_interrupt_read, port, UART_PORT_0);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[0]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[1]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[2]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[3]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[4]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[5]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_buffer[6]);
+    will_return(__wrap_uart_interrupt_read, uart_rx_data_size);
+    will_return(__wrap_uart_interrupt_read, 0);
+
     int result = ttc_decode(&address, &value, &command);
 
-    assert_int_equal(address, uart_rx_buffer[0]);
+    assert_int_equal(address, uart_rx_buffer[1]);
     assert_int_equal(value, ret_val);
     assert_int_equal(command, TTC_COMMAND_WRITE);
     assert_return_code(result, 0);
