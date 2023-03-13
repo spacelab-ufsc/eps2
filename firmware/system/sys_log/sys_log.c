@@ -45,7 +45,7 @@
 #include "sys_log.h"
 #include "sys_log_config.h"
 
-static volatile uint8_t sys_log_current_level = SYS_LOG_LEVEL_INFO;
+static volatile uint8_t sys_log_current_level = SYS_LOG_INFO;
 
 int sys_log_init()
 {
