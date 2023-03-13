@@ -43,7 +43,7 @@
 #include <float.h>
 #include <cmocka.h>
 
-#include <drivers/i2c_slave/i2c_slave.h>
+#include "i2c_slave_wrap.h"
 
 int __wrap_i2c_slave_init(i2c_slave_port_t port, i2c_slave_address_t adr)
 {

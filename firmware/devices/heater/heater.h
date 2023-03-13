@@ -130,9 +130,11 @@ typedef struct {
 /**
  * \brief Initialization routine of the heater device.
  *
+ * \param[in] channel is the channel to be used.
+ *
  * \return The status/error code.
  */
-int heater_init(void);
+int heater_init(heater_channel_t channel);
 
 /**
  * \brief Function to implement the PID controller algorithm.

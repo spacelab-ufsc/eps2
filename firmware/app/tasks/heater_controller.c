@@ -103,7 +103,7 @@ void vTaskHeaterController(void)
 void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
 {
 
-    static uint32_t last_mode = HEATER_AUTOMATIC_MODE;
+    static uint32_t last_mode[2] = { HEATER_AUTOMATIC_MODE };
 
     switch(mode)
     {
@@ -111,16 +111,16 @@ void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
         {
             temperature_t temp = 0;
             
-            if (last_mode != HEATER_AUTOMATIC_MODE)
+            if (last_mode[channel] != HEATER_AUTOMATIC_MODE)
             {
-                if (heater_on_off_init())
+                if (heater_on_off_init(channel))
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
                     sys_log_print_uint(channel);
                     sys_log_print_msg(" failed on/off initialization!");
                     sys_log_new_line();
                 }
-                last_mode = HEATER_AUTOMATIC_MODE;
+                last_mode[channel] = HEATER_AUTOMATIC_MODE;
             }
             
 
@@ -149,16 +149,16 @@ void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
         }
         case HEATER_MANUAL_MODE:
         {
-            if (last_mode != HEATER_MANUAL_MODE)
+            if (last_mode[channel] != HEATER_MANUAL_MODE)
             {
-                if (heater_init())
+                if (heater_init(channel))
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
                     sys_log_print_uint(channel);
                     sys_log_print_msg(" failed manual mode initialization!");
                     sys_log_new_line();
                 }
-                last_mode = HEATER_MANUAL_MODE;
+                last_mode[channel] = HEATER_MANUAL_MODE;
             }
             if (heater_set_actuator(channel, (float)duty_cycle) != 0)
             {

@@ -48,7 +48,7 @@
 /**
  * \brief Hysteresis controller parameters.
  */
-#define TEMP_LIMIT_MINIMUM                  303           /**< TODO. */
+#define TEMP_LIMIT_MINIMUM                  200           /**< TODO. */
 #define TEMP_LIMIT_MAXIMUM                  305           /**< TODO. */
 #define HEATER_OFF                          false
 #define HEATER_ON                           true
@@ -97,9 +97,11 @@ typedef gpio_config_t heater_on_off_config_t;
 /**
  * \brief Initialization routine of the heater device.
  *
+ * \param[in] channel is the channel to be used.
+ *
  * \return The status/error code.
  */
-int heater_on_off_init(void);
+int heater_on_off_init(heater_on_off_channel_t channel);
 
 /**
  * \brief Function to implement the On/Off controller algorithm.

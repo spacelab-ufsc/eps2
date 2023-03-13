@@ -26,7 +26,7 @@ MEDIA_TEST_FLAGS=$(FLAGS),--wrap=flash_init,--wrap=flash_write,--wrap=flash_writ
 MPPT_FLAGS=$(FLAGS),--wrap=pwm_init,--wrap=pwm_update,--wrap=current_sensor_read,--wrap=voltage_sensor_read
 OBDH_TEST_FLAGS=$(FLAGS),--wrap=tca4311a_init,--wrap=tca4311a_enable,--wrap=tca4311a_disable,--wrap=tca4311a_is_ready,--wrap=i2c_slave_init,--wrap=i2c_slave_enable,--wrap=i2c_slave_disable,--wrap=i2c_slave_read,--wrap=i2c_slave_write,--wrap=i2c_init,--wrap=i2c_write,--wrap=i2c_read
 TEMP_SENSOR_TEST_FLAGS=$(FLAGS),--wrap=ads1248_init,--wrap=ads1248_reset,--wrap=ads1248_config_regs,--wrap=ads1248_read_regs,--wrap=ads1248_read_data,--wrap=ads1248_write_cmd,--wrap=ads1248_set_powerdown_mode,--wrap=adc_init,--wrap=adc_read,--wrap=adc_temp_get_mref,--wrap=adc_temp_get_nref,--wrap=adc_mutex_give,--wrap=adc_mutex_take
-TTC_TEST_FLAGS=$(FLAGS),--wrap=uart_interrupt_init,--wrap=uart_interrupt_enable,--wrap=uart_interrupt_disable,--wrap=uart_interrupt_write
+TTC_TEST_FLAGS=$(FLAGS),--wrap=uart_interrupt_init,--wrap=uart_interrupt_enable,--wrap=uart_interrupt_disable,--wrap=uart_interrupt_write,--wrap=uart_interrupt_read
 VOLTAGE_SENSOR_TEST_FLAGS=$(FLAGS),--wrap=adc_init,--wrap=adc_read,--wrap=adc_temp_get_mref,--wrap=adc_temp_get_nref,--wrap=adc_mutex_give,--wrap=adc_mutex_take
 POWER_CONV_FLAGS=$(FLAGS),--wrap=tps54x0_init,--wrap=tps54x0_enable,--wrap=tps54x0_disable
 

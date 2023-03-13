@@ -114,18 +114,27 @@ void create_tasks(void)
 
     if (xTaskMPPTAlgorithmHandle == NULL)
     {
-        /* Error creating the parameter server task */
+        /* Error creating the MPPT algorithm task */
     }
 #endif /* CONFIG_TASK_MPPT_ALGORITHM_ENABLED */
 
 #if CONFIG_TASK_HEATER_CONTROLLER_ENABLED == 1
     xTaskCreate(vTaskHeaterController, TASK_HEATER_CONTROLLER_NAME, TASK_HEATER_CONTROLLER_STACK_SIZE, NULL, TASK_HEATER_CONTROLLER_PRIORITY, &xTaskHeaterControllerHandle);
 
-    if (xTaskMPPTAlgorithmHandle == NULL)
+    if (xTaskHeaterControllerHandle == NULL)
     {
-        /* Error creating the parameter server task */
+        /* Error creating the heater controller task */
     }
 #endif /* CONFIG_TASK_HEATER_CONTROLLER_ENABLED */
+
+#if CONFIG_TASK_DEVICE_RESPONSE_ENABLED == 1
+    xTaskCreate(vTaskDeviceResponse, TASK_DEVICE_RESPONSE_NAME, TASK_DEVICE_RESPONSE_STACK_SIZE, NULL, TASK_DEVICE_RESPONSE_PRIORITY, &xTaskDeviceResponseHandle);
+
+    if (xTaskDeviceResponseHandle == NULL)
+    {
+        /* Error creating the device response task */
+    }
+#endif /* CONFIG_TASK_DEVICE_RESPONSE_ENABLED */
 
 #if defined(CONFIG_TASK_TIME_CONTROL_ENABLED) && (CONFIG_TASK_TIME_CONTROL_ENABLED == 1)
     xTaskCreate(vTaskTimeControl, TASK_TIME_CONTROL_NAME, TASK_TIME_CONTROL_STACK_SIZE, NULL, TASK_TIME_CONTROL_PRIORITY, &xTaskTimeControlHandle);
