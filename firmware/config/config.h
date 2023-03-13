@@ -27,7 +27,7 @@
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
  * \author Jo�o Cl�udio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * 
- * \version 0.2.38
+ * \version 0.3.0
  * 
  * \date 2021/01/25
  * 
@@ -35,8 +35,13 @@
  * \{
  */
 
+#include "system/sys_log/sys_log.h"
+
 #ifndef CONFIG_H_
 #define CONFIG_H_
+
+/* System */
+#define CONFIG_GLOBAL_LOG_LEVEL                         SYS_LOG_INFO
 
 /* Tasks */
 #define CONFIG_TASK_STARTUP_ENABLED                     1
@@ -69,7 +74,7 @@
 
 #define MAX_BATTERY_CHARGE                              2450    /* [mAh] */
 #define BAT_MONITOR_CHARGE_VALUE                        (uint16_t)(MAX_BATTERY_CHARGE/0.625)    /* 0.625 is a conversion factor for the  battery monitor */
-#define RESET_BATTERY_TO_INITIAL_STATE                 0
+#define RESET_BATTERY_TO_INITIAL_STATE                  0
 
 #endif /* CONFIG_H_ */
 
