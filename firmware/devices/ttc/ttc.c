@@ -140,10 +140,10 @@ int ttc_answer(uint8_t adr, uint32_t val)
     return 0;
 }
 
-int ttc_answer_long(uint8_t *buf) 
+int ttc_answer_long(uint8_t *buf, uint8_t len) 
 {
 
-    if (uart_interrupt_write(UART_PORT_0, buf, 49) != 0)
+    if (uart_interrupt_write(UART_PORT_0, buf, len) != 0)
     {
         return -1;
     }

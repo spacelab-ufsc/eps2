@@ -101,7 +101,7 @@ int ttc_answer(uint8_t adr, uint32_t val);
  *
  * \return The status/error code.
  */
-int ttc_answer_long(uint8_t *buf);
+int ttc_answer_long(uint8_t *buf, uint8_t len);
 
 /**
  * \brief Computes the CRC-8 of a sequence of bytes.
