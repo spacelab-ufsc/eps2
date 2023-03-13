@@ -93,7 +93,7 @@ void vTaskStartup(void *pvParameters)
 
     /* Print last reset cause (code) */
     sys_log_print_event_from_module(SYS_LOG_INFO, TASK_STARTUP_NAME, "Last reset cause: ");
-    uint32_t reset_cause = 0;
+    uint32_t reset_cause = system_get_reset_cause();
     sys_log_print_hex(reset_cause);
     sys_log_new_line();
     eps_buffer_write(EPS2_PARAM_ID_LAST_RESET_CAUSE, (uint32_t*)&reset_cause);
