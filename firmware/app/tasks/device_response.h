@@ -46,6 +46,8 @@
 #define TASK_DEVICE_RESPONSE_PERIOD_MS            1000UL           /**< Period in milliseconds. */
 #define TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS      1000UL          /**< Wait time to initialize the task in milliseconds. */
 
+#define DEVICE_RESPONSE_BUFFER_SIZE               49
+
 /**
  * \brief DeviceResponse task handle.
  */
