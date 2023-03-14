@@ -45,21 +45,23 @@ xTaskHandle xTaskDeviceResponseHandle;
 
 void vTaskDeviceResponse(void *pvParameters)
 {
-    /* Wait startup task to finish */
-    xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS));
 
     uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
     uint32_t val = 0;
+
+    /* Wait startup task to finish */
+    xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS));
 
     while(1)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
-	    int i = 0;
-        for(i = 0; i < DEVICE_RESPONSE_BUFFER_SIZE; i++)
+        buf[0] = DEVICE_COMMAND_WRITE;
+
+        for(int i = 0; i < EPS_DATA_STRUCTURE_SIZE; i++)
         {
             eps_buffer_read(i, &val);
-            buf[i] = val;
+            buf[i+1] = val;
         }
 
         ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);

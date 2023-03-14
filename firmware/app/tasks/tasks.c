@@ -48,6 +48,7 @@
 #include "mppt_algorithm.h"
 #include "heater_controller.h"
 #include "time_control.h"
+#include "device_response.h"
 
 void create_tasks(void)
 {

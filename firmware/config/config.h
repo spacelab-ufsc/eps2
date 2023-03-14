@@ -53,6 +53,7 @@
 #define CONFIG_TASK_MPPT_ALGORITHM_ENABLED              0
 #define CONFIG_TASK_HEATER_CONTROLLER_ENABLED           1
 #define CONFIG_TASK_TIME_CONTROL_ENABLED                1
+#define CONFIG_TASK_DEVICE_RESPONSE_ENABLED             1
 
 /* Devices */
 #define CONFIG_SET_DUMMY_EPS                            1
