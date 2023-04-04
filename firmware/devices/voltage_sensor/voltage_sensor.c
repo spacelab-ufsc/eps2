@@ -39,7 +39,7 @@
 
 int voltage_sensor_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, VOLTAGE_SENSOR_MODULE_NAME, "Initializing the voltage sensor...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, VOLTAGE_SENSOR_MODULE_NAME, "Initializing Voltage Sensor device.");
     sys_log_new_line();
 
     static const adc_config_t volt_sense_adc_config = {0};

@@ -47,7 +47,7 @@ ttc_config_t ttc_config = {0};
 
 int ttc_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, TTC_MODULE_NAME, "Initializing TTC device...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, TTC_MODULE_NAME, "Initializing TTC device.");
     sys_log_new_line();
 
     /* TTC configuration */

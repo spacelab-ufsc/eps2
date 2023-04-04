@@ -43,14 +43,14 @@ temp_sensor_t config;
 
 int temp_sensor_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing internal MCU temperature sensor...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing internal MCU temperature sensor.");
     sys_log_new_line();
 
     adc_config_t temp_sense_adc_config = {0};
 
     if (adc_init(TEMP_SENSOR_ADC_PORT, temp_sense_adc_config) != 0)
     {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error internal MCU temperature sensor!");
+        sys_log_print_event_from_module(SYS_LOG_ERROR, TEMP_SENSOR_MODULE_NAME, "Error initializing internal MCU temperature sensor!");
         sys_log_new_line();
 
         return -1;
@@ -70,7 +70,7 @@ int temp_sensor_init(void)
     sys_log_print_msg(" oC");
     sys_log_new_line();
 
-    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing ADS1248 device...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, TEMP_SENSOR_MODULE_NAME, "Initializing ADS1248 device.");
     sys_log_new_line();
 
 	config.spi_port = TEMP_SENSOR_SPI_PORT;

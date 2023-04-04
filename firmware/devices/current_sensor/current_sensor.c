@@ -42,12 +42,20 @@
 
 int current_sensor_init()
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, CURRENT_SENSOR_MODULE_NAME, "Initializing the current sensor...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, CURRENT_SENSOR_MODULE_NAME, "Initializing Current Sensor device.");
     sys_log_new_line();
     
     static const max9934_config_t curr_sense_max9934_config = {0};
 
-    return max9934_init(curr_sense_max9934_config);
+    int err = max9934_init(curr_sense_max9934_config);
+
+    if (err != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, CURRENT_SENSOR_MODULE_NAME, "Error initializing Current Sensor device!");
+        sys_log_new_line();
+    }
+
+    return err;
 };
 
 uint16_t current_sensor_raw_to_ma(adc_port_t port, uint16_t raw)

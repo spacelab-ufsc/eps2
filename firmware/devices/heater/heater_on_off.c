@@ -39,7 +39,7 @@
 
 int heater_on_off_init(heater_on_off_channel_t channel)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_ON_OFF_MODULE_NAME, "Initializing the heater...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_ON_OFF_MODULE_NAME, "Initializing Heater On/Off device.");
     sys_log_new_line();
 
     heater_on_off_config_t conf = {0};

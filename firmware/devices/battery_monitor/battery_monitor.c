@@ -50,12 +50,12 @@ ds277Xg_config_t battery_monitor_config = {.port = I2C_PORT_0, .slave_adr = DS27
 
 int battery_monitor_init()
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, BATTERY_MONITOR_MODULE_NAME, "Initializing the battery monitor...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, BATTERY_MONITOR_MODULE_NAME, "Initializing Battery Monitor device.");
     sys_log_new_line();
 
     if(ds277Xg_init(&battery_monitor_config) != 0)
     {
-       sys_log_print_event_from_module(SYS_LOG_ERROR, BATTERY_MONITOR_MODULE_NAME, "Error initializing the battery monitor!");
+       sys_log_print_event_from_module(SYS_LOG_ERROR, BATTERY_MONITOR_MODULE_NAME, "Error initializing Battery Monitor device!");
        sys_log_new_line();
 
        return -1;

@@ -43,7 +43,7 @@ heater_config_t heater_config;
 
 int heater_init(heater_channel_t channel) 
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_MODULE_NAME, "Initializing the heater...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_MODULE_NAME, "Initializing Heater device.");
     sys_log_new_line();   
 
     /* PID controller initialization */

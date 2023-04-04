@@ -49,7 +49,7 @@ obdh_config_t obdh_config = {0};
 
 int obdh_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device.");
     sys_log_new_line();
 
     /* OBDH configuration */

@@ -82,7 +82,7 @@ int decrease_duty_cycle(mppt_channel_t channel);
 
 int mppt_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, MPPT_MODULE_NAME, "Initializing the MPPT...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, MPPT_MODULE_NAME, "Initializing MPPT device.");
     sys_log_new_line();
 
     /* Initialize the PWM parameters */

@@ -41,7 +41,20 @@
 
 int media_init()
 {
-    return flash_init();
+
+    sys_log_print_event_from_module(SYS_LOG_INFO, MEDIA_MODULE_NAME, "Initializing Media device.");
+    sys_log_new_line();
+    
+    int err = flash_init();
+
+    if (err != 0)
+    {
+        sys_log_print_event_from_module(SYS_LOG_ERROR, MEDIA_MODULE_NAME, "Error initializing Media device!");
+        sys_log_new_line();
+    }
+    
+
+    return err;
 
 }
 
