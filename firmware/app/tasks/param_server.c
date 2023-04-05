@@ -71,11 +71,6 @@ void vTaskParamServer(void *pvParameters)
             {
                 if (obdh_decode(&adr, &val, &cmd) == 0)
                 {
-                    sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "OBDH command received: ");
-                    sys_log_print_msg("cmd="); 
-                    sys_log_print_int(cmd);
-                    sys_log_new_line();   
-                    
                     switch(cmd)
                     {
                         case OBDH_COMMAND_WRITE: 
@@ -116,11 +111,6 @@ void vTaskParamServer(void *pvParameters)
             {
                 if (ttc_decode(&adr, &val, &cmd) == 0)
                 {
-                    sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "TTC command received: ");
-                    sys_log_print_msg("cmd="); 
-                    sys_log_print_int(cmd);
-                    sys_log_new_line();   
-                    
                     switch(cmd)
                     {
                         case TTC_COMMAND_WRITE: 

@@ -126,9 +126,6 @@ void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
 
             if (heater_on_off_get_sensor(channel, &temp) == 0)
             {
-                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_HEATER_CONTROLLER_NAME, "Temp Reading [K]: ");
-                sys_log_print_int(temp);
-                sys_log_new_line();
                 if (heater_on_off_set_actuator(channel, heater_on_off_algorithm(channel, temp)) != 0)
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
