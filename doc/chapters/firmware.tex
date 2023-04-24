@@ -14,7 +14,7 @@
 % \brief Firmware project chapter.
 %
 % \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
-% \author Yan castro de Azeredo <yan.ufsceel@gmail.com>
+% \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
 %
 % \version 0.3.0
 %
@@ -39,7 +39,7 @@ The product tree of the firmware part of the EPS 2.0 module is available in \aut
 
 \section{Operating System}
 
-As operating system the FreeRTOS 10 \cite{freertos} is being used. FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
+The FreeRTOS 10 \cite{freertos} is being used as an operating system. FreeRTOS is a market-leading real-time operating system (RTOS) for microcontrollers and small microprocessors. Distributed freely under the MIT open-source license, FreeRTOS includes a kernel and a growing set of IoT libraries suitable for use across all industry sectors. FreeRTOS is built with an emphasis on reliability and ease of use.
 
 The main configuration parameters of the operating system in this project are available in \autoref{tab:freertos-config}.
 
@@ -67,7 +67,7 @@ More details of the used configuration parameters can be seen in the file \texti
 
 As the Hardware Abstraction Layer (HAL\nomenclature{\textbf{HAL}}{\textit{Hardware Abstraction Layer.}}), the DriverLib \cite{driverlib} from Texas Instruments is begin used. It is the official API to access the registers of the MSP430 microcontrollers.
 
-The DriverLib is meant to provide a ``software'' layer to the programmer in order to facilitate higher level of programming compared to direct register accesses. By using the high level software APIs provided by DriverLib, users can create powerful and intuitive code which is highly portable between not only devices within the MSP430 platform, but between different families in the MSP430/MSP432 platforms.
+The DriverLib is meant to provide a ``software'' layer to the programmer to facilitate higher level of programming than direct register accesses. By using the high level software APIs provided by DriverLib, users can create powerful and intuitive code that is highly portable between devices within the MSP430 platform and different families in the MSP430/MSP432 platforms.
 
 \section{Tasks}
 
@@ -83,10 +83,10 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
         watchdog reset         & lowest            & 0                           & 100                  & 150                    \\
         heartbeat              & lowest            & 0                           & 500                  & 160                    \\
         system reset           & low               & 0                           & 36000000             & 128                    \\
-        heater controller      & medium            & 0                           & tbd                  & 160                    \\
+        heater controller      & medium            & 0                           & 2000                  & 160                    \\
         read sensors           & low               & 0                           & 60000                & 512                    \\
        %csp server             & lowest            & 0                           & 500                  & 1024                   \\
-        mppt                   & high              & 0                           & tbd                  & 160                    \\
+        mppt                   & high              & 0                           & 300                  & 160                    \\
        %beacon package         & tbd               & tbd                         & tbd                  & tbd                    \\
        %obdh package           & highest           & 4500   & called by isr\nomenclature{\textbf{isr}}{\textit{interrupt service routine.}}   & tbd \\
         parameter server       & high              & 0      & called by isr\nomenclature{\textbf{isr}}{\textit{interrupt service routine.}}   & 300 \\
@@ -99,8 +99,8 @@ A list of the firmware tasks can be seen in the \autoref{tab:firmware-tasks}.
 
 \subsection{Startup (boot)}
 
-This task is responsible for initializing all devices, drivers, libraries and data structures upon system power up or reboot.
-It's the first task executed and it unblocks the remaining tasks after initialization is completed.
+This task is responsible for initializing all devices, drivers, libraries, and data structures upon system power-up or reboot.
+It is the first task executed and unblocks the remaining tasks after the initialization is completed.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
@@ -109,24 +109,24 @@ Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 This task is responsible for resetting the internal watchdog timer every \(100 ms\).
 The internal watchdog timer has a \(1 s\) timeout.
 
-This task has the lowest possible priority in order to prevent the watchdog from not triggering in case an anomaly happens in other tasks (longer than expected execution times for example).
+This task has the lowest possible priority in order to prevent the watchdog from not triggering in case an anomaly happens in other tasks (longer than expected execution times, for example).
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{Heartbeat}
 
-This task is responsible for providing a visual feedback indicating that the system is running properly.
-This feedback is given through blinking an LED ("SYSTEM\_ON" LED on Figure \ref{fig:status-leds}) at a frequency of \(1 Hz\) emulating a "heartbeat" for the system.
+This task provides visual feedback indicating that the system is running correctly.
+This feedback is given through blinking an LED ("SYSTEM\_ON" LED on Figure \ref{fig:status-leds}) at a frequency of \(1 Hz\), emulating a "heartbeat" for the system.
 
-The usefulness of this task comes during development with engineering model of the module, providing information to the developers.
-The flight model has no LEDs so this task serves no purpose in that case. 
+The usefulness of this task comes during the development of the engineering model of the module, providing information to the developers.
+The flight model has no LEDs, so this task serves no purpose in that case. 
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{System reset}
 
-This task is responsible for resetting the microcontroller, via software, every 10 hours.
-This helps to cleanup possible corrupted values in variables, retry a failed initialization, cleanup RAM memory, etc.
+This task is responsible for resetting the microcontroller via software every 10 hours.
+This helps to clean up possible corrupted values in variables, retry a failed initialization, clean up RAM, etc.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
@@ -134,36 +134,38 @@ Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 This task is responsible for monitoring and controlling the batteries' heaters.
 
-The heaters and batteries temperature are monitored through a set of RTDs, read through an external ADC (\textit{ADS1248}), and activated through MOSFET drivers controlled by the MCUs GPIOs to prevent the batteries from operating below a critical temperature value.
+The heaters and batteries' temperatures are monitored through a set of RTDs, read through an external ADC (\textit{ADS1248}), and activated through MOSFET drivers controlled by the MCUs GPIOs to prevent the batteries from operating below a critical temperature value.
 
-This task has two modes of operation, automatic mode and manual mode.
+This task has two modes of operation, automatic mode, and manual mode.
 
-In automatic mode, the batteries' temperature readings occur every 2 seconds, and the heaters' status are updated accordingly, based on the new reading and a predefined temperature limit, through the algorithm defined in the heater device.
-This algorithm switches the heaters on of off based on the set temperature limits.
+In automatic mode, the batteries' temperature readings occur every 2 seconds. The heaters' status is updated accordingly, based on the new reading and a predefined temperature limit, through the algorithm defined in the heater device.
+This algorithm switches the heaters on or off based on the set temperature limits.
 
-In manual mode, the heater are controlled manually through telecommands, independent of the temperature readings. In this mode, the heaters are controlled with a PWM signal with a duty cycle defined via telecommand.
+In manual mode, the heater is controlled manually through telecommands, independent of the temperature readings. In this mode, the heaters are controlled with a PWM signal with a duty cycle defined via telecommand.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{Read sensors}
 
-This task is responsible for reading all sensors available to the EPS 2.0 module, recording their values.
+This task is responsible for reading all sensors available to the EPS 2.0 module and recording their values.
 The readings occur every \(60 s\), and the results are written in the eps buffer data structure.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{MPPT}
 
-This task is responsible for running the MPPT algorithm for the solar panels, in order to operate them in their maximum power point.
+This task is responsible for running the MPPT algorithm for the solar panels to operate them at their maximum power point.
 The algorithm itself is defined in the MPPT device.
 
-The solar panels current and voltage sensors are read every \(300 ms\) and the results are passed as inputs to the MPPT algorithm, which then controls the MPPT Boost circuit through a set o PWM outputs.
+The solar panels' current and voltage sensors are read every \(300 ms\), and the results are passed as inputs to the MPPT algorithm, which then controls the MPPT Boost circuit through a set o PWM outputs.
+
+The MPPT task can also operate in manual mode, where the PWM outputs are set manually via telecommands.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
 \subsection{Parameter Server}
 
-This task is responsible for processing and responding commands received from the OBDH and TTC modules.
+This task is responsible for processing and responding to commands from the OBDH and TTC modules.
 
 The commands are for reading and writing to the EPS buffer data structure, seen in \autoref{tab:eps2-variables}
 
@@ -172,8 +174,8 @@ Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 \subsection{Time Control}
 
 This task is responsible for the time management of the system.
-At every second it increments the system time (epoch).
-Also, at every minute it saves the current system time in the non-volatile memory.
+At every second, it increments the system time (epoch).
+Also, it saves the current system time in the non-volatile memory at every minute.
 
 Task configuration parameters are shown in Table \ref{tab:firmware-tasks}.
 
@@ -193,7 +195,7 @@ A list of all the variables of EPS with their identification number (ID) and var
     \toprule[1.5pt]
     \textbf{ID} & \textbf{Name/Description} & \textbf{Type} & \textbf{Access} \\
     \midrule
-    0   & Time counter in millseconds                                       & uint32 & R \\
+    0   & Time counter in milliseconds                                       & uint32 & R \\
     1   & Temperature of the $\mu$C in K                                    & uint16 & R \\
     2   & EPS circuitry current in mA                                       & uint16 & R \\
     \multirow{18}{*}{3} & Last reset cause: & \multirow{18}{*}{uint8} & \multirow{18}{*}{R} \\
