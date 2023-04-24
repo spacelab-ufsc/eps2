@@ -24,7 +24,7 @@
 
 \chapter{Test Procedures} \label{ch:test-procedures}
 
-This chapter follows a standard workflow created by SpaceLab for testing its CubeSat modules, these procedures are first referenced in FloripaSat-2 documentation chapter 7\cite{floripasat2-doc}. The \autoref{tab:test-procedures-table} resumes the workflow and each one of the tests types, subtests and code identification. Some subtests can be considered to not be applicable for the platform, the order in which they are done doesn't need to follow the numeration and other have generic titles that don't require too much explanation to be accomplished. The particularities of the EPS 2.0 for each test type are described in the following sections, and the results of those tests in the v0.1 and v0.2 versions of the EPS 2.0 are presented in the \autoref{anx:test-report-v01} and \autoref{anx:test-report-v02}.
+This chapter follows a standard workflow created by SpaceLab for testing its CubeSat modules; these procedures are first referenced in FloripaSat-2 documentation chapter 7\cite{floripasat2-doc}. The \autoref{tab:test-procedures-table} resumes the workflow and each one of the test types, subtests, and code identification. Some subtests can be considered to be not applied to the platform; the order in which they are done does not need to follow the numeration, and others have generic titles that don't require too much explanation to be accomplished. The particularities of the EPS 2.0 for each test type are described in the following sections, and the results of those tests in the v0.1 and v0.2 versions of the EPS 2.0 are presented in the \autoref{anx:test-report-v01} and \autoref{anx:test-report-v02}.
 
 \begin{table}[!h]
     \centering
@@ -44,7 +44,7 @@ This chapter follows a standard workflow created by SpaceLab for testing its Cub
         \midrule
         F. Functional Testing     & 1. Simple test code run \newline 2. System code run \newline 3. System hardware self-test flags check \newline 4. Monitor LEDs behavior \newline 5. Monitor the debug serial port logs & TF1 \newline TF2 \newline TF3 \newline TF4 \newline TF5 \\
          \midrule
-        G. Module Testing     & 1. Review operation behavior \newline 2. Review features and requirements fulfillment \newline 3. Review communication buses configuration and protocol \newline 4. Review data packages, power buses and control signals \newline 5. Review edge cases and evaluate damage \newline 6. Run remote automated code tests \newline 7. Run system test codes in the board \newline 8. Run latest stable code version and review behavior & TG1 \newline TG2 \newline TG3 \newline TG4 \newline TG5 \newline TG6 \newline TG7 \newline TG8  \\
+        G. Module Testing     & 1. Review operation behavior \newline 2. Review features and requirements fulfillment \newline 3. Review communication buses configuration and protocol \newline 4. Review data packages, power buses, and control signals \newline 5. Review edge cases and evaluate damage \newline 6. Run remote automated code tests \newline 7. Run system test codes in the board \newline 8. Run latest stable code version and review behavior & TG1 \newline TG2 \newline TG3 \newline TG4 \newline TG5 \newline TG6 \newline TG7 \newline TG8  \\
         \bottomrule[1.5pt]
     \end{tabular}
     \caption{Test workflow table.}
@@ -53,7 +53,7 @@ This chapter follows a standard workflow created by SpaceLab for testing its Cub
 
 \section{Visual Inspection}
 
-The first steps when receiving a manufactured (and in some cases assembled) PCB is to inspect visually to see if it is according to its expected appearance. The EPS 2.0 has more than 300 components, so it is advised for this test to not take a long time to accomplish, the major noted problems should be spotted and reported. The \autoref{tab:visual-inspection} resumes the visual inspection steps. 
+The first step when receiving a manufactured (and in some cases assembled) PCB is to inspect it visually to see if it is according to its expected appearance. The EPS 2.0 has more than 300 components, so it is advised for this test not to take a long time to accomplish; the major noted problems should be spotted and reported. The \autoref{tab:visual-inspection} resumes the visual inspection steps. 
 
 \begin{table}[!htb]
 \centering
@@ -66,13 +66,13 @@ Test type & Visual Inspection \\
 \midrule
 subtests code & Description \\ 
 \midrule
-TA1 & Verify the received package, review the packaging protection used and if it maintained the physical and/or aesthetically integrity of the board. \\
+TA1 & Verify the received package, review the packaging protection used, and if it maintained the physical and/or aesthetic integrity of the board. \\
 \midrule
 TA2 & See if the overall quality specified on the manufacturing process is according with its IPC class, the engineering model should be Class 2 while the flight model Class 3. \\
 \midrule
-TA3 & Inspect the top and bottom side of the PCB and verify if all the components are well soldered, if their polarity and labels are correct according to schematics and 3D model. Figure \ref{fig:pcb-top} and \ref{fig:pcb-bottom} for reference. If the board is not yet assembled detail the inconsistencies found during the assembly process. \\
+TA3 & Inspect the top and bottom side of the PCB and verify if all the components are well soldered and if their polarity and labels are correct according to schematics and 3D model. Figure \ref{fig:pcb-top} and \ref{fig:pcb-bottom} for reference. If the board is not yet assembled detail, the inconsistencies found during the assembly process. \\
 \midrule
-TA4 & Take a high resolution centered photo of the both sides of the board for documentation, avoid reflections if possible. \\
+TA4 & Take a high-resolution centered photo of both sides of the board for documentation; avoid reflections if possible. \\
 \midrule
 \midrule
 Success Criteria & The board needs to appear functional regarding its visual electrical specs. \\
@@ -82,7 +82,7 @@ Success Criteria & The board needs to appear functional regarding its visual ele
 
 \section {Mechanical Inspection}
 
-These tests verify if the board has the expected mechanical specs prior to integration. The \autoref{tab:mechanical-inspection} resumes the mechanical inspection steps. 
+These tests verify if the board has the expected mechanical specs before integration. The \autoref{tab:mechanical-inspection} resumes the mechanical inspection steps. 
 
 \begin{table}[!htb]
 \centering
@@ -107,7 +107,7 @@ Success Criteria & The fabricated board needs to follow the mechanical specifica
 
 \section{Integration Inspection}
 
-These tests verify the integration accordance prior to the module's full assembly on the CubeSat. The \autoref{tab:integration-inspection} resumes the integration inspection steps. 
+These tests verify the integration before the module's full assembly on the CubeSat. The \autoref{tab:integration-inspection} resumes the integration inspection steps. 
 
 \begin{table}[!htb]
 \centering
@@ -125,14 +125,14 @@ TC1 & Check external connectors pinout labels against the documentation present 
 TC2 & Check connectors positioning and possible integration issues from connected cables with the mounted BAT4C board and solar panels. \\
 \midrule
 \midrule
-Success Criteria & The labels and placement of the external connectors must be according to the documentation and don't present any possible integration issues. \\
+Success Criteria & The labels and placement of the external connectors must be according to the documentation and not present any possible integration issues. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \section {Electrical Inspection}
 
-These tests verify if the components used in the mounted module are the correct ones and if they are well soldered, as well if the their any other error in the layout. \autoref{tab:electrical-inspection} resumes the electrical inspection steps.
+These tests verify if the components used in the mounted module are correct, if they are well-soldered and if there is any other error in the layout. \autoref{tab:electrical-inspection} resumes the electrical inspection steps.
 
 \begin{table}[!htb]
 \centering
@@ -145,7 +145,7 @@ Test type & Electrical Inspection \\
 \midrule
 Subtests code & Description \\ 
 \midrule
-TD1 & Check for any visible short circuit in the buses of the module. At this moment, it is not necessary to use any equipment, it is a ``visual inspection" only. \\
+TD1 & Check for any visible short circuit in the module buses. It is not necessary to use any equipment; it is a ``visual inspection" only. \\
 \midrule
 TD2 & Check if all the components were soldered. If there are missing components, it is necessary to evaluate if it was intended or not. \\
 \midrule
@@ -153,9 +153,9 @@ TD3 & Check if the pins of the ICs and other components are damaged. \\
 \midrule
 TD4 & Check if there is any poor soldering. \\
 \midrule
-TD5 & Check if the components are swapped or even connected ``backwards". \\
+TD5 & Check if the components are swapped or connected ``backward". \\
 \midrule
-TD6 & Check the partnumber of the components. \\
+TD6 & Check the part number of the components. \\
 \midrule
 \midrule
 Success Criteria & All the intended components are connected correctly to the board, without any visible errors. \\
@@ -166,7 +166,7 @@ Success Criteria & All the intended components are connected correctly to the bo
 
 \section {Electrical Testing}
 
-Now it is necessary to use equipment such multimeter , oscilloscope, power supplies or anything that can be used to evaluate the interface between components, connectors. \autoref{tab:electrical-testing} resumes the electrical testing steps.
+Now it is necessary to use equipment such multimeter, oscilloscope, power supply, or anything that can be used to evaluate the interface between components and connectors. \autoref{tab:electrical-testing} resumes the electrical testing steps.
 
 \begin{table}[!htb]
 \centering
@@ -181,7 +181,7 @@ Subtests code & Description \\
 \midrule
 TE1 & Using a multimeter, check for any short circuit in the buses of the module, primarily the power buses. \\
 \midrule
-TE2 & If there the module do not present short circuits between a GND and VCC signals, power up the module with a power supply to see if it turns on. \\
+TE2 & If the module does not present short circuits between GND and VCC signals, power up the module with a power supply to see if it turns on. \\
 \midrule
 TE3 & Check the power consumption of the module. \\
 \midrule
@@ -192,14 +192,14 @@ TE5 & Check if the module is not overheating. \\
 TE6 & Check if the signals are being transmitted correctly through the buses. \\
 \midrule
 \midrule
-Success Criteria & The modules do not present any short circuit and can be turned on without any critical problem. \\
+Success Criteria & The modules do not present any short circuits and can be turned on without any critical problems. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \section {Functional Testing}
 
-It is necessary to evaluate if the module is able to run any code, and if it is ready to be used during FSW development and debugging. \autoref{tab:functional-testing} resumes the functional testing steps.
+It is necessary to evaluate if the module can run any code and if it is ready to be used during FSW development and debugging. \autoref{tab:functional-testing} resumes the functional testing steps.
 
 \begin{table}[!htb]
 \centering
@@ -212,25 +212,25 @@ Test type & Functional Testing \\
 \midrule
 Subtests code & Description \\ 
 \midrule
-TF1 & Check if the module is able to run a code. Preferably something extremely simple, such as a ``blinking LED". \\
+TF1 & Check if the module can run a code. Preferably something straightforward, such as a ``blinking LED". \\
 \midrule
-TF2 & Check if the module is able to run its firmware, even if the firmware is not complete. \\
+TF2 & Check if the module can run its firmware, even if it is incomplete. \\
 \midrule
-TF3 & Check if the module is able to make some self-tests. The results of these self-tests are going to be presented in its log. \\
+TF3 & Check if the module can make some self-tests. The results of these self-tests are going to be presented in its log. \\
 \midrule
 TF4 & Check if the LEDs are working as intended. \\
 \midrule
-TF5 & Check the logs for a longer period of time. \\
+TF5 & Check the logs for a longer period. \\
 \midrule
 \midrule
-Success Criteria & The module has the minimal expected functionalities. \\
+Success Criteria & The module has minimal expected functionalities. \\
 \bottomrule
 \end{tabular}
 \end{table}
  
 \section {Module Testing}
 
-The module itself is going to be tested, to evaluate if it can communicate with other modules, if its sensors are measuring correctly all the variables (e.g., voltage, current, temperature) and if it is operating as expected. \autoref{tab:module-testing} resumes the module testing steps.
+The module will be tested to evaluate if it can communicate with other modules, if its sensors are measuring all the variables correctly (e.g., voltage, current, temperature), and if it is operating as expected. \autoref{tab:module-testing} resumes the module testing steps.
 
 \begin{table}[!htb]
 \centering
@@ -243,21 +243,21 @@ Test type & Functional Testing \\
 \midrule
 Subtests code & Description \\ 
 \midrule
-TG1 & Run and review the firmware of the module and evaluate it, using any equipment that the SpaceLab offers. \\
+TG1 & Run and review the module's firmware and evaluate it using any equipment that SpaceLab offers. \\
 \midrule
-TG2 & Check and review the drivers, devices, tasks to see if the features are correctly being implemented. \\
+TG2 & Check and review the drivers, devices, and tasks to see if the features are correctly implemented. \\
 \midrule
 TG3 & Check and review the configuration of the communication protocols used. \\
 \midrule
 TG4 & Check and review all the buses to see if there is any anomaly or unexpected behavior. \\
 \midrule
-TG5 & Check and review the operation of the module when submitted a edge situations. \\
+TG5 & Check and review the module's operation when submitting an edge situation. \\
 \midrule
 TG6 & Run the unit tests. \\
 \midrule
 TG7 & Run system test codes in the board. \\
 \midrule
-TG8 & Run latest stable code version and review behavior. \\
+TG8 & Run the latest stable code version and review behavior. \\
 \midrule
 \midrule
 Success Criteria & The is operating correctly. \\
