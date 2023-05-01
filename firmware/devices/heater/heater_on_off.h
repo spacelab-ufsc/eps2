@@ -43,7 +43,7 @@
 #include <devices/temp_sensor/temp_sensor.h>
 #include <drivers/gpio/gpio.h>
 
-#define HEATER_ON_OFF_MODULE_NAME        "HEATER's ON/OFF CONTROLLER"
+#define HEATER_ON_OFF_MODULE_NAME        "Heater's ON/OFF Controller"
 
 /**
  * \brief Hysteresis controller parameters.

@@ -52,6 +52,9 @@ void vTaskDeviceResponse(void *pvParameters)
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS));
 
+    /* Delay before the first cycle */
+    vTaskDelay(pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INITIAL_DELAY_MS));
+
     while(1)
     {
         TickType_t last_cycle = xTaskGetTickCount();

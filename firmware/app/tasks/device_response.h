@@ -45,6 +45,7 @@
 #define TASK_DEVICE_RESPONSE_PRIORITY             2               /**< Priority. */
 #define TASK_DEVICE_RESPONSE_PERIOD_MS            60000UL           /**< Period in milliseconds. */
 #define TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS      10000UL          /**< Wait time to initialize the task in milliseconds. */
+#define TASK_DEVICE_RESPONSE_INITIAL_DELAY_MS     10000UL           /**< Delay, in milliseconds, before the first execution. */
 
 #define EPS_DATA_STRUCTURE_SIZE                   49
 #define DEVICE_RESPONSE_BUFFER_SIZE               50
