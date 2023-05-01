@@ -1,5 +1,5 @@
 /*
- * power_conv_test.c
+ * current_sensor_wrap.c
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,15 +21,15 @@
  */
 
 /**
- * \brief Unit test of the Power Converter device
+ * \brief Current Sensor device wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/08/23
+ * \date 2022/08/15
  *
- * \defgroup power_conv_test Power Converter
+ * \defgroup current_sensor_wrap Current Sensor Wrap
  * \ingroup tests
  * \{
  */
@@ -41,35 +41,22 @@
 #include <float.h>
 #include <cmocka.h>
 
-#include <devices/power_conv/power_conv.h>
+#include "current_sensor_wrap.h"
 
-static void power_conv_init_test(void **state)
+int __wrap_current_sensor_init()
 {
-    will_return(__wrap_tps54x0_init, 0);
-
-    assert_return_code(power_conv_init(), 0);
+    return mock_type(int);
 }
 
-static void enable_payload_power_test(void **state)
+uint16_t __wrap_current_sensor_raw_to_ma(adc_port_t port, uint16_t raw)
 {
-    will_return(__wrap_tps54x0_enable, 0);
-    assert_return_code(enable_payload_power(), 0);
+    return mock_type(uint16_t);
 }
 
-static void disable_payload_power_test(void **state)
+int __wrap_current_sensor_read(adc_port_t port, uint16_t *cur)
 {
-    will_return(__wrap_tps54x0_disable, 0);
-    assert_return_code(disable_payload_power(), 0);
+    *cur = mock_type(uint16_t);
+    return mock_type(int);
 }
 
-int main(void)
-{
-    const struct CMUnitTest power_conv_tests[] = {
-        cmocka_unit_test(power_conv_init_test),
-        cmocka_unit_test(enable_payload_power_test),
-        cmocka_unit_test(disable_payload_power_test)};
-
-    return cmocka_run_group_tests(power_conv_tests, NULL, NULL);
-}
-
-/** \} End of power_conv_test group */
+/** \} End of current_sensor_wrap group */

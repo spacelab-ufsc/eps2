@@ -44,7 +44,7 @@
 
 int leds_init()
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, LEDS_MODULE_NAME, "Initializing system LEDs...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, LEDS_MODULE_NAME, "Initializing system LEDs.");
     sys_log_new_line();
 
     gpio_config_t config_sys = {.mode = GPIO_MODE_OUTPUT};

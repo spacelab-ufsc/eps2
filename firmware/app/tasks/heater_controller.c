@@ -38,6 +38,7 @@
 #include <structs/eps2_data.h>
 
 #include <devices/heater/heater.h>
+#include <devices/heater/heater_on_off.h>
 
 #include "heater_controller.h"
 #include "startup.h"
@@ -61,13 +62,20 @@ xTaskHandle xTaskHeaterControllerHandle;
  *      .
  * \endparblock
  *
+ * \param[in] duty_cycle is the heater pwm duty cycle. It can be:
+ * \parblock
+ *      - 1 to 100 (duty cycle percentage)
+ *      .
+ * \endparblock
+ *
  * \return None.
  */
-void heater_control(int channel, uint32_t mode);
+void heater_control(int channel, uint32_t mode, uint32_t duty_cycle);
 
 void vTaskHeaterController(void)
 {
     uint32_t heater_mode = 0;
+    uint32_t heater_dt_cycle = 0;
 
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_HEATER_CONTROLLER_INIT_TIMEOUT_MS));
@@ -78,29 +86,47 @@ void vTaskHeaterController(void)
 
         /* Heater 1 */
         eps_buffer_read(EPS2_PARAM_ID_BAT_HEATER_1_MODE, &heater_mode);
+        eps_buffer_read(EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE, &heater_dt_cycle);
 
-        heater_control(HEATER_CONTROL_LOOP_CH_0, heater_mode);
+        heater_control(HEATER_CONTROL_LOOP_CH_0, heater_mode, heater_dt_cycle);
 
         /* Heater 2 */
         eps_buffer_read(EPS2_PARAM_ID_BAT_HEATER_2_MODE, &heater_mode);
+        eps_buffer_read(EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE, &heater_dt_cycle);
 
-        heater_control(HEATER_CONTROL_LOOP_CH_1, heater_mode);
+        heater_control(HEATER_CONTROL_LOOP_CH_1, heater_mode, heater_dt_cycle);
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_HEATER_CONTROLLER_PERIOD_MS));
     }
 }
 
-void heater_control(int channel, uint32_t mode)
+void heater_control(int channel, uint32_t mode, uint32_t duty_cycle)
 {
+
+    static uint32_t last_mode[2] = { HEATER_AUTOMATIC_MODE };
+
     switch(mode)
     {
         case HEATER_AUTOMATIC_MODE:
         {
             temperature_t temp = 0;
-
-            if (heater_get_sensor(channel, &temp) == 0)
+            
+            if (last_mode[channel] != HEATER_AUTOMATIC_MODE)
             {
-                if (heater_set_actuator(channel, heater_algorithm(PID_BASE_SET_POINT, temp)) != 0)
+                if (heater_on_off_init(channel))
+                {
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
+                    sys_log_print_uint(channel);
+                    sys_log_print_msg(" failed on/off initialization!");
+                    sys_log_new_line();
+                }
+                last_mode[channel] = HEATER_AUTOMATIC_MODE;
+            }
+            
+
+            if (heater_on_off_get_sensor(channel, &temp) == 0)
+            {
+                if (heater_on_off_set_actuator(channel, heater_on_off_algorithm(channel, temp)) != 0)
                 {
                     sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
                     sys_log_print_uint(channel);
@@ -119,8 +145,28 @@ void heater_control(int channel, uint32_t mode)
             break;
         }
         case HEATER_MANUAL_MODE:
-            /* TODO: Implement manual mode */
+        {
+            if (last_mode[channel] != HEATER_MANUAL_MODE)
+            {
+                if (heater_init(channel))
+                {
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
+                    sys_log_print_uint(channel);
+                    sys_log_print_msg(" failed manual mode initialization!");
+                    sys_log_new_line();
+                }
+                last_mode[channel] = HEATER_MANUAL_MODE;
+            }
+            if (heater_set_actuator(channel, (float)duty_cycle) != 0)
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Heater channel ");
+                sys_log_print_uint(channel);
+                sys_log_print_msg(" failed! (set_actuator)");
+                sys_log_new_line();
+            }
+
             break;
+        }
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_HEATER_CONTROLLER_NAME, "Invalid mode!");
             sys_log_new_line();

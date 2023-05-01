@@ -48,11 +48,10 @@
 
 #define UART_RECEIVE_INTERRUPT_FLAG     2
 
-/**
- * \brief UART interrupt RX buffer and size.
- */
-extern uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE];  
-extern uint8_t uart_received_data_size;
+#define WRITE_COMMAND_ID                0xA1
+#define READ_COMMAND_ID                 0xB1
+#define WRITE_COMMAND_MAX_SIZE          7
+#define READ_COMMAND_MAX_SIZE           4
 
 /**
  * \brief UART port configuration parameters.
@@ -136,6 +135,25 @@ int uart_interrupt_disable(uart_interrupt_port_t port);
  * \return The status/error code.
  */
 int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len);
+
+/**
+ * \brief Reads the uart_rx_buffer[].
+ *
+ * \param[in] port is the UART port being used. It can be:
+ * \parblock
+ *      -\b UART_PORT_0
+ *      -\b UART_PORT_1
+ *      -\b UART_PORT_2
+ *      .
+ * \endparblock
+ *
+ * \param[in,out] data is the array to store the read data.
+ *
+ * \param[in,out] len is the number of read bytes.
+ *
+ * \return The status/error code.
+ */
+int uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len);
 
 /**
  * @brief Notifies the uart receive interrupt hanlder task.

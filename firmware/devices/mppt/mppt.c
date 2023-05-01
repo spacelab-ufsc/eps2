@@ -24,8 +24,8 @@
  * \brief MPPT device implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Joï¿½o Clï¿½udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andrï¿½ M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
  * \version 0.2.22
  * 
@@ -82,7 +82,7 @@ int decrease_duty_cycle(mppt_channel_t channel);
 
 int mppt_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, MPPT_MODULE_NAME, "Initializing the MPPT...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, MPPT_MODULE_NAME, "Initializing MPPT device.");
     sys_log_new_line();
 
     /* Initialize the PWM parameters */
@@ -262,5 +262,12 @@ int decrease_duty_cycle(mppt_channel_t channel)
         return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);    
     }
 }
+
+int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle)
+{
+    mppt_config.duty_cycle = duty_cycle;
+    return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
+}
+
 
 /** \} End of mppt group */

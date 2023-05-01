@@ -38,7 +38,27 @@
 
 #include "eps2_data.h"
 
-eps_data_t eps_data_buff;
+eps_data_t eps_data_buff = {
+    // EPS data buffer initial/default values
+    .mppt_1_mode = 0,
+    .mppt_1_duty_cycle = 50,
+
+    .mppt_2_mode = 0,
+    .mppt_2_duty_cycle = 50,
+    
+    .mppt_3_mode = 0,
+    .mppt_3_duty_cycle = 50,
+    
+    .heater1_mode = 0,
+    .heater1_duty_cycle = 50,
+    
+    .heater2_mode = 0,
+    .heater2_duty_cycle = 50,
+    
+    .firmware_version = 0x00000300,
+    .hardware_version = 0,
+    .device_id = 0xEEE2
+};
 
 int eps_buffer_write(uint8_t id, uint32_t *value)
 {
@@ -345,10 +365,10 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = 45;
             break;
         case EPS2_PARAM_ID_BAT_HEATER_1_MODE:
-            *value = 46;
+            *value = 0;
             break;
         case EPS2_PARAM_ID_BAT_HEATER_2_MODE:
-            *value = 47;
+            *value = 0;
             break;
         case EPS2_PARAM_ID_DEVICE_ID:
             *value = 0xEEE2U;

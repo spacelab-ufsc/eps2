@@ -25,7 +25,7 @@
  *
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
- * \author João Claúdio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Joï¿½o Claï¿½dio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  *
  * \version 0.2.40
@@ -36,7 +36,6 @@
  * \{
  */
 
-#include <stdbool.h>
 
 #include <drivers/i2c_slave/i2c_slave.h>
 #include <system/sys_log/sys_log.h>
@@ -48,33 +47,9 @@
 
 obdh_config_t obdh_config = {0};
 
-/**
- * \brief Computes the CRC-8 of a sequence of bytes.
- *
- * \param[in] data is an array of data to compute the CRC-8.
- *
- * \param[in] len is the number of bytes of the given array.
- *
- * \return The computed CRC-8 value of the given data.
- */
-uint8_t obdh_crc8(uint8_t *data, uint8_t len);
-
-/**
- * \brief Checks the CRC value of a given sequence of bytes.
- *
- * \param[in] data is the data to check the CRC.
- *
- * \param[in] len is the number of bytes to check the CRC value.
- *
- * \param[in] crc is the CRC-8 value to check.
- *
- * \return TRUE/FALSE if the given CRC value is correct or not.
- */
-bool obdh_check_crc(uint8_t *data, uint8_t len, uint8_t crc);
-
 int obdh_init(void)
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, OBDH_MODULE_NAME, "Initializing OBDH device.");
     sys_log_new_line();
 
     /* OBDH configuration */

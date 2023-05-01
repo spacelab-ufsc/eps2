@@ -1,5 +1,5 @@
 /*
- * uart_interrupt_wrap.h
+ * current_sensor_wrap.h
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,37 +21,32 @@
  */
 
 /**
- * \brief UART Interrupt wrap definition.
+ * \brief Current Sensor device wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/09/15
+ * \date 2022/08/15
  *
- * \defgroup uart_interrupt_wrap UART INTERRUPT Wrap
+ * \defgroup current_sensor_wrap Current Sensor Wrap
  * \ingroup tests
  * \{
  */
 
-#ifndef UART_INTERRUPT_WRAP_H
-#define UART_INTERRUPT_WRAP_H
+#ifndef CURRENT_SENSOR_WRAP_H
+#define CURRENT_SENSOR_WRAP_H
 
 #include <stdint.h>
 
-#include <drivers/uart/uart.h>
-#include <drivers/uart_interrupt/uart_interrupt.h>
+#include <devices/current_sensor/current_sensor.h>
 
-int __wrap_uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config);
+int __wrap_current_sensor_init();
 
-int __wrap_uart_interrupt_enable(uart_interrupt_port_t port);
+uint16_t __wrap_current_sensor_raw_to_ma(adc_port_t port, uint16_t raw);
 
-int __wrap_uart_interrupt_disable(uart_interrupt_port_t port);
+int __wrap_current_sensor_read(adc_port_t port, uint16_t *cur);
 
-int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len);
+#endif /* CURRENT_SENSOR_WRAP_H */
 
-int __wrap_uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len);
-
-#endif /* UART_INTERRUPT_WRAP_H */
-
-/** \} End of uart_interrupt_wrap group */
+/** \} End of current_sensor_wrap group */

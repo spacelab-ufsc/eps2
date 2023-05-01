@@ -44,8 +44,8 @@
 #define TASK_PARAM_SERVER_NAME                      "Param Server"      /**< Task name. */
 #define TASK_PARAM_SERVER_STACK_SIZE                300                 /**< Stack size in bytes. */
 #define TASK_PARAM_SERVER_PRIORITY                  4                   /**< Task priority. */
-#define TASK_PARAM_SERVER_INIT_TIMEOUT_MS           1000                /**< Wait time to initialize the task in milliseconds. */
-#define TASK_PARAM_SERVER_MAX_BLOCK_TIME_MS         60*1000             /**< Maximum block time in milliseconds. */
+#define TASK_PARAM_SERVER_INIT_TIMEOUT_MS           1000UL              /**< Wait time to initialize the task in milliseconds. */
+#define TASK_PARAM_SERVER_MAX_BLOCK_TIME_MS         60*1000UL           /**< Maximum block time in milliseconds. */
 
 #define NOTIFICATION_VALUE_FROM_I2C_ISR       		(1UL << 0UL)        /**< Bit to set on i2c_slave ISR notification. */
 #define NOTIFICATION_VALUE_FROM_UART_ISR            (1UL << 1UL)        /**< Bit to set on uart ISR notification. */

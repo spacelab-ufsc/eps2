@@ -1,5 +1,5 @@
 /*
- * uart_interrupt_wrap.h
+ * voltage_sensor.h
  *
  * Copyright (C) 2021, SpaceLab.
  *
@@ -21,37 +21,32 @@
  */
 
 /**
- * \brief UART Interrupt wrap definition.
+ * \brief Voltage Sensor device wrap definition.
  *
  * \author Lucas Zacchi de Medeiros <lucas.zacchi@spacelab.ufsc.br>
  *
  * \version 0.1.0
  *
- * \date 2021/09/15
+ * \date 2022/08/15
  *
- * \defgroup uart_interrupt_wrap UART INTERRUPT Wrap
+ * \defgroup voltage_sensor Voltage Sensor Wrap
  * \ingroup tests
  * \{
  */
 
-#ifndef UART_INTERRUPT_WRAP_H
-#define UART_INTERRUPT_WRAP_H
+#ifndef VOTLAGE_SENSOR_WRAP_H
+#define VOTLAGE_SENSOR_WRAP_H
 
 #include <stdint.h>
 
-#include <drivers/uart/uart.h>
-#include <drivers/uart_interrupt/uart_interrupt.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
 
-int __wrap_uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config);
+int __wrap_voltage_sensor_init(void);
 
-int __wrap_uart_interrupt_enable(uart_interrupt_port_t port);
+uint16_t __wrap_voltage_sensor_raw_to_mv(adc_port_t port, uint16_t raw);
 
-int __wrap_uart_interrupt_disable(uart_interrupt_port_t port);
+int __wrap_voltage_sensor_read(adc_port_t port, uint16_t *volt);
 
-int __wrap_uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len);
+#endif /* VOTLAGE_SENSOR_WRAP_H */
 
-int __wrap_uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len);
-
-#endif /* UART_INTERRUPT_WRAP_H */
-
-/** \} End of uart_interrupt_wrap group */
+/** \} End of voltage_sensor_wrap group */
