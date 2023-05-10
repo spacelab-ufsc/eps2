@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -43,6 +43,7 @@
 int wdt_init(wdt_config_t config)
 {
     uint8_t clk_src = UINT8_MAX;
+    uint8_t err = 0;
 
     /* Checking clock source value */
     switch(config.clk_src)
@@ -52,11 +53,12 @@ int wdt_init(wdt_config_t config)
         case WDT_CLK_SRC_VLOCLK:      clk_src = WDT_A_CLOCKSOURCE_VLOCLK;   break;
         case WDT_CLK_SRC_XCLK:        clk_src = WDT_A_CLOCKSOURCE_XCLK;     break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, WDT_MODULE_NAME, "Error during initialization: Invalid clock source!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;      /* Invalid clock source */
+            err = -1;      /* Invalid clock source */
+            break;
     }
 
     uint8_t clk_div = UINT8_MAX;
@@ -73,11 +75,12 @@ int wdt_init(wdt_config_t config)
         case WDT_CLK_DIV_512:        clk_div = WDT_A_CLOCKDIVIDER_512;      break;
         case WDT_CLK_DIV_64:         clk_div = WDT_A_CLOCKDIVIDER_64;       break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, WDT_MODULE_NAME, "Error during initialization: Invalid clock divider!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;      /* Invalid clock divider value */
+            err = -1;      /* Invalid clock divider value */
+            break;
     }
 
     /* Watchdog initialization */
@@ -86,7 +89,7 @@ int wdt_init(wdt_config_t config)
     /* Start counter */
     WDT_A_start(WDT_A_BASE);
 
-    return 0;
+    return err;
 }
 
 void wdt_reset(void)

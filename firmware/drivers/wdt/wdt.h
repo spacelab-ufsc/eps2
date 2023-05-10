@@ -68,8 +68,8 @@ typedef enum
  */
 typedef struct
 {
-    uint8_t clk_src;        /**< Clock source of the watchdog peripheral. */
-    uint8_t clk_div;        /**< Clock divider. */
+    wdt_clk_src_e clk_src;        /**< Clock source of the watchdog peripheral. */
+    wdt_clk_div_e clk_div;        /**< Clock divider. */
 } wdt_config_t;
 
 /**
