@@ -1,7 +1,7 @@
 C  Project Name : 
 C  Board Name : 
-C  Date : 29/10/2022
-C  Time : 17:36:29
+C  Date : 02/05/2023
+C  Time : 19:44:14
 C  
 C  --------------- Layer Stackup --------------------
 C  
@@ -14,7 +14,7 @@ C  --------------------------------------------------
 C  
 P  JOB
 P  UNITS CUST
-P  TITLE Qjz32CB.tmp
+P  TITLE Qjz699.tmp
 P  NUM 1.0
 P  REV A
 P  VER IPC-D-356A
