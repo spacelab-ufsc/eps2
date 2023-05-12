@@ -30,7 +30,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
     \item \textbf{PCB manufacturer}: PCBWay (China)
     \item \textbf{PCB assembly}: PCBWay (China)
     \item \textbf{PCB arrival date}: 2021/04/14
-    \item \textbf{Execution date}: 2021/06/13 to \textcolor{red}{TBC}
+    \item \textbf{Execution date}: 2021/06/13 to 2021/07/01
     \item \textbf{Tester}: André M. P. Mattos
 \end{itemize}
 
@@ -38,17 +38,9 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 
 \section{Visual Inspection}
 
-\begin{itemize}
-    \item \textbf{Test description/Objective}: Inspection of the board, visually and with a multimeter, searching for fabrication and assembly failures.
-    \item \textbf{Procedures:} \autoref{tab:visual-inspection}.
-    \item \textbf{Material}: None.
-    \item \textbf{Results}: The results of this test can be seen in Figures \ref{fig:eps2-v01-top} (top view of the board) and \ref{fig:eps2-v01-bottom} (bottom view of the board).
-    \item \textbf{Conclusion}: No major problems were identified on this test, just some labels with typos (all in the PC-104 region) that should be already be corrected for v0.2 and four 4-pin picoblades that were not soldered by the manufacturer due the lack of clearence (differently from the headers and PC-104 which were intencionally removed from the process). This last item might be ignored since the manufacturer used an automated soldering process and the manual placement of these connectors is totally feasible.  
-\end{itemize}
-
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=\columnwidth]{figures/v01/eps2-v01-top.jpg}
+        \includegraphics[width=0.75\columnwidth]{figures/v01/eps2-v01-top.jpg}
         \caption{Top view of the EPS 2.0 v0.1 board.}
         \label{fig:eps2-v01-top}
     \end{center}
@@ -56,12 +48,19 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=\columnwidth]{figures/v01/eps2-v01-bottom.jpg}
+        \includegraphics[width=0.75\columnwidth]{figures/v01/eps2-v01-bottom.jpg}
         \caption{Bottom view of the EPS 2.0 v0.1 board.}
         \label{fig:eps2-v01-bottom}
     \end{center}
 \end{figure}
 
+\begin{itemize}
+    \item \textbf{Test description/Objective}: Inspection of the board, visually and with a multimeter, searching for fabrication and assembly failures.
+    \item \textbf{Procedures:} \autoref{tab:visual-inspection}.
+    \item \textbf{Material}: None.
+    \item \textbf{Results}: The results of this test can be seen in Figures \ref{fig:eps2-v01-top} (top view of the board) and \ref{fig:eps2-v01-bottom} (bottom view of the board).
+    \item \textbf{Conclusion}: No major problems were identified on this test, just some labels with typos (all in the PC-104 region) that should be already be corrected for v0.2 and four 4-pin picoblades that were not soldered by the manufacturer due the lack of clearance (differently from the headers and PC-104 which were intentionally removed from the process). This last item might be ignored since the manufacturer used an automated soldering process and the manual placement of these connectors is totally feasible.  
+\end{itemize}
 
 \section{Mechanical Inspection}
 
@@ -77,7 +76,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 \section{Integration Inspection}
 
 \begin{itemize}
-    \item \textbf{Test description/Objective}: Analyse the integration accordance prior to the module’s full assembly on the CubeSat.
+    \item \textbf{Test description/Objective}: Analyze the integration accordance prior to the module’s full assembly on the CubeSat.
     \item \textbf{Procedures:} \autoref{tab:integration-inspection}.
     \item \textbf{Material}: None.
     \item \textbf{Results}: Schematic files and pinouts identified in the \autoref{ch:hardware}. 
@@ -104,7 +103,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
     \item \textbf{Material}:
         \begin{itemize}
             \item Multimeter Fluke 179
-            \item Keysight N6705B DC Power Analyser
+            \item Keysight N6705B DC Power Analyzer
         \end{itemize}
     \item \textbf{Results}: Results reported with the following images: \ref{fig:electrical-test-setup}, \ref{fig:power-consumption}, \ref{fig:regulator-payload}, \ref{fig:regulator-antenna}, \ref{fig:regulator-radio0}, \ref{fig:regulator-radio1}, \ref{fig:regulator-obdh} and \ref{fig:regulator-epsttc}. 
     \item \textbf{Conclusion}: The boards power-up as expected and present stable power consumption. The power outputs (step-down regulators) underperform with nominal or slightly higher load parameters. The issue might be related to poor sizing of passive components required for the regulators. This problem \textbf{must} be solved for the next version (it is expected to be performed minor changes in components values).  
@@ -122,7 +121,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.44\columnwidth]{figures/v01/power-consumption.jpg}
+        \includegraphics[width=\columnwidth]{figures/v01/power-consumption.jpg}
         \caption{Power consumption during standby with any intensive firmware task.}
         \label{fig:power-consumption}
     \end{center}
@@ -138,7 +137,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         ~
         \subfigure[Load: 1500mA.\label{fig:regulator-payload-1500mA}]{\includegraphics[height=0.19\textheight]{figures/v01/regulator-payload-1500mA.jpg}}
         
-        \caption{Payload step-down regulador power characterization.}
+        \caption{Payload step-down regulator power characterization.}
         \label{fig:regulator-payload}
     \end{center}
 \end{figure}
@@ -153,7 +152,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         ~
         \subfigure[Load: 1500mA.\label{fig:regulator-antenna-1500mA}]{\includegraphics[height=0.19\textheight]{figures/v01/regulator-antenna-1500mA.jpg}}
         
-        \caption{Antenna step-down regulador power characterization.}
+        \caption{Antenna step-down regulator power characterization.}
         \label{fig:regulator-antenna}
     \end{center}
 \end{figure}
@@ -168,7 +167,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         ~
         \subfigure[Load: 1500mA.\label{fig:regulator-radio0-1500mA}]{\includegraphics[height=0.19\textheight]{figures/v01/regulator-radio0-1500mA.jpg}}
         
-        \caption{Radio 0 step-down regulador power characterization.}
+        \caption{Radio 0 step-down regulator power characterization.}
         \label{fig:regulator-radio0}
     \end{center}
 \end{figure}
@@ -183,7 +182,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         ~
         \subfigure[Load: 1500mA.\label{fig:regulator-radio1-1500mA}]{\includegraphics[height=0.19\textheight]{figures/v01/regulator-radio1-1500mA.jpg}}
         
-        \caption{Radio 1 step-down regulador power characterization.}
+        \caption{Radio 1 step-down regulator power characterization.}
         \label{fig:regulator-radio1}
     \end{center}
 \end{figure}
@@ -198,7 +197,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         ~
         \subfigure[Load: 1500mA.\label{fig:regulator-obdh-500mA}]{\includegraphics[height=0.19\textheight]{figures/v01/regulator-obdh-500mA.jpg}}
         
-        \caption{OBDH step-down regulador power characterization.}
+        \caption{OBDH step-down regulator power characterization.}
         \label{fig:regulator-obdh}
     \end{center}
 \end{figure}
@@ -211,11 +210,12 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
         ~
         \subfigure[Load: 1000mA.\label{fig:regulator-epsttc-1000mA}]{\includegraphics[height=0.19\textheight]{figures/v01/regulator-epsttc-1000mA.jpg}}
 
-        \caption{EPS/TTC step-down regulador power characterization.}
+        \caption{EPS/TTC step-down regulator power characterization.}
         \label{fig:regulator-epsttc}
     \end{center}
 \end{figure}
-
+ 
+ \newpage
 
 \section{Functional Testing}
 
@@ -236,9 +236,9 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 
 \begin{figure}[!htb]
     \begin{center}
-        \subfigure[Board connections using the MSP-FET and USB-UART converter.\label{fig:setup-first-boot}]{\includegraphics[height=0.23\textheight]{figures/v01/setup-first-boot.jpg}}
+        \subfigure[Board connections using the MSP-FET and USB-UART converter.\label{fig:setup-first-boot}]{\includegraphics[height=0.2\textheight]{figures/v01/setup-first-boot.jpg}}
         ~
-        \subfigure[Pin connections using the MSP-FET and USB-UART converter.\label{fig:electrical-test-board}]{\includegraphics[height=0.23\textheight]{figures/v01/tools-first-boot.jpg}}
+        \subfigure[Pin connections using the MSP-FET and USB-UART converter.\label{fig:electrical-test-board}]{\includegraphics[height=0.2\textheight]{figures/v01/tools-first-boot.jpg}}
         \caption{Setup used for the first firmware boot}
         \label{fig:setup-first-boot}
     \end{center}
@@ -246,13 +246,13 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 
 \begin{figure}[!ht]
     \begin{center}
-        \includegraphics[width=0.7\columnwidth]{figures/v01/log-first-boot.png}
+        \includegraphics[width=0.4\columnwidth]{figures/v01/log-first-boot.png}
         \caption{Log messages during the first boot.}
         \label{fig:log-first-boot}
     \end{center}
 \end{figure}
 
-\subsection{Communication Buses}
+%\subsection{Communication Buses}
 %
 %\begin{itemize}
 %    \item \textbf{Test description/Objective}: Test the communication busses of the board, as listed below:
@@ -305,7 +305,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 %    \end{center}
 %\end{figure}
 %
-\subsection{Sensors}
+%\subsection{Sensors}
 %
 %\subsection{Input Voltage}
 %
@@ -365,7 +365,7 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 %    \end{center}
 %\end{figure}
 %
-\subsection{Peripherals}
+%\subsection{Peripherals}
 %
 %\subsection{NOR Flash Memory}
 %
@@ -394,4 +394,4 @@ This appendix is a test report of the first manufactured and assembled PCB (vers
 
 \section{Conclusion}
 
-\textcolor{red}{TBD}
+The board needs to be tested more, to evaluate its functioning with the firmware that is being developed. 
