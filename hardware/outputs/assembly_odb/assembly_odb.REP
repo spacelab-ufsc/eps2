@@ -2,103 +2,91 @@
 FileName = board_layout.pcbdoc
 ODB++ directory structure
 *************************************************************
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\matrix\matrix
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\profile
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\profile
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\stephdr
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\stephdr
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dielectric_1\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_overlay\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dielectric_1\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_overlay\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\core\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_paste\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\core\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_paste\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dielectric_2\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_solder\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dielectric_2\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_solder\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\drill_plated_bottom-top\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_layer\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\drill_plated_bottom-top\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_layer\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\drill_plated_bottom-top\tools
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_1\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_1\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_1\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_1\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_2\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_paste\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_2\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_paste\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_overlay\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_layer\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_overlay\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_layer\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_solder\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_solder\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_solder\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_solder\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_layer\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_paste\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_layer\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_paste\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_paste\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_overlay\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_paste\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_overlay\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\keep-out_layer\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_solder\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\keep-out_layer\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_solder\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\3d_body\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_2\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\3d_body\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\signal_layer_2\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dimension\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_overlay\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dimension\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\top_overlay\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\drill\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_layer\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\drill\attrlist
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\bottom_layer\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\drill\tools
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\3d_body\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\3d_body\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\components
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\keep-out_layer\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\keep-out_layer\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\components
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dimension\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\eda\data
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\dimension\attrlist
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\s39.3701_225\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_225\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_top\components
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_135\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\features
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\s53.3701_225\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\layers\comp_+_bot\components
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect55.3386x61.2441_225\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\steps\pcb\eda\data
 
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect55.3386x61.2441_135\features
-
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\s39.3701_225\features
-
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_225\features
-
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_135\features
-
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\s39.3701_225\features
-
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_225\features
-
-Generated File : C:\Users\Sidney&Viviane\Documents\Andre\GitHub\eps2\hardware\.\outputs\assembly_odb\odb\symbols\rect41.3386x47.2441_135\features
+Generated File : C:\Users\joaoc\Documents\eps2\hardware\.\outputs\assembly_odb\odb\matrix\matrix
 
