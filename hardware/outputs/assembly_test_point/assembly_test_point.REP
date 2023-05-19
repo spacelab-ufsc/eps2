@@ -1,8 +1,26 @@
-Error Report for  - Users\SIDNEY~1\AppData\Local\Temp\ProA1A5.tmp
-16/06/2021 14:08:19
+Error Report for  - Users\joaoc\AppData\Local\Temp\Qjz699.tmp
+02/05/2023 19:44:14
 
 Warning arcs were not exported.
 
+Net -HEATER1_VOLTAGE with allias 1 too long.
+Net NC_KILL_SWITCH2 with allias 10 too long.
+Net Net3V3_EPS_BEACON_1 with allias 11 too long.
+Net Net5V_PAYLOADS_LED_1 with allias 12 too long.
+Net Net5V_RADIO_0_LED_1 with allias 13 too long.
+Net Net6V_RADIO_1_LED_1 with allias 14 too long.
+Net SYSTEM_FAULT_LED with allias 15 too long.
+Net UART_EPS_RX_Beacon_TX with allias 16 too long.
+Net UART_EPS_TX_BEACON_RX with allias 17 too long.
+Net V_CHARGING_BATTERIES with allias 18 too long.
+Net -HEATER2_VOLTAGE with allias 2 too long.
+Net 3V3_DEPLOYMENT_ANT with allias 3 too long.
+Net ADD_I2C1_SCL_BUF with allias 4 too long.
+Net ADD_I2C1_SDA_BUF with allias 5 too long.
+Net ADD_PC104_GPIO0 with allias 6 too long.
+Net ADD_PC104_GPIO1 with allias 7 too long.
+Net ADD_PC104_GPIO2 with allias 8 too long.
+Net NC_KILL_SWITCH1 with allias 9 too long.
 Pad name H2-50 too long.
 Pad name H2-48 too long.
 Pad name H2-47 too long.
