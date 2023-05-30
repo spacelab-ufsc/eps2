@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -42,13 +42,20 @@
 
 #include "uart_interrupt.h"
 
-uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE] = {0};
-uint8_t uart_rx_data_size = 0;
-uint8_t uart_rx_buffer_index = 0;
+static uint8_t uart_rx_buffer[UART_RX_BUFFER_MAX_SIZE] = {0};
+static uint8_t uart_rx_data_size = 0;
+
+/**
+ * @brief UART interrupt service routine function prototype
+ * 
+ */
+void USCI_A0_ISR(void);
+
 
 int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t config)
 {
     USCI_A_UART_initParam uart_params = {0};
+    int err = 0;
 
     switch(config.baudrate)
     {
@@ -103,11 +110,12 @@ int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t conf
             uart_params.secondModReg        = 5;    /* 460800 bps @ 31.981568 MHz */
             break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during the initialization: Invalid baudrate!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;      /* Invalid baudrate value */
+            err = -1;      /* Invalid baudrate value */
+            break;
     }
 
     uart_params.selectClockSource   = USCI_A_UART_CLOCKSOURCE_SMCLK;
@@ -134,27 +142,29 @@ int uart_interrupt_init(uart_interrupt_port_t port, uart_interrupt_config_t conf
             GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P9, GPIO_PIN2 + GPIO_PIN3);
             break;
         default:
-            #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
                 sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during the initialization: Invalid port!");
                 sys_log_new_line();
             #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;      /* Invalid port */
+            err = -1;      /* Invalid port */
+            break;
     }
 
     if (USCI_A_UART_init(base_address, &uart_params) != STATUS_SUCCESS)
     {
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during the initialization!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err = -1;
     }
 
-    return 0;
+    return err;
 }
 
 int uart_interrupt_enable(uart_interrupt_port_t port)
 {
+    int err = 0;
     uint16_t base_address;
     switch (port)
     {
@@ -168,11 +178,12 @@ int uart_interrupt_enable(uart_interrupt_port_t port)
             base_address = USCI_A2_BASE;
             break;
         default:
-            #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
                 sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Invalid port!");
                 sys_log_new_line();
             #endif             /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1; /* Invalid UART port */
+            err = -1; /* Invalid UART port */
+            break;
     }
 
     USCI_A_UART_enable(base_address);
@@ -185,11 +196,12 @@ int uart_interrupt_enable(uart_interrupt_port_t port)
         USCI_A_UART_BREAKCHAR_INTERRUPT
     );
 
-    return 0;
+    return err;
 };
 
 int uart_interrupt_disable(uart_interrupt_port_t port)
 {
+    int err = 0;
     uint16_t base_address;
     switch (port)
     {
@@ -203,11 +215,12 @@ int uart_interrupt_disable(uart_interrupt_port_t port)
             base_address = USCI_A2_BASE;
             break;
         default:
-            #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
                 sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Invalid port!");
                 sys_log_new_line();
             #endif             /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1; /* Invalid UART port */
+            err = -1; /* Invalid UART port */
+            break;
     }
 
     USCI_A_UART_disable(base_address);
@@ -216,11 +229,12 @@ int uart_interrupt_disable(uart_interrupt_port_t port)
         USCI_A_UART_BREAKCHAR_INTERRUPT
     );
 
-    return 0;
+    return err;
 };
 
 int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len)
 {
+    int err = 0;
     uint16_t base_address;
 
     switch(port)
@@ -235,11 +249,12 @@ int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len
             base_address = USCI_A2_BASE;    
             break;
         default:
-            #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
                 sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during writing: Invalid port!");
                 sys_log_new_line();
             #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;
+            err = -1;
+            break;
     }
 
     uint16_t i = 0;
@@ -250,7 +265,7 @@ int uart_interrupt_write(uart_interrupt_port_t port, uint8_t *data, uint16_t len
 
     //USCI_A_UART_transmitBreak(base_address);
 
-    return 0;
+    return err;
 }
 
 int uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len)
@@ -270,16 +285,17 @@ int uart_interrupt_read(uart_interrupt_port_t port, uint8_t *data, uint16_t *len
             base_address = USCI_A2_BASE;    
             break;
         default:
-            #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+            #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
                 sys_log_print_event_from_module(SYS_LOG_ERROR, UART_INTERRUPT_MODULE_NAME, "Error during writing: Invalid port!");
                 sys_log_new_line();
             #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
             err = -1;
+            break;
     }
 
     if (err == 0)
     {
-        memcpy(data, uart_rx_buffer, uart_rx_data_size);
+        (void) memcpy(data, uart_rx_buffer, uart_rx_data_size);
 
         *len = uart_rx_data_size;
     }
@@ -298,19 +314,20 @@ __attribute__((interrupt(USCI_A0_VECTOR)))
 #endif
 void USCI_A0_ISR(void)
 {
+    uint8_t uart_rx_buffer_index = 0;
     switch(__even_in_range(UCA0IV,4))
     {
         case UART_RECEIVE_INTERRUPT_FLAG:
             uart_rx_buffer[uart_rx_buffer_index] = UCA0RXBUF;
 
-            if(uart_rx_buffer[0] == WRITE_COMMAND_ID && uart_rx_buffer_index++ > WRITE_COMMAND_MAX_SIZE)
+            if( ( uart_rx_buffer_index++ > WRITE_COMMAND_MAX_SIZE ) && ( uart_rx_buffer[0] == WRITE_COMMAND_ID ) )
             {    
                 uart_rx_buffer_index = 0;
                 uart_rx_data_size = 7;
                 uart_interrupt_notify_from_rcv_isr();
             }
 
-            if(uart_rx_buffer[0] == READ_COMMAND_ID && uart_rx_buffer_index++ > READ_COMMAND_MAX_SIZE)
+            if( ( uart_rx_buffer_index++ > READ_COMMAND_MAX_SIZE ) && ( uart_rx_buffer[0] == READ_COMMAND_ID ) )
             {    
                 uart_rx_buffer_index = 0;
                 uart_rx_data_size = 4;
@@ -324,7 +341,7 @@ void USCI_A0_ISR(void)
 
 __attribute__((weak)) void uart_interrupt_notify_from_rcv_isr(void)
 {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
         sys_log_print_event_from_module(SYS_LOG_INFO, UART_INTERRUPT_MODULE_NAME, "Notified to uart rcv handler");
         sys_log_new_line();
     #endif

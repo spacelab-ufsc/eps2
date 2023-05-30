@@ -48,8 +48,8 @@
 
 #define UART_RECEIVE_INTERRUPT_FLAG     2
 
-#define WRITE_COMMAND_ID                0xA1
-#define READ_COMMAND_ID                 0xB1
+#define WRITE_COMMAND_ID                0xA1u
+#define READ_COMMAND_ID                 0xB1u
 #define WRITE_COMMAND_MAX_SIZE          7
 #define READ_COMMAND_MAX_SIZE           4
 
