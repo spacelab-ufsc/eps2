@@ -58,9 +58,6 @@ void vTaskReadSensors(void)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
-        sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Reading sensors...");
-        sys_log_new_line();
-
         uint16_t buf = 0U;
 
         /* -Y Solar Panel current in mA.*/

@@ -46,21 +46,8 @@
 static void power_conv_init_test(void **state)
 {
     will_return(__wrap_tps54x0_init, 0);
-    will_return(__wrap_tps54x0_init, 0);
 
     assert_return_code(power_conv_init(), 0);
-}
-
-static void enable_obdh_power_test(void **state)
-{
-    will_return(__wrap_tps54x0_enable, 0);
-    assert_return_code(enable_obdh_power(), 0);
-}
-
-static void disable_obdh_power_test(void **state)
-{
-    will_return(__wrap_tps54x0_disable, 0);
-    assert_return_code(disable_obdh_power(), 0);
 }
 
 static void enable_payload_power_test(void **state)
@@ -79,8 +66,6 @@ int main(void)
 {
     const struct CMUnitTest power_conv_tests[] = {
         cmocka_unit_test(power_conv_init_test),
-        cmocka_unit_test(enable_obdh_power_test),
-        cmocka_unit_test(disable_obdh_power_test),
         cmocka_unit_test(enable_payload_power_test),
         cmocka_unit_test(disable_payload_power_test)};
 

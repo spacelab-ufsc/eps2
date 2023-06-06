@@ -44,8 +44,7 @@
 
 #define POWER_CONV_MODULE_NAME		"Power Converters"
 
-#define EN_3V3_OBDH_PIN GPIO_PIN_36
-#define EN_PAYLOAD_PIN GPIO_PIN_37
+#define EN_PAYLOAD_PIN GPIO_PIN_3
 
 /**
  * \brief Initialization of the Power Converters device.
@@ -53,20 +52,6 @@
  * \return The status/error code.
  */
 int power_conv_init();
-
-/**
- * \brief Emable power for OBDH.
- *
- * \return The status/error code.
- */
-int enable_obdh_power();
-
-/**
- * \brief Disables power for OBDH.
- *
- * \return The status/error code.
- */
-int disable_obdh_power();
 
 /**
  * \brief Enables power for payloads.

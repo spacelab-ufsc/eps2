@@ -23,8 +23,8 @@
 /**
  * \brief Heater device definition.
  *
- * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Joï¿½o Clï¿½udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andrï¿½ M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
  * \version 0.2.11
  *
@@ -68,7 +68,7 @@
 /**
  * \brief PWM constants.
  */
-#define HEATER_PERIOD_INIT        20      /**< PWM period (1/f) in us for the heater device. */
+#define HEATER_PERIOD_INIT        1000      /**< PWM period (1/f) in us for the heater device. */
 #define HEATER_DUTY_CYCLE_INIT    50      /**< PWM initial duty cycle in % for the heater device. */
 
 /**
@@ -130,9 +130,11 @@ typedef struct {
 /**
  * \brief Initialization routine of the heater device.
  *
+ * \param[in] channel is the channel to be used.
+ *
  * \return The status/error code.
  */
-int heater_init(void);
+int heater_init(heater_channel_t channel);
 
 /**
  * \brief Function to implement the PID controller algorithm.

@@ -24,8 +24,8 @@
  * \brief MPPT device definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Joï¿½o Clï¿½udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andrï¿½ M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * 
  * \version 0.2.22
  * 
@@ -131,6 +131,14 @@ int mppt_init();
  */
 int mppt_algorithm(mppt_channel_t channel);
 
+/**
+ * \brief Function to set the PWM duty cycle for manual mode.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ * \return The status/error code.
+ */
+int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle);
 
 #endif /* MPPT_H_ */
 

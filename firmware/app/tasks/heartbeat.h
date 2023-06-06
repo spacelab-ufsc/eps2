@@ -43,8 +43,8 @@
 #define TASK_HEARTBEAT_NAME                 "Heartbeat"     /**< Task name. */
 #define TASK_HEARTBEAT_STACK_SIZE           160             /**< Memory stack size in bytes. */
 #define TASK_HEARTBEAT_PRIORITY             1               /**< Priority. */
-#define TASK_HEARTBEAT_PERIOD_MS            500             /**< Period in milliseconds. */
-#define TASK_HEARTBEAT_INIT_TIMEOUT_MS      2000            /**< Wait time to initialize the task in milliseconds. */
+#define TASK_HEARTBEAT_PERIOD_MS            500UL           /**< Period in milliseconds. */
+#define TASK_HEARTBEAT_INIT_TIMEOUT_MS      2000UL          /**< Wait time to initialize the task in milliseconds. */
 
 /**
  * \brief Heartbeat task handle.

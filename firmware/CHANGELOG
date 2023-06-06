@@ -1,5 +1,14 @@
 ===========================================
 
+v0.4 - 2023/21/04
+
+- All devices were tested
+- Creating a task to communicate with other devices via UART 
+- All tasks were implemented
+- General fixes and improvements
+
+===========================================
+
 v0.3 - 2022/08/04
 
 - All drivers were tested
@@ -17,7 +26,7 @@ v0.2 - 2021/06/27
 - Importing useful code from the OBDH 2.0 repository
 - Initial version of the DS2775G+ driver
 - Initial version of the ADS1248 driver
-- Initial structire of the I2C slave driver
+- Initial structure of the I2C slave driver
 - First working version
 - General fixes and improvements
 

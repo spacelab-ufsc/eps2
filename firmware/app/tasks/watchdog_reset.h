@@ -43,7 +43,7 @@
 #define TASK_WATCHDOG_RESET_NAME                    "WatchdogReset"     /**< Task name. */
 #define TASK_WATCHDOG_RESET_STACK_SIZE              150                 /**< Stack size in bytes. */
 #define TASK_WATCHDOG_RESET_PRIORITY                1                   /**< Task priority. */
-#define TASK_WATCHDOG_RESET_PERIOD_MS               100                 /**< Task period in milliseconds. */
+#define TASK_WATCHDOG_RESET_PERIOD_MS               100UL               /**< Task period in milliseconds. */
 #define TASK_WATCHDOG_RESET_INITIAL_DELAY_MS        0                   /**< Delay, in milliseconds, before the first execution. */
 
 /**

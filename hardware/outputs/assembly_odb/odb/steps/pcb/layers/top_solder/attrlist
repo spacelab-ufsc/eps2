@@ -11,6 +11,8 @@
 .out_y_scale = 1.000000
 .out_comp = 0.000000
 .et_adjacency = 20.000000
-.layer_dielectric = 0.0001
-.copper_weight = 1
+.layer_dielectric = 0.000394
+.loss_tangent = 0
+.dielectric_constant = 3.5
+.comment = Solder Resist
 

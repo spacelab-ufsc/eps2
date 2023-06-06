@@ -23,8 +23,8 @@
 /**
  * \brief Heater device implementation.
  *
- * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
- * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Joï¿½o Clï¿½udio <joaoclaudiobarcellos@gmail.com>
+ * \author Andrï¿½ M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  *
  * \version 0.2.27
  *
@@ -41,9 +41,9 @@
 pid_controller_t pid_controller;
 heater_config_t heater_config;
 
-int heater_init(void) 
+int heater_init(heater_channel_t channel) 
 {
-    sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_MODULE_NAME, "Initializing the heater...");
+    sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_MODULE_NAME, "Initializing Heater device.");
     sys_log_new_line();   
 
     /* PID controller initialization */
@@ -63,18 +63,30 @@ int heater_init(void)
     heater_config.period_us         = HEATER_PERIOD_INIT;
     heater_config.duty_cycle        = HEATER_DUTY_CYCLE_INIT;
 
-    if(pwm_init(HEATER_CONTROL_LOOP_CH_SOURCE, HEATER_ACTUATOR_CH_0, heater_config))
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_MODULE_NAME, "Error during the initialization (CH0)!");
-        sys_log_new_line();
-        return -1;
-    }
+    switch(channel){
+        
+        case HEATER_CONTROL_LOOP_CH_0:
 
-    if(pwm_init(HEATER_CONTROL_LOOP_CH_SOURCE, HEATER_ACTUATOR_CH_1, heater_config))
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_MODULE_NAME, "Error during the initialization (CH1)!");
-        sys_log_new_line();
-        return -1;
+            if(pwm_init(HEATER_CONTROL_LOOP_CH_SOURCE, HEATER_ACTUATOR_CH_0, heater_config))
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_MODULE_NAME, "Error during the initialization (CH0)!");
+                sys_log_new_line();
+                return -1;
+            }        
+        
+            break;
+
+        case HEATER_CONTROL_LOOP_CH_1:
+
+            if(pwm_init(HEATER_CONTROL_LOOP_CH_SOURCE, HEATER_ACTUATOR_CH_1, heater_config))
+            {
+                sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_MODULE_NAME, "Error during the initialization (CH1)!");
+                sys_log_new_line();
+                return -1;
+            }
+
+            break;
+
     }
 
     return 0;
