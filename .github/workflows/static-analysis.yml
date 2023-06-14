@@ -1,0 +1,94 @@
+#
+# static-analysis-workflow.yml
+#
+# Copyright The EPS 2.0 Contributors.
+#
+# This file is part of EPS 2.0.
+#
+# EPS 2.0 is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# EPS 2.0 is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+#
+#
+
+
+name: Static Analysis
+
+on:
+  push:
+    branches: [ dev_firmware, feat_misra_c_compliance ]
+  pull_request:
+    branches: [ master, dev, dev_firmware ]
+
+  # 'workflow_dispatch' allows manual execution
+  # of this workflow under the repository's 'Actions' tab
+  workflow_dispatch:
+
+jobs:
+
+  cppcheck-analysis:
+    name: cppcheck-analysis
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install CppCheck
+        run: sudo apt install -y cppcheck
+
+#     - name: Execute CppCheck on tasks files
+#       run: cppcheck --std=c99 --force --error-exitcode=-1 --addon=misra.py firmware/app/tasks/
+
+#     - name: Execute CppCheck on devices files
+#       run: |
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/battery_monitor
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/current_sensor
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/heater
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/leds
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/media
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/mppt
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/obdh
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/power_conv
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/temp_sensor
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/ttc
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/voltage_sensor
+#         cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/devices/watchdog
+
+      - name: Execute CppCheck on drivers files
+        run: |
+          cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/uart
+          cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/wdt
+          cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/uart_interrupt
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/adc
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/ads1248
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/ds277Xg
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/flash
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/gpio
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/i2c
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/i2c_slave
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/max9934
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/onewire
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/spi
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/tca4311a
+#         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/tps54x0
+
+#     - name: Execute CppCheck on system files
+#       run: cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/system/ --suppress=misra-c2012-19.2
+
+#     - name: Execute CppCheck on libraries files
+#       run: cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/libs/
+
+#     - name: Execute CppCheck on main files
+#       run: cppcheck --std=c99 --error-exitcode=-1 --addon=misra.py firmware/main.c firmware/version.h
