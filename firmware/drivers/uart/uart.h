@@ -73,11 +73,11 @@ typedef enum
 /**
  * \brief RX data availability.
  */
-typedef enum
+enum
 {
     UART_NOT_AVAILABLE=0,   /**< Data is not available in the RX buffer. */
     UART_AVAILABLE          /**< Data is available in the RX buffer. */
-} uart_data_availability_e;
+};
 
 /**
  * \brief UART port configuration parameters.

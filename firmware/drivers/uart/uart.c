@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -43,6 +43,8 @@
 
 int uart_init(uart_port_t port, uart_config_t config)
 {
+    int err = 0;
+
     USCI_A_UART_initParam uart_params = {0};
 
     switch(config.baudrate)
@@ -98,11 +100,12 @@ int uart_init(uart_port_t port, uart_config_t config)
             uart_params.secondModReg        = 5;    /* 460800 bps @ 31.981568 MHz */
             break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during the initialization: Invalid baudrate!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;      /* Invalid baudrate value */
+            err =  -1;      /* Invalid baudrate value */
+            break;
     }
 
     uart_params.selectClockSource   = USCI_A_UART_CLOCKSOURCE_SMCLK;
@@ -135,30 +138,32 @@ int uart_init(uart_port_t port, uart_config_t config)
 
             break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during the initialization: Invalid port!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;      /* Invalid port */
+            err =  -1;      /* Invalid port */
+            break;
     }
 
     if (USCI_A_UART_init(base_address, &uart_params) != STATUS_SUCCESS)
     {
-    #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+    #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
         sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during the initialization!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err =  -1;
     }
 
     USCI_A_UART_enable(base_address);
 
-    return 0;
+    return err;
 }
 
 int uart_available(uart_port_t port)
 {
     uint16_t base_address;
+    int ret = 0;
 
     switch(port)
     {
@@ -166,53 +171,67 @@ int uart_available(uart_port_t port)
         case UART_PORT_1:   base_address = USCI_A1_BASE;    break;
         case UART_PORT_2:   base_address = USCI_A2_BASE;    break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during RX buffer verification: Invalid port!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;  /* Invalid UART port */
+            ret = -1;  /* Invalid UART port */
+            break;
     }
 
-    /* Check RX interrupt flag */
-    uint8_t status = USCI_A_UART_getInterruptStatus(base_address, USCI_A_UART_RECEIVE_INTERRUPT_FLAG);
-
-    if (status | USCI_A_UART_RECEIVE_INTERRUPT_FLAG)
+    if (ret == 0)
     {
-        return UART_AVAILABLE;
+        /* Check RX interrupt flag */
+        if (USCI_A_UART_getInterruptStatus(base_address, USCI_A_UART_RECEIVE_INTERRUPT_FLAG) == USCI_A_UART_RECEIVE_INTERRUPT_FLAG)
+        {
+            ret = UART_AVAILABLE;
+        }
+        else
+        {
+            ret =  UART_NOT_AVAILABLE;
+        }
     }
-    else
-    {
-        return UART_NOT_AVAILABLE;
-    }
+    
+    return ret;
 }
 
 int uart_flush(uart_port_t port)
 {
+    int err = 0;
     switch(port)
     {
         case UART_PORT_0:   break;
         case UART_PORT_1:   break;
         case UART_PORT_2:   break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error flushing the RX buffer: Invalid port!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;  /* Invalid UART port */
+            err = -1;  /* Invalid UART port */
+            break;
     }
 
-    while(uart_available(port) == UART_AVAILABLE)
+    while(uart_available(port) == (int)UART_AVAILABLE)
     {
         uint8_t dummy;
-        uart_read(port, &dummy, 1);
+        if (uart_read(port, &dummy, 1) != 0)
+        {
+            #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
+                sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error flushing the RX buffer!");
+                sys_log_new_line();
+            #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
+            err = -1;
+        }
     }
 
-    return 0;
+    return err;
 }
 
 int uart_write(uart_port_t port, uint8_t *data, uint16_t len)
 {
     uint16_t base_address;
+    int err = 0;
 
     switch(port)
     {
@@ -220,11 +239,12 @@ int uart_write(uart_port_t port, uint8_t *data, uint16_t len)
         case UART_PORT_1:   base_address = USCI_A1_BASE;    break;
         case UART_PORT_2:   base_address = USCI_A2_BASE;    break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during writing: Invalid port!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;
+            err = -1;
+            break;
     }
 
     uint16_t i = 0;
@@ -233,12 +253,13 @@ int uart_write(uart_port_t port, uint8_t *data, uint16_t len)
         USCI_A_UART_transmitData(base_address, data[i]);
     }
 
-    return 0;
+    return err;
 }
 
 int uart_read(uart_port_t port, uint8_t *data, uint16_t len)
 {
     uint16_t base_address;
+    int err = 0;
 
     switch(port)
     {
@@ -246,11 +267,12 @@ int uart_read(uart_port_t port, uint8_t *data, uint16_t len)
         case UART_PORT_1:   base_address = USCI_A1_BASE;    break;
         case UART_PORT_2:   base_address = USCI_A2_BASE;    break;
         default:
-        #if CONFIG_DRIVERS_DEBUG_ENABLED == 1
+        #if defined ( CONFIG_DRIVERS_DEBUG_ENABLED ) && ( CONFIG_DRIVERS_DEBUG_ENABLED == 1 )
             sys_log_print_event_from_module(SYS_LOG_ERROR, UART_MODULE_NAME, "Error during reading: Invalid port!");
             sys_log_new_line();
         #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            return -1;
+            err = -1;
+            break;
     }
 
     uint16_t i = 0;
@@ -259,7 +281,7 @@ int uart_read(uart_port_t port, uint8_t *data, uint16_t len)
         data[i] = USCI_A_UART_receiveData(base_address);
     }
 
-    return 0;
+    return err;
 }
 
 /** \} End of uart group */
