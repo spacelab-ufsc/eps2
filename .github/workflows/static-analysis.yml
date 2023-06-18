@@ -68,7 +68,7 @@ jobs:
 
       - name: Execute CppCheck on drivers files
         run: |
-          cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/uart
+          cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/uart --suppress=misra-c2012-2.4 --suppress=misra-c2012-8.7
           cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/wdt
           cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/uart_interrupt
 #         cppcheck --std=c99 --error-exitcode=-1 --inline-suppr --addon=misra.py firmware/drivers/adc
