@@ -115,6 +115,24 @@ typedef struct
     uint32_t previous_power_ch_2;
 } previous_values_t;
 
+typedef struct 
+{
+    mppt_channel_t channel;
+    pwm_config_t config;
+    uint32_t power;
+    uint32_t prev_power;
+    uint8_t step;
+    uint8_t prev_step;
+} mppt_paramemters_t;
+
+
+enum
+{
+    DECREASE_STEP = 0,
+    INCREASE_STEP
+};
+
+
 /**
  * \brief Initialization routine of the MPPT.
  *
