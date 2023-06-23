@@ -55,6 +55,9 @@
 #define CONFIG_TASK_TIME_CONTROL_ENABLED                1
 #define CONFIG_TASK_DEVICE_RESPONSE_ENABLED             1
 
+/* Tasks Debug Logs*/
+#define CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED          1
+
 /* Devices */
 #define CONFIG_SET_DUMMY_EPS                            0
 #define CONFIG_DEV_LEDS_ENABLED                         1
