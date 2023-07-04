@@ -122,6 +122,9 @@ int mppt_algorithm(mppt_channel_t channel)
 {
     int err = 0;
     
+    /* convert mppt channel defines, that map to pwm ports which are 1 indexed, to 0 indexing */
+    const uint8_t channel_index = channel - 1;
+    
     static mppt_paramemters_t mppt_channel_params[] = {
         (mppt_paramemters_t){    .channel = MPPT_CONTROL_LOOP_CH_0,
                                 .config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT },
@@ -142,9 +145,10 @@ int mppt_algorithm(mppt_channel_t channel)
                                 .power = 0,
                                 .prev_power=0,
                                 .step = INCREASE_STEP,
-                                .prev_step = DECREASE_STEP }    };
+                                .prev_step = DECREASE_STEP }
+                                };
     
-    mppt_paramemters_t *params = &mppt_channel_params[channel];
+    mppt_paramemters_t *params = &mppt_channel_params[channel_index];
     
     
     if (read_ch_power(params) != 0)
