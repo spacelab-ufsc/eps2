@@ -313,8 +313,10 @@ void update_step(mppt_paramemters_t *params)
     }
     else
     {
-        params->step = params->prev_step ? DECREASE_STEP : INCREASE_STEP;
+        params->step = (params->prev_step == INCREASE_STEP) ? DECREASE_STEP : INCREASE_STEP;
     }
+
+    params->prev_step = params->step;
     
 }
 
