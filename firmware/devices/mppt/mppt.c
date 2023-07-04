@@ -92,7 +92,7 @@ int mppt_init(void)
     sys_log_new_line();
 
     /* Initialize the PWM parameters */
-    mppt_config_t config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT };
+    const mppt_config_t config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT };
 
     if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_0, config) != 0) 
     {
@@ -258,7 +258,7 @@ int decrease_duty_cycle(mppt_channel_t channel)
 
 int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle)
 {
-    mppt_config_t config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = duty_cycle };
+    const mppt_config_t config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = duty_cycle };
     return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, config);
 }
 
