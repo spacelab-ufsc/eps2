@@ -38,53 +38,31 @@
 
 #include "mppt.h"
 
-mppt_config_t mppt_config;
-
-power_measurement_t power_measurement;
-duty_cycle_measurement_t duty_cycle_measurement;
-previous_values_t previous_values;
-
 /**
- * \brief Get power from a given MPPT control loop channel.
+ * \brief Read power measurement from a given MPPT control loop channel.
  *
  * \param[in] channel is the control loop channel to be used.
  *
  * \return The status/error code.
  */
-int get_power(mppt_channel_t channel);
-
-/**
- * \brief Get power from a given MPPT control loop channel.
- *
- * \param[in] channel is the control loop channel to be used.
- *
- * \return None.
- */
-void get_duty_cycle(mppt_channel_t channel);
-
-/**
- * \brief Get power from a given MPPT control loop channel.
- *
- * \param[in] channel is the control loop channel to be used.
- *
- * \return The status/error code.
- */
-int increase_duty_cycle(mppt_channel_t channel);
-
-/**
- * \brief Get power from a given MPPT control loop channel.
- *
- * \param[in] channel is the control loop channel to be used.
- *
- * \return The status/error code.
- */
-int decrease_duty_cycle(mppt_channel_t channel);
-
 int read_ch_power(mppt_paramemters_t *params);
 
+/**
+ * \brief Update PWM step from a given MPPT control loop channel.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ */
 void update_step(mppt_paramemters_t *params);
 
+/**
+ * \brief Update PWM duty cycle from a given MPPT control loop channel.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ */
 void update_duty_cycle(mppt_paramemters_t *params);
+
 
 int mppt_init(void)
 {
@@ -172,93 +150,6 @@ int mppt_algorithm(mppt_channel_t channel)
     return err;
 }
 
-void get_duty_cycle(mppt_channel_t channel)
-{
-    switch(channel)
-    {
-        case MPPT_CONTROL_LOOP_CH_0:
-            duty_cycle_measurement.duty_cycle = mppt_config.duty_cycle;
-            duty_cycle_measurement.previous_duty_cycle = previous_values.previous_duty_cycle_ch_0;
-            break;
-        case MPPT_CONTROL_LOOP_CH_1:
-            duty_cycle_measurement.duty_cycle = mppt_config.duty_cycle;
-            duty_cycle_measurement.previous_duty_cycle = previous_values.previous_duty_cycle_ch_1;
-            break;
-        case MPPT_CONTROL_LOOP_CH_2:
-            duty_cycle_measurement.duty_cycle = mppt_config.duty_cycle;
-            duty_cycle_measurement.previous_duty_cycle = previous_values.previous_duty_cycle_ch_2;
-            break;
-    }
-}
-
-int get_power(mppt_channel_t channel)
-{
-    uint16_t current_0 = 0;
-    uint16_t current_1 = 0;
-    uint16_t voltage = 0;
-
-    int err = 0;
-
-    switch(channel)
-    {
-        case MPPT_CONTROL_LOOP_CH_0:
-            err |= current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_0, &current_0);
-            err |= current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_0, &current_1);
-            err |= voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_0, &voltage);
-            power_measurement.power = (current_0 + current_1) * (uint32_t)voltage;
-            power_measurement.previous_power = previous_values.previous_power_ch_0;
-            break;
-        case MPPT_CONTROL_LOOP_CH_1:
-            err |= current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_1, &current_0);
-            err |= current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_1, &current_1);
-            err |= voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_1, &voltage);
-            power_measurement.power = (current_0 + current_1) * (uint32_t)voltage;
-            power_measurement.previous_power = previous_values.previous_power_ch_1;
-            break;
-        case MPPT_CONTROL_LOOP_CH_2:
-            err |= current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_2, &current_0);
-            err |= current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_2, &current_1);
-            err |= voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_2, &voltage);
-            power_measurement.power = (current_0 + current_1) * (uint32_t)voltage;
-            power_measurement.previous_power = previous_values.previous_power_ch_2;
-            break;
-    }
-
-    if(err != 0)
-    {
-        return -1;
-    }
-    
-    return 0;
-}
-
-int increase_duty_cycle(mppt_channel_t channel)
-{   
-    if(mppt_config.duty_cycle >= MPPT_MAX_DUTY_CYCLE)
-    {
-        mppt_config.duty_cycle = MPPT_MAX_DUTY_CYCLE;
-        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
-    }
-    else
-    {
-        mppt_config.duty_cycle += MPPT_DUTY_CYCLE_STEP;
-        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
-    }
-}
-
-int decrease_duty_cycle(mppt_channel_t channel)
-{
-    if(mppt_config.duty_cycle == MPPT_MIN_DUTY_CYCLE)
-    {
-        mppt_config.duty_cycle = MPPT_MIN_DUTY_CYCLE;
-        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);
-    }
-    else
-    {
-        mppt_config.duty_cycle -= MPPT_DUTY_CYCLE_STEP;
-        return pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, channel, mppt_config);    
-    }
-}
 
 int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle)
 {
