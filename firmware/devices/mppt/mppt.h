@@ -85,36 +85,9 @@ typedef pwm_port_t mppt_channel_t;
 typedef pwm_config_t mppt_config_t;
 
 /**
- * \brief power measurements.
+ * @brief MPPT control parameters.
+ * 
  */
-typedef struct
-{
-    uint32_t previous_power;
-    uint32_t power;
-} power_measurement_t;
-
-/**
- * \brief last operation.
- */
-typedef struct
-{
-    uint8_t previous_duty_cycle;
-    uint8_t duty_cycle;
-} duty_cycle_measurement_t;
-
-/**
- * \brief last operation.
- */
-typedef struct
-{
-    uint8_t previous_duty_cycle_ch_0;
-    uint8_t previous_duty_cycle_ch_1;
-    uint8_t previous_duty_cycle_ch_2;
-    uint32_t previous_power_ch_0;
-    uint32_t previous_power_ch_1;
-    uint32_t previous_power_ch_2;
-} previous_values_t;
-
 typedef struct 
 {
     mppt_channel_t channel;
