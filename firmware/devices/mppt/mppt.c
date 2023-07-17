@@ -1,36 +1,36 @@
 /*
  * mppt.c
- * 
+ *
  * Copyright (C) 2021, SpaceLab.
- * 
+ *
  * This file is part of EPS 2.0.
- * 
+ *
  * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 /**
  * \brief MPPT device implementation.
- * 
+ *
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Jo�o Cl�udio <joaoclaudiobarcellos@gmail.com>
  * \author Andr� M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
- * 
+ *
  * \version 0.2.22
- * 
+ *
  * \date 2021/02/10
- * 
+ *
  * \addtogroup mppt
  * \{
  */
@@ -72,7 +72,7 @@ int mppt_init(void)
     /* Initialize the PWM parameters */
     const mppt_config_t config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT };
 
-    if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_0, config) != 0) 
+    if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_0, config) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH0)!");
         sys_log_new_line();
@@ -99,10 +99,10 @@ int mppt_init(void)
 int mppt_algorithm(mppt_channel_t channel)
 {
     int err = 0;
-    
+
     /* convert mppt channel defines, that map to pwm ports which are 1 indexed, to 0 indexing */
     const uint8_t channel_index = channel - 1;
-    
+
     static mppt_paramemters_t mppt_channel_params[] = {
         (mppt_paramemters_t){    .channel = MPPT_CONTROL_LOOP_CH_0,
                                 .config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT },
@@ -242,13 +242,13 @@ void update_duty_cycle(mppt_paramemters_t *params)
             params->config.duty_cycle -= MPPT_DUTY_CYCLE_STEP;
         }
         break;
-    
+
     default:
         sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error: invalid pwm step!");
         sys_log_new_line();
         break;
     }
-    
+
 }
 
 /** \} End of mppt group */
