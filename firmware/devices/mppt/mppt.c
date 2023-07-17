@@ -198,17 +198,24 @@ int read_ch_power(mppt_paramemters_t *params)
 void update_step(mppt_paramemters_t *params)
 {
 
-    if (params->power > params->prev_power)
+    if (params->power == 0)
     {
-        params->step = params->prev_step;
+        params->step = DECREASE_STEP;
     }
     else
     {
-        params->step = (params->prev_step == INCREASE_STEP) ? DECREASE_STEP : INCREASE_STEP;
+        if (params->power >= params->prev_power)
+        {
+            params->step = params->prev_step;
+        }
+        else
+        {
+            params->step = (params->prev_step == INCREASE_STEP) ? DECREASE_STEP : INCREASE_STEP;
+        }
     }
 
     params->prev_step = params->step;
-    
+
 }
 
 void update_duty_cycle(mppt_paramemters_t *params)
