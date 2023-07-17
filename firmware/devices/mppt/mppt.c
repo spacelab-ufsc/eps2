@@ -162,36 +162,35 @@ int read_ch_power(mppt_paramemters_t *params)
 {
     int err = 0;
 
-    uint16_t current_0 = 0;
-    uint16_t current_1 = 0;
-    uint16_t voltage = 0;
-    
+    uint16_t current0;
+    uint16_t current1;
+    uint16_t voltage;
+
     switch(params->channel)
     {
         case MPPT_CONTROL_LOOP_CH_0:
-            err += current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_0, &current_0);
-            err += current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_0, &current_1);
+            err += current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_0, &current0);
+            err += current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_0, &current1);
             err += voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_0, &voltage);
             break;
         case MPPT_CONTROL_LOOP_CH_1:
-            err += current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_1, &current_0);
-            err += current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_1, &current_1);
+            err += current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_1, &current0);
+            err += current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_1, &current1);
             err += voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_1, &voltage);
             break;
         case MPPT_CONTROL_LOOP_CH_2:
-            err += current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_2, &current_0);
-            err += current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_2, &current_1);
+            err += current_sensor_read(MPPT_CURRENT_SENSOR_0_CH_2, &current0);
+            err += current_sensor_read(MPPT_CURRENT_SENSOR_1_CH_2, &current1);
             err += voltage_sensor_read(MPPT_VOLTAGE_SENSOR_CH_2, &voltage);
             break;
-            
+
         default:
             err += -1;
     }
-    
-    // uint16_t new_power = moving_avg();
+
     params->prev_power = params->power;
-    params->power = (current_0 + current_1) * voltage;
-    
+    params->power = (((uint32_t)current0 + (uint32_t)current1) * (uint32_t)voltage);
+
     return err;
 }
 
