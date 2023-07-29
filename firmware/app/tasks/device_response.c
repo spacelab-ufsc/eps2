@@ -24,8 +24,9 @@
  * \brief Device response task implementation.
  *
  * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
- * \version 0.1.6
+ * \version 0.4.0
  *
  * \date 26/05/2021
  *
@@ -60,13 +61,13 @@ void vTaskDeviceResponse(void *pvParameters)
         TickType_t last_cycle = xTaskGetTickCount();
 
         buf[0] = DEVICE_COMMAND_WRITE;
-        for(uint8_t i = 1, j = 0; i < DEVICE_RESPONSE_BUFFER_SIZE; i += 4, j++)
+        for(uint8_t i = 0, j = 1; i < EPS_DATA_STRUCTURE_SIZE; i++, j+=4)
         {
-            eps_buffer_read(j, &val);
-            buf[ i ] = (val >> 24) & 0xFF;
-            buf[i+1] = (val >> 16) & 0xFF;
-            buf[i+2] = (val >> 8)  & 0xFF;
-            buf[i+3] = (val >> 0)  & 0xFF;
+            eps_buffer_read(i, &val);
+            buf[ j ] = (val >> 24) & 0xFF;
+            buf[j+1] = (val >> 16) & 0xFF;
+            buf[j+2] = (val >> 8)  & 0xFF;
+            buf[j+3] = (val >> 0)  & 0xFF;
         }
 
         ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);
