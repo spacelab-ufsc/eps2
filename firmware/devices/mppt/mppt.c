@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  *
  */
 
@@ -24,10 +24,11 @@
  * \brief MPPT device implementation.
  *
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author Jo�o Cl�udio <joaoclaudiobarcellos@gmail.com>
- * \author Andr� M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
- * \version 0.2.22
+ * \version 0.4.0
  *
  * \date 2021/02/10
  *
@@ -45,7 +46,7 @@
  *
  * \return The status/error code.
  */
-int read_ch_power(mppt_paramemters_t *params);
+static int read_ch_power(mppt_paramemters_t *params);
 
 /**
  * \brief Update PWM step from a given MPPT control loop channel.
@@ -53,7 +54,7 @@ int read_ch_power(mppt_paramemters_t *params);
  * \param[in] channel is the control loop channel to be used.
  *
  */
-void update_step(mppt_paramemters_t *params);
+static void update_step(mppt_paramemters_t *params);
 
 /**
  * \brief Update PWM duty cycle from a given MPPT control loop channel.
@@ -61,11 +62,12 @@ void update_step(mppt_paramemters_t *params);
  * \param[in] channel is the control loop channel to be used.
  *
  */
-void update_duty_cycle(mppt_paramemters_t *params);
+static void update_duty_cycle(mppt_paramemters_t *params);
 
 
 int mppt_init(void)
 {
+    int err = 0;
     sys_log_print_event_from_module(SYS_LOG_INFO, MPPT_MODULE_NAME, "Initializing MPPT device.");
     sys_log_new_line();
 
@@ -76,24 +78,24 @@ int mppt_init(void)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH0)!");
         sys_log_new_line();
-        return -1;
+        err += -1;
     }
 
     if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_1, config) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH1)!");
         sys_log_new_line();
-        return -1;
+        err += -1;
     }
 
     if(pwm_init(MPPT_CONTROL_LOOP_CH_SOURCE, MPPT_CONTROL_LOOP_CH_2, config) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error during the initialization (CH2)!");
         sys_log_new_line();
-        return -1;
+        err += -1;
     }
 
-    return 0;
+    return err;
 }
 
 int mppt_algorithm(mppt_channel_t channel)
@@ -104,31 +106,27 @@ int mppt_algorithm(mppt_channel_t channel)
     const uint8_t channel_index = channel - 1;
 
     static mppt_paramemters_t mppt_channel_params[] = {
-        (mppt_paramemters_t){    .channel = MPPT_CONTROL_LOOP_CH_0,
+                            {   .channel = MPPT_CONTROL_LOOP_CH_0,
                                 .config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT },
-                                .power = 0,
-                                .prev_power=0,
+                                .pwr_meas = { 0 },
                                 .step = INCREASE_STEP,
                                 .prev_step = DECREASE_STEP },
 
-        (mppt_paramemters_t){   .channel = MPPT_CONTROL_LOOP_CH_1,
+                            {   .channel = MPPT_CONTROL_LOOP_CH_1,
                                 .config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT },
-                                .power = 0,
-                                .prev_power=0,
+                                .pwr_meas = { 0 },
                                 .step = INCREASE_STEP,
                                 .prev_step = DECREASE_STEP },
 
-        (mppt_paramemters_t){   .channel = MPPT_CONTROL_LOOP_CH_2,
+                            {   .channel = MPPT_CONTROL_LOOP_CH_2,
                                 .config = { .period_us = MPPT_PERIOD_INIT, .duty_cycle = MPPT_DUTY_CYCLE_INIT },
-                                .power = 0,
-                                .prev_power=0,
+                                .pwr_meas = { 0 },
                                 .step = INCREASE_STEP,
                                 .prev_step = DECREASE_STEP }
                                 };
-    
+
     mppt_paramemters_t *params = &mppt_channel_params[channel_index];
-    
-    
+
     if (read_ch_power(params) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error reading MPPT channel power!");
@@ -139,6 +137,7 @@ int mppt_algorithm(mppt_channel_t channel)
     {
         update_step(params);
         update_duty_cycle(params);
+
         if (pwm_update(MPPT_CONTROL_LOOP_CH_SOURCE, params->channel, params->config) != 0)
         {
             sys_log_print_event_from_module(SYS_LOG_ERROR, MPPT_MODULE_NAME, "Error updating MPPT channel duty cycle!");
@@ -146,7 +145,7 @@ int mppt_algorithm(mppt_channel_t channel)
             err += -1;
         }
     }
-    
+
     return err;
 }
 
@@ -158,7 +157,7 @@ int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle)
 }
 
 
-int read_ch_power(mppt_paramemters_t *params)
+static int read_ch_power(mppt_paramemters_t *params)
 {
     int err = 0;
 
@@ -186,24 +185,25 @@ int read_ch_power(mppt_paramemters_t *params)
 
         default:
             err += -1;
+            break;
     }
 
-    params->prev_power = params->power;
-    params->power = (((uint32_t)current0 + (uint32_t)current1) * (uint32_t)voltage);
+    params->pwr_meas.prev_power = params->pwr_meas.power;
+    params->pwr_meas.power = (((uint32_t)current0 + (uint32_t)current1) * (uint32_t)voltage);
 
     return err;
 }
 
-void update_step(mppt_paramemters_t *params)
+static void update_step(mppt_paramemters_t *params)
 {
 
-    if (params->power == 0)
+    if (params->pwr_meas.power == 0U)
     {
         params->step = DECREASE_STEP;
     }
     else
     {
-        if (params->power >= params->prev_power)
+        if (params->pwr_meas.power >= params->pwr_meas.prev_power)
         {
             params->step = params->prev_step;
         }
@@ -217,7 +217,7 @@ void update_step(mppt_paramemters_t *params)
 
 }
 
-void update_duty_cycle(mppt_paramemters_t *params)
+static void update_duty_cycle(mppt_paramemters_t *params)
 {
     switch (params->step)
     {
