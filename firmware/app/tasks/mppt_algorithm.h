@@ -43,7 +43,7 @@
 #define TASK_MPPT_ALGORITHM_NAME                 "MPPT Algorithm"   /**< Task name. */
 #define TASK_MPPT_ALGORITHM_STACK_SIZE           160             	/**< Memory stack size in bytes. */
 #define TASK_MPPT_ALGORITHM_PRIORITY             3               	/**< Priority. */
-#define TASK_MPPT_ALGORITHM_PERIOD_MS            300UL             	/**< Period in milliseconds. */
+#define TASK_MPPT_ALGORITHM_PERIOD_MS            100UL             	/**< Period in milliseconds. */
 #define TASK_MPPT_ALGORITHM_INIT_TIMEOUT_MS      2000UL            	/**< Wait time to initialize the task in milliseconds. */
 
 #define MPPT_AUTOMATIC_MODE		0x00
