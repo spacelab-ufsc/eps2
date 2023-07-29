@@ -339,7 +339,7 @@ void vTaskReadSensors(void)
             eps_buffer_write(EPS2_PARAM_ID_BAT_CURRENT, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor current: ");
-                sys_log_print_uint(buf);
+                sys_log_print_int((int16_t)buf);
                 sys_log_new_line();
             #endif
         }
@@ -352,7 +352,7 @@ void vTaskReadSensors(void)
             eps_buffer_write(EPS2_PARAM_ID_BAT_AVERAGE_CURRENT, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor avg current");
-                sys_log_print_uint(buf);
+                sys_log_print_int((int16_t)buf);
                 sys_log_new_line();
             #endif
         }

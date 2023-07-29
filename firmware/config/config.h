@@ -56,7 +56,7 @@
 #define CONFIG_TASK_DEVICE_RESPONSE_ENABLED             1
 
 /* Tasks Debug Logs*/
-#define CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED          1
+#define CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED          0
 
 /* Devices */
 #define CONFIG_SET_DUMMY_EPS                            0
