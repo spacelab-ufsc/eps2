@@ -42,8 +42,8 @@
 
 #define ADC_MODULE_NAME     "ADC"
 
-#define ADC_VREF_V          (2.5)       /**< ADC reference voltage in Volts. */
-#define ADC_VREF_MV         (2500UL)    /**< ADC reference voltage in millivolts. */
+#define ADC_VREF_V          (2.5)       /**< ADC reference voltage in Volts. Set to 3.3 if jumper J_V4 is soldered */
+#define ADC_VREF_MV         (2500UL)    /**< ADC reference voltage in millivolts. Set to 3300UL if jumper J_V4 is soldered */
 #define ADC_RANGE           (4095UL)    /**< ADC resolution (12-bits) */
 
 #define ADC_TIMOUT_MS       100         /**< Timeout in milliseconds. */
