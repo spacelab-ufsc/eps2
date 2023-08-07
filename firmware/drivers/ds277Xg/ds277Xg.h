@@ -26,7 +26,7 @@
  * \author Vinicius Pimenta Bernardo    <viniciuspibi@gmail.com>
  * \author Ramon de Araujo Borba        <ramonborba97@gmail.com>
  * 
- * \version 0.2.0
+ * \version 0.4.0
  * 
  * \date 2021/08/17
  * 
@@ -52,6 +52,13 @@
 #define DS277XG_MODULE_NAME "DS277X"
 
 /**
+ * References
+ * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
+ * https://www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
+ * https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
+ */
+
+/**
  * @brief DS277XG IC parameters
  */
 #define DS277XG_RSENSE                                          0.01        /* Unit: Ohm. */
@@ -66,27 +73,86 @@
 #define DS277XG_CURRENT_REG_RESOLUTION                          1.5625      /* Unit: microvolts */
 #define DS277XG_TEMPERATURE_REG_RESOLUTION                      0.125       /* Unit: degrees Celsius */
 #define DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION              6.25        /* Unit: microvolts */
+#define DS277XG_FULL_40_REG_RESOLUTION                          6.25        /* Unit: microvolts */
+#define DS277XG_ACTIVE_EMPTY_40_REG_RESOLUTION                  976.5625    /* Unit: ppm */
+#define DS277XG_SEGMENT_SLOPE_REG_RESOLUTION                    61          /* Unit: ppm */
 
 /**
  * @brief Battery cell parameters
  */
-#define CELL_NOMINAL_VOLTAGE                                    3.78 /* Unit: Volts (ICR18650-30B-Samsung). */
-#define CELL_FULLY_CHARGED_VOLTAGE                              (0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) /* Unit: Volts */
-#define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE)
-#define CELL_INITIAL_AGE_SCALAR                                 0.95        /* Unit: Dimentionless (percentage) */
-#define CELL_ACTIVE_EMPTY_VOLTAGE                               3 // REVIEW THIS VALUE /* Unit: Volts */
-#define CELL_ACTIVE_EMPTY_CURRENT                               360 // REVIEW THIS VALUE /* Unit: miliamperes */
+#define CELL_NOMINAL_VOLTAGE                                    3.6                             /* Unit: Volts (ICR18650-30B-Samsung). */
+#define CELL_FULLY_CHARGED_VOLTAGE                              (0.98 * CELL_NOMINAL_VOLTAGE)   /* Unit: Volts */
+#define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 * MAX_BATTERY_CHARGE)     /* Unit: milliamperes */
+#define CELL_INITIAL_AGE_SCALAR                                 1                            /* Unit: Dimentionless (percentage) */
+#define CELL_ACTIVE_EMPTY_VOLTAGE                               2.75                            /* Unit: Volts */
+#define CELL_ACTIVE_EMPTY_CURRENT                               100                             /* Unit: miliamperes */
+#define CELL_FULL_40_CAPACITY                                   ((uint16_t)(2* MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS))
+#define CELL_ACTIVE_EMPTY_40_CAPACITY                           0U                               /* ppm of Full 40 capacity */
+#define CELL_FULL_SLOPE_4                                       0U                              /* Unit: ppm/C° */
+#define CELL_FULL_SLOPE_3                                       5002U                           /* Unit: ppm/C° */
+#define CELL_FULL_SLOPE_2                                       15555U                          /* Unit: ppm/C° */
+#define CELL_FULL_SLOPE_1                                       15555U                          /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_4                                         0U                              /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_3                                         8000U                           /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_2                                         8000U                           /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_1                                         5002U                           /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_4                                         0U                              /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_3                                         4000U                           /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_2                                         4000U                           /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_1                                         2501U                           /* Unit: ppm/C° */
+#define CELL_TBP34                                              25U                             /* Unit: ppm/C° */
+#define CELL_TBP23                                              5U                              /* Unit: ppm/C° */
+#define CELL_TBP12                                              0U                              /* Unit: ppm/C° */
 
 /**
- * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
- * https://www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
- * https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
+ * \brief Parameter EEPROM configuration values
+ * 
+ */
+#define DS277XG_CONTROL_REG_VALUE                                0x0C       /* Set undervoltage treshold to 2.60V */
+#define DS277XG_ACCUMULATION_BIAS_REG_VALUE                      0x00
+#define DS277XG_AGING_CAPACITY_REG_VALUE_MSB                     ((uint8_t)(((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) >> 8) / DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION))
+#define DS277XG_AGING_CAPACITY_REG_VALUE_LSB                     ((uint8_t)((uint16_t)((MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) / DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION)))
+#define DS277XG_CHARGE_VOLTAGE_REG_VALUE                         ((uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION))
+#define DS277XG_MINIMUM_CHARGE_CURRENT_REG_VALUE                 ((uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION))
+#define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_VALUE                   ((uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE / DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION))
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_VALUE                   ((uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS / DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION))
+#define DS277XG_ACTIVE_EMPTY_40_REG_VALUE                        ((uint8_t)(CELL_ACTIVE_EMPTY_40_CAPACITY / DS277XG_ACTIVE_EMPTY_40_REG_RESOLUTION))
+#define DS277XG_SENSE_RESISTOR_PRIME_REG_VALUE                   ((uint8_t)(DS277XG_RSENSE_CONDUCTANCE))
+#define DS277XG_FULL_40_MSB_REG_VALUE                            ((uint8_t)((uint16_t)((CELL_FULL_40_CAPACITY >> 8) / DS277XG_FULL_40_REG_RESOLUTION)))
+#define DS277XG_FULL_40_LSB_REG_VALUE                            ((uint8_t)((uint16_t)(CELL_FULL_40_CAPACITY / DS277XG_FULL_40_REG_RESOLUTION)))
+#define DS277XG_FULL_SEGMENTE_4_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_4 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_FULL_SEGMENTE_3_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_3 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_FULL_SEGMENTE_2_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_2 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_FULL_SEGMENTE_1_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_1 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_4_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_4 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_3_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_3 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_2_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_2 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_1_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_1 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_4_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_4 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_3_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_3 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_2_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_2 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_1_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_1 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_MSB                0x64       /* Factory Value */
+#define DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_LSB                0x1B       /* Factory Value */
+#define DS277XG_SENSE_RESISTOR_TEMPERATURE_COEFFICIENT_REG_VALUE 0x00
+#define DS277XG_CURRENT_OFFSET_BIAS_REG_VALUE                    0x00
+#define DS277XG_TBP34_REG_VALUE                                  (CELL_TBP34)
+#define DS277XG_TBP23_REG_VALUE                                  (CELL_TBP23)
+#define DS277XG_TBP12_REG_VALUE                                  (CELL_TBP12)
+#define DS277XG_PROTECTOR_THRESHOLD_REG_VALUE                    0x60       /* Set overvoltage threshold to 4.248V*/
+#define DS277XG_TWO_WIRE_SLAVE_ADDRESS_REG_VALUE                 (DS2777G_DEFAULT_SLAVE_ADDRESS << 1)
+
+#define DS277XG_PARAMETER_EEPROM_ADDRESS                         0x60
+#define DS277XG_PARAMETER_EEPROM_SIZE                            33
+
+/**
+ * \brief DS277XG Commands
  */
 #define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001
-#define DS2775G_SKIP_ADDRESS                                    0xCC    //Address that access any onewire device (used when there's only one device at the onewire bus)
-#define DS2775G_WRITE_DATA                                      0x6C      //Command to write a data in the DS2775G+ memory
-#define DS2775G_READ_DATA                                       0x69       //Command to read a data from DS2775G+ memory
-#define DS2775G_COPY_DATA                                       0x48       //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
+#define DS2775G_SKIP_ADDRESS                                    0xCC        //Address that access any onewire device (used when there's only one device at the onewire bus)
+#define DS2775G_WRITE_DATA                                      0x6C        //Command to write a data in the DS2775G+ memory
+#define DS2775G_READ_DATA                                       0x69        //Command to read a data from DS2775G+ memory
+#define DS2775G_COPY_DATA                                       0x48        //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
 /**
  * \brief Memory map.
  */
