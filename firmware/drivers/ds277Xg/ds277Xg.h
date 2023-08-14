@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -53,9 +53,9 @@
 
 /**
  * References
- * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
- * https://www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
- * https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
+ * https:/\/datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
+ * https:/\/www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
+ * https:/\/www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
  */
 
 /**
@@ -285,71 +285,6 @@ typedef struct
 int ds277Xg_init(ds277Xg_config_t *config);
 
 /**
- * @brief Set battery configuration to initial state.
- * 
- * Run this function ONCE when a new battery is connected to reset
- * accumulated current and aging estimation to initial values.
- * 
- * @param config DS277XG configuration parameters.
- * @return int The status/error code.
- */
-int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config);
-
-/**
- * \brief Set charge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_enable_charge(ds277Xg_config_t *config);
-
-/**
- * \brief Set discharge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_enable_discharge(ds277Xg_config_t *config);
-
-/**
- * \brief Reset charge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_disable_charge(ds277Xg_config_t *config);
-
-/**
- * \brief Reset discharge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_disable_discharge(ds277Xg_config_t *config);
-
-/**
- * \brief Get the raw voltage in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] voltage_raw The raw voltage value.
- * \param[in] battery_select Must be either 1 or 2.
- * \return int The status/error code.
- */
-int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uint8_t battery_select);
-
-/**
- * \brief Convert from raw data to mV.
- * 
- * Resolution: 4.8828mV. Goes from -5000mV to 4995.1mV
- * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
- *                       MSB                      |                    LSB              
- * 
- * \param[in] raw The raw voltage value.
- * \return float Converted voltage in mV.
- */
-int16_t ds277Xg_voltage_raw_to_mv(int16_t raw);
-
-/**
  * \brief Get the voltage in mV from one of the batteries connected to the DS277XG.
  * 
  * \param[in] config DS277XG configuration parameters.
@@ -360,27 +295,6 @@ int16_t ds277Xg_voltage_raw_to_mv(int16_t raw);
 int ds277Xg_read_voltage_mv(ds277Xg_config_t *config, int16_t *voltage_mv, uint8_t battery_select);
 
 /**
- * \brief Get the raw temperature in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] temp_raw The raw temperature value.
- * \return int The status/error code.
- */
-int ds277Xg_read_temperature_raw(ds277Xg_config_t *config, int16_t *temp_raw);
-
-/**
- * \brief Convert from raw data to kelvin.
- * 
- * Resolution: 0.125 degrees kelvin.
- * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
- *                       MSB                      |                    LSB              
- * 
- * \param[in] raw The raw temperature value.
- * \return uint16_t Converted temperature in kelvin.
- */
-uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw);
-
-/**
  * \brief Get the temperature in kelvin from the DS277XG.
  * 
  * \param[in] config DS277XG configuration parameters.
@@ -388,26 +302,6 @@ uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw);
  * \return int The status/error code.
  */
 int ds277Xg_read_temperature_kelvin(ds277Xg_config_t *config, uint16_t *temp_kelvin);
-
-/**
- * \brief Get the raw current in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] current_raw The raw current value.
- * \param[in] read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
- * \return int The status/error code.
- */
-int ds277Xg_read_current_raw(ds277Xg_config_t *config, int16_t *current_raw, bool read_average);
-
-/**
- * \brief Convert from raw data to mA.
- * 
- * Resolution: 1.5625uV/R_sense. Goes from -51.2mV/R_sense to 51.2mV/R_sense.
- * 
- * \param[in] raw The raw current value.
- * \return int16_t Converted current in mA.
- */
-int16_t ds277Xg_current_raw_to_ma(int16_t raw);
 
 /**
  * \brief Get the current in mA from the DS277XG (instantaneous or average from last eight).
@@ -420,59 +314,6 @@ int16_t ds277Xg_current_raw_to_ma(int16_t raw);
 int ds277Xg_read_current_ma(ds277Xg_config_t *config, int16_t *current_ma, bool read_average);
 
 /**
- * \brief Write the raw accumulated current in two's complement form to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] acc_current_raw The raw accumulated current value to write.
- * \return int The status/error code.
- */
-int ds277Xg_write_accumulated_current_raw(ds277Xg_config_t *config, uint16_t acc_current_raw);
-
-/**
- * \brief Convert from mAh data to raw.
- * 
- * \param[in] mah The mAh accumulated current value.
- * \return uint16_t Converted raw accumulated current value.
- */
-uint16_t ds277Xg_accumulated_current_mah_to_raw(uint16_t mah);
-
-/**
- * \brief Write the accumulated current in mAh to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] acc_current_mah Accumulated current in mAh.
- * \return int The status/error code.
- */
-int ds277Xg_write_accumulated_current_mah(ds277Xg_config_t *config, uint16_t acc_current_mah);
-
-/**
- * \brief Write the battery max charge value in mAh to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_write_accumulated_current_max_value(ds277Xg_config_t *config);
-
-/**
- * \brief Get the raw accumulated current in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] acc_current_raw The raw accumulated current value.
- * \return int The status/error code.
- */
-int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc_current_raw);
-
-/**
- * \brief Convert from raw data to mAh.
- * 
- * Resolution: 6.25uVh/R_sense. Goes from 0 to 409.6mVh/R_sense.
- * 
- * \param[in] raw The raw accumulated current value.
- * \return uint16_t Converted accumulated current in mAh.
- */
-uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw);
-
-/**
  * \brief Get the accumulated current in mAh from the DS277XG.
  * 
  * \param[in] config DS277XG configuration parameters.
@@ -480,36 +321,6 @@ uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw);
  * \return int The status/error code.
  */
 int ds277Xg_read_accumulated_current_mah(ds277Xg_config_t *config, uint16_t *acc_current_mah);
-
-/**
- * \brief Write number of cycles to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] cycles The number of cycles to write. Goes from 0 to 510.
- * \return int The status/error code.
- */
-int ds277Xg_write_cycle_counter(ds277Xg_config_t *config, uint16_t cycles);
-
-/**
- * \brief Read number of cycles from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] cycles The number of cycles to write. Goes from 0 to 510.
- * \return int The status/error code.
- */
-int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles);
-
-/**
- * \brief Write-Data Protocol
- * 
- * Start SAddr MAddr Data0 Data1 ... DataN Stop
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] data Data to write. First byte must be target register address.
- * \param[in] len Length of the data to write, including target register.
- * \return int The status/error code.
- */
-int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, uint16_t len);
 
 /**
  * \brief 
