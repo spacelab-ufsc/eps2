@@ -570,28 +570,14 @@ int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles)
 
 int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, const uint16_t len)
 {
-#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
-    if(onewire_reset(config->port) == 0) {return -1;}
-    if(onewire_write_byte(config->port, data, len) == -1) {return -1;}
-    return 0;
-#else
     return i2c_write(config->port, config->slave_adr, data, len);
-#endif
 }
 
 int ds277Xg_read_data(ds277Xg_config_t *config, uint8_t target_reg, uint8_t *data, uint16_t len)
 {
-#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
-    uint8_t read_command[3] = {DS2775G_SKIP_ADDRESS, DS2775G_READ_DATA, target_reg};
-    if(ds277Xg_write_data(config, read_command, 0x3) == -1) {return -1;}
-    if(onewire_read_byte(config->port, data, len) == -1) {return -1;}
-    return 0;
-#else
     uint8_t reg[1] = {target_reg};
-
     if (i2c_write(config->port, config->slave_adr, reg, 1) != 0) {return -1;}
     return i2c_read(config->port, config->slave_adr, data, len);
-#endif
 }
 
 /** \} End of ds277Xg group */
