@@ -1,36 +1,36 @@
 /*
  * ds277Xg.c
- * 
+ *
  * Copyright The EPS 2.0 Contributors.
- * 
+ *
  * This file is part of EPS 2.0.
- * 
+ *
  * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
- * 
+ *
  */
 
 /**
  * \brief DS277XG+ driver implementation.
- * 
+ *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Ramon de Araujo Borba     <ramonborba97@gmail.com>
- * 
- * \version 0.2.34
- * 
+ *
+ * \version 0.4.0
+ *
  * \date 2021/08/17
- * 
+ *
  * \addtogroup ds277Xg
  * \{
  */
@@ -52,103 +52,77 @@ int ds277Xg_init(ds277Xg_config_t *config)
 
         return -1;
     }
-    
+
     /* Protection register configuration. */
     if (ds277Xg_enable_charge(config) != 0) {return -1;}
     if (ds277Xg_enable_discharge(config) != 0) {return -1;}
 
     /* Parameters registers configuration. */
-    // Check if already set correctly from EEPROM on power-up.
-    bool copy_to_eeprom_flag = false;
-    uint8_t wr_buf[3] = {0};
-    uint8_t rd_buf[2] = {0};
+    bool rewrite = false;
+    uint8_t read_buffer[DS277XG_PARAMETER_EEPROM_SIZE] = { 0 };
+    uint8_t params[DS277XG_PARAMETER_EEPROM_SIZE+1] = {
+        DS277XG_PARAMETER_EEPROM_ADDRESS,   // First byte must be address for write operation
+        DS277XG_CONTROL_REG_VALUE,
+        DS277XG_ACCUMULATION_BIAS_REG_VALUE,
+        DS277XG_AGING_CAPACITY_REG_VALUE_MSB,
+        DS277XG_AGING_CAPACITY_REG_VALUE_LSB,
+        DS277XG_CHARGE_VOLTAGE_REG_VALUE,
+        DS277XG_MINIMUM_CHARGE_CURRENT_REG_VALUE,
+        DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_VALUE,
+        DS277XG_ACTIVE_EMPTY_CURRENT_REG_VALUE,
+        DS277XG_ACTIVE_EMPTY_40_REG_VALUE,
+        DS277XG_SENSE_RESISTOR_PRIME_REG_VALUE,
+        DS277XG_FULL_40_MSB_REG_VALUE,
+        DS277XG_FULL_40_LSB_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_4_SLOPE_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_3_SLOPE_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_2_SLOPE_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_1_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_4_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_3_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_2_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_1_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_4_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_3_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_2_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_1_SLOPE_REG_VALUE,
+        DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_MSB,
+        DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_LSB,
+        DS277XG_SENSE_RESISTOR_TEMPERATURE_COEFFICIENT_REG_VALUE,
+        DS277XG_CURRENT_OFFSET_BIAS_REG_VALUE,
+        DS277XG_TBP34_REG_VALUE,
+        DS277XG_TBP23_REG_VALUE,
+        DS277XG_TBP12_REG_VALUE,
+        DS277XG_PROTECTOR_THRESHOLD_REG_VALUE,
+        DS277XG_TWO_WIRE_SLAVE_ADDRESS_REG_VALUE,
+    };
 
-    /* Checking control register */
-    if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != 0x0C) // <-- Undervoltage treshold to 2.60V.
+    /* Read data from DS277Xg parameter EEPROM memory */
+    if (ds277Xg_read_data(config, DS277XG_PARAMETER_EEPROM_ADDRESS, read_buffer, DS277XG_PARAMETER_EEPROM_SIZE) != 0) { return -1; };
+
+    /* Check if registers are set correctly */
+    for (uint8_t i = 0; i < DS277XG_PARAMETER_EEPROM_SIZE; i++)
     {
-        wr_buf[0] = DS277XG_CONTROL_REGISTER;
-        wr_buf[1] = 0x0C; // <-- Sets undervoltage treshold to 2.60V.
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        copy_to_eeprom_flag = true;
+        if (read_buffer[i] != params[i+1])
+        {
+            rewrite = true;
+        }
     }
-
-    /* Checking sense resistor prime register */
-    if (ds277Xg_read_data(config, DS277XG_SENSE_RESISTOR_PRIME_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(DS277XG_RSENSE_CONDUCTANCE)) // <-- Register value must be Rsense conductanvce
+    if (rewrite)
     {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_SENSE_RESISTOR_PRIME_REGISTER;
-        wr_buf[1] = (uint8_t)(DS277XG_RSENSE_CONDUCTANCE);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
+        /* Write parameters to DS277Xg RAM memory */
+        ds277Xg_write_data(config, params, DS277XG_PARAMETER_EEPROM_SIZE);
 
-    /* Checking charge voltage register */
-    if (ds277Xg_read_data(config, DS277XG_CHARGE_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION)) // <-- Fully charged baterry voltage (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_CHARGE_VOLTAGE_REGISTER;
-        wr_buf[1] = (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-    /* Checking minimum charge current ragister */
-    if (ds277Xg_read_data(config, DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION)) // <-- Minimum charging current (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER;
-        wr_buf[1] = (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-        /* Checking active empty voltage register */
-    if (ds277Xg_read_data(config, DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE/DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION)) // <-- Active empty voltage threshold (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER;
-        wr_buf[1] = /* PLACEHOLDER VALUE --> */(uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE/DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-    /* Checking active empty current register */
-    if (ds277Xg_read_data(config, DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != /* PLACEHOLDER VALUE --> */(uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS/DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION)) // <-- Active empty discharge current (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER;
-        wr_buf[1] = (uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS/DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-    /* TO DO
-        - Review values for:
-        --> Full point detection minimum current threshold (DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER)
-        --> Full point detection charge voltage threshold (DS277XG_CHARGE_VOLTAGE_REGISTER)
-        --> Aging Capacity
-        --> Aging Scalar
-        - Define and set the values for:
-        --> Active Empty point detection voltage threshold register (DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER)
-        --> Active Empty point detection current threshold register (DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER)
-    */
-
-    if (copy_to_eeprom_flag == true)
-    {
-        // Copy from shadow RAM to EEPROM.
-        wr_buf[0] = DS277XG_TWO_WIRE_COMMAND_REGISTER;
-        wr_buf[1] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
+        /* Send copy data command to store the values in the DS277Xg EEPROM memory */
+        uint8_t wr_buf[2] = {
+            DS277XG_TWO_WIRE_COMMAND_REGISTER,
+            DS277XG_COPY_DATA_PARAMETER_EEPROM,
+        };
         if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
     }
 
 #if defined(RESET_BATTERY_TO_INITIAL_STATE) && (RESET_BATTERY_TO_INITIAL_STATE == 1)
-    if (ds277Xg_set_battery_to_initial_state() != 0)
+    if (ds277Xg_set_battery_to_initial_state(config) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error configuring battery to initial state!");
         sys_log_new_line();
@@ -164,13 +138,7 @@ int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config)
 
     /* Set battery configurations to initial state */
 
-    /* Set Aging Capacity register to maximum battery capacity */
-    wr_buf[0] = DS277XG_AGING_CAPACITY_REGISTER_MSB;
-    wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) >> 8);
-    wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS));
-    if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
-
-    /* Set Age Scalar to 95% (recomended on datasheet) */
+    /* Set Age Scalar to 100% */
     wr_buf[0] = DS277XG_AGE_SCALAR_REGISTER;
     wr_buf[1] = (uint8_t)(CELL_INITIAL_AGE_SCALAR/DS277XG_AGE_SCALAR_REG_RESOLUTION);
     if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
@@ -360,7 +328,7 @@ int ds277Xg_write_accumulated_current_mah(ds277Xg_config_t *config, uint16_t acc
 
 int ds277Xg_write_accumulated_current_max_value(ds277Xg_config_t *config)
 {
-    return ds277Xg_write_accumulated_current_mah(config, MAX_BATTERY_CHARGE);
+    return ds277Xg_write_accumulated_current_mah(config, (2*MAX_BATTERY_CHARGE));
 }
 
 int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc_current_raw)
@@ -373,7 +341,7 @@ int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc
 
 uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw)
 {
-    return raw * (DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION / 1000) / (DS277XG_RSENSE);
+    return raw * DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION / (DS277XG_RSENSE_MOHMS);
 }
 
 int ds277Xg_read_accumulated_current_mah(ds277Xg_config_t *config, uint16_t *acc_current_mah)
