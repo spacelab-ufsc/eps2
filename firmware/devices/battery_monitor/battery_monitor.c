@@ -24,8 +24,9 @@
  * \brief Battery Monitor device implementation.
  *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
- * \version 0.1.12
+ * \version 0.4.0
  *
  * \date 2021/09/18
  *
@@ -120,7 +121,7 @@ int bm_get_raac_mah(uint16_t *data)
 {
     uint8_t rd_buf[2] = {0};
     if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RAAC_REGISTER_MSB, rd_buf, 2) != 0) {return -1;}
-    *data = (uint16_t)((rd_buf[1] << 8) + rd_buf[0]);
+    *data = (uint16_t)(((rd_buf[0] << 8) + rd_buf[1]) * 1.6);
     return 0;
 }
 
@@ -128,7 +129,7 @@ int bm_get_rsac_mah(uint16_t *data)
 {
     uint8_t rd_buf[2] = {0};
     if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RSAC_REGISTER_MSB, rd_buf, 2) != 0) {return -1;}
-    *data = (uint16_t)((rd_buf[1] << 8) + rd_buf[0]);
+    *data = (uint16_t)(((rd_buf[0] << 8) + rd_buf[1]) * 1.6);
     return 0;
 }
 
@@ -141,5 +142,35 @@ int bm_get_rarc_percent(uint8_t *data)
 int bm_get_rsrc_percent(uint8_t *data)
 {
     if (ds277Xg_read_data(&battery_monitor_config, DS277XG_RSRC_REGISTER, data, 1) != 0) {return -1;}
+    return 0;
+}
+
+int bm_get_acc_current_mah(uint16_t *data)
+{
+    if (ds277Xg_read_accumulated_current_mah(&battery_monitor_config, data) != 0) { return -1; }
+    return 0;
+}
+
+int bm_get_full_capacity_ppm(uint32_t *data)
+{
+    uint8_t rd_buf[2] = {0};
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_FULL_REGISTER_MSB, rd_buf, 2) != 0) { return -1; }
+    *data = ((uint32_t)(((rd_buf[0] << 8) + rd_buf[1]) >> 1) * 61);
+    return 0;
+}
+
+int bm_get_active_empty_capacity_ppm(uint32_t *data)
+{
+    uint8_t rd_buf[2] = {0};
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_ACTIVE_EMPTY_REGISTER_MSB, rd_buf, 2) != 0) { return -1; }
+    *data = ((uint32_t)(((rd_buf[0] << 8) + rd_buf[1]) >> 1) * 61);
+    return 0;
+}
+
+int bm_get_standby_empty_capacity_ppm(uint32_t *data)
+{
+    uint8_t rd_buf[2] = {0};
+    if (ds277Xg_read_data(&battery_monitor_config, DS277XG_STANDBY_EMPTY_REGISTER_MSB, rd_buf, 2) != 0) { return -1; }
+    *data = ((uint32_t)(((rd_buf[0] << 8) + rd_buf[1]) >> 1) * 61);
     return 0;
 }
