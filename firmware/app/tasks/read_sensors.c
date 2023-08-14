@@ -351,7 +351,7 @@ void vTaskReadSensors(void)
         {
             eps_buffer_write(EPS2_PARAM_ID_BAT_AVERAGE_CURRENT, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
-                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor avg current");
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor avg current: ");
                 sys_log_print_int((int16_t)buf);
                 sys_log_new_line();
             #endif
@@ -364,8 +364,8 @@ void vTaskReadSensors(void)
         {
             eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_STATUS, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
-                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor status reg:");
-                sys_log_print_hex(buf);
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor status reg: ");
+                sys_log_print_hex((uint8_t)buf);
                 sys_log_new_line();
             #endif
         }
@@ -378,7 +378,18 @@ void vTaskReadSensors(void)
             eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_PROTECT, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor protection reg: ");
-                sys_log_print_hex(buf);
+                sys_log_print_hex((uint8_t)buf);
+                sys_log_new_line();
+            #endif
+        }
+
+        /* Battery monitor accumulated current */
+        if (bm_get_acc_current_mah(&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, (uint32_t*)&buf);
+            #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor acc current: ");
+                sys_log_print_uint(buf);
                 sys_log_new_line();
             #endif
         }
@@ -417,7 +428,7 @@ void vTaskReadSensors(void)
             eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RARC, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor RARC: ");
-                sys_log_print_uint(buf);
+                sys_log_print_uint((uint8_t)buf);
                 sys_log_new_line();
             #endif
         }
@@ -430,7 +441,43 @@ void vTaskReadSensors(void)
             eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor RSRC: ");
-                sys_log_print_uint(buf);
+                sys_log_print_uint((uint8_t)buf);
+                sys_log_new_line();
+            #endif
+        }
+
+        /* Battery monitor full capacity in ppm */
+        uint32_t buf32 = 0;
+        if (bm_get_full_capacity_ppm(&buf32) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, &buf32);
+            #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor Full(T): ");
+                sys_log_print_uint(buf32);
+                sys_log_new_line();
+            #endif
+        }
+
+        /* Battery monitor active empty capacity in ppm */
+        buf32 = 0;
+        if (bm_get_active_empty_capacity_ppm(&buf32) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, &buf32);
+            #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor AE(T): ");
+                sys_log_print_uint(buf32);
+                sys_log_new_line();
+            #endif
+        }
+
+        /* Battery monitor standby empty capacity in ppm */
+        buf32 = 0;
+        if (bm_get_standby_empty_capacity_ppm(&buf32) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, &buf32);
+            #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor SE(T): ");
+                sys_log_print_uint(buf32);
                 sys_log_new_line();
             #endif
         }
