@@ -19,7 +19,7 @@ CC=gcc
 INC=../../
 FLAGS=-fpic -std=c99 -Wall -pedantic -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes -I$(INC) -Wl,--wrap=sys_log_print_event_from_module,--wrap=sys_log_new_line,--wrap=sys_log_print_msg,--wrap=sys_log_print_uint,--wrap=sys_log_print_int,--wrap=sys_log_print_float,--wrap=adc_init,--wrap=adc_read,--wrap=adc_temp_get_mref,--wrap=adc_temp_get_nref,--wrap=gpio_init,--wrap=gpio_set_state,--wrap=gpio_get_state,--wrap=gpio_toggle,--wrap=wdt_init,--wrap=wdt_reset,--wrap=tps382x_init,--wrap=tps382x_trigger
 
-BATTERY_MONITOR_TEST_FLAGS=$(FLAGS),--wrap=ds277Xg_init,--wrap=ds277Xg_read_voltage_mv,--wrap=ds277Xg_read_temperature_kelvin,--wrap=ds277Xg_read_current_ma,--wrap=ds277Xg_read_data
+BATTERY_MONITOR_TEST_FLAGS=$(FLAGS),--wrap=ds277Xg_init,--wrap=ds277Xg_read_voltage_mv,--wrap=ds277Xg_read_temperature_kelvin,--wrap=ds277Xg_read_current_ma,--wrap=ds277Xg_read_data,--wrap=ds277Xg_read_accumulated_current_mah
 CURRENT_SENSOR_TEST_FLAGS=$(FLAGS),--wrap=adc_init,--wrap=adc_read,--wrap=adc_temp_get_mref,--wrap=adc_temp_get_nref,--wrap=adc_mutex_give,--wrap=adc_mutex_take,--wrap=max9934_read,--wrap=max9934_init
 HEATER_TEST_FLAGS=$(FLAGS),--wrap=pwm_init,--wrap=pwm_update,--wrap=pwm_stop,--wrap=pwm_disable,--wrap=temp_rtd_read_k,--wrap=temp_rtd_raw_to_k,--wrap=temp_rtd_read_raw
 MEDIA_TEST_FLAGS=$(FLAGS),--wrap=flash_init,--wrap=flash_write,--wrap=flash_write_single,--wrap=flash_read_single,--wrap=flash_write_long,--wrap=flash_read_long,--wrap=flash_erase
