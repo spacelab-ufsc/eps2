@@ -51,23 +51,7 @@ extern ds277Xg_config_t battery_monitor_config;
  * 
  * \return int The status/error code.
  */
-int battery_monitor_init();
-
-/**
- * \brief Get the cell one voltage.
- * 
- * \param[in,out] voltage Voltage in mV.
- * \return int The status/error code.
- */
-int bm_get_cell_one_voltage(int16_t *voltage);
-
-/**
- * \brief Get the cell two voltage.
- * 
- * \param[in,out] voltage Voltage in mV.
- * \return int The status/error code.
- */
-int bm_get_cell_two_voltage(int16_t *voltage);
+int battery_monitor_init(void);
 
 /**
  * \brief Get the batteries voltage in mV.
