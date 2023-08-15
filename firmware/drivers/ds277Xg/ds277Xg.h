@@ -58,12 +58,12 @@
  * @brief DS277XG IC parameters
  */
 #define DS277XG_RSENSE                                          0.01        /* Unit: Ohm. */
-#define DS277XG_RSENSE_MOHMS                                    10          /* Unit: milliohms. */
+#define DS277XG_RSENSE_MOHMS                                    10U         /* Unit: milliohms. */
 #define DS277XG_RSENSE_CONDUCTANCE                              100         /* Unit: Siemens. */
 #define DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION                   0.0195      /* Unit: millivolts */
 #define DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION           50          /* Unit: microvolts */
 #define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION             0.0195      /* Unit: Volts */
-#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION             200         /* Unit: microolts */
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION             200U        /* Unit: microolts */
 #define DS277XG_AGE_SCALAR_REG_RESOLUTION                       0.0078125   /* Unit: Dimentionless (percentage) */
 #define DS277XG_VOLTAGE_REG_RESOLUTION                          4.8828      /* Unit: millivolts */
 #define DS277XG_CURRENT_REG_RESOLUTION                          1.5625      /* Unit: microvolts */
@@ -71,7 +71,7 @@
 #define DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION              6.25        /* Unit: microvolts */
 #define DS277XG_FULL_40_REG_RESOLUTION                          6.25        /* Unit: microvolts */
 #define DS277XG_ACTIVE_EMPTY_40_REG_RESOLUTION                  976.5625    /* Unit: ppm */
-#define DS277XG_SEGMENT_SLOPE_REG_RESOLUTION                    61          /* Unit: ppm */
+#define DS277XG_SEGMENT_SLOPE_REG_RESOLUTION                    61U          /* Unit: ppm */
 
 /**
  * @brief Battery cell parameters
@@ -81,7 +81,7 @@
 #define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 * MAX_BATTERY_CHARGE)     /* Unit: milliamperes */
 #define CELL_INITIAL_AGE_SCALAR                                 1                            /* Unit: Dimentionless (percentage) */
 #define CELL_ACTIVE_EMPTY_VOLTAGE                               2.75                            /* Unit: Volts */
-#define CELL_ACTIVE_EMPTY_CURRENT                               100                             /* Unit: miliamperes */
+#define CELL_ACTIVE_EMPTY_CURRENT                               100U                            /* Unit: miliamperes */
 #define CELL_FULL_40_CAPACITY                                   ((uint16_t)(2* MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS))
 #define CELL_ACTIVE_EMPTY_40_CAPACITY                           0U                               /* ppm of Full 40 capacity */
 #define CELL_FULL_SLOPE_4                                       0U                              /* Unit: ppm/C° */
@@ -108,10 +108,10 @@
 #define DS277XG_ACCUMULATION_BIAS_REG_VALUE                      0x00
 #define DS277XG_AGING_CAPACITY_REG_VALUE_MSB                     ((uint8_t)(((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) >> 8) / DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION))
 #define DS277XG_AGING_CAPACITY_REG_VALUE_LSB                     ((uint8_t)((uint16_t)((MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) / DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION)))
-#define DS277XG_CHARGE_VOLTAGE_REG_VALUE                         ((uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION))
+#define DS277XG_CHARGE_VOLTAGE_REG_VALUE                         ((uint8_t)(((uint16_t)(CELL_FULLY_CHARGED_VOLTAGE * 10000)) / ((uint16_t)(DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION * 10000)))) /* Casts to uint16_t and multiply by 10000 to satisfy misra C 2012 rules */
 #define DS277XG_MINIMUM_CHARGE_CURRENT_REG_VALUE                 ((uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION))
-#define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_VALUE                   ((uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE / DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION))
-#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_VALUE                   ((uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS / DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION))
+#define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_VALUE                   ((uint8_t)((uint16_t)(CELL_ACTIVE_EMPTY_VOLTAGE * 10000) / (uint16_t)(DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION * 10000)))
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_VALUE                   ((uint8_t)(CELL_ACTIVE_EMPTY_CURRENT * DS277XG_RSENSE_MOHMS / DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION))
 #define DS277XG_ACTIVE_EMPTY_40_REG_VALUE                        ((uint8_t)(CELL_ACTIVE_EMPTY_40_CAPACITY / DS277XG_ACTIVE_EMPTY_40_REG_RESOLUTION))
 #define DS277XG_SENSE_RESISTOR_PRIME_REG_VALUE                   ((uint8_t)(DS277XG_RSENSE_CONDUCTANCE))
 #define DS277XG_FULL_40_MSB_REG_VALUE                            ((uint8_t)((uint16_t)((CELL_FULL_40_CAPACITY >> 8) / DS277XG_FULL_40_REG_RESOLUTION)))
@@ -139,12 +139,12 @@
 #define DS277XG_TWO_WIRE_SLAVE_ADDRESS_REG_VALUE                 (DS2777G_DEFAULT_SLAVE_ADDRESS << 1)
 
 #define DS277XG_PARAMETER_EEPROM_ADDRESS                         0x60
-#define DS277XG_PARAMETER_EEPROM_SIZE                            33
+#define DS277XG_PARAMETER_EEPROM_SIZE                            33U
 
 /**
  * \brief DS277XG Commands
  */
-#define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001
+#define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001u
 #define DS2775G_SKIP_ADDRESS                                    0xCC        //Address that access any onewire device (used when there's only one device at the onewire bus)
 #define DS2775G_WRITE_DATA                                      0x6C        //Command to write a data in the DS2775G+ memory
 #define DS2775G_READ_DATA                                       0x69        //Command to read a data from DS2775G+ memory
@@ -257,10 +257,10 @@
  * \brief Register specific bit mask.
  */
 // Protection register.
-#define DS277XG_CHARGE_CONTROL_FLAG                             (1 << 3)
-#define DS277XG_DISCHARGE_CONTROL_FLAG                          (1 << 2)
-#define DS277XG_CHARGE_ENABLE_BIT                               (1 << 1)
-#define DS277XG_DISCHARGE_ENABLE_BIT                            (1 << 0)
+#define DS277XG_CHARGE_CONTROL_FLAG                             (1U << 3U)
+#define DS277XG_DISCHARGE_CONTROL_FLAG                          (1U << 2U)
+#define DS277XG_CHARGE_ENABLE_BIT                               (1U << 1U)
+#define DS277XG_DISCHARGE_ENABLE_BIT                            (1U << 0U)
 
 typedef struct
 {
