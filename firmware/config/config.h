@@ -46,14 +46,17 @@
 /* Tasks */
 #define CONFIG_TASK_STARTUP_ENABLED                     1
 #define CONFIG_TASK_WATCHDOG_RESET_ENABLED              1
-#define CONFIG_TASK_HEARTBEAT_ENABLED					1
-#define CONFIG_TASK_SYSTEM_RESET_ENABLED				1
+#define CONFIG_TASK_HEARTBEAT_ENABLED                   1
+#define CONFIG_TASK_SYSTEM_RESET_ENABLED                1
 #define CONFIG_TASK_READ_SENSORS_ENABLED                1
 #define CONFIG_TASK_PARAM_SERVER_ENABLED                1
 #define CONFIG_TASK_MPPT_ALGORITHM_ENABLED              1
 #define CONFIG_TASK_HEATER_CONTROLLER_ENABLED           1
 #define CONFIG_TASK_TIME_CONTROL_ENABLED                1
 #define CONFIG_TASK_DEVICE_RESPONSE_ENABLED             1
+
+/* Tasks Debug Logs*/
+#define CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED          1
 
 /* Devices */
 #define CONFIG_SET_DUMMY_EPS                            0
@@ -71,7 +74,6 @@
 
 /* Drivers */
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
-#define CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION           0
 
 #define MAX_BATTERY_CHARGE                              2450    /* [mAh] */
 #define BAT_MONITOR_CHARGE_VALUE                        (uint16_t)(MAX_BATTERY_CHARGE/0.625)    /* 0.625 is a conversion factor for the  battery monitor */
