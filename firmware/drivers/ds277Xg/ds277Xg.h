@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
@@ -26,7 +26,7 @@
  * \author Vinicius Pimenta Bernardo    <viniciuspibi@gmail.com>
  * \author Ramon de Araujo Borba        <ramonborba97@gmail.com>
  * 
- * \version 0.2.0
+ * \version 0.4.0
  * 
  * \date 2021/08/17
  * 
@@ -43,50 +43,112 @@
 
 #include <config/config.h>
 
-#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
-#include <drivers/onewire/onewire.h>
-#else
 #include <drivers/i2c/i2c.h>
-#endif
 
 #define DS277XG_MODULE_NAME "DS277X"
+
+/**
+ * References
+ * https:/\/datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
+ * https:/\/www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
+ * https:/\/www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
+ */
 
 /**
  * @brief DS277XG IC parameters
  */
 #define DS277XG_RSENSE                                          0.01        /* Unit: Ohm. */
-#define DS277XG_RSENSE_MOHMS                                    10          /* Unit: milliohms. */
+#define DS277XG_RSENSE_MOHMS                                    10U         /* Unit: milliohms. */
 #define DS277XG_RSENSE_CONDUCTANCE                              100         /* Unit: Siemens. */
 #define DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION                   0.0195      /* Unit: millivolts */
 #define DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION           50          /* Unit: microvolts */
 #define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION             0.0195      /* Unit: Volts */
-#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION             200         /* Unit: microolts */
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION             200U        /* Unit: microolts */
 #define DS277XG_AGE_SCALAR_REG_RESOLUTION                       0.0078125   /* Unit: Dimentionless (percentage) */
 #define DS277XG_VOLTAGE_REG_RESOLUTION                          4.8828      /* Unit: millivolts */
 #define DS277XG_CURRENT_REG_RESOLUTION                          1.5625      /* Unit: microvolts */
 #define DS277XG_TEMPERATURE_REG_RESOLUTION                      0.125       /* Unit: degrees Celsius */
 #define DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION              6.25        /* Unit: microvolts */
+#define DS277XG_FULL_40_REG_RESOLUTION                          6.25        /* Unit: microvolts */
+#define DS277XG_ACTIVE_EMPTY_40_REG_RESOLUTION                  976.5625    /* Unit: ppm */
+#define DS277XG_SEGMENT_SLOPE_REG_RESOLUTION                    61U          /* Unit: ppm */
 
 /**
  * @brief Battery cell parameters
  */
-#define CELL_NOMINAL_VOLTAGE                                    3.78 /* Unit: Volts (ICR18650-30B-Samsung). */
-#define CELL_FULLY_CHARGED_VOLTAGE                              (0.85/*<- Variable part*/ * CELL_NOMINAL_VOLTAGE) /* Unit: Volts */
-#define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 /*<- Variable part*/ * MAX_BATTERY_CHARGE)
-#define CELL_INITIAL_AGE_SCALAR                                 0.95        /* Unit: Dimentionless (percentage) */
-#define CELL_ACTIVE_EMPTY_VOLTAGE                               3 // REVIEW THIS VALUE /* Unit: Volts */
-#define CELL_ACTIVE_EMPTY_CURRENT                               360 // REVIEW THIS VALUE /* Unit: miliamperes */
+#define CELL_NOMINAL_VOLTAGE                                    3.6                             /* Unit: Volts (ICR18650-30B-Samsung). */
+#define CELL_FULLY_CHARGED_VOLTAGE                              (0.98 * CELL_NOMINAL_VOLTAGE)   /* Unit: Volts */
+#define CELL_MINIMUM_CHARGE_CURRENT                             (0.05 * MAX_BATTERY_CHARGE)     /* Unit: milliamperes */
+#define CELL_INITIAL_AGE_SCALAR                                 1                            /* Unit: Dimentionless (percentage) */
+#define CELL_ACTIVE_EMPTY_VOLTAGE                               2.75                            /* Unit: Volts */
+#define CELL_ACTIVE_EMPTY_CURRENT                               100U                            /* Unit: miliamperes */
+#define CELL_FULL_40_CAPACITY                                   ((uint16_t)(2* MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS))
+#define CELL_ACTIVE_EMPTY_40_CAPACITY                           0U                               /* ppm of Full 40 capacity */
+#define CELL_FULL_SLOPE_4                                       0U                              /* Unit: ppm/C° */
+#define CELL_FULL_SLOPE_3                                       5002U                           /* Unit: ppm/C° */
+#define CELL_FULL_SLOPE_2                                       15555U                          /* Unit: ppm/C° */
+#define CELL_FULL_SLOPE_1                                       15555U                          /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_4                                         0U                              /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_3                                         8000U                           /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_2                                         8000U                           /* Unit: ppm/C° */
+#define CELL_AE_SLOPE_1                                         5002U                           /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_4                                         0U                              /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_3                                         4000U                           /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_2                                         4000U                           /* Unit: ppm/C° */
+#define CELL_SE_SLOPE_1                                         2501U                           /* Unit: ppm/C° */
+#define CELL_TBP34                                              25U                             /* Unit: ppm/C° */
+#define CELL_TBP23                                              5U                              /* Unit: ppm/C° */
+#define CELL_TBP12                                              0U                              /* Unit: ppm/C° */
 
 /**
- * https://datasheets.maximintegrated.com/en/ds/DS2775-DS2778.pdf
- * https://www.maximintegrated.com/en/design/technical-documents/app-notes/3/3584.html
- * https://www.maximintegrated.com/en/design/technical-documents/app-notes/1/131.html
+ * \brief Parameter EEPROM configuration values
+ * 
  */
-#define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001
-#define DS2775G_SKIP_ADDRESS                                    0xCC    //Address that access any onewire device (used when there's only one device at the onewire bus)
-#define DS2775G_WRITE_DATA                                      0x6C      //Command to write a data in the DS2775G+ memory
-#define DS2775G_READ_DATA                                       0x69       //Command to read a data from DS2775G+ memory
-#define DS2775G_COPY_DATA                                       0x48       //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
+#define DS277XG_CONTROL_REG_VALUE                                0x0C       /* Set undervoltage treshold to 2.60V */
+#define DS277XG_ACCUMULATION_BIAS_REG_VALUE                      0x00
+#define DS277XG_AGING_CAPACITY_REG_VALUE_MSB                     ((uint8_t)(((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) >> 8) / DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION))
+#define DS277XG_AGING_CAPACITY_REG_VALUE_LSB                     ((uint8_t)((uint16_t)((MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) / DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION)))
+#define DS277XG_CHARGE_VOLTAGE_REG_VALUE                         ((uint8_t)(((uint16_t)(CELL_FULLY_CHARGED_VOLTAGE * 10000)) / ((uint16_t)(DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION * 10000)))) /* Casts to uint16_t and multiply by 10000 to satisfy misra C 2012 rules */
+#define DS277XG_MINIMUM_CHARGE_CURRENT_REG_VALUE                 ((uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION))
+#define DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_VALUE                   ((uint8_t)((uint16_t)(CELL_ACTIVE_EMPTY_VOLTAGE * 10000) / (uint16_t)(DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION * 10000)))
+#define DS277XG_ACTIVE_EMPTY_CURRENT_REG_VALUE                   ((uint8_t)(CELL_ACTIVE_EMPTY_CURRENT * DS277XG_RSENSE_MOHMS / DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION))
+#define DS277XG_ACTIVE_EMPTY_40_REG_VALUE                        ((uint8_t)(CELL_ACTIVE_EMPTY_40_CAPACITY / DS277XG_ACTIVE_EMPTY_40_REG_RESOLUTION))
+#define DS277XG_SENSE_RESISTOR_PRIME_REG_VALUE                   ((uint8_t)(DS277XG_RSENSE_CONDUCTANCE))
+#define DS277XG_FULL_40_MSB_REG_VALUE                            ((uint8_t)((uint16_t)((CELL_FULL_40_CAPACITY >> 8) / DS277XG_FULL_40_REG_RESOLUTION)))
+#define DS277XG_FULL_40_LSB_REG_VALUE                            ((uint8_t)((uint16_t)(CELL_FULL_40_CAPACITY / DS277XG_FULL_40_REG_RESOLUTION)))
+#define DS277XG_FULL_SEGMENTE_4_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_4 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_FULL_SEGMENTE_3_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_3 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_FULL_SEGMENTE_2_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_2 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_FULL_SEGMENTE_1_SLOPE_REG_VALUE                  ((uint8_t)(CELL_FULL_SLOPE_1 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_4_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_4 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_3_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_3 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_2_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_2 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_AE_SEGMENTE_1_SLOPE_REG_VALUE                    ((uint8_t)(CELL_AE_SLOPE_1 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_4_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_4 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_3_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_3 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_2_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_2 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SE_SEGMENTE_1_SLOPE_REG_VALUE                    ((uint8_t)(CELL_SE_SLOPE_1 / DS277XG_SEGMENT_SLOPE_REG_RESOLUTION))
+#define DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_MSB                0x64       /* Factory Value */
+#define DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_LSB                0x1B       /* Factory Value */
+#define DS277XG_SENSE_RESISTOR_TEMPERATURE_COEFFICIENT_REG_VALUE 0x00
+#define DS277XG_CURRENT_OFFSET_BIAS_REG_VALUE                    0x00
+#define DS277XG_TBP34_REG_VALUE                                  (CELL_TBP34)
+#define DS277XG_TBP23_REG_VALUE                                  (CELL_TBP23)
+#define DS277XG_TBP12_REG_VALUE                                  (CELL_TBP12)
+#define DS277XG_PROTECTOR_THRESHOLD_REG_VALUE                    0x60       /* Set overvoltage threshold to 4.248V*/
+#define DS277XG_TWO_WIRE_SLAVE_ADDRESS_REG_VALUE                 (DS2777G_DEFAULT_SLAVE_ADDRESS << 1)
+
+#define DS277XG_PARAMETER_EEPROM_ADDRESS                         0x60
+#define DS277XG_PARAMETER_EEPROM_SIZE                            33U
+
+/**
+ * \brief DS277XG Commands
+ */
+#define DS2777G_DEFAULT_SLAVE_ADDRESS                           0b1011001u
+#define DS2775G_SKIP_ADDRESS                                    0xCC        //Address that access any onewire device (used when there's only one device at the onewire bus)
+#define DS2775G_WRITE_DATA                                      0x6C        //Command to write a data in the DS2775G+ memory
+#define DS2775G_READ_DATA                                       0x69        //Command to read a data from DS2775G+ memory
+#define DS2775G_COPY_DATA                                       0x48        //Command to copy data of the DS2775G+ EEPROM shadow RAM to EEPROM cells
 /**
  * \brief Memory map.
  */
@@ -195,19 +257,15 @@
  * \brief Register specific bit mask.
  */
 // Protection register.
-#define DS277XG_CHARGE_CONTROL_FLAG                             (1 << 3)
-#define DS277XG_DISCHARGE_CONTROL_FLAG                          (1 << 2)
-#define DS277XG_CHARGE_ENABLE_BIT                               (1 << 1)
-#define DS277XG_DISCHARGE_ENABLE_BIT                            (1 << 0)
+#define DS277XG_CHARGE_CONTROL_FLAG                             (1U << 3U)
+#define DS277XG_DISCHARGE_CONTROL_FLAG                          (1U << 2U)
+#define DS277XG_CHARGE_ENABLE_BIT                               (1U << 1U)
+#define DS277XG_DISCHARGE_ENABLE_BIT                            (1U << 0U)
 
 typedef struct
 {
-#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
-    onewire_port_t port;
-#else
     i2c_port_t  port;
     i2c_slave_adr_t slave_adr;
-#endif
 } ds277Xg_config_t;
 
 /**
@@ -217,71 +275,6 @@ typedef struct
  * \return int The status/error code.
  */
 int ds277Xg_init(ds277Xg_config_t *config);
-
-/**
- * @brief Set battery configuration to initial state.
- * 
- * Run this function ONCE when a new battery is connected to reset
- * accumulated current and aging estimation to initial values.
- * 
- * @param config DS277XG configuration parameters.
- * @return int The status/error code.
- */
-int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config);
-
-/**
- * \brief Set charge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_enable_charge(ds277Xg_config_t *config);
-
-/**
- * \brief Set discharge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_enable_discharge(ds277Xg_config_t *config);
-
-/**
- * \brief Reset charge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_disable_charge(ds277Xg_config_t *config);
-
-/**
- * \brief Reset discharge enable bit in protection register.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_disable_discharge(ds277Xg_config_t *config);
-
-/**
- * \brief Get the raw voltage in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] voltage_raw The raw voltage value.
- * \param[in] battery_select Must be either 1 or 2.
- * \return int The status/error code.
- */
-int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uint8_t battery_select);
-
-/**
- * \brief Convert from raw data to mV.
- * 
- * Resolution: 4.8828mV. Goes from -5000mV to 4995.1mV
- * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
- *                       MSB                      |                    LSB              
- * 
- * \param[in] raw The raw voltage value.
- * \return float Converted voltage in mV.
- */
-int16_t ds277Xg_voltage_raw_to_mv(int16_t raw);
 
 /**
  * \brief Get the voltage in mV from one of the batteries connected to the DS277XG.
@@ -294,27 +287,6 @@ int16_t ds277Xg_voltage_raw_to_mv(int16_t raw);
 int ds277Xg_read_voltage_mv(ds277Xg_config_t *config, int16_t *voltage_mv, uint8_t battery_select);
 
 /**
- * \brief Get the raw temperature in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] temp_raw The raw temperature value.
- * \return int The status/error code.
- */
-int ds277Xg_read_temperature_raw(ds277Xg_config_t *config, int16_t *temp_raw);
-
-/**
- * \brief Convert from raw data to kelvin.
- * 
- * Resolution: 0.125 degrees kelvin.
- * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
- *                       MSB                      |                    LSB              
- * 
- * \param[in] raw The raw temperature value.
- * \return uint16_t Converted temperature in kelvin.
- */
-uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw);
-
-/**
  * \brief Get the temperature in kelvin from the DS277XG.
  * 
  * \param[in] config DS277XG configuration parameters.
@@ -322,26 +294,6 @@ uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw);
  * \return int The status/error code.
  */
 int ds277Xg_read_temperature_kelvin(ds277Xg_config_t *config, uint16_t *temp_kelvin);
-
-/**
- * \brief Get the raw current in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] current_raw The raw current value.
- * \param[in] read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
- * \return int The status/error code.
- */
-int ds277Xg_read_current_raw(ds277Xg_config_t *config, int16_t *current_raw, bool read_average);
-
-/**
- * \brief Convert from raw data to mA.
- * 
- * Resolution: 1.5625uV/R_sense. Goes from -51.2mV/R_sense to 51.2mV/R_sense.
- * 
- * \param[in] raw The raw current value.
- * \return int16_t Converted current in mA.
- */
-int16_t ds277Xg_current_raw_to_ma(int16_t raw);
 
 /**
  * \brief Get the current in mA from the DS277XG (instantaneous or average from last eight).
@@ -354,59 +306,6 @@ int16_t ds277Xg_current_raw_to_ma(int16_t raw);
 int ds277Xg_read_current_ma(ds277Xg_config_t *config, int16_t *current_ma, bool read_average);
 
 /**
- * \brief Write the raw accumulated current in two's complement form to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] acc_current_raw The raw accumulated current value to write.
- * \return int The status/error code.
- */
-int ds277Xg_write_accumulated_current_raw(ds277Xg_config_t *config, uint16_t acc_current_raw);
-
-/**
- * \brief Convert from mAh data to raw.
- * 
- * \param[in] mah The mAh accumulated current value.
- * \return uint16_t Converted raw accumulated current value.
- */
-uint16_t ds277Xg_accumulated_current_mah_to_raw(uint16_t mah);
-
-/**
- * \brief Write the accumulated current in mAh to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] acc_current_mah Accumulated current in mAh.
- * \return int The status/error code.
- */
-int ds277Xg_write_accumulated_current_mah(ds277Xg_config_t *config, uint16_t acc_current_mah);
-
-/**
- * \brief Write the battery max charge value in mAh to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \return int The status/error code.
- */
-int ds277Xg_write_accumulated_current_max_value(ds277Xg_config_t *config);
-
-/**
- * \brief Get the raw accumulated current in two's complement form from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] acc_current_raw The raw accumulated current value.
- * \return int The status/error code.
- */
-int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc_current_raw);
-
-/**
- * \brief Convert from raw data to mAh.
- * 
- * Resolution: 6.25uVh/R_sense. Goes from 0 to 409.6mVh/R_sense.
- * 
- * \param[in] raw The raw accumulated current value.
- * \return uint16_t Converted accumulated current in mAh.
- */
-uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw);
-
-/**
  * \brief Get the accumulated current in mAh from the DS277XG.
  * 
  * \param[in] config DS277XG configuration parameters.
@@ -414,36 +313,6 @@ uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw);
  * \return int The status/error code.
  */
 int ds277Xg_read_accumulated_current_mah(ds277Xg_config_t *config, uint16_t *acc_current_mah);
-
-/**
- * \brief Write number of cycles to the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] cycles The number of cycles to write. Goes from 0 to 510.
- * \return int The status/error code.
- */
-int ds277Xg_write_cycle_counter(ds277Xg_config_t *config, uint16_t cycles);
-
-/**
- * \brief Read number of cycles from the DS277XG.
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in,out] cycles The number of cycles to write. Goes from 0 to 510.
- * \return int The status/error code.
- */
-int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles);
-
-/**
- * \brief Write-Data Protocol
- * 
- * Start SAddr MAddr Data0 Data1 ... DataN Stop
- * 
- * \param[in] config DS277XG configuration parameters.
- * \param[in] data Data to write. First byte must be target register address.
- * \param[in] len Length of the data to write, including target register.
- * \return int The status/error code.
- */
-int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, uint16_t len);
 
 /**
  * \brief 

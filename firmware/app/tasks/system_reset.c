@@ -24,8 +24,9 @@
  * \brief Periodic system reset task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  * 
- * \version 0.1.15
+ * \version 0.4.0
  * 
  * \date 14/06/2021
  * 
@@ -38,13 +39,15 @@
 
 #include "system_reset.h"
 
+#define pdMS_TO_TICKS_LONG( xTimeInMs ) ( ( TickType_t ) ( ( ( uint64_t ) ( xTimeInMs ) * ( uint64_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+
 xTaskHandle xTaskSystemResetHandle;
 
 void vTaskSystemReset(void *pvParameters)
 {
     while(1)
     {
-        vTaskDelay(pdMS_TO_TICKS(TASK_SYSTEM_RESET_PERIOD_MS));
+        vTaskDelay(pdMS_TO_TICKS_LONG(TASK_SYSTEM_RESET_PERIOD_MS));
 
         sys_log_print_event_from_module(SYS_LOG_INFO, TASK_SYSTEM_RESET_NAME, "Restarting the system...");
         sys_log_new_line();
