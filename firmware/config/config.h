@@ -25,9 +25,10 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Augusto Cezar Boldori Vassoler <augustovassoler@gmail.com>
- * \author Jo�o Cl�udio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  * 
- * \version 0.3.0
+ * \version 0.4.0
  * 
  * \date 2021/01/25
  * 
@@ -56,7 +57,8 @@
 #define CONFIG_TASK_DEVICE_RESPONSE_ENABLED             1
 
 /* Tasks Debug Logs*/
-#define CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED          1
+
+#define CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED          0
 
 /* Devices */
 #define CONFIG_SET_DUMMY_EPS                            0

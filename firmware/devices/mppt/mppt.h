@@ -1,36 +1,37 @@
 /*
  * mppt.h
- * 
+ *
  * Copyright (C) 2021, SpaceLab.
- * 
+ *
  * This file is part of EPS 2.0.
- * 
+ *
  * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  */
 
 /**
  * \brief MPPT device definition.
- * 
+ *
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author Jo�o Cl�udio <joaoclaudiobarcellos@gmail.com>
- * \author Andr� M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
- * 
- * \version 0.2.22
- * 
+ * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
+ *
+ * \version 0.4.0
+ *
  * \date 2021/02/10
- * 
+ *
  * \defgroup mppt MPPT
  * \ingroup devices
  * \{
@@ -52,10 +53,10 @@
  * \brief MPPT algorithm constants.
  */
 #define MPPT_DUTY_CYCLE_STEP    1       /**< PWM duty cycle step in % for the MPPT algorithm. */
-#define MPPT_DUTY_CYCLE_INIT    50      /**< PWM initial duty cycle in % for the MPPT algorithm. */
+#define MPPT_DUTY_CYCLE_INIT    10      /**< PWM initial duty cycle in % for the MPPT algorithm. */
 #define MPPT_PERIOD_INIT        4       /**< PWM period (1/f) in us for the MPPT algorithm. */
-#define MPPT_MIN_DUTY_CYCLE     0       /**< Minimum duty cycle allowed. */
-#define MPPT_MAX_DUTY_CYCLE     100     /**< Maximum duty cycle allowed. */
+#define MPPT_MIN_DUTY_CYCLE     10      /**< Minimum duty cycle allowed. */
+#define MPPT_MAX_DUTY_CYCLE     90      /**< Maximum duty cycle allowed. */
 
 /**
  * \brief MPPT control loop channels.
@@ -85,42 +86,46 @@ typedef pwm_port_t mppt_channel_t;
 typedef pwm_config_t mppt_config_t;
 
 /**
- * \brief power measurements.
+ * \brief Power measurement structure
+ *
  */
 typedef struct
 {
-    uint32_t previous_power;
     uint32_t power;
-} power_measurement_t;
+    uint32_t prev_power;
+} mppt_power_measurement_t;
 
 /**
- * \brief last operation.
+ * \brief MPPT step enum
+ *
+ */
+ typedef enum
+{
+    DECREASE_STEP = 0,
+    INCREASE_STEP
+} mppt_step_e;
+
+/**
+ * \brief MPPT control parameters.
+ *
  */
 typedef struct
 {
-    uint8_t previous_duty_cycle;
-    uint8_t duty_cycle;
-} duty_cycle_measurement_t;
+    mppt_channel_t channel;
+    pwm_config_t config;
+    mppt_power_measurement_t pwr_meas;
+    mppt_step_e step;
+    mppt_step_e prev_step;
+} mppt_paramemters_t;
 
-/**
- * \brief last operation.
- */
-typedef struct
-{
-    uint8_t previous_duty_cycle_ch_0;
-    uint8_t previous_duty_cycle_ch_1;
-    uint8_t previous_duty_cycle_ch_2;
-    uint32_t previous_power_ch_0;
-    uint32_t previous_power_ch_1;
-    uint32_t previous_power_ch_2;
-} previous_values_t;
+
 
 /**
  * \brief Initialization routine of the MPPT.
  *
  * \return The status/error code.
  */
-int mppt_init();
+int mppt_init(void);
 
 /**
  * \brief Function to implement the perturb and observe maximum power point tracking algorithm.
