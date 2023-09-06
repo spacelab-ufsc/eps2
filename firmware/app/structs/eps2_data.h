@@ -45,7 +45,8 @@
 
 /**
  * \brief Parameters' IDs.
- */
+ *//*
+ *//*
 typedef enum
 {
     EPS2_PARAM_ID_TIME_COUNTER              = 0,
@@ -97,6 +98,113 @@ typedef enum
     EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 46,
     EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 47,
     EPS2_PARAM_ID_DEVICE_ID                 = 48
+} eps2_param_id_e;*/
+/*
+typedef enum
+{
+     EPS2_PARAM_ID_TIME_COUNTER              = 0,
+     EPS2_PARAM_ID_RTD_4_TEMP                = 1,
+     EPS2_PARAM_ID_RTD_5_TEMP                = 2,
+     EPS2_PARAM_ID_RTD_6_TEMP                = 3,
+     EPS2_PARAM_ID_RTD_0_TEMP                = 4,
+     EPS2_PARAM_ID_RTD_1_TEMP                = 5,
+     EPS2_PARAM_ID_RTD_2_TEMP                = 6,
+     EPS2_PARAM_ID_RTD_3_TEMP                = 7,
+     EPS2_PARAM_ID_HW_VERSION                = 8,
+     EPS2_PARAM_ID_RESET_COUNTER             = 9,
+     EPS2_PARAM_ID_MCU_TEMP                  = 10,
+     EPS2_PARAM_ID_EPS_CURRENT               = 11,
+     EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE    = 12,
+     EPS2_PARAM_ID_SP_MY_PX_VOLTAGE          = 13,
+     EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE          = 14,
+     EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE          = 15,
+     EPS2_PARAM_ID_SP_VOLTAGE_MPPT           = 16,
+     EPS2_PARAM_ID_SP_MY_CURRENT             = 17,
+     EPS2_PARAM_ID_SP_PY_CURRENT             = 18,
+     EPS2_PARAM_ID_SP_MX_CURRENT             = 19,
+     EPS2_PARAM_ID_SP_PX_CURRENT             = 20,
+     EPS2_PARAM_ID_SP_MZ_CURRENT             = 21,
+     EPS2_PARAM_ID_SP_PZ_CURRENT             = 22,
+     EPS2_PARAM_ID_BAT_VOLTAGE               = 23,
+     EPS2_PARAM_ID_BAT_CURRENT               = 24,
+     EPS2_PARAM_ID_BAT_AVERAGE_CURRENT       = 25,
+     EPS2_PARAM_ID_BAT_ACC_CURRENT           = 26,
+     EPS2_PARAM_ID_BAT_CHARGE                = 27,
+     EPS2_PARAM_ID_BAT_MONITOR_TEMP          = 28,
+     EPS2_PARAM_ID_BAT_MONITOR_RAAC          = 29,
+     EPS2_PARAM_ID_BAT_MONITOR_RSAC          = 30,
+     EPS2_PARAM_ID_DEVICE_ID                 = 31,
+     EPS2_PARAM_ID_LAST_RESET_CAUSE          = 32,
+     EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE         = 33,
+     EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE         = 34,
+     EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE         = 35,
+     EPS2_PARAM_ID_MPPT_1_MODE               = 36,
+     EPS2_PARAM_ID_MPPT_2_MODE               = 37,
+     EPS2_PARAM_ID_MPPT_3_MODE               = 38,
+     EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 39,
+     EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 40,
+     EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE   = 41,
+     EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE   = 42,
+     EPS2_PARAM_ID_BAT_MONITOR_STATUS        = 43,
+     EPS2_PARAM_ID_BAT_MONITOR_PROTECT       = 44,
+     EPS2_PARAM_ID_BAT_MONITOR_CYCLE_COUNTER = 45,
+     EPS2_PARAM_ID_BAT_MONITOR_RARC          = 46,
+     EPS2_PARAM_ID_BAT_MONITOR_RSRC          = 47,
+     EPS2_PARAM_ID_FW_VERSION                = 48
+} eps2_param_id_e;*/
+
+
+typedef enum
+{
+     EPS2_PARAM_ID_TIME_COUNTER              = 0,
+     EPS2_PARAM_ID_RESET_COUNTER             = 1,
+     EPS2_PARAM_ID_MCU_TEMP                  = 2,
+     EPS2_PARAM_ID_EPS_CURRENT               = 3,
+     EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE    = 4,
+     EPS2_PARAM_ID_SP_MY_PX_VOLTAGE          = 5,
+     EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE          = 6,
+     EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE          = 7,
+     EPS2_PARAM_ID_SP_VOLTAGE_MPPT           = 8,
+     EPS2_PARAM_ID_SP_MY_CURRENT             = 9,
+     EPS2_PARAM_ID_SP_PY_CURRENT             = 10,
+     EPS2_PARAM_ID_SP_MX_CURRENT             = 11,
+     EPS2_PARAM_ID_SP_PX_CURRENT             = 12,
+     EPS2_PARAM_ID_SP_MZ_CURRENT             = 13,
+     EPS2_PARAM_ID_SP_PZ_CURRENT             = 14,
+     EPS2_PARAM_ID_BAT_VOLTAGE               = 15,
+     EPS2_PARAM_ID_BAT_CURRENT               = 16,
+     EPS2_PARAM_ID_BAT_AVERAGE_CURRENT       = 17,
+     EPS2_PARAM_ID_BAT_CHARGE                = 18,
+     EPS2_PARAM_ID_BAT_MONITOR_TEMP          = 19,
+     EPS2_PARAM_ID_BAT_MONITOR_RAAC          = 20,
+     EPS2_PARAM_ID_BAT_MONITOR_RSAC          = 21,
+     EPS2_PARAM_ID_LAST_RESET_CAUSE          = 22,
+     EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE         = 23,
+     EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE         = 24,
+     EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE         = 25,
+     EPS2_PARAM_ID_MPPT_1_MODE               = 26,
+     EPS2_PARAM_ID_MPPT_2_MODE               = 27,
+     EPS2_PARAM_ID_MPPT_3_MODE               = 28,
+     EPS2_PARAM_ID_BAT_MONITOR_STATUS        = 29,
+     EPS2_PARAM_ID_BAT_MONITOR_PROTECT       = 30,
+     EPS2_PARAM_ID_BAT_MONITOR_CYCLE_COUNTER = 31,
+     EPS2_PARAM_ID_BAT_MONITOR_RARC          = 32,
+     EPS2_PARAM_ID_BAT_MONITOR_RSRC          = 33,
+     EPS2_PARAM_ID_HW_VERSION                = 34, ///////////////////////////
+     EPS2_PARAM_ID_BAT_ACC_CURRENT           = 35,
+     EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 36,
+     EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 37,
+     EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE   = 38,
+     EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE   = 39,
+     EPS2_PARAM_ID_FW_VERSION                = 40,
+     EPS2_PARAM_ID_RTD_4_TEMP                = 41,
+     EPS2_PARAM_ID_RTD_5_TEMP                = 42,
+     EPS2_PARAM_ID_RTD_6_TEMP                = 43,
+     EPS2_PARAM_ID_RTD_0_TEMP                = 44,
+     EPS2_PARAM_ID_RTD_1_TEMP                = 45,
+     EPS2_PARAM_ID_RTD_2_TEMP                = 46,
+     EPS2_PARAM_ID_RTD_3_TEMP                = 47,
+     EPS2_PARAM_ID_DEVICE_ID                 = 48
 } eps2_param_id_e;
 
 /**
@@ -196,6 +304,17 @@ int eps_buffer_write(uint8_t id, uint32_t *value);
  * \return The status/error code.
  */
 int eps_buffer_read(uint8_t id, uint32_t *value);
+
+
+/////////////////////////////////////////////////////
+
+//PRINT DOS DADOS
+
+int eps_buffer_print(uint8_t id);
+
+/////////////////////////////////////////////////////
+
+
 
 #endif /* EPS_DATA_H_ */
 

@@ -212,7 +212,7 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
             eps_data_buff.device_id = *value;
             break;
         default:
-            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
+            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID1!");
             sys_log_new_line();
             return -1;
     }
@@ -374,7 +374,7 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = 0xEEE2U;
             break;
         default:
-            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
+            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID2!");
             sys_log_new_line();
             return -1;
     }
@@ -532,12 +532,176 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = eps_data_buff.device_id;
             break;
         default:
-            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
+            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID3!");
             sys_log_new_line();
 			return -1;
     }
 
     return 0;
 }
+
+//////////////////////////////////////////////////
+
+//PRINT DOS DADOS
+
+int eps_buffer_print(uint8_t id){
+
+    switch(id)
+    {
+        case EPS2_PARAM_ID_TIME_COUNTER:
+            sys_log_print_msg("EPS2_PARAM_ID_TIME_COUNTER");
+            break;
+        case EPS2_PARAM_ID_MCU_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_MCU_TEMP");
+            break;
+        case EPS2_PARAM_ID_EPS_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_EPS_CURRENT");
+            break;
+        case EPS2_PARAM_ID_LAST_RESET_CAUSE:
+            sys_log_print_msg("EPS2_PARAM_ID_LAST_RESET_CAUSE");
+            break;
+        case EPS2_PARAM_ID_RESET_COUNTER:
+            sys_log_print_msg("EPS2_PARAM_ID_RESET_COUNTER");
+            break;
+        case EPS2_PARAM_ID_SP_MY_PX_VOLTAGE:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_MY_PX_VOLTAGE");
+            break;
+        case EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE");
+            break;
+        case EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE");
+            break;
+        case EPS2_PARAM_ID_SP_MY_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_MY_CURRENT");
+            break;
+        case EPS2_PARAM_ID_SP_PY_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_PY_CURRENT");
+            break;
+        case EPS2_PARAM_ID_SP_MX_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_MX_CURRENT");
+            break;
+        case EPS2_PARAM_ID_SP_PX_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_PX_CURRENT");
+            break;
+        case EPS2_PARAM_ID_SP_MZ_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_MZ_CURRENT");
+            break;
+        case EPS2_PARAM_ID_SP_PZ_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_PZ_CURRENT");
+            break;
+        case EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE:
+            sys_log_print_msg("EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE");
+            break;
+        case EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE:
+            sys_log_print_msg("EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE");
+            break;
+        case EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE:
+            sys_log_print_msg("EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE");
+            break;
+        case EPS2_PARAM_ID_SP_VOLTAGE_MPPT:
+            sys_log_print_msg("EPS2_PARAM_ID_SP_VOLTAGE_MPPT");
+            break;
+        case EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE:
+            sys_log_print_msg("EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE");
+            break;
+        case EPS2_PARAM_ID_RTD_0_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_0_TEMP");
+            break;
+        case EPS2_PARAM_ID_RTD_1_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_1_TEMP");
+            break;
+        case EPS2_PARAM_ID_RTD_2_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_2_TEMP");
+            break;
+        case EPS2_PARAM_ID_RTD_3_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_3_TEMP");
+            break;
+        case EPS2_PARAM_ID_RTD_4_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_4_TEMP");
+            break;
+        case EPS2_PARAM_ID_RTD_5_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_5_TEMP");
+            break;
+        case EPS2_PARAM_ID_RTD_6_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_RTD_6_TEMP");
+            break;
+        case EPS2_PARAM_ID_BAT_VOLTAGE:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_VOLTAGE");
+            break;
+        case EPS2_PARAM_ID_BAT_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_CURRENT");
+            break;
+        case EPS2_PARAM_ID_BAT_AVERAGE_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_AVERAGE_CURRENT");
+            break;
+        case EPS2_PARAM_ID_BAT_ACC_CURRENT:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_ACC_CURRENT");
+            break;
+        case EPS2_PARAM_ID_BAT_CHARGE:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_CHARGE");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_TEMP:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_TEMP");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_STATUS:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_STATUS");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_PROTECT:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_PROTECT");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_CYCLE_COUNTER:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_CYCLE_COUNTER");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_RAAC:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_RAAC");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_RSAC:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_RSAC");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_RARC:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_RARC");
+            break;
+        case EPS2_PARAM_ID_BAT_MONITOR_RSRC:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_MONITOR_RSRC");
+            break;
+        case EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE");
+            break;
+        case EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE");
+            break;
+        case EPS2_PARAM_ID_HW_VERSION:
+            sys_log_print_msg("EPS2_PARAM_ID_HW_VERSION");
+            break;
+        case EPS2_PARAM_ID_FW_VERSION:
+            sys_log_print_msg("EPS2_PARAM_ID_FW_VERSION");
+            break;
+        case EPS2_PARAM_ID_MPPT_1_MODE:
+            sys_log_print_msg("EPS2_PARAM_ID_MPPT_1_MODE");
+            break;
+        case EPS2_PARAM_ID_MPPT_2_MODE:
+            sys_log_print_msg("EPS2_PARAM_ID_MPPT_2_MODE");
+            break;
+        case EPS2_PARAM_ID_MPPT_3_MODE:
+            sys_log_print_msg("EPS2_PARAM_ID_MPPT_3_MODE");
+            break;
+        case EPS2_PARAM_ID_BAT_HEATER_1_MODE:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_HEATER_1_MODE");
+            break;
+        case EPS2_PARAM_ID_BAT_HEATER_2_MODE:
+            sys_log_print_msg("EPS2_PARAM_ID_BAT_HEATER_2_MODE");
+            break;
+        case EPS2_PARAM_ID_DEVICE_ID:
+            sys_log_print_msg("EPS2_PARAM_ID_DEVICE_ID");
+            break;
+        default:
+            sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID4!");
+            sys_log_new_line();
+            return -1;
+    }
+}
+
+//////////////////////////////////////////////////
 
 /** \} End of eps_data group */
