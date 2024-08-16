@@ -60,6 +60,17 @@ void vTaskReadSensors(void)
 
         uint16_t buf = 0U;
 
+        /* MCU temperature.*/
+        if (temp_mcu_read_k(&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_MCU_TEMP, (uint32_t*)&buf);
+            #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "MCU temp: ");
+                sys_log_print_uint(buf);
+                sys_log_new_line();
+            #endif
+        }
+
         /* -Y Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
         {
@@ -434,7 +445,7 @@ void vTaskReadSensors(void)
         }
 
         vTaskDelay(pdMS_TO_TICKS(50));
-
+        // FIXME: correct the repeated EPS2_PARAM_ID_BAT_MONITOR_RSRC values 
         /* Battery monitor RSRC */
         if (bm_get_rsrc_percent((uint8_t*)&buf) == 0)
         {

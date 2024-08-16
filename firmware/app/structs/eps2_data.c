@@ -57,6 +57,8 @@ eps_data_t eps_data_buff = {
     
     .firmware_version = 0x00000300,
     .hardware_version = 0,
+    .time_counter = 0,
+    .reset_counter = 0,
     .device_id = 0xEEE2
 };
 
@@ -65,7 +67,7 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
 	switch(id)
     {
         case EPS2_PARAM_ID_TIME_COUNTER:
-        	eps_data_buff.time_counter_ms = *value;
+            eps_data_buff.time_counter_ms = *value;
             break;
         case EPS2_PARAM_ID_MCU_TEMP:
             eps_data_buff.eps_mcu_temp_kelvin = *value;
@@ -188,10 +190,10 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
             eps_data_buff.heater2_duty_cycle = *value;
             break;
         case EPS2_PARAM_ID_HW_VERSION:
-            eps_data_buff.firmware_version = *value;
+            eps_data_buff.hardware_version = *value;
             break;
         case EPS2_PARAM_ID_FW_VERSION:
-            eps_data_buff.hardware_version = *value;
+            eps_data_buff.firmware_version = *value;
             break;
         case EPS2_PARAM_ID_MPPT_1_MODE:
             eps_data_buff.mppt_1_mode = *value;
@@ -508,10 +510,10 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = eps_data_buff.heater2_duty_cycle;
             break;
         case EPS2_PARAM_ID_HW_VERSION:
-            *value = eps_data_buff.firmware_version;
+            *value = eps_data_buff.hardware_version;
             break;
         case EPS2_PARAM_ID_FW_VERSION:
-            *value = eps_data_buff.hardware_version;
+            *value = eps_data_buff.firmware_version;
             break;
         case EPS2_PARAM_ID_MPPT_1_MODE:
             *value = eps_data_buff.mppt_1_mode;
