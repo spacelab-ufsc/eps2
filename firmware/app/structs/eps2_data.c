@@ -57,7 +57,7 @@ eps_data_t eps_data_buff = {
     
     .firmware_version = 0x00000300,
     .hardware_version = 0,
-    .time_counter = 0,
+    .time_counter_ms = 0,
     .reset_counter = 0,
     .device_id = 0xEEE2
 };
