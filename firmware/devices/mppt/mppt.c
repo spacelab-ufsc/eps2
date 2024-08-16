@@ -168,6 +168,12 @@ int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle)
 }
 
 
+uint8_t mppt_get_duty_cycle(mppt_channel_t channel)
+{
+    return mppt_channel_params[channel - 1].config.duty_cycle;
+}
+
+
 static int read_ch_power(mppt_paramemters_t *params)
 {
     int err = 0;

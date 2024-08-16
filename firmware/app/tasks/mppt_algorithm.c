@@ -24,6 +24,7 @@
  * \brief MPPT algorithm task implementation.
  *
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
  * \version 0.2.19
  *
@@ -51,7 +52,7 @@ void vTaskMPPTAlgorithm(void *pvParameters)
 	/* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_MPPT_ALGORITHM_INIT_TIMEOUT_MS));
 	
-    while(1) // FIXME: We need to update the values of the duty cycle when the MPPT is running in automatic mode
+    while(1)
 	{
             TickType_t last_cycle = xTaskGetTickCount();
             
@@ -61,9 +62,13 @@ void vTaskMPPTAlgorithm(void *pvParameters)
             case MPPT_AUTOMATIC_MODE:
                 if(mppt_algorithm(MPPT_CONTROL_LOOP_CH_0) != 0) 
                     {
+                        eps_buffer_write(EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE, mppt_get_duty_cycle(MPPT_CONTROL_LOOP_CH_0);
+                    }
+                else
+                {
                         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 0 failed!");
                         sys_log_new_line();
-                    }
+                }
                 break;
             case MPPT_MANUAL_MODE:
                 eps_buffer_read(EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE, &mppt_duty_cycle);
@@ -85,9 +90,13 @@ void vTaskMPPTAlgorithm(void *pvParameters)
             case MPPT_AUTOMATIC_MODE:
                 if(mppt_algorithm(MPPT_CONTROL_LOOP_CH_1) != 0) 
                     {
+                        eps_buffer_write(EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE, mppt_get_duty_cycle(MPPT_CONTROL_LOOP_CH_1);
+                    }
+                else
+            {
                         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 1 failed!");
                         sys_log_new_line();
-                    }
+                }
                 break;
             case MPPT_MANUAL_MODE:
                 eps_buffer_read(EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE, &mppt_duty_cycle);
@@ -109,9 +118,13 @@ void vTaskMPPTAlgorithm(void *pvParameters)
             case MPPT_AUTOMATIC_MODE:
                 if(mppt_algorithm(MPPT_CONTROL_LOOP_CH_2) != 0) 
                     {
+                        eps_buffer_write(EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE, mppt_get_duty_cycle(MPPT_CONTROL_LOOP_CH_2);
+                    }
+                else
+            {
                         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 2 failed!");
                         sys_log_new_line();
-                    }
+                }
                 break;
             case MPPT_MANUAL_MODE:
                 eps_buffer_read(EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE, &mppt_duty_cycle);
