@@ -197,12 +197,24 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
             break;
         case EPS2_PARAM_ID_MPPT_1_MODE:
             eps_data_buff.mppt_1_mode = *value;
+            if (eps_data_buff.mppt_1_mode == 1) // MPPT is set to manual mode
+            {
+                eps_data_buff.mppt_1_duty_cycle = 40;
+            }
             break;
         case EPS2_PARAM_ID_MPPT_2_MODE:
             eps_data_buff.mppt_2_mode = *value;
+            if (eps_data_buff.mppt_2_mode == 1) // MPPT is set to manual mode
+            {
+                eps_data_buff.mppt_2_duty_cycle = 40;
+            }
             break;
         case EPS2_PARAM_ID_MPPT_3_MODE:
             eps_data_buff.mppt_3_mode = *value;
+            if (eps_data_buff.mppt_3_mode == 1) // MPPT is set to manual mode
+            {
+                eps_data_buff.mppt_3_duty_cycle = 40;
+            }
             break;
         case EPS2_PARAM_ID_BAT_HEATER_1_MODE:
             eps_data_buff.heater1_mode = *value;
