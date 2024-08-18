@@ -34,114 +34,115 @@
  * \{
  */
 
-#include <system/sys_log/sys_log.h>
-#include <structs/eps2_data.h>
+#include "mppt_algorithm.h"
 
 #include <devices/mppt/mppt.h>
+#include <structs/eps2_data.h>
+#include <system/sys_log/sys_log.h>
 
-#include "mppt_algorithm.h"
 #include "startup.h"
 
 xTaskHandle xTaskMPPTAlgorithmHandle;
 
 void vTaskMPPTAlgorithm(void *pvParameters)
 {
-	uint32_t mppt_mode = 0;
-	uint32_t mppt_duty_cycle = 0;
+    uint32_t mppt_mode       = 0;
+    uint32_t mppt_duty_cycle = 0;
 
-	/* Wait startup task to finish */
-    xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_MPPT_ALGORITHM_INIT_TIMEOUT_MS));
-	
-    while(1)
-	{
-            TickType_t last_cycle = xTaskGetTickCount();
-            
-            eps_buffer_read(EPS2_PARAM_ID_MPPT_1_MODE, &mppt_mode);
-            switch(mppt_mode) 
-	    {
+    /* Wait startup task to finish */
+    xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE,
+                        pdMS_TO_TICKS(TASK_MPPT_ALGORITHM_INIT_TIMEOUT_MS));
+
+    while (1)
+    {
+        TickType_t last_cycle = xTaskGetTickCount();
+
+        eps_buffer_read(EPS2_PARAM_ID_MPPT_1_MODE, &mppt_mode);
+        switch (mppt_mode)
+        {
             case MPPT_AUTOMATIC_MODE:
-                if(mppt_algorithm(MPPT_CONTROL_LOOP_CH_0) != 0) 
-                    {
+                if (mppt_algorithm(MPPT_CONTROL_LOOP_CH_0) != 0)
+                {
                         eps_buffer_write(EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE, mppt_get_duty_cycle(MPPT_CONTROL_LOOP_CH_0);
-                    }
+                }
                 else
                 {
-                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 0 failed!");
-                        sys_log_new_line();
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 0 failed!");
+                    sys_log_new_line();
                 }
                 break;
             case MPPT_MANUAL_MODE:
                 eps_buffer_read(EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE, &mppt_duty_cycle);
-                if(mppt_set_duty_cycle(MPPT_CONTROL_LOOP_CH_0, mppt_duty_cycle) != 0) 
-                    {
-                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 0 failed to set duty cycle!");
-                        sys_log_new_line();
-                    }
+                if (mppt_set_duty_cycle(MPPT_CONTROL_LOOP_CH_0, mppt_duty_cycle) != 0)
+                {
+                    sys_log_print_event_from_module( SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 0 failed to set duty cycle!");
+                    sys_log_new_line();
+                }
                 break;
             default:
                 sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "Invalid mode!");
                 sys_log_new_line();
                 break;
-            }
-            
-            eps_buffer_read(EPS2_PARAM_ID_MPPT_2_MODE, &mppt_mode);
-            switch(mppt_mode) 
-	    {
+        }
+
+        eps_buffer_read(EPS2_PARAM_ID_MPPT_2_MODE, &mppt_mode);
+        switch (mppt_mode)
+        {
             case MPPT_AUTOMATIC_MODE:
-                if(mppt_algorithm(MPPT_CONTROL_LOOP_CH_1) != 0) 
-                    {
+                if (mppt_algorithm(MPPT_CONTROL_LOOP_CH_1) != 0)
+                {
                         eps_buffer_write(EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE, mppt_get_duty_cycle(MPPT_CONTROL_LOOP_CH_1);
-                    }
+                }
                 else
-            {
-                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 1 failed!");
-                        sys_log_new_line();
+                {
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 1 failed!");
+                    sys_log_new_line();
                 }
                 break;
             case MPPT_MANUAL_MODE:
                 eps_buffer_read(EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE, &mppt_duty_cycle);
-                if(mppt_set_duty_cycle(MPPT_CONTROL_LOOP_CH_1, mppt_duty_cycle) != 0) 
-                    {
-                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 1 failed to set duty cycle!");
-                        sys_log_new_line();
-                    }
+                if (mppt_set_duty_cycle(MPPT_CONTROL_LOOP_CH_1, mppt_duty_cycle) != 0)
+                {
+                    sys_log_print_event_from_module( SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 1 failed to set duty cycle!");
+                    sys_log_new_line();
+                }
                 break;
             default:
                 sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "Invalid mode!");
                 sys_log_new_line();
                 break;
-            }
-            
-            eps_buffer_read(EPS2_PARAM_ID_MPPT_3_MODE, &mppt_mode);
-            switch(mppt_mode) 
-	    {
+        }
+
+        eps_buffer_read(EPS2_PARAM_ID_MPPT_3_MODE, &mppt_mode);
+        switch (mppt_mode)
+        {
             case MPPT_AUTOMATIC_MODE:
-                if(mppt_algorithm(MPPT_CONTROL_LOOP_CH_2) != 0) 
-                    {
+                if (mppt_algorithm(MPPT_CONTROL_LOOP_CH_2) != 0)
+                {
                         eps_buffer_write(EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE, mppt_get_duty_cycle(MPPT_CONTROL_LOOP_CH_2);
-                    }
+                }
                 else
-            {
-                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 2 failed!");
-                        sys_log_new_line();
+                {
+                    sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 2 failed!");
+                    sys_log_new_line();
                 }
                 break;
             case MPPT_MANUAL_MODE:
                 eps_buffer_read(EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE, &mppt_duty_cycle);
-                if(mppt_set_duty_cycle(MPPT_CONTROL_LOOP_CH_2, mppt_duty_cycle) != 0) 
-                    {
-                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 2 failed to set duty cycle!");
-                        sys_log_new_line();
-                    }
+                if (mppt_set_duty_cycle(MPPT_CONTROL_LOOP_CH_2, mppt_duty_cycle) != 0)
+                {
+                    sys_log_print_event_from_module( SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "MPPT channel 2 failed to set duty cycle!");
+                    sys_log_new_line();
+                }
                 break;
             default:
                 sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_MPPT_ALGORITHM_NAME, "Invalid mode!");
                 sys_log_new_line();
                 break;
-            }
-            
-            vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_MPPT_ALGORITHM_PERIOD_MS));
-	}
+        }
+
+        vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_MPPT_ALGORITHM_PERIOD_MS));
+    }
 }
 
 /** \} End of mppt_algorithm group */
