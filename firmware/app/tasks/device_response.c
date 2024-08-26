@@ -46,24 +46,30 @@ xTaskHandle xTaskDeviceResponseHandle;
 
 void vTaskDeviceResponse(void *pvParameters)
 {
-
-    uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
-    uint32_t val = 0;
-
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS));
 
     /* Delay before the first cycle */
     vTaskDelay(pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INITIAL_DELAY_MS));
 
+    uint8_t beacon_param_list[] = {
+        BEACON_PARAM_ID_LIST,
+    };
+    const uint8_t BEACON_PARAM_LIST_SIZE = sizeof(beacon_param_list) / sizeof(*beacon_param_list);
+
+    const uint8_t DEVICE_RESPONSE_BUFFER_SIZE = 1 + 4 * BEACON_PARAM_LIST_SIZE;
+    uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
+    uint32_t val = 0;
+
     while(1)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
         buf[0] = DEVICE_COMMAND_WRITE;
-        for(uint8_t i = 0, j = 1; i < EPS_DATA_STRUCTURE_SIZE; i++, j+=4)
+
+        for(uint8_t i = 0, j = 1; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
         {
-            eps_buffer_read(i, &val);
+            eps_buffer_read(beacon_param_list[i], &val);
             buf[ j ] = (val >> 24) & 0xFF;
             buf[j+1] = (val >> 16) & 0xFF;
             buf[j+2] = (val >> 8)  & 0xFF;
