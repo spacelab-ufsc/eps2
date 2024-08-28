@@ -489,7 +489,8 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = eps_data_buff.batteries_accumulated_ma;
             break;
         case EPS2_PARAM_ID_BAT_CHARGE:
-            *value = eps_data_buff.batteries_charge_mah;
+            /* DEPRECATED PARAMETER! Returns the accumulated current value. */
+            *value = eps_data_buff.batteries_accumulated_ma;
             break;
         case EPS2_PARAM_ID_BAT_MONITOR_TEMP:
             *value = eps_data_buff.bm_temp_kelvin;

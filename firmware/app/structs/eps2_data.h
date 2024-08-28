@@ -78,7 +78,7 @@ typedef enum
     EPS2_PARAM_ID_BAT_CURRENT               = 27,
     EPS2_PARAM_ID_BAT_AVERAGE_CURRENT       = 28,
     EPS2_PARAM_ID_BAT_ACC_CURRENT           = 29,
-    EPS2_PARAM_ID_BAT_CHARGE                = 30,
+    EPS2_PARAM_ID_BAT_CHARGE                = 30, /* DEPRECATED PARAMETER! Returns the accumulated current value. */
     EPS2_PARAM_ID_BAT_MONITOR_TEMP          = 31,
     EPS2_PARAM_ID_BAT_MONITOR_STATUS        = 32,
     EPS2_PARAM_ID_BAT_MONITOR_PROTECT       = 33,
@@ -146,7 +146,7 @@ typedef struct
     uint16_t batteries_ma;                      /**< Batteries current in mA. */
     uint16_t batteries_average_ma;              /**< Batteries average current in 8 mA measurements. */
     uint16_t batteries_accumulated_ma;          /**< Batteries accumulated current in mA. */
-    uint16_t batteries_charge_mah;              /**< Batteries charge in mAh. */
+    uint16_t batteries_charge_mah;              /**< Batteries charge in mAh. */ /* DEPRECATED PARAMETER! Returns the accumulated current value. */
     uint32_t batteries_rtd0_kelvin;             /**< Batteries RTD 0 temperature in kelvin. */
     uint32_t batteries_rtd1_kelvin;             /**< Batteries RTD 1 temperature in kelvin. */
     uint32_t batteries_rtd2_kelvin;             /**< Batteries RTD 2 temperature in kelvin. */
