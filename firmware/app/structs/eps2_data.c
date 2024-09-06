@@ -34,6 +34,8 @@
  * \{
  */
 
+#include <FreeRTOS.h>
+#include <task.h>
 #include <system/sys_log/sys_log.h>
 
 #include "eps2_data.h"
@@ -64,6 +66,7 @@ eps_data_t eps_data_buff = {
 
 int eps_buffer_write(uint8_t id, uint32_t *value)
 {
+    taskENTER_CRITICAL();
 	switch(id)
     {
         case EPS2_PARAM_ID_TIME_COUNTER:
@@ -230,12 +233,14 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
             sys_log_new_line();
             return -1;
     }
+    taskEXIT_CRITICAL();
 
     return 0;
 }
 
 int eps_buffer_read(uint8_t id, uint32_t *value)
 {
+    taskENTER_CRITICAL();
 
     #if CONFIG_SET_DUMMY_EPS == 1
     switch(id)
@@ -551,6 +556,7 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             sys_log_new_line();
 			return -1;
     }
+    taskEXIT_CRITICAL();
 
     return 0;
 }
