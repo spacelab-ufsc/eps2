@@ -1,7 +1,7 @@
 /*
  * time_control.c
  * 
- * Copyright The EPS 2.0 Contributors.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.37
+ * \version 0.1.10
  * 
  * \date 2020/08/09
  * 
@@ -43,8 +43,8 @@
 #define TASK_TIME_CONTROL_NAME                  "Time Control"      /**< Task name. */
 #define TASK_TIME_CONTROL_STACK_SIZE            128                 /**< Stack size in bytes. */
 #define TASK_TIME_CONTROL_PRIORITY              3                   /**< Task priority. */
-#define TASK_TIME_CONTROL_PERIOD_MS             1000UL              /**< Task period in milliseconds. */
-#define TASK_TIME_CONTROL_INIT_TIMEOUT_MS       1000UL              /**< Wait time to initialize the task in milliseconds. */
+#define TASK_TIME_CONTROL_PERIOD_MS             1000                /**< Task period in milliseconds. */
+#define TASK_TIME_CONTROL_INIT_TIMEOUT_MS       1000                /**< Wait time to initialize the task in milliseconds. */
 
 /**
  * \brief Time control task handle.
