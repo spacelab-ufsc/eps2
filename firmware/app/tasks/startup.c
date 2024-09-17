@@ -186,6 +186,14 @@ void vTaskStartup(void *pvParameters)
     }
 #endif /* CONFIG_DEV_TTC_ENABLED */
 
+#if CONFIG_DEV_POWER_CONV_ENABLED == 1
+    /* Power converter device initialization */
+    if (power_conv_init() != 0)
+    {
+        error_counter++;
+    }
+#endif /* CONFIG_DEV_POWER_CONV_ENABLED */
+
     if (error_counter > 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_STARTUP_NAME, "Boot completed with ");

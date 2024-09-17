@@ -34,6 +34,7 @@
  * \{
  */
 
+#include <system/system.h>
 #include <system/sys_log/sys_log.h>
 #include <structs/eps2_data.h>
 
@@ -42,6 +43,7 @@
 
 #include <devices/ttc/ttc.h>
 #include <devices/obdh/obdh.h>
+#include <devices/power_conv/power_conv.h>
 
 #include "param_server.h"
 #include "startup.h"
@@ -74,12 +76,29 @@ void vTaskParamServer(void *pvParameters)
                     switch(cmd)
                     {
                         case OBDH_COMMAND_WRITE: 
-                            if (eps_buffer_write(adr, &val) != 0)
+                            switch (adr)
                             {
-                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH write command has failed to complete!");
-                                sys_log_new_line();
+                                case EPS2_PARAM_ID_RESET_EPS:
+                                    system_reset();
+                                    break;
+                                case EPS2_PARAM_ID_PAYLOAD_ENABLE:
+                                    if (val > 0)
+                                    {
+                                        enable_payload_power();
+                                    }
+                                    else
+                                    {
+                                        disable_payload_power();
+                                    }
+                                    break;
+                                default:
+                                    if (eps_buffer_write(adr, &val) != 0)
+                                    {
+                                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH write command has failed to complete!");
+                                        sys_log_new_line();
+                                    }
+                                    break;
                             }
-
                             break;
                         case OBDH_COMMAND_READ: 
                             if (eps_buffer_read(adr, &val) == 0)

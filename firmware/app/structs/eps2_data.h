@@ -96,7 +96,9 @@ typedef enum
     EPS2_PARAM_ID_MPPT_3_MODE               = 45,
     EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 46,
     EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 47,
-    EPS2_PARAM_ID_DEVICE_ID                 = 48
+    EPS2_PARAM_ID_DEVICE_ID                 = 48,
+    EPS2_PARAM_ID_RESET_EPS                 = 49,
+    EPS2_PARAM_ID_PAYLOAD_ENABLE            = 50,
 } eps2_param_id_e;
 
 /**
