@@ -78,7 +78,7 @@ void vTaskParamServer(void *pvParameters)
                         case OBDH_COMMAND_WRITE: 
                             switch (adr)
                             {
-                                case PS2_PARAM_ID_RESET_EPS:
+                                case EPS2_PARAM_ID_RESET_EPS:
                                     system_reset();
                                     break;
                                 case EPS2_PARAM_ID_PAYLOAD_ENABLE:
