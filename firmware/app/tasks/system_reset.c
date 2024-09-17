@@ -25,6 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * 
  * \version 0.4.0
  * 

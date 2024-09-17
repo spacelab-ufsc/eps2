@@ -56,6 +56,8 @@ eps_data_t eps_data_buff = {
     
     .heater2_mode = 0,
     .heater2_duty_cycle = 50,
+
+    .beacon_enable = 0,
     
     .firmware_version = 0x00000300,
     .hardware_version = 0,
@@ -228,6 +230,9 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
         case EPS2_PARAM_ID_DEVICE_ID:
             eps_data_buff.device_id = *value;
             break;
+        case EPS2_PARAM_ID_BEACON_ENABLE:
+            eps_data_buff.beacon_enable = *value;
+            break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
@@ -392,6 +397,9 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
         case EPS2_PARAM_ID_DEVICE_ID:
             *value = 0xEEE2U;
             break;
+        case EPS2_PARAM_ID_BEACON_ENABLE:
+            *value = 1;
+            break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
@@ -550,6 +558,9 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             break;
         case EPS2_PARAM_ID_DEVICE_ID:
             *value = eps_data_buff.device_id;
+            break;
+        case EPS2_PARAM_ID_BEACON_ENABLE:
+            *value = eps_data_buff.beacon_enable;
             break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");

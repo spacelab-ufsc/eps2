@@ -60,22 +60,31 @@ void vTaskDeviceResponse(void *pvParameters)
     const uint8_t DEVICE_RESPONSE_BUFFER_SIZE = 1 + 4 * BEACON_PARAM_LIST_SIZE;
     uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
     uint32_t val = 0;
-
+    uint8_t beacon_flag = 0;
+    
     while(1)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
         buf[0] = DEVICE_COMMAND_WRITE;
-
-        for(uint8_t i = 0, j = 1; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
+        
+        eps_buffer_read(EPS2_PARAM_ID_BEACON_ENABLE, &beacon_flag);
+        if(beacon_flag != 0)
         {
-            eps_buffer_read(beacon_param_list[i], &val);
-            buf[ j ] = (val >> 24) & 0xFF;
-            buf[j+1] = (val >> 16) & 0xFF;
-            buf[j+2] = (val >> 8)  & 0xFF;
-            buf[j+3] = (val >> 0)  & 0xFF;
+            sys_log_print_event_from_module(SYS_LOG_INFO, TASK_DEVICE_RESPONSE_NAME, "The beacon in not enabled");
+            sys_log_new_line();
         }
-
+        else
+        {
+            for(uint8_t i = 0, j = 1; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
+            {
+                eps_buffer_read(beacon_param_list[i], &val);
+                buf[ j ] = (val >> 24) & 0xFF;
+                buf[j+1] = (val >> 16) & 0xFF;
+                buf[j+2] = (val >> 8)  & 0xFF;
+                buf[j+3] = (val >> 0)  & 0xFF;
+            }
+        }
         ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_PERIOD_MS));

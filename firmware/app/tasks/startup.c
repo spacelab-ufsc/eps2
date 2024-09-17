@@ -25,6 +25,8 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  * 
  * \version 0.2.25
  * 

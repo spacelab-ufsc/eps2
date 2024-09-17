@@ -96,7 +96,10 @@ typedef enum
     EPS2_PARAM_ID_MPPT_3_MODE               = 45,
     EPS2_PARAM_ID_BAT_HEATER_1_MODE         = 46,
     EPS2_PARAM_ID_BAT_HEATER_2_MODE         = 47,
-    EPS2_PARAM_ID_DEVICE_ID                 = 48
+    EPS2_PARAM_ID_DEVICE_ID                 = 48,
+    EPS2_PARAM_ID_RESET_EPS                 = 49,
+    EPS2_PARAM_ID_PAYLOAD_ENABLE            = 50,
+    EPS2_PARAM_ID_BEACON_ENABLE             = 51
 } eps2_param_id_e;
 
 /**
@@ -151,8 +154,8 @@ typedef struct
     uint32_t batteries_rtd1_kelvin;             /**< Batteries RTD 1 temperature in kelvin. */
     uint32_t batteries_rtd2_kelvin;             /**< Batteries RTD 2 temperature in kelvin. */
     uint32_t batteries_rtd3_kelvin;             /**< Batteries RTD 3 temperature in kelvin. */
-    uint8_t heater1_duty_cycle;                  /**< Batteries heater 1 duty cyle in %. */
-    uint8_t heater2_duty_cycle;                  /**< Batteries heater 2 duty cyle in %. */
+    uint8_t heater1_duty_cycle;                 /**< Batteries heater 1 duty cyle in %. */
+    uint8_t heater2_duty_cycle;                 /**< Batteries heater 2 duty cyle in %. */
 
     /**
      *  Battery monitor related data.
@@ -171,8 +174,9 @@ typedef struct
      */
     uint32_t firmware_version;                  /**< Hard-coded firmware version of EPS. */
     uint8_t hardware_version;                   /**< Hard-coded hardware version of EPS. */
-    uint16_t device_id;                          /**< Hard-coded device id of EPS. */
-
+    uint16_t device_id;                         /**< Hard-coded device id of EPS. */
+    uint8_t beacon_enable;                      /**< Hard-coded hardware version of EPS. */
+    
 } eps_data_t;
 
 /**

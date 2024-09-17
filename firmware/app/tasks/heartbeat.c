@@ -24,6 +24,8 @@
  * \brief Heartbeat task implementation.
  *
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
  * \version 0.1.6
  *
