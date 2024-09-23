@@ -482,10 +482,9 @@ void vTaskReadSensors(void)
             #endif
         }
 
-        /* Data timestamp */
-        uint32_t time_counter = (uint32_t)xTaskGetTickCount();
-
-        eps_buffer_write(EPS2_PARAM_ID_TIME_COUNTER, &time_counter);
+        /* Update timestamp */
+        uint32_t time_counter = (uint32_t)system_get_time();
+        eps_buffer_write(EPS2_PARAM_ID_TIMESTAMP, &time_counter);
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_READ_SENSORS_PERIOD_MS));
     }
