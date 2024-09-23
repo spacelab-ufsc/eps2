@@ -72,6 +72,7 @@
 #define CONFIG_DEV_TEMP_SENSOR_ENABLED                  1
 #define CONFIG_DEV_OBDH_ENABLED                         1
 #define CONFIG_DEV_TTC_ENABLED                          1
+#define CONFIG_DEV_POWER_CONV_ENABLED                   1
 
 /* Drivers */
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
