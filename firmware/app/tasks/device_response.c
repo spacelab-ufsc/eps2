@@ -69,12 +69,7 @@ void vTaskDeviceResponse(void *pvParameters)
         buf[0] = DEVICE_COMMAND_WRITE;
         
         eps_buffer_read(EPS2_PARAM_ID_BEACON_ENABLE, &beacon_flag);
-        if(beacon_flag != 0)
-        {
-            sys_log_print_event_from_module(SYS_LOG_INFO, TASK_DEVICE_RESPONSE_NAME, "The beacon in not enabled");
-            sys_log_new_line();
-        }
-        else
+        if(beacon_flag > 0)
         {
             for(uint8_t i = 0, j = 1; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
             {
@@ -84,8 +79,13 @@ void vTaskDeviceResponse(void *pvParameters)
                 buf[j+2] = (val >> 8)  & 0xFF;
                 buf[j+3] = (val >> 0)  & 0xFF;
             }
+            ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);
         }
-        ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);
+        else
+        {
+            sys_log_print_event_from_module(SYS_LOG_INFO, TASK_DEVICE_RESPONSE_NAME, "The beacon is not enabled");
+            sys_log_new_line();
+        }
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_PERIOD_MS));
     }
