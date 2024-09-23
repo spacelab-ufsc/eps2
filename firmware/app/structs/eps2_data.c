@@ -35,6 +35,7 @@
  */
 
 #include <system/sys_log/sys_log.h>
+#include <system/system.h>
 
 #include "eps2_data.h"
 
@@ -65,7 +66,8 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
 	switch(id)
     {
         case EPS2_PARAM_ID_TIMESTAMP:
-        	eps_data_buff.timestamp = *value;
+            eps_data_buff.timestamp = *value;
+            system_set_time(*value);
             break;
         case EPS2_PARAM_ID_MCU_TEMP:
             eps_data_buff.eps_mcu_temp_kelvin = *value;
