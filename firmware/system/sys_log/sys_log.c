@@ -42,6 +42,7 @@
 
 #include "config/config.h"
 
+#include "system/system.h"
 #include "sys_log.h"
 #include "sys_log_config.h"
 
@@ -374,7 +375,7 @@ void sys_log_print_system_time()
     sys_log_set_color(SYS_LOG_SYSTEM_TIME_COLOR);
 
     sys_log_print_msg("[ ");
-    sys_log_print_uint(xTaskGetTickCount());    /* System time in milliseconds */
+    sys_log_print_uint(system_get_time());    /* System time in milliseconds */
     sys_log_print_msg(" ]");
 
     sys_log_reset_color();

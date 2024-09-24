@@ -78,6 +78,9 @@
 /* Drivers */
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 
+/* Memory adresses */
+#define CONFIG_MEM_ADR_SYS_TIME                         0
+
 #define MAX_BATTERY_CHARGE                              2450    /* [mAh] */
 #define BAT_MONITOR_CHARGE_VALUE                        (uint16_t)(MAX_BATTERY_CHARGE/0.625)    /* 0.625 is a conversion factor for the  battery monitor */
 #define RESET_BATTERY_TO_INITIAL_STATE                  0

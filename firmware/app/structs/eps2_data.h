@@ -48,7 +48,7 @@
  */
 typedef enum
 {
-    EPS2_PARAM_ID_TIME_COUNTER              = 0,
+    EPS2_PARAM_ID_TIMESTAMP                 = 0,
     EPS2_PARAM_ID_MCU_TEMP                  = 1,
     EPS2_PARAM_ID_EPS_CURRENT               = 2,
     EPS2_PARAM_ID_LAST_RESET_CAUSE          = 3,
@@ -109,7 +109,7 @@ typedef struct
     /**
      *  EPS MCU related data.
      */
-    uint32_t time_counter_ms;                   /**< Time counter in milliseconds. */
+    uint32_t timestamp;                         /**< Time counter in milliseconds. */
     uint8_t last_reset_cause;                   /**< EPS MCU last reset cause */
     uint16_t reset_counter;                     /**< EPS MCU reset counter */
     uint16_t eps_mcu_temp_kelvin;               /**< EPS MCU temperature in kelvin. */
