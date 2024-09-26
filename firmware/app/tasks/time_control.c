@@ -1,7 +1,7 @@
 /*
  * time_control.h
  * 
- * Copyright The EPS 2.0 Contributors.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.37
+ * \version 0.1.10
  * 
  * \date 2020/08/09
  * 
@@ -35,13 +35,13 @@
 
 #include <system/system.h>
 #include <system/sys_log/sys_log.h>
-/* #include <devices/media/media.h> */
+#include <devices/media/media.h>
 #include <config/config.h>
 
 #include "time_control.h"
 #include "startup.h"
 
-#define TIME_CONTROL_MEDIA              MEDIA_NOR
+#define TIME_CONTROL_MEDIA              MEDIA_INT_FLASH
 #define TIME_CONTROL_SAVE_PERIOD_SEC    60
 #define TIME_CONTROL_MEM_ID             0x12U
 #define TIME_CONTROL_CRC8_INITIAL_VAL   0x00U       /* CRC8-CCITT initial value. */
@@ -120,6 +120,13 @@ void vTaskTimeControl(void)
                 sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_TIME_CONTROL_NAME, "Error saving the system time!");
                 sys_log_new_line();
             }
+            else
+            {
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_TIME_CONTROL_NAME, "Saving system time (epoch): ");
+                sys_log_print_uint(sys_tm);
+                sys_log_print_msg(" sec");
+                sys_log_new_line();
+            }
         }
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_TIME_CONTROL_PERIOD_MS));
@@ -131,7 +138,7 @@ static int time_control_load_sys_time(sys_time_t *tm)
     int err = -1;
 
     uint8_t buf[6] = {0};
-/*
+
     if (media_read(TIME_CONTROL_MEDIA, CONFIG_MEM_ADR_SYS_TIME, buf, 6U) == 0)
     {
         if ((buf[0] == TIME_CONTROL_MEM_ID) && (time_control_crc8(buf, 5U) == buf[5]))
@@ -154,7 +161,7 @@ static int time_control_load_sys_time(sys_time_t *tm)
         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_TIME_CONTROL_NAME, "Error reading the system time from the non-volatile memory!");
         sys_log_new_line();
     }
-*/
+
     return err;
 }
 
@@ -170,15 +177,18 @@ static int time_control_save_sys_time(sys_time_t tm)
     buf[3] = ((uint32_t)tm >> 8) & 0xFFU;
     buf[4] = (uint32_t)tm & 0xFFU;
     buf[5] = time_control_crc8(buf, 5U);
-/*
-    if (media_write(TIME_CONTROL_MEDIA, CONFIG_MEM_ADR_SYS_TIME, buf, 6U) != 0)
-    {
-        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_TIME_CONTROL_NAME, "Error writing the system time to the non-volatile memory!");
-        sys_log_new_line();
 
-        err = -1;
+    if (media_erase(TIME_CONTROL_MEDIA, FLASH_SEG_A_ADR) == 0)
+    {
+        if (media_write(TIME_CONTROL_MEDIA, CONFIG_MEM_ADR_SYS_TIME, buf, 6U) != 0)
+        {
+            sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_TIME_CONTROL_NAME, "Error writing the system time to the non-volatile memory!");
+            sys_log_new_line();
+
+            err = -1;
+        }
     }
-*/
+
     return err;
 }
 

@@ -142,7 +142,7 @@ void vTaskStartup(void *pvParameters)
 
 #if CONFIG_DEV_MEDIA_ENABLED == 1
     /* Internal non-volatile memory initialization */
-    if (media_init() != 0)
+    if (media_init(MEDIA_INT_FLASH) != 0)
     {
         error_counter++;
     }

@@ -37,6 +37,7 @@
 #include <FreeRTOS.h>
 #include <task.h>
 #include <system/sys_log/sys_log.h>
+#include <system/system.h>
 
 #include "eps2_data.h"
 
@@ -71,8 +72,9 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
     taskENTER_CRITICAL();
 	switch(id)
     {
-        case EPS2_PARAM_ID_TIME_COUNTER:
-            eps_data_buff.time_counter_ms = *value;
+        case EPS2_PARAM_ID_TIMESTAMP:
+            eps_data_buff.timestamp = *value;
+            system_set_time(*value);
             break;
         case EPS2_PARAM_ID_MCU_TEMP:
             eps_data_buff.eps_mcu_temp_kelvin = *value;
@@ -250,7 +252,7 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
     #if CONFIG_SET_DUMMY_EPS == 1
     switch(id)
     {
-        case EPS2_PARAM_ID_TIME_COUNTER:
+        case EPS2_PARAM_ID_TIMESTAMP:
             *value = 0;
             break;
         case EPS2_PARAM_ID_MCU_TEMP:
@@ -411,8 +413,8 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
 
 	switch(id)
     {
-        case EPS2_PARAM_ID_TIME_COUNTER:
-        	*value = eps_data_buff.time_counter_ms;
+        case EPS2_PARAM_ID_TIMESTAMP:
+        	*value = eps_data_buff.timestamp;
             break;
         case EPS2_PARAM_ID_MCU_TEMP:
             *value = eps_data_buff.eps_mcu_temp_kelvin;

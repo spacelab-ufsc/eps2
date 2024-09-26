@@ -109,6 +109,9 @@
     EPS2_PARAM_ID_BAT_CHARGE,              \
     EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE, \
     EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE
+    
+/* Memory adresses */
+#define CONFIG_MEM_ADR_SYS_TIME                         0
 
 #define MAX_BATTERY_CHARGE                              2450    /* [mAh] */
 #define BAT_MONITOR_CHARGE_VALUE                        (uint16_t)(MAX_BATTERY_CHARGE/0.625)    /* 0.625 is a conversion factor for the  battery monitor */
