@@ -48,8 +48,6 @@
 #define TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS      10000UL          /**< Wait time to initialize the task in milliseconds. */
 #define TASK_DEVICE_RESPONSE_INITIAL_DELAY_MS     10000UL           /**< Delay, in milliseconds, before the first execution. */
 
-#define EPS_DATA_STRUCTURE_SIZE                   49
-#define DEVICE_RESPONSE_BUFFER_SIZE               (1 + 4 * EPS_DATA_STRUCTURE_SIZE)   /* 1 + (49 * 4) bytes --- CMD + EPS_DATA_STRUCTURE_SIZE in bytes */
 #define DEVICE_COMMAND_WRITE                      0x03
 
 /**

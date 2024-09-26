@@ -26,6 +26,8 @@
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  * 
  * \version 0.2.35
  * 
@@ -60,6 +62,17 @@ void vTaskReadSensors(void)
         TickType_t last_cycle = xTaskGetTickCount();
 
         uint16_t buf = 0U;
+
+        /* MCU temperature.*/
+        if (temp_mcu_read_k(&buf) == 0)
+        {
+            eps_buffer_write(EPS2_PARAM_ID_MCU_TEMP, (uint32_t*)&buf);
+            #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "MCU temp: ");
+                sys_log_print_uint(buf);
+                sys_log_new_line();
+            #endif
+        }
 
         /* -Y Solar Panel current in mA.*/
         if (current_sensor_read(PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT, &buf) == 0)
@@ -387,7 +400,7 @@ void vTaskReadSensors(void)
         /* Battery monitor accumulated current */
         if (bm_get_acc_current_mah(&buf) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, (uint32_t*)&buf);
+            eps_buffer_write(EPS2_PARAM_ID_BAT_ACC_CURRENT, (uint32_t*)&buf);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor acc current: ");
                 sys_log_print_uint(buf);
@@ -435,7 +448,6 @@ void vTaskReadSensors(void)
         }
 
         vTaskDelay(pdMS_TO_TICKS(50));
-
         /* Battery monitor RSRC */
         if (bm_get_rsrc_percent((uint8_t*)&buf) == 0)
         {
@@ -447,11 +459,12 @@ void vTaskReadSensors(void)
             #endif
         }
 
+        // NOTE: The following paramteter from the battery monitor are not stored in the data structure
+
         /* Battery monitor full capacity in ppm */
         uint32_t buf32 = 0;
         if (bm_get_full_capacity_ppm(&buf32) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, &buf32);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor Full(T): ");
                 sys_log_print_uint(buf32);
@@ -463,7 +476,6 @@ void vTaskReadSensors(void)
         buf32 = 0;
         if (bm_get_active_empty_capacity_ppm(&buf32) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, &buf32);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor AE(T): ");
                 sys_log_print_uint(buf32);
@@ -475,7 +487,6 @@ void vTaskReadSensors(void)
         buf32 = 0;
         if (bm_get_standby_empty_capacity_ppm(&buf32) == 0)
         {
-            eps_buffer_write(EPS2_PARAM_ID_BAT_MONITOR_RSRC, &buf32);
             #if defined (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED) && (CONFIG_TASK_READ_SENSORS_DEBUG_ENABLED == 1)
                 sys_log_print_event_from_module(SYS_LOG_INFO, TASK_READ_SENSORS_NAME, "Bat monitor SE(T): ");
                 sys_log_print_uint(buf32);

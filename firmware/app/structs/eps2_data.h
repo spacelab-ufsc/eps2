@@ -78,7 +78,7 @@ typedef enum
     EPS2_PARAM_ID_BAT_CURRENT               = 27,
     EPS2_PARAM_ID_BAT_AVERAGE_CURRENT       = 28,
     EPS2_PARAM_ID_BAT_ACC_CURRENT           = 29,
-    EPS2_PARAM_ID_BAT_CHARGE                = 30,
+    EPS2_PARAM_ID_BAT_CHARGE                = 30, /* DEPRECATED PARAMETER! Returns the accumulated current value. */
     EPS2_PARAM_ID_BAT_MONITOR_TEMP          = 31,
     EPS2_PARAM_ID_BAT_MONITOR_STATUS        = 32,
     EPS2_PARAM_ID_BAT_MONITOR_PROTECT       = 33,
@@ -99,6 +99,7 @@ typedef enum
     EPS2_PARAM_ID_DEVICE_ID                 = 48,
     EPS2_PARAM_ID_RESET_EPS                 = 49,
     EPS2_PARAM_ID_PAYLOAD_ENABLE            = 50,
+    EPS2_PARAM_ID_BEACON_ENABLE             = 51
 } eps2_param_id_e;
 
 /**
@@ -148,13 +149,13 @@ typedef struct
     uint16_t batteries_ma;                      /**< Batteries current in mA. */
     uint16_t batteries_average_ma;              /**< Batteries average current in 8 mA measurements. */
     uint16_t batteries_accumulated_ma;          /**< Batteries accumulated current in mA. */
-    uint16_t batteries_charge_mah;              /**< Batteries charge in mAh. */
+    uint16_t batteries_charge_mah;              /**< Batteries charge in mAh. */ /* DEPRECATED PARAMETER! Returns the accumulated current value. */
     uint32_t batteries_rtd0_kelvin;             /**< Batteries RTD 0 temperature in kelvin. */
     uint32_t batteries_rtd1_kelvin;             /**< Batteries RTD 1 temperature in kelvin. */
     uint32_t batteries_rtd2_kelvin;             /**< Batteries RTD 2 temperature in kelvin. */
     uint32_t batteries_rtd3_kelvin;             /**< Batteries RTD 3 temperature in kelvin. */
-    uint8_t heater1_duty_cycle;                  /**< Batteries heater 1 duty cyle in %. */
-    uint8_t heater2_duty_cycle;                  /**< Batteries heater 2 duty cyle in %. */
+    uint8_t heater1_duty_cycle;                 /**< Batteries heater 1 duty cyle in %. */
+    uint8_t heater2_duty_cycle;                 /**< Batteries heater 2 duty cyle in %. */
 
     /**
      *  Battery monitor related data.
@@ -173,8 +174,9 @@ typedef struct
      */
     uint32_t firmware_version;                  /**< Hard-coded firmware version of EPS. */
     uint8_t hardware_version;                   /**< Hard-coded hardware version of EPS. */
-    uint16_t device_id;                          /**< Hard-coded device id of EPS. */
-
+    uint16_t device_id;                         /**< Hard-coded device id of EPS. */
+    uint8_t beacon_enable;                      /**< Hard-coded hardware version of EPS. */
+    
 } eps_data_t;
 
 /**

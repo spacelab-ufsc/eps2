@@ -34,6 +34,8 @@
  * \{
  */
 
+#include <FreeRTOS.h>
+#include <task.h>
 #include <system/sys_log/sys_log.h>
 #include <system/system.h>
 
@@ -55,14 +57,19 @@ eps_data_t eps_data_buff = {
     
     .heater2_mode = 0,
     .heater2_duty_cycle = 50,
+
+    .beacon_enable = 0,
     
     .firmware_version = 0x00000300,
     .hardware_version = 0,
+    .time_counter_ms = 0,
+    .reset_counter = 0,
     .device_id = 0xEEE2
 };
 
 int eps_buffer_write(uint8_t id, uint32_t *value)
 {
+    taskENTER_CRITICAL();
 	switch(id)
     {
         case EPS2_PARAM_ID_TIMESTAMP:
@@ -190,19 +197,31 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
             eps_data_buff.heater2_duty_cycle = *value;
             break;
         case EPS2_PARAM_ID_HW_VERSION:
-            eps_data_buff.firmware_version = *value;
+            eps_data_buff.hardware_version = *value;
             break;
         case EPS2_PARAM_ID_FW_VERSION:
-            eps_data_buff.hardware_version = *value;
+            eps_data_buff.firmware_version = *value;
             break;
         case EPS2_PARAM_ID_MPPT_1_MODE:
             eps_data_buff.mppt_1_mode = *value;
+            if (eps_data_buff.mppt_1_mode == 1) // MPPT is set to manual mode
+            {
+                eps_data_buff.mppt_1_duty_cycle = 40;
+            }
             break;
         case EPS2_PARAM_ID_MPPT_2_MODE:
             eps_data_buff.mppt_2_mode = *value;
+            if (eps_data_buff.mppt_2_mode == 1) // MPPT is set to manual mode
+            {
+                eps_data_buff.mppt_2_duty_cycle = 40;
+            }
             break;
         case EPS2_PARAM_ID_MPPT_3_MODE:
             eps_data_buff.mppt_3_mode = *value;
+            if (eps_data_buff.mppt_3_mode == 1) // MPPT is set to manual mode
+            {
+                eps_data_buff.mppt_3_duty_cycle = 40;
+            }
             break;
         case EPS2_PARAM_ID_BAT_HEATER_1_MODE:
             eps_data_buff.heater1_mode = *value;
@@ -213,17 +232,22 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
         case EPS2_PARAM_ID_DEVICE_ID:
             eps_data_buff.device_id = *value;
             break;
+        case EPS2_PARAM_ID_BEACON_ENABLE:
+            eps_data_buff.beacon_enable = *value;
+            break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
             return -1;
     }
+    taskEXIT_CRITICAL();
 
     return 0;
 }
 
 int eps_buffer_read(uint8_t id, uint32_t *value)
 {
+    taskENTER_CRITICAL();
 
     #if CONFIG_SET_DUMMY_EPS == 1
     switch(id)
@@ -375,6 +399,9 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
         case EPS2_PARAM_ID_DEVICE_ID:
             *value = 0xEEE2U;
             break;
+        case EPS2_PARAM_ID_BEACON_ENABLE:
+            *value = 1;
+            break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
@@ -477,7 +504,8 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = eps_data_buff.batteries_accumulated_ma;
             break;
         case EPS2_PARAM_ID_BAT_CHARGE:
-            *value = eps_data_buff.batteries_charge_mah;
+            /* DEPRECATED PARAMETER! Returns the accumulated current value. */
+            *value = eps_data_buff.batteries_accumulated_ma;
             break;
         case EPS2_PARAM_ID_BAT_MONITOR_TEMP:
             *value = eps_data_buff.bm_temp_kelvin;
@@ -510,10 +538,10 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
             *value = eps_data_buff.heater2_duty_cycle;
             break;
         case EPS2_PARAM_ID_HW_VERSION:
-            *value = eps_data_buff.firmware_version;
+            *value = eps_data_buff.hardware_version;
             break;
         case EPS2_PARAM_ID_FW_VERSION:
-            *value = eps_data_buff.hardware_version;
+            *value = eps_data_buff.firmware_version;
             break;
         case EPS2_PARAM_ID_MPPT_1_MODE:
             *value = eps_data_buff.mppt_1_mode;
@@ -533,11 +561,15 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
         case EPS2_PARAM_ID_DEVICE_ID:
             *value = eps_data_buff.device_id;
             break;
+        case EPS2_PARAM_ID_BEACON_ENABLE:
+            *value = eps_data_buff.beacon_enable;
+            break;
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
 			return -1;
     }
+    taskEXIT_CRITICAL();
 
     return 0;
 }

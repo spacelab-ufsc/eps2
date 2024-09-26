@@ -145,6 +145,15 @@ int mppt_algorithm(mppt_channel_t channel);
  */
 int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle);
 
+/**
+ * \brief Function to read the PWM duty cycle for a given channel.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ * \return The PWN duty cycle value for the chosen channel.
+ */
+uint8_t mppt_get_duty_cycle(mppt_channel_t channel);
+
 #endif /* MPPT_H_ */
 
 /** \} End of mppt group */
