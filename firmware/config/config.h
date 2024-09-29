@@ -79,7 +79,7 @@
 
 /* List of parameter IDs to send as beacon packet. */
 #define BEACON_PARAM_ID_LIST               \
-    EPS2_PARAM_ID_TIME_COUNTER,            \
+    EPS2_PARAM_ID_TIMESTAMP,               \
     EPS2_PARAM_ID_MCU_TEMP,                \
     EPS2_PARAM_ID_EPS_CURRENT,             \
     EPS2_PARAM_ID_RESET_COUNTER,           \
@@ -109,6 +109,12 @@
     EPS2_PARAM_ID_BAT_CHARGE,              \
     EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE, \
     EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE
+
+/* Callsign */
+#define CONFIG_SATELLITE_CALLSIGN                       " PY0EFS"   /* The callsign field must be 7 characters long! */
+
+/* Packets IDs */
+#define CONFIG_PKT_ID_BEACON                            0x00
     
 /* Memory adresses */
 #define CONFIG_MEM_ADR_SYS_TIME                         0

@@ -58,11 +58,11 @@ eps_data_t eps_data_buff = {
     .heater2_mode = 0,
     .heater2_duty_cycle = 50,
 
-    .beacon_enable = 0,
+    .beacon_enable = 1,
     
     .firmware_version = 0x00000300,
     .hardware_version = 0,
-    .time_counter_ms = 0,
+    .timestamp = 0,
     .reset_counter = 0,
     .device_id = 0xEEE2
 };

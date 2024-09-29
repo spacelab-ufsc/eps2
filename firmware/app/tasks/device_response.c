@@ -57,7 +57,7 @@ void vTaskDeviceResponse(void *pvParameters)
     };
     const uint8_t BEACON_PARAM_LIST_SIZE = sizeof(beacon_param_list) / sizeof(*beacon_param_list);
 
-    const uint8_t DEVICE_RESPONSE_BUFFER_SIZE = 1 + 4 * BEACON_PARAM_LIST_SIZE;
+    const uint8_t DEVICE_RESPONSE_BUFFER_SIZE = 9 + 4 * BEACON_PARAM_LIST_SIZE;
     uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
     uint32_t val = 0;
     uint8_t beacon_flag = 0;
@@ -67,11 +67,13 @@ void vTaskDeviceResponse(void *pvParameters)
         TickType_t last_cycle = xTaskGetTickCount();
 
         buf[0] = DEVICE_COMMAND_WRITE;
+        buf[1] = CONFIG_PKT_ID_BEACON;
+        memcpy(&buf[2], CONFIG_SATELLITE_CALLSIGN, 7);
         
         eps_buffer_read(EPS2_PARAM_ID_BEACON_ENABLE, &beacon_flag);
         if(beacon_flag > 0)
         {
-            for(uint8_t i = 0, j = 1; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
+            for(uint8_t i = 0, j = 9; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
             {
                 eps_buffer_read(beacon_param_list[i], &val);
                 buf[ j ] = (val >> 24) & 0xFF;
