@@ -42,6 +42,11 @@
 #include "device_response.h"
 #include "startup.h"
 
+/* Number of parameters in the list to be sent to TTC */
+#define BEACON_PARAM_LIST_SIZE          30
+/* Size of the buffer: command to write (1B) + packet ID (1B) + callsign (7B) + 4B for each parameters in the list  */
+#define DEVICE_RESPONSE_BUFFER_SIZE     9 + 4 * BEACON_PARAM_LIST_SIZE
+
 xTaskHandle xTaskDeviceResponseHandle;
 
 void vTaskDeviceResponse(void *pvParameters)
@@ -55,12 +60,10 @@ void vTaskDeviceResponse(void *pvParameters)
     uint8_t beacon_param_list[] = {
         BEACON_PARAM_ID_LIST,
     };
-    const uint8_t BEACON_PARAM_LIST_SIZE = sizeof(beacon_param_list) / sizeof(*beacon_param_list);
 
-    const uint8_t DEVICE_RESPONSE_BUFFER_SIZE = 9 + 4 * BEACON_PARAM_LIST_SIZE;
     uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
     uint32_t val = 0;
-    uint8_t beacon_flag = 0;
+    uint32_t beacon_flag = 0;
     
     while(1)
     {

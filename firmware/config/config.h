@@ -78,37 +78,37 @@
 #define CONFIG_DRIVERS_DEBUG_ENABLED                    0
 
 /* List of parameter IDs to send as beacon packet. */
-#define BEACON_PARAM_ID_LIST               \
-    EPS2_PARAM_ID_TIMESTAMP,               \
-    EPS2_PARAM_ID_MCU_TEMP,                \
-    EPS2_PARAM_ID_EPS_CURRENT,             \
-    EPS2_PARAM_ID_RESET_COUNTER,           \
-    EPS2_PARAM_ID_SP_MY_PX_VOLTAGE,        \
-    EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE,        \
-    EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE,        \
-    EPS2_PARAM_ID_SP_MY_CURRENT,           \
-    EPS2_PARAM_ID_SP_PY_CURRENT,           \
-    EPS2_PARAM_ID_SP_MX_CURRENT,           \
-    EPS2_PARAM_ID_SP_PX_CURRENT,           \
-    EPS2_PARAM_ID_SP_MZ_CURRENT,           \
-    EPS2_PARAM_ID_SP_PZ_CURRENT,           \
-    EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE,       \
-    EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE,       \
-    EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE,       \
-    EPS2_PARAM_ID_SP_VOLTAGE_MPPT,         \
-    EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE,  \
-    EPS2_PARAM_ID_RTD_0_TEMP,              \
-    EPS2_PARAM_ID_RTD_1_TEMP,              \
-    EPS2_PARAM_ID_RTD_2_TEMP,              \
-    EPS2_PARAM_ID_RTD_3_TEMP,              \
-    EPS2_PARAM_ID_RTD_4_TEMP,              \
-    EPS2_PARAM_ID_RTD_5_TEMP,              \
-    EPS2_PARAM_ID_RTD_6_TEMP,              \
-    EPS2_PARAM_ID_BAT_VOLTAGE,             \
-    EPS2_PARAM_ID_BAT_CURRENT,             \
-    EPS2_PARAM_ID_BAT_CHARGE,              \
-    EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE, \
-    EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE
+#define BEACON_PARAM_ID_LIST                            \
+        EPS2_PARAM_ID_TIMESTAMP,                        \
+        EPS2_PARAM_ID_MCU_TEMP,                         \
+        EPS2_PARAM_ID_EPS_CURRENT,                      \
+        EPS2_PARAM_ID_RESET_COUNTER,                    \
+        EPS2_PARAM_ID_SP_MY_PX_VOLTAGE,                 \
+        EPS2_PARAM_ID_SP_MX_PZ_VOLTAGE,                 \
+        EPS2_PARAM_ID_SP_MZ_PY_VOLTAGE,                 \
+        EPS2_PARAM_ID_SP_MY_CURRENT,                    \
+        EPS2_PARAM_ID_SP_PY_CURRENT,                    \
+        EPS2_PARAM_ID_SP_MX_CURRENT,                    \
+        EPS2_PARAM_ID_SP_PX_CURRENT,                    \
+        EPS2_PARAM_ID_SP_MZ_CURRENT,                    \
+        EPS2_PARAM_ID_SP_PZ_CURRENT,                    \
+        EPS2_PARAM_ID_MPPT_1_DUTY_CYCLE,                \
+        EPS2_PARAM_ID_MPPT_2_DUTY_CYCLE,                \
+        EPS2_PARAM_ID_MPPT_3_DUTY_CYCLE,                \
+        EPS2_PARAM_ID_SP_VOLTAGE_MPPT,                  \
+        EPS2_PARAM_ID_MAIN_POWER_BUS_VOLTAGE,           \
+        EPS2_PARAM_ID_RTD_0_TEMP,                       \
+        EPS2_PARAM_ID_RTD_1_TEMP,                       \
+        EPS2_PARAM_ID_RTD_2_TEMP,                       \
+        EPS2_PARAM_ID_RTD_3_TEMP,                       \
+        EPS2_PARAM_ID_RTD_4_TEMP,                       \
+        EPS2_PARAM_ID_RTD_5_TEMP,                       \
+        EPS2_PARAM_ID_RTD_6_TEMP,                       \
+        EPS2_PARAM_ID_BAT_VOLTAGE,                      \
+        EPS2_PARAM_ID_BAT_CURRENT,                      \
+        EPS2_PARAM_ID_BAT_CHARGE,                       \
+        EPS2_PARAM_ID_BAT_HEATER_1_DUTY_CYCLE,          \
+        EPS2_PARAM_ID_BAT_HEATER_2_DUTY_CYCLE
 
 /* Callsign */
 #define CONFIG_SATELLITE_CALLSIGN                       " PY0EFS"   /* The callsign field must be 7 characters long! */
