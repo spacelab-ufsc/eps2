@@ -58,7 +58,7 @@ eps_data_t eps_data_buff = {
     .heater2_mode = 0,
     .heater2_duty_cycle = 50,
 
-    .beacon_enable = 1,
+    .beacon_enable = 0,
     
     .firmware_version = 0x00000300,
     .hardware_version = 0,
