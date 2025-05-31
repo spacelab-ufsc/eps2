@@ -56,6 +56,7 @@ void vTaskParamServer(void *pvParameters)
 {
     BaseType_t result;
     uint32_t notified_value;
+    uint8_t comm_watchdog = 0U;
 
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_PARAM_SERVER_INIT_TIMEOUT_MS));
@@ -121,6 +122,8 @@ void vTaskParamServer(void *pvParameters)
                         default: 
                             break;
                     }
+
+                    comm_watchdog = 0U;
                 }
                 else 
                 {
@@ -161,6 +164,8 @@ void vTaskParamServer(void *pvParameters)
                         default: 
                             break;
                     }
+
+                    comm_watchdog = 0U;
                 }
                 else 
                 {
@@ -174,6 +179,14 @@ void vTaskParamServer(void *pvParameters)
             /* xTaskNotifyWait timed out. */
             sys_log_print_event_from_module(SYS_LOG_WARNING, TASK_PARAM_SERVER_NAME, "No command request received in the last minute");
             sys_log_new_line();
+
+            if (++comm_watchdog > 5U)
+            {
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "Param server communication watchdog timedout! Resetting...");
+                sys_log_new_line();
+
+                system_reset();
+            }
         }
     }
 }
