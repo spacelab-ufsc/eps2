@@ -196,6 +196,8 @@ void vTaskStartup(void *pvParameters)
     }
 #endif /* CONFIG_DEV_POWER_CONV_ENABLED */
 
+    (void)enable_payload_power();
+
     if (error_counter > 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_STARTUP_NAME, "Boot completed with ");
