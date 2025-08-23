@@ -62,7 +62,7 @@
 #define HEATER_DRIVER_CH_0            GPIO_PIN_18
 #define HEATER_DRIVER_CH_1            GPIO_PIN_19
 #define HEATER_RTD_CH_0              TEMP_SENSOR_RTD_CH_4
-#define HEATER_RTD_CH_1              TEMP_SENSOR_RTD_CH_5
+#define HEATER_RTD_CH_1              TEMP_SENSOR_RTD_CH_4
 #define HEATER_SENSOR_BOARD             TEMP_SENSOR_RTD_CH_3
 
 /**
