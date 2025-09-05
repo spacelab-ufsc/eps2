@@ -24,7 +24,7 @@
  * \brief Heater device definition.
  *
  * \author Jo�o Cl�udio <joaoclaudiobarcellos@gmail.com>
- * 
+ *
  * \version 0.2.11
  *
  * \date 2021/08/04
@@ -48,8 +48,8 @@
 /**
  * \brief Hysteresis controller parameters.
  */
-#define TEMP_LIMIT_MINIMUM                  200           /**< TODO. */
-#define TEMP_LIMIT_MAXIMUM                  305           /**< TODO. */
+#define TEMP_LIMIT_MINIMUM                  278
+#define TEMP_LIMIT_MAXIMUM                  288
 #define HEATER_OFF                          false
 #define HEATER_ON                           true
 
