@@ -1,62 +1,79 @@
 <h1 align="center">
-	ELECTRICAL POWER SYSTEM 2.0
+	ELECTRICAL POWER SYSTEM 2.0 (EPS2)
 	<br>
 </h1>
 
-<h4 align="center">Electrical power system module designed and developed by SpaceLab.</h4>
-
 <p align="center">
-	<a href="https://github.com/spacelab-ufsc/eps2/releases">
-		<img src="https://img.shields.io/badge/status-development-9cf?style=for-the-badge">
-	</a>
-    <a href="https://github.com/spacelab-ufsc/eps2/releases">
-        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/spacelab-ufsc/eps2?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/releases">
-        <img alt="GitHub commits since latest release (by date)" src="https://img.shields.io/github/commits-since/spacelab-ufsc/eps2/latest?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/commits/master">
-        <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/spacelab-ufsc/eps2?style=for-the-badge">
-	</a>
-    <a href="https://github.com/spacelab-ufsc/eps2/issues">
-        <img alt="GitHub issues" src="https://img.shields.io/github/issues/spacelab-ufsc/eps2?style=for-the-badge">
-	</a>
-    <a href="https://github.com/spacelab-ufsc/eps2/graphs/contributors">
-            <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/spacelab-ufsc/eps2?color=yellow&style=for-the-badge">
-	</a>
+    <!-- Versioning -->
+    <a href="https://github.com/spacelab-ufsc/spacelab#versioning"><img alt="Versioning" src="https://img.shields.io/badge/status-in_development-red"></a>
+    <!-- Releases -->
+    <a href="https://github.com/spacelab-ufsc/eps2/releases"><img alt="GitHub release" src="https://img.shields.io/github/v/release/spacelab-ufsc/eps2"></a>
+    <!-- Commits since the latest release -->
+    <a href="https://github.com/spacelab-ufsc/eps2/releases"><img alt="GitHub commits since latest release (by date)" src="https://img.shields.io/github/commits-since/spacelab-ufsc/eps2/latest"></a>
+    <!-- Last commit -->
+    <a href="https://github.com/spacelab-ufsc/eps2/commits/master"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/spacelab-ufsc/eps2"></a>
+    <!-- Issues -->
+    <a href="https://github.com/spacelab-ufsc/eps2/issues"><img alt="GitHub issues or pull requests" src="https://img.shields.io/github/issues/spacelab-ufsc/eps2"></a>
+    <!-- PRs -->
+    <a href="https://github.com/spacelab-ufsc/eps2/pulls"><img alt="GitHub issues or pull requests" src="https://img.shields.io/github/issues-pr/spacelab-ufsc/eps2"></a>
+    <!-- Contributors -->
+    <a href="https://github.com/spacelab-ufsc/eps2/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/spacelab-ufsc/eps2"></a>
 </p>
 
-<p align="center">
-  	<a href="#overview">Overview</a> •
-  	<a href="#repository-organization">Repository Organizarion</a> •
-  	<a href="#license">License</a> •
-  	<a href="#releases">Releases</a> •
-  	<a href="#notes">Notes</a>
-</p>
-
-<p align="center">
-    <img width="70%" src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2-pcb-3d.png">
-</p>
-
-## Overview
-
-The EPS2 has been designed to harvest, store and distribute energy for the GOLDS-UFSC CubeSat mission. The energy harvesting system is based on solar energy conversion through 10 solar panels attached to the structure. The EPS is designed to operate the solar panels at their maximum power point. The harvested solar energy is stored in 4 lithium-ion batteries connected in series/parallel. The energy distribution is done by several integrated DC-DC converters. The full EPS system is composed of the solar panels, the EPS PCB, and the Batteries PCB.
+<details>
+    <summary><b>Summary</b></summary>
+    <ol>
+        <li>
+            <a href="#overview">Overview</a>
+        </li>
+        <li>
+            <a href="#repository-organization">Repository Organization</a>
+        </li>
+        <li>
+            <a href="#license">License</a>
+        </li>
+        <li>
+            <a href="#releases">Releases</a>
+        </li>
+        <li>
+            <a href="#notes">Notes</a>
+        </li>
+        <li>
+            <a href="#references">References</a>
+        </li>
+    </ol>
+</details>
 
 ## Repository Organization
-	- doc: Technical EPS2 documentation (including firmware, hardware, user guide, and datasheet).
-	- firmware: Electrical power system module firmware project (sources and configs).
-	- hardware: Electrical power system module hardware project (sources and outputs).
+`documentation`: Technical EPS2's documentation.
+
+`firmware`: EPS2's firmware project (sources and configs).
+
+`hardware`: EPS2's hardware project (sources and outputs).
+
+## Overview
+The **EPS2** [[1]](#1) was designed to collect, store, and distribute energy for GOLDS-UFSC and future SpaceLab missions, prioritizing practicality. It is highly based on the EPS1, used in FloripaSat-1 [[2]](#2). Supporting both 1U and 2U CubeSats, this EPS can interface with up to 10 solar panels attached to the structure. It operates the solar panels at their maximum power point (MPP) using the perturb and observe (P&O) technique to control three DC-DC converters at the input. The collected energy is stored in lithium-ion batteries, with power distribution managed by integrated DC-DC converters, generating 5V, 6V and 3.3V buses. This model features a microprocessor, the MSP430, which collects internal data (e.g., current, voltage, temperature) and manages their storage and transmission to the OBDH.
+
+<p align="center">
+    <img src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2-pcb-3d.png">
+</p>
+
+<p align="center">
+    <a href="https://github.com/spacelab-ufsc/eps2/issues/new?labels=bug"><img alt="Static Badge" src="https://img.shields.io/badge/open_an_issue-to_report_a_bug-red"></a>
+    <a href="https://github.com/spacelab-ufsc/eps2/issues/new?labels=enhancement"><img alt="Static Badge" src="https://img.shields.io/badge/open_an_issue-to_request_a_feature-yellow"></a>
+    <a href="https://github.com/spacelab-ufsc/eps2/issues/new?labels=question,help+wanted"><img alt="Static Badge" src="https://img.shields.io/badge/open_an_issue-to_request_more_information_or_help-brightgreen"></a>
+</p>
 
 ## License
-
-This project is open-source and under the GPLv3 license, but some third-part files and libraries are subjected to specific terms and comercial use might be prohibited. Therefore, the purpose of the open access approach is to support further educational use and academic projects.
+This project is open-source under three different licenses: CERN Open Hardware License v2.0 for hardware, GNU General Public License v3.0 for firmware, and CC BY-SA 4.0 for documentation.
 
 ## Releases
-
-The EPS2 software and hardware releases are synchronized in order to garantee compatibility. Then, using diferent versions might lead to unpredictable behavior. Refer to the [documentation](https://github.com/spacelab-ufsc/eps2/tree/master/doc/) for compatibility notes.
+Releases are published after verifying that all components of the project — hardware, firmware, and documentation — are synchronized and compatible, ensuring functionality and cohesion. Using different versions of hardware, firmware, or documentation projects can lead to misunderstandings or unpredictable behavior. Please refer to the **documentation** for more details.
 
 ## Notes
+For more info about the SpaceLab, access our [GitHub](https://github.com/spacelab-ufsc/spacelab), [Linkedin](https://br.linkedin.com/company/spacelab-ufsc) or our [website](https://spacelab.ufsc.br/en/home/).
 
-More info about the EPS2 target mission: [FloripaSat-2](https://github.com/spacelab-ufsc/floripasat2-doc)
+## References
+<a id="1">[1]</a> G. M. Marcelino, A. M. P. de Mattos, J. C. E. Barcellos, B. F. Ribeiro, L. O. Seman, E. M. Filho and E. A. Bezerra, "FloripaSat-2: An Open-Source Platform for CubeSats," in IEEE Embedded Systems Letters, vol. 16, no. 1, pp. 77-80, 2024, available at <a href="https://repositorio.ufsc.br/bitstream/handle/123456789/247559/PEEL2103-D.pdf?sequence=1&isAllowed=y"> this link</a>.
 
-More info about the SpaceLab: [GitHub](https://github.com/spacelab-ufsc/spacelab) and [Website](https://spacelab.ufsc.br/en/home/)
+<a id="1">[2]</a> SpaceLab, "Electrical Power System (EPS)," in GitHub, 2019, available at <a href="https://github.com/spacelab-ufsc/eps"> this link</a>.
