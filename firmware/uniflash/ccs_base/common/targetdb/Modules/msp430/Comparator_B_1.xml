@@ -1,0 +1,161 @@
+<module HW_revision="" XML_version="1" description="Comparator B" id="Comparator B">
+<register acronym="CBCTL0" description="Comparator B Control Register 0" id="CBCTL0" offset=" 0x08C0" width="16">
+<bitfield begin="3" description="Comp. B Pos. Channel Input Select 0" end="0" id="CBIPSEL" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="Comp. B V+ terminal Input Select: Channel 0" id="CBIPSEL_0" token="CBIPSEL_0" value="0"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 1" id="CBIPSEL_1" token="CBIPSEL_1" value="1"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 2" id="CBIPSEL_2" token="CBIPSEL_2" value="2"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 3" id="CBIPSEL_3" token="CBIPSEL_3" value="3"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 4" id="CBIPSEL_4" token="CBIPSEL_4" value="4"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 5" id="CBIPSEL_5" token="CBIPSEL_5" value="5"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 6" id="CBIPSEL_6" token="CBIPSEL_6" value="6"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 7" id="CBIPSEL_7" token="CBIPSEL_7" value="7"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 8" id="CBIPSEL_8" token="CBIPSEL_8" value="8"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 9" id="CBIPSEL_9" token="CBIPSEL_9" value="9"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 10" id="CBIPSEL_10" token="CBIPSEL_10" value="10"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 11" id="CBIPSEL_11" token="CBIPSEL_11" value="11"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 12" id="CBIPSEL_12" token="CBIPSEL_12" value="12"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 13" id="CBIPSEL_13" token="CBIPSEL_13" value="13"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 14" id="CBIPSEL_14" token="CBIPSEL_14" value="14"></bitenum>
+<bitenum description="Comp. B V+ terminal Input Select: Channel 15" id="CBIPSEL_15" token="CBIPSEL_15" value="15"></bitenum></bitfield>
+<bitfield begin="7" description="Comp. B Pos. Channel Input Enable" end="7" id="CBIPEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="Comp. B Neg. Channel Input Select 0" end="8" id="CBIMSEL" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="Comp. B V- Terminal Input Select: Channel 0" id="CBIMSEL_0" token="CBIMSEL_0" value="0"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 1" id="CBIMSEL_1" token="CBIMSEL_1" value="1"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 2" id="CBIMSEL_2" token="CBIMSEL_2" value="2"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 3" id="CBIMSEL_3" token="CBIMSEL_3" value="3"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 4" id="CBIMSEL_4" token="CBIMSEL_4" value="4"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 5" id="CBIMSEL_5" token="CBIMSEL_5" value="5"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 6" id="CBIMSEL_6" token="CBIMSEL_6" value="6"></bitenum>
+<bitenum description="Comp. B V- Terminal Input Select: Channel 7" id="CBIMSEL_7" token="CBIMSEL_7" value="7"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 8" id="CBIMSEL_8" token="CBIMSEL_8" value="8"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 9" id="CBIMSEL_9" token="CBIMSEL_9" value="9"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 10" id="CBIMSEL_10" token="CBIMSEL_10" value="10"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 11" id="CBIMSEL_11" token="CBIMSEL_11" value="11"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 12" id="CBIMSEL_12" token="CBIMSEL_12" value="12"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 13" id="CBIMSEL_13" token="CBIMSEL_13" value="13"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 14" id="CBIMSEL_14" token="CBIMSEL_14" value="14"></bitenum>
+<bitenum description="Comp. B V- terminal Input Select: Channel 15" id="CBIMSEL_15" token="CBIMSEL_15" value="15"></bitenum></bitfield>
+<bitfield begin="15" description="Comp. B Neg. Channel Input Enable" end="15" id="CBIMEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="CBCTL1" description="Comparator B Control Register 1" id="CBCTL1" offset=" 0x08C2" width="16">
+<bitfield begin="0" description="Comp. B Output" end="0" id="CBOUT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Comp. B Output Polarity" end="1" id="CBOUTPOL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Comp. B Enable Output Filter" end="2" id="CBF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Comp. B Interrupt Edge Select" end="3" id="CBIES" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Comp. B Input Short" end="4" id="CBSHORT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Comp. B Exchange Inputs" end="5" id="CBEX" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Comp. B Filter delay Bit 0" end="6" id="CBFDLY" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Comp. B Filter delay 0 : 450ns" id="CBFDLY_0" token="CBFDLY_0" value="0"></bitenum>
+<bitenum description="Comp. B Filter delay 1 : 900ns" id="CBFDLY_1" token="CBFDLY_1" value="1"></bitenum>
+<bitenum description="Comp. B Filter delay 2 : 1800ns" id="CBFDLY_2" token="CBFDLY_2" value="2"></bitenum>
+<bitenum description="Comp. B Filter delay 3 : 3600ns" id="CBFDLY_3" token="CBFDLY_3" value="3"></bitenum></bitfield>
+<bitfield begin="9" description="Comp. B Power Mode Bit 0" end="8" id="CBPWRMD" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Comp. B Power Mode 0 : High speed" id="CBPWRMD_0" token="CBPWRMD_0" value="0"></bitenum>
+<bitenum description="Comp. B Power Mode 1 : Normal" id="CBPWRMD_1" token="CBPWRMD_1" value="1"></bitenum>
+<bitenum description="Comp. B Power Mode 2 : Ultra-Low" id="CBPWRMD_2" token="CBPWRMD_2" value="2"></bitenum>
+<bitenum description="Comp. B Power Mode 3 : Reserved" id="CBPWRMD_3" token="CBPWRMD_3" value="3"></bitenum></bitfield>
+<bitfield begin="10" description="Comp. B enable" end="10" id="CBON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="Comp. B CBMRV Level" end="11" id="CBMRVL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="Comp. B Output selects between VREF0 or VREF1" end="12" id="CBMRVS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="CBCTL2" description="Comparator B Control Register 2" id="CBCTL2" offset=" 0x08C4" width="16">
+<bitfield begin="4" description="Comp. B Reference 0 Resistor Select Bit : 0" end="0" id="CBREF0" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="Comp. B Int. Ref.0 Select 0 : 1/32" id="CBREF0_0" token="CBREF0_0" value="0"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 1 : 2/32" id="CBREF0_1" token="CBREF0_1" value="1"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 2 : 3/32" id="CBREF0_2" token="CBREF0_2" value="2"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 3 : 4/32" id="CBREF0_3" token="CBREF0_3" value="3"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 4 : 5/32" id="CBREF0_4" token="CBREF0_4" value="4"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 5 : 6/32" id="CBREF0_5" token="CBREF0_5" value="5"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 6 : 7/32" id="CBREF0_6" token="CBREF0_6" value="6"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 7 : 8/32" id="CBREF0_7" token="CBREF0_7" value="7"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 0 : 9/32" id="CBREF0_8" token="CBREF0_8" value="8"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 1 : 10/32" id="CBREF0_9" token="CBREF0_9" value="9"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 2 : 11/32" id="CBREF0_10" token="CBREF0_10" value="10"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 3 : 12/32" id="CBREF0_11" token="CBREF0_11" value="11"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 4 : 13/32" id="CBREF0_12" token="CBREF0_12" value="12"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 5 : 14/32" id="CBREF0_13" token="CBREF0_13" value="13"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 6 : 15/32" id="CBREF0_14" token="CBREF0_14" value="14"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 7 : 16/32" id="CBREF0_15" token="CBREF0_15" value="15"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 0 : 17/32" id="CBREF0_16" token="CBREF0_16" value="16"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 1 : 18/32" id="CBREF0_17" token="CBREF0_17" value="17"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 2 : 19/32" id="CBREF0_18" token="CBREF0_18" value="18"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 3 : 20/32" id="CBREF0_19" token="CBREF0_19" value="19"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 4 : 21/32" id="CBREF0_20" token="CBREF0_20" value="20"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 5 : 22/32" id="CBREF0_21" token="CBREF0_21" value="21"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 6 : 23/32" id="CBREF0_22" token="CBREF0_22" value="22"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 7 : 24/32" id="CBREF0_23" token="CBREF0_23" value="23"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 0 : 25/32" id="CBREF0_24" token="CBREF0_24" value="24"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 1 : 26/32" id="CBREF0_25" token="CBREF0_25" value="25"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 2 : 27/32" id="CBREF0_26" token="CBREF0_26" value="26"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 3 : 28/32" id="CBREF0_27" token="CBREF0_27" value="27"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 4 : 29/32" id="CBREF0_28" token="CBREF0_28" value="28"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 5 : 30/32" id="CBREF0_29" token="CBREF0_29" value="29"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 6 : 31/32" id="CBREF0_30" token="CBREF0_30" value="30"></bitenum>
+<bitenum description="Comp. B Int. Ref.0 Select 7 : 32/32" id="CBREF0_31" token="CBREF0_31" value="31"></bitenum></bitfield>
+<bitfield begin="5" description="Comp. B Reference select" end="5" id="CBRSEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Comp. B Reference Source Bit : 0" end="6" id="CBRS" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Comp. B Reference Source 0 : Off" id="CBRS_0" token="CBRS_0" value="0"></bitenum>
+<bitenum description="Comp. B Reference Source 1 : Vcc" id="CBRS_1" token="CBRS_1" value="1"></bitenum>
+<bitenum description="Comp. B Reference Source 2 : Shared Ref." id="CBRS_2" token="CBRS_2" value="2"></bitenum>
+<bitenum description="Comp. B Reference Source 3 : Shared Ref. / Off" id="CBRS_3" token="CBRS_3" value="3"></bitenum></bitfield>
+<bitfield begin="12" description="Comp. B Reference 1 Resistor Select Bit : 0" end="8" id="CBREF1" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="Comp. B Int. Ref.1 Select 0 : 1/32" id="CBREF1_0" token="CBREF1_0" value="0"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 1 : 2/32" id="CBREF1_1" token="CBREF1_1" value="1"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 2 : 3/32" id="CBREF1_2" token="CBREF1_2" value="2"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 3 : 4/32" id="CBREF1_3" token="CBREF1_3" value="3"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 4 : 5/32" id="CBREF1_4" token="CBREF1_4" value="4"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 5 : 6/32" id="CBREF1_5" token="CBREF1_5" value="5"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 6 : 7/32" id="CBREF1_6" token="CBREF1_6" value="6"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 7 : 8/32" id="CBREF1_7" token="CBREF1_7" value="7"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 0 : 9/32" id="CBREF1_8" token="CBREF1_8" value="8"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 1 : 10/32" id="CBREF1_9" token="CBREF1_9" value="9"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 2 : 11/32" id="CBREF1_10" token="CBREF1_10" value="10"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 3 : 12/32" id="CBREF1_11" token="CBREF1_11" value="11"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 4 : 13/32" id="CBREF1_12" token="CBREF1_12" value="12"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 5 : 14/32" id="CBREF1_13" token="CBREF1_13" value="13"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 6 : 15/32" id="CBREF1_14" token="CBREF1_14" value="14"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 7 : 16/32" id="CBREF1_15" token="CBREF1_15" value="15"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 0 : 17/32" id="CBREF1_16" token="CBREF1_16" value="16"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 1 : 18/32" id="CBREF1_17" token="CBREF1_17" value="17"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 2 : 19/32" id="CBREF1_18" token="CBREF1_18" value="18"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 3 : 20/32" id="CBREF1_19" token="CBREF1_19" value="19"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 4 : 21/32" id="CBREF1_20" token="CBREF1_20" value="20"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 5 : 22/32" id="CBREF1_21" token="CBREF1_21" value="21"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 6 : 23/32" id="CBREF1_22" token="CBREF1_22" value="22"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 7 : 24/32" id="CBREF1_23" token="CBREF1_23" value="23"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 0 : 25/32" id="CBREF1_24" token="CBREF1_24" value="24"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 1 : 26/32" id="CBREF1_25" token="CBREF1_25" value="25"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 2 : 27/32" id="CBREF1_26" token="CBREF1_26" value="26"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 3 : 28/32" id="CBREF1_27" token="CBREF1_27" value="27"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 4 : 29/32" id="CBREF1_28" token="CBREF1_28" value="28"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 5 : 30/32" id="CBREF1_29" token="CBREF1_29" value="29"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 6 : 31/32" id="CBREF1_30" token="CBREF1_30" value="30"></bitenum>
+<bitenum description="Comp. B Int. Ref.1 Select 7 : 32/32" id="CBREF1_31" token="CBREF1_31" value="31"></bitenum></bitfield>
+<bitfield begin="14" description="Comp. B Reference voltage level Bit : 0" end="13" id="CBREFL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Comp. B Reference voltage level 0 : None" id="CBREFL_0" token="CBREFL_0" value="0"></bitenum>
+<bitenum description="Comp. B Reference voltage level 1 : 1.5V" id="CBREFL_1" token="CBREFL_1" value="1"></bitenum>
+<bitenum description="Comp. B Reference voltage level 2 : 2.0V" id="CBREFL_2" token="CBREFL_2" value="2"></bitenum>
+<bitenum description="Comp. B Reference voltage level 3 : 2.5V" id="CBREFL_3" token="CBREFL_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="Comp. B Reference Accuracy" end="15" id="CBREFACC" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="CBCTL3" description="Comparator B Control Register 3" id="CBCTL3" offset=" 0x08C6" width="16">
+<bitfield begin="0" description="Comp. B Disable Input Buffer of Port Register .0" end="0" id="CBPD0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Comp. B Disable Input Buffer of Port Register .1" end="1" id="CBPD1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Comp. B Disable Input Buffer of Port Register .2" end="2" id="CBPD2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Comp. B Disable Input Buffer of Port Register .3" end="3" id="CBPD3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Comp. B Disable Input Buffer of Port Register .4" end="4" id="CBPD4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Comp. B Disable Input Buffer of Port Register .5" end="5" id="CBPD5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Comp. B Disable Input Buffer of Port Register .6" end="6" id="CBPD6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Comp. B Disable Input Buffer of Port Register .7" end="7" id="CBPD7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="Comp. B Disable Input Buffer of Port Register .8" end="8" id="CBPD8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="Comp. B Disable Input Buffer of Port Register .9" end="9" id="CBPD9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="Comp. B Disable Input Buffer of Port Register .10" end="10" id="CBPD10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="Comp. B Disable Input Buffer of Port Register .11" end="11" id="CBPD11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="Comp. B Disable Input Buffer of Port Register .12" end="12" id="CBPD12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="Comp. B Disable Input Buffer of Port Register .13" end="13" id="CBPD13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="Comp. B Disable Input Buffer of Port Register .14" end="14" id="CBPD14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="Comp. B Disable Input Buffer of Port Register .15" end="15" id="CBPD15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="CBINT" description="Comparator B Interrupt Register" id="CBINT" offset=" 0x08CC" width="16">
+<bitfield begin="0" description="Comp. B Interrupt Flag" end="0" id="CBIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Comp. B Interrupt Flag Inverted Polarity" end="1" id="CBIIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="Comp. B Interrupt Enable" end="8" id="CBIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="Comp. B Interrupt Enable Inverted Polarity" end="9" id="CBIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="CBIV" description="Comparator B Interrupt Vector Word" id="CBIV" offset=" 0x08CE" width="16"></register>
+</module>

@@ -1,0 +1,102 @@
+<module HW_revision="" XML_version="1" description="USCI_A2  UART Mode" id="USCI_A2  UART Mode">
+<register acronym="UCA2CTLW0" description="USCI A2 Control Word Register 0" id="UCA2CTLW0" offset=" 0x0640" width="16"></register>
+<register acronym="UCA2CTL0" description="USCI A2 Control Register 0" id="UCA2CTL0" offset=" 0x0641" width="8">
+<bitfield begin="0" description="Sync-Mode  0:UART-Mode / 1:SPI-Mode" end="0" id="UCSYNC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Async. Mode: USCI Mode 1" end="1" id="UCMODE" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Sync. Mode: USCI Mode: 0" id="UCMODE_0" token="UCMODE_0" value="0"></bitenum>
+<bitenum description="Sync. Mode: USCI Mode: 1" id="UCMODE_1" token="UCMODE_1" value="1"></bitenum>
+<bitenum description="Sync. Mode: USCI Mode: 2" id="UCMODE_2" token="UCMODE_2" value="2"></bitenum>
+<bitenum description="Sync. Mode: USCI Mode: 3" id="UCMODE_3" token="UCMODE_3" value="3"></bitenum></bitfield>
+<bitfield begin="3" description="Async. Mode: Stop Bits  0:one / 1: two" end="3" id="UCSPB" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Async. Mode: Data Bits  0:8-bits / 1:7-bits" end="4" id="UC7BIT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Async. Mode: MSB first  0:LSB / 1:MSB" end="5" id="UCMSB" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Async. Mode: Parity     0:odd / 1:even" end="6" id="UCPAR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Async. Mode: Parity enable" end="7" id="UCPEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2CTL1" description="USCI A2 Control Register 1" id="UCA2CTL1" offset=" 0x0640" width="8">
+<bitfield begin="0" description="USCI Software Reset" end="0" id="UCSWRST" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Send next Data as Break" end="1" id="UCTXBRK" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Send next Data as Address" end="2" id="UCTXADDR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Dormant (Sleep) Mode" end="3" id="UCDORM" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Break interrupt enable" end="4" id="UCBRKIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="RX Error interrupt enable" end="5" id="UCRXEIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USCI 0 Clock Source Select 1" end="6" id="UCSSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="USCI 0 Clock Source: 0" id="UCSSEL_0" token="UCSSEL_0" value="0"></bitenum>
+<bitenum description="USCI 0 Clock Source: 1" id="UCSSEL_1" token="UCSSEL_1" value="1"></bitenum>
+<bitenum description="USCI 0 Clock Source: 2" id="UCSSEL_2" token="UCSSEL_2" value="2"></bitenum>
+<bitenum description="USCI 0 Clock Source: 3" id="UCSSEL_3" token="UCSSEL_3" value="3"></bitenum></bitfield></register>
+<register acronym="UCA2BRW" description="USCI A2 Baud Word Rate 0" id="UCA2BRW" offset=" 0x0646" width="16"></register>
+<register acronym="UCA2BR0" description="USCI A2 Baud Rate 0" id="UCA2BR0" offset=" 0x0646" width="8"></register>
+<register acronym="UCA2BR1" description="USCI A2 Baud Rate 1" id="UCA2BR1" offset=" 0x0647" width="8"></register>
+<register acronym="UCA2MCTL" description="USCI A2 Modulation Control" id="UCA2MCTL" offset=" 0x0648" width="8">
+<bitfield begin="0" description="USCI 16-times Oversampling enable" end="0" id="UCOS16" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USCI Second Stage Modulation Select 2" end="1" id="UCBRS" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="USCI Second Stage Modulation: 0" id="UCBRS_0" token="UCBRS_0" value="0"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 1" id="UCBRS_1" token="UCBRS_1" value="1"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 2" id="UCBRS_2" token="UCBRS_2" value="2"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 3" id="UCBRS_3" token="UCBRS_3" value="3"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 4" id="UCBRS_4" token="UCBRS_4" value="4"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 5" id="UCBRS_5" token="UCBRS_5" value="5"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 6" id="UCBRS_6" token="UCBRS_6" value="6"></bitenum>
+<bitenum description="USCI Second Stage Modulation: 7" id="UCBRS_7" token="UCBRS_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="USCI First Stage Modulation Select 3" end="4" id="UCBRF" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="USCI First Stage Modulation: 0" id="UCBRF_0" token="UCBRF_0" value="0"></bitenum>
+<bitenum description="USCI First Stage Modulation: 1" id="UCBRF_1" token="UCBRF_1" value="1"></bitenum>
+<bitenum description="USCI First Stage Modulation: 2" id="UCBRF_2" token="UCBRF_2" value="2"></bitenum>
+<bitenum description="USCI First Stage Modulation: 3" id="UCBRF_3" token="UCBRF_3" value="3"></bitenum>
+<bitenum description="USCI First Stage Modulation: 4" id="UCBRF_4" token="UCBRF_4" value="4"></bitenum>
+<bitenum description="USCI First Stage Modulation: 5" id="UCBRF_5" token="UCBRF_5" value="5"></bitenum>
+<bitenum description="USCI First Stage Modulation: 6" id="UCBRF_6" token="UCBRF_6" value="6"></bitenum>
+<bitenum description="USCI First Stage Modulation: 7" id="UCBRF_7" token="UCBRF_7" value="7"></bitenum>
+<bitenum description="USCI First Stage Modulation: 8" id="UCBRF_8" token="UCBRF_8" value="8"></bitenum>
+<bitenum description="USCI First Stage Modulation: 9" id="UCBRF_9" token="UCBRF_9" value="9"></bitenum>
+<bitenum description="USCI First Stage Modulation: A" id="UCBRF_10" token="UCBRF_10" value="10"></bitenum>
+<bitenum description="USCI First Stage Modulation: B" id="UCBRF_11" token="UCBRF_11" value="11"></bitenum>
+<bitenum description="USCI First Stage Modulation: C" id="UCBRF_12" token="UCBRF_12" value="12"></bitenum>
+<bitenum description="USCI First Stage Modulation: D" id="UCBRF_13" token="UCBRF_13" value="13"></bitenum>
+<bitenum description="USCI First Stage Modulation: E" id="UCBRF_14" token="UCBRF_14" value="14"></bitenum>
+<bitenum description="USCI First Stage Modulation: F" id="UCBRF_15" token="UCBRF_15" value="15"></bitenum></bitfield></register>
+<register acronym="UCA2STAT" description="USCI A2 Status Register" id="UCA2STAT" offset=" 0x064A" width="8">
+<bitfield begin="0" description="USCI Busy Flag" end="0" id="UCBUSY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USCI Address received Flag" end="1" id="UCADDR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="USCI RX Error Flag" end="2" id="UCRXERR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="USCI Break received" end="3" id="UCBRK" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="USCI Parity Error Flag" end="4" id="UCPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="USCI Overrun Error Flag" end="5" id="UCOE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="USCI Frame Error Flag" end="6" id="UCFE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="USCI Listen mode" end="7" id="UCLISTEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2RXBUF" description="USCI A2 Receive Buffer" id="UCA2RXBUF" offset=" 0x064C" width="8"></register>
+<register acronym="UCA2TXBUF" description="USCI A2 Transmit Buffer" id="UCA2TXBUF" offset=" 0x064E" width="8"></register>
+<register acronym="UCA2ABCTL" description="USCI A2 LIN Control" id="UCA2ABCTL" offset=" 0x0650" width="8">
+<bitfield begin="0" description="Auto Baud Rate detect enable" end="0" id="UCABDEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Break Timeout error" end="2" id="UCBTOE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Sync-Field Timeout error" end="3" id="UCSTOE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Break Sync Delimiter 0" end="4" id="UCDELIM0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Break Sync Delimiter 1" end="5" id="UCDELIM1" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2IRCTL" description="USCI A2 IrDA Transmit Control" id="UCA2IRCTL" offset=" 0x0652" width="16"></register>
+<register acronym="UCA2IRTCTL" description="USCI A2 IrDA Transmit Control" id="UCA2IRTCTL" offset=" 0x0652" width="8">
+<bitfield begin="0" description="IRDA Encoder/Decoder enable" end="0" id="UCIREN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="IRDA Transmit Pulse Clock Select" end="1" id="UCIRTXCLK" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="IRDA Transmit Pulse Length 0" end="2" id="UCIRTXPL0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="IRDA Transmit Pulse Length 1" end="3" id="UCIRTXPL1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="IRDA Transmit Pulse Length 2" end="4" id="UCIRTXPL2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="IRDA Transmit Pulse Length 3" end="5" id="UCIRTXPL3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="IRDA Transmit Pulse Length 4" end="6" id="UCIRTXPL4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="IRDA Transmit Pulse Length 5" end="7" id="UCIRTXPL5" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2IRRCTL" description="USCI A2 IrDA Receive Control" id="UCA2IRRCTL" offset=" 0x0653" width="8">
+<bitfield begin="0" description="IRDA Receive Filter enable" end="0" id="UCIRRXFE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="IRDA Receive Input Polarity" end="1" id="UCIRRXPL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="IRDA Receive Filter Length 0" end="2" id="UCIRRXFL0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="IRDA Receive Filter Length 1" end="3" id="UCIRRXFL1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="IRDA Receive Filter Length 2" end="4" id="UCIRRXFL2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="IRDA Receive Filter Length 3" end="5" id="UCIRRXFL3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="IRDA Receive Filter Length 4" end="6" id="UCIRRXFL4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="IRDA Receive Filter Length 5" end="7" id="UCIRRXFL5" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2ICTL" description="USCI A2 Interrupt Enable Register" id="UCA2ICTL" offset=" 0x065C" width="16"></register>
+<register acronym="UCA2IE" description="USCI A2 Interrupt Enable Register" id="UCA2IE" offset=" 0x065C" width="8">
+<bitfield begin="0" description="USCI Receive Interrupt Enable" end="0" id="UCRXIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USCI Transmit Interrupt Enable" end="1" id="UCTXIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2IFG" description="USCI A2 Interrupt Flags Register" id="UCA2IFG" offset=" 0x065D" width="8">
+<bitfield begin="0" description="USCI Receive Interrupt Flag" end="0" id="UCRXIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="USCI Transmit Interrupt Flag" end="1" id="UCTXIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="UCA2IV" description="USCI A2 Interrupt Vector Register" id="UCA2IV" offset=" 0x065E" width="16"></register>
+</module>

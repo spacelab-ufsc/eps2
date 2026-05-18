@@ -1,0 +1,56 @@
+<module HW_revision="" XML_version="1" description="Port 9" id="Port 9">
+<register acronym="P9IN" description="Port 9 Input" id="P9IN" offset=" 0x0280" width="8">
+<bitfield begin="0" description="P9IN0" end="0" id="P9IN0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="P9IN1" end="1" id="P9IN1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="P9IN2" end="2" id="P9IN2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="P9IN3" end="3" id="P9IN3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="P9IN4" end="4" id="P9IN4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="P9IN5" end="5" id="P9IN5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="P9IN6" end="6" id="P9IN6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="P9IN7" end="7" id="P9IN7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P9OUT" description="Port 9 Output" id="P9OUT" offset=" 0x0282" width="8">
+<bitfield begin="0" description="P9OUT0" end="0" id="P9OUT0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="P9OUT1" end="1" id="P9OUT1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="P9OUT2" end="2" id="P9OUT2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="P9OUT3" end="3" id="P9OUT3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="P9OUT4" end="4" id="P9OUT4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="P9OUT5" end="5" id="P9OUT5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="P9OUT6" end="6" id="P9OUT6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="P9OUT7" end="7" id="P9OUT7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P9DIR" description="Port 9 Direction" id="P9DIR" offset=" 0x0284" width="8">
+<bitfield begin="0" description="P9DIR0" end="0" id="P9DIR0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="P9DIR1" end="1" id="P9DIR1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="P9DIR2" end="2" id="P9DIR2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="P9DIR3" end="3" id="P9DIR3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="P9DIR4" end="4" id="P9DIR4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="P9DIR5" end="5" id="P9DIR5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="P9DIR6" end="6" id="P9DIR6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="P9DIR7" end="7" id="P9DIR7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P9REN" description="Port 9 Resistor Enable" id="P9REN" offset=" 0x0286" width="8">
+<bitfield begin="0" description="P9REN0" end="0" id="P9REN0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="P9REN1" end="1" id="P9REN1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="P9REN2" end="2" id="P9REN2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="P9REN3" end="3" id="P9REN3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="P9REN4" end="4" id="P9REN4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="P9REN5" end="5" id="P9REN5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="P9REN6" end="6" id="P9REN6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="P9REN7" end="7" id="P9REN7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P9DS" description="Port 9 Drive Strenght" id="P9DS" offset=" 0x0288" width="8">
+<bitfield begin="0" description="P9DS0" end="0" id="P9DS0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="P9DS1" end="1" id="P9DS1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="P9DS2" end="2" id="P9DS2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="P9DS3" end="3" id="P9DS3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="P9DS4" end="4" id="P9DS4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="P9DS5" end="5" id="P9DS5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="P9DS6" end="6" id="P9DS6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="P9DS7" end="7" id="P9DS7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="P9SEL" description="Port 9 Selection" id="P9SEL" offset=" 0x028A" width="8">
+<bitfield begin="0" description="P9SEL0" end="0" id="P9SEL0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="P9SEL1" end="1" id="P9SEL1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="P9SEL2" end="2" id="P9SEL2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="P9SEL3" end="3" id="P9SEL3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="P9SEL4" end="4" id="P9SEL4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="P9SEL5" end="5" id="P9SEL5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="P9SEL6" end="6" id="P9SEL6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="P9SEL7" end="7" id="P9SEL7" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

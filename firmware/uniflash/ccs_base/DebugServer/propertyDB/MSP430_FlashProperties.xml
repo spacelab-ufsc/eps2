@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PropertyList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <!-- MSP430 Nodes-->
+    <node id="FlashProgrammerNode">
+        <name>MSP430 Flash Settings</name>
+        <children>
+			<child>TargetVoltage</child>
+			<child>MSP430DownloadOptionsGroup</child>
+			<child>MSP430FlashEraseGroup</child>
+			<child>MSP430SecurityGroup</child>
+			<child>MSPDeviceInfoGroup</child>
+        </children>
+    </node>
+
+    <!-- MSP430 Groups -->
+	<group id="MSP430DownloadOptionsGroup">
+		<name>Download Options</name>
+		<children>
+			<child>L092ExternalMemoryDL</child>
+			<child>MSP430UnlockBSLMode</child>
+			<child>MSP430DownloadOptions</child>
+		</children>
+	</group>
+	
+	<group id="MSP430FlashEraseGroup">
+		<name>Erase Settings</name>
+		<children>
+			<child>MSP430EraseText</child>
+			<child>MSP430EraseStartAddress</child>
+			<child>MSP430EraseEndAddress</child>
+			<child>MSP430AddressEraseButton</child>
+			<child>MSP430EraseButton</child>
+		</children>
+	</group>
+	
+	<group id="MSP430SecurityGroup">
+		<name>Security</name>
+		<children>
+			<child>MSP430SecureDeviceText</child>
+			<child>MSP430SecureDeviceButton</child>
+		</children>
+	</group>
+	
+	<group id="MSPDeviceInfoGroup">
+		<name>Device Information</name>
+		<children>
+			<child>DeviceInfoFlashSize</child>
+			<child>DeviceInfoSectorSize</child>
+			<child>DeviceInfoRAMSize</child>
+		</children>
+	</group>
+
+	<!-- MSP430 Property Definitions -->
+	<property id="TargetVoltage">
+		<target>MSP430</target>
+		<target>TMS470REX</target>
+		<name>Target Voltage (mV)</name>
+		<valueType>Numeric</valueType>
+		<defaultValue>3000</defaultValue>
+		<uniqueDefault value="FROM_DEVICE">
+			<target_vcc_default></target_vcc_default>
+		</uniqueDefault>
+		<categories>
+			<category>Download</category>
+		</categories>
+	</property>
+	
+	<property id="L092ExternalMemoryDL">
+		<target>MSP430</target>
+		<name>Copy application to external SPI memory after program load</name>
+		<valueType>Boolean</valueType>
+		<defaultValue>0</defaultValue>
+		<enableIf>
+			<supportExtMemDL>true</supportExtMemDL>
+		</enableIf>
+		<categories>
+			<category>Download</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430UnlockBSLMode">
+		<target>MSP430</target>
+		<target>TMS470REX</target>
+		<name>Allow Read/Write/Erase access to BSL memory</name>
+		<valueType>Boolean</valueType>
+		<defaultValue>0</defaultValue>
+		<enableIf>
+			<supportBSLMemory>true</supportBSLMemory>
+		</enableIf>
+		<categories>
+			<category>Download</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430DownloadOptions">
+		<target>MSP430</target>
+		<target>TMS470REX</target>
+		<name>Erase Options</name>
+		<valueType>ChoiceList</valueType>
+		<values>
+			<value>Erase main memory only</value>
+			<value>Erase main and information memory</value>
+			<value>Erase main, information and protected information memory</value>
+			<value>Erase and download necessary segments only (Differential Download)</value>
+			<value>Replace written memory locations, retain unwritten memory locations</value>
+			<value>By Address Range (specify below)</value>
+		</values>
+		<defaultValue>Erase main memory only</defaultValue>
+		<categories>
+			<category>Download</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430EraseText">
+		<target>MSP430</target>
+		<name>Note: 'Mass Erase' erases main, information, and Bootstrap loader memory</name>
+		<valueType>Text</valueType>
+		<categories>
+			<category>Erase</category>
+		</categories>
+	</property>
+
+	<property id="MSP430EraseStartAddress">
+		<target>MSP430</target>
+		<name>Start Address: 0x</name>
+		<valueType>String</valueType>
+		<defaultValue>0</defaultValue>
+		<categories>
+			<category>Erase</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430EraseEndAddress">
+		<target>MSP430</target>
+		<name>End Address: 0x</name>
+		<valueType>String</valueType>
+		<defaultValue>0</defaultValue>
+		<categories>
+			<category>Erase</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430AddressEraseButton">
+		<target>MSP430</target>
+		<name>Erase By Address</name>
+		<valueType>Button</valueType>
+		<action>DPActiveDebugSession.flash.performOperation("EraseByAddress")</action>
+		<categories>
+			<category>Erase</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430EraseButton">
+		<target>MSP430</target>
+		<name>Mass Erase</name>
+		<valueType>Button</valueType>
+		<action>DPActiveDebugSession.flash.performOperation("Erase")</action>
+		<categories>
+			<category>Erase</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430SecureDeviceText">
+		<target>MSP430</target>
+		<name>!! Connection to the device will not be possible after the device is secured !!</name>
+		<valueType>Text</valueType>
+		<categories>
+			<category>Security</category>
+		</categories>
+	</property>
+	
+	<property id="MSP430SecureDeviceButton">
+		<target>MSP430</target>
+		<target>TMS470REX</target>
+		<name>Make Device Secure</name>
+		<valueType>Button</valueType>
+		<action>DPActiveDebugSession.expression.evaluate("GEL_SecureDevice()")</action>
+		<categories>
+			<category>Security</category>
+		</categories>
+	</property>
+	
+	<property id="DeviceInfoFlashSize">
+		<target>MSP430</target>
+		<name>Flash Size</name>
+		<valueType>String</valueType>
+		<defaultValue>--</defaultValue>
+		<readOnly>1</readOnly>
+		<categories>
+            <category>Device Info</category>
+        </categories>
+	</property>
+	
+	<property id="DeviceInfoSectorSize">
+		<target>MSP430</target>
+		<name>Flash Sector Size</name>
+		<valueType>String</valueType>
+		<defaultValue>--</defaultValue>
+		<readOnly>1</readOnly>
+		<categories>
+            <category>Device Info</category>
+        </categories>
+	</property>
+	
+	<property id="DeviceInfoRAMSize">
+		<target>MSP430</target>
+		<name>RAM Size</name>
+		<valueType>String</valueType>
+		<defaultValue>--</defaultValue>
+		<readOnly>1</readOnly>
+		<categories>
+            <category>Device Info</category>
+        </categories>
+	</property>
+    
+    <!-- fin -->
+</PropertyList>

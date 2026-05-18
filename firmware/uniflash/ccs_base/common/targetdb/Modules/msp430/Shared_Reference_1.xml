@@ -1,0 +1,16 @@
+<module HW_revision="" XML_version="1" description="Shared Reference" id="Shared Reference">
+<register acronym="REFCTL0" description="REF Shared Reference control register 0" id="REFCTL0" offset=" 0x01B0" width="16">
+<bitfield begin="0" description="REF Reference On" end="0" id="REFON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="REF Reference output Buffer On" end="1" id="REFOUT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="REF Temp.Sensor off" end="3" id="REFTCOFF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="REF Reference Voltage Level Select Bit:0" end="4" id="REFVSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="REF Reference Voltage Level Select 1.5V" id="REFVSEL_0" token="REFVSEL_0" value="0"></bitenum>
+<bitenum description="REF Reference Voltage Level Select 2.0V" id="REFVSEL_1" token="REFVSEL_1" value="1"></bitenum>
+<bitenum description="REF Reference Voltage Level Select 2.5V" id="REFVSEL_2" token="REFVSEL_2" value="2"></bitenum>
+<bitenum description="REF Reference Voltage Level Select 2.5V" id="REFVSEL_3" token="REFVSEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="7" description="REF Master Control" end="7" id="REFMSTR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="REF Reference generator active" end="8" id="REFGENACT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="REF Reference bandgap active" end="9" id="REFBGACT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="REF Reference generator busy" end="10" id="REFGENBUSY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="REF Bandgap mode" end="11" id="BGMODE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

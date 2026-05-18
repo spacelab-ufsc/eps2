@@ -1,0 +1,22 @@
+<module HW_revision="" XML_version="1" description="SFR  Special Function Registers" id="SFR  Special Function Registers">
+<register acronym="SFRIE1" description="Interrupt Enable 1" id="SFRIE1" offset=" 0x0100" width="16">
+<bitfield begin="0" description="WDT Interrupt Enable" end="0" id="WDTIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Osc Fault Enable" end="1" id="OFIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Vacant Memory Interrupt Enable" end="3" id="VMAIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="NMI Interrupt Enable" end="4" id="NMIIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Flash Access Violation Interrupt Enable" end="5" id="ACCVIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="JTAG Mail Box input Interrupt Enable" end="6" id="JMBINIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="JTAG Mail Box output Interrupt Enable" end="7" id="JMBOUTIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SFRIFG1" description="Interrupt Flag 1" id="SFRIFG1" offset=" 0x0102" width="16">
+<bitfield begin="0" description="WDT Interrupt Flag" end="0" id="WDTIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Osc Fault Flag" end="1" id="OFIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Vacant Memory Interrupt Flag" end="3" id="VMAIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="NMI Interrupt Flag" end="4" id="NMIIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="JTAG Mail Box input Interrupt Flag" end="6" id="JMBINIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="JTAG Mail Box output Interrupt Flag" end="7" id="JMBOUTIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="SFRRPCR" description="RESET Pin Control Register" id="SFRRPCR" offset=" 0x0104" width="16">
+<bitfield begin="0" description="NMI select" end="0" id="SYSNMI" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="NMI edge select" end="1" id="SYSNMIIES" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="RESET Pin pull down/up select" end="2" id="SYSRSTUP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="RESET Pin Resistor enable" end="3" id="SYSRSTRE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

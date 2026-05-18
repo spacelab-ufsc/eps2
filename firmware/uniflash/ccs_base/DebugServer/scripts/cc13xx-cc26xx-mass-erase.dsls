@@ -1,0 +1,12 @@
+{"command":"defineOption", "data":["debugProbe,d", "Debug Probe (XDS110, XDS100v3, XDS200)"]}
+{"command":"defineValuelessOption", "data":["help,h", "Print this message."]}
+{"command":"acceptTrailingOperand"}
+{"command":"parseCommandLine"}
+{"command":"configure","data":["@baseDir@arm/cc13xx_cc26xx_2pin_cJTAG_@debugProbe@.ccxml"]}
+{"command":"switchToCore", "data":[0]}
+{"command":"logMessage", "data":["Performing Device Unlock via Mass Erase...\n"]}
+{"command":"expressions.evaluate","data":["MassErase()"]}
+{"command":"switchToDebugger"}
+{"command":"waitForIdle"}
+{"command":"deConfigure"}
+{"command":"logMessage", "data":["Device Unlocked\n"]}

@@ -1,0 +1,75 @@
+<module HW_revision="" XML_version="1" description="DAC12" id="DAC12">
+<register acronym="DAC12_0CTL0" description="DAC12_0 Control Register 0" id="DAC12_0CTL0" offset=" 0x0780" width="16">
+<bitfield begin="0" description="DAC12 group" end="0" id="DAC12GRP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DAC12 enable conversion" end="1" id="DAC12ENC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DAC12 interrupt flag" end="2" id="DAC12IFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DAC12 interrupt enable" end="3" id="DAC12IE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DAC12 data format" end="4" id="DAC12DF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DAC12 amplifier bit 0" end="5" id="DAC12AMP" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DAC12 amplifier 0: off" id="DAC12AMP_0" token="DAC12AMP_0" value="0"></bitenum>
+<bitenum description="DAC12 amplifier 1: off" id="DAC12AMP_1" token="DAC12AMP_1" value="1"></bitenum>
+<bitenum description="DAC12 amplifier 2: low" id="DAC12AMP_2" token="DAC12AMP_2" value="2"></bitenum>
+<bitenum description="DAC12 amplifier 3: low" id="DAC12AMP_3" token="DAC12AMP_3" value="3"></bitenum>
+<bitenum description="DAC12 amplifier 4: low" id="DAC12AMP_4" token="DAC12AMP_4" value="4"></bitenum>
+<bitenum description="DAC12 amplifier 5: medium" id="DAC12AMP_5" token="DAC12AMP_5" value="5"></bitenum>
+<bitenum description="DAC12 amplifier 6: medium" id="DAC12AMP_6" token="DAC12AMP_6" value="6"></bitenum>
+<bitenum description="DAC12 amplifier 7: high" id="DAC12AMP_7" token="DAC12AMP_7" value="7"></bitenum></bitfield>
+<bitfield begin="8" description="DAC12 input reference and output range" end="8" id="DAC12IR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DAC12 calibration" end="9" id="DAC12CALON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="DAC12 load select bit 0" end="10" id="DAC12LSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DAC12 load select 0: direct" id="DAC12LSEL_0" token="DAC12LSEL_0" value="0"></bitenum>
+<bitenum description="DAC12 load select 1: latched with DAT" id="DAC12LSEL_1" token="DAC12LSEL_1" value="1"></bitenum>
+<bitenum description="DAC12 load select 2: latched with pos. Timer_A3.OUT1" id="DAC12LSEL_2" token="DAC12LSEL_2" value="2"></bitenum>
+<bitenum description="DAC12 load select 3: latched with pos. Timer_B7.OUT1" id="DAC12LSEL_3" token="DAC12LSEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="12" description="DAC12 resolution" end="12" id="DAC12RES" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="DAC12 reference bit 0" end="13" id="DAC12SREF" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DAC12 reference 0: Vref+" id="DAC12SREF_0" token="DAC12SREF_0" value="0"></bitenum>
+<bitenum description="DAC12 reference 1: Vref+" id="DAC12SREF_1" token="DAC12SREF_1" value="1"></bitenum>
+<bitenum description="DAC12 reference 2: Veref+" id="DAC12SREF_2" token="DAC12SREF_2" value="2"></bitenum>
+<bitenum description="DAC12 reference 3: Veref+" id="DAC12SREF_3" token="DAC12SREF_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="DAC12 Operation Amp." end="15" id="DAC12OPS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DAC12_0CTL1" description="DAC12_0 Control Register 1" id="DAC12_0CTL1" offset=" 0x0782" width="16">
+<bitfield begin="0" description="DAC12 Data Format Justification" end="0" id="DAC12DFJ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DAC12 output buffer gain: 0: 3x gain / 1: 2x gain" end="1" id="DAC12OG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DAC12_0DAT" description="DAC12_0 Data" id="DAC12_0DAT" offset=" 0x0784" width="16"></register>
+<register acronym="DAC12_0CALCTL" description="DAC12_0 Calibration Control Register" id="DAC12_0CALCTL" offset=" 0x0786" width="16">
+<bitfield begin="0" description="DAC12 Calibration Lock" end="0" id="DAC12LOCK" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DAC12_0CALDAT" description="DAC12_0 Calibration Data Register" id="DAC12_0CALDAT" offset=" 0x0788" width="16"></register>
+<register acronym="DAC12_1CTL0" description="DAC12_1 Control Register 0" id="DAC12_1CTL0" offset=" 0x0790" width="16">
+<bitfield begin="0" description="DAC12 group" end="0" id="DAC12GRP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DAC12 enable conversion" end="1" id="DAC12ENC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="DAC12 interrupt flag" end="2" id="DAC12IFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="DAC12 interrupt enable" end="3" id="DAC12IE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="DAC12 data format" end="4" id="DAC12DF" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="DAC12 amplifier bit 0" end="5" id="DAC12AMP" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="DAC12 amplifier 0: off" id="DAC12AMP_0" token="DAC12AMP_0" value="0"></bitenum>
+<bitenum description="DAC12 amplifier 1: off" id="DAC12AMP_1" token="DAC12AMP_1" value="1"></bitenum>
+<bitenum description="DAC12 amplifier 2: low" id="DAC12AMP_2" token="DAC12AMP_2" value="2"></bitenum>
+<bitenum description="DAC12 amplifier 3: low" id="DAC12AMP_3" token="DAC12AMP_3" value="3"></bitenum>
+<bitenum description="DAC12 amplifier 4: low" id="DAC12AMP_4" token="DAC12AMP_4" value="4"></bitenum>
+<bitenum description="DAC12 amplifier 5: medium" id="DAC12AMP_5" token="DAC12AMP_5" value="5"></bitenum>
+<bitenum description="DAC12 amplifier 6: medium" id="DAC12AMP_6" token="DAC12AMP_6" value="6"></bitenum>
+<bitenum description="DAC12 amplifier 7: high" id="DAC12AMP_7" token="DAC12AMP_7" value="7"></bitenum></bitfield>
+<bitfield begin="8" description="DAC12 input reference and output range" end="8" id="DAC12IR" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="DAC12 calibration" end="9" id="DAC12CALON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="DAC12 load select bit 0" end="10" id="DAC12LSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DAC12 load select 0: direct" id="DAC12LSEL_0" token="DAC12LSEL_0" value="0"></bitenum>
+<bitenum description="DAC12 load select 1: latched with DAT" id="DAC12LSEL_1" token="DAC12LSEL_1" value="1"></bitenum>
+<bitenum description="DAC12 load select 2: latched with pos. Timer_A3.OUT1" id="DAC12LSEL_2" token="DAC12LSEL_2" value="2"></bitenum>
+<bitenum description="DAC12 load select 3: latched with pos. Timer_B7.OUT1" id="DAC12LSEL_3" token="DAC12LSEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="12" description="DAC12 resolution" end="12" id="DAC12RES" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="DAC12 reference bit 0" end="13" id="DAC12SREF" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="DAC12 reference 0: Vref+" id="DAC12SREF_0" token="DAC12SREF_0" value="0"></bitenum>
+<bitenum description="DAC12 reference 1: Vref+" id="DAC12SREF_1" token="DAC12SREF_1" value="1"></bitenum>
+<bitenum description="DAC12 reference 2: Veref+" id="DAC12SREF_2" token="DAC12SREF_2" value="2"></bitenum>
+<bitenum description="DAC12 reference 3: Veref+" id="DAC12SREF_3" token="DAC12SREF_3" value="3"></bitenum></bitfield>
+<bitfield begin="15" description="DAC12 Operation Amp." end="15" id="DAC12OPS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DAC12_1CTL1" description="DAC12_1 Control Register 1" id="DAC12_1CTL1" offset=" 0x0792" width="16">
+<bitfield begin="0" description="DAC12 Data Format Justification" end="0" id="DAC12DFJ" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="DAC12 output buffer gain: 0: 3x gain / 1: 2x gain" end="1" id="DAC12OG" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DAC12_1DAT" description="DAC12_1 Data" id="DAC12_1DAT" offset=" 0x0794" width="16"></register>
+<register acronym="DAC12_1CALCTL" description="DAC12_1 Calibration Control Register" id="DAC12_1CALCTL" offset=" 0x0796" width="16">
+<bitfield begin="0" description="DAC12 Calibration Lock" end="0" id="DAC12LOCK" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="DAC12_1CALDAT" description="DAC12_1 Calibration Data Register" id="DAC12_1CALDAT" offset=" 0x0798" width="16"></register>
+<register acronym="DAC12_IV" description="DAC12   Interrupt Vector Word" id="DAC12_IV" offset=" 0x079E" width="16"></register>
+</module>

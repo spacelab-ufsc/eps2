@@ -1,0 +1,159 @@
+/*
+ * mppt.h
+ *
+ * Copyright (C) 2021, SpaceLab.
+ *
+ * This file is part of EPS 2.0.
+ *
+ * EPS 2.0 is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * EPS 2.0 is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with EPS 2.0. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+/**
+ * \brief MPPT device definition.
+ *
+ * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author João Cláudio <joaoclaudiobarcellos@gmail.com>
+ * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
+ *
+ * \version 0.4.0
+ *
+ * \date 2021/02/10
+ *
+ * \defgroup mppt MPPT
+ * \ingroup devices
+ * \{
+ */
+
+#ifndef MPPT_H_
+#define MPPT_H_
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#include <drivers/pwm/pwm.h>
+#include <devices/voltage_sensor/voltage_sensor.h>
+#include <devices/current_sensor/current_sensor.h>
+
+#define MPPT_MODULE_NAME        "MPPT"
+
+/**
+ * \brief MPPT algorithm constants.
+ */
+#define MPPT_DUTY_CYCLE_STEP    1       /**< PWM duty cycle step in % for the MPPT algorithm. */
+#define MPPT_DUTY_CYCLE_INIT    10      /**< PWM initial duty cycle in % for the MPPT algorithm. */
+#define MPPT_PERIOD_INIT        4       /**< PWM period (1/f) in us for the MPPT algorithm. */
+#define MPPT_MIN_DUTY_CYCLE     10      /**< Minimum duty cycle allowed. */
+#define MPPT_MAX_DUTY_CYCLE     90      /**< Maximum duty cycle allowed. */
+
+/**
+ * \brief MPPT control loop channels.
+ */
+#define MPPT_CONTROL_LOOP_CH_SOURCE   TIMER_B0        /**< MPPT control loop channels source. */
+#define MPPT_CONTROL_LOOP_CH_0        PWM_PORT_1      /**< MPPT control loop channel 0. */
+#define MPPT_CONTROL_LOOP_CH_1        PWM_PORT_2      /**< MPPT control loop channel 1. */
+#define MPPT_CONTROL_LOOP_CH_2        PWM_PORT_3      /**< MPPT control loop channel 2. */
+#define MPPT_VOLTAGE_SENSOR_CH_0      PANNELS_MINUS_Y_PLUS_X_VOLTAGE_SENSOR_ADC_PORT  /**< MPPT voltage sensor for channel 0. */
+#define MPPT_VOLTAGE_SENSOR_CH_1      PANNELS_MINUS_X_PLUS_Z_VOLTAGE_SENSOR_ADC_PORT  /**< MPPT voltage sensor for channel 1. */
+#define MPPT_VOLTAGE_SENSOR_CH_2      PANNELS_MINUS_Z_PLUS_Y_VOLTAGE_SENSOR_ADC_PORT  /**< MPPT voltage sensor for channel 2. */
+#define MPPT_CURRENT_SENSOR_0_CH_0    PANNEL_MINUS_Y_CURRENT_SENSOR_ADC_PORT          /**< MPPT current sensor 0 for channel 0. */
+#define MPPT_CURRENT_SENSOR_1_CH_0    PANNEL_PLUS_X_CURRENT_SENSOR_ADC_PORT           /**< MPPT current sensor 1 for channel 0. */
+#define MPPT_CURRENT_SENSOR_0_CH_1    PANNEL_MINUS_X_CURRENT_SENSOR_ADC_PORT          /**< MPPT current sensor 0 for channel 1. */
+#define MPPT_CURRENT_SENSOR_1_CH_1    PANNEL_PLUS_Z_CURRENT_SENSOR_ADC_PORT           /**< MPPT current sensor 1 for channel 1. */
+#define MPPT_CURRENT_SENSOR_0_CH_2    PANNEL_MINUS_Z_CURRENT_SENSOR_ADC_PORT          /**< MPPT current sensor 0 for channel 2. */
+#define MPPT_CURRENT_SENSOR_1_CH_2    PANNEL_PLUS_Y_CURRENT_SENSOR_ADC_PORT           /**< MPPT current sensor 1 for channel 2. */
+
+/**
+ * \brief MPPT control loop channel type.
+ */
+typedef pwm_port_t mppt_channel_t;
+
+/**
+ * \brief MPPT control loop configuration type.
+ */
+typedef pwm_config_t mppt_config_t;
+
+/**
+ * \brief Power measurement structure
+ *
+ */
+typedef struct
+{
+    uint32_t power;
+    uint32_t prev_power;
+} mppt_power_measurement_t;
+
+/**
+ * \brief MPPT step enum
+ *
+ */
+ typedef enum
+{
+    DECREASE_STEP = 0,
+    INCREASE_STEP
+} mppt_step_e;
+
+/**
+ * \brief MPPT control parameters.
+ *
+ */
+typedef struct
+{
+    mppt_channel_t channel;
+    pwm_config_t config;
+    mppt_power_measurement_t pwr_meas;
+    mppt_step_e step;
+    mppt_step_e prev_step;
+} mppt_paramemters_t;
+
+
+
+/**
+ * \brief Initialization routine of the MPPT.
+ *
+ * \return The status/error code.
+ */
+int mppt_init(void);
+
+/**
+ * \brief Function to implement the perturb and observe maximum power point tracking algorithm.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ * \return The status/error code.
+ */
+int mppt_algorithm(mppt_channel_t channel);
+
+/**
+ * \brief Function to set the PWM duty cycle for manual mode.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ * \return The status/error code.
+ */
+int mppt_set_duty_cycle(mppt_channel_t channel, uint32_t duty_cycle);
+
+/**
+ * \brief Function to read the PWM duty cycle for a given channel.
+ *
+ * \param[in] channel is the control loop channel to be used.
+ *
+ * \return The PWN duty cycle value for the chosen channel.
+ */
+uint8_t mppt_get_duty_cycle(mppt_channel_t channel);
+
+#endif /* MPPT_H_ */
+
+/** \} End of mppt group */

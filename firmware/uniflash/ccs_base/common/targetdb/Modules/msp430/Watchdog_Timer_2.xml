@@ -1,0 +1,20 @@
+<module HW_revision="" XML_version="1" description="Watchdog Timer" id="Watchdog Timer">
+<register acronym="WDTCTL" description="Watchdog Timer Control" id="WDTCTL" offset=" 0x015C" width="16">
+<bitfield begin="2" description="WDT - Timer Interval Select 0" end="0" id="WDTIS" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="WDT - Timer Interval Select: /2G" id="WDTIS_0" token="WDTIS_0" value="0"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /128M" id="WDTIS_1" token="WDTIS_1" value="1"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /8192k" id="WDTIS_2" token="WDTIS_2" value="2"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /512k" id="WDTIS_3" token="WDTIS_3" value="3"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /32k" id="WDTIS_4" token="WDTIS_4" value="4"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /8192" id="WDTIS_5" token="WDTIS_5" value="5"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /512" id="WDTIS_6" token="WDTIS_6" value="6"></bitenum>
+<bitenum description="WDT - Timer Interval Select: /64" id="WDTIS_7" token="WDTIS_7" value="7"></bitenum></bitfield>
+<bitfield begin="3" description="WDT - Timer Clear" end="3" id="WDTCNTCL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="WDT - Timer Mode Select" end="4" id="WDTTMSEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="WDT - Timer Clock Source Select 0" end="5" id="WDTSSEL" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="WDT - Timer Clock Source Select: SMCLK" id="WDTSSEL_0" token="WDTSSEL_0" value="0"></bitenum>
+<bitenum description="WDT - Timer Clock Source Select: ACLK" id="WDTSSEL_1" token="WDTSSEL_1" value="1"></bitenum>
+<bitenum description="WDT - Timer Clock Source Select: VLO_CLK" id="WDTSSEL_2" token="WDTSSEL_2" value="2"></bitenum>
+<bitenum description="WDT - Timer Clock Source Select: reserved" id="WDTSSEL_3" token="WDTSSEL_3" value="3"></bitenum></bitfield>
+<bitfield begin="7" description="WDT - Timer hold" end="7" id="WDTHOLD" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

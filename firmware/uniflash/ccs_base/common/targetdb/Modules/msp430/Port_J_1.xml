@@ -1,0 +1,27 @@
+<module HW_revision="" XML_version="1" description="Port J" id="Port J">
+<register acronym="PJIN" description="Port J Input" id="PJIN" offset=" 0x0320" width="16">
+<bitfield begin="0" description="PJIN0" end="0" id="PJIN0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PJIN1" end="1" id="PJIN1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PJIN2" end="2" id="PJIN2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PJIN3" end="3" id="PJIN3" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PJOUT" description="Port J Output" id="PJOUT" offset=" 0x0322" width="16">
+<bitfield begin="0" description="PJOUT0" end="0" id="PJOUT0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PJOUT1" end="1" id="PJOUT1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PJOUT2" end="2" id="PJOUT2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PJOUT3" end="3" id="PJOUT3" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PJDIR" description="Port J Direction" id="PJDIR" offset=" 0x0324" width="16">
+<bitfield begin="0" description="PJDIR0" end="0" id="PJDIR0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PJDIR1" end="1" id="PJDIR1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PJDIR2" end="2" id="PJDIR2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PJDIR3" end="3" id="PJDIR3" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PJREN" description="Port J Resistor Enable" id="PJREN" offset=" 0x0326" width="16">
+<bitfield begin="0" description="PJREN0" end="0" id="PJREN0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PJREN1" end="1" id="PJREN1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PJREN2" end="2" id="PJREN2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PJREN3" end="3" id="PJREN3" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="PJDS" description="Port J Drive Strenght" id="PJDS" offset=" 0x0328" width="16">
+<bitfield begin="0" description="PJDS0" end="0" id="PJDS0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="PJDS1" end="1" id="PJDS1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="PJDS2" end="2" id="PJDS2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="PJDS3" end="3" id="PJDS3" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

@@ -1,0 +1,228 @@
+<module HW_revision="" XML_version="1" description="LCD_B" id="LCD_B">
+<register acronym="LCDBCTL0" description="LCD_B Control Register 0" id="LCDBCTL0" offset=" 0x0A00" width="16">
+<bitfield begin="0" description="LCD_B LCD On" end="0" id="LCDON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD_B LCD Segments On" end="2" id="LCDSON" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="LCD_B Mux Rate Bit: 0" end="3" id="LCDMX0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="LCD_B Mux Rate Bit: 1" end="4" id="LCDMX1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="LCD_B Clock Select" end="7" id="LCDSSEL" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="LCD_B LCD frequency pre-scaler Bit: 0" end="8" id="LCDPRE" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="LCD_B LCD frequency pre-scaler: /1" id="LCDPRE_0" token="LCDPRE_0" value="0"></bitenum>
+<bitenum description="LCD_B LCD frequency pre-scaler: /2" id="LCDPRE_1" token="LCDPRE_1" value="1"></bitenum>
+<bitenum description="LCD_B LCD frequency pre-scaler: /4" id="LCDPRE_2" token="LCDPRE_2" value="2"></bitenum>
+<bitenum description="LCD_B LCD frequency pre-scaler: /8" id="LCDPRE_3" token="LCDPRE_3" value="3"></bitenum>
+<bitenum description="LCD_B LCD frequency pre-scaler: /16" id="LCDPRE_4" token="LCDPRE_4" value="4"></bitenum>
+<bitenum description="LCD_B LCD frequency pre-scaler: /32" id="LCDPRE_5" token="LCDPRE_5" value="5"></bitenum></bitfield>
+<bitfield begin="15" description="LCD_B LCD frequency divider Bit: 0" end="11" id="LCDDIV" range="" resetval="0" rwaccess="RW" width="5">
+<bitenum description="LCD_B LCD frequency divider: /1" id="LCDDIV_0" token="LCDDIV_0" value="0"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /2" id="LCDDIV_1" token="LCDDIV_1" value="1"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /3" id="LCDDIV_2" token="LCDDIV_2" value="2"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /4" id="LCDDIV_3" token="LCDDIV_3" value="3"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /5" id="LCDDIV_4" token="LCDDIV_4" value="4"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /6" id="LCDDIV_5" token="LCDDIV_5" value="5"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /7" id="LCDDIV_6" token="LCDDIV_6" value="6"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /8" id="LCDDIV_7" token="LCDDIV_7" value="7"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /9" id="LCDDIV_8" token="LCDDIV_8" value="8"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /10" id="LCDDIV_9" token="LCDDIV_9" value="9"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /11" id="LCDDIV_10" token="LCDDIV_10" value="10"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /12" id="LCDDIV_11" token="LCDDIV_11" value="11"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /13" id="LCDDIV_12" token="LCDDIV_12" value="12"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /14" id="LCDDIV_13" token="LCDDIV_13" value="13"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /15" id="LCDDIV_14" token="LCDDIV_14" value="14"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /16" id="LCDDIV_15" token="LCDDIV_15" value="15"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /17" id="LCDDIV_16" token="LCDDIV_16" value="16"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /18" id="LCDDIV_17" token="LCDDIV_17" value="17"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /19" id="LCDDIV_18" token="LCDDIV_18" value="18"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /20" id="LCDDIV_19" token="LCDDIV_19" value="19"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /21" id="LCDDIV_20" token="LCDDIV_20" value="20"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /22" id="LCDDIV_21" token="LCDDIV_21" value="21"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /23" id="LCDDIV_22" token="LCDDIV_22" value="22"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /24" id="LCDDIV_23" token="LCDDIV_23" value="23"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /25" id="LCDDIV_24" token="LCDDIV_24" value="24"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /26" id="LCDDIV_25" token="LCDDIV_25" value="25"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /27" id="LCDDIV_26" token="LCDDIV_26" value="26"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /28" id="LCDDIV_27" token="LCDDIV_27" value="27"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /29" id="LCDDIV_28" token="LCDDIV_28" value="28"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /30" id="LCDDIV_29" token="LCDDIV_29" value="29"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /31" id="LCDDIV_30" token="LCDDIV_30" value="30"></bitenum>
+<bitenum description="LCD_B LCD frequency divider: /32" id="LCDDIV_31" token="LCDDIV_31" value="31"></bitenum></bitfield></register>
+<register acronym="LCDBCTL1" description="LCD_B Control Register 1" id="LCDBCTL1" offset=" 0x0A02" width="16">
+<bitfield begin="0" description="LCD_B LCD frame interrupt flag" end="0" id="LCDFRMIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD_B LCD blinking off interrupt flag" end="1" id="LCDBLKOFFIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD_B LCD blinking on interrupt flag" end="2" id="LCDBLKONIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="LCD_B No cpacitance connected interrupt flag" end="3" id="LCDNOCAPIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="LCD_B LCD frame interrupt enable" end="8" id="LCDFRMIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="LCD_B LCD blinking off interrupt flag" end="9" id="LCDBLKOFFIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="LCD_B LCD blinking on interrupt flag" end="10" id="LCDBLKONIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="LCD_B No cpacitance connected interrupt enable" end="11" id="LCDNOCAPIE" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBBLKCTL" description="LCD_B blinking control register" id="LCDBBLKCTL" offset=" 0x0A04" width="16">
+<bitfield begin="1" description="LCD_B Blinking mode Bit: 0" end="0" id="LCDBLKMOD" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="LCD_B Blinking mode: Off" id="LCDBLKMOD_0" token="LCDBLKMOD_0" value="0"></bitenum>
+<bitenum description="LCD_B Blinking mode: Individual" id="LCDBLKMOD_1" token="LCDBLKMOD_1" value="1"></bitenum>
+<bitenum description="LCD_B Blinking mode: All" id="LCDBLKMOD_2" token="LCDBLKMOD_2" value="2"></bitenum>
+<bitenum description="LCD_B Blinking mode: Switching" id="LCDBLKMOD_3" token="LCDBLKMOD_3" value="3"></bitenum></bitfield>
+<bitfield begin="4" description="LCD_B Clock pre-scaler for blinking frequency Bit: 0" end="2" id="LCDBLKPRE" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 0" id="LCDBLKPRE_0" token="LCDBLKPRE_0" value="0"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 1" id="LCDBLKPRE_1" token="LCDBLKPRE_1" value="1"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 2" id="LCDBLKPRE_2" token="LCDBLKPRE_2" value="2"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 3" id="LCDBLKPRE_3" token="LCDBLKPRE_3" value="3"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 4" id="LCDBLKPRE_4" token="LCDBLKPRE_4" value="4"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 5" id="LCDBLKPRE_5" token="LCDBLKPRE_5" value="5"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 6" id="LCDBLKPRE_6" token="LCDBLKPRE_6" value="6"></bitenum>
+<bitenum description="LCD_B Clock pre-scaler for blinking frequency: 7" id="LCDBLKPRE_7" token="LCDBLKPRE_7" value="7"></bitenum></bitfield>
+<bitfield begin="7" description="LCD_B Clock divider for blinking frequency Bit: 0" end="5" id="LCDBLKDIV" range="" resetval="0" rwaccess="RW" width="3">
+<bitenum description="LCD_B Clock divider for blinking frequency: 0" id="LCDBLKDIV_0" token="LCDBLKDIV_0" value="0"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 1" id="LCDBLKDIV_1" token="LCDBLKDIV_1" value="1"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 2" id="LCDBLKDIV_2" token="LCDBLKDIV_2" value="2"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 3" id="LCDBLKDIV_3" token="LCDBLKDIV_3" value="3"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 4" id="LCDBLKDIV_4" token="LCDBLKDIV_4" value="4"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 5" id="LCDBLKDIV_5" token="LCDBLKDIV_5" value="5"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 6" id="LCDBLKDIV_6" token="LCDBLKDIV_6" value="6"></bitenum>
+<bitenum description="LCD_B Clock divider for blinking frequency: 7" id="LCDBLKDIV_7" token="LCDBLKDIV_7" value="7"></bitenum></bitfield></register>
+<register acronym="LCDBMEMCTL" description="LCD_B memory control register" id="LCDBMEMCTL" offset=" 0x0A06" width="16">
+<bitfield begin="0" description="LCD_B LCD memory registers for display" end="0" id="LCDDISP" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD_B Clear LCD memory" end="1" id="LCDCLRM" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD_B Clear LCD blinking memory" end="2" id="LCDCLRBM" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBVCTL" description="LCD_B Voltage Control Register" id="LCDBVCTL" offset=" 0x0A08" width="16">
+<bitfield begin="0" description="Selects 1/2 bias." end="0" id="LCD2B" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Selects reference voltage for regulated charge pump: 0" end="1" id="VLCDREF" range="" resetval="0" rwaccess="RW" width="2">
+<bitenum description="Internal" id="VLCDREF_0" token="VLCDREF_0" value="0"></bitenum>
+<bitenum description="External" id="VLCDREF_1" token="VLCDREF_1" value="1"></bitenum>
+<bitenum description="Reserved" id="VLCDREF_2" token="VLCDREF_2" value="2"></bitenum>
+<bitenum description="Reserved" id="VLCDREF_3" token="VLCDREF_3" value="3"></bitenum></bitfield>
+<bitfield begin="3" description="LCD Voltage Charge Pump Enable." end="3" id="LCDCPEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Select external source for VLCD." end="4" id="VLCDEXT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="V2 - V4 voltage select." end="5" id="LCDEXTBIAS" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Selects external connections for LCD mid voltages." end="6" id="R03EXT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Selects external connection for lowest LCD voltage." end="7" id="LCDREXT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="VLCD select: 0" end="9" id="VLCD" range="" resetval="0" rwaccess="RW" width="4">
+<bitenum description="Charge pump disabled" id="VLCD_0" token="VLCD_0" value="0"></bitenum>
+<bitenum description="VLCD = 2.60V" id="VLCD_1" token="VLCD_1" value="1"></bitenum>
+<bitenum description="VLCD = 2.66V" id="VLCD_2" token="VLCD_2" value="2"></bitenum>
+<bitenum description="VLCD = 2.72V" id="VLCD_3" token="VLCD_3" value="3"></bitenum>
+<bitenum description="VLCD = 2.78V" id="VLCD_4" token="VLCD_4" value="4"></bitenum>
+<bitenum description="VLCD = 2.84V" id="VLCD_5" token="VLCD_5" value="5"></bitenum>
+<bitenum description="VLCD = 2.90V" id="VLCD_6" token="VLCD_6" value="6"></bitenum>
+<bitenum description="VLCD = 2.96V" id="VLCD_7" token="VLCD_7" value="7"></bitenum>
+<bitenum description="VLCD = 3.02V" id="VLCD_8" token="VLCD_8" value="8"></bitenum>
+<bitenum description="VLCD = 3.08V" id="VLCD_9" token="VLCD_9" value="9"></bitenum>
+<bitenum description="VLCD = 3.14V" id="VLCD_10" token="VLCD_10" value="10"></bitenum>
+<bitenum description="VLCD = 3.20V" id="VLCD_11" token="VLCD_11" value="11"></bitenum>
+<bitenum description="VLCD = 3.26V" id="VLCD_12" token="VLCD_12" value="12"></bitenum>
+<bitenum description="VLCD = 3.32V" id="VLCD_13" token="VLCD_13" value="13"></bitenum>
+<bitenum description="VLCD = 3.38V" id="VLCD_14" token="VLCD_14" value="14"></bitenum>
+<bitenum description="VLCD = 3.44V" id="VLCD_15" token="VLCD_15" value="15"></bitenum></bitfield></register>
+<register acronym="LCDBPCTL0" description="LCD_B Port Control Register 0" id="LCDBPCTL0" offset=" 0x0A0A" width="16">
+<bitfield begin="0" description="LCD Segment  0 enable." end="0" id="LCDS0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD Segment  1 enable." end="1" id="LCDS1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD Segment  2 enable." end="2" id="LCDS2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="LCD Segment  3 enable." end="3" id="LCDS3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="LCD Segment  4 enable." end="4" id="LCDS4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="LCD Segment  5 enable." end="5" id="LCDS5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="LCD Segment  6 enable." end="6" id="LCDS6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="LCD Segment  7 enable." end="7" id="LCDS7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="LCD Segment  8 enable." end="8" id="LCDS8" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="LCD Segment  9 enable." end="9" id="LCDS9" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="LCD Segment 10 enable." end="10" id="LCDS10" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="LCD Segment 11 enable." end="11" id="LCDS11" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="LCD Segment 12 enable." end="12" id="LCDS12" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="LCD Segment 13 enable." end="13" id="LCDS13" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="LCD Segment 14 enable." end="14" id="LCDS14" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="LCD Segment 15 enable." end="15" id="LCDS15" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBPCTL1" description="LCD_B Port Control Register 1" id="LCDBPCTL1" offset=" 0x0A0C" width="16">
+<bitfield begin="0" description="LCD Segment 16 enable." end="0" id="LCDS16" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD Segment 17 enable." end="1" id="LCDS17" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD Segment 18 enable." end="2" id="LCDS18" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="LCD Segment 19 enable." end="3" id="LCDS19" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="LCD Segment 20 enable." end="4" id="LCDS20" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="LCD Segment 21 enable." end="5" id="LCDS21" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="LCD Segment 22 enable." end="6" id="LCDS22" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="LCD Segment 23 enable." end="7" id="LCDS23" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="LCD Segment 24 enable." end="8" id="LCDS24" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="LCD Segment 25 enable." end="9" id="LCDS25" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="LCD Segment 26 enable." end="10" id="LCDS26" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="LCD Segment 27 enable." end="11" id="LCDS27" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="LCD Segment 28 enable." end="12" id="LCDS28" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="LCD Segment 29 enable." end="13" id="LCDS29" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="LCD Segment 30 enable." end="14" id="LCDS30" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="LCD Segment 31 enable." end="15" id="LCDS31" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBPCTL2" description="LCD_B Port Control Register 2" id="LCDBPCTL2" offset=" 0x0A0E" width="16">
+<bitfield begin="0" description="LCD Segment 32 enable." end="0" id="LCDS32" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD Segment 33 enable." end="1" id="LCDS33" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD Segment 34 enable." end="2" id="LCDS34" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="LCD Segment 35 enable." end="3" id="LCDS35" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="LCD Segment 36 enable." end="4" id="LCDS36" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="LCD Segment 37 enable." end="5" id="LCDS37" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="LCD Segment 38 enable." end="6" id="LCDS38" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="LCD Segment 39 enable." end="7" id="LCDS39" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="8" description="LCD Segment 40 enable." end="8" id="LCDS40" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="9" description="LCD Segment 41 enable." end="9" id="LCDS41" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="10" description="LCD Segment 42 enable." end="10" id="LCDS42" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="11" description="LCD Segment 43 enable." end="11" id="LCDS43" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="12" description="LCD Segment 44 enable." end="12" id="LCDS44" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="13" description="LCD Segment 45 enable." end="13" id="LCDS45" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="14" description="LCD Segment 46 enable." end="14" id="LCDS46" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="LCD Segment 47 enable." end="15" id="LCDS47" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBPCTL3" description="LCD_B Port Control Register 3" id="LCDBPCTL3" offset=" 0x0A10" width="16">
+<bitfield begin="0" description="LCD Segment 48 enable." end="0" id="LCDS48" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD Segment 49 enable." end="1" id="LCDS49" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD Segment 50 enable." end="2" id="LCDS50" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBCPCTL" description="LCD_B Charge Pump Control Register 3" id="LCDBCPCTL" offset=" 0x0A12" width="16">
+<bitfield begin="0" description="LCD charge pump disable" end="0" id="LCDCPDIS0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="LCD charge pump disable" end="1" id="LCDCPDIS1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="LCD charge pump disable" end="2" id="LCDCPDIS2" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="LCD charge pump disable" end="3" id="LCDCPDIS3" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="LCD charge pump disable" end="4" id="LCDCPDIS4" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="LCD charge pump disable" end="5" id="LCDCPDIS5" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="LCD charge pump disable" end="6" id="LCDCPDIS6" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="LCD charge pump disable" end="7" id="LCDCPDIS7" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="15" description="LCD charge pump clock synchronization" end="15" id="LCDCPCLKSYNC" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="LCDBIV" description="LCD_B Interrupt Vector Register" id="LCDBIV" offset=" 0x0A1E" width="16"></register>
+<register acronym="LCDM1" description="LCD Memory 1" id="LCDM1" offset=" 0x0A20" width="8"></register>
+<register acronym="LCDM2" description="LCD Memory 2" id="LCDM2" offset=" 0x0A21" width="8"></register>
+<register acronym="LCDM3" description="LCD Memory 3" id="LCDM3" offset=" 0x0A22" width="8"></register>
+<register acronym="LCDM4" description="LCD Memory 4" id="LCDM4" offset=" 0x0A23" width="8"></register>
+<register acronym="LCDM5" description="LCD Memory 5" id="LCDM5" offset=" 0x0A24" width="8"></register>
+<register acronym="LCDM6" description="LCD Memory 6" id="LCDM6" offset=" 0x0A25" width="8"></register>
+<register acronym="LCDM7" description="LCD Memory 7" id="LCDM7" offset=" 0x0A26" width="8"></register>
+<register acronym="LCDM8" description="LCD Memory 8" id="LCDM8" offset=" 0x0A27" width="8"></register>
+<register acronym="LCDM9" description="LCD Memory 9" id="LCDM9" offset=" 0x0A28" width="8"></register>
+<register acronym="LCDM10" description="LCD Memory 10" id="LCDM10" offset=" 0x0A29" width="8"></register>
+<register acronym="LCDM11" description="LCD Memory 11" id="LCDM11" offset=" 0x0A2A" width="8"></register>
+<register acronym="LCDM12" description="LCD Memory 12" id="LCDM12" offset=" 0x0A2B" width="8"></register>
+<register acronym="LCDM13" description="LCD Memory 13" id="LCDM13" offset=" 0x0A2C" width="8"></register>
+<register acronym="LCDM14" description="LCD Memory 14" id="LCDM14" offset=" 0x0A2D" width="8"></register>
+<register acronym="LCDM15" description="LCD Memory 15" id="LCDM15" offset=" 0x0A2E" width="8"></register>
+<register acronym="LCDM16" description="LCD Memory 16" id="LCDM16" offset=" 0x0A2F" width="8"></register>
+<register acronym="LCDM17" description="LCD Memory 17" id="LCDM17" offset=" 0x0A30" width="8"></register>
+<register acronym="LCDM18" description="LCD Memory 18" id="LCDM18" offset=" 0x0A31" width="8"></register>
+<register acronym="LCDM19" description="LCD Memory 19" id="LCDM19" offset=" 0x0A32" width="8"></register>
+<register acronym="LCDM20" description="LCD Memory 20" id="LCDM20" offset=" 0x0A33" width="8"></register>
+<register acronym="LCDM21" description="LCD Memory 21" id="LCDM21" offset=" 0x0A34" width="8"></register>
+<register acronym="LCDM22" description="LCD Memory 22" id="LCDM22" offset=" 0x0A35" width="8"></register>
+<register acronym="LCDM23" description="LCD Memory 23" id="LCDM23" offset=" 0x0A36" width="8"></register>
+<register acronym="LCDM24" description="LCD Memory 24" id="LCDM24" offset=" 0x0A37" width="8"></register>
+<register acronym="LCDBM1" description="LCD Blinking Memory 1" id="LCDBM1" offset=" 0x0A40" width="8"></register>
+<register acronym="LCDBM2" description="LCD Blinking Memory 2" id="LCDBM2" offset=" 0x0A41" width="8"></register>
+<register acronym="LCDBM3" description="LCD Blinking Memory 3" id="LCDBM3" offset=" 0x0A42" width="8"></register>
+<register acronym="LCDBM4" description="LCD Blinking Memory 4" id="LCDBM4" offset=" 0x0A43" width="8"></register>
+<register acronym="LCDBM5" description="LCD Blinking Memory 5" id="LCDBM5" offset=" 0x0A44" width="8"></register>
+<register acronym="LCDBM6" description="LCD Blinking Memory 6" id="LCDBM6" offset=" 0x0A45" width="8"></register>
+<register acronym="LCDBM7" description="LCD Blinking Memory 7" id="LCDBM7" offset=" 0x0A46" width="8"></register>
+<register acronym="LCDBM8" description="LCD Blinking Memory 8" id="LCDBM8" offset=" 0x0A47" width="8"></register>
+<register acronym="LCDBM9" description="LCD Blinking Memory 9" id="LCDBM9" offset=" 0x0A48" width="8"></register>
+<register acronym="LCDBM10" description="LCD Blinking Memory 10" id="LCDBM10" offset=" 0x0A49" width="8"></register>
+<register acronym="LCDBM11" description="LCD Blinking Memory 11" id="LCDBM11" offset=" 0x0A4A" width="8"></register>
+<register acronym="LCDBM12" description="LCD Blinking Memory 12" id="LCDBM12" offset=" 0x0A4B" width="8"></register>
+<register acronym="LCDBM13" description="LCD Blinking Memory 13" id="LCDBM13" offset=" 0x0A4C" width="8"></register>
+<register acronym="LCDBM14" description="LCD Blinking Memory 14" id="LCDBM14" offset=" 0x0A4D" width="8"></register>
+<register acronym="LCDBM15" description="LCD Blinking Memory 15" id="LCDBM15" offset=" 0x0A4E" width="8"></register>
+<register acronym="LCDBM16" description="LCD Blinking Memory 16" id="LCDBM16" offset=" 0x0A4F" width="8"></register>
+<register acronym="LCDBM17" description="LCD Blinking Memory 17" id="LCDBM17" offset=" 0x0A50" width="8"></register>
+<register acronym="LCDBM18" description="LCD Blinking Memory 18" id="LCDBM18" offset=" 0x0A51" width="8"></register>
+<register acronym="LCDBM19" description="LCD Blinking Memory 19" id="LCDBM19" offset=" 0x0A52" width="8"></register>
+<register acronym="LCDBM20" description="LCD Blinking Memory 20" id="LCDBM20" offset=" 0x0A53" width="8"></register>
+<register acronym="LCDBM21" description="LCD Blinking Memory 21" id="LCDBM21" offset=" 0x0A54" width="8"></register>
+<register acronym="LCDBM22" description="LCD Blinking Memory 22" id="LCDBM22" offset=" 0x0A55" width="8"></register>
+<register acronym="LCDBM23" description="LCD Blinking Memory 23" id="LCDBM23" offset=" 0x0A56" width="8"></register>
+<register acronym="LCDBM24" description="LCD Blinking Memory 24" id="LCDBM24" offset=" 0x0A57" width="8"></register>
+</module>

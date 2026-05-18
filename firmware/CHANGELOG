@@ -1,0 +1,40 @@
+===========================================
+
+v0.4 - 2023/21/04
+
+- All devices were tested
+- Creating a task to communicate with other devices via UART 
+- All tasks were implemented
+- General fixes and improvements
+
+===========================================
+
+v0.3 - 2022/08/04
+
+- All drivers were tested
+- Fixing communications between EPS and OBDH
+- Fixing communications between EPS and TTC
+- Fixing communications between EPS and ADS1248
+- Fixing communications between EPS and DS2777G+
+- Fixing the conversions of temperature, voltage and current measurements
+
+===========================================
+
+v0.2 - 2021/06/27
+
+- CCS project creation
+- Importing useful code from the OBDH 2.0 repository
+- Initial version of the DS2775G+ driver
+- Initial version of the ADS1248 driver
+- Initial structure of the I2C slave driver
+- First working version
+- General fixes and improvements
+
+===========================================
+
+v0.1 - 2020/09/14
+
+- First release
+- Prototype version of the hardware
+
+===========================================

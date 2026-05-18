@@ -1,0 +1,6 @@
+<module HW_revision="" XML_version="1" description="CRC16" id="CRC16">
+<register acronym="CRCDI" description="CRC Data In Register" id="CRCDI" offset=" 0x0150" width="16"></register>
+<register acronym="CRCDIRB" description="CRC data in reverse byte Register" id="CRCDIRB" offset=" 0x0152" width="16"></register>
+<register acronym="CRCINIRES" description="CRC Initialisation Register and Result Register" id="CRCINIRES" offset=" 0x0154" width="16"></register>
+<register acronym="CRCRESR" description="CRC reverse result Register" id="CRCRESR" offset=" 0x0156" width="16"></register>
+</module>

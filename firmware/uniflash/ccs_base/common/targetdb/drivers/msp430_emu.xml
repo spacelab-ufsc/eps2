@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+
+<drivers id="MSP430">
+                <isa Type="MSP430" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+                                                <property Type="hiddenfield" Value="MSP430" id="interface" />
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="1">
+                                                  <choice Name="Fast" value="0"/>
+                                                  <choice Name="Medium" value="1"/>
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+                                </driver>
+                </isa>
+                <isa Type="MSP430L092" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+                                                <property Type="hiddenfield" Value="MSP430" id="interface" />
+                                                <property Name="Emulation Type" desc="Emulation Types" Type="choicelist" id="emuType" Value="0">
+                                                                <choice value="Normal"/>
+                                                                <choice value="ROM"/>
+                                                </property>
+                                                <property Type="hiddenfield" id="NormalActivationCode" Value="0xA55AA55A"></property>
+                                                <property Type="hiddenfield" id="ROMActivationCode" Value="0x5AA55AA5"></property>
+                                                <property Type="hiddenfield" id="supportExtMemDL" Value="true"></property>
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="0">
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+                                </driver>
+                </isa>
+                <isa Type="MSP430C09x" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+                                                <property Type="hiddenfield" Value="MSP430" id="interface" />
+                                                <property Type="stringfield" id="password" Name="Password: (HEX format)"></property>
+                                                <property Type="hiddenfield" id="passwordMinLength" Value="8"></property>
+                                                <property Type="hiddenfield" id="passwordMaxLength" Value="8"></property>
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="0">
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+                                </driver>
+                </isa>
+                <isa Type="MSP430FR57xx" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+												<property Type="hiddenfield" id="supportLPMx5" Value="true"></property>
+                                                <property Type="stringfield" id="password" Name="Password: (HEX format)"></property>
+                                                <property Type="hiddenfield" id="passwordMinLength" Value="0"></property>
+                                                <property Type="hiddenfield" id="passwordMaxLength" Value="120"></property>
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="1">
+                                                  <choice Name="Fast" value="0"/>
+                                                  <choice Name="Medium" value="1"/>
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+                                </driver>
+                </isa>
+				<isa Type="MSP430FR59xx" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+												<property Type="hiddenfield" id="supportLPMx5" Value="true"></property>
+                                                <property Type="stringfield" id="password" Name="Password: (HEX format)"></property>
+                                                <property Type="hiddenfield" id="passwordMinLength" Value="0"></property>
+                                                <property Type="hiddenfield" id="passwordMaxLength" Value="120"></property>
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="1">
+                                                  <choice Name="Fast" value="0"/>
+                                                  <choice Name="Medium" value="1"/>
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+                                </driver>
+                </isa>
+                <isa Type="MSP430F1xx_SLOW" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+                                                <property Type="hiddenfield" Value="MSP430" id="interface" />
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="0">
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+
+                                </driver>
+                </isa>
+                <isa Type="RF430FRL15X" ProcID="0x6b800000">
+                                <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+                                                <connectionType Type="MSP430"/>
+                                                <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+                                                <property Type="hiddenfield" Value="MSP430" id="interface" />
+                                                <property Name="Emulation Type" desc="Emulation Types" Type="choicelist" id="emuType" Value="0">
+                                                                <choice value="Normal"/>
+                                                                <choice value="ROM"/>
+                                                </property>
+                                                <property Type="hiddenfield" id="NormalActivationCode" Value="0xA55AA55A"></property>
+                                                <property Type="hiddenfield" id="ROMActivationCode" Value="0x5AA55AA5"></property>
+                                                <property Type="hiddenfield" id="supportExtMemDL" Value="true"></property>
+                                                <property Name="JTAG/SBW Speed" desc="JTAG/SBW Speed" Type="choicelist" id="interfaceSpeed" Value="0">
+                                                  <choice Name="Slow" value="2"/>
+                                                </property>
+                                </driver>
+                </isa>
+
+		<isa Type="CORTEX_M4_432" ProcID="0x75803800">
+		        <driver file="../../DebugServer/drivers/libmsp430_emu.so">
+		            <connectionType Type="MSP430"/>
+		            <property Type="hiddenfield" Value="libmsp430.so" id="dllName" />
+		            <property Type="hiddenfield" Value="MSP430" id="interface" />
+		            <property Type="hiddenfield" Value="true" id="haltOnConnectByDefault" />
+		            <property Type="hiddenfield" Value="true" id="supportsNonIntrusiveConnect" />
+		            <property Type="hiddenfield" Value="true" id="disableInternalFlashManager" />
+		            <property Type="hiddenfield" Value="true" id="disableArmAdvancedFeatures" />
+		            <property Type="hiddenfield" Value="true" id="disableSoftwareBreakpoint" />
+		            <property Type="hiddenfield" Value="true" id="disableSoftLaunch" />
+		            <property Type="hiddenfield" Value="true" id="msp432fet" />
+		            <property Name="JTAG/SWD (Auto-detect)" desc="JTAG/SWD (Auto-detect)" Type="choicelist" id="interfaceSpeed" Value="1">
+		                <choice Name="Fast" value="0"/>
+		                <choice Name="Medium" value="1"/>
+		                <choice Name="Slow" value="2"/>
+		            </property>
+		            <property Type="hiddenfield" Value="true" id="Make Device Secure" />
+		        </driver>
+	    </isa>
+	    <isa Type="CS_DAP" ProcID="0x38000405">
+	        <driver file="NONE">
+        	    <connectionType Type="MSP430"/>
+	        </driver>
+	    </isa>
+
+</drivers>

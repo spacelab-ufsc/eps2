@@ -1,0 +1,13 @@
+<module HW_revision="" XML_version="1" description="Battery Charger" id="Battery Charger">
+<register acronym="BAKCTL" description="Battery Backup Control" id="BAKCTL" offset=" 0x049C" width="16">
+<bitfield begin="0" description="Lock backup sub-system" end="0" id="LOCKBAK" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Manual switch to battery backup supply" end="1" id="BAKSW" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Battery backup supply to ADC." end="2" id="BAKADC" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Disable backup supply switching." end="3" id="BAKDIS" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="BAKCHCTL" description="Battery Charger Control" id="BAKCHCTL" offset=" 0x049E" width="16">
+<bitfield begin="0" description="Charger enable" end="0" id="CHEN" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Charger charge current Bit 0" end="1" id="CHC0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Charger charge current Bit 1" end="2" id="CHC1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Charger end voltage Bit 0" end="4" id="CHV0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Charger end voltage Bit 1" end="5" id="CHV1" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>

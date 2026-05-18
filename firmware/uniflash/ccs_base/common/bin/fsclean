@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$1" = "--all" ]
+then 
+	./fs --cleanall --prompt
+else
+	./fs --clean --prompt
+fi

@@ -1,0 +1,21 @@
+<module HW_revision="" XML_version="1" description="Flash" id="Flash">
+<register acronym="FCTL1" description="FLASH Control 1" id="FCTL1" offset=" 0x0140" width="16">
+<bitfield begin="1" description="Enable bit for Flash segment erase" end="1" id="ERASE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Enable bit for Flash mass erase" end="2" id="MERAS" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Smart Write enable" end="5" id="SWRT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Enable bit for Flash write" end="6" id="WRT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Enable bit for Flash segment write" end="7" id="BLKWRT" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="FCTL3" description="FLASH Control 3" id="FCTL3" offset=" 0x0144" width="16">
+<bitfield begin="0" description="Flash busy: 1" end="0" id="BUSY" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="1" description="Flash Key violation flag" end="1" id="KEYV" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="2" description="Flash Access violation flag" end="2" id="ACCVIFG" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="3" description="Wait flag for segment write" end="3" id="WAIT" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Lock bit: 1 - Flash is locked (read only)" end="4" id="LOCK" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Flash Emergency Exit" end="5" id="EMEX" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="6" description="Segment A Lock bit: read = 1 - Segment is locked (read only)" end="6" id="LOCKA" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+<register acronym="FCTL4" description="FLASH Control 4" id="FCTL4" offset=" 0x0146" width="16">
+<bitfield begin="0" description="Voltage Changed during Program Error Flag" end="0" id="VPE" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="4" description="Marginal read 0 mode." end="4" id="MGR0" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="5" description="Marginal read 1 mode." end="5" id="MGR1" range="" resetval="0" rwaccess="RW" width="1"></bitfield>
+<bitfield begin="7" description="Lock INFO Memory bit: read = 1 - Segment is locked (read only)" end="7" id="LOCKINFO" range="" resetval="0" rwaccess="RW" width="1"></bitfield></register>
+</module>
