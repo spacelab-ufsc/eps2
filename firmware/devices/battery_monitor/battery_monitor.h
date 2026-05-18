@@ -24,8 +24,9 @@
  * \brief Battery Monitor device definition.
  *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
- * \version 0.1.12
+ * \version 0.4.0
  *
  * \date 2021/09/18
  *
@@ -50,23 +51,7 @@ extern ds277Xg_config_t battery_monitor_config;
  * 
  * \return int The status/error code.
  */
-int battery_monitor_init();
-
-/**
- * \brief Get the cell one voltage.
- * 
- * \param[in,out] voltage Voltage in mV.
- * \return int The status/error code.
- */
-int bm_get_cell_one_voltage(int16_t *voltage);
-
-/**
- * \brief Get the cell two voltage.
- * 
- * \param[in,out] voltage Voltage in mV.
- * \return int The status/error code.
- */
-int bm_get_cell_two_voltage(int16_t *voltage);
+int battery_monitor_init(void);
 
 /**
  * \brief Get the batteries voltage in mV.
@@ -147,6 +132,38 @@ int bm_get_rarc_percent(uint8_t *data);
  * \return int The status/error code.
  */
 int bm_get_rsrc_percent(uint8_t *data);
+
+/**
+ * \brief Get the battery monitor accumulated current in mAh.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_acc_current_mah(uint16_t *data);
+
+/**
+ * \brief Get the battery monitor full capacity result register in ppm.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_full_capacity_ppm(uint32_t *data);
+
+/**
+ * \brief Get the battery monitor active empty capacity result register in ppm.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_active_empty_capacity_ppm(uint32_t *data);
+
+/**
+ * \brief Get the battery monitor standby empty capacity result register in ppm.
+ * 
+ * \param[in,out] data Register data. 
+ * \return int The status/error code.
+ */
+int bm_get_standby_empty_capacity_ppm(uint32_t *data);
 
 #endif /* BATTERY_MONITOR_H_ */
 

@@ -24,6 +24,8 @@
  * \brief Heater controller task definition.
  *
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
  * \version 0.2.36
  *

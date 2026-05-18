@@ -1,37 +1,37 @@
 /*
  * i2c_slave.c
- * 
+ *
  * Copyright The EPS 2.0 Contributors.
- * 
+ *
  * This file is part of EPS 2.0.
- * 
+ *
  * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
- * 
+ *
  */
 
 /**
  * \brief I2C driver definition.
- * 
+ *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author Andre M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
  * \author Joao Claudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * 
+ *
  * \version 0.2.44
- * 
+ *
  * \date 2021/06/22
- * 
+ *
  * \addtogroup i2c_slave
  * \{
  */
@@ -263,11 +263,10 @@ void USCI_B2_ISR(void)
             }
             break;
         case USCI_I2C_UCSTPIFG:
-            i2c_rx_data_size = i2c_rx_buffer_index;
-            i2c_rx_buffer_index = 0;
-
             if (i2c_slave_status == I2C_SLAVE_STATUS_RX)
             {
+                i2c_rx_data_size = i2c_rx_buffer_index;
+                i2c_rx_buffer_index = 0;
                 i2c_slave_notify_from_i2c_rx_isr();
             }
 

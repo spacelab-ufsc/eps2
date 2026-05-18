@@ -36,6 +36,8 @@
 #include <msp430.h>
 #include <drivers/gpio/gpio.h>
 
+#include <portmacro.h>
+
 #include "system.h"
 
 sys_time_t sys_time = 0;
@@ -54,12 +56,16 @@ uint8_t system_get_reset_cause(void)
 
 void system_set_time(sys_time_t tm)
 {
+    portENTER_CRITICAL();
     sys_time = tm;
+    portEXIT_CRITICAL();
 }
 
 void system_increment_time(void)
 {
+    portENTER_CRITICAL();
     sys_time++;
+    portEXIT_CRITICAL();
 }
 
 sys_time_t system_get_time(void)

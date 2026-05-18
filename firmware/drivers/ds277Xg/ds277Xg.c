@@ -1,36 +1,36 @@
 /*
  * ds277Xg.c
- * 
+ *
  * Copyright The EPS 2.0 Contributors.
- * 
+ *
  * This file is part of EPS 2.0.
- * 
+ *
  * EPS 2.0 is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * EPS 2.0 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with EPS 2.0. If not, see <http:/\/www.gnu.org/licenses/>.
- * 
+ *
  */
 
 /**
  * \brief DS277XG+ driver implementation.
- * 
+ *
  * \author Vinicius Pimenta Bernardo <viniciuspibi@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Ramon de Araujo Borba     <ramonborba97@gmail.com>
- * 
- * \version 0.2.34
- * 
+ *
+ * \version 0.4.0
+ *
  * \date 2021/08/17
- * 
+ *
  * \addtogroup ds277Xg
  * \{
  */
@@ -40,8 +40,200 @@
 
 #include "ds277Xg.h"
 
+
+/**
+ * @brief Set battery configuration to initial state.
+ * 
+ * Run this function ONCE when a new battery is connected to reset
+ * accumulated current and aging estimation to initial values.
+ * 
+ * @param config DS277XG configuration parameters.
+ * @return int The status/error code.
+ */
+static int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config);
+
+/**
+ * \brief Set charge enable bit in protection register.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \return int The status/error code.
+ */
+static int ds277Xg_enable_charge(ds277Xg_config_t *config);
+
+/**
+ * \brief Set discharge enable bit in protection register.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \return int The status/error code.
+ */
+static int ds277Xg_enable_discharge(ds277Xg_config_t *config);
+
+/**
+ * \brief Reset charge enable bit in protection register.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \return int The status/error code.
+ */
+static int ds277Xg_disable_charge(ds277Xg_config_t *config);
+
+/**
+ * \brief Reset discharge enable bit in protection register.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \return int The status/error code.
+ */
+static int ds277Xg_disable_discharge(ds277Xg_config_t *config);
+
+/**
+ * \brief Get the raw voltage in two's complement form from the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in,out] voltage_raw The raw voltage value.
+ * \param[in] battery_select Must be either 1 or 2.
+ * \return int The status/error code.
+ */
+static int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uint8_t battery_select);
+
+/**
+ * \brief Convert from raw data to mV.
+ * 
+ * Resolution: 4.8828mV. Goes from -5000mV to 4995.1mV
+ * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
+ *                       MSB                      |                    LSB              
+ * 
+ * \param[in] raw The raw voltage value.
+ * \return float Converted voltage in mV.
+ */
+static int16_t ds277Xg_voltage_raw_to_mv(int16_t raw);
+
+/**
+ * \brief Get the raw temperature in two's complement form from the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in,out] temp_raw The raw temperature value.
+ * \return int The status/error code.
+ */
+static int ds277Xg_read_temperature_raw(ds277Xg_config_t *config, int16_t *temp_raw);
+
+/**
+ * \brief Convert from raw data to kelvin.
+ * 
+ * Resolution: 0.125 degrees kelvin.
+ * Sign | 2^9 | 2^8 | 2^7 | 2^6 | 2^5 | 2^4 | 2^3 | 2^2 | 2^1 | 2^0 | X | X | X | X | X
+ *                       MSB                      |                    LSB              
+ * 
+ * \param[in] raw The raw temperature value.
+ * \return uint16_t Converted temperature in kelvin.
+ */
+static uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw);
+
+/**
+ * \brief Get the raw current in two's complement form from the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in,out] current_raw The raw current value.
+ * \param[in] read_average Whether to read the last current raw value [false] or a mean of the last eight values [true].
+ * \return int The status/error code.
+ */
+static int ds277Xg_read_current_raw(ds277Xg_config_t *config, int16_t *current_raw, bool read_average);
+
+/**
+ * \brief Convert from raw data to mA.
+ * 
+ * Resolution: 1.5625uV/R_sense. Goes from -51.2mV/R_sense to 51.2mV/R_sense.
+ * 
+ * \param[in] raw The raw current value.
+ * \return int16_t Converted current in mA.
+ */
+static int16_t ds277Xg_current_raw_to_ma(int16_t raw);
+
+/**
+ * \brief Write the raw accumulated current in two's complement form to the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in] acc_current_raw The raw accumulated current value to write.
+ * \return int The status/error code.
+ */
+static int ds277Xg_write_accumulated_current_raw(ds277Xg_config_t *config, uint16_t acc_current_raw);
+
+/**
+ * \brief Convert from mAh data to raw.
+ * 
+ * \param[in] mah The mAh accumulated current value.
+ * \return uint16_t Converted raw accumulated current value.
+ */
+static uint16_t ds277Xg_accumulated_current_mah_to_raw(uint16_t mah);
+
+/**
+ * \brief Write the accumulated current in mAh to the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in] acc_current_mah Accumulated current in mAh.
+ * \return int The status/error code.
+ */
+static int ds277Xg_write_accumulated_current_mah(ds277Xg_config_t *config, uint16_t acc_current_mah);
+
+/**
+ * \brief Write the battery max charge value in mAh to the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \return int The status/error code.
+ */
+static int ds277Xg_write_accumulated_current_max_value(ds277Xg_config_t *config);
+
+/**
+ * \brief Get the raw accumulated current in two's complement form from the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in,out] acc_current_raw The raw accumulated current value.
+ * \return int The status/error code.
+ */
+static int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc_current_raw);
+
+/**
+ * \brief Convert from raw data to mAh.
+ * 
+ * Resolution: 6.25uVh/R_sense. Goes from 0 to 409.6mVh/R_sense.
+ * 
+ * \param[in] raw The raw accumulated current value.
+ * \return uint16_t Converted accumulated current in mAh.
+ */
+static uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw);
+
+/**
+ * \brief Write number of cycles to the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in] cycles The number of cycles to write. Goes from 0 to 510.
+ * \return int The status/error code.
+ */
+static int ds277Xg_write_cycle_counter(ds277Xg_config_t *config, uint16_t cycles);
+
+/**
+ * \brief Read number of cycles from the DS277XG.
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in,out] cycles The number of cycles to write. Goes from 0 to 510.
+ * \return int The status/error code.
+ */
+static int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles);
+
+/**
+ * \brief Write-Data Protocol
+ * 
+ * Start SAddr MAddr Data0 Data1 ... DataN Stop
+ * 
+ * \param[in] config DS277XG configuration parameters.
+ * \param[in] data Data to write. First byte must be target register address.
+ * \param[in] len Length of the data to write, including target register.
+ * \return int The status/error code.
+ */
+static int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, uint16_t len);
+
+
 int ds277Xg_init(ds277Xg_config_t *config)
 {
+    int err = 0;
     /* I2C port initialization. */
     if (i2c_init(config->port, (i2c_config_t){.speed_hz = 100000}) != 0)
     {
@@ -50,195 +242,169 @@ int ds277Xg_init(ds277Xg_config_t *config)
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
 
-        return -1;
+        err =+ -1;
     }
-    
+
     /* Protection register configuration. */
-    if (ds277Xg_enable_charge(config) != 0) {return -1;}
-    if (ds277Xg_enable_discharge(config) != 0) {return -1;}
+    if (ds277Xg_enable_charge(config) != 0) {err =+ -1;}
+    if (ds277Xg_enable_discharge(config) != 0) {err += -1;}
 
     /* Parameters registers configuration. */
-    // Check if already set correctly from EEPROM on power-up.
-    bool copy_to_eeprom_flag = false;
-    uint8_t wr_buf[3] = {0};
-    uint8_t rd_buf[2] = {0};
+    bool rewrite = false;
+    uint8_t read_buffer[DS277XG_PARAMETER_EEPROM_SIZE] = { 0 };
+    uint8_t params[DS277XG_PARAMETER_EEPROM_SIZE+1U] = {
+        DS277XG_PARAMETER_EEPROM_ADDRESS,   // First byte must be address for write operation
+        DS277XG_CONTROL_REG_VALUE,
+        DS277XG_ACCUMULATION_BIAS_REG_VALUE,
+        DS277XG_AGING_CAPACITY_REG_VALUE_MSB,
+        DS277XG_AGING_CAPACITY_REG_VALUE_LSB,
+        DS277XG_CHARGE_VOLTAGE_REG_VALUE,
+        DS277XG_MINIMUM_CHARGE_CURRENT_REG_VALUE,
+        DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_VALUE,
+        DS277XG_ACTIVE_EMPTY_CURRENT_REG_VALUE,
+        DS277XG_ACTIVE_EMPTY_40_REG_VALUE,
+        DS277XG_SENSE_RESISTOR_PRIME_REG_VALUE,
+        DS277XG_FULL_40_MSB_REG_VALUE,
+        DS277XG_FULL_40_LSB_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_4_SLOPE_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_3_SLOPE_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_2_SLOPE_REG_VALUE,
+        DS277XG_FULL_SEGMENTE_1_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_4_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_3_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_2_SLOPE_REG_VALUE,
+        DS277XG_AE_SEGMENTE_1_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_4_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_3_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_2_SLOPE_REG_VALUE,
+        DS277XG_SE_SEGMENTE_1_SLOPE_REG_VALUE,
+        DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_MSB,
+        DS277XG_SENSE_RESISTOR_GAIN_REG_VALUE_LSB,
+        DS277XG_SENSE_RESISTOR_TEMPERATURE_COEFFICIENT_REG_VALUE,
+        DS277XG_CURRENT_OFFSET_BIAS_REG_VALUE,
+        DS277XG_TBP34_REG_VALUE,
+        DS277XG_TBP23_REG_VALUE,
+        DS277XG_TBP12_REG_VALUE,
+        DS277XG_PROTECTOR_THRESHOLD_REG_VALUE,
+        DS277XG_TWO_WIRE_SLAVE_ADDRESS_REG_VALUE,
+    };
 
-    /* Checking control register */
-    if (ds277Xg_read_data(config, DS277XG_CONTROL_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != 0x0C) // <-- Undervoltage treshold to 2.60V.
+    /* Read data from DS277Xg parameter EEPROM memory */
+    if (ds277Xg_read_data(config, DS277XG_PARAMETER_EEPROM_ADDRESS, read_buffer, DS277XG_PARAMETER_EEPROM_SIZE) != 0) { err += -1; };
+
+    /* Check if registers are set correctly */
+    for (uint8_t i = 0; i < DS277XG_PARAMETER_EEPROM_SIZE; i++)
     {
-        wr_buf[0] = DS277XG_CONTROL_REGISTER;
-        wr_buf[1] = 0x0C; // <-- Sets undervoltage treshold to 2.60V.
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        copy_to_eeprom_flag = true;
+        if (read_buffer[i] != params[i+1U])
+        {
+            rewrite = true;
+        }
     }
-
-    /* Checking sense resistor prime register */
-    if (ds277Xg_read_data(config, DS277XG_SENSE_RESISTOR_PRIME_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(DS277XG_RSENSE_CONDUCTANCE)) // <-- Register value must be Rsense conductanvce
+    if (rewrite)
     {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_SENSE_RESISTOR_PRIME_REGISTER;
-        wr_buf[1] = (uint8_t)(DS277XG_RSENSE_CONDUCTANCE);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
+        /* Write parameters to DS277Xg RAM memory */
+        if (ds277Xg_write_data(config, params, DS277XG_PARAMETER_EEPROM_SIZE) != 0) { err += -1; }
 
-    /* Checking charge voltage register */
-    if (ds277Xg_read_data(config, DS277XG_CHARGE_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION)) // <-- Fully charged baterry voltage (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_CHARGE_VOLTAGE_REGISTER;
-        wr_buf[1] = (uint8_t)(CELL_FULLY_CHARGED_VOLTAGE / DS277XG_CHARGE_VOLTAGE_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-    /* Checking minimum charge current ragister */
-    if (ds277Xg_read_data(config, DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION)) // <-- Minimum charging current (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER;
-        wr_buf[1] = (uint8_t)((CELL_MINIMUM_CHARGE_CURRENT * DS277XG_RSENSE_MOHMS) / DS277XG_MINIMUM_CHARGE_CURRENT_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-        /* Checking active empty voltage register */
-    if (ds277Xg_read_data(config, DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != (uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE/DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION)) // <-- Active empty voltage threshold (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER;
-        wr_buf[1] = /* PLACEHOLDER VALUE --> */(uint8_t)(CELL_ACTIVE_EMPTY_VOLTAGE/DS277XG_ACTIVE_EMPTY_VOLTAGE_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-    /* Checking active empty current register */
-    if (ds277Xg_read_data(config, DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER, rd_buf, 1) != 0) {return -1;}
-    else if (rd_buf[0] != /* PLACEHOLDER VALUE --> */(uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS/DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION)) // <-- Active empty discharge current (in register units)
-    {
-        // Sets the correct value
-        wr_buf[0] = DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER;
-        wr_buf[1] = (uint8_t)(CELL_ACTIVE_EMPTY_CURRENT*DS277XG_RSENSE_MOHMS/DS277XG_ACTIVE_EMPTY_CURRENT_REG_RESOLUTION);
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
-        if (copy_to_eeprom_flag != true) {copy_to_eeprom_flag = true;}
-    }
-
-    /* TO DO
-        - Review values for:
-        --> Full point detection minimum current threshold (DS277XG_MINIMUM_CHARGE_CURRENT_REGISTER)
-        --> Full point detection charge voltage threshold (DS277XG_CHARGE_VOLTAGE_REGISTER)
-        --> Aging Capacity
-        --> Aging Scalar
-        - Define and set the values for:
-        --> Active Empty point detection voltage threshold register (DS277XG_ACTIVE_EMPTY_VOLTAGE_REGISTER)
-        --> Active Empty point detection current threshold register (DS277XG_ACTIVE_EMPTY_CURRENT_REGISTER)
-    */
-
-    if (copy_to_eeprom_flag == true)
-    {
-        // Copy from shadow RAM to EEPROM.
-        wr_buf[0] = DS277XG_TWO_WIRE_COMMAND_REGISTER;
-        wr_buf[1] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
-        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+        /* Send copy data command to store the values in the DS277Xg EEPROM memory */
+        uint8_t wr_buf[2] = {
+            DS277XG_TWO_WIRE_COMMAND_REGISTER,
+            DS277XG_COPY_DATA_PARAMETER_EEPROM,
+        };
+        if (ds277Xg_write_data(config, wr_buf, 2) != 0) {err += -1;}
     }
 
 #if defined(RESET_BATTERY_TO_INITIAL_STATE) && (RESET_BATTERY_TO_INITIAL_STATE == 1)
-    if (ds277Xg_set_battery_to_initial_state() != 0)
+    if (ds277Xg_set_battery_to_initial_state(config) != 0)
     {
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error configuring battery to initial state!");
         sys_log_new_line();
     }
 #endif /* RESET_BATTERY_TO_INITIAL_STATE */
 
-    return 0;
+    return err;
 }
 
 int ds277Xg_set_battery_to_initial_state(ds277Xg_config_t *config)
 {
+    int err = 0;
     uint8_t wr_buf[3] = {0};
 
     /* Set battery configurations to initial state */
 
-    /* Set Aging Capacity register to maximum battery capacity */
-    wr_buf[0] = DS277XG_AGING_CAPACITY_REGISTER_MSB;
-    wr_buf[1] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS) >> 8);
-    wr_buf[2] = (uint8_t)((uint16_t)(MAX_BATTERY_CHARGE * DS277XG_RSENSE_MOHMS));
-    if (ds277Xg_write_data(config, wr_buf, 3) != 0) {return -1;}
-
-    /* Set Age Scalar to 95% (recomended on datasheet) */
+    /* Set Age Scalar to 100% */
     wr_buf[0] = DS277XG_AGE_SCALAR_REGISTER;
     wr_buf[1] = (uint8_t)(CELL_INITIAL_AGE_SCALAR/DS277XG_AGE_SCALAR_REG_RESOLUTION);
-    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {err += -1;}
 
     /* Set accumulated current to maximum battery capacity */
-    ds277Xg_write_accumulated_current_max_value(config);
+    if (ds277Xg_write_accumulated_current_max_value(config) != 0) { err += -1; }
 
     // Copy from shadow RAM to EEPROM.
     wr_buf[0] = DS277XG_TWO_WIRE_COMMAND_REGISTER;
     wr_buf[1] = DS277XG_COPY_DATA_PARAMETER_EEPROM;
-    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {return -1;}
+    if (ds277Xg_write_data(config, wr_buf, 2) != 0) {err += -1;}
 
-    return 0;
+    return err;
 }
 
 int ds277Xg_enable_charge(ds277Xg_config_t *config)
 {
+    int err = 0;
     uint8_t value = 0;
-    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
+    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {err += -1;}
 
     uint8_t temp[2] = {DS277XG_PROTECTION_REGISTER, (value | DS277XG_CHARGE_ENABLE_BIT)};
-    if (ds277Xg_write_data(config, temp, 2) != 0) {return -1;}
+    if (ds277Xg_write_data(config, temp, 2) != 0) {err += -1;}
 
-    return 0;
+    return err;
 }
 
 int ds277Xg_enable_discharge(ds277Xg_config_t *config)
 {
+    int err = 0;
     uint8_t value = 0;
-    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
+    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {err += -1;}
 
     uint8_t temp[2] = {DS277XG_PROTECTION_REGISTER, (value | DS277XG_DISCHARGE_ENABLE_BIT)};
-    if (ds277Xg_write_data(config, temp, 2) != 0) {return -1;}
-    return 0;
+    if (ds277Xg_write_data(config, temp, 2) != 0) {err += -1;}
+    return err;
 }
 
 int ds277Xg_disable_charge(ds277Xg_config_t *config)
 {
+    int err = 0;
     uint8_t value = 0;
-    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
+    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {err += -1;}
 
-    uint8_t temp[2] = {DS277XG_PROTECTION_REGISTER, (value & (0xFF - DS277XG_CHARGE_ENABLE_BIT))};
-    if (ds277Xg_write_data(config, temp, 2) != 0) {return -1;}
+    uint8_t temp[2] = {DS277XG_PROTECTION_REGISTER, (value & (0xFFu - DS277XG_CHARGE_ENABLE_BIT))};
+    if (ds277Xg_write_data(config, temp, 2) != 0) {err += -1;}
 
-    return 0;
+    return err;
 }
 
 int ds277Xg_disable_discharge(ds277Xg_config_t *config)
 {
+    int err = 0;
     uint8_t value = 0;
-    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {return -1;}
+    if (ds277Xg_read_data(config, DS277XG_PROTECTION_REGISTER, &value, 1) != 0) {err += -1;}
 
-    uint8_t temp[2] = {DS277XG_PROTECTION_REGISTER, (value & (0xFF - DS277XG_DISCHARGE_ENABLE_BIT))};
-    if (ds277Xg_write_data(config, temp, 2) != 0) {return -1;}
+    uint8_t temp[2] = {DS277XG_PROTECTION_REGISTER, (value & (0xFFu - DS277XG_DISCHARGE_ENABLE_BIT))};
+    if (ds277Xg_write_data(config, temp, 2) != 0) {err += -1;}
 
-    return 0;
+    return err;
 }
 
 int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uint8_t battery_select)
 {
+    int err = 0;
     uint8_t buf[2];
-    if (battery_select == 1)
+    if (battery_select == 1U)
     {
-        if (ds277Xg_read_data(config, DS277XG_VOLTAGE_REGISTER_MSB_Vin1_Vss, buf, 2) != 0) {return -1;}
+        if (ds277Xg_read_data(config, DS277XG_VOLTAGE_REGISTER_MSB_Vin1_Vss, buf, 2) != 0) {err += -1;}
     }
-    else if (battery_select == 2)
+    else if (battery_select == 2U)
     {
-        if (ds277Xg_read_data(config, DS277XG_VOLTAGE_REGISTER_MSB_Vin2_Vin1, buf, 2) != 0) {return -1;}
+        if (ds277Xg_read_data(config, DS277XG_VOLTAGE_REGISTER_MSB_Vin2_Vin1, buf, 2) != 0) {err += -1;}
     }
     else
     {
@@ -246,10 +412,11 @@ int ds277Xg_read_voltage_raw(ds277Xg_config_t *config, int16_t *voltage_raw, uin
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Invalid value for battery number! (Must either 1 or 2)");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err += -1;
     }
-    *voltage_raw = ((int16_t)((buf[0] << 8) + buf[1])) >> 5;
-    return 0;
+    uint16_t result = ((buf[0] << 8U) + buf[1]) >> 5U;
+    *voltage_raw = (int16_t)result;
+    return err;
 }
 
 int16_t ds277Xg_voltage_raw_to_mv(int16_t raw)
@@ -259,6 +426,7 @@ int16_t ds277Xg_voltage_raw_to_mv(int16_t raw)
 
 int ds277Xg_read_voltage_mv(ds277Xg_config_t *config, int16_t *voltage_mv, uint8_t battery_select)
 {
+    int err = 0;
     int16_t voltage_raw = 0;
 
     if (ds277Xg_read_voltage_raw(config, &voltage_raw, battery_select) != 0)
@@ -267,19 +435,21 @@ int ds277Xg_read_voltage_mv(ds277Xg_config_t *config, int16_t *voltage_mv, uint8
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw voltage value!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err += -1;
     }
 
     *voltage_mv = ds277Xg_voltage_raw_to_mv(voltage_raw);
-    return 0;
+    return err;
 }
 
 int ds277Xg_read_temperature_raw(ds277Xg_config_t *config, int16_t *temp_raw)
 {
+    int err = 0;
     uint8_t buf[2];
-    if (ds277Xg_read_data(config, DS277XG_TEMPERATURE_REGISTER_MSB, buf, 2) != 0) {return -1;}
-    *temp_raw = ((int16_t)((buf[0] << 8) + buf[1])) >> 5;
-    return 0;
+    if (ds277Xg_read_data(config, DS277XG_TEMPERATURE_REGISTER_MSB, buf, 2) != 0) {err += -1;}
+    uint16_t result = ((buf[0] << 8U) + buf[1]) >> 5U;
+    *temp_raw = (int16_t)result;
+    return err;
 }
 
 uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw)
@@ -289,6 +459,7 @@ uint16_t ds277Xg_temperature_raw_to_kelvin(int16_t raw)
 
 int ds277Xg_read_temperature_kelvin(ds277Xg_config_t *config, uint16_t *temp_kelvin)
 {
+    int err = 0;
     int16_t temp_raw = 0;
 
     if (ds277Xg_read_temperature_raw(config, &temp_raw) != 0)
@@ -297,26 +468,28 @@ int ds277Xg_read_temperature_kelvin(ds277Xg_config_t *config, uint16_t *temp_kel
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw temperature value!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err += -1;
     }
 
     *temp_kelvin = ds277Xg_temperature_raw_to_kelvin(temp_raw);
-    return 0;
+    return err;
 }
 
 int ds277Xg_read_current_raw(ds277Xg_config_t *config, int16_t *current_raw, bool read_average)
 {
+    int err = 0;
     uint8_t buf[2];
     if (read_average == true)
     {
-        if (ds277Xg_read_data(config, DS277XG_AVERAGE_CURRENT_REGISTER_MSB, buf, 2) != 0) {return -1;}
+        if (ds277Xg_read_data(config, DS277XG_AVERAGE_CURRENT_REGISTER_MSB, buf, 2) != 0) {err += -1;}
     }
     else /* Read instantaneous instead; */
     {
-        if (ds277Xg_read_data(config, DS277XG_CURRENT_REGISTER_MSB, buf, 2) != 0) {return -1;}
+        if (ds277Xg_read_data(config, DS277XG_CURRENT_REGISTER_MSB, buf, 2) != 0) {err += -1;}
     }
-    *current_raw = (int16_t)((buf[0] << 8) + buf[1]);
-    return 0;
+    uint16_t result = (buf[0] << 8) + buf[1];
+    *current_raw = (int16_t)result;
+    return err;
 }
 
 int16_t ds277Xg_current_raw_to_ma(int16_t raw)
@@ -326,6 +499,7 @@ int16_t ds277Xg_current_raw_to_ma(int16_t raw)
 
 int ds277Xg_read_current_ma(ds277Xg_config_t *config, int16_t *current_ma, bool read_average)
 {
+    int err = 0;
     int16_t current_raw = 0;
 
     if (ds277Xg_read_current_raw(config, &current_raw, read_average) != 0)
@@ -334,18 +508,19 @@ int ds277Xg_read_current_ma(ds277Xg_config_t *config, int16_t *current_ma, bool 
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw current value!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err += -1;
     }
 
     *current_ma = ds277Xg_current_raw_to_ma(current_raw);
-    return 0;
+    return err;
 }
 
 int ds277Xg_write_accumulated_current_raw(ds277Xg_config_t *config, uint16_t acc_current_raw)
 {
+    int err = 0;
     uint8_t buf[3] = {DS277XG_ACCUMULATED_CURRENT_MSB, ((uint8_t)(acc_current_raw >> 8)), ((uint8_t)acc_current_raw)};
-    if (ds277Xg_write_data(config, buf, 3) != 0) {return -1;}
-    return 0;
+    if (ds277Xg_write_data(config, buf, 3) != 0) {err += -1;}
+    return err;
 }
 
 uint16_t ds277Xg_accumulated_current_mah_to_raw(uint16_t mah)
@@ -360,24 +535,27 @@ int ds277Xg_write_accumulated_current_mah(ds277Xg_config_t *config, uint16_t acc
 
 int ds277Xg_write_accumulated_current_max_value(ds277Xg_config_t *config)
 {
-    return ds277Xg_write_accumulated_current_mah(config, MAX_BATTERY_CHARGE);
+    return ds277Xg_write_accumulated_current_mah(config, (2*MAX_BATTERY_CHARGE));
 }
 
 int ds277Xg_read_accumulated_current_raw(ds277Xg_config_t *config, uint16_t *acc_current_raw)
 {
+    int err = 0;
     uint8_t buf[2];
-    if (ds277Xg_read_data(config, DS277XG_ACCUMULATED_CURRENT_MSB, buf, 2) != 0) {return -1;}
-    *acc_current_raw = (int16_t)((buf[0] << 8) + buf[1]);
-    return 0;
+    if (ds277Xg_read_data(config, DS277XG_ACCUMULATED_CURRENT_MSB, buf, 2) != 0) {err += -1;}
+    uint16_t result = (buf[0] << 8) + buf[1];
+    *acc_current_raw = (int16_t)result;
+    return err;
 }
 
 uint16_t ds277Xg_accumulated_current_raw_to_mah(uint16_t raw)
 {
-    return raw * (DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION / 1000) / (DS277XG_RSENSE);
+    return raw * DS277XG_ACCUMULATED_CURRENT_REG_RESOLUTION / (DS277XG_RSENSE_MOHMS);
 }
 
 int ds277Xg_read_accumulated_current_mah(ds277Xg_config_t *config, uint16_t *acc_current_mah)
 {
+    int err = 0;
     uint16_t acc_current_raw = 0;
 
     if (ds277Xg_read_accumulated_current_raw(config, &acc_current_raw) != 0)
@@ -386,53 +564,44 @@ int ds277Xg_read_accumulated_current_mah(ds277Xg_config_t *config, uint16_t *acc
         sys_log_print_event_from_module(SYS_LOG_ERROR, DS277XG_MODULE_NAME, "Error reading the raw accumulated current value!");
         sys_log_new_line();
     #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-        return -1;
+        err += -1;
     }
 
-    *acc_current_mah = ds277Xg_current_raw_to_ma(acc_current_raw);
-    return 0;
+    *acc_current_mah = ds277Xg_accumulated_current_raw_to_mah(acc_current_raw);
+    return err;
 }
 
 int ds277Xg_write_cycle_counter(ds277Xg_config_t *config, uint16_t cycles)
 {
-    if(cycles > 510) { cycles = 510; }
-    uint8_t buf[2] = {DS277XG_CYCLE_COUNTER_REGISTER, (uint8_t)(cycles >> 1)}; // shift right to divide by two.
-    if (ds277Xg_write_data(config, buf, 2) != 0) {return -1;}
-    return 0;
+    int err = 0;
+    uint16_t num_cycles = cycles;
+    if(num_cycles > 510U) { num_cycles = 510U; }
+    uint8_t buf[2] = {DS277XG_CYCLE_COUNTER_REGISTER, (uint8_t)(num_cycles >> 1)}; // shift right to divide by two.
+    if (ds277Xg_write_data(config, buf, 2) != 0) {err += -1;}
+    return err;
 }
 
 int ds277Xg_read_cycle_counter(ds277Xg_config_t *config, uint16_t *cycles)
 {
+    int err = 0;
     uint8_t buf[1];
-    if (ds277Xg_read_data(config, DS277XG_CYCLE_COUNTER_REGISTER, buf, 1) != 0) {return -1;}
+    if (ds277Xg_read_data(config, DS277XG_CYCLE_COUNTER_REGISTER, buf, 1) != 0) {err += -1;}
     *cycles = ((uint16_t)*buf) << 1; // shift left to multiply by two.
-    return 0;
+    return err;
 }
 
 int ds277Xg_write_data(ds277Xg_config_t *config, uint8_t *data, const uint16_t len)
 {
-#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
-    if(onewire_reset(config->port) == 0) {return -1;}
-    if(onewire_write_byte(config->port, data, len) == -1) {return -1;}
-    return 0;
-#else
     return i2c_write(config->port, config->slave_adr, data, len);
-#endif
 }
 
 int ds277Xg_read_data(ds277Xg_config_t *config, uint8_t target_reg, uint8_t *data, uint16_t len)
 {
-#if defined(CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION) && (CONFIG_DRIVERS_DS277X_ONEWIRE_VERSION == 1)
-    uint8_t read_command[3] = {DS2775G_SKIP_ADDRESS, DS2775G_READ_DATA, target_reg};
-    if(ds277Xg_write_data(config, read_command, 0x3) == -1) {return -1;}
-    if(onewire_read_byte(config->port, data, len) == -1) {return -1;}
-    return 0;
-#else
+    int err = 0;
     uint8_t reg[1] = {target_reg};
-
-    if (i2c_write(config->port, config->slave_adr, reg, 1) != 0) {return -1;}
-    return i2c_read(config->port, config->slave_adr, data, len);
-#endif
+    if (i2c_write(config->port, config->slave_adr, reg, 1) != 0) {err += -1;}
+    if (i2c_read(config->port, config->slave_adr, data, len) != 0) {err += -1;}
+    return err;
 }
 
 /** \} End of ds277Xg group */

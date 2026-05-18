@@ -1,7 +1,7 @@
 /*
  * time_control.c
  * 
- * Copyright The EPS 2.0 Contributors.
+ * Copyright (C) 2021, SpaceLab.
  * 
  * This file is part of EPS 2.0.
  * 
@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.37
+ * \version 0.1.10
  * 
  * \date 2020/08/09
  * 
