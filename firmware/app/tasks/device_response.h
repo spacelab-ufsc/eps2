@@ -24,8 +24,9 @@
  * \brief Device response task implementation.
  *
  * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
- * \version 0.1.6
+ * \version 0.4.0
  *
  * \date 26/05/2021
  *
@@ -40,15 +41,13 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
-#define TASK_DEVICE_RESPONSE_NAME                 "DeviceResponse"     /**< Task name. */
-#define TASK_DEVICE_RESPONSE_STACK_SIZE           160             /**< Memory stack size in bytes. */
-#define TASK_DEVICE_RESPONSE_PRIORITY             2               /**< Priority. */
+#define TASK_DEVICE_RESPONSE_NAME                 "DeviceResponse"  /**< Task name. */
+#define TASK_DEVICE_RESPONSE_STACK_SIZE           350               /**< Memory stack size in bytes. */
+#define TASK_DEVICE_RESPONSE_PRIORITY             2                 /**< Priority. */
 #define TASK_DEVICE_RESPONSE_PERIOD_MS            60000UL           /**< Period in milliseconds. */
-#define TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS      10000UL          /**< Wait time to initialize the task in milliseconds. */
+#define TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS      10000UL           /**< Wait time to initialize the task in milliseconds. */
 #define TASK_DEVICE_RESPONSE_INITIAL_DELAY_MS     10000UL           /**< Delay, in milliseconds, before the first execution. */
 
-#define EPS_DATA_STRUCTURE_SIZE                   49
-#define DEVICE_RESPONSE_BUFFER_SIZE               50
 #define DEVICE_COMMAND_WRITE                      0x03
 
 /**

@@ -24,7 +24,7 @@
  * \brief Heater device definition.
  *
  * \author Jo�o Cl�udio <joaoclaudiobarcellos@gmail.com>
- * 
+ *
  * \version 0.2.11
  *
  * \date 2021/08/04
@@ -48,8 +48,8 @@
 /**
  * \brief Hysteresis controller parameters.
  */
-#define TEMP_LIMIT_MINIMUM                  200           /**< TODO. */
-#define TEMP_LIMIT_MAXIMUM                  305           /**< TODO. */
+#define TEMP_LIMIT_MINIMUM                  278
+#define TEMP_LIMIT_MAXIMUM                  288
 #define HEATER_OFF                          false
 #define HEATER_ON                           true
 
@@ -61,8 +61,8 @@
 #define HEATER_CONTROL_LOOP_CH_1        1
 #define HEATER_DRIVER_CH_0            GPIO_PIN_18
 #define HEATER_DRIVER_CH_1            GPIO_PIN_19
-#define HEATER_RTD_CH_0              TEMP_SENSOR_RTD_CH_4
-#define HEATER_RTD_CH_1              TEMP_SENSOR_RTD_CH_5
+#define HEATER_RTD_CH_0              TEMP_SENSOR_RTD_CH_4 /* Channel 4 is the rtd located in the center of the battery board, should be set to the rtd below the heater later */
+#define HEATER_RTD_CH_1              TEMP_SENSOR_RTD_CH_4 /* Channel 4 is the rtd located in the center of the battery board, should be set to the rtd below the heater later */
 #define HEATER_SENSOR_BOARD             TEMP_SENSOR_RTD_CH_3
 
 /**

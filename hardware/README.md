@@ -1,113 +1,71 @@
 <h1 align="center">
-	EPS 2.0 HARDWARE
+	EPS2 HARDWARE
 	<br>
 </h1>
 
-<h4 align="center">Electrical power system module hardware project (sources, outputs, and documentation).</h4>
-
 <p align="center">
-    <a href="https://github.com/spacelab-ufsc/spacelab#versioning">
-        <img src="https://img.shields.io/badge/status-in%20development-red?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/releases">
-        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/spacelab-ufsc/eps2?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/releases">
-        <img alt="GitHub commits since latest release (by date) for a branch" src="https://img.shields.io/github/commits-since/spacelab-ufsc/eps2/latest/dev_hardware?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/commits/master">
-        <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/spacelab-ufsc/eps2/dev_hardware?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/issues">
-        <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/issues/spacelab-ufsc/eps2/hardware?style=for-the-badge">
-    </a>
-    <a href="">
-        <img src="https://img.shields.io/badge/CAD%20tool-altium%20v19.2-yellow?style=for-the-badge">
-    </a>
-    <a href="#license">
-        <img src="https://img.shields.io/badge/license-cern%20ohl%202-yellow?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps">
-        <img src="https://img.shields.io/badge/flight-heritage-lightgray?style=for-the-badge">
-    </a>
-    <a href="https://github.com/spacelab-ufsc/eps2/tree/master/doc">
-        <img src="https://img.shields.io/badge/for%20more-here-lightgray?style=for-the-badge">
-    </a>
+    <!-- Versioning -->
+    <a href="https://github.com/spacelab-ufsc/spacelab#versioning"><img alt="Versioning" src="https://img.shields.io/badge/status-in_development-red"></a>
+    <!-- Releases -->
+    <a href="https://github.com/spacelab-ufsc/eps2/releases"><img alt="GitHub release" src="https://img.shields.io/github/v/release/spacelab-ufsc/eps2"></a>
+    <!-- Hardware-related commits since the latest release -->
+    <a href="https://github.com/spacelab-ufsc/eps2/releases"><img alt="GitHub commits since latest release (by date)" src="https://img.shields.io/github/commits-since/spacelab-ufsc/eps2/latest/dev_hardware"></a>
+    <!-- Last hardware-related commit -->
+    <a href="https://github.com/spacelab-ufsc/eps2/commits/master"><img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/spacelab-ufsc/eps2/dev_hardware"></a>
+    <!-- Hardware-related issues -->
+    <a href="https://github.com/spacelab-ufsc/eps2/issues"><img alt="GitHub issues or pull requests" src="https://img.shields.io/github/issues/spacelab-ufsc/eps2/hardware"></a>
+    <!-- CAD tool used -->
+    <a href=""><img alt="CAD tool" src="https://img.shields.io/badge/cad_tool-Altium_v19.2-yellow"></a></a>
+    <!-- License adopted -->
+    <a href=""><img alt="License" src="https://img.shields.io/badge/license-CERN_OHL_2-yellow"></a></a>
 </p>
 
-<p align="center">
-  	<a href="#overview">Overview</a> •
-  	<a href="#architecture">Architecture</a> •
-  	<a href="#development">Development</a> •
-  	<a href="#version">Version</a> •
-  	<a href="#license">License</a> •
-  	<a href="#notes">Notes</a>
-</p>
-
-<p align="center">
-	<img width="45%" src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2-pcb-top.png">
-	<img width="45%" src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2-pcb-bottom.png">
-</p>
-
+<details>
+    <summary><b>Summary</b></summary>
+    <ol>
+        <li>
+            <a href="#overview">Overview</a>
+        </li>
+        <li>
+            <a href="#license">License</a>
+        </li>
+        <li>
+            <a href="#notes">Notes</a>
+        </li>
+        <li>
+            <a href="#references">References</a>
+        </li>
+    </ol>
+</details>
 
 ## Overview
-
-The EPS 2.0 is 4 layer PCB with FR-4 dieletric on a CubeSat form factor shape and size (90mm x 93mm). It is composed of the following main components: MCU, current and voltage sensors, ADC IC for RTDs measurements, solar panels interface, MPPT, battery monitor, discharge and charge switches, battery board interface, heater drivers, I2C buffer, six DC-DC buck converters, kill-switches interface, versioning resistors, debug and programing interfaces for MCU and PC/104 interface. 
-
-## Architecture
-
-The board design is a microcontroller based hardware connecting different interfaces and peripherals. For more information refer to the [documentation](https://github.com/spacelab-ufsc/eps2/tree/master/doc) in the "Hardware" chapter.
-
-#### MCU Block Diagram
+The **EPS2** [[1]](#1) was designed to collect, store, and distribute energy for GOLDS-UFSC and future SpaceLab's missions, with a focus on practicality. It is higly based on the EPS1, used in FloripaSat-1 [[2]](#2). Then, it can be used in 1U and 2U CubeSats, this EPS can interface with up to 10 solar panels attached to the structure. It is also capable of operating the solar panels at their maximum power point (MPP). The collected energy is stored in lithium-ion batteries, and power distribution is managed by integrated DC-DC converters, generating 5V and 3.3V buses. This model is predominantly analog, enhancing its reliability in the challenging space environment. It also features redundancies in its energy harvesting unit (EHU) and power distribution unit (PDU).
 
 <p align="center">
-	<img width="70%" src="https://github.com/spacelab-ufsc/eps2/blob/documentation/doc/figures/eps2_mcu_diagram.png">
+    <img src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2-pcb-top.png" width="400"><img src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2-pcb-bottom.png" width="400">
 </p>
 
-> This image refers to the v0.1 release.
-
-#### Power Block Diagram
+### Architecture
+The EPS2 includes an MSP430 microcontroller, which is responsible for reading various sensors and controlling its main units, such as the energy harvesting unit (EHU), power distribution unit (PDU), and power storage unit (PSU). It also features I²C and SPI interfaces for communication with the main modules of the satellite's service module. For more details, please refer to the **documentation**.
 
 <p align="center">
-	<img width="70%" src="https://github.com/spacelab-ufsc/eps2/blob/documentation/doc/figures/eps2_power_diagram.png">
+    <img src="https://github.com/spacelab-ufsc/eps2/blob/master/doc/figures/eps2_mcu_diagram.png">
 </p>
 
-> This image refers to the v0.1 release.
-
-## Development
-
+### Development
 #### Manufacture
-
-The folder [fabrication](https://github.com/spacelab-ufsc/eps2/tree/master/hardware/fabrication) contain 3 "ready to go" files: the gerbers and nc_drills for manufacturing the board, the BOM with all required components, and the pick_place file for automated assembly. Additional files are avaliable in the [outputs](https://github.com/spacelab-ufsc/obdh2/tree/master/hardware/outputs) folder, which contain several useful files and documents, such as: 3D models, bill of materials, schematics, layout prints, and draftsman.
+The folder [fabrication](https://github.com/spacelab-ufsc/eps2/tree/master/hardware/fabrication) contains three "ready to go" files: the Gerbers and NC drill files for manufacturing the board, the BOM (Bill of Materials) with all required components, and the pick-and-place file for automated assembly. Additional files are available in the [outputs](https://github.com/spacelab-ufsc/eps2/tree/master/hardware/outputs) folder, which includes several useful files and documents such as 3D models, the bill of materials, schematics, layout prints, and draftsman files.
 
 #### Assembly
+The board has components that should not be soldered simultaneously. Please refer to the **documentation** in the assembly-related chapter for more details.
 
-The board has components that should not be soldered simultaneously. Refer to the [documentation](https://github.com/spacelab-ufsc/obdh2/tree/master/doc) in the "Assembly" chapter.
-
-#### Power-on procedure
-
-TBD
-
-<p align="center">
-    <img width="70%" src="">
-</p>
-
-#### Debugging
-
-The debugging is performed through a serial UART port, using as default a baud rate of 115200, 1 stop bit, and no parity bit. The interface uses a log system standard to improve readability. Refer to the [documentation](https://github.com/spacelab-ufsc/eps2/tree/master/doc) in the "Instructions" chapter.  
-
-#### Testing
-
-Automated testing is not avaliable yet.
-
-## Version
-
-Refer to the [releases](https://github.com/spacelab-ufsc/eps2/releases) page.
+#### Power-on Procedure
+To power on the board, you need to connect a battery (either the [BAT4C](https://github.com/spacelab-ufsc/battery-module-4c) model or the [BAT2C](https://github.com/spacelab-ufsc/battery-module-2c) model) or, at a minimum, emulate a battery using a power supply. For this, simply connect the power supply to provide 7.4V on `VBAT+`, GND on `VBAT-`, and 3.7V on `V_CM`. You can use the `P5` connector for this purpose. Refer to the **documentation** in the instructions-related chapter for more details.
 
 ## License
-
-This repository containing hardware files is licensed under CERN Open Hardware License, version 2.
+This project is open-source under the following license: CERN Open Hardware License v2.0.
 
 ## Notes
+For more info about the SpaceLab, access our [GitHub](https://github.com/spacelab-ufsc/spacelab), [Linkedin](https://br.linkedin.com/company/spacelab-ufsc) or our [website](https://spacelab.ufsc.br/en/home/).
 
-Under Development! More information soon.
+## References

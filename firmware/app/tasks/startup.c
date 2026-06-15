@@ -25,6 +25,8 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Yan Castro de Azeredo <yan.ufsceel@gmail.com>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  * 
  * \version 0.2.25
  * 
@@ -140,7 +142,7 @@ void vTaskStartup(void *pvParameters)
 
 #if CONFIG_DEV_MEDIA_ENABLED == 1
     /* Internal non-volatile memory initialization */
-    if (media_init() != 0)
+    if (media_init(MEDIA_INT_FLASH) != 0)
     {
         error_counter++;
     }
@@ -185,6 +187,16 @@ void vTaskStartup(void *pvParameters)
         error_counter++;
     }
 #endif /* CONFIG_DEV_TTC_ENABLED */
+
+#if CONFIG_DEV_POWER_CONV_ENABLED == 1
+    /* Power converter device initialization */
+    if (power_conv_init() != 0)
+    {
+        error_counter++;
+    }
+#endif /* CONFIG_DEV_POWER_CONV_ENABLED */
+
+    (void)enable_payload_power();
 
     if (error_counter > 0)
     {

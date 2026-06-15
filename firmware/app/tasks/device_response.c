@@ -24,8 +24,9 @@
  * \brief Device response task implementation.
  *
  * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  *
- * \version 0.1.6
+ * \version 0.4.0
  *
  * \date 26/05/2021
  *
@@ -41,33 +42,55 @@
 #include "device_response.h"
 #include "startup.h"
 
+/* Number of parameters in the list to be sent to TTC */
+#define BEACON_PARAM_LIST_SIZE          30
+/* Size of the buffer: command to write (1B) + packet ID (1B) + callsign (7B) + 4B for each parameters in the list  */
+#define DEVICE_RESPONSE_BUFFER_SIZE     9 + 4 * BEACON_PARAM_LIST_SIZE
+
 xTaskHandle xTaskDeviceResponseHandle;
 
 void vTaskDeviceResponse(void *pvParameters)
 {
-
-    uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
-    uint32_t val = 0;
-
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INIT_TIMEOUT_MS));
 
     /* Delay before the first cycle */
     vTaskDelay(pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_INITIAL_DELAY_MS));
 
+    uint8_t beacon_param_list[] = {
+        BEACON_PARAM_ID_LIST,
+    };
+
+    uint8_t buf[DEVICE_RESPONSE_BUFFER_SIZE] = {0};
+    uint32_t val = 0;
+    uint32_t beacon_flag = 0;
+    
     while(1)
     {
         TickType_t last_cycle = xTaskGetTickCount();
 
         buf[0] = DEVICE_COMMAND_WRITE;
-
-        for(int i = 0; i < EPS_DATA_STRUCTURE_SIZE; i++)
+        buf[1] = CONFIG_PKT_ID_BEACON;
+        memcpy(&buf[2], CONFIG_SATELLITE_CALLSIGN, 7);
+        
+        eps_buffer_read(EPS2_PARAM_ID_BEACON_ENABLE, &beacon_flag);
+        if(beacon_flag > 0)
         {
-            eps_buffer_read(i, &val);
-            buf[i+1] = val;
+            for(uint8_t i = 0, j = 9; i < BEACON_PARAM_LIST_SIZE; i++, j+=4)
+            {
+                eps_buffer_read(beacon_param_list[i], &val);
+                buf[ j ] = (val >> 24) & 0xFF;
+                buf[j+1] = (val >> 16) & 0xFF;
+                buf[j+2] = (val >> 8)  & 0xFF;
+                buf[j+3] = (val >> 0)  & 0xFF;
+            }
+            ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);
         }
-
-        ttc_answer_long(buf, DEVICE_RESPONSE_BUFFER_SIZE);
+        else
+        {
+            sys_log_print_event_from_module(SYS_LOG_INFO, TASK_DEVICE_RESPONSE_NAME, "The beacon is not enabled");
+            sys_log_new_line();
+        }
 
         vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_DEVICE_RESPONSE_PERIOD_MS));
     }

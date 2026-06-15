@@ -25,6 +25,8 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author André M. P. de Mattos <andre.mattos@spacelab.ufsc.br>
+ * \author João Cláudio Elsen Barcellos <joaoclaudiobarcellos@gmail.com>
+ * \author Ramon de Araujo Borba <ramonborba97@gmail.com>
  * 
  * \version 0.2.41
  * 
@@ -34,6 +36,7 @@
  * \{
  */
 
+#include <system/system.h>
 #include <system/sys_log/sys_log.h>
 #include <structs/eps2_data.h>
 
@@ -42,6 +45,7 @@
 
 #include <devices/ttc/ttc.h>
 #include <devices/obdh/obdh.h>
+#include <devices/power_conv/power_conv.h>
 
 #include "param_server.h"
 #include "startup.h"
@@ -52,6 +56,7 @@ void vTaskParamServer(void *pvParameters)
 {
     BaseType_t result;
     uint32_t notified_value;
+    uint8_t comm_watchdog = 0U;
 
     /* Wait startup task to finish */
     xEventGroupWaitBits(task_startup_status, TASK_STARTUP_DONE, pdFALSE, pdTRUE, pdMS_TO_TICKS(TASK_PARAM_SERVER_INIT_TIMEOUT_MS));
@@ -74,12 +79,29 @@ void vTaskParamServer(void *pvParameters)
                     switch(cmd)
                     {
                         case OBDH_COMMAND_WRITE: 
-                            if (eps_buffer_write(adr, &val) != 0)
+                            switch (adr)
                             {
-                                sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH write command has failed to complete!");
-                                sys_log_new_line();
+                                case EPS2_PARAM_ID_RESET_EPS:
+                                    system_reset();
+                                    break;
+                                case EPS2_PARAM_ID_PAYLOAD_ENABLE:
+                                    if (val > 0)
+                                    {
+                                        enable_payload_power();
+                                    }
+                                    else
+                                    {
+                                        disable_payload_power();
+                                    }
+                                    break;
+                                default:
+                                    if (eps_buffer_write(adr, &val) != 0)
+                                    {
+                                        sys_log_print_event_from_module(SYS_LOG_ERROR, TASK_PARAM_SERVER_NAME, "OBDH write command has failed to complete!");
+                                        sys_log_new_line();
+                                    }
+                                    break;
                             }
-
                             break;
                         case OBDH_COMMAND_READ: 
                             if (eps_buffer_read(adr, &val) == 0)
@@ -100,6 +122,8 @@ void vTaskParamServer(void *pvParameters)
                         default: 
                             break;
                     }
+
+                    comm_watchdog = 0U;
                 }
                 else 
                 {
@@ -140,6 +164,8 @@ void vTaskParamServer(void *pvParameters)
                         default: 
                             break;
                     }
+
+                    comm_watchdog = 0U;
                 }
                 else 
                 {
@@ -151,8 +177,16 @@ void vTaskParamServer(void *pvParameters)
         else
         {
             /* xTaskNotifyWait timed out. */
-            sys_log_print_event_from_module(SYS_LOG_WARNING, TASK_PARAM_SERVER_NAME, "Any command request received in the last minute");
+            sys_log_print_event_from_module(SYS_LOG_WARNING, TASK_PARAM_SERVER_NAME, "No command request received in the last minute");
             sys_log_new_line();
+
+            if (++comm_watchdog > 5U)
+            {
+                sys_log_print_event_from_module(SYS_LOG_INFO, TASK_PARAM_SERVER_NAME, "Param server communication watchdog timedout! Resetting...");
+                sys_log_new_line();
+
+                system_reset();
+            }
         }
     }
 }
