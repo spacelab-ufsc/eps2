@@ -38,33 +38,33 @@
 
 #include "heater.h"
 
-pid_controller_t pid_controller;
+#if defined _UNIT_TEST_
+    #define STATIC
+#else
+    #define STATIC static
+#endif
+
 heater_config_t heater_config;
 
-int heater_init(heater_channel_t channel) 
+/**
+ * \brief PI controller state for each heater channel.
+ */
+STATIC heater_pi_t heater_controller[2];
+
+int heater_init(heater_channel_t channel)
 {
     sys_log_print_event_from_module(SYS_LOG_INFO, HEATER_MODULE_NAME, "Initializing Heater device.");
-    sys_log_new_line();   
+    sys_log_new_line();
 
-    /* PID controller initialization */
-    pid_controller.tau              = PID_TAU_INIT; 
-    pid_controller.limMin           = PID_LIMIT_MINIMUM_INIT;    
-    pid_controller.limMax           = PID_LIMIT_MAXIMUM_INIT;    
-    pid_controller.limMinInt        = PID_LIMIT_MINIMUM_INTEGRATOR_INIT;        
-    pid_controller.limMaxInt        = PID_LIMIT_MAXIMUM_INTEGRATOR_INIT;        
-    pid_controller.sample_time      = PID_SAMPLE_TIME_INIT;
-    pid_controller.integrator       = PID_INTEGRATOR_INIT;        
-    pid_controller.prevError        = PID_PREVIOUS_ERROR_INIT;        
-    pid_controller.differentiator   = PID_DIFFERENTIATOR_INIT;               
-    pid_controller.prevMeasurement  = PID_PREVIOUS_MEASUREMENT_INIT;              
-    pid_controller.out              = PID_OUTPUT_INIT;
+    /* Reset PI controller state */
+    heater_controller[channel].integral = 0.0f;
 
     /* Initialize the PWM parameters */
     heater_config.period_us         = HEATER_PERIOD_INIT;
     heater_config.duty_cycle        = HEATER_DUTY_CYCLE_INIT;
 
     switch(channel){
-        
+
         case HEATER_CONTROL_LOOP_CH_0:
 
             if(pwm_init(HEATER_CONTROL_LOOP_CH_SOURCE, HEATER_ACTUATOR_CH_0, heater_config))
@@ -72,8 +72,8 @@ int heater_init(heater_channel_t channel)
                 sys_log_print_event_from_module(SYS_LOG_ERROR, HEATER_MODULE_NAME, "Error during the initialization (CH0)!");
                 sys_log_new_line();
                 return -1;
-            }        
-        
+            }
+
             break;
 
         case HEATER_CONTROL_LOOP_CH_1:
@@ -92,61 +92,70 @@ int heater_init(heater_channel_t channel)
     return 0;
 }
 
-float heater_algorithm(float setpoint, float measurement) 
+float heater_algorithm(heater_channel_t channel, float setpoint, float measurement)
 {
+    float error;
+    float p_term;
+    float provisional_output;
+    float output;
+    float integral_max;
+    float integral_min;
+
     /* Error signal */
-    float error = setpoint - measurement;
+    error = setpoint - measurement;
 
-    /* Proportional: 
-     * p[n]=Kp*e[n] 
-     */
-    float proportional = PID_PROPORTIONAL_CONSTANT*error;
+    /* Proportional term */
+    p_term = HEATER_PI_KP * error;
 
-    /* Integral: 
-     * i[n]= ((Ki*T)/2)*(e[n]-e[n-1])+i[n-1] 
-     */
-    pid_controller.integrator += 0.5f * PID_INTEGRATOR_CONSTANT * pid_controller.sample_time * (error + pid_controller.prevError);
+    /* Provisional output using current integral state */
+    provisional_output = p_term + HEATER_PI_KI * heater_controller[channel].integral;
 
-    /* Anti-wind-up via integrator clamping */
-    if (pid_controller.integrator > pid_controller.limMaxInt) {
-
-        pid_controller.integrator = pid_controller.limMaxInt;
-
-    } else if (pid_controller.integrator < pid_controller.limMinInt) {
-
-        pid_controller.integrator = pid_controller.limMinInt;
-
+    /* Conditional Integration anti-windup */
+    if ((provisional_output >= HEATER_OUTPUT_MAXIMUM) && (error > 0.0f))
+    {
+        /* Output saturated high and error pushes higher: do not integrate */
     }
-
-    /* Derivative (band-limited differentiator): 
-     * d[n]=(2*Kd*(e[n]-e[n-1])+(2*tau-T)*d[n-1])/(2*tau+T) 
-     */
-    pid_controller.differentiator = -(2.0f * PID_DIFFERENTIATOR_CONSTANT * (measurement - pid_controller.prevMeasurement)   /* Note: derivative on measurement, therefore minus sign in front of equation! */
-                        + (2.0f * pid_controller.tau - pid_controller.sample_time) * pid_controller.differentiator)
-                        / (2.0f * pid_controller.tau + pid_controller.sample_time);
+    else if ((provisional_output <= HEATER_OUTPUT_MINIMUM) && (error < 0.0f))
+    {
+        /* Output saturated low and error pushes lower: do not integrate */
+    }
+    else
+    {
+        heater_controller[channel].integral += error * HEATER_SAMPLE_TIME_S;
+    }
 
     /*
-     * Compute output and apply limits
-     * out[n]=p[n]+i[n]+d[n]
+     * Clamp integral to non-negative range. Negative integral would represent
+     * stored cooling effort, which is meaningless for a heat-only actuator and
+     * would delay heating when the battery becomes cold again.
      */
-    pid_controller.out = proportional + pid_controller.integrator + pid_controller.differentiator;
+    integral_max = HEATER_OUTPUT_MAXIMUM / HEATER_PI_KI;
+    integral_min = 0.0f;
 
-    if (pid_controller.out > pid_controller.limMax) {
-
-        pid_controller.out = pid_controller.limMax;
-
-    } else if (pid_controller.out < pid_controller.limMin) {
-
-        pid_controller.out = pid_controller.limMin;
-
+    if (heater_controller[channel].integral > integral_max)
+    {
+        heater_controller[channel].integral = integral_max;
+    }
+    else if (heater_controller[channel].integral < integral_min)
+    {
+        heater_controller[channel].integral = integral_min;
     }
 
-    /* Store error and measurement for later use */
-    pid_controller.prevError       = error;
-    pid_controller.prevMeasurement = measurement;
+    /* Recompute output with updated integral */
+    output = p_term + HEATER_PI_KI * heater_controller[channel].integral;
+
+    /* Clamp output to actuator limits */
+    if (output > HEATER_OUTPUT_MAXIMUM)
+    {
+        output = HEATER_OUTPUT_MAXIMUM;
+    }
+    else if (output < HEATER_OUTPUT_MINIMUM)
+    {
+        output = HEATER_OUTPUT_MINIMUM;
+    }
 
     /* Return controller output */
-    return pid_controller.out;
+    return output;
 }
 
 int heater_get_sensor(heater_channel_t channel, temperature_t *temp) 

@@ -42,8 +42,8 @@ current_sensor_test: $(BUILD_DIR)/current_sensor.o $(BUILD_DIR)/current_sensor_t
 	$(CC) $(CURRENT_SENSOR_TEST_FLAGS) $(BUILD_DIR)/current_sensor.o $(BUILD_DIR)/current_sensor_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/adc_wrap.o $(BUILD_DIR)/max9934_wrap.o -o $(BUILD_DIR)/$(TARGET_CURRENT_SENSOR) -lcmocka
 
 .PHONY: heater_test
-heater_test: $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor_wrap.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o
-	$(CC) $(HEATER_TEST_FLAGS) $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor_wrap.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o -o $(BUILD_DIR)/$(TARGET_HEATER) -lcmocka
+heater_test: $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_on_off.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor_wrap.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o
+	$(CC) $(HEATER_TEST_FLAGS) $(BUILD_DIR)/heater.o $(BUILD_DIR)/heater_on_off.o $(BUILD_DIR)/heater_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/pwm_wrap.o $(BUILD_DIR)/temp_sensor_wrap.o $(BUILD_DIR)/ads1248_wrap.o $(BUILD_DIR)/gpio_wrap.o $(BUILD_DIR)/adc_wrap.o -o $(BUILD_DIR)/$(TARGET_HEATER) -lcmocka
 
 .PHONY: leds_test
 leds_test: $(BUILD_DIR)/leds.o $(BUILD_DIR)/leds_test.o $(BUILD_DIR)/sys_log_wrap.o $(BUILD_DIR)/gpio_wrap.o
@@ -91,6 +91,9 @@ $(BUILD_DIR)/current_sensor.o: ../../devices/current_sensor/current_sensor.c
 	$(CC) $(CURRENT_SENSOR_TEST_FLAGS) -c $< -o $@
 
 $(BUILD_DIR)/heater.o: ../../devices/heater/heater.c
+	$(CC) $(HEATER_TEST_FLAGS) -c $< -o $@
+
+$(BUILD_DIR)/heater_on_off.o: ../../devices/heater/heater_on_off.c
 	$(CC) $(HEATER_TEST_FLAGS) -c $< -o $@
 
 $(BUILD_DIR)/leds.o: ../../devices/leds/leds.c
