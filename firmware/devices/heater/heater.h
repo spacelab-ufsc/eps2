@@ -47,23 +47,13 @@
 #define HEATER_MODULE_NAME        "HEATER"
 
 /**
- * \brief PID algorithm constants.
+ * \brief Heater PI controller constants.
  */
-#define PID_BASE_SET_POINT                      5           /**< TODO. */         
-#define PID_PROPORTIONAL_CONSTANT               1           /**< Kp: Modulate the proportional actuation influence. */
-#define PID_INTEGRATOR_CONSTANT                 1           /**< Ki: Modulate the integrator actuation influence. */
-#define PID_DIFFERENTIATOR_CONSTANT             1           /**< Kd: Modulate the differentiator actuation influence. */
-#define PID_TAU_INIT                            0           /**< TODO. */                   
-#define PID_LIMIT_MINIMUM_INIT                  0           /**< TODO. */               
-#define PID_LIMIT_MAXIMUM_INIT                  100         /**< TODO. */                  
-#define PID_LIMIT_MINIMUM_INTEGRATOR_INIT       0           /**< TODO. */                           
-#define PID_LIMIT_MAXIMUM_INTEGRATOR_INIT       0           /**< TODO. */                           
-#define PID_SAMPLE_TIME_INIT                    500         /**< TODO. */                  
-#define PID_INTEGRATOR_INIT                     0           /**< TODO. */              
-#define PID_PREVIOUS_ERROR_INIT                 0           /**< TODO. */                  
-#define PID_DIFFERENTIATOR_INIT                 0           /**< TODO. */                
-#define PID_PREVIOUS_MEASUREMENT_INIT           0           /**< TODO. */                       
-#define PID_OUTPUT_INIT                         50          /**< TODO. */ 
+#define HEATER_PI_KP                            1.0f        /**< Kp: Proportional gain (provisional, not hardware-tuned). */
+#define HEATER_PI_KI                            0.1f        /**< Ki: Integral gain (provisional, not hardware-tuned). */
+#define HEATER_SAMPLE_TIME_S                    2.0f        /**< Controller sample time in seconds. */
+#define HEATER_OUTPUT_MINIMUM                   0.0f        /**< Minimum actuator output limit. */
+#define HEATER_OUTPUT_MAXIMUM                   100.0f      /**< Maximum actuator output limit. */
 
 /**
  * \brief PWM constants.
@@ -99,33 +89,13 @@ typedef pwm_config_t heater_config_t;
 typedef uint16_t temperature_t;
 
 /**
- * \brief PID controller variable type.
+ * \brief Heater PI controller state.
  */
-typedef struct {
-    /* Derivative low-pass filter time constant */
-    float tau;
+typedef struct
+{
+    float integral;     /**< Integral accumulator. */
+} heater_pi_t;
 
-    /* Output limits */
-    float limMin;
-    float limMax;
-
-    /* Integrator limits */
-    float limMinInt;
-    float limMaxInt;
-
-    /* Sample time T (in seconds) */
-    float sample_time;
-
-    /* Controller "memory" */
-    float integrator;
-    float prevError;            /* Required for integrator */
-    float differentiator;
-    float prevMeasurement;      /* Required for differentiator */
-
-    /* Controller output */
-    float out;
-
-} pid_controller_t;
 
 /**
  * \brief Initialization routine of the heater device.
@@ -137,7 +107,9 @@ typedef struct {
 int heater_init(heater_channel_t channel);
 
 /**
- * \brief Function to implement the PID controller algorithm.
+ * \brief Function to implement the heater PI controller algorithm.
+ *
+ * \param[in] channel is the heater channel to control.
  *
  * \param[in] setpoint is the desired temperature value.
  *
@@ -145,7 +117,7 @@ int heater_init(heater_channel_t channel);
  *
  * \return The control loop output value.
  */
-float heater_algorithm(float setpoint, float measurement);
+float heater_algorithm(heater_channel_t channel, float setpoint, float measurement);
 
 /**
  * \brief Gets the temperature sensor value in kelvin.
