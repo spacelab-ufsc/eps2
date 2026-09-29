@@ -69,6 +69,8 @@ eps_data_t eps_data_buff = {
 
 int eps_buffer_write(uint8_t id, uint32_t *value)
 {
+	int err = 0;
+	
     taskENTER_CRITICAL();
 	switch(id)
     {
@@ -238,15 +240,17 @@ int eps_buffer_write(uint8_t id, uint32_t *value)
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
-            return -1;
+            err = -1;
     }
     taskEXIT_CRITICAL();
 
-    return 0;
+	return err;
 }
 
 int eps_buffer_read(uint8_t id, uint32_t *value)
 {
+	int err = 0;
+	
     taskENTER_CRITICAL();
 
     #if CONFIG_SET_DUMMY_EPS == 1
@@ -405,10 +409,12 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
-            return -1;
+            err = -1;
     }
+	
+	taskEXIT_CRITICAL();
 
-    return 0;
+    return err;
     #endif
 
 	switch(id)
@@ -567,11 +573,12 @@ int eps_buffer_read(uint8_t id, uint32_t *value)
         default:
             sys_log_print_event_from_module(SYS_LOG_ERROR, EPS_DATA_NAME, "Unknown parameter ID!");
             sys_log_new_line();
-			return -1;
+			err = -1;
     }
+	
     taskEXIT_CRITICAL();
 
-    return 0;
+    return err;
 }
 
 /** \} End of eps_data group */
